@@ -57,10 +57,11 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    filename: 'static/js/index.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath
   },
+  target: 'web',
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
     // We read `NODE_PATH` environment variable in `paths.js` and pass paths here.
@@ -108,7 +109,7 @@ module.exports = {
           // get properly excluded by /\.(js|jsx)$/ because of the query string.
           // Webpack 2 fixes this, but for now we include this hack.
           // https://github.com/facebookincubator/create-react-app/issues/1713
-          /\.(js|jsx)(\?.*)?$/,
+          // /\.(js|jsx)(\?.*)?$/,
           /\.css$/,
           /\.json$/,
           /\.svg$/
@@ -123,13 +124,14 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
 
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
-          cacheDirectory: true
+          cacheDirectory: true,
+          presets: ['es2015', 'stage-2', 'react']
         }
       },
       // "postcss" loader applies autoprefixer to our CSS.
