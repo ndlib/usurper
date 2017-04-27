@@ -31,6 +31,9 @@ import App from '../shared/components/App'
 const app = express()
 const context = {}
 
+const staticPath = path.join(__dirname, '../../build/public/static')
+console.log('STATICPATH: ', staticPath)
+app.use('/static', express.static(staticPath))
 app.get('*', (req, res) => {
   const RenderedContent = ReactDOMServer.renderToString(
     <StaticRouter
