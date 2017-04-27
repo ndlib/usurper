@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router'
-import routes from '../../routes.js'
 import Home from '../../components/Home'
 import Static from '../../components/Static'
 class App extends Component {

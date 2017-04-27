@@ -1,25 +1,3 @@
-// const express = require('express')
-// const React = require('react')
-// const ReactRouter = require('react-router')
-// const StaticRouter = ReactRouter.Router
-// const matchPath = ReactRouter.matchPath
-// const routes = require('../shared/routes.js')
-//
-// const app = express()
-// app.use('../static', express.static('../dist'))
-//
-// app.get('*', (req, res) => {
-//   // const match = routes.reduce((acc, route) => matchPath(req.url, route, { exact: true }) || acc, null)
-//   // if (!match) {
-//   //   res.status(404).send(404)
-//   // } else {
-//   res.status(200).send(200)
-//   // }
-// })
-//
-// app.listen(4000, () => console.log('Demo app listening on port 4000'))
-// console.log('Listening on http://localhost:4000')
-
 import express from 'express'
 import React from 'react'
 import { StaticRouter } from 'react-router'
@@ -32,7 +10,6 @@ const app = express()
 const context = {}
 
 const staticPath = path.join(__dirname, '../../build/public/static')
-console.log('STATICPATH: ', staticPath)
 app.use('/static', express.static(staticPath))
 app.get('*', (req, res) => {
   const RenderedContent = ReactDOMServer.renderToString(
@@ -47,10 +24,13 @@ app.get('*', (req, res) => {
   let RenderedPage = ''
   fs.readFile('./build/public/index.html', 'utf-8', function (err, data) {
     if (err) {
-      console.error('Could not load index.html')
+      res.status(500).send(500)
     } else {
       RenderedPage = data
       RenderedPage = RenderedPage.replace('{{SSR}}', RenderedContent)
+      if (!RenderedContent) {
+        res.status(404).send(404)
+      }
       res.status(200).send(RenderedPage)
     }
   })
