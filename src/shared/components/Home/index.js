@@ -10,8 +10,7 @@ class Home extends Component {
       <div className='Home'>
         <div className='App-header'>
           <h2>Welcome to React</h2>
-          <div>Some text</div>
-          <Link to='/fake-page'>Another page.</Link>
+          <Link to='/fake-page'>A different page.</Link>
         </div>
       </div>
     )
