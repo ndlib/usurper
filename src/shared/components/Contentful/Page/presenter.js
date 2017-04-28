@@ -1,5 +1,6 @@
 // Presenter component for a Page content type from Contentful
 import React, { PropTypes } from 'react'
+import Markdown from 'markdown-to-jsx'
 import './style.css'
 
 const Loading = (
@@ -9,10 +10,8 @@ const Loaded = (cfPageEntry) => (
   <div className={'ContentfulPage'}>
     <div>{ cfPageEntry.fields.url }</div>
     <h1>{ cfPageEntry.fields.title }</h1>
-    <h2>
-      <div>{ cfPageEntry.fields.shortContent }</div>
-      <div>{ cfPageEntry.fields.content }</div>
-    </h2>
+    <Markdown>{cfPageEntry.fields.shortContent}</Markdown>
+    <Markdown>{cfPageEntry.fields.content}</Markdown>
   </div>
 )
 
