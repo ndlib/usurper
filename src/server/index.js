@@ -1,6 +1,6 @@
 import express from 'express'
 import React from 'react'
-import { StaticRouter } from 'react-router'
+import { StaticRouter, browserHistory } from 'react-router'
 import ReactDOMServer from 'react-dom/server'
 import path from 'path'
 import fs from 'fs'
@@ -16,6 +16,7 @@ app.get('*', (req, res) => {
     <StaticRouter
       location={req.url}
       context={context}
+      history={browserHistory}
     >
       <App />
     </StaticRouter>
