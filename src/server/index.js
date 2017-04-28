@@ -21,16 +21,16 @@ app.get('*', (req, res) => {
     </StaticRouter>
   )
 
-  let RenderedPage = ''
   fs.readFile('./build/public/index.html', 'utf-8', function (err, data) {
+    let RenderedPage = ''
     if (err) {
       res.status(500).send(500)
     } else {
       RenderedPage = data
-      RenderedPage = RenderedPage.replace('{{SSR}}', RenderedContent)
       if (!RenderedContent) {
         res.status(404).send(404)
       }
+      RenderedPage = RenderedPage.replace('{{SSR}}', RenderedContent)
       res.status(200).send(RenderedPage)
     }
   })
