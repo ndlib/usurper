@@ -20,7 +20,7 @@ app.get('*', (req, res) => {
       <App />
     </StaticRouter>
   )
-  // const RenderedPage = ;
+
   let RenderedPage = ''
   fs.readFile('./build/public/index.html', 'utf-8', function (err, data) {
     if (err) {

@@ -11,6 +11,8 @@ class Static extends Component {
         <div className='App-header'>
           <h2>Welcome to Static Page</h2>
           <Link to='/'>Home</Link>
+          <br />
+          <Link to='/another-page'>Another page.</Link>
         </div>
       </div>
     )

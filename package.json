@@ -66,7 +66,7 @@
   },
   "scripts": {
     "build": "webpack --config config/webpack.config.server.js && webpack --config config/webpack.config.client.js",
-    "start": "nodemon build/server.js --exec babel-node --presets es2015,stage-2,react --watch build/server.js",
+    "start": "node build/server.js",
     "dev:server": "webpack --config config/webpack.config.server.js --watch",
     "dev:client": "webpack --config config/webpack.config.client.js --watch",
     "test": "node scripts/test.js --env=jsdom"
