@@ -16,10 +16,10 @@ const Loaded = (cfPageEntry) => (
 )
 
 const Presenter = ({ cfPageEntry }) => {
-  if (cfPageEntry.isFetching) {
-    return Loading
+  if (!cfPageEntry.isFetching && cfPageEntry.json) {
+    return Loaded(cfPageEntry.json)
   }
-  return Loaded(cfPageEntry.json)
+  return Loading
 }
 
 Presenter.propTypes = {
