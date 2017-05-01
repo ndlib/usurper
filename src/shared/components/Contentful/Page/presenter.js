@@ -15,12 +15,19 @@ const Loaded = (cfPageEntry) => (
     <Markdown>{cfPageEntry.fields.content}</Markdown>
   </div>
 )
+const Error = (
+  <span>Error</span>
+)
 
 const Presenter = ({ cfPageEntry }) => {
-  if (!cfPageEntry.isFetching && cfPageEntry.json) {
-    return Loaded(cfPageEntry.json)
+  if (cfPageEntry.isFetching) {
+    return Loading
   }
-  return Loading
+  if(cfPageEntry.status === 'success') {
+    return Loaded(cfPageEntry.json)
+  } else {
+    return Error
+  }
 }
 
 Presenter.propTypes = {
