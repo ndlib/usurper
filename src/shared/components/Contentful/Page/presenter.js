@@ -15,18 +15,27 @@ const Loaded = (cfPageEntry) => (
     <Markdown>{cfPageEntry.fields.content}</Markdown>
   </div>
 )
-const Error = (
+const ErrorLoading = (
   <span>Error</span>
+)
+
+const NotFound = (
+  <div className={'NotFound'}>
+    <h1>Page Not Found</h1>
+    <div>The requested page could not be found</div>
+  </div>
 )
 
 const Presenter = ({ cfPageEntry }) => {
   if (cfPageEntry.isFetching) {
     return Loading
   }
-  if(cfPageEntry.status === 'success') {
+  if (cfPageEntry.status === 'success') {
     return Loaded(cfPageEntry.json)
+  } else if (cfPageEntry.status === 'not found') {
+    return NotFound
   } else {
-    return Error
+    return ErrorLoading
   }
 }
 
