@@ -1,5 +1,6 @@
 // Presenter component for a Page content type from Contentful
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Markdown from 'markdown-to-jsx'
 import './style.css'
 
