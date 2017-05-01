@@ -9,6 +9,7 @@ export default(state = { isFetching: true }, action) => {
     case CF_RECEIVE_PAGE:
       return Object.assign({}, state, {
         isFetching: false,
+        status: action.status,
         json: action.page
       })
     default:
