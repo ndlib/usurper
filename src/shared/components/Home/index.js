@@ -10,7 +10,8 @@ class Home extends Component {
       <div className='Home'>
         <div className='App-header'>
           <h2>Welcome to React</h2>
-          <Link to='/about'>About Page.</Link>
+          <div><Link to='/about'>About Page.</Link></div>
+          <div><Link to={ '/borrow-renew-request' }>Borrow</Link></div>
         </div>
       </div>
     )

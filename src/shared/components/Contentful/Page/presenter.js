@@ -1,5 +1,6 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Markdown from 'markdown-to-jsx'
 import './style.css'
@@ -13,6 +14,7 @@ const Loaded = (cfPageEntry) => (
     <h1>{ cfPageEntry.fields.title }</h1>
     <Markdown>{cfPageEntry.fields.shortContent}</Markdown>
     <Markdown>{cfPageEntry.fields.content}</Markdown>
+    <div><Link to={ '/' }>Home</Link></div>
   </div>
 )
 const Error = (
