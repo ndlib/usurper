@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let pageSlug = ownProps.location.pathname.replace(/^\/|\/$/g, '')
+  let pageSlug = ownProps.match.params.id
   dispatch(fetchPage(pageSlug))
   return {}
 }

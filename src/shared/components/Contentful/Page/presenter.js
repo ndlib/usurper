@@ -10,10 +10,17 @@ const Loading = (
 )
 const Loaded = (cfPageEntry) => (
   <div className={'ContentfulPage'}>
-    <div>{ cfPageEntry.fields.url }</div>
+    <nav>
+      <ul>
+        <li><Link to={'/room-247'}>247</Link></li>
+        <li><Link to={'/gis'}>gis</Link></li>
+      </ul>
+    </nav>
+    <Link to={'/page/room-248'}>deep link</Link>
     <h1>{ cfPageEntry.fields.title }</h1>
     <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+    <img src='https://images.contentful.com/7alamuzf2nhi/FtB2BxnTc4UOAQc2aoGIs/7a39560375001ff6dc51cf5e6799fd75/CDS-Rooms.jpg' />
     <div><Link to={ '/' }>Home</Link></div>
   </div>
 )
