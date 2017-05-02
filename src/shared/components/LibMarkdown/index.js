@@ -37,8 +37,6 @@ class LibMarkdown extends Component {
       }
     }
 
-    console.log(this.props.children)
-
     return (
       <Markdown options={overrides}>
         { this.props.children }

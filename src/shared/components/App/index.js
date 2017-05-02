@@ -20,6 +20,7 @@ class App extends Component {
       <Provider store={store}>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/page/:id' component={ContentfulPage} />
           <Route exact path='/:id' component={ContentfulPage} />
         </Switch>
       </Provider>
