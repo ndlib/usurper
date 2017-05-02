@@ -12,7 +12,8 @@ const Loaded = (cfPageEntry) => (
   <div className={'ContentfulPage'}>
     <div>{ cfPageEntry.fields.url }</div>
     <h1>{ cfPageEntry.fields.title }</h1>
-    <LibMarkdown className='testName'>{ cfPageEntry.fields.shortContent }</LibMarkdown>
+    <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
+    <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
     <div><Link to={ '/' }>Home</Link></div>
   </div>
 )
