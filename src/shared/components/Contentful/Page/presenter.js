@@ -26,7 +26,8 @@ const Loaded = (cfPageEntry) => (
     </nav>
     <Link to={'/page/room-248'}>deep link</Link>
     <h1>{ cfPageEntry.fields.title }</h1>
-    <LibMarkdown className='testName'>{ cfPageEntry.fields.shortContent }</LibMarkdown>
+    <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
+    <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
     <CFImage image={cfPageEntry.fields.image} />
     <div><Link to={ '/' }>Home</Link></div>
   </div>
