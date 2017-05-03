@@ -1,6 +1,6 @@
 // Container component for a Page content type from Contentful
 import { connect } from 'react-redux'
-import { fetchPage } from '../../../../actions/contentful'
+import { fetchPage } from '../../../actions/contentful'
 import React from 'react'
 import ContentfulPagePresenter from './presenter.js'
 
