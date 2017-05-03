@@ -1,0 +1,22 @@
+version: 0.1
+
+environment_variables:
+  plaintext:
+    AWS_DEFAULT_REGION: "us-east-1"
+
+phase:
+  install:
+    commands:
+      - npm install -g yarn
+  build:
+    commands:
+      - yarn install
+      - yarn build
+
+  post_build:
+    commands:
+      - zip -r usurper.zip ./build/public
+
+  artifacts:
+    files:
+      - './build/public/**/*'

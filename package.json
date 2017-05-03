@@ -68,10 +68,8 @@
     "whatwg-fetch": "2.0.2"
   },
   "scripts": {
-    "build": "webpack --config config/webpack.config.server.js && webpack --config config/webpack.config.client.js",
-    "start": "node build/server.js",
-    "dev:server": "webpack --config config/webpack.config.server.js --watch",
-    "dev:client": "webpack --config config/webpack.config.client.js --watch",
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {

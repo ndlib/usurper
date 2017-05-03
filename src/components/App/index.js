@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import Home from '../../components/Home'
 import ContentfulPage from '../../components/Contentful/Page'
-import rootReducers from '../../../reducers'
+import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
 
 const store = createStore(
