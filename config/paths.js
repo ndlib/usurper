@@ -44,14 +44,11 @@ function getServedPath (appPackageJson) {
 
 module.exports = {
   appBuild: resolveApp('build/public'),
-  serverBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveApp('src/client/index.js'),
-  serverIndexJs: resolveApp('src/server/index.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src/client'),
-  serverSrc: resolveApp('src/server'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('src/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
