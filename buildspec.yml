@@ -17,6 +17,6 @@ phases:
     commands:
       - zip -r usurper.zip ./build/public
 
-  artifacts:
-    files:
-      - './build/public/**/*'
+artifacts:
+  files:
+    - './build/public/**/*'
