@@ -4,7 +4,7 @@ environment_variables:
   plaintext:
     AWS_DEFAULT_REGION: "us-east-1"
 
-phase:
+phases:
   install:
     commands:
       - npm install -g yarn
