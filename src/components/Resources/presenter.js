@@ -1,7 +1,7 @@
 'use strict'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Config from '../shared/Configuration'
+import Config from '../../shared/Configuration'
 
 const illiadBaseUrl = Config.illiadBaseURL
 

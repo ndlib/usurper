@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Config from '../shared/Configuration'
+import Config from '../../shared/Configuration'
 
 const logoutUrl = Config.viceroyAPI + '/logout'
 
