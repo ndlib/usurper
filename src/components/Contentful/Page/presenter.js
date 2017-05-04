@@ -2,17 +2,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
-import { Link } from 'react-router-dom'
+import Link from '../../LibLink'
+
 import LibMarkdown from '../../LibMarkdown'
+import Related from '../../Related'
+import Image from '../../Image'
 
 const Loading = (
   <span>loading</span>
 )
 const Loaded = (cfPageEntry) => (
-  <div className={'ContentfulPage'}>
-    <h1>{ cfPageEntry.fields.title }</h1>
+  <div className='container-fluid'>
+    <h2>{ cfPageEntry.fields.title }</h2>
     <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+    <Image cfImage={cfPageEntry.fields.image} className='cover' />
+    <Related className='p-resources'>{ cfPageEntry.fields.relatedResources }</Related>
+    <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
+    <Related className='p-services'>{ cfPageEntry.fields.relatedServices }</Related>
     <div><Link to={ '/' }>Home</Link></div>
   </div>
 )
