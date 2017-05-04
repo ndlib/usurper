@@ -3,8 +3,8 @@
 /config/secrets.js
 
 # dependencies
-/node_modules
-/babel_cache
+node_modules/
+babel_cache/
 
 # testing
 /coverage

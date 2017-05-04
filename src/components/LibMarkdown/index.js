@@ -37,6 +37,10 @@ LibLink.propTypes = {
 
 class LibMarkdown extends Component {
   render () {
+    if (!this.props.children) {
+      return null
+    }
+
     let overrides = {
       overrides: {
         a: {
@@ -54,7 +58,7 @@ class LibMarkdown extends Component {
 }
 
 LibMarkdown.propTypes = {
-  children: PropTypes.string.isRequired
+  children: PropTypes.string
 }
 
 export default LibMarkdown
