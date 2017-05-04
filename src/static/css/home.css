@@ -1,0 +1,37 @@
+.hlhome {
+	padding: 32px 0 30px;
+}
+
+#banner .container-fluid {
+	background-image: url('../images/jesus.gif');
+}
+
+#banner {
+	height: 100px;
+}
+
+#drawer {
+	  top: 203px;
+}
+
+#wrapper {
+	display: block;
+}
+
+
+.main {
+
+}
+
+.login {
+	top: 80px;
+}
+
+.logout {
+	top: 79px;
+}
+
+.header-hours {
+	margin-top: 30px;
+	display: none;
+}

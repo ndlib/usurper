@@ -1,7 +1,7 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import './style.css'
+import '../../../static/css/global.css'
 import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
 
@@ -13,7 +13,7 @@ const Loaded = (cfPageEntry) => (
     <h1>{ cfPageEntry.fields.title }</h1>
     <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
-    <div><Link to={ '/' }>Home</Link></div>
+    <div><Link to={'/'}>Home</Link></div>
   </div>
 )
 const ErrorLoading = (
