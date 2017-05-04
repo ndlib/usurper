@@ -1,4 +1,3 @@
-// Presenter component for a Page content type from Contentful
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
