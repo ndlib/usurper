@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
+
 import Home from '../../components/Home'
+import PersonalInfo from '../../components/PersonalInfo'
+import Courses from '../../components/FakeCourses'
+
 import ContentfulPage from '../../components/Contentful/Page'
 import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
@@ -20,7 +24,8 @@ class App extends Component {
       <Provider store={store}>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/page/:id' component={ContentfulPage} />
+          <Route exact path='/personal' component={PersonalInfo} />
+          <Route exact path='/courses' component={Courses} />
           <Route exact path='/:id' component={ContentfulPage} />
         </Switch>
       </Provider>
