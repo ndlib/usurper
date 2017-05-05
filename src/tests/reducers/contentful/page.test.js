@@ -1,7 +1,7 @@
 import reducer from '../../../reducers/contentful/page'
 import * as actions from '../../../actions/contentful'
 
-describe('todos reducer', () => {
+describe('Page reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
