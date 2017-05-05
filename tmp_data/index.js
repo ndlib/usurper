@@ -51,14 +51,13 @@ function fetch (params) {
 
           content.items.forEach(
             (item) => {
-              items.push(JSON.stringify(item))
+              fs.writeFile('../public/' + item.fields.url + '.json', JSON.stringify(item), function (err) {
+                if (err) {
+                  heslog.error(err)
+                }
+              })
             }
           )
-          fs.writeFile('data.js', 'export default [' + items + ']', function (err) {
-            if (err) {
-              heslog.error(err)
-            }
-          })
         },
         (reason) => {
           heslog.error('Contentful get entries failed for content type ' + contentType + '.\n' + reason.stack, { context: 'preview' })

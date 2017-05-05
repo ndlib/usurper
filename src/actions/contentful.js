@@ -11,36 +11,33 @@ export const requestPage = (page) => {
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 function receivePage (page, response) {
-  if (response.sys && response.sys.type === 'Array') {
-    if (response.items && response.items.length > 0) {
-      return {
-        type: CF_RECEIVE_PAGE,
-        status: 'success',
-        page: response.items[0],
-        receivedAt: Date.now()
-      }
-    } else {
-      return {
-        type: CF_RECEIVE_PAGE,
-        status: 'not found',
-        receivedAt: Date.now()
-      }
-    }
-  }
-
-  return {
+  let error = {
     type: CF_RECEIVE_PAGE,
     status: 'error',
     error: response,
     receivedAt: Date.now()
   }
+
+  let success = {
+    type: CF_RECEIVE_PAGE,
+    status: 'success',
+    page: response,
+    receivedAt: Date.now()
+  }
+
+  try{
+    if (response.sys.contentType.sys.id === 'page') {
+      return success
+    } else {
+      return error
+    }
+  } catch (e) {
+    return error
+  }
 }
 
 export function fetchPage (page) {
-  let cfSearchUrl = `${cfHostPath}/spaces/${cfSpaceId}/entries?`
-  cfSearchUrl += `access_token=${cfAccessToken}`
-  cfSearchUrl += `&fields.url=${page}`
-  cfSearchUrl += `&content_type=page`
+  let cfSearchUrl = `/${page}.json`
   return dispatch => {
     dispatch(requestPage(page))
     return fetch(cfSearchUrl)
