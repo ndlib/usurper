@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import { cfSpaceId, cfAccessToken, cfHostPath } from '../../config/secrets.js'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {
@@ -37,10 +36,10 @@ function receivePage (page, response) {
 }
 
 export function fetchPage (page) {
-  let cfSearchUrl = `/${page}.json`
+  let url = `/${page}.json`
   return dispatch => {
     dispatch(requestPage(page))
-    return fetch(cfSearchUrl)
+    return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receivePage(page, json)))
       .catch(response => dispatch(receivePage(page, response)))
