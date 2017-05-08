@@ -1,5 +1,4 @@
-// import fetch from 'isomorphic-fetch'
-import data from '../../tmp_data/data'
+import fetch from 'isomorphic-fetch'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {
@@ -10,42 +9,39 @@ export const requestPage = (page) => {
 }
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
-export const CF_NO_SUCH_PAGE = 'CF_NO_SUCH_PAGE'
 function receivePage (page, response) {
-  if (response === 'Error') {
-    return {
-      type: CF_RECEIVE_PAGE,
-      status: 'error',
-      error: response,
-      receivedAt: Date.now()
+  let error = {
+    type: CF_RECEIVE_PAGE,
+    status: 'error',
+    error: response,
+    receivedAt: Date.now()
+  }
+
+  let success = {
+    type: CF_RECEIVE_PAGE,
+    status: 'success',
+    page: response,
+    receivedAt: Date.now()
+  }
+
+  try{
+    if (response.sys.contentType.sys.id === 'page') {
+      return success
+    } else {
+      return error
     }
-  } else if (response) {
-    return {
-      type: CF_RECEIVE_PAGE,
-      status: 'success',
-      page: response,
-      receivedAt: Date.now()
-    }
-  } else {
-    return {
-      type: CF_NO_SUCH_PAGE,
-      status: 'not found',
-      receivedAt: Date.now()
-    }
+  } catch (e) {
+    return error
   }
 }
 
 export function fetchPage (page) {
-  let ret = 'Error'
-  for (var i in data) {
-    if (data[i].fields.slug === page) {
-      ret = data[i]
-      break
-    }
-  }
-
+  let url = `/${page}.json`
   return dispatch => {
     dispatch(requestPage(page))
-    dispatch(receivePage(page, ret))
+    return fetch(url)
+      .then(response => response.json())
+      .then(json => dispatch(receivePage(page, json)))
+      .catch(response => dispatch(receivePage(page, response)))
   }
 }
