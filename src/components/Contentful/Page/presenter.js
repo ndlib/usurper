@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 import './style.css'
 import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
+import HoursPage from '../../Hours/Page'
 
 const Loading = (
   <span>loading</span>
 )
 const Loaded = (cfPageEntry) => (
   <div className={'ContentfulPage'}>
+    <HoursPage />
+
     <h1>{ cfPageEntry.fields.title }</h1>
     <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
