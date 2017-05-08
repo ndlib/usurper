@@ -1,9 +1,8 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import './style.css'
 import Link from '../../LibLink'
-
+import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
@@ -20,7 +19,7 @@ const Loaded = (cfPageEntry) => (
     <Related className='p-resources'>{ cfPageEntry.fields.relatedResources }</Related>
     <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
     <Related className='p-services'>{ cfPageEntry.fields.relatedServices }</Related>
-    <div><Link to={ '/' }>Home</Link></div>
+    <div><Link to={'/'}>Home</Link></div>
   </div>
 )
 const ErrorLoading = (
