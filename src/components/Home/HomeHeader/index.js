@@ -5,7 +5,7 @@ import HomeHesburghBanner from './HomeHesburghBanner'
 import FeedbackButton from '../../FeedbackButton'
 import Navigation from '../../Navigation'
 import SearchDrawer from '../../SearchDrawer'
-import style from '../../../static/css/global.css'
+import '../../../static/css/global.css'
 
 class HomeHeader extends Component {
   render () {

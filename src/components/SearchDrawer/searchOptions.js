@@ -4,7 +4,6 @@ export const searchOptions = [
     title: 'OneSearch',
     description:'The ND Catalog plus articles, datasets and more',
     target: 'https://library.nd.edu/utilities/search/ndu/onesearch',
-
     additionalLinks: (<a href='http://library.nd.edu/utilities/search/ndu/onesearch?mode=Advanced'>Advanced Search</a>)
   },
   {
@@ -12,7 +11,6 @@ export const searchOptions = [
     description:'Print and electronic books, journals and databases',
     target: 'https://library.nd.edu/utilities/search/ndu/nd_campus',
     additonalLinks: (<a href='http://library.nd.edu/utilities/search/ndu/ndcampus?mode=Advanced'>Advanced Search</a> | <a href='http://alephprod.library.nd.edu/F/?func=find-b-0'>Catalog classNameic</a>)
-
   },
   {
     title: 'CurateND',
