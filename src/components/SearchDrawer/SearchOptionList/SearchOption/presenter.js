@@ -1,7 +1,7 @@
 'use strict'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { SET_SEARCH, setSearchType } from '../../../../actions/search.js'
+import { setSearchType } from '../../../../actions/search.js'
 import { searchOptions } from '../../searchOptions.js'
 
 class SearchOption extends Component {
@@ -10,9 +10,8 @@ class SearchOption extends Component {
     this.setSearch = this.setSearch.bind(this)
   }
 
-  setSearch (event) {
-    console.log('clicked - searchType: ', this.props.index)
-    setSearchType(this.props.index)
+  setSearch () {
+    this.props.dispatch(setSearchType(this.props.index))
   }
 
   render () {

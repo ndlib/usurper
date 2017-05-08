@@ -10,7 +10,7 @@ export const searchOptions = [
     title: 'ND Catalog',
     description:'Print and electronic books, journals and databases',
     target: 'https://library.nd.edu/utilities/search/ndu/nd_campus',
-    additonalLinks: (<a href='http://library.nd.edu/utilities/search/ndu/ndcampus?mode=Advanced'>Advanced Search</a> | <a href='http://alephprod.library.nd.edu/F/?func=find-b-0'>Catalog classNameic</a>)
+    additionalLinks: (<span><a href='http://library.nd.edu/utilities/search/ndu/ndcampus?mode=Advanced'>Advanced Search</a> | <a href='http://alephprod.library.nd.edu/F/?func=find-b-0'>Catalog Classic</a></span>)
   },
   {
     title: 'CurateND',
@@ -21,6 +21,6 @@ export const searchOptions = [
     title: 'Library Website',
     description:'Research guides, services, people and places',
     target: 'https://search.nd.edu/search/?client=lib_site_srch&amp;q=',
-    additonalLinks: 'This doesn\'t work yet, but we\'re working on it'
+    additionalLinks: 'This doesn\'t work yet, but we\'re working on it'
   }
 ]

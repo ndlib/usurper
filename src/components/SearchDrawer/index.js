@@ -14,28 +14,32 @@ class SearchDrawer extends Component {
     super(props)
     let pref = localStorage.getItem('searchPreference')
     this.state = {
-      currentSearchType: pref !== null ? parseInt(pref) : 0,
-      searchListOpen: false
+      searchPref: pref !== null ? parseInt(pref) : this.props.search.searchType,
+      searchListOpen: false,
+      useSearchPreference: true
     }
     this.onClick = this.onClick.bind(this)
   }
 
   onClick () {
-    this.setState({ searchListOpen: !this.state.searchListOpen })
+    this.setState({
+      searchListOpen: !this.state.searchListOpen,
+      useSearchPreference: false
+    })
   }
 
   render () {
-    console.log('render - searchType:', this.props)
+    let searchType = this.state.useSearchPreference && this.state.searchPref !== null ? this.state.searchPref : this.props.search.searchType
     return (
       <div id='drawer'>
         <div className='appliance'>
-          <form id='searchAppliance' method='get' action={searchOptions[(this.state.currentSearchType)].target}>
+          <form id='searchAppliance' method='get' action={searchOptions[searchType].target}>
             <label htmlFor='q'>
               <ul id='searchAction' onClick={this.onClick}>
                 <li id='selected-search'>
-                  <p>{ searchOptions[this.state.currentSearchType].title}</p>
+                  <p>{ searchOptions[searchType].title}</p>
                 </li>
-                <SearchOptionList isOpen={this.state.searchListOpen} />
+                <SearchOptionList {...this.props} isOpen={this.state.searchListOpen} />
               </ul>
             </label>
             <input name='q' />
@@ -43,12 +47,12 @@ class SearchDrawer extends Component {
             <input className='hidden' name='site' value='library' disabled />
             <input className='hidden' name='client' value='lib_site_srch' disabled />
             <SearchPreference
-              currentSearch={parseInt(this.state.currentSearchType)}
+              currentSearch={parseInt(this.props.search.searchType)}
               savedSearch={
                  localStorage.getItem('searchPreference') ? parseInt(localStorage.getItem('searchPreference')) : null
                }
             />
-            <div className='additional-links'>{ searchOptions[this.state.currentSearchType].additionalLinks}</div>
+            <div className='additional-links'>{ searchOptions[parseInt(searchType)].additionalLinks}</div>
           </form>
         </div>
       </div>
@@ -57,9 +61,8 @@ class SearchDrawer extends Component {
 }
 
 function mapStateToProps (state) {
-  console.log('ms2p SD: ', state)
   return {
-    searchType: state.searchType
+    search: state.search
   }
 }
 
