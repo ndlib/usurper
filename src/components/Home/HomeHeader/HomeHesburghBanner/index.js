@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import HeaderHours from '../../../HeaderHours'
 import Login from '../../../Login'
 
-import style from '../../../../static/css/global.css'
-
+import '../../../../static/css/global.css'
 class HomeHesburghBanner extends Component {
   render () {
     return (

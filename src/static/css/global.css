@@ -684,7 +684,6 @@ label:after {
   padding-left: 0;
 }
 .appliance ul li {
-  display: none;
   background: #5b412d;
   color: #fff;
   width: 100%;
@@ -714,17 +713,17 @@ label:after {
 
 }
 
-.appliance ul.open li {
+.appliance ul li {
   display: block;
   border-bottom: 1px solid #fff;
   background: #5b412d;
 }
 
-.appliance ul.open li:hover,
-.appliance ul.open li.active-search {
+.appliance ul li:hover,
+.appliance ul li.active-search {
   background: #867160;
 }
-.appliance ul.open li:hover p {
+.appliance ul li:hover p {
   color: #fff;
 }
 

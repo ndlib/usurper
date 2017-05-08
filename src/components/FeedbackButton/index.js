@@ -1,6 +1,6 @@
 'use strict'
 import React, { Component } from 'react'
-import style from '../../static/css/global.css'
+import '../../static/css/global.css'
 
 class FeedbackButton extends Component {
   render () {

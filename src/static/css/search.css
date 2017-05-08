@@ -13,12 +13,12 @@
 	border: 1px solid #000;
 }
 
-#selected-search, #selected-search:hover, .appliance ul.open li, .appliance label:after  {
+#selected-search, #selected-search:hover, .appliance ul li, .appliance label:after  {
 	background-color: #00853A;
 
 }
 
-.appliance ul.open li:hover, .appliance ul.open li.active-search {
+.appliance ul li:hover, .appliance ul li.active-search {
 	background-color: #63B788;
 }
 
@@ -31,7 +31,9 @@
 }
 /* Screen Size */
 
-
+.appliance label[for='q'] {
+  z-index: 1;
+}
 @media screen and (max-width: 1000px) {
 
     .appliance {
