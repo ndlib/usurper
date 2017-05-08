@@ -1,19 +1,24 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from '../../Link'
 import '../../../static/css/global.css'
-import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
+import Related from '../../Related'
+import Image from '../../Image'
 import * as statuses from '../../../constants/APIStatuses'
 import NotFound from '../../Messages/NotFound'
 import Loading from '../../Messages/Loading'
 import Error from '../../Messages/Error'
 
 const Page = (cfPageEntry) => (
-  <div className={'ContentfulPage'}>
-    <h1>{ cfPageEntry.fields.title }</h1>
-    <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
+  <div className='container-fluid'>
+    <h2>{ cfPageEntry.fields.title }</h2>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+    <Image cfImage={cfPageEntry.fields.image} className='cover' />
+    <Related className='p-resources'>{ cfPageEntry.fields.relatedResources }</Related>
+    <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
+    <Related className='p-services'>{ cfPageEntry.fields.relatedServices }</Related>
     <div><Link to={'/'}>Home</Link></div>
   </div>
 )
