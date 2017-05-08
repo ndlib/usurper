@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import '../../../static/css/global.css'
 import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
+import * as statuses from '../../../constants/APIStatuses'
 import NotFound from '../../NotFound'
 import Loading from '../../Loading'
 import Error from '../../Error'
@@ -19,11 +20,11 @@ const Page = (cfPageEntry) => (
 
 const Presenter = ({ cfPageEntry }) => {
   switch(cfPageEntry.status){
-    case 'fetching':
+    case statuses.FETCHING:
       return <Loading/>
-    case 'success':
+    case statuses.SUCCESS:
       return Page(cfPageEntry.json)
-    case 'not found':
+    case statuses.NOT_FOUND:
       return <NotFound/>
     default:
       return <Error message={ 'There was an error loading the page.' }/>

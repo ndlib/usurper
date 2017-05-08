@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import * as statuses from '../constants/APIStatuses'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {
@@ -12,14 +13,14 @@ export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 function receivePage (page, response) {
   let error = {
     type: CF_RECEIVE_PAGE,
-    status: 'error',
+    status: statuses.ERROR,
     error: response,
     receivedAt: Date.now()
   }
 
   let success = {
     type: CF_RECEIVE_PAGE,
-    status: 'success',
+    status: statuses.SUCCESS,
     page: response,
     receivedAt: Date.now()
   }
