@@ -10,6 +10,7 @@ export const requestPage = (page) => {
 }
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
+export const CF_NO_SUCH_PAGE = 'CF_NO_SUCH_PAGE'
 function receivePage (page, response) {
   let error = {
     type: CF_RECEIVE_PAGE,
