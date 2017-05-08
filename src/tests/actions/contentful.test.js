@@ -2,6 +2,7 @@ import * as actions from '../../actions/contentful'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'
+import * as statuses from '../../constants/APIStatuses'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -64,7 +65,7 @@ describe('contentful fetchPage async action creator', () => {
       const pageUri = 'mypage'
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
-        status: 'success',
+        status: statuses.SUCCESS,
         page: mockPageResponse
       }
 
@@ -90,7 +91,7 @@ describe('contentful fetchPage async action creator', () => {
       const pageUri = 'mypage'
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
-        status: 'error',
+        status: statuses.ERROR,
         error: { sys: { type: 'Error' }, error: 'Error message' }
       }
 
@@ -116,7 +117,7 @@ describe('contentful fetchPage async action creator', () => {
       const pageUri = 'mypage'
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
-        status: 'error',
+        status: statuses.ERROR,
       }
 
       const store = mockStore({ })
@@ -142,7 +143,7 @@ describe('contentful fetchPage async action creator', () => {
       const pageUri = 'mypage'
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
-        status: 'error',
+        status: statuses.ERROR,
         error: {}
       }
 

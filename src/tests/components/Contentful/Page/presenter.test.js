@@ -1,6 +1,12 @@
 ﻿import React from 'react'
 import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
+import Image from '../../../../components/Image'
+import Related from '../../../../components/Related'
+import * as statuses from '../../../../constants/APIStatuses'
+import Loading from '../../../../components/Messages/Loading'
+import NotFound from '../../../../components/Messages/NotFound'
+import Error from '../../../../components/Messages/Error'
 
 function setup(cfPageEntry) {
   const props = { cfPageEntry }
@@ -17,71 +23,83 @@ describe('components/Contentful/Page/presenter', () => {
   describe('on loading', () => {
     beforeEach(() => {
       enzymeWrapper = setup({
-        isFetching: true,
+        status: statuses.FETCHING,
       })
     })
 
-    it('should render a loading message', () => {
-      expect(enzymeWrapper.find('span').text()).toBe('loading')
+    it('should render a loading component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Loading/>)).toBe(true)
     })
   })
 
   describe('on page found', () => {
     beforeEach(() => {
       enzymeWrapper = setup({
-        isFetching: false,
-        status: 'success',
+        status: statuses.SUCCESS,
         json: {
           fields: {
             title: 'Fake Title',
             shortContent: 'Fake short content',
             content: 'Fake content',
+            image: 'Fake image',
+            relatedResources: 'Fake related resources',
+            relatedServices: 'Fake related services',
+            libguides: 'Fake related libguides',
           }
         }
       })
     })
 
     it('should render a top level div with correct class name', () => {
-      expect(enzymeWrapper.find('div').at(0).hasClass('ContentfulPage')).toBe(true)
+      expect(enzymeWrapper.is('.container-fluid')).toBe(true)
     })
 
-    it('should render a header with the title of the content', () => {
-      expect(enzymeWrapper.find('h1').text()).toBe('Fake Title')
+    it('should renders the title of the content', () => {
+      expect(enzymeWrapper.children().someWhere(n => n.children().node === 'Fake Title')).toBe(true)
     })
 
-    it('should render LibMarkdown for short content, then one for content', () => {
-      expect(enzymeWrapper.find('LibMarkdown').at(0).childAt(0).text()).toBe('Fake short content')
-      expect(enzymeWrapper.find('LibMarkdown').at(1).childAt(0).text()).toBe('Fake content')
+    it('should render LibMarkdown for content', () => {
+      expect(enzymeWrapper.find('LibMarkdown').children().node).toBe('Fake content')
+    })
+
+    it('should render Image for image', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Image cfImage={ 'Fake image' } />)).toBe(true)
+    })
+
+    it('should render Related for related resources', () => {
+      expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related resources')).toBe(true)
+    })
+
+    it('should render Related for related services', () => {
+      expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related services')).toBe(true)
+    })
+
+    it('should render Related for libguides', () => {
+      expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related libguides')).toBe(true)
     })
   })
 
   describe('on page not found', () => {
     beforeEach(() => {
       enzymeWrapper = setup({
-        isFetching: false,
-        status: 'not found',
+        status: statuses.NOT_FOUND,
       })
     })
 
-    it('should render a top level div with correct class name', () => {
-      expect(enzymeWrapper.find('div').at(0).hasClass('NotFound')).toBe(true)
-    })
-
-    it('should render an error message', () => {
-      expect(enzymeWrapper.find('h1').text()).toBe('Page Not Found')
+    it('should render a not found component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<NotFound/>)).toBe(true)
     })
   })
 
   describe('on error loading', () => {
     beforeEach(() => {
       enzymeWrapper = setup({
-        isFetching: false,
-        status: 'error',
+        status: statuses.ERROR,
       })
     })
 
-    it('should render an error message', () => {
-      expect(enzymeWrapper.find('span').text()).toBe('Error')
+    it('should render an error component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Error/>)).toBe(true)
     })
   })
 })
