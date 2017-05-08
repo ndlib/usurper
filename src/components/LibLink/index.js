@@ -26,12 +26,30 @@ function Invalid (className, children) {
   )
 }
 
-function LibLink (props) {
-  let to = props.to
+const Hidden = (
+  null
+)
 
+function LibLink (props) {
+  let query = '?'
+  for (var k in props.query) {
+    if (props.query.hasOwnProperty(k)) {
+      if (query !== '?') {
+        query += '&'
+      }
+      query += k + '=' + props.query[k]
+    }
+  }
+
+  let to = props.to
   if (!to) {
+    if (props.hideIfNull) {
+      return Hidden
+    }
     return Invalid(props.className, props.children)
   }
+
+  to = to + query
 
   if (to.startsWith('http')) {
     return External(to, props.className, props.alt, props.children)
@@ -44,7 +62,10 @@ LibLink.propTypes = {
   to: PropTypes.string,
   className: PropTypes.string,
   alt: PropTypes.string,
-  children: PropTypes.any
+  query: PropTypes.object,
+  children: PropTypes.any,
+
+  hideIfNull: PropTypes.bool,
 }
 
 export default LibLink
