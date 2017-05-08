@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Image from '../Image'
-import Link from '../LibLink'
+import Link from '../Link'
 
 function Related ({ className, children }) {
   let items = children

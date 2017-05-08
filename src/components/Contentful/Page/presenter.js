@@ -1,7 +1,7 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from '../../LibLink'
+import Link from '../../Link'
 import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
@@ -13,7 +13,6 @@ const Loading = (
 const Loaded = (cfPageEntry) => (
   <div className='container-fluid'>
     <h2>{ cfPageEntry.fields.title }</h2>
-    <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
     <Image cfImage={cfPageEntry.fields.image} className='cover' />
     <Related className='p-resources'>{ cfPageEntry.fields.relatedResources }</Related>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Markdown from 'markdown-to-jsx'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from '../Link'
 
 function LibLink (props) {
   var url = props.href
