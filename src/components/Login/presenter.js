@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Config from '../../shared/Configuration'
-
+import style from '../../static/css/global.css'
 const logoutUrl = Config.viceroyAPI + '/logout'
 
 class LoginStatus extends Component {

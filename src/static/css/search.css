@@ -1,0 +1,41 @@
+#drawer {
+	background: url('../images/moses.jpg') top;
+	background-size: cover;
+}
+
+.appliance {
+	left: calc((100vw - 1400px) / 2 + 18vw);
+}
+
+/* GREEN BUTTONS */
+
+#selected-search, #selected-search:hover {
+	border: 1px solid #000;
+}
+
+#selected-search, #selected-search:hover, .appliance ul.open li, .appliance label:after  {
+	background-color: #00853A;
+
+}
+
+.appliance ul.open li:hover, .appliance ul.open li.active-search {
+	background-color: #63B788;
+}
+
+.appliance button {
+	background: #00853A;
+}
+
+.hidden {
+  display: none;
+}
+/* Screen Size */
+
+
+@media screen and (max-width: 1000px) {
+
+    .appliance {
+      left: 1vw;
+    }
+
+}
