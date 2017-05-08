@@ -5,9 +5,9 @@ import '../../../static/css/global.css'
 import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
 import * as statuses from '../../../constants/APIStatuses'
-import NotFound from '../../NotFound'
-import Loading from '../../Loading'
-import Error from '../../Error'
+import NotFound from '../../Messages/NotFound'
+import Loading from '../../Messages/Loading'
+import Error from '../../Messages/Error'
 
 const Page = (cfPageEntry) => (
   <div className={'ContentfulPage'}>
