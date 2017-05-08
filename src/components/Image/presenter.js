@@ -19,6 +19,7 @@ Image.propTypes = {
 
   // removed in container
   cfImage: PropTypes.object,
+  defaultImage: PropTypes.string,
 }
 
 export default Image

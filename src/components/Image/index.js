@@ -8,6 +8,8 @@ function mapStateToProps (state, thisProps) {
 
   if (!src && thisProps.cfImage) {
     src = thisProps.cfImage.fields.file.url
+  } else if (!src && thisProps.defaultImage) {
+    src = thisProps.defaultImage
   }
 
   if (!alt && thisProps.cfImage) {
