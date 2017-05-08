@@ -1,33 +1,43 @@
 import { Link } from 'react-router-dom'
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-class LibLink extends Component {
-  render () {
-    let to = this.props.to
+function Internal (to, className, alt, children) {
+  return (
+    <Link to={to} className={className} alt={alt}>
+      {children}
+    </Link>
+  )
+}
 
-    if (!to) {
-      return (
-        <div className={this.props.className}>
-          {this.props.children}
-        </div>
-      )
-    }
+function External (to, className, alt, children) {
+  return (
+    <a href={to} className={className} alt={alt}>
+      {children}
+    </a>
+  )
+}
 
-    if (to.startsWith('http')) {
-      return (
-        <a href={to} className={this.props.className} alt={this.props.alt}>
-          {this.props.children}
-        </a>
-      )
-    }
+function Invalid (className, children) {
+  return (
+    <div className={className}>
+      {children}
+    </div>
+  )
+}
 
-    return (
-      <Link to={to} className={this.props.className} alt={this.props.alt}>
-        {this.props.children}
-      </Link>
-    )
+function LibLink (props) {
+  let to = props.to
+
+  if (!to) {
+    return Invalid(props.className, props.children)
   }
+
+  if (to.startsWith('http')) {
+    return External(to, props.className, props.alt, props.children)
+  }
+
+  return Internal(to, props.className, props.alt, props.children)
 }
 
 LibLink.propTypes = {

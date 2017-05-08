@@ -10,7 +10,7 @@ function LibLink (props) {
   // is to fix an issue when someone puts [text] in markdown, which is not a valid link.
   // The markdown component will still call this override function even though it's not
   // a valid markdown link, so we have to handle it here.
-  if(url === undefined) {
+  if (url === undefined) {
     return (<span>[{ props.children }]</span>)
   }
 

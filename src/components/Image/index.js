@@ -1,28 +1,20 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-class Image extends Component {
-  render () {
-    if (!this.props.src && !this.props.cfImage) {
-      return null
-    }
+import Image from './presenter'
 
-    let src = this.props.src ? this.props.src : this.props.cfImage.fields.file.url
-    let alt = this.props.alt ? this.props.alt : this.props.cfImage.fields.title
+function mapStateToProps (state, thisProps) {
+  let src = thisProps.src
+  let alt = thisProps.alt
 
-    return (
-      <span className='frame'>
-        <img className={this.props.className} src={src} alt={alt} />
-      </span>
-    )
+  if (!src && thisProps.cfImage) {
+    src = thisProps.cfImage.fields.file.url
   }
+
+  if (!alt && thisProps.cfImage) {
+    alt = thisProps.cfImage.fields.title
+  }
+
+  return { src: src, alt: alt, className: thisProps.className }
 }
 
-Image.propTypes = {
-  src: PropTypes.string,
-  className: PropTypes.string,
-  alt: PropTypes.string,
-  cfImage: PropTypes.object,
-}
-
-export default Image
+export default connect(mapStateToProps)(Image)
