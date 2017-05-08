@@ -12,24 +12,18 @@ export const requestHours = () => {
 }
 
 function receiveHours (response) {
-  if (response === 'Error') {
+  if (response == 'TypeError: Failed to fetch') {
     return {
       type: HOURS_RECEIVE,
       status: 'error',
       error: response,
       receivedAt: Date.now()
     }
-  } else if (response) {
+  } else {
     return {
       type: HOURS_RECEIVE,
       status: 'success',
       hours: response,
-      receivedAt: Date.now()
-    }
-  } else {
-    return {
-      type: HOURS_NO_SUCH,
-      status: 'not found',
       receivedAt: Date.now()
     }
   }
@@ -41,5 +35,6 @@ export function fetchHours () {
     return fetch(hoursAPIURL)
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))
+      .catch(error => dispatch(receiveHours(error)))
   }
 }

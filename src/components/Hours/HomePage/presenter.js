@@ -5,34 +5,37 @@ import { Link } from 'react-router-dom'
 
 const Loading = (
   <span>loading</span>
-)
-const Loaded = (hoursEntry) => (
-  <div className="hours-display">
-    <p>Hours Today: <a href="/hours">{ hoursEntry.hesburghlibrariesservicepoints.today.display }</a></p>
-  </div>
-)
+);
 const ErrorLoading = (
   <span>Error</span>
-)
+);
 const NotFound = (
-  <div className={'NotFound'}>
-    <h1>Page Not Found</h1>
-    <div>The requested page could not be found</div>
+  <div>Not Found</div>
+);
+const Loaded = (hoursEntry) => (
+  <div className="hours-display">
+    <p>Hours Today: <a href="/hours">{ hoursEntry.today.display }</a></p>
   </div>
-)
+);
 
+const Presenter = ({ hoursEntry, jsonHoursApiKey }) => {
+  switch(hoursEntry.status) {
+    case "fetching":
+      return Loading;
+    case "success":
+      let hours = hoursEntry.json[jsonHoursApiKey];
+      if (hours) {
+        return Loaded(hours);
+      } else {
+        return NotFound;
+      }
+    default:
+      return ErrorLoading
+  }
+}
 
-const Presenter = ({ hoursEntry }) => {
-  if (hoursEntry.isFetching) {
-    return Loading
-  }
-  if (hoursEntry.status === 'success') {
-    return Loaded(hoursEntry.json)
-  } else if (hoursEntry.status === 'not found') {
-    return NotFound
-  } else {
-    return ErrorLoading
-  }
+Presenter.propTypes = {
+  jsonHoursApiKey: PropTypes.string.isRequired
 }
 
 export default Presenter

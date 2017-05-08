@@ -26,21 +26,20 @@ const NotFound = (
 )
 
 const Presenter = ({ hoursEntry, jsonHoursApiKey }) => {
-
-  if (hoursEntry.isFetching) {
-    return Loading
-  }
-  if (!jsonHoursApiKey || !hoursEntry.json[jsonHoursApiKey]) {
-    return ErrorLoading
-  } else if (hoursEntry.status === 'success') {
-    return Loaded(hoursEntry.json[jsonHoursApiKey])
-  } else if (hoursEntry.status === 'not found') {
-    return NotFound
-  } else {
-    return ErrorLoading
+  switch(hoursEntry.status) {
+    case "fetching":
+      return Loading;
+    case "success":
+      let hours = hoursEntry.json[jsonHoursApiKey];
+      if (hours) {
+        return Loaded(hours);
+      } else {
+        return NotFound;
+      }
+    default:
+      return ErrorLoading
   }
 }
-
 
 Presenter.propTypes = {
   jsonHoursApiKey: PropTypes.string.isRequired
