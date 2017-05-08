@@ -51,7 +51,7 @@ function fetch (params) {
 
           content.items.forEach(
             (item) => {
-              fs.writeFile('../public/' + item.fields.url + '.json', JSON.stringify(item), function (err) {
+              fs.writeFile('../public/' + item.fields.slug + '.json', JSON.stringify(item), function (err) {
                 if (err) {
                   heslog.error(err)
                 }

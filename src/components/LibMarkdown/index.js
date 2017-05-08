@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Markdown from 'markdown-to-jsx'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from '../Link'
 
 function LibLink (props) {
   var url = props.href
@@ -10,7 +10,7 @@ function LibLink (props) {
   // is to fix an issue when someone puts [text] in markdown, which is not a valid link.
   // The markdown component will still call this override function even though it's not
   // a valid markdown link, so we have to handle it here.
-  if(url === undefined) {
+  if (url === undefined) {
     return (<span>[{ props.children }]</span>)
   }
 
