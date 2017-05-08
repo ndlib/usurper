@@ -7,6 +7,6 @@ import { combineReducers } from 'redux'
 const rootReducer = combineReducers({
   cfPageEntry: contentfulPage,
   personal: personalReducer,
-  searchType: searchReducer
+  search: searchReducer
 })
 export default rootReducer

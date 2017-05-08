@@ -6,7 +6,6 @@ import { actions } from '../../../../actions/search'
 import SearchOption from './presenter'
 
 function mapStateToProps (state) {
-  console.log('ms2p: ', state)
   return {
     searchType: state.searchType
   }

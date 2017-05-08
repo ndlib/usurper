@@ -10,7 +10,7 @@ class SearchOptionList extends Component {
     this.options = []
     for (let i = 0; i < searchOptions.length; i++) {
       this.options.push(
-        <SearchOption index={i} key={i} />
+        <SearchOption {...this.props} index={i} key={i} />
       )
     }
   }
