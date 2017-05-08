@@ -11,7 +11,7 @@ const Loaded = (hoursEntry) => (
   <div className="service-point">
     <h4>{ hoursEntry.name }</h4>
     <WeeklyHoursList hours={ hoursEntry.thisWeek } title="Current Hours" showEffectiveDates={false} />
-    <WeeklyHoursList hours={ hoursEntry.upcomingDifferentHours[0] } title="Current Hours" showEffectiveDates={true} />
+    <WeeklyHoursList hours={ hoursEntry.upcomingDifferentHours } title="Current Hours" showEffectiveDates={true} />
     <hr />
   </div>
 )
