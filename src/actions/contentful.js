@@ -1,5 +1,5 @@
-import fetch from 'isomorphic-fetch'
-import { cfSpaceId, cfAccessToken, cfHostPath } from '../../config/secrets.js'
+// import fetch from 'isomorphic-fetch'
+import data from '../../tmp_data/data'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {
@@ -12,18 +12,18 @@ export const requestPage = (page) => {
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 export const CF_NO_SUCH_PAGE = 'CF_NO_SUCH_PAGE'
 function receivePage (page, response) {
-  if (response.sys.type === 'Error') {
+  if (response === 'Error') {
     return {
       type: CF_RECEIVE_PAGE,
       status: 'error',
       error: response,
       receivedAt: Date.now()
     }
-  } else if (response.items && response.items.length > 0) {
+  } else if (response) {
     return {
       type: CF_RECEIVE_PAGE,
       status: 'success',
-      page: response.items[0],
+      page: response,
       receivedAt: Date.now()
     }
   } else {
@@ -36,14 +36,16 @@ function receivePage (page, response) {
 }
 
 export function fetchPage (page) {
-  let cfSearchUrl = `${cfHostPath}/spaces/${cfSpaceId}/entries?`
-  cfSearchUrl += `access_token=${cfAccessToken}`
-  cfSearchUrl += `&fields.url=${page}`
-  cfSearchUrl += `&content_type=page`
+  let ret = 'Error'
+  for (var i in data) {
+    if (data[i].fields.slug === page) {
+      ret = data[i]
+      break
+    }
+  }
+
   return dispatch => {
     dispatch(requestPage(page))
-    return fetch(cfSearchUrl)
-      .then(response => response.json())
-      .then(json => dispatch(receivePage(page, json)))
+    dispatch(receivePage(page, ret))
   }
 }
