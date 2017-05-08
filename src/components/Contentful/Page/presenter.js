@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import '../../../static/css/global.css'
 import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
+import NotFound from '../../NotFound'
+import Loading from '../../Loading'
+import Error from '../../Error'
 
-const Loading = (
-  <span>loading</span>
-)
-const Loaded = (cfPageEntry) => (
+const Page = (cfPageEntry) => (
   <div className={'ContentfulPage'}>
     <h1>{ cfPageEntry.fields.title }</h1>
     <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
@@ -16,27 +16,17 @@ const Loaded = (cfPageEntry) => (
     <div><Link to={'/'}>Home</Link></div>
   </div>
 )
-const ErrorLoading = (
-  <span>Error</span>
-)
-
-const NotFound = (
-  <div className={'NotFound'}>
-    <h1>Page Not Found</h1>
-    <div>The requested page could not be found</div>
-  </div>
-)
 
 const Presenter = ({ cfPageEntry }) => {
-  if (cfPageEntry.isFetching) {
-    return Loading
-  }
-  if (cfPageEntry.status === 'success') {
-    return Loaded(cfPageEntry.json)
-  } else if (cfPageEntry.status === 'not found') {
-    return NotFound
-  } else {
-    return ErrorLoading
+  switch(cfPageEntry.status){
+    case 'fetching':
+      return <Loading/>
+    case 'success':
+      return Page(cfPageEntry.json)
+    case 'not found':
+      return <NotFound/>
+    default:
+      return <Error message={ 'There was an error loading the page.' }/>
   }
 }
 
