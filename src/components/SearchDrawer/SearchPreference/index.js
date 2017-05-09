@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { searchOptions } from '../searchOptions.js'
 import '../../../static/css/global.css'
 
-class SearchPrefernce extends Component {
+class SearchPreference extends Component {
   constructor (props) {
     super(props)
     this.saveClick = this.saveClick.bind(this)
@@ -21,7 +21,6 @@ class SearchPrefernce extends Component {
     localStorage.clear('searchPreference')
     this.setState({ isSaved: false })
   }
-
   render () {
     if (this.state.isSaved) {
       return (
@@ -36,9 +35,10 @@ class SearchPrefernce extends Component {
     )
   }
 }
-SearchPrefernce.propTypes = {
+
+SearchPreference.propTypes = {
   currentSearch: PropTypes.number.isRequired,
   savedSearch: PropTypes.number
 }
 
-export default SearchPrefernce
+export default SearchPreference
