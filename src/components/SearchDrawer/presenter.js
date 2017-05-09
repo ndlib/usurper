@@ -7,8 +7,8 @@ import SearchBox from './SearchBox'
 import '../../static/css/global.css'
 import '../../static/css/search.css'
 
-const SearchDrawer = ({ search, dispatch }) => {
-  let searchType = (search.hasPref && search.usePref) ? search.pref : search.searchType
+const SearchDrawer = (props) => {
+  let searchType = (props.search.hasPref && props.search.usePref) ? props.search.pref : props.search.searchType
 
   return (
     <div id='drawer'>
@@ -16,13 +16,11 @@ const SearchDrawer = ({ search, dispatch }) => {
         <form id='searchAppliance' method='get' action={searchOptions.find(op => op.uid === searchType).target}>
           <SearchBox
             currentSearch={searchType}
-            dispatch={dispatch}
-            search={search}
+            {...props}
           />
           <SearchPreference
             currentSearch={searchType}
-            dispatch={dispatch}
-            search={search}
+            {...props}
           />
           <div className='additional-links'>{ searchOptions.find(op => op.uid === searchType).additionalLinks}</div>
         </form>
@@ -31,8 +29,4 @@ const SearchDrawer = ({ search, dispatch }) => {
   )
 }
 
-SearchDrawer.propTypes = {
-  search: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
-}
 export default SearchDrawer

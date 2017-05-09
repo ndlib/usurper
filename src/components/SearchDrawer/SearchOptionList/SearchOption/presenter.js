@@ -3,24 +3,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { setSearchType, closeSearchBox } from '../../../../actions/search.js'
 
-const SearchOption = ({ item, dispatch }) => {
+const SearchOption = (props) => {
   const onClick = () => {
-    dispatch(setSearchType(item.uid))
-    dispatch(closeSearchBox())
+    props.dispatch(setSearchType(props.item.uid))
+    props.dispatch(closeSearchBox())
   }
   return (
     <li onClick={onClick}>
-      <p>{item.title}</p>
-      <small>{item.description}</small>
+      <p>{props.item.title}</p>
+      <small>{props.item.description}</small>
     </li>
   )
 }
 
-SearchOption.propTypes = {
-  item: PropTypes.object,
-  dispatch: PropTypes.func.isRequired
-}
-SearchOption.defaultProps = {
-  item: {}
-}
 export default SearchOption

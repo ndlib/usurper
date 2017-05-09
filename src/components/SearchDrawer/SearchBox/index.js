@@ -7,18 +7,18 @@ import { openSearchBox } from '../../../actions/search.js'
 import '../../../static/css/global.css'
 import '../../../static/css/search.css'
 
-const SearchBox = ({ currentSearch, dispatch, search }) => {
+const SearchBox = (props) => {
   const onClick = () => {
-    dispatch(openSearchBox())
+    props.dispatch(openSearchBox())
   }
   return (
     <span>
       <label htmlFor='q'>
         <ul id='searchAction' >
           <li id='selected-search' onClick={onClick}>
-            <p>{ searchOptions.find(op => op.uid === currentSearch).title}</p>
+            <p>{ searchOptions.find(op => op.uid === props.currentSearch).title}</p>
           </li>
-          <SearchOptionList search={search} dispatch={dispatch} />
+          <SearchOptionList {...props} />
         </ul>
       </label>
       <input name='q' />
@@ -29,9 +29,4 @@ const SearchBox = ({ currentSearch, dispatch, search }) => {
   )
 }
 
-SearchBox.propTypes = {
-  currentSearch: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  search: PropTypes.object.isRequired
-}
 export default SearchBox
