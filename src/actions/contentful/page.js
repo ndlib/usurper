@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from '../../constants/APIStatuses'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {

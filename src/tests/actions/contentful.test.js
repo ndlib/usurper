@@ -1,4 +1,4 @@
-import * as actions from '../../actions/contentful'
+import * as actions from '../../actions/contentful/page'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'

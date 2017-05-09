@@ -1,5 +1,5 @@
 import reducer from '../../../reducers/contentful/page'
-import * as actions from '../../../actions/contentful'
+import * as actions from '../../../actions/contentful/page'
 import * as statuses from '../../../constants/APIStatuses'
 
 describe('Page reducer', () => {
