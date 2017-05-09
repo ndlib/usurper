@@ -13,6 +13,7 @@ const Presenter = ({ hours, title, showEffectiveDates }) => {
   return (
     <div>
       <h5>{ title }</h5>
+      { effectiveMessage }
       <dl className="hours-grid">
       {
         hours.rows.map(function (row, key) {
