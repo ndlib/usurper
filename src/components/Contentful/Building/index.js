@@ -6,10 +6,10 @@ import GoogleMap from '../../GoogleMap'
 import Image from '../../Image'
 
 const Presenter = ({ cfBuildingEntry }) => (
-  <div className='container-fluid'>
+  <div>
     <h2>{ cfBuildingEntry.fields.title }</h2>
     <Image cfImage={ cfBuildingEntry.fields.image } />
-    <GoogleMap url={ cfBuildingEntry.fields.mapLink } />
+    <GoogleMap src={ cfBuildingEntry.fields.mapLink } />
   </div>
 )
 

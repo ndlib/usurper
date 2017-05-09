@@ -6,7 +6,7 @@ import Related from '../../../../components/Related'
 import * as statuses from '../../../../constants/APIStatuses'
 import Loading from '../../../../components/Messages/Loading'
 import NotFound from '../../../../components/Messages/NotFound'
-import Error from '../../../../components/Messages/Error'
+import ErrorMessage from '../../../../components/Messages/Error'
 
 function setup(cfPageEntry) {
   const props = { cfPageEntry }
@@ -99,7 +99,7 @@ describe('components/Contentful/Page/presenter', () => {
     })
 
     it('should render an error component', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Error/>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<ErrorMessage/>)).toBe(true)
     })
   })
 })

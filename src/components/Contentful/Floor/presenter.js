@@ -9,7 +9,7 @@ import Image from '../../Image'
 import * as statuses from '../../../constants/APIStatuses'
 import NotFound from '../../Messages/NotFound'
 import Loading from '../../Messages/Loading'
-import Error from '../../Messages/Error'
+import ErrorMessage from '../../Messages/Error'
 
 const Floor = (cfFloorEntry) => (
   <div className='container-fluid'>
@@ -32,7 +32,7 @@ const Presenter = ({ cfFloorEntry }) => {
     case statuses.NOT_FOUND:
       return <NotFound/>
     default:
-      return <Error message={ 'There was an error loading the information for the requested floor.' }/>
+      return <ErrorMessage message={ 'There was an error loading the information for the requested floor.' }/>
   }
 }
 
