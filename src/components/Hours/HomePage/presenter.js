@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
-import { Link } from 'react-router-dom'
+import Link  from '../../Link'
 import * as statuses from '../../../constants/APIStatuses'
 
 const Loading = (
@@ -15,7 +15,7 @@ const NotFound = (
 );
 const Loaded = (hoursEntry) => (
   <div className="hours-display">
-    <p>Hours Today: <a href="/hours">{ hoursEntry.today.display }</a></p>
+    <p>Hours Today: <Link to="/hours">{ hoursEntry.today.display }</Link></p>
   </div>
 );
 
