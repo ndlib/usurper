@@ -1,26 +1,26 @@
 'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { setSearchType } from '../../../../actions/search.js'
-import { searchOptions } from '../../searchOptions.js'
+import { setSearchType, closeSearchBox } from '../../../../actions/search.js'
 
-const SearchOption = ({ index, dispatch }) => {
+const SearchOption = ({ item, dispatch }) => {
   const onClick = () => {
-    dispatch(setSearchType(index))
+    dispatch(setSearchType(item.uid))
+    dispatch(closeSearchBox())
   }
   return (
     <li onClick={onClick}>
-      <p>{searchOptions[index].title}</p>
-      <small>{searchOptions[index].description}</small>
+      <p>{item.title}</p>
+      <small>{item.description}</small>
     </li>
   )
 }
 
 SearchOption.propTypes = {
-  index: PropTypes.number,
+  item: PropTypes.object,
   dispatch: PropTypes.func.isRequired
 }
 SearchOption.defaultProps = {
-  index: 0
+  item: {}
 }
 export default SearchOption

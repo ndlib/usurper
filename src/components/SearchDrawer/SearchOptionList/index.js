@@ -4,30 +4,27 @@ import PropTypes from 'prop-types'
 import SearchOption from './SearchOption'
 import { searchOptions } from '../searchOptions.js'
 
-class SearchOptionList extends Component {
-  constructor (props) {
-    super(props)
-    this.options = []
-    for (let i = 0; i < searchOptions.length; i++) {
-      this.options.push(
-        <SearchOption {...this.props} index={i} key={i} />
+const SearchOptionList = ({ search, dispatch }) => {
+  const options = searchOptions.map(
+    (item, index) => {
+      return (
+        <SearchOption dispatch={dispatch} item={item} key={index} />
       )
     }
-  }
+  )
+  return <span>{ options }</span>
+}
 
-  render () {
-    if (this.props.isOpen) {
-      return <span>{ this.options }</span>
-    }
-    return null
+const Presenter = ({ search, dispatch }) => {
+  if (search.searchBoxOpen) {
+    return <SearchOptionList search={search} dispatch={dispatch} />
   }
+  return null
 }
 
 SearchOptionList.propTypes = {
-  isOpen: PropTypes.bool
+  search: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
 }
 
-SearchOptionList.defaultProps = {
-  isOpen: false
-}
-export default SearchOptionList
+export default Presenter
