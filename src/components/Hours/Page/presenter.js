@@ -4,9 +4,10 @@ import './style.css'
 import { Link } from 'react-router-dom'
 import WeeklyHours from '../WeeklyHours'
 
-const Loading = (
-  <span>loading</span>
-);
+import NotFound from '../../Messages/NotFound'
+import Loading from '../../Messages/Loading'
+import Error from '../../Messages/Error'
+
 const Loaded = (hoursEntry) => (
   <div>
     <h2>Hours</h2>
@@ -21,22 +22,17 @@ const Loaded = (hoursEntry) => (
     }
   </div>
 );
-const NotFound = (
-  <div className={'NotFound'}>
-    <h1>Page Not Found</h1>
-    <div>The requested page could not be found</div>
-  </div>
-);
-
 
 const Presenter = ({ hoursEntry }) => {
   switch(hoursEntry.status) {
-    case "fetching":
-      return Loading;
-    case "success":
-      return Loaded(hours);
+    case statuses.FETCHING:
+      return <Loading/>
+    case statuses.SUCCESS:
+      return Loaded(hoursEntry)
+    case statuses.NOT_FOUND:
+      return <NotFound/>
     default:
-      return NotFound
+      return <Error message={ 'There was an error loading the page.' }/>
   }
 }
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import { Link } from 'react-router-dom'
 import WeeklyHoursList from '../WeeklyHoursList'
+import * as statuses from '../../../constants/APIStatuses'
 
 const Loading = (
   <span>loading</span>
@@ -27,9 +28,9 @@ const NotFound = (
 
 const Presenter = ({ hoursEntry, jsonHoursApiKey }) => {
   switch(hoursEntry.status) {
-    case "fetching":
+    case statuses.FETCHING:
       return Loading;
-    case "success":
+    case statuses.SUCCESS:
       let hours = hoursEntry.json[jsonHoursApiKey];
       if (hours) {
         return Loaded(hours);
