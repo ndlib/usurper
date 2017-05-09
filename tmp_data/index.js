@@ -73,5 +73,5 @@ fetch({
   space: hesutil.getEnv('CONTENTFUL_SPACE'),
   accessToken: hesutil.getEnv('CONTENTFUL_AUTH'),
   host: 'cdn.contentful.com',
-  contentTypes: ['page']
+  contentTypes: ['page', 'floor']
 })
