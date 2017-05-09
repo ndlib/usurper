@@ -20,10 +20,7 @@ const ErrorLoading = (
   <span>Error</span>
 )
 const NotFound = (
-  <div className={'NotFound'}>
-    <h1>Page Not Found</h1>
-    <div>The requested page could not be found</div>
-  </div>
+  <span>Not Found</span>
 )
 
 const Presenter = ({ hoursEntry, jsonHoursApiKey }) => {
