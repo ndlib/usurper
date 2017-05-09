@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import { Link } from 'react-router-dom'
 import WeeklyHours from '../WeeklyHours'
-
+import * as statuses from '../../../constants/APIStatuses'
 import NotFound from '../../Messages/NotFound'
 import Loading from '../../Messages/Loading'
 import Error from '../../Messages/Error'
@@ -34,10 +34,6 @@ const Presenter = ({ hoursEntry }) => {
     default:
       return <Error message={ 'There was an error loading the page.' }/>
   }
-}
-
-Presenter.propTypes = {
-  jsonHoursApiKey: PropTypes.string.isRequired
 }
 
 export default Presenter
