@@ -1,23 +1,7 @@
 {
-  "parser": "babel-eslint",
   "extends": [
-    "standard",
-    "standard-react"
+    "../../.eslintrc"
   ],
-  "plugins": [
-    "babel",
-    "react",
-    "promise"
-  ],
-  "env": {
-    "browser" : true
-  },
-  "globals": {
-    "__DEV__"      : false,
-    "__TEST__"     : false,
-    "__PROD__"     : false,
-    "__COVERAGE__" : false
-  },
   "rules": {
     "no-undef": 0
   }
