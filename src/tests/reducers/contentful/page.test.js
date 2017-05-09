@@ -1,12 +1,13 @@
 import reducer from '../../../reducers/contentful/page'
 import * as actions from '../../../actions/contentful'
+import * as statuses from '../../../constants/APIStatuses'
 
 describe('Page reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
     ).toEqual({
-      isFetching: false,
+      status: statuses.FETCHING,
     })
   })
 
@@ -16,7 +17,7 @@ describe('Page reducer', () => {
         type: actions.CF_REQUEST_PAGE,
       })
     ).toEqual({
-      isFetching: true,
+      status: statuses.FETCHING,
     })
   })
 
@@ -28,7 +29,6 @@ describe('Page reducer', () => {
         page: 'page from receivePage',
       })
     ).toEqual({
-      isFetching: false,
       status: 'status from receivePage',
       json: 'page from receivePage',
     })
@@ -42,7 +42,6 @@ describe('Page reducer', () => {
         page: 'page from receivePage',
       })
     ).toEqual({
-      isFetching: false,
       status: 'status from receivePage',
     })
   })

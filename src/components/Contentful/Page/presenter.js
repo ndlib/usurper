@@ -1,45 +1,38 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
+import Link from '../../Link'
 import '../../../static/css/global.css'
-import { Link } from 'react-router-dom'
 import LibMarkdown from '../../LibMarkdown'
-import HoursPage from '../../Hours/Page'
+import Related from '../../Related'
+import Image from '../../Image'
+import * as statuses from '../../../constants/APIStatuses'
+import NotFound from '../../Messages/NotFound'
+import Loading from '../../Messages/Loading'
+import Error from '../../Messages/Error'
 
-const Loading = (
-  <span>loading</span>
-)
-const Loaded = (cfPageEntry) => (
-  <div className={'ContentfulPage'}>
-    <HoursPage />
-
-    <h1>{ cfPageEntry.fields.title }</h1>
-    <LibMarkdown>{ cfPageEntry.fields.shortContent }</LibMarkdown>
+const Page = (cfPageEntry) => (
+  <div className='container-fluid'>
+    <h2>{ cfPageEntry.fields.title }</h2>
     <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+    <Image cfImage={cfPageEntry.fields.image} className='cover' />
+    <Related className='p-resources'>{ cfPageEntry.fields.relatedResources }</Related>
+    <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
+    <Related className='p-services'>{ cfPageEntry.fields.relatedServices }</Related>
     <div><Link to={'/'}>Home</Link></div>
-  </div>
-)
-const ErrorLoading = (
-  <span>Error</span>
-)
-
-const NotFound = (
-  <div className={'NotFound'}>
-    <h1>Page Not Found</h1>
-    <div>The requested page could not be found</div>
   </div>
 )
 
 const Presenter = ({ cfPageEntry }) => {
-  if (cfPageEntry.isFetching) {
-    return Loading
-  }
-  if (cfPageEntry.status === 'success') {
-    return Loaded(cfPageEntry.json)
-  } else if (cfPageEntry.status === 'not found') {
-    return NotFound
-  } else {
-    return ErrorLoading
+  switch(cfPageEntry.status){
+    case statuses.FETCHING:
+      return <Loading/>
+    case statuses.SUCCESS:
+      return Page(cfPageEntry.json)
+    case statuses.NOT_FOUND:
+      return <NotFound/>
+    default:
+      return <Error message={ 'There was an error loading the page.' }/>
   }
 }
 
