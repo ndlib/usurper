@@ -7,16 +7,16 @@ import { searchOptions } from '../../searchOptions.js'
 class SearchOption extends Component {
   constructor (props) {
     super(props)
-    this.setSearch = this.setSearch.bind(this)
+    this.onClick = this.onClick.bind(this)
   }
 
-  setSearch () {
+  onClick () {
     this.props.dispatch(setSearchType(this.props.index))
   }
 
   render () {
     return (
-      <li onClick={this.setSearch}>
+      <li onClick={this.onClick}>
         <p>{searchOptions[this.props.index].title}</p>
         <small>{searchOptions[this.props.index].description}</small>
       </li>
@@ -25,7 +25,8 @@ class SearchOption extends Component {
 }
 
 SearchOption.propTypes = {
-  index: PropTypes.number
+  index: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
 }
 
 SearchOption.defaultProps = {

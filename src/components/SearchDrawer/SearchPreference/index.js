@@ -12,19 +12,21 @@ class SearchPrefernce extends Component {
     this.state = { isSaved: this.props.savedSearch != null }
   }
 
-  saveClick (event) {
+  saveClick () {
     localStorage.setItem('searchPreference', this.props.currentSearch)
     this.setState({ isSaved: true })
   }
 
-  forgetClick (event) {
+  forgetClick () {
     localStorage.clear('searchPreference')
     this.setState({ isSaved: false })
   }
 
   render () {
     if (this.state.isSaved) {
-      return (<div>{searchOptions[parseInt(localStorage.getItem('searchPreference'))].title} is your default search. <a onClick={this.forgetClick}>clear</a></div>)
+      return (
+        <div>{searchOptions[parseInt(localStorage.getItem('searchPreference'))].title} is your default search. <a onClick={this.forgetClick}>clear</a></div>
+      )
     }
     return (
       <div className='set-default-search'>
