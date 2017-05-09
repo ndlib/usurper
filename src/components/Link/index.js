@@ -31,11 +31,13 @@ const Hidden = (
 )
 
 function LibLink (props) {
-  let query = '?'
+  let query = ''
   for (var k in props.query) {
     if (props.query.hasOwnProperty(k)) {
-      if (query !== '?') {
+      if (query.length > 0) {
         query += '&'
+      } else {
+        query = '?'
       }
       query += k + '=' + props.query[k]
     }

@@ -19,6 +19,7 @@
     "__COVERAGE__" : false
   },
   "rules": {
+    "comma-dangle"         : [2, "always-multiline"],
     "key-spacing"          : 0,
     "jsx-quotes"           : [2, "prefer-single"],
     "max-len"              : [2, 120, 2],

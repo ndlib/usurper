@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import Image from './presenter'
 
-function mapStateToProps (state, thisProps) {
+export function mapStateToProps (state, thisProps) {
   let src = thisProps.src
   let alt = thisProps.alt
 
