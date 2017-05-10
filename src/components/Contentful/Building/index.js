@@ -2,19 +2,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../../../static/css/global.css'
-import GoogleMap from '../../GoogleMap'
+import Link from '../../Link'
 import Image from '../../Image'
 
-const Presenter = ({ cfBuildingEntry }) => (
-  <div>
+const BuildingPresenter = ({ cfBuildingEntry }) => (
+  <div key={ `ContentfulBuilding_${cfBuildingEntry.sys.id}` } >
     <h2>{ cfBuildingEntry.fields.title }</h2>
     <Image cfImage={ cfBuildingEntry.fields.image } />
-    <GoogleMap src={ cfBuildingEntry.fields.mapLink } />
+    <Link to={ cfBuildingEntry.fields.mapLink }>Map</Link>
   </div>
 )
 
-Presenter.propTypes = {
+BuildingPresenter.propTypes = {
   cfBuildingEntry: PropTypes.object.isRequired
 }
 
-export default Presenter
+export default BuildingPresenter

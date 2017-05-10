@@ -12,18 +12,16 @@ import Loading from '../../Messages/Loading'
 import ErrorMessage from '../../Messages/Error'
 
 const Floor = (cfFloorEntry) => (
-  <div className='container-fluid'>
+  <div key={ `ContentfulFloor_${cfFloorEntry.sys.id}` } className='container-fluid'>
     <h2>{ cfFloorEntry.fields.title }</h2>
     <LibMarkdown>{ cfFloorEntry.fields.shortDescription }</LibMarkdown>
     <Image cfImage={ cfFloorEntry.fields.image } />
     <Building cfBuildingEntry={ cfFloorEntry.fields.building } />
-    <div>
-      <Link to={'/'}>Home</Link>
-    </div>
+    <Link to={'/'}>Home</Link>
   </div>
 )
 
-const Presenter = ({ cfFloorEntry }) => {
+const FloorPresenter = ({ cfFloorEntry }) => {
   switch(cfFloorEntry.status){
     case statuses.FETCHING:
       return <Loading/>
@@ -36,8 +34,8 @@ const Presenter = ({ cfFloorEntry }) => {
   }
 }
 
-Presenter.propTypes = {
+FloorPresenter.propTypes = {
   cfFloorEntry: PropTypes.object.isRequired
 }
 
-export default Presenter
+export default FloorPresenter
