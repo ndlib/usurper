@@ -33,8 +33,8 @@ const Navigation = (props) => {
 Navigation.propTypes = {
   search: PropTypes.shape({
     drawerOpen: PropTypes.bool.isRequired,
-    openSearchDrawer: PropTypes.func.isRequired,
-    closeSearchDrawer: PropTypes.func.isRequired,
   }).isRequired,
+  openSearchDrawer: PropTypes.func.isRequired,
+  closeSearchDrawer: PropTypes.func.isRequired,
 }
 export default Navigation
