@@ -23,11 +23,10 @@ export default (
 ) => {
   switch (action.type) {
     case SET_SEARCH:
-      let newState = Object.assign({}, state, {
+      return Object.assign({}, state, {
         searchType: action.searchType,
         usePref: false
       })
-      return newState
     case OPEN_SEARCHBOX:
       return Object.assign({}, state, { searchBoxOpen: true })
     case CLOSE_SEARCHBOX:
