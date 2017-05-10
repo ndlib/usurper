@@ -12,12 +12,13 @@ const localSearchPref = localStorage.getItem('searchPreference')
 export default (
 
   state = {
+    drawerOpen: true,
     searchType: 'ONESEARCH',
     searchBoxOpen: false,
     hasPref: localSearchPref !== null,
     usePref: true,
-    pref: localSearchPref || null,
-    drawerOpen: true
+    pref: localSearchPref || null
+
   },
   action
 ) => {

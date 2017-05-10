@@ -48,7 +48,7 @@ export function openSearchDrawer () {
 
 export function closeSearchDrawer () {
   return {
-    type: OPEN_SEARCHDRAWER
+    type: CLOSE_SEARCHDRAWER
   }
 }
 
