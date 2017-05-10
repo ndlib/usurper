@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     forgetClick: () => {
       ownProps.dispatch(clearSearchPreference())
-    }
+    },
   }
 }
 
