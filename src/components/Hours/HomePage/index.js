@@ -1,6 +1,6 @@
 // Container component for a Page content type from Contentful
 import { connect } from 'react-redux'
-import { fetchHours } from '../../../actions/hours'
+import { fetchServicePointHours } from '../../../actions/hours'
 import React from 'react'
 import HoursHomePagePresenter from './presenter.js'
 
@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  dispatch(fetchHours());
+  dispatch(fetchServicePointHours(ownProps.jsonHoursApiKey));
   return {}
 }
 

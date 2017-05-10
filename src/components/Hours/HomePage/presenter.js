@@ -24,12 +24,9 @@ const Presenter = ({ hoursEntry, jsonHoursApiKey }) => {
     case statuses.FETCHING:
       return Loading;
     case statuses.SUCCESS:
-      let hours = hoursEntry.json[jsonHoursApiKey];
-      if (hours) {
-        return Loaded(hours);
-      } else {
-        return NotFound;
-      }
+      return Loaded(hoursEntry.json);
+    case statuses.NOT_FOUND:
+      return NOT_FOUND;
     default:
       return ErrorLoading
   }

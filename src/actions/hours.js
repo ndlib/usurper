@@ -30,6 +30,19 @@ function receiveHours (response) {
   }
 }
 
+function receiveServicePointHours(json, servicePointKey) {
+  let servicePointHours = receiveHours(json);
+  if (servicePointHours.status == statuses.SUCCESS) {
+    let servicePointJson = servicePointHours.hours[servicePointKey];
+    if (servicePointJson) {
+      servicePointHours.hours = servicePointJson;
+    } else {
+      servicePointHours.status.NOT_FOUND;
+    }
+  }
+  return servicePointHours;
+}
+
 export function fetchHours () {
   return dispatch => {
     dispatch(requestHours())
@@ -37,5 +50,15 @@ export function fetchHours () {
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))
       .catch(error => dispatch(receiveHours(error)))
+  }
+}
+
+export function fetchServicePointHours(servicePointKey) {
+  return dispatch => {
+    dispatch(requestHours())
+    return fetch(hoursAPIURL)
+      .then(response => response.json())
+      .then(json => dispatch(receiveServicePointHours(json, servicePointKey)))
+      .catch(error => dispatch(receiveServicePointHours(error)))
   }
 }

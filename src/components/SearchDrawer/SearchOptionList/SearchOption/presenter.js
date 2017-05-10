@@ -11,7 +11,7 @@ class SearchOption extends Component {
   }
 
   setSearch (event) {
-    console.log('clicked - searchType: ', this.props.index)
+    //console.log('clicked - searchType: ', this.props.index)
     setSearchType(this.props.index)
   }
 
