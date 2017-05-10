@@ -18,7 +18,6 @@ export default (
     hasPref: localSearchPref !== null,
     usePref: true,
     pref: localSearchPref || null
-
   },
   action
 ) => {
