@@ -3,7 +3,9 @@ import {
   OPEN_SEARCHBOX,
   CLOSE_SEARCHBOX,
   SAVE_SEARCH_PREFERENCE,
-  CLEAR_SEARCH_PREFERENCE
+  CLEAR_SEARCH_PREFERENCE,
+  OPEN_SEARCHDRAWER,
+  CLOSE_SEARCHDRAWER
 } from '../actions/search.js'
 
 const localSearchPref = localStorage.getItem('searchPreference')
@@ -14,7 +16,8 @@ export default (
     searchBoxOpen: false,
     hasPref: localSearchPref !== null,
     usePref: true,
-    pref: localSearchPref || null
+    pref: localSearchPref || null,
+    drawerOpen: true
   },
   action
 ) => {
@@ -43,6 +46,10 @@ export default (
         state,
         { hasPref: false, usePref: false, pref: null }
       )
+    case OPEN_SEARCHDRAWER:
+      return Object.assign({}, state, { drawerOpen: true })
+    case CLOSE_SEARCHDRAWER:
+      return Object.assign({}, state, { drawerOpen: false })
     default:
       return state
   }

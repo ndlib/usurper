@@ -29,4 +29,12 @@ const SearchDrawer = (props) => {
   )
 }
 
-export default SearchDrawer
+const Presenter = (props) => {
+  if (props.search.drawerOpen) {
+    return <SearchDrawer {...props} />
+  } else {
+    return null
+  }
+}
+
+export default Presenter

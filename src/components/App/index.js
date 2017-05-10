@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -18,19 +18,17 @@ const store = createStore(
   )
 )
 
-class App extends Component {
-  render () {
-    return (
-      <Provider store={store}>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/personal' component={PersonalInfo} />
-          <Route exact path='/courses' component={Courses} />
-          <Route exact path='/:id' component={ContentfulPage} />
-        </Switch>
-      </Provider>
-    )
-  }
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/personal' component={PersonalInfo} />
+        <Route exact path='/courses' component={Courses} />
+        <Route exact path='/:id' component={ContentfulPage} />
+      </Switch>
+    </Provider>
+  )
 }
 
 export default App

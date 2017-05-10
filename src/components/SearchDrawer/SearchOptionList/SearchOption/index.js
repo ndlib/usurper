@@ -1,21 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { actions } from '../../../../actions/search'
 import SearchOption from './presenter'
-
+import { setSearchType, closeSearchBox } from '../../../../actions/search.js'
 const mapStateToProps = (state) => {
   return {
     searchType: state.searchType
   }
 }
 
-const mapActionsToProps = (dispatch) => {
-  var actionsToUse = Object.assign({}, actions)
-  return bindActionCreators(actionsToUse, dispatch)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onClick: () => {
+      dispatch(setSearchType(ownProps.item.uid))
+      dispatch(closeSearchBox())
+    }
+  }
 }
 
 export default connect(
   mapStateToProps,
-  mapActionsToProps
+  mapDispatchToProps
 )(SearchOption)
