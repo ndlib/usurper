@@ -6,7 +6,7 @@ import '../../static/css/global.css'
 
 const Navigation = (props) => {
   return (
-    <nav>
+    <nav className='uNavigation'>
       <div className='container-fluid'>
         <div className='menu-link'><NavLink to='/'>Home</NavLink></div>
         <div className='menu-link'><NavLink to='/research'>Research</NavLink></div>
@@ -29,4 +29,11 @@ const Navigation = (props) => {
   )
 }
 
+Navigation.propTypes = {
+  search: PropTypes.shape({
+    drawerOpen: PropTypes.bool.isRequired,
+    openSearchDrawer: PropTypes.func.isRequired,
+    closeSearchDrawer: PropTypes.func.isRequired,
+  }).isRequired,
+}
 export default Navigation
