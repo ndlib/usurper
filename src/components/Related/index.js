@@ -5,12 +5,15 @@ import Image from '../Image'
 import Link from '../Link'
 
 function Related ({ className, children }) {
-  let items = children
+  if (!children) {
+    return null
+  }
+
   return (
     <ul className={className}>
 
       {
-        items.map(function (currentItem) {
+        children.map(function (currentItem) {
           let link = currentItem.fields.slug ? currentItem.fields.slug : currentItem.fields.url
 
           return (
