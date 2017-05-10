@@ -37,4 +37,22 @@ const Presenter = (props) => {
   }
 }
 
+SearchDrawer.propTypes = {
+  search: PropTypes.shape({
+    hasPref: PropTypes.bool.isRequired,
+    usePref: PropTypes.bool.isRequired,
+    pref: PropTypes.oneOfType([
+      PropTypes.string,
+      null,
+    ]),
+    searchType: PropTypes.string.isRequired,
+  }),
+}
+
+Presenter.propTypes = {
+  search: PropTypes.shape({
+    drawerOpen: PropTypes.bool.isRequired,
+  }),
+}
+
 export default Presenter

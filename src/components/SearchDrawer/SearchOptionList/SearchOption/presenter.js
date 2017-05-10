@@ -11,4 +11,11 @@ const SearchOption = (props) => {
   )
 }
 
+SearchOption.propTyeps = {
+  onClick: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+}
 export default SearchOption
