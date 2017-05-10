@@ -42,9 +42,9 @@ describe('components/Contentful/Page/presenter', () => {
             shortContent: 'Fake short content',
             content: 'Fake content',
             image: 'Fake image',
-            relatedResources: 'Fake related resources',
-            relatedServices: 'Fake related services',
-            libguides: 'Fake related libguides',
+            relatedResources: ['Fake related resources'],
+            relatedServices: ['Fake related services'],
+            libguides: ['Fake related libguides'],
           }
         }
       })
