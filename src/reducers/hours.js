@@ -1,18 +1,18 @@
-import { CF_REQUEST_PAGE, CF_RECEIVE_PAGE, CF_NO_SUCH_PAGE } from '../../actions/contentful/page'
-import * as statuses from '../../constants/APIStatuses'
+import { HOURS_REQUEST, HOURS_RECEIVE, HOURS_NO_SUCH } from '../actions/hours'
+import * as statuses from '../constants/APIStatuses'
 
 export default(state = { status: statuses.FETCHING }, action) => {
   switch (action.type) {
-    case CF_REQUEST_PAGE:
+    case HOURS_REQUEST:
       return Object.assign({}, state, {
         status: statuses.FETCHING
       })
-    case CF_RECEIVE_PAGE:
+    case HOURS_RECEIVE:
       return Object.assign({}, state, {
         status: action.status,
-        json: action.page
+        json: action.hours
       })
-    case CF_NO_SUCH_PAGE:
+    case HOURS_NO_SUCH:
       return Object.assign({}, state, {
         status: action.status
       })
