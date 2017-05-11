@@ -8,7 +8,7 @@ export const HOURS_NO_SUCH = 'HOURS_NO_SUCH'
 
 export const requestHours = () => {
   return {
-    type: HOURS_REQUEST
+    type: HOURS_REQUEST,
   }
 }
 
@@ -18,29 +18,30 @@ function receiveHours (response) {
       type: HOURS_RECEIVE,
       status: statuses.ERROR,
       error: response,
-      receivedAt: Date.now()
+      receivedAt: Date.now(),
     }
   } else {
     return {
       type: HOURS_RECEIVE,
       status: statuses.SUCCESS,
       hours: response,
-      receivedAt: Date.now()
+      receivedAt: Date.now(),
     }
   }
 }
 
-function receiveServicePointHours(json, servicePointKey) {
-  let servicePointHours = receiveHours(json);
-  if (servicePointHours.status == statuses.SUCCESS) {
-    let servicePointJson = servicePointHours.hours[servicePointKey];
+function receiveServicePointHours (json, servicePointKey) {
+  console.log("recieve")
+  let servicePointHours = receiveHours(json)
+  if (servicePointHours.status === statuses.SUCCESS) {
+    let servicePointJson = servicePointHours.hours[servicePointKey]
     if (servicePointJson) {
-      servicePointHours.hours = servicePointJson;
+      servicePointHours.hours = servicePointJson
     } else {
-      servicePointHours.status.NOT_FOUND;
+      servicePointHours.status = statuses.NOT_FOUND
     }
   }
-  return servicePointHours;
+  return servicePointHours
 }
 
 export function fetchHours () {
@@ -53,7 +54,8 @@ export function fetchHours () {
   }
 }
 
-export function fetchServicePointHours(servicePointKey) {
+export function fetchServicePointHours (servicePointKey) {
+  console.log("fetch")
   return dispatch => {
     dispatch(requestHours())
     return fetch(hoursAPIURL)

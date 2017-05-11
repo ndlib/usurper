@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
-import { Link } from 'react-router-dom'
 import WeeklyHours from '../WeeklyHours'
 import * as statuses from '../../../constants/APIStatuses'
 import NotFound from '../../Messages/NotFound'
@@ -16,24 +15,28 @@ const Loaded = (hoursEntry) => (
       <p>View building and service desk hours.</p>
     </div>
     {
-      Object.keys(hoursEntry).map(function(hours, key) {
-        return (<WeeklyHours jsonHoursApiKey={ key } />)
+      Object.keys(hoursEntry).map(function (hours, key) {
+        return (<WeeklyHours jsonHoursApiKey={key} />)
       })
     }
   </div>
-);
+)
 
 const Presenter = ({ hoursEntry }) => {
-  switch(hoursEntry.status) {
+  switch (hoursEntry.status) {
     case statuses.FETCHING:
-      return <Loading/>
+      return <Loading />
     case statuses.SUCCESS:
       return Loaded(hoursEntry)
     case statuses.NOT_FOUND:
-      return <NotFound/>
+      return <NotFound />
     default:
-      return <Error message={ 'There was an error loading the page.' }/>
+      return <Error message={'There was an error loading the page.'} />
   }
+}
+
+Presenter.propTypes = {
+  hoursEntry: PropTypes.object.isRequired,
 }
 
 export default Presenter

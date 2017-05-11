@@ -25,7 +25,7 @@ class SearchDrawer extends Component {
   }
 
   render () {
-    console.log('render - searchType:', this.props)
+    //console.log('render - searchType:', this.props)
     return (
       <div id='drawer'>
         <div className='appliance'>
@@ -57,7 +57,7 @@ class SearchDrawer extends Component {
 }
 
 function mapStateToProps (state) {
-  console.log('ms2p SD: ', state)
+  //console.log('ms2p SD: ', state)
   return {
     searchType: state.searchType
   }

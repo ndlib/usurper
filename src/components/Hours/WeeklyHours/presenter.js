@@ -1,46 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './style.css'
-import { Link } from 'react-router-dom'
-import WeeklyHoursList from '../WeeklyHoursList'
-import * as statuses from '../../../constants/APIStatuses'
 
-const Loading = (
-  <span>loading</span>
-)
-const Loaded = (hoursEntry) => (
-  <div className="service-point">
-    <h4>{ hoursEntry.name }</h4>
-    <WeeklyHoursList hours={ hoursEntry.thisWeek } title="Current Hours" showEffectiveDates={false} />
-    <WeeklyHoursList hours={ hoursEntry.upcomingDifferentHours } title="Current Hours" showEffectiveDates={true} />
-    <hr />
-  </div>
-)
-const ErrorLoading = (
-  <span>Error</span>
-)
-const NotFound = (
-  <span>Not Found</span>
-)
-
-const Presenter = ({ hoursEntry, jsonHoursApiKey }) => {
-  switch(hoursEntry.status) {
-    case statuses.FETCHING:
-      return Loading;
-    case statuses.SUCCESS:
-      let hours = hoursEntry.json[jsonHoursApiKey];
-      if (hours) {
-        return Loaded(hours);
-      } else {
-        return NotFound;
-      }
-    default:
-      return ErrorLoading
+const Presenter = ({ hours, title, showEffectiveDates }) => {
+  if (!hours) {
+    return (<div />)
   }
+
+  let effectiveMessage = ''
+  if (showEffectiveDates) {
+    effectiveMessage = (<p> Effective {hours.display } </p>)
+  }
+  return (
+    <div>
+      <h5>{ title }</h5>
+      { effectiveMessage }
+      <dl className='hours-grid'>
+        {
+          hours.rows.map(function (row, key) {
+            return (
+              <span key={key}>
+                <dt>{ row.rowDisplay }</dt>
+                <dd>{ row.display }</dd>
+              </span>
+            )
+          })
+        }
+      </dl>
+    </div>
+  )
 }
 
 Presenter.propTypes = {
-  jsonHoursApiKey: PropTypes.string.isRequired
+  hours: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  showEffectiveDates: PropTypes.bool.isRequired,
 }
 
 export default Presenter
