@@ -29,7 +29,7 @@ function Loaded (info, className) {
         info.librarians.map(function (librarian) {
           return (
             <div className='librarian' key={librarian.phone}>
-              <Contact name={librarian.name} phone={librarian.phone} email={librarian.email} />
+              <Contact name={librarian.name} title={librarian.jobTitle} phone={librarian.phone} email={librarian.email} />
               <Image src={librarian.photo} alt={librarian.name} defaultImage='/images/librarian.gif' />
             </div>
           )
