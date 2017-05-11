@@ -22,7 +22,7 @@ const Navigation = (props) => {
           <a
             className='right search'
             id='header-search-button'
-            onClick={props.search.drawerOpen ? props.closeSearchDrawer : props.openSearchDrawer}
+            onClick={props.handleDrawerClick}
           >Search</a>
         </div>
       </div>
@@ -31,10 +31,6 @@ const Navigation = (props) => {
 }
 
 Navigation.propTypes = {
-  search: PropTypes.shape({
-    drawerOpen: PropTypes.bool.isRequired,
-  }).isRequired,
-  openSearchDrawer: PropTypes.func.isRequired,
-  closeSearchDrawer: PropTypes.func.isRequired,
+  handleDrawerClick: PropTypes.func.isRequired,
 }
 export default Navigation

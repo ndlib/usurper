@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Navigation from './presenter'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../actions/search.js'
-const mapStateToProps = (state) => {
+
+const mapStateToProps = (state, ownProps) => {
   return {
-    search: state.search
+    search: state.search,
   }
 }
 
@@ -17,11 +18,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     closeSearchDrawer: () => {
       dispatch(closeSearchDrawer())
       dispatch(closeSearchBox())
-    }
+    },
+  }
+}
+
+const mergeProps = (state, dispatchProps, ownProps) => {
+  return {
+    handleDrawerClick: state.search.drawerOpen ? dispatchProps.closeSearchDrawer : dispatchProps.openSearchDrawer,
   }
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  mergeProps
 )(Navigation)

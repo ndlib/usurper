@@ -8,9 +8,7 @@ const SearchPreference = (props) => {
   const HasPref = () => {
     return (
       <div>{
-        searchOptions.find(op => op.uid ===
-          props.search.pref
-        ).title
+        props.currentSearch.title
       } is your default search. <a onClick={props.forgetClick}>clear</a></div>
     )
   }
@@ -20,7 +18,7 @@ const SearchPreference = (props) => {
       <div className='set-default-search'>
         <input type='checkbox' name='sp' onClick={props.saveClick} />
         <label htmlFor='sp'>Save {
-            searchOptions.find(op => op.uid === props.currentSearch).title
+            props.currentSearch.title
         } as my default search</label>
       </div>
     )
@@ -33,7 +31,7 @@ const SearchPreference = (props) => {
 }
 
 SearchPreference.propTypes = {
-  currentSearch: PropTypes.string.isRequired,
+  currentSearch: PropTypes.object.isRequired,
   saveClick: PropTypes.func.isRequired,
   forgetClick: PropTypes.func.isRequired,
   search: PropTypes.shape({

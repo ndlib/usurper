@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SearchOptionList from '../SearchOptionList'
-import { searchOptions } from '../searchOptions.js'
 import '../../../static/css/global.css'
 import '../../../static/css/search.css'
 
@@ -12,7 +11,7 @@ const SearchBox = (props) => {
       <label htmlFor='q'>
         <ul id='searchAction' >
           <li id='selected-search' onClick={props.onClick}>
-            <p>{ searchOptions.find(op => op.uid === props.currentSearch).title}</p>
+            <p>{ props.currentSearch.title}</p>
           </li>
           <SearchOptionList {...props} />
         </ul>
@@ -26,7 +25,8 @@ const SearchBox = (props) => {
 }
 
 SearchBox.propTypes = {
-  currentSearch: PropTypes.string.isRequired,
+  currentSearch: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default SearchBox

@@ -6,7 +6,7 @@ import SearchPreference from './presenter'
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     saveClick: () => {
-      ownProps.dispatch(saveSearchPreference(ownProps.currentSearch))
+      ownProps.dispatch(saveSearchPreference(ownProps.currentSearch.uid))
     },
     forgetClick: () => {
       ownProps.dispatch(clearSearchPreference())

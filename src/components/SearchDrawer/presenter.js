@@ -1,44 +1,43 @@
 'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { searchOptions } from './searchOptions.js'
 import SearchPreference from './SearchPreference'
 import SearchBox from './SearchBox'
 import '../../static/css/global.css'
 import '../../static/css/search.css'
 
-const SearchDrawer = (props) => {
-  let searchType = (props.search.hasPref && props.search.usePref) ? props.search.pref : props.search.searchType
-
+const Drawer = (props) => {
   return (
     <div id='drawer'>
       <div className='appliance'>
-        <form id='searchAppliance' method='get' action={searchOptions.find(op => op.uid === searchType).target}>
+        <form id='searchAppliance' method='get' action={props.currentSearch.target}>
           <SearchBox
-            currentSearch={searchType}
+            currentSearch={props.currentSearch}
             {...props}
           />
           <SearchPreference
-            currentSearch={searchType}
+            currentSearch={props.currentSearch}
             {...props}
           />
-          <div className='additional-links'>{ searchOptions.find(op => op.uid === searchType).additionalLinks}</div>
+          <div className='additional-links'>{ props.currentSearch.additionalLinks}</div>
         </form>
       </div>
     </div>
   )
 }
 
-const Presenter = (props) => {
+const SearchDrawer = (props) => {
   if (props.search.drawerOpen) {
-    return <SearchDrawer {...props} />
+    return <Drawer {...props} />
   } else {
     return null
   }
 }
 
 SearchDrawer.propTypes = {
+  currentSearch: PropTypes.object.isRequired,
   search: PropTypes.shape({
+    drawerOpen: PropTypes.bool.isRequired,
     hasPref: PropTypes.bool.isRequired,
     usePref: PropTypes.bool.isRequired,
     pref: PropTypes.oneOfType([
@@ -49,10 +48,4 @@ SearchDrawer.propTypes = {
   }),
 }
 
-Presenter.propTypes = {
-  search: PropTypes.shape({
-    drawerOpen: PropTypes.bool.isRequired,
-  }),
-}
-
-export default Presenter
+export default SearchDrawer
