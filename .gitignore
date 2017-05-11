@@ -2,6 +2,8 @@
 
 /config/secrets.js
 
+.serverless/
+
 # dependencies
 node_modules/
 babel_cache/

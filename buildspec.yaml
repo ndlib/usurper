@@ -1,0 +1,19 @@
+version: 0.1
+
+environment_variables:
+  plaintext:
+    AWS_DEFAULT_REGION: "us-east-1"
+
+phases:
+  install:
+    commands:
+      - npm install -g yarn
+      - yarn
+
+  build:
+    commands:
+      - yarn build
+
+  post_build:
+    commands:
+      - aws s3 sync ./build/public s3://$REACT_OUTPUT --delete
