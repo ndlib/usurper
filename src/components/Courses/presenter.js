@@ -101,7 +101,7 @@ class Courses extends Component {
 }
 
 Courses.propTypes = {
-  token: PropTypes.string,
+  login: PropTypes.object,
   courses: PropTypes.object,
   linkOnly: PropTypes.bool,
 }
