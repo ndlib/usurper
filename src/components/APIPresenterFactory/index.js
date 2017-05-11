@@ -25,7 +25,7 @@ class APIPresenterFactory extends Component {
 }
 
 APIPresenterFactory.propTypes = {
-  presenter: PropTypes.object.isRequired, // The presenter to render when status === success
+  presenter: PropTypes.func.isRequired, // The presenter to render when status === success
   slice: PropTypes.object.isRequired,     // The state slice data to pass to the presenter.
                                           // Expects a status and json field
 }
