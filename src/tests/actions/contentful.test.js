@@ -66,7 +66,7 @@ describe('contentful fetchPage async action creator', () => {
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
         status: statuses.SUCCESS,
-        page: mockPageResponse
+        page: mockPageResponse,
       }
 
       const store = mockStore({ })

@@ -8,6 +8,7 @@ export const PERSONAL_INFO_CLEAR = 'PERSONAL_INFO_CLEAR'
 export const PERSONAL_RETREIVING = 'PERSONAL_RETREIVING'
 
 const loginUrl = Config.viceroyAPI + '/token'
+const logoutUrl = Config.viceroyAPI + '/logout'
 const personURL = Config.personAPI + '/person'
 const recommendURL = Config.recommendAPI + '/recommend'
 const coursesURL = Config.coursesAPI + '/courses'
@@ -38,11 +39,11 @@ function retreivingPersonal (requestType = '', retrieving = true) {
   }
 }
 
-function handleToken (dispatch, shouldRedirect, data) {
-  if (data.redirect && shouldRedirect) {
-    window.location.href = data.redirect
+function handleToken (dispatch, data) {
+  if (data.redirect) {
+    dispatch(updatePersonalInfo({ buttonUrl: data.redirect }))
   } else if (data.jwt) {
-    dispatch(updatePersonalInfo({ token: data.jwt }))
+    dispatch(updatePersonalInfo({ token: data.jwt, buttonUrl: '/personal', logoutUrl: logoutUrl }))
   }
   dispatch(retreivingPersonal('gettingToken', false))
 }
@@ -107,7 +108,7 @@ function request (url, success, token) {
   request.send()
 }
 
-function getToken (dispatch, getState, shouldRedirect = true) {
+function getToken (dispatch, getState) {
   var state = getState().personal
   if (state['token']) {
     return true
@@ -130,7 +131,7 @@ function getToken (dispatch, getState, shouldRedirect = true) {
       if (typeof response === 'string') {
         response = JSON.parse(response)
       }
-      handleToken(dispatch, shouldRedirect, response)
+      handleToken(dispatch, response)
     } else {
       errorFunc(data)
     }
@@ -153,12 +154,12 @@ function startRequest (dispatch, getState, url, func, stateKey) {
   return false
 }
 
-function getInfo (redirect = true) {
+function getInfo () {
   var hasInfo = true
   return (dispatch, getState) => {
     var state = getState().personal
     if (!state.token) {
-      hasInfo = getToken(dispatch, getState, redirect)
+      hasInfo = getToken(dispatch, getState)
     } else {
       if (!state.netid) {
         startRequest(dispatch, getState, personURL, handlePerson, 'gettingPerson')
