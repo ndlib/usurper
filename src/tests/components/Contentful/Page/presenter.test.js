@@ -8,7 +8,7 @@ import Loading from '../../../../components/Messages/Loading'
 import NotFound from '../../../../components/Messages/NotFound'
 import ErrorMessage from '../../../../components/Messages/Error'
 
-function setup(cfPageEntry) {
+const setup = (cfPageEntry) => {
   const props = { cfPageEntry }
   return shallow(<PagePresenter {...props} />)
 }

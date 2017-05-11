@@ -9,7 +9,7 @@ import Loading from '../../../../components/Messages/Loading'
 import NotFound from '../../../../components/Messages/NotFound'
 import ErrorMessage from '../../../../components/Messages/Error'
 
-function setup(cfFloorEntry) {
+const setup = (cfFloorEntry) => {
   const props = { cfFloorEntry }
   return shallow(<FloorPresenter {...props} />)
 }

@@ -9,7 +9,7 @@ import Loading from '../../../../components/Messages/Loading'
 import NotFound from '../../../../components/Messages/NotFound'
 import ErrorMessage from '../../../../components/Messages/Error'
 
-function setup(cfBuildingEntry) {
+const setup = (cfBuildingEntry) => {
   const props = { cfBuildingEntry }
   return shallow(<BuildingPresenter {...props} />)
 }
