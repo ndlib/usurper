@@ -7,12 +7,20 @@ import * as statuses from '../../constants/APIStatuses'
 import Resources from './presenter'
 
 class ResourceContainer extends Component {
-  componentWillReceiveProps (nextProps) {
-    if (!nextProps.resources.have.state &&
-      !nextProps.resources.pending.state &&
-      nextProps.loggedIn) {
-      nextProps.dispatch(getResources(nextProps.login.token))
+  checkLoggedIn (props) {
+    if (!props.resources.have.state &&
+      !props.resources.pending.state &&
+      props.loggedIn) {
+      props.dispatch(getResources(props.login.token))
     }
+  }
+
+  componentWillMount () {
+    this.checkLoggedIn(this.props)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.checkLoggedIn(nextProps)
   }
 
   render () {
