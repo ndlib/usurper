@@ -6,9 +6,9 @@ import Related from '../../../../components/Related'
 import * as statuses from '../../../../constants/APIStatuses'
 import Loading from '../../../../components/Messages/Loading'
 import NotFound from '../../../../components/Messages/NotFound'
-import Error from '../../../../components/Messages/Error'
+import ErrorMessage from '../../../../components/Messages/Error'
 
-function setup(cfPageEntry) {
+const setup = (cfPageEntry) => {
   const props = { cfPageEntry }
   return shallow(<PagePresenter {...props} />)
 }
@@ -42,9 +42,9 @@ describe('components/Contentful/Page/presenter', () => {
             shortContent: 'Fake short content',
             content: 'Fake content',
             image: 'Fake image',
-            relatedResources: 'Fake related resources',
-            relatedServices: 'Fake related services',
-            libguides: 'Fake related libguides',
+            relatedResources: ['Fake related resources'],
+            relatedServices: ['Fake related services'],
+            libguides: ['Fake related libguides'],
           }
         }
       })
@@ -99,7 +99,7 @@ describe('components/Contentful/Page/presenter', () => {
     })
 
     it('should render an error component', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Error/>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<ErrorMessage/>)).toBe(true)
     })
   })
 })
