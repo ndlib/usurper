@@ -656,7 +656,7 @@ div.visible > .menu-drawer {
 }
 
 label {position:relative}
-label:after {
+label[for='q']:after {
     content:'<>';
     font:11px "Consolas", monospace;
     color:#fff;
@@ -778,11 +778,8 @@ label:after {
   padding-top: 8px;
   text-align: right;
   color: #fff;
-  display: none;
 }
-.appliance .additional-links.visible {
-  display: block;
-}
+
 .appliance .additional-links a {
   color: #fff;
   text-decoration: none;

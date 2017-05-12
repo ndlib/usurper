@@ -1,11 +1,55 @@
-import { SET_SEARCH } from '../actions/search.js'
+import {
+  SET_SEARCH,
+  OPEN_SEARCHBOX,
+  CLOSE_SEARCHBOX,
+  SAVE_SEARCH_PREFERENCE,
+  CLEAR_SEARCH_PREFERENCE,
+  OPEN_SEARCHDRAWER,
+  CLOSE_SEARCHDRAWER
+} from '../actions/search.js'
 
-export default (searchType = 0, action) => {
-  console.log(searchType, action.type)
+const localSearchPref = localStorage.getItem('searchPreference')
+export default (
+
+  state = {
+    drawerOpen: true,
+    searchType: 'ONESEARCH',
+    searchBoxOpen: false,
+    hasPref: localSearchPref !== null,
+    usePref: true,
+    pref: localSearchPref || null
+  },
+  action
+) => {
   switch (action.type) {
     case SET_SEARCH:
+      return Object.assign({}, state, {
+        searchType: action.searchType,
+        usePref: false
+      })
+    case OPEN_SEARCHBOX:
+      return Object.assign({}, state, { searchBoxOpen: true })
+    case CLOSE_SEARCHBOX:
+      return Object.assign({}, state, { searchBoxOpen: false })
+    case SAVE_SEARCH_PREFERENCE:
+      localStorage.setItem('searchPreference', action.pref)
+      return Object.assign(
+        {},
+        state,
+        { hasPref: true, usePref: true, pref: action.pref }
+      )
+    case CLEAR_SEARCH_PREFERENCE:
+      localStorage.removeItem('searchPreference')
+      return Object.assign(
+        {},
+        state,
+        { hasPref: false, usePref: false, pref: null }
+      )
+    case OPEN_SEARCHDRAWER:
+      return Object.assign({}, state, { drawerOpen: true })
+    case CLOSE_SEARCHDRAWER:
+      return Object.assign({}, state, { drawerOpen: false })
     default:
-      console.log('reducer - searchType: ', searchType)
-      return searchType
+      return state
   }
 }

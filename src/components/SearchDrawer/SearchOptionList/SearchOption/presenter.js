@@ -1,35 +1,21 @@
 'use strict'
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { SET_SEARCH, setSearchType } from '../../../../actions/search.js'
-import { searchOptions } from '../../searchOptions.js'
 
-class SearchOption extends Component {
-  constructor (props) {
-    super(props)
-    this.setSearch = this.setSearch.bind(this)
-  }
-
-  setSearch (event) {
-    console.log('clicked - searchType: ', this.props.index)
-    setSearchType(this.props.index)
-  }
-
-  render () {
-    return (
-      <li onClick={this.setSearch}>
-        <p>{searchOptions[this.props.index].title}</p>
-        <small>{searchOptions[this.props.index].description}</small>
-      </li>
-    )
-  }
+const SearchOption = (props) => {
+  return (
+    <li onClick={props.onClick}>
+      <p>{props.item.title}</p>
+      <small>{props.item.description}</small>
+    </li>
+  )
 }
 
-SearchOption.propTypes = {
-  index: PropTypes.number
-}
-
-SearchOption.defaultProps = {
-  index: 0
+SearchOption.propTyeps = {
+  onClick: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
 }
 export default SearchOption

@@ -1,22 +1,33 @@
 // Container component for a Page content type from Contentful
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { fetchPage } from '../../../actions/contentful/page'
-import React from 'react'
+import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
 
 const mapStateToProps = (state, ownProps) => {
   return { cfPageEntry: state.cfPageEntry }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  let pageSlug = ownProps.match.params.id
-  dispatch(fetchPage(pageSlug))
-  return {}
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchPage }, dispatch)
+}
+
+class ContentfulPageContainer extends Component {
+  componentDidMount(){
+    let pageSlug = this.props.match.params.id
+    this.props.fetchPage(pageSlug)
+  }
+
+  render () {
+    return <PresenterFactory presenter={ ContentfulPagePresenter } slice={ this.props.cfPageEntry } />
+  }
 }
 
 const ContentfulPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContentfulPagePresenter)
+)(ContentfulPageContainer)
 
 export default ContentfulPage
