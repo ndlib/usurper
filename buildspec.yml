@@ -1,7 +1,7 @@
-version: 0.1
+version: 0.2
 
-environment_variables:
-  plaintext:
+env:
+  variables:
     AWS_DEFAULT_REGION: "us-east-1"
 
 phases:
