@@ -1,0 +1,107 @@
+﻿import React from 'react'
+import { shallow } from 'enzyme'
+import APIPresenterFactory from '../../../components/APIPresenterFactory'
+import Image from '../../../components/Image'
+import Related from '../../../components/Related'
+import * as statuses from '../../../constants/APIStatuses'
+import Loading from '../../../components/Messages/Loading'
+import NotFound from '../../../components/Messages/NotFound'
+import ErrorMessage from '../../../components/Messages/Error'
+
+const setup = (presenter, slice) => {
+  return shallow(<APIPresenterFactory presenter={ presenter } slice={ slice } />)
+}
+
+const myPresenter = jest.fn(_ => null)
+
+let enzymeWrapper
+describe('components/APIPresenterFactory', () => {
+  afterEach(() => {
+    enzymeWrapper = undefined
+  })
+
+  describe('on loading', () => {
+    beforeEach(() => {
+      enzymeWrapper = setup(myPresenter, {
+        status: statuses.FETCHING,
+      })
+    })
+
+    it('should render a loading component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Loading/>)).toBe(true)
+    })
+
+    it('should not render a not found component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<NotFound/>)).toBe(false)
+    })
+
+    it('should not render an error component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<ErrorMessage/>)).toBe(false)
+    })
+
+    it('should not render my presenter', () => {
+      expect(myPresenter.mock.calls.length).toBe(0)
+    })
+  })
+
+  describe('on data not found', () => {
+    beforeEach(() => {
+      enzymeWrapper = setup(myPresenter, {
+        status: statuses.NOT_FOUND,
+      })
+    })
+
+    it('should not render a loading component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Loading/>)).toBe(false)
+    })
+
+    it('should render a not found component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<NotFound/>)).toBe(true)
+    })
+
+    it('should not render an error component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<ErrorMessage/>)).toBe(false)
+    })
+
+    it('should not render my presenter', () => {
+      expect(myPresenter.mock.calls.length).toBe(0)
+    })
+  })
+
+  describe('on error loading', () => {
+    beforeEach(() => {
+      enzymeWrapper = setup(myPresenter, {
+        status: statuses.ERROR,
+      })
+    })
+
+    it('should not render a loading component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Loading/>)).toBe(false)
+    })
+
+    it('should not render a not found component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<NotFound/>)).toBe(false)
+    })
+
+    it('should render an error component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<ErrorMessage/>)).toBe(true)
+    })
+
+    it('should not render my presenter', () => {
+      expect(myPresenter.mock.calls.length).toBe(0)
+    })
+  })
+
+  describe('on data found', () => {
+    beforeEach(() => {
+      enzymeWrapper = setup(myPresenter, {
+        status: statuses.SUCCESS,
+        json: {}
+      })
+    })
+
+    it('should render my presenter', () => {
+      expect(myPresenter.mock.calls.length).toBe(1)
+    })
+  })
+})
