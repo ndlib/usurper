@@ -8,7 +8,7 @@ import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
 
-const PagePresenter = (cfPageEntry) => (
+const PagePresenter = ({cfPageEntry}) => (
   <div className='container-fluid'>
     <h2>{ cfPageEntry.fields.title }</h2>
     <hr />

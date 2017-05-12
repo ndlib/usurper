@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchPage }, dispatch)
 }
 
-class ContentfulPageContainer extends Component {
+export class ContentfulPageContainer extends Component {
   componentDidMount(){
     let pageSlug = this.props.match.params.id
     this.props.fetchPage(pageSlug)
