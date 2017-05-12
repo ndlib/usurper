@@ -9,7 +9,7 @@ class Home extends Component {
   render () {
     return (
       <div className='Home'>
-        <HomeHeader />
+        <HomeHeader {...this.props} />
         <HomePageHours jsonHoursApiKey="hesburghlibrariesservicepoints" />
       </div>
     )

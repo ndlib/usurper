@@ -9,21 +9,19 @@ import Image from '../../Image'
 import * as statuses from '../../../constants/APIStatuses'
 import NotFound from '../../Messages/NotFound'
 import Loading from '../../Messages/Loading'
-import Error from '../../Messages/Error'
+import ErrorMessage from '../../Messages/Error'
 
 const Floor = (cfFloorEntry) => (
-  <div className='container-fluid'>
+  <div key={ `ContentfulFloor_${cfFloorEntry.sys.id}` } className='container-fluid'>
     <h2>{ cfFloorEntry.fields.title }</h2>
     <LibMarkdown>{ cfFloorEntry.fields.shortDescription }</LibMarkdown>
     <Image cfImage={ cfFloorEntry.fields.image } />
     <Building cfBuildingEntry={ cfFloorEntry.fields.building } />
-    <div>
-      <Link to={'/'}>Home</Link>
-    </div>
+    <Link to={'/'}>Home</Link>
   </div>
 )
 
-const Presenter = ({ cfFloorEntry }) => {
+const FloorPresenter = ({ cfFloorEntry }) => {
   switch(cfFloorEntry.status){
     case statuses.FETCHING:
       return <Loading/>
@@ -32,12 +30,12 @@ const Presenter = ({ cfFloorEntry }) => {
     case statuses.NOT_FOUND:
       return <NotFound/>
     default:
-      return <Error message={ 'There was an error loading the information for the requested floor.' }/>
+      return <ErrorMessage message={ 'There was an error loading the information for the requested floor.' }/>
   }
 }
 
-Presenter.propTypes = {
+FloorPresenter.propTypes = {
   cfFloorEntry: PropTypes.object.isRequired
 }
 
-export default Presenter
+export default FloorPresenter

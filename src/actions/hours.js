@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import { hoursAPIURL } from '../../config/secrets.js'
+import { hoursAPIURL } from '../shared/Configuration'
 import * as statuses from '../constants/APIStatuses'
 
 export const HOURS_REQUEST = 'HOURS_REQUEST'

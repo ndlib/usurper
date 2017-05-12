@@ -2,7 +2,7 @@ import * as actions from '../../actions/hours'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'
-import { hoursAPIURL } from '../../../config/secrets.js'
+import { hoursAPIURL } from '../../shared/Configuration'
 
 
 const middlewares = [ thunk ]

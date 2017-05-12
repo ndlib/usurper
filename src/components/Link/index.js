@@ -12,7 +12,7 @@ function Internal (to, className, alt, children) {
 
 function External (to, className, alt, children) {
   return (
-    <a href={to} className={className} alt={alt}>
+    <a href={to} className={className} alt={alt} target="_blank">
       {children}
     </a>
   )

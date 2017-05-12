@@ -1,15 +1,18 @@
-import { PERSONAL_INFO, PERSONAL_INFO_CLEAR, PERSONAL_RETREIVING } from '../actions/personal'
+import { RECEIVE_PERSONAL, CLEAR_PERSONAL, REQUEST_PERSONAL } from '../actions/personal/constants'
+import * as statuses from '../constants/APIStatuses'
 
 const initialState = {}
 export default function personalReducer (state = initialState, action) {
   switch (action.type) {
-    case PERSONAL_INFO:
-      return Object.assign({}, state, action.payload)
-    case PERSONAL_INFO_CLEAR:
+    case RECEIVE_PERSONAL:
+      var data = {}
+      data[action.requestType] = Object.assign({}, { state: action.state }, action.payload)
+      return Object.assign({}, state, data)
+    case CLEAR_PERSONAL:
       return {}
-    case PERSONAL_RETREIVING:
+    case REQUEST_PERSONAL:
       var retrieving = {}
-      retrieving[action.requestType] = action.retrieving
+      retrieving[action.requestType] = { state: statuses.FETCHING }
       return Object.assign({}, state, retrieving)
     default:
       return state

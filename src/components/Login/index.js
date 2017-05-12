@@ -1,25 +1,37 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
-import { actions } from '../../actions/personal'
-
+import getToken from '../../actions/personal/token'
 import LoginStatus from './presenter'
+import * as states from '../../constants/APIStatuses'
 
-function mapStateToProps (state) {
-  const { personal } = state
-  return {
-    token: personal.token,
-    netid: personal.netid,
-    firstName: personal.firstName,
-    lastName: personal.lastName,
-    displayName: personal.displayname
+class Login extends Component {
+  componentWillMount () {
+    if (!this.props.login) {
+      this.props.dispatch(getToken())
+    }
+  }
+
+  render () {
+    return <LoginStatus {...this.props} />
   }
 }
 
-function mapActionsToProps (dispatch) {
-  var actionsToUse = Object.assign({}, actions)
-  return bindActionCreators(actionsToUse, dispatch)
+const mapStateToProps = (state) => {
+  const { personal } = state
+
+  let loggedIn = personal.login && personal.login.state === states.SUCCESS
+  let label = loggedIn ? 'My Account' : 'Log In'
+
+  return {
+    login: personal.login,
+    loggedIn: loggedIn,
+    label: label,
+
+    buttonUrl: personal.login ? personal.login.buttonUrl : '',
+    // This "service = window.location" is to redirect back to this location after logging out
+      // It will only work if you're on a site https://*.library.nd.edu (eg. alpha) because OIT CAS is very strict
+    logoutUrl: personal.login ? personal.login.logoutUrl : null,
+  }
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(LoginStatus)
+export default connect(mapStateToProps)(Login)

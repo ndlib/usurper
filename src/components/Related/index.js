@@ -4,36 +4,40 @@ import PropTypes from 'prop-types'
 import Image from '../Image'
 import Link from '../Link'
 
-function Related ({ className, children }) {
+function Related ({ title, className, children }) {
   if (!children) {
     return null
   }
 
   return (
-    <ul className={className}>
+    <div>
+      <h3>{title}</h3>
+      <ul className={className}>
 
-      {
-        children.map(function (currentItem) {
-          let link = currentItem.fields.slug ? currentItem.fields.slug : currentItem.fields.url
+        {
+          children.map(function (currentItem) {
+            let link = currentItem.fields.slug ? currentItem.fields.slug : currentItem.fields.url
 
-          return (
-            <li key={currentItem.fields.title}>
-              <Link to={link}>
-                <Image cfImage={currentItem.fields.image} />
-                <span>{currentItem.fields.title}</span>
-              </Link>
-            </li>
-          )
-        })
-      }
+            return (
+              <li key={currentItem.fields.title}>
+                <Link to={link}>
+                  <Image cfImage={currentItem.fields.image} />
+                  <span>{currentItem.fields.title}</span>
+                </Link>
+              </li>
+            )
+          })
+        }
 
-    </ul>
+      </ul>
+    </div>
   )
 }
 
 Related.propTypes = {
+  title: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.array.isRequired
+  children: PropTypes.array.isRequired,
 }
 
 export default Related

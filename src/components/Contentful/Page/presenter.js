@@ -6,38 +6,30 @@ import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
-import * as statuses from '../../../constants/APIStatuses'
-import NotFound from '../../Messages/NotFound'
-import Loading from '../../Messages/Loading'
-import Error from '../../Messages/Error'
+import Librarians from '../../Librarians'
 
-const Page = (cfPageEntry) => (
+const PagePresenter = (cfPageEntry) => (
   <div className='container-fluid'>
     <h2>{ cfPageEntry.fields.title }</h2>
-    <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
-    <Image cfImage={cfPageEntry.fields.image} className='cover' />
-    <Related className='p-resources'>{ cfPageEntry.fields.relatedResources }</Related>
-    <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
-    <Related className='p-services'>{ cfPageEntry.fields.relatedServices }</Related>
+    <hr />
+    <div className='row'>
+      <div className='col-md-9'>
+        <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+        <Image cfImage={cfPageEntry.fields.image} className='cover' />
+        <Related className='p-resources' title='Resources'>{ cfPageEntry.fields.relatedResources }</Related>
+        <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
+        <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
+      </div>
+      <div className='col-md-3 right'>
+        <Librarians netids={ cfPageEntry.fields.contactPeople } />
+      </div>
+    </div>
     <div><Link to={'/'}>Home</Link></div>
   </div>
 )
 
-const Presenter = ({ cfPageEntry }) => {
-  switch(cfPageEntry.status){
-    case statuses.FETCHING:
-      return <Loading/>
-    case statuses.SUCCESS:
-      return Page(cfPageEntry.json)
-    case statuses.NOT_FOUND:
-      return <NotFound/>
-    default:
-      return <Error message={ 'There was an error loading the page.' }/>
-  }
-}
-
-Presenter.propTypes = {
+PagePresenter.propTypes = {
   cfPageEntry: PropTypes.object.isRequired
 }
 
-export default Presenter
+export default PagePresenter
