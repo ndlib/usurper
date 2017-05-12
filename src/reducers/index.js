@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   personal: personalReducer,
   librarianInfo: librarianInfo,
   hours: hoursReducer,
-  searchType: searchReducer
-});
+  search: searchReducer
+})
 
 export default rootReducer

@@ -15,8 +15,8 @@ class HomeHeader extends Component {
         <HomeHesburghBanner />
         <FeedbackButton />
         <div className='nav-search'>
-          <Navigation />
-          <SearchDrawer />
+          <Navigation {...this.props} />
+          <SearchDrawer {...this.props} />
         </div>
       </div>
 
