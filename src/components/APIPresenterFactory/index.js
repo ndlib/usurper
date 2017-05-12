@@ -11,11 +11,11 @@ import * as statuses from '../../constants/APIStatuses'
 
 class APIPresenterFactory extends Component {
   render () {
-    switch(this.props.slice.status) {
+    switch(this.props.status) {
       case statuses.FETCHING:
         return <Loading/>
       case statuses.SUCCESS:
-        return this.props.presenter(this.props.slice.json)
+        return this.props.presenter(this.props.props)
       case statuses.NOT_FOUND:
         return <NotFound/>
       default:
@@ -26,8 +26,8 @@ class APIPresenterFactory extends Component {
 
 APIPresenterFactory.propTypes = {
   presenter: PropTypes.func.isRequired, // The presenter to render when status === success
-  slice: PropTypes.object.isRequired,   // The state slice data to pass to the presenter.
-                                        // Expects a status and json field
+  status: PropTypes.string.isRequired,  // The current API status code
+  props: PropTypes.object.isRequired,   // The props to pass to the given presenter when status === success
 }
 
 export default APIPresenterFactory
