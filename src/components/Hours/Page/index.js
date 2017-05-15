@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types'
 import { fetchHours } from '../../../actions/hours'
 import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
@@ -16,15 +17,24 @@ const mapDispatchToProps = (dispatch) => {
 
 export class HoursPageContainer extends Component {
   componentDidMount () {
-
     if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
       this.props.fetchHours()
     }
   }
 
   render () {
-    return <PresenterFactory presenter={ HoursPagePresenter } slice={ this.props.hoursEntry } />
+    return (
+      <PresenterFactory
+        presenter={HoursPagePresenter}
+        props={this.props.hoursEntry.json}
+        status={this.props.hoursEntry.status} />
+    )
   }
+}
+
+PropTypes.propTypes = {
+  hoursEntry: PropTypes.object.isRequired,
+  fetchHours: PropTypes.func.isRequired,
 }
 
 const HoursPage = connect(
