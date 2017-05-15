@@ -52,7 +52,7 @@ export default function ResourceList ({ list, emptyText }) {
                 <div className='card-subtitle'>{getAuthor(item)}</div>
               </div>
               <div className='card-published'>{'Published: ' + getPublished(item)}</div>
-              <div className='card-status'>{'Status: ' + item.transactionStatus ? item.transactionStatus : item.status}</div>
+              <div className='card-status'>{'Status: ' + (item.transactionStatus ? item.transactionStatus : item.status)}</div>
               <div className='card-due'>{'Due Date: ' + formatDueDate(item.dueDate)}</div>
               <div className={item.title + 'actions'}>
                 <button><Link>Renew</Link></button>

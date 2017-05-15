@@ -39,7 +39,7 @@ const get = (dict, key, defaultVal) => {
   return dict[key]
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { personal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
 

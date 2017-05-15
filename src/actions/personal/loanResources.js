@@ -38,7 +38,7 @@ export default function getResources () {
       handleResources,
       state.login.token,
       (e) => {
-        dispatch(states.recievePersonal('resources_pending', statuses.ERROR))
+        dispatch(states.recievePersonal('resources_pending', statuses.ERROR, e.message))
       })
 
     dispatch(states.requestPersonal('resources_have'))
@@ -48,7 +48,7 @@ export default function getResources () {
       handleResources,
       state.login.token,
       (e) => {
-        dispatch(states.recievePersonal('resources_pending', statuses.ERROR))
+        dispatch(states.recievePersonal('resources_have', statuses.ERROR, e.message))
       }
     )
   }

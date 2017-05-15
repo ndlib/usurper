@@ -16,7 +16,7 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const { personal } = state
 
   let loggedIn = personal.login && personal.login.state === states.SUCCESS

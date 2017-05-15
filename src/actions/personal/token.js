@@ -1,6 +1,7 @@
 import Config from '../../shared/Configuration'
 import * as states from './constants'
 import * as statuses from '../../constants/APIStatuses'
+import fetch from 'isomorphic-fetch'
 
 // ------------------------------------
 // Constants
@@ -43,8 +44,7 @@ export default function getToken () {
     })
     .then(json => handleToken(dispatch, json))
     .catch(e => {
-      console.log(e)
-      dispatch(states.recievePersonal('login', statuses.ERROR))
+      dispatch(states.recievePersonal('login', statuses.ERROR, e.message))
     })
   }
 }
