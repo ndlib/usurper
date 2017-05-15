@@ -32,7 +32,7 @@ describe('components/Contentful/Page/Container', () => {
 
   it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
     expect(enzymeWrapper.
-      containsMatchingElement(<APIPresenterFactory slice={ props.cfPageEntry } presenter={ PagePresenter } />)).
+      containsMatchingElement(<APIPresenterFactory status={props.cfPageEntry.status } props={{ cfPageEntry: props.cfPageEntry.json }} presenter={ PagePresenter } />)).
       toBe(true)
   })
 
