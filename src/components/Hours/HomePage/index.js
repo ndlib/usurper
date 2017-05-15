@@ -1,24 +1,33 @@
-// Container component for a Page content type from Contentful
 import { connect } from 'react-redux'
-import { fetchServicePointHours } from '../../../actions/hours'
+import { bindActionCreators } from 'redux'
+import { fetchHours } from '../../../actions/hours'
 import HoursHomePagePresenter from './presenter.js'
+import makeGetHoursForServicePoint from '../../../selectors/hours'
+import InlineContainer from '../shared/InlineContainer'
 
-const mapStateToProps = (state, ownProps) => {
-  console.log("map")
-  console.log(state.hours)
-  return { hoursEntry: state.hours }
+// We  need a way to give each instance of a container access to its own private selector.
+// this is done by creating a private instance of the conector for each component.
+const makeMapStateToProps = () => {
+  const getHoursForServicePoint = makeGetHoursForServicePoint()
+  const mapStateToProps = (state, props) => {
+    // these props are required for the inline container.
+    let ret = {
+      jsonHoursApiKey: props.jsonHoursApiKey, // the key to look up hours component in the store used in the selector.
+      hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
+      presenter: HoursHomePagePresenter, // the presenter to show inline.
+    }
+    return ret
+  }
+  return mapStateToProps
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log("dispatch")
-  console.log(ownProps)
-  dispatch(fetchServicePointHours(ownProps.jsonHoursApiKey))
-  return {}
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchHours }, dispatch)
 }
 
 const HomePageHours = connect(
-  mapStateToProps,
+  makeMapStateToProps,
   mapDispatchToProps
-)(HoursHomePagePresenter)
+)(InlineContainer)
 
 export default HomePageHours

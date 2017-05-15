@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { hoursAPIURL } from '../shared/Configuration'
 import * as statuses from '../constants/APIStatuses'
+import Config from '../shared/Configuration'
 
 export const HOURS_REQUEST = 'HOURS_REQUEST'
 export const HOURS_RECEIVE = 'HOURS_RECEIVE'
@@ -47,7 +48,7 @@ function receiveServicePointHours (json, servicePointKey) {
 export function fetchHours () {
   return dispatch => {
     dispatch(requestHours())
-    return fetch(hoursAPIURL)
+    return fetch(Config.hoursAPIURL)
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))
       .catch(error => dispatch(receiveHours(error)))
