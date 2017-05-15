@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchHours } from '../../../actions/hours'
-import HoursHeaderPresenter from './presenter.js'
+import CurrentHoursPresenter from './presenter.js'
 import makeGetHoursForServicePoint from '../../../selectors/hours'
 import InlineContainer from '../shared/InlineContainer'
 
@@ -14,7 +14,7 @@ const makeMapStateToProps = () => {
     let ret = {
       jsonHoursApiKey: props.jsonHoursApiKey, // the key to look up hours component in the store used in the selector.
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
-      presenter: HoursHeaderPresenter, // the presenter to show inline.
+      presenter: CurrentHoursPresenter, // the presenter to show inline.
     }
     return ret
   }
@@ -25,9 +25,9 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchHours }, dispatch)
 }
 
-const HeaderHours = connect(
+const CurrentHours = connect(
   makeMapStateToProps,
   mapDispatchToProps
 )(InlineContainer)
 
-export default HeaderHours
+export default CurrentHours

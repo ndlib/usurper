@@ -4,7 +4,9 @@ import * as statuses from '../../../../constants/APIStatuses'
 
 class InlineContainer extends Component {
   componentDidMount () {
-    this.props.fetchHours()
+    if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
+      this.props.fetchHours()
+    }
   }
 
   render () {

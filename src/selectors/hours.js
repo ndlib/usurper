@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 
 const getHoursStatus = (state, props) => {
-  if (!state.hours.json[props.jsonHoursApiKey]) {
+  if (state.hours.status === statuses.SUCCESS && !state.hours.json[props.jsonHoursApiKey]) {
     return statuses.NOT_FOUND
   }
   return state.hours.status
