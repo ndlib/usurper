@@ -8,8 +8,8 @@ import Loading from '../../../components/Messages/Loading'
 import NotFound from '../../../components/Messages/NotFound'
 import ErrorMessage from '../../../components/Messages/Error'
 
-const setup = (presenter, slice) => {
-  return shallow(<APIPresenterFactory presenter={ presenter } slice={ slice } />)
+const setup = (presenter, status, presenterProps) => {
+  return shallow(<APIPresenterFactory presenter={ presenter } status={ status } props={ presenterProps } />)
 }
 
 const myPresenter = jest.fn(_ => null)
@@ -22,9 +22,7 @@ describe('components/APIPresenterFactory', () => {
 
   describe('on loading', () => {
     beforeEach(() => {
-      enzymeWrapper = setup(myPresenter, {
-        status: statuses.FETCHING,
-      })
+      enzymeWrapper = setup(myPresenter, statuses.FETCHING, {})
     })
 
     it('should render a loading component', () => {
@@ -46,9 +44,7 @@ describe('components/APIPresenterFactory', () => {
 
   describe('on data not found', () => {
     beforeEach(() => {
-      enzymeWrapper = setup(myPresenter, {
-        status: statuses.NOT_FOUND,
-      })
+      enzymeWrapper = setup(myPresenter, statuses.NOT_FOUND, {})
     })
 
     it('should not render a loading component', () => {
@@ -70,9 +66,7 @@ describe('components/APIPresenterFactory', () => {
 
   describe('on error loading', () => {
     beforeEach(() => {
-      enzymeWrapper = setup(myPresenter, {
-        status: statuses.ERROR,
-      })
+      enzymeWrapper = setup(myPresenter, statuses.ERROR, {})
     })
 
     it('should not render a loading component', () => {
@@ -94,10 +88,7 @@ describe('components/APIPresenterFactory', () => {
 
   describe('on data found', () => {
     beforeEach(() => {
-      enzymeWrapper = setup(myPresenter, {
-        status: statuses.SUCCESS,
-        json: {}
-      })
+      enzymeWrapper = setup(myPresenter, statuses.SUCCESS, {})
     })
 
     it('should render my presenter', () => {

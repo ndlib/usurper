@@ -21,7 +21,10 @@ export class ContentfulPageContainer extends Component {
   }
 
   render () {
-    return <PresenterFactory presenter={ ContentfulPagePresenter } slice={ this.props.cfPageEntry } />
+    return <PresenterFactory
+              presenter={ ContentfulPagePresenter }
+              status={ this.props.cfPageEntry.status }
+              props={ {cfPageEntry: this.props.cfPageEntry.json} } />
   }
 }
 
