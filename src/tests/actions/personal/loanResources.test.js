@@ -1,8 +1,9 @@
 import Config from '../../../shared/Configuration'
-import getResources from '../../../actions/personal/loanResources'
+import getResources, { handleResources } from '../../../actions/personal/loanResources'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'
+import * as statuses from '../../../constants/APIStatuses'
 import * as constants from '../../../actions/personal/constants'
 
 const middlewares = [ thunk ]
@@ -74,5 +75,48 @@ describe('resources fetch async action creator', () => {
 
     expect(spy.mock.calls[0]).toContain(url + 'pending')
     expect(spy.mock.calls[1]).toContain(url + 'borrowed')
+  })
+})
+
+describe('handleResources', () => {
+  describe('on checked out items', () => {
+    const data = {
+      checkedOut: [ 'book' ],
+      web: [ 'web book' ],
+    }
+
+    it('should create a recievePersonal action with checked out items', () => {
+      const store = mockStore({})
+      handleResources(store.dispatch, data)
+
+      let expectedAction = {
+        type: constants.RECEIVE_PERSONAL,
+        requestType: 'resources_have',
+        payload: data,
+        state: statuses.SUCCESS,
+      }
+
+      expect(store.getActions()[0]).toMatchObject(expectedAction)
+    })
+  })
+
+  describe('on pending items', () => {
+    const data = {
+      pending: [ 'book' ],
+    }
+
+    it('should create a recievePersonal action with pending items', () => {
+      const store = mockStore({})
+      handleResources(store.dispatch, data)
+
+      let expectedAction = {
+        type: constants.RECEIVE_PERSONAL,
+        requestType: 'resources_pending',
+        payload: data,
+        state: statuses.SUCCESS,
+      }
+
+      expect(store.getActions()[0]).toMatchObject(expectedAction)
+    })
   })
 })

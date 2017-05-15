@@ -4,7 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 const resourcesURL = Config.resourcesAPI + '/items/' // borrowed || pending
 
-function handleResources (dispatch, data) {
+export const handleResources = (dispatch, data) => {
   if (data.checkedOut) {
     dispatch(
       states.recievePersonal(
