@@ -1,0 +1,154 @@
+service: ${{opt:repo}}-ci
+
+# required command-line options
+#  deploybucket - the bucket to deploy this stack to (testlibnd-serverless)
+#  stage - the stage this is deployed as (dev)
+#  outbucket - the bucket the build react code will be put into (usurper-dev-spatest)
+#  repo - the repo to use (usurper)
+#  branch - the repo branch to use (master)
+
+# required env vars
+#  GIT_OAUTH - github oauth token
+#      in github go to settings>"Personal Access Tokens">"Generate new Token" Give it "admin:repo_hook" and "repo" permissions
+
+custom:
+  serviceStage: ${{self:service}}-${{opt:stage}}
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  deploymentBucket: ${{opt:deploybucket}}
+  variableSyntax: '\${{([\s\S]+?)}}' # Change the serverless variable syntax to be ${{}}, so that we can use Fn::Sub "${}"
+  stackTags:
+    Name: ${{self:custom.serviceStage}}
+    Contact: hbeachey@nd.edu
+    Owner: Harrison Beachey
+    Description: Continuous Integration for ${{opt:repo}} repo
+    InceptDate: "2017-03-02"
+
+
+resources:
+  Resources:
+    BuildServiceRole:
+      Type: "AWS::IAM::Role"
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            -
+              Effect: "Allow"
+              Principal:
+                Service:
+                  - "codebuild.amazonaws.com"
+              Action:
+                - "sts:AssumeRole"
+        ManagedPolicyArns:
+          # View everything
+          - arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
+          # This gives permission to create logs
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        Policies:
+          - PolicyName: ${{self:custom.serviceStage}}-editOutBucket
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                -
+                  Effect: "Allow"
+                  Action: "s3:*"
+                  Resource:
+                    - Fn::Join:
+                      - ""
+                      - - "arn:aws:s3:::"
+                        - ${{opt:outbucket}}
+                    - Fn::Join:
+                      - ""
+                      - - "arn:aws:s3:::"
+                        - ${{opt:outbucket}}
+                        - "/*"
+                    - Fn::Join:
+                      - ""
+                      - - "arn:aws:s3:::"
+                        - Ref: ArtifactBucket
+                    - Fn::Join:
+                      - ""
+                      - - "arn:aws:s3:::"
+                        - Ref: ArtifactBucket
+                        - "/*"
+        RoleName: ${{self:custom.serviceStage}}
+
+    ArtifactBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${{self:custom.serviceStage}}-artifacts
+        Tags:
+          - Key: Name
+            Value: ${{self:custom.serviceStage}}-artifacts
+
+    BuildProject:
+      Type: AWS::CodeBuild::Project
+      Properties:
+        Name: ${{self:custom.serviceStage}}
+        Description: ${{opt:repo}} Continuous Integration
+        ServiceRole:
+          Ref: BuildServiceRole
+        Artifacts:
+          Type: CODEPIPELINE
+        Environment:
+          Type: LINUX_CONTAINER
+          ComputeType: BUILD_GENERAL1_SMALL
+          Image: aws/codebuild/nodejs:7.0.0
+          EnvironmentVariables:
+          - Name: NODE_ENV
+            Value: production
+          - Name: REACT_OUTPUT
+            Value: ${{opt:outbucket}}
+        Source:
+          Type: CODEPIPELINE
+        TimeoutInMinutes: 10
+
+    AppPipeline:
+      Type: "AWS::CodePipeline::Pipeline"
+      Properties:
+        Name: ${{self:custom.serviceStage}}
+        RoleArn:
+          Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/AWS-CodePipeline-Service
+        Stages:
+          -
+            Name: Source
+            Actions:
+              -
+                Name: GithubSource
+                ActionTypeId:
+                  Category: Source
+                  Owner: ThirdParty
+                  Version: 1
+                  Provider: GitHub
+                Configuration:
+                  Owner: ndlib
+                  Repo: ${{opt:repo}}
+                  Branch: ${{opt:branch}}
+                  OAuthToken: ${{env:GIT_OAUTH}}
+                OutputArtifacts:
+                  - Name: SourceOutput
+          -
+            Name: Build
+            Actions:
+              -
+                Name: BuildSource
+                InputArtifacts:
+                  - Name: SourceOutput
+                OutputArtifacts:
+                  - Name: BuiltProject
+                ActionTypeId:
+                  Category: Build
+                  Owner: AWS
+                  Version: 1
+                  Provider: CodeBuild
+                Configuration:
+                  ProjectName:
+                    Ref: BuildProject
+        ArtifactStore:
+          Type: S3
+          Location:
+            Ref: ArtifactBucket
+
