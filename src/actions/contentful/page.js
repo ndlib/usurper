@@ -37,11 +37,27 @@ function receivePage (page, response) {
   }
 }
 
+export const CF_CLEAR_PAGE = 'CF_CLEAR_PAGE'
+const clearStore = {
+  type: CF_CLEAR_PAGE,
+}
+
+export function clearPage () {
+  return dispatch => {
+    dispatch(clearStore)
+  }
+}
+
 export function fetchPage (page) {
   let url = `/${page}.json`
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(requestPage(page))
-    return fetch(url)
+
+    let login = getState().personal.login
+    let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
+    return fetch(url, {
+      headers: headers,
+    })
       .then(response => response.json())
       .then(json => dispatch(receivePage(page, json)))
       .catch(response => dispatch(receivePage(page, response)))

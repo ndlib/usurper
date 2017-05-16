@@ -2,31 +2,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPage, clearPage } from '../../../actions/contentful/page'
+import { fetchPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
-import ContentfulPagePresenter from './presenter.js'
+import ContentfulPagePresenter from '../Page/presenter.js'
 import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state, ownProps) => {
-  return { cfPageEntry: state.cfPageEntry }
+  let personal = state.personal
+  let isLoggedIn = (personal && personal.login && personal.login.token) ? true : false
+
+  return {
+    cfPageEntry: state.cfPageEntry,
+    isLoggedIn: isLoggedIn,
+    loginLoc: (!isLoggedIn && personal && personal.login) ? personal.login.buttonUrl : null,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchPage, clearPage }, dispatch)
+  return bindActionCreators({ fetchPage }, dispatch)
 }
 
 export class ContentfulPageContainer extends Component {
+  checkLoggedIn (props) {
+    let pageSlug = props.match.params.id
+
+    if (props.isLoggedIn && props.cfPageEntry.status === statuses.NOT_FETCHED) {
+      props.fetchPage('secure/' + pageSlug)
+    } else if (props.loginLoc) {
+      this.props.history.replace(props.loginLoc)
+    }
+  }
+
   componentDidMount () {
-    let pageSlug = this.props.match.params.id
-    this.props.fetchPage(pageSlug)
+    this.checkLoggedIn(this.props)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.cfPageEntry.status === statuses.SUCCESS
-      && nextProps.cfPageEntry.json.fields.requiresLogin) {
-      this.props.clearPage()
-      this.props.history.push('/secure/' + nextProps.match.params.id)
-    }
+    this.checkLoggedIn(nextProps)
   }
 
   render () {

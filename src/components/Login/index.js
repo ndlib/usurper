@@ -19,7 +19,7 @@ class Login extends Component {
 export const mapStateToProps = (state) => {
   const { personal } = state
 
-  let loggedIn = personal.login && personal.login.state === states.SUCCESS
+  let loggedIn = (personal.login && personal.login.token) ? true : false
   let label = loggedIn ? 'My Account' : 'Log In'
 
   return {

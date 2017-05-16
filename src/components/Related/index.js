@@ -37,7 +37,7 @@ function Related ({ title, className, children }) {
 Related.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.array.isRequired,
+  children: PropTypes.array,
 }
 
 export default Related
