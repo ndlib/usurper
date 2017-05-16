@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch'
 export const RECEIVE_PERSONAL = 'RECEIVE_PERSONAL'
 export const CLEAR_PERSONAL = 'CLEAR_PERSONAL'
 export const REQUEST_PERSONAL = 'REQUEST_PERSONAL'
@@ -26,7 +27,7 @@ export function requestPersonal (requestType = '') {
 }
 
 export function startRequest (url, dispatch, success, token, err) {
-  fetch(url, {
+  return fetch(url, {
     headers: {
       'Authorization': token,
     },
@@ -38,7 +39,6 @@ export function startRequest (url, dispatch, success, token, err) {
     }
   }).then(json => success(dispatch, json))
   .catch(e => {
-    console.log(e)
     err(e)
   })
 }

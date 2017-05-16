@@ -4,7 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 const resourcesURL = Config.resourcesAPI + '/items/' // borrowed || pending
 
-function handleResources (dispatch, data) {
+export const handleResources = (dispatch, data) => {
   if (data.checkedOut) {
     dispatch(
       states.recievePersonal(
@@ -38,7 +38,7 @@ export default function getResources () {
       handleResources,
       state.login.token,
       (e) => {
-        dispatch(states.recievePersonal('resources_pending', statuses.ERROR))
+        dispatch(states.recievePersonal('resources_pending', statuses.ERROR, e.message))
       })
 
     dispatch(states.requestPersonal('resources_have'))
@@ -48,7 +48,7 @@ export default function getResources () {
       handleResources,
       state.login.token,
       (e) => {
-        dispatch(states.recievePersonal('resources_pending', statuses.ERROR))
+        dispatch(states.recievePersonal('resources_have', statuses.ERROR, e.message))
       }
     )
   }
