@@ -1,15 +1,13 @@
-﻿import React from 'react'
+import React from 'react'
 import { shallow } from 'enzyme'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import Building from '../../../../components/Contentful/Building'
 import Image from '../../../../components/Image'
-import Related from '../../../../components/Related'
 
 const setup = (cfFloorEntry) => {
   const props = { cfFloorEntry }
   return shallow(<FloorPresenter {...props} />)
 }
-
 
 let enzymeWrapper
 describe('components/Contentful/Floor/presenter', () => {
@@ -22,7 +20,7 @@ describe('components/Contentful/Floor/presenter', () => {
         image: 'Fake image',
         building: {},
       },
-      sys: { id: 'FakeId' }
+      sys: { id: 'FakeId' },
     })
   })
 
@@ -43,7 +41,7 @@ describe('components/Contentful/Floor/presenter', () => {
   })
 
   it('should render Image for image', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Image cfImage={ 'Fake image' } />)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Image cfImage={'Fake image'} />)).toBe(true)
   })
 
   it('should render a Building', () => {

@@ -8,17 +8,17 @@ import Building from '../Building'
 import Image from '../../Image'
 
 const FloorPresenter = ({ cfFloorEntry }) => (
-  <div key={ `ContentfulFloor_${cfFloorEntry.sys.id}` } className='container-fluid'>
-    <h2>{ cfFloorEntry.fields.title }</h2>
-    <LibMarkdown>{ cfFloorEntry.fields.shortDescription }</LibMarkdown>
-    <Image cfImage={ cfFloorEntry.fields.image } />
-    <Building cfBuildingEntry={ cfFloorEntry.fields.building } />
+  <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid'>
+    <h2>{cfFloorEntry.fields.title}</h2>
+    <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
+    <Image cfImage={cfFloorEntry.fields.image} />
+    <Building cfBuildingEntry={cfFloorEntry.fields.building} />
     <Link to={'/'}>Home</Link>
   </div>
 )
 
 FloorPresenter.propTypes = {
-  cfFloorEntry: PropTypes.object.isRequired
+  cfFloorEntry: PropTypes.object.isRequired,
 }
 
 export default FloorPresenter

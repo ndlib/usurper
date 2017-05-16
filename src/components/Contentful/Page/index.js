@@ -6,7 +6,7 @@ import { fetchPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return { cfPageEntry: state.cfPageEntry }
 }
 
@@ -15,16 +15,16 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export class ContentfulPageContainer extends Component {
-  componentDidMount(){
+  componentDidMount () {
     let pageSlug = this.props.match.params.id
     this.props.fetchPage(pageSlug)
   }
 
   render () {
     return <PresenterFactory
-              presenter={ ContentfulPagePresenter }
-              status={ this.props.cfPageEntry.status }
-              props={ {cfPageEntry: this.props.cfPageEntry.json} } />
+      presenter={ContentfulPagePresenter}
+      status={this.props.cfPageEntry.status}
+      props={{ cfPageEntry: this.props.cfPageEntry.json }} />
   }
 }
 

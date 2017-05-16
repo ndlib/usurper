@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { ContentfulPageContainer } from '../../../../components/Contentful/Page'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
-import configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
   const store = configureStore()(props)
@@ -21,7 +21,7 @@ describe('components/Contentful/Page/Container', () => {
     props = {
       cfPageEntry: { status: 'test' },
       fetchPage: jest.fn(),
-      match: { params: { id: 'fake page slug' } }
+      match: { params: { id: 'fake page slug' } },
     }
     enzymeWrapper = setup(props)
   })
@@ -31,9 +31,12 @@ describe('components/Contentful/Page/Container', () => {
   })
 
   it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-    expect(enzymeWrapper.
-      containsMatchingElement(<APIPresenterFactory status={props.cfPageEntry.status } props={{ cfPageEntry: props.cfPageEntry.json }} presenter={ PagePresenter } />)).
-      toBe(true)
+    expect(enzymeWrapper
+      .containsMatchingElement(<APIPresenterFactory
+        status={props.cfPageEntry.status}
+        props={{ cfPageEntry: props.cfPageEntry.json }}
+        presenter={PagePresenter} />))
+      .toBe(true)
   })
 
   it('calls the bound fetch page action on load', () => {

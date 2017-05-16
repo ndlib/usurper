@@ -4,7 +4,7 @@ import { mount } from 'enzyme'
 import { ContentfulFloorContainer } from '../../../../components/Contentful/Floor'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
-import configureStore from 'redux-mock-store';
+import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
   const store = configureStore()(props)
@@ -21,7 +21,7 @@ describe('components/Contentful/Floor/Container', () => {
     props = {
       cfFloorEntry: { status: 'test' },
       fetchFloor: jest.fn(),
-      match: { params: { id: 'fake page slug' } }
+      match: { params: { id: 'fake page slug' } },
     }
     enzymeWrapper = setup(props)
   })
@@ -31,9 +31,11 @@ describe('components/Contentful/Floor/Container', () => {
   })
 
   it('only renders APIPresenterFactory with cfFloorEntry slice and FloorPresenter', () => {
-    expect(enzymeWrapper.
-      containsMatchingElement(<APIPresenterFactory status={props.cfFloorEntry.status } props={{ cfFloorEntry: props.cfFloorEntry.json }} presenter={ FloorPresenter } />)).
-      toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<APIPresenterFactory
+      status={props.cfFloorEntry.status}
+      props={{ cfFloorEntry: props.cfFloorEntry.json }}
+      presenter={FloorPresenter} />))
+      .toBe(true)
   })
 
   it('calls the bound fetch page action on load', () => {

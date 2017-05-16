@@ -6,25 +6,25 @@ import React, { Component } from 'react'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulFloorPresenter from './presenter.js'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return { cfFloorEntry: state.cfFloorEntry }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchFloor }, dispatch)
 }
 
 export class ContentfulFloorContainer extends Component {
-  componentDidMount(){
+  componentDidMount () {
     let pageSlug = this.props.match.params.id
     this.props.fetchFloor(pageSlug)
   }
 
   render () {
     return <PresenterFactory
-              presenter={ ContentfulFloorPresenter }
-              status={ this.props.cfFloorEntry.status }
-              props={ {cfFloorEntry: this.props.cfFloorEntry.json} } />
+      presenter={ContentfulFloorPresenter}
+      status={this.props.cfFloorEntry.status}
+      props={{ cfFloorEntry: this.props.cfFloorEntry.json }} />
   }
 }
 
