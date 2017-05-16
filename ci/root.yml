@@ -1,0 +1,73 @@
+# required command-line options
+#  deploybucket - the bucket to deploy this stack to (testlibnd-serverless)
+#  stage - the stage this is deployed as (dev)
+#  outbucket - the bucket the build react code will be put into (usurper-dev-spatest)
+#  repo - the repo to use (usurper)
+#  branch - the repo branch to use (master)
+
+# required env vars
+#  GIT_OAUTH - github oauth token
+#      in github go to settings>"Personal Access Tokens">"Generate new Token" Give it "admin:repo_hook" and "repo" permissions
+
+Parameters:
+  Repo:
+    Type: String
+    Description: The name of the repo
+  Branch:
+    Type: String
+    Description: The name of the branch in the repo
+  OAuth:
+    Type: String
+    Description: The OAuth token to use for the repo
+  Stage:
+    Type: String
+    Description: The stage for this stack
+  TemplateLoc:
+    Type: String
+    Description: The bucket url where these templates are stored
+
+# provider:
+#   name: aws
+#   runtime: nodejs4.3
+#   deploymentBucket: ${{opt:deploybucket}}
+#   variableSyntax: '\${{([\s\S]+?)}}' # Change the serverless variable syntax to be ${{}}, so that we can use Fn::Sub "${}"
+#   stackTags:
+#     Name: ${{self:custom.serviceStage}}
+#     Contact: hbeachey@nd.edu
+#     Owner: Harrison Beachey
+#     Description: Continuous Integration for ${{opt:repo}} repo
+#     InceptDate: "2017-03-02"
+
+
+Resources:
+  BucketsStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        Fn::Sub: ${TemplateLoc}/buckets.yml
+      Parameters:
+        ServiceName:
+          Fn::Sub: ${Repo}-ci-${Stage}
+
+  RolesStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: BucketsStack
+    Properties:
+      TemplateURL:
+        Fn::Sub: ${TemplateLoc}/roles.yml
+      Parameters:
+        ServiceName:
+          Fn::Sub: ${Repo}-ci-${Stage}
+
+  ResourcesStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: RolesStack
+    Properties:
+      TemplateURL:
+        Fn::Sub: ${TemplateLoc}/resources.yml
+      Parameters:
+        ServiceName:
+          Fn::Sub: ${Repo}-ci-${Stage}
+        Repo: !Ref Repo
+        Branch: !Ref Branch
+        OAuth: !Ref OAuth
