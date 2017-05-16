@@ -5,28 +5,28 @@ export const CF_REQUEST_FLOOR = 'CF_REQUEST_FLOOR'
 export const requestFloor = (floor) => {
   return {
     type: CF_REQUEST_FLOOR,
-    floor
+    floor,
   }
 }
 
 export const CF_RECEIVE_FLOOR = 'CF_RECEIVE_FLOOR'
 export const CF_NO_SUCH_FLOOR = 'CF_NO_SUCH_FLOOR'
-function receiveFloor (floor, response) {
+const receiveFloor = (floor, response) => {
   let error = {
     type: CF_RECEIVE_FLOOR,
     status: statuses.ERROR,
     error: response,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   }
 
   let success = {
     type: CF_RECEIVE_FLOOR,
     status: statuses.SUCCESS,
     floor: response,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   }
 
-  try{
+  try {
     if (response.sys.contentType.sys.id === 'floor') {
       return success
     } else {
@@ -37,7 +37,7 @@ function receiveFloor (floor, response) {
   }
 }
 
-export function fetchFloor (floor) {
+export const fetchFloor = (floor) => {
   let url = `/${floor}.json`
   return dispatch => {
     dispatch(requestFloor(floor))

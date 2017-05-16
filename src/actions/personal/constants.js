@@ -3,7 +3,7 @@ export const RECEIVE_PERSONAL = 'RECEIVE_PERSONAL'
 export const CLEAR_PERSONAL = 'CLEAR_PERSONAL'
 export const REQUEST_PERSONAL = 'REQUEST_PERSONAL'
 
-export function recievePersonal (requestType, state, info) {
+export const recievePersonal = (requestType, state, info) => {
   return {
     type    : RECEIVE_PERSONAL,
     requestType: requestType,
@@ -12,21 +12,21 @@ export function recievePersonal (requestType, state, info) {
   }
 }
 
-export function clearPersonalInfo () {
+export const clearPersonalInfo = () => {
   return {
     type    : CLEAR_PERSONAL,
   }
 }
 
 // keep track of what do and don't have an active request or for.
-export function requestPersonal (requestType = '') {
+export const requestPersonal = (requestType = '') => {
   return {
     type: REQUEST_PERSONAL,
     requestType: requestType,
   }
 }
 
-export function startRequest (url, dispatch, success, token, err) {
+export const startRequest = (url, dispatch, success, token, err) => {
   return fetch(url, {
     headers: {
       'Authorization': token,

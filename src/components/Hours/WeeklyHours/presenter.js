@@ -16,7 +16,7 @@ const Presenter = ({ hours, title, showEffectiveDates }) => {
       { effectiveMessage }
       <dl className='hours-grid'>
         {
-          hours.rows.map(function (row, key) {
+          hours.rows.map((row, key) => {
             return (
               <span key={key}>
                 <dt>{ row.rowDisplay }</dt>

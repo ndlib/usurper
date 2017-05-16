@@ -9,7 +9,7 @@ import fetch from 'isomorphic-fetch'
 const loginUrl = Config.viceroyAPI + '/token'
 const logoutUrl = Config.viceroyAPI + '/logout'
 
-function handleToken (dispatch, data) {
+const handleToken = (dispatch, data) => {
   if (data.redirect) {
     dispatch(
       states.recievePersonal(
@@ -29,7 +29,7 @@ function handleToken (dispatch, data) {
   }
 }
 
-export default function getToken () {
+const getToken = () => {
   return dispatch => {
     dispatch(states.requestPersonal('login', statuses.FETCHING))
 
@@ -48,3 +48,5 @@ export default function getToken () {
     })
   }
 }
+
+export default getToken
