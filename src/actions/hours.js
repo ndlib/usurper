@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import { hoursAPIURL } from '../shared/Configuration'
 import * as statuses from '../constants/APIStatuses'
+import Config from '../shared/Configuration'
 
 export const HOURS_REQUEST = 'HOURS_REQUEST'
 export const HOURS_RECEIVE = 'HOURS_RECEIVE'
@@ -8,7 +9,7 @@ export const HOURS_NO_SUCH = 'HOURS_NO_SUCH'
 
 export const requestHours = () => {
   return {
-    type: HOURS_REQUEST
+    type: HOURS_REQUEST,
   }
 }
 
@@ -18,14 +19,14 @@ function receiveHours (response) {
       type: HOURS_RECEIVE,
       status: statuses.ERROR,
       error: response,
-      receivedAt: Date.now()
+      receivedAt: Date.now(),
     }
   } else {
     return {
       type: HOURS_RECEIVE,
       status: statuses.SUCCESS,
       hours: response,
-      receivedAt: Date.now()
+      receivedAt: Date.now(),
     }
   }
 }
@@ -33,7 +34,7 @@ function receiveHours (response) {
 export function fetchHours () {
   return dispatch => {
     dispatch(requestHours())
-    return fetch(hoursAPIURL)
+    return fetch(Config.hoursAPIURL)
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))
       .catch(error => dispatch(receiveHours(error)))

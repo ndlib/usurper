@@ -10,7 +10,6 @@ import {
 
 const localSearchPref = localStorage.getItem('searchPreference')
 export default (
-
   state = {
     drawerOpen: true,
     searchType: 'ONESEARCH',
