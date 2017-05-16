@@ -16,7 +16,7 @@ class InlineContainer extends Component {
       case statuses.SUCCESS:
         return this.props.presenter(this.props.hoursEntry)
       default:
-        return (<div>Error</div>)
+        return (<div />)
     }
   }
 }
