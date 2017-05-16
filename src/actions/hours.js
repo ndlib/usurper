@@ -34,7 +34,8 @@ function receiveHours (response) {
 export function fetchHours () {
   return dispatch => {
     dispatch(requestHours())
-    return fetch(Config.hoursAPIURL)
+    let url = Config.hoursAPIURL + "/hours"
+    return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))
       .catch(error => dispatch(receiveHours(error)))
