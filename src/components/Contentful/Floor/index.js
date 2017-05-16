@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchFloor } from '../../../actions/contentful/floor'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulFloorPresenter from './presenter.js'
 
@@ -26,6 +27,12 @@ export class ContentfulFloorContainer extends Component {
       status={this.props.cfFloorEntry.status}
       props={{ cfFloorEntry: this.props.cfFloorEntry.json }} />
   }
+}
+
+ContentfulFloorContainer.propTypes = {
+  fetchFloor: PropTypes.func.isRequired,
+  cfFloorEntry: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 const ContentfulFloor = connect(

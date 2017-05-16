@@ -1,5 +1,6 @@
 // Container component for a Page content type from Contentful
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchPage } from '../../../actions/contentful/page'
@@ -26,6 +27,12 @@ export class ContentfulPageContainer extends Component {
       status={this.props.cfPageEntry.status}
       props={{ cfPageEntry: this.props.cfPageEntry.json }} />
   }
+}
+
+ContentfulPageContainer.propTypes = {
+  fetchPage: PropTypes.func.isRequired,
+  cfPageEntry: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 const ContentfulPage = connect(
