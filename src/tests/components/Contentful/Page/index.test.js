@@ -5,8 +5,7 @@ import { ContentfulPageContainer } from '../../../../components/Contentful/Page'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
 import * as statuses from '../../../../CONSTANTS/APIStatuses'
-import configureStore from 'redux-mock-store';
-
+import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
   return shallow(<ContentfulPageContainer {...props} />, { lifecycleExperimental: true })
@@ -45,6 +44,15 @@ describe('components/Contentful/Page/Container', () => {
     it('does not attempt to redirect to secure version', () => {
       enzymeWrapper.setProps(props)
       expect(props.history.push.mock.calls.length).toBe(0)
+    })
+
+    it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
+      expect(enzymeWrapper
+        .containsMatchingElement(<APIPresenterFactory
+          status={props.cfPageEntry.status}
+          props={{ cfPageEntry: props.cfPageEntry.json }}
+          presenter={PagePresenter} />))
+        .toBe(true)
     })
   })
 

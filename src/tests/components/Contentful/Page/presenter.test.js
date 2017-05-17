@@ -1,11 +1,10 @@
-﻿import React from 'react'
+import React from 'react'
 import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import Image from '../../../../components/Image'
-import Related from '../../../../components/Related'
 
 const setup = (cfPageEntry) => {
-  return shallow(<PagePresenter cfPageEntry={ cfPageEntry } />)
+  return shallow(<PagePresenter cfPageEntry={cfPageEntry} />)
 }
 
 let enzymeWrapper
@@ -20,7 +19,7 @@ describe('components/Contentful/Page/presenter', () => {
         relatedResources: ['Fake related resources'],
         relatedServices: ['Fake related services'],
         libguides: ['Fake related libguides'],
-      }
+      },
     })
   })
 
@@ -41,7 +40,7 @@ describe('components/Contentful/Page/presenter', () => {
   })
 
   it('should render Image for image', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Image cfImage={ 'Fake image' } />)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Image cfImage={'Fake image'} />)).toBe(true)
   })
 
   it('should render Related for related resources', () => {

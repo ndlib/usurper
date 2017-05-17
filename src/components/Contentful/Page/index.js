@@ -1,5 +1,6 @@
 // Container component for a Page content type from Contentful
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchPage, clearPage } from '../../../actions/contentful/page'
@@ -7,7 +8,7 @@ import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
 import * as statuses from '../../../constants/APIStatuses'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return { cfPageEntry: state.cfPageEntry }
 }
 
@@ -31,10 +32,16 @@ export class ContentfulPageContainer extends Component {
 
   render () {
     return <PresenterFactory
-              presenter={ ContentfulPagePresenter }
-              status={ this.props.cfPageEntry.status }
-              props={ {cfPageEntry: this.props.cfPageEntry.json} } />
+      presenter={ContentfulPagePresenter}
+      status={this.props.cfPageEntry.status}
+      props={{ cfPageEntry: this.props.cfPageEntry.json }} />
   }
+}
+
+ContentfulPageContainer.propTypes = {
+  fetchPage: PropTypes.func.isRequired,
+  cfPageEntry: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 }
 
 const ContentfulPage = connect(
