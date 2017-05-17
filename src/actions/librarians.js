@@ -10,7 +10,7 @@ export const requestLibrarians = (netids) => {
   }
 }
 
-function genResponse (status, data) {
+const genResponse = (status, data) => {
   return {
     type: RECEIVE_LIBRARIANS,
     status: status,
@@ -20,7 +20,7 @@ function genResponse (status, data) {
 }
 
 export const RECEIVE_LIBRARIANS = 'RECEIVE_LIBRARIANS'
-function receivePage (netids, response) {
+const receivePage = (netids, response) => {
   try {
     if (response.librarians) {
       return genResponse(statuses.SUCCESS, response)
@@ -32,7 +32,7 @@ function receivePage (netids, response) {
   }
 }
 
-export function fetchLibrarians (netids) {
+export const fetchLibrarians = (netids) => {
   if (!netids || netids.length <= 0) {
     return dispatch => { dispatch(genResponse(statuses.NOT_FOUND, '')) }
   }

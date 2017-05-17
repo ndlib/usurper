@@ -5,7 +5,7 @@
 
 var REACT_APP = /^REACT_APP_/i
 
-function getClientEnvironment (publicUrl) {
+const getClientEnvironment = (publicUrl) => {
   var raw = Object
     .keys(process.env)
     .filter(key => REACT_APP.test(key))

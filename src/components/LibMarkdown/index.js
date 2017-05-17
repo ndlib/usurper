@@ -3,7 +3,7 @@ import Markdown from 'markdown-to-jsx'
 import PropTypes from 'prop-types'
 import Link from '../Link'
 
-function LibLink (props) {
+const LibLink = (props) => {
   var url = props.href
 
   // I'm not entirely sure if there aren't other cases that might fall here, but this
@@ -17,7 +17,7 @@ function LibLink (props) {
   // Urls to remove so links are local
   let replaceUrls = [
     'https://alpha.library.nd.edu',
-    'http://localhost:4000'
+    'http://localhost:4000',
   ]
 
   for (var index in replaceUrls) {
@@ -32,7 +32,7 @@ function LibLink (props) {
 
 LibLink.propTypes = {
   href: PropTypes.string,
-  children: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired,
 }
 
 class LibMarkdown extends Component {
@@ -44,9 +44,9 @@ class LibMarkdown extends Component {
     let overrides = {
       overrides: {
         a: {
-          component: LibLink
-        }
-      }
+          component: LibLink,
+        },
+      },
     }
 
     return (
@@ -58,7 +58,7 @@ class LibMarkdown extends Component {
 }
 
 LibMarkdown.propTypes = {
-  children: PropTypes.string
+  children: PropTypes.string,
 }
 
 export default LibMarkdown

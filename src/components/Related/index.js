@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Image from '../Image'
 import Link from '../Link'
 
-function Related ({ title, className, children }) {
+const Related = ({ title, className, children }) => {
   if (!children) {
     return null
   }
@@ -15,7 +15,7 @@ function Related ({ title, className, children }) {
       <ul className={className}>
 
         {
-          children.map(function (currentItem) {
+          children.map((currentItem) => {
             let link = currentItem.fields.slug ? currentItem.fields.slug : currentItem.fields.url
 
             return (

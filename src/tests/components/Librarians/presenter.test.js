@@ -7,11 +7,11 @@ import Contact from '../../../components/Contact'
 import Image from '../../../components/Image'
 
 let enzymeWrapper
-function setup (props) {
+const setup = (props) => {
   enzymeWrapper = shallow(<Librarians {...props} />)
 }
 
-function librarian(name, phone, email, photo) {
+const librarian = (name, phone, email, photo) => {
   return {
     name: name,
     phone: phone,
@@ -35,9 +35,9 @@ describe('components/Librarians/presenter.js', () => {
               librarian('foo_user', '555.555.5555', 'foo@nd.edu'),
               librarian('bar_user', '444.444.4444', 'bar@nd.edu', 'bar.jpg'),
             ],
-          }
-        }
-       })
+          },
+        },
+      })
     })
 
     it('should render all librarian contact info', () => {
@@ -57,8 +57,8 @@ describe('components/Librarians/presenter.js', () => {
       setup({
         librarianInfo: {
           status: statuses.FETCHING,
-        }
-       })
+        },
+      })
     })
 
     it('should render a loading message', () => {
@@ -71,8 +71,8 @@ describe('components/Librarians/presenter.js', () => {
       setup({
         librarianInfo: {
           status: statuses.NOT_FOUND,
-        }
-       })
+        },
+      })
     })
 
     it('should render null', () => {
@@ -85,8 +85,8 @@ describe('components/Librarians/presenter.js', () => {
       setup({
         librarianInfo: {
           status: statuses.ERROR,
-        }
-       })
+        },
+      })
     })
 
     it('should render an error message', () => {

@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Contact (props) {
+const Contact = (props) => {
   return (
     <div className='contact'>
       <h3>{props.name}</h3>
       <h4>{props.title}</h4>
-      <a href={ 'tel:' + props.phone }>{ props.phone }</a><br />
-      <a href={ 'mailto:' + props.email }>{ props.email }</a><br />
+      <a href={'tel:' + props.phone}>{props.phone}</a><br />
+      <a href={'mailto:' + props.email}>{props.email}</a><br />
       <address>
         {props.addr1}
         <br />

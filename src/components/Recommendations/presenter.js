@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const redirectPrefix = 'https://7w0g1d1dah.execute-api.us-east-1.amazonaws.com/dev/databases/'
 
-function Recommendations (props) {
+const Recommendations = (props) => {
   if (!props.recommend) {
     return null
   }
@@ -12,7 +12,7 @@ function Recommendations (props) {
       <ul key='Recommendations'>
 
         {
-          props.recommend.map(function (item) {
+          props.recommend.map((item) => {
             var url = redirectPrefix + item.token
 
             return (
@@ -29,7 +29,7 @@ function Recommendations (props) {
 }
 
 Recommendations.propTypes = {
-  recommend: PropTypes.array
+  recommend: PropTypes.array,
 }
 
 export default Recommendations

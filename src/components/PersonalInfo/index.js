@@ -5,7 +5,7 @@ import Recommendations from '../Recommendations'
 import LoanResources from '../LoanResources'
 import Courses from '../Courses'
 
-function PersonalInfo () {
+const PersonalInfo = () => {
   return (
     <div className='container-fluid'>
       <LoginStatus />

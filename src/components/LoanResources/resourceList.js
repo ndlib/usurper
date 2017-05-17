@@ -34,7 +34,7 @@ const getPublished = (item) => {
   return null
 }
 
-export default function ResourceList ({ list, emptyText }) {
+const ResourceList = ({ list, emptyText }) => {
   if (!list || list.length === 0) {
     return (
       <div>{emptyText}</div>
@@ -70,3 +70,5 @@ ResourceList.propTypes = {
   list: PropTypes.array.isRequired,
   emptyText: PropTypes.string.isRequired,
 }
+
+export default ResourceList
