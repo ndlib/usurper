@@ -7,7 +7,7 @@ import '../../../static/css/global.css'
 const SearchPreference = (props) => {
   const HasPref = () => {
     return (
-      <div>{
+      <div className='has-default-search'>{
         props.currentSearch.title
       } is your default search. <a onClick={props.forgetClick}>clear</a></div>
     )
@@ -18,7 +18,7 @@ const SearchPreference = (props) => {
       <div className='set-default-search'>
         <input type='checkbox' name='sp' onClick={props.saveClick} />
         <label htmlFor='sp'>Save {
-            props.currentSearch.title
+          props.currentSearch.title
         } as my default search</label>
       </div>
     )
@@ -36,7 +36,7 @@ SearchPreference.propTypes = {
   forgetClick: PropTypes.func.isRequired,
   search: PropTypes.shape({
     hasPref: PropTypes.bool.isRequired,
-    pref: PropTypes.string,
+    pref: PropTypes.object,
   }).isRequired,
 }
 

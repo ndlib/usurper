@@ -4,15 +4,18 @@ import LoginStatus from '../Login'
 import Recommendations from '../Recommendations'
 import LoanResources from '../LoanResources'
 import Courses from '../Courses'
+import PageWrapper from '../PageWrapper'
 
 const PersonalInfo = () => {
   return (
-    <div className='container-fluid'>
-      <LoginStatus />
-      <Courses linkOnly />
-      <Recommendations />
-      <div><LoanResources /></div>
-    </div>
+    <PageWrapper >
+      <div className='container-fluid'>
+        <LoginStatus />
+        <Courses linkOnly />
+        <Recommendations />
+        <div><LoanResources /></div>
+      </div>
+    </PageWrapper>
   )
 }
 

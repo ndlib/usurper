@@ -461,6 +461,9 @@ body.gold-blue #header h4 a {
   padding-right:  35px;
 }
 
+.Home .login {
+    top: 15px;
+}
 .login {
   position: absolute;
   right: 30px;
@@ -545,7 +548,6 @@ nav a.search:hover {
   padding: 0;
   transition-property: all;
   transition-duration: .2s, 1s;
-  height: 0;
   overflow: hidden;
   box-shadow: none;
 
