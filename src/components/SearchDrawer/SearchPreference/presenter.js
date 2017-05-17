@@ -36,7 +36,7 @@ SearchPreference.propTypes = {
   forgetClick: PropTypes.func.isRequired,
   search: PropTypes.shape({
     hasPref: PropTypes.bool.isRequired,
-    pref: PropTypes.string,
+    pref: PropTypes.object,
   }).isRequired,
 }
 
