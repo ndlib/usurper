@@ -32,9 +32,12 @@ describe('components/Contentful/Page/Container', () => {
     })
 
     it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-      expect(enzymeWrapper.
-        containsMatchingElement(<APIPresenterFactory status={props.cfPageEntry.status } props={{ cfPageEntry: props.cfPageEntry.json }} presenter={ PagePresenter } />)).
-        toBe(true)
+      expect(enzymeWrapper
+        .containsMatchingElement(<APIPresenterFactory
+          status={props.cfPageEntry.status}
+          props={{ cfPageEntry: props.cfPageEntry.json }}
+          presenter={PagePresenter} />))
+        .toBe(true)
     })
 
     it('calls the bound fetch page action on load', () => {
@@ -44,15 +47,6 @@ describe('components/Contentful/Page/Container', () => {
     it('does not attempt to redirect to secure version', () => {
       enzymeWrapper.setProps(props)
       expect(props.history.push.mock.calls.length).toBe(0)
-    })
-
-    it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<APIPresenterFactory
-          status={props.cfPageEntry.status}
-          props={{ cfPageEntry: props.cfPageEntry.json }}
-          presenter={PagePresenter} />))
-        .toBe(true)
     })
   })
 
@@ -82,9 +76,12 @@ describe('components/Contentful/Page/Container', () => {
     })
 
     it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-      expect(enzymeWrapper.
-        containsMatchingElement(<APIPresenterFactory status={props.cfPageEntry.status } props={{ cfPageEntry: props.cfPageEntry.json }} presenter={ PagePresenter } />)).
-        toBe(true)
+      expect(enzymeWrapper
+        .containsMatchingElement(<APIPresenterFactory
+          status={props.cfPageEntry.status}
+          props={{ cfPageEntry: props.cfPageEntry.json }}
+          presenter={PagePresenter} />))
+        .toBe(true)
     })
 
     it('calls the bound fetch page action on load', () => {
