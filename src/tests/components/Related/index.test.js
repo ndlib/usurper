@@ -5,7 +5,7 @@ import Link from '../../../components/Link'
 import Image from '../../../components/Image'
 
 let enzymeWrapper
-function setup (props) {
+const setup = (props) => {
   return shallow(<Related {...props} />)
 }
 
@@ -32,7 +32,7 @@ describe('components/Related/index.js', () => {
               title: 'barTitle',
             },
           },
-        ]
+        ],
       })
     })
 

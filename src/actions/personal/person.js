@@ -4,7 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 const personURL = Config.personAPI + '/person'
 
-function handlePerson (dispatch, data) {
+const handlePerson = (dispatch, data) => {
   if (data.person && data.person.entries.length > 0) {
     var person = data.person
     if (person.entries.length > 1) {
@@ -21,7 +21,7 @@ function handlePerson (dispatch, data) {
   }
 }
 
-export default function getPerson () {
+const getPerson = () => {
   return (dispatch, getState) => {
     var state = getState().personal
 
@@ -37,3 +37,5 @@ export default function getPerson () {
     )
   }
 }
+
+export default getPerson

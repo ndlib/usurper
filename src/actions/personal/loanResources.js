@@ -27,7 +27,7 @@ export const handleResources = (dispatch, data) => {
   }
 }
 
-export default function getResources () {
+const getResources = () => {
   return (dispatch, getState) => {
     var state = getState().personal
 
@@ -53,3 +53,5 @@ export default function getResources () {
     )
   }
 }
+
+export default getResources

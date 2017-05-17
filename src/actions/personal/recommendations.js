@@ -4,7 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 const recommendURL = Config.recommendAPI + '/recommend'
 
-function handleRecommendations (dispatch, data) {
+const handleRecommendations = (dispatch, data) => {
   if (data.recommendations) {
     dispatch(
       states.recievePersonal(
@@ -16,7 +16,7 @@ function handleRecommendations (dispatch, data) {
   }
 }
 
-export default function getRecommendations () {
+const getRecommendations = () => {
   return (dispatch, getState) => {
     var state = getState().personal
 
@@ -32,3 +32,5 @@ export default function getRecommendations () {
     )
   }
 }
+
+export default getRecommendations

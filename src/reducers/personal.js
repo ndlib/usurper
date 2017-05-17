@@ -2,7 +2,7 @@ import { RECEIVE_PERSONAL, CLEAR_PERSONAL, REQUEST_PERSONAL } from '../actions/p
 import * as statuses from '../constants/APIStatuses'
 
 const initialState = {}
-export default function personalReducer (state = initialState, action) {
+const personalReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_PERSONAL:
       var data = {}
@@ -18,3 +18,4 @@ export default function personalReducer (state = initialState, action) {
       return state
   }
 }
+export default personalReducer

@@ -3,7 +3,7 @@ import Image from '../../../components/Image/presenter'
 import { shallow } from 'enzyme'
 
 let enzymeWrapper
-function setup (props) {
+const setup = (props) => {
   enzymeWrapper = shallow(<Image {...props} />)
 }
 

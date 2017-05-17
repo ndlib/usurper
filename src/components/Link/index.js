@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Internal (to, className, alt, children) {
+const Internal = (to, className, alt, children) => {
   return (
     <Link to={to} className={className} alt={alt}>
       {children}
@@ -10,7 +10,7 @@ function Internal (to, className, alt, children) {
   )
 }
 
-function External (to, className, alt, children) {
+const External = (to, className, alt, children) => {
   return (
     <a href={to} className={className} alt={alt} target="_blank">
       {children}
@@ -18,7 +18,7 @@ function External (to, className, alt, children) {
   )
 }
 
-function Invalid (className, children) {
+const Invalid = (className, children) => {
   return (
     <div className={className}>
       {children}
@@ -30,7 +30,7 @@ const Hidden = (
   null
 )
 
-function LibLink (props) {
+const LibLink = (props) => {
   let query = ''
   for (var k in props.query) {
     if (props.query.hasOwnProperty(k)) {
