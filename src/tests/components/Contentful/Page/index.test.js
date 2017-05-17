@@ -38,7 +38,7 @@ describe('components/Contentful/Page/Container', () => {
         drawerOpen: false,
         hasPref: false,
         usePref: false,
-        searchType: '',
+        searchType: 'FAKE_TYPE',
       },
       menus: {},
     }
