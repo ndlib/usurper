@@ -15,6 +15,9 @@ const PageWrapper = (props) => (
 )
 
 PageWrapper.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+  ]).isRequired,
 }
 export default PageWrapper

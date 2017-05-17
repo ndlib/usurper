@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     clickOnPage: () => {
       dispatch(closeSearchBox())
       dispatch(closeMenus())
-      console.log('click 1')
     },
   }
 }

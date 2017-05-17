@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import Login from '../../Login'
 
-import '../../../static/css/global.css'
 class HomeHesburghBanner extends Component {
   render () {
     return (
