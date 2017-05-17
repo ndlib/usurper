@@ -22,6 +22,12 @@ const mockPageResponse = {
   }
 }
 
+const storeInit = {
+  personal: {
+    login: null
+  }
+}
+
 describe('contentful requestPage action creator', () => {
   it('should create a CF_REQUEST_PAGE action for the requested page', () => {
     const pageUri = 'Page data'
@@ -30,6 +36,18 @@ describe('contentful requestPage action creator', () => {
       type: actions.CF_REQUEST_PAGE
     }
     expect(actions.requestPage(pageUri)).toEqual(expectedAction)
+  })
+})
+
+describe('contentful clearPage action creator', () => {
+  it('should create a CF_CLEAR_PAGE action', () => {
+    const expectedAction = {
+      type: actions.CF_CLEAR_PAGE,
+    }
+
+    const store = mockStore(storeInit)
+    store.dispatch(actions.clearPage())
+    expect(store.getActions()[0]).toMatchObject(expectedAction)
   })
 })
 
@@ -44,7 +62,7 @@ describe('contentful fetchPage async action creator', () => {
       page: pageUri
     }
 
-    const store = mockStore({ })
+    const store = mockStore(storeInit)
     return store.dispatch(actions.fetchPage(pageUri))
       .then(() => {
         expect(store.getActions()[0]).toMatchObject(expectedAction)
@@ -69,7 +87,7 @@ describe('contentful fetchPage async action creator', () => {
         page: mockPageResponse,
       }
 
-      const store = mockStore({ })
+      const store = mockStore(storeInit)
       return store.dispatch(actions.fetchPage(pageUri))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
@@ -95,7 +113,7 @@ describe('contentful fetchPage async action creator', () => {
         error: { sys: { type: 'Error' }, error: 'Error message' }
       }
 
-      const store = mockStore({ })
+      const store = mockStore(storeInit)
       return store.dispatch(actions.fetchPage(pageUri))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
@@ -120,7 +138,7 @@ describe('contentful fetchPage async action creator', () => {
         status: statuses.ERROR,
       }
 
-      const store = mockStore({ })
+      const store = mockStore(storeInit)
       return store.dispatch(actions.fetchPage(pageUri))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
@@ -147,7 +165,7 @@ describe('contentful fetchPage async action creator', () => {
         error: {}
       }
 
-      const store = mockStore({ })
+      const store = mockStore(storeInit)
       return store.dispatch(actions.fetchPage(pageUri))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)

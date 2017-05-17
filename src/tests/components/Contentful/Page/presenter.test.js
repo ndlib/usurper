@@ -15,7 +15,7 @@ describe('components/Contentful/Page/presenter', () => {
       fields: {
         title: 'Fake Title',
         shortContent: 'Fake short content',
-        content: 'Fake content',
+        body: 'Fake content',
         image: 'Fake image',
         relatedResources: ['Fake related resources'],
         relatedServices: ['Fake related services'],
