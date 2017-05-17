@@ -21,7 +21,7 @@ describe('components/Contentful/Page/Container', () => {
     props = {
       cfPageEntry: { status: 'test', json: {} },
       fetchPage: jest.fn(),
-      match: { params: { id: 'fake page slug' } }
+      match: { params: { id: 'fake page slug' } },
     }
     enzymeWrapper = setup(props)
   })
@@ -31,9 +31,12 @@ describe('components/Contentful/Page/Container', () => {
   })
 
   it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-    expect(enzymeWrapper.
-      containsMatchingElement(<APIPresenterFactory presenter={ PagePresenter } props={{ cfPageEntry: props.cfPageEntry.json }} status={props.cfPageEntry.status } />)).
-      toBe(true)
+    expect(enzymeWrapper
+      .containsMatchingElement(<APIPresenterFactory
+        status={props.cfPageEntry.status}
+        props={{ cfPageEntry: props.cfPageEntry.json }}
+        presenter={PagePresenter} />))
+      .toBe(true)
   })
 
   it('calls the bound fetch page action on load', () => {
