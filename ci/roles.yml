@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Roles for CI stack"
+
+Outputs:
+  RoleName:
+    Description: The build role for CI
+    Value:
+      Fn::GetAtt:
+        - BuildServiceRole
+        - Arn
+    Export:
+      Name: !Sub ${ServiceName}-ServiceRole
+
+Parameters:
+  ServiceName:
+    Type: String
+    Description: The name of the service
+
+Resources:
+  BuildServiceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "codebuild.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        # View everything
+        - arn:aws:iam::aws:policy/job-function/ViewOnlyAccess
+        # This gives permission to create logs
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: !Sub ${ServiceName}-BucketPermissions
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: "Allow"
+                Action: "s3:*"
+                Resource:
+                  - Fn::Sub:
+                    - "arn:aws:s3:::${OutBucket}"
+                    - OutBucket:
+                        Fn::ImportValue: !Sub ${ServiceName}-OutBucket
+
+                  - Fn::Sub:
+                    - "arn:aws:s3:::${OutBucket}/*"
+                    - OutBucket:
+                        Fn::ImportValue: !Sub ${ServiceName}-OutBucket
+
+                  - Fn::Sub:
+                    - "arn:aws:s3:::${ArtifactBucket}"
+                    - ArtifactBucket:
+                        Fn::ImportValue: !Sub ${ServiceName}-ArtifactBucket
+
+                  - Fn::Sub:
+                    - "arn:aws:s3:::${ArtifactBucket}/*"
+                    - ArtifactBucket:
+                        Fn::ImportValue: !Sub ${ServiceName}-ArtifactBucket

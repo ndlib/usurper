@@ -1,0 +1,49 @@
+Parameters:
+  Repo:
+    Type: String
+    Description: The name of the repo
+  Branch:
+    Type: String
+    Description: The name of the branch in the repo
+  OAuth:
+    Type: String
+    Description: The OAuth token to use for the repo
+  Stage:
+    Type: String
+    Description: The stage for this stack
+  TemplateLoc:
+    Type: String
+    Description: The bucket url where these templates are stored
+
+Resources:
+  BucketsStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        Fn::Sub: ${TemplateLoc}/buckets.yml
+      Parameters:
+        ServiceName:
+          Fn::Sub: ${Repo}-ci-${Stage}
+
+  RolesStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: BucketsStack
+    Properties:
+      TemplateURL:
+        Fn::Sub: ${TemplateLoc}/roles.yml
+      Parameters:
+        ServiceName:
+          Fn::Sub: ${Repo}-ci-${Stage}
+
+  ResourcesStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: RolesStack
+    Properties:
+      TemplateURL:
+        Fn::Sub: ${TemplateLoc}/resources.yml
+      Parameters:
+        ServiceName:
+          Fn::Sub: ${Repo}-ci-${Stage}
+        Repo: !Ref Repo
+        Branch: !Ref Branch
+        OAuth: !Ref OAuth
