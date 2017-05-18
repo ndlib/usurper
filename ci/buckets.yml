@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Buckets for CI stack"
+
+Outputs:
+  ArtifactBucket:
+    Description: The artifact bucket for the build CI
+    Value: !Ref ArtifactBucket
+    Export:
+      Name: !Sub ${ServiceName}-ArtifactBucket
+  OutBucket:
+    Description: The out bucket for the build CI
+    Value: !Ref OutBucket
+    Export:
+      Name: !Sub ${ServiceName}-OutBucket
+
+Parameters:
+  ServiceName:
+    Type: String
+    Description: The name of the service
+
+Resources:
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${ServiceName}-artifacts
+      Tags:
+        - Key: Name
+          Value: !Sub ${ServiceName}-artifacts
+
+  OutBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${ServiceName}-built
+      Tags:
+        - Key: Name
+          Value: !Sub ${ServiceName}-built
