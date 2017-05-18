@@ -1,14 +1,13 @@
 'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { searchOptions } from '../searchOptions.js'
 import '../../../static/css/global.css'
 
 const SearchPreference = (props) => {
   const HasPref = () => {
     return (
       <div className='has-default-search'>{
-        props.currentSearch.title
+        props.search.pref.title
       } is your default search. <a onClick={props.forgetClick}>clear</a></div>
     )
   }
