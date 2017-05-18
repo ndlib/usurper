@@ -1,4 +1,4 @@
 import { connect } from 'react-redux'
-import WeeklyHoursListPresenter from './presenter.js'
+import WeeklyHoursListPresenter from './presenter'
 
 export default connect()(WeeklyHoursListPresenter)

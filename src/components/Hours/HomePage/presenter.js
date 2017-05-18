@@ -4,6 +4,7 @@ import './style.css'
 import Link from '../../Link'
 
 const Presenter = (hoursEntry) => {
+  console.log(hoursEntry)
   return (
     <div className='hours-display'>
       <p>Hours Today: <Link to='hours'>{hoursEntry.today.display}</Link></p>
