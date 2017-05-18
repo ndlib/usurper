@@ -12,7 +12,7 @@ const Presenter = (hoursEntry) => {
         <p>View building and service desk hours.</p>
       </div>
       {
-        Object.keys(hoursEntry).map(function (hoursKey) {
+        Object.keys(hoursEntry).map((hoursKey) => {
           return (<CurrentHours jsonHoursApiKey={hoursKey} key={hoursKey} />)
         })
       }

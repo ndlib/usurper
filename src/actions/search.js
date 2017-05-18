@@ -6,25 +6,25 @@ export const CLEAR_SEARCH_PREFERENCE = 'CLEAR_SEARCH_PREFERENCE'
 export const OPEN_SEARCHDRAWER = 'OPEN_SEARCHDRAWER'
 export const CLOSE_SEARCHDRAWER = 'CLOSE_SEARCHDRAWER'
 
-export function setSearchType (searchType) {
+export const setSearchType = (searchType) => {
   return {
     type: SET_SEARCH,
     searchType,
   }
 }
-export function openSearchBox () {
+export const openSearchBox = () => {
   return {
     type: OPEN_SEARCHBOX,
   }
 }
 
-export function closeSearchBox () {
+export const closeSearchBox = () => {
   return {
     type: CLOSE_SEARCHBOX,
   }
 }
 
-export function saveSearchPreference (pref) {
+export const saveSearchPreference = (pref) => {
   return {
     type: SAVE_SEARCH_PREFERENCE,
     hasPref: true,
@@ -32,7 +32,7 @@ export function saveSearchPreference (pref) {
   }
 }
 
-export function clearSearchPreference () {
+export const clearSearchPreference = () => {
   return {
     type: CLEAR_SEARCH_PREFERENCE,
     hasPref: false,
@@ -40,13 +40,13 @@ export function clearSearchPreference () {
   }
 }
 
-export function openSearchDrawer () {
+export const openSearchDrawer = () => {
   return {
     type: OPEN_SEARCHDRAWER,
   }
 }
 
-export function closeSearchDrawer () {
+export const closeSearchDrawer = () => {
   return {
     type: CLOSE_SEARCHDRAWER,
   }

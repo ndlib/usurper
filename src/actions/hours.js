@@ -13,8 +13,8 @@ export const requestHours = () => {
   }
 }
 
-function receiveHours (response) {
-  if (response == 'TypeError: Failed to fetch') {
+const receiveHours = (response) => {
+  if (response === 'TypeError: Failed to fetch') {
     return {
       type: HOURS_RECEIVE,
       status: statuses.ERROR,
@@ -31,10 +31,11 @@ function receiveHours (response) {
   }
 }
 
-export function fetchHours () {
+export const fetchHours = () => {
   return dispatch => {
     dispatch(requestHours())
-    return fetch(Config.hoursAPIURL)
+    let url = Config.hoursAPIURL + "/hours"
+    return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))
       .catch(error => dispatch(receiveHours(error)))

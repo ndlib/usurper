@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 
 let enzymeWrapper
 let children
-function setup (props) {
+const setup = (props) => {
   return shallow(<Contact {...props} />)
 }
 

@@ -5,28 +5,28 @@ export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {
   return {
     type: CF_REQUEST_PAGE,
-    page
+    page,
   }
 }
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 export const CF_NO_SUCH_PAGE = 'CF_NO_SUCH_PAGE'
-function receivePage (page, response) {
+const receivePage = (page, response) => {
   let error = {
     type: CF_RECEIVE_PAGE,
     status: statuses.ERROR,
     error: response,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   }
 
   let success = {
     type: CF_RECEIVE_PAGE,
     status: statuses.SUCCESS,
     page: response,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
   }
 
-  try{
+  try {
     if (response.sys.contentType.sys.id === 'page') {
       return success
     } else {
@@ -48,7 +48,7 @@ export function clearPage () {
   }
 }
 
-export function fetchPage (page) {
+export const fetchPage = (page) => {
   let url = `/${page}.json`
   return (dispatch, getState) => {
     dispatch(requestPage(page))

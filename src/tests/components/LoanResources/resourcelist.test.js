@@ -7,7 +7,7 @@ import Config from '../../../shared/Configuration'
 import Link from '../../../components/Link'
 
 let enzymeWrapper
-function setup (props) {
+const setup = (props) => {
   enzymeWrapper = shallow(<ResourceList {...props} />)
 }
 
@@ -20,14 +20,14 @@ describe('components/LoanResources/resourceList.js', () => {
     beforeEach(() => {
       setup({
         list: [{
-          title: "title",
-          author: "author",
-          published: "published",
-          status: "status",
-          dueDate: "20170531",
-          transactionNumber: '4000'
+          title: 'title',
+          author: 'author',
+          published: 'published',
+          status: 'status',
+          dueDate: '20170531',
+          transactionNumber: '4000',
         }],
-        emptyText: 'empty'
+        emptyText: 'empty',
       })
     })
 
@@ -64,7 +64,7 @@ describe('components/LoanResources/resourceList.js', () => {
     beforeEach(() => {
       setup({
         list: [],
-        emptyText: 'empty'
+        emptyText: 'empty',
       })
     })
 

@@ -5,7 +5,7 @@ import * as statuses from '../../constants/APIStatuses'
 import Contact from '../Contact'
 import Image from '../Image'
 
-function Loading (className) {
+const Loading = (className) => {
   return (
     <div className={className}>
       <span>Librarians Loading</span>
@@ -13,7 +13,7 @@ function Loading (className) {
   )
 }
 
-function ErrorLoading (className) {
+const ErrorLoading = (className) => {
   return (
     <div className={className}>
       <span>Librarian Error</span>
@@ -21,15 +21,20 @@ function ErrorLoading (className) {
   )
 }
 
-function Loaded (info, className) {
+const Loaded = (info, className) => {
   return (
     <div className={className}>
       {
 
-        info.librarians.map(function (librarian) {
+        info.librarians.map((librarian) => {
           return (
             <div className='librarian' key={librarian.phone}>
-              <Contact name={librarian.name} title={librarian.jobTitle} phone={librarian.phone} email={librarian.email} />
+              <Contact
+                name={librarian.name}
+                title={librarian.jobTitle}
+                phone={librarian.phone}
+                email={librarian.email}
+              />
               <Image src={librarian.photo} alt={librarian.name} defaultImage='/images/librarian.gif' />
             </div>
           )

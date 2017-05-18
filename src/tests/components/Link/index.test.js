@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import LibLink from '../../../components/Link'
 import { Link } from 'react-router-dom'
 
-function setup (props) {
+const setup = (props) => {
   return shallow(<LibLink {...props} />)
 }
 
@@ -14,7 +14,6 @@ describe('components/Link', () => {
   })
 
   describe('on Internal url', () => {
-
     describe('with children', () => {
       beforeEach(() => {
         enzymeWrapper = setup({
@@ -34,8 +33,8 @@ describe('components/Link', () => {
         enzymeWrapper = setup({
           to: '/internal',
           query: {
-            foo: 'bar'
-          }
+            foo: 'bar',
+          },
         })
         expect(enzymeWrapper.containsMatchingElement(<Link to='/internal?foo=bar' />)).toBe(true)
       })
@@ -45,8 +44,8 @@ describe('components/Link', () => {
           to: '/internal',
           query: {
             foo: 'bar',
-            bar: 'baz'
-          }
+            bar: 'baz',
+          },
         })
         expect(enzymeWrapper.containsMatchingElement(<Link to='/internal?foo=bar&bar=baz' />)).toBe(true)
       })
@@ -56,7 +55,7 @@ describe('components/Link', () => {
       enzymeWrapper = setup({
         to: '/internal',
         className: 'testClass',
-        alt: 'foo'
+        alt: 'foo',
       })
     })
 
@@ -93,8 +92,8 @@ describe('components/Link', () => {
         enzymeWrapper = setup({
           to: 'http://example.org',
           query: {
-            foo: 'bar'
-          }
+            foo: 'bar',
+          },
         })
         expect(enzymeWrapper.containsMatchingElement(<a href='http://example.org?foo=bar' />)).toBe(true)
       })
@@ -104,8 +103,8 @@ describe('components/Link', () => {
           to: 'http://example.org',
           query: {
             foo: 'bar',
-            bar: 'baz'
-          }
+            bar: 'baz',
+          },
         })
         expect(enzymeWrapper.containsMatchingElement(<a href='http://example.org?foo=bar&bar=baz' />)).toBe(true)
       })
@@ -172,7 +171,7 @@ describe('components/Link', () => {
     beforeEach(() => {
       enzymeWrapper = setup({
         to: null,
-        hideIfNull: true
+        hideIfNull: true,
       })
     })
 
@@ -180,5 +179,4 @@ describe('components/Link', () => {
       expect(enzymeWrapper.equals(null)).toBe(true)
     })
   })
-
 })

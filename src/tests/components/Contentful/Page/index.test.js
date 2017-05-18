@@ -17,7 +17,7 @@ describe('components/Contentful/Page/Container', () => {
   describe('normal page', () => {
     beforeEach(() => {
       props = {
-        cfPageEntry: { status: 'test' },
+        cfPageEntry: { status: 'test', json: {} },
         fetchPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         history: {

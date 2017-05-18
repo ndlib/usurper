@@ -5,7 +5,7 @@ let hesburgh = require('hesburgh_util')
 let heslog = hesburgh.heslog
 let hesutil = hesburgh.hesutil
 
-function fetch (params) {
+const fetch = (params) => {
   // Assign from environment variables
   let space = params.space
   let accessToken = params.accessToken
@@ -37,7 +37,7 @@ function fetch (params) {
   let client = contentful.createClient({
     space: space,
     accessToken: accessToken,
-    host: host
+    host: host,
   })
 
   contentTypes.forEach(
@@ -99,5 +99,5 @@ fetch({
   space: hesutil.getEnv('CONTENTFUL_SPACE'),
   accessToken: hesutil.getEnv('CONTENTFUL_AUTH'),
   host: 'cdn.contentful.com',
-  contentTypes: ['page', 'floor']
+  contentTypes: ['page', 'floor'],
 })

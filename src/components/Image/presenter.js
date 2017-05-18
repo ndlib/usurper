@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function Image (props) {
+const Image = (props) => {
   if (!props.src) {
     return null
   }

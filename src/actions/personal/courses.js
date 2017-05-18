@@ -4,7 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 const coursesURL = Config.coursesAPI + '/courses'
 
-function handleCourses (dispatch, data) {
+const handleCourses = (dispatch, data) => {
   if (data.enrollments || data.instructs) {
     dispatch(
       states.recievePersonal(
@@ -16,7 +16,7 @@ function handleCourses (dispatch, data) {
   }
 }
 
-export default function getCourses () {
+const getCourses = () => {
   return (dispatch, getState) => {
     var state = getState().personal
 
@@ -32,3 +32,5 @@ export default function getCourses () {
     )
   }
 }
+
+export default getCourses
