@@ -6,10 +6,9 @@ import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
-import PageWrapper from '../../PageWrapper'
 
 const PagePresenter = ({ cfPageEntry }) => (
-  <PageWrapper>
+  <div className='container-fluid'>
     <h2>{ cfPageEntry.fields.title }</h2>
     <hr />
     <div className='row'>
@@ -24,7 +23,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Librarians netids={cfPageEntry.fields.contactPeople} />
       </div>
     </div>
-  </PageWrapper>
+  </div>
 )
 
 PagePresenter.propTypes = {

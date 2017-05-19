@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 
+import PageWrapper from '../../components/PageWrapper'
 import Home from '../../components/Home'
 import PersonalInfo from '../../components/PersonalInfo'
 import Courses from '../../components/FakeCourses'
@@ -24,14 +25,16 @@ const store = createStore(
 const App = () => {
   return (
     <Provider store={store}>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/personal' component={PersonalInfo} />
-        <Route exact path='/courses' component={Courses} />
-        <Route exact path='/floor/:id' component={ContentfulFloor} />
-        <Route exact path='/hours' component={Hours} />
-        <Route exact path='/:id' component={ContentfulPage} />
-      </Switch>
+      <PageWrapper>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/personal' component={PersonalInfo} />
+          <Route exact path='/courses' component={Courses} />
+          <Route exact path='/floor/:id' component={ContentfulFloor} />
+          <Route exact path='/hours' component={Hours} />
+          <Route exact path='/:id' component={ContentfulPage} />
+        </Switch>
+      </PageWrapper>
     </Provider>
   )
 }
