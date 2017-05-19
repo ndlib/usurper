@@ -5,20 +5,13 @@ import { ContentfulFloorContainer } from '../../../../components/Contentful/Floo
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
 import configureStore from 'redux-mock-store'
-import createRouterContext from 'react-router-test-context'
-import PropTypes from 'prop-types'
 
 const setup = (props) => {
   const store = configureStore()(props)
-  const context = createRouterContext()
-  const childContextTypes = {
-    router: PropTypes.object,
-  }
   return mount(
     <Provider store={store}>
       <ContentfulFloorContainer {...props} />
-    </Provider>, { context, childContextTypes }
-  )
+    </Provider>)
 }
 
 let enzymeWrapper
