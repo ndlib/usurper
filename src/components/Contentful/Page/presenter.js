@@ -13,7 +13,7 @@ const PagePresenter = ({ cfPageEntry }) => (
     <hr />
     <div className='row'>
       <div className='col-md-9'>
-        <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+        <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <Related className='p-resources' title='Resources'>{ cfPageEntry.fields.relatedResources }</Related>
         <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>

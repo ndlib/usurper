@@ -9,6 +9,7 @@ describe('components/Login/index.js', () => {
           state: statuses.SUCCESS,
           buttonUrl: 'button',
           logoutUrl: 'logout',
+          token: true,
         },
       },
     }

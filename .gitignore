@@ -14,6 +14,7 @@ babel_cache/
 # production
 /build
 /public/*.json
+/public/secure
 
 # misc
 .DS_Store
