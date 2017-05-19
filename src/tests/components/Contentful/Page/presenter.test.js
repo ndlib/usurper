@@ -27,6 +27,10 @@ describe('components/Contentful/Page/presenter', () => {
     enzymeWrapper = undefined
   })
 
+  it('should render a top level div with correct class name', () => {
+    expect(enzymeWrapper.is('.container-fluid')).toBe(true)
+  })
+
   it('should renders the title of the content', () => {
     expect(enzymeWrapper.children().someWhere(n => n.children().node === 'Fake Title')).toBe(true)
   })

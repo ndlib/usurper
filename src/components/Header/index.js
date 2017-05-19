@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import { Route, Switch } from 'react-router'
 import BrandingBanner from './BrandingBanner'
 import HesburghBanner from './HesburghBanner'
 import FeedbackButton from '../FeedbackButton'
@@ -10,7 +11,7 @@ import '../../static/css/global.css'
 const Header = (props) => {
   return (
     <div className='top'>
-      <BrandingBanner />
+      <Route exact path='/' component={BrandingBanner} />
       <HesburghBanner />
       <FeedbackButton />
       <div className='nav-search'>
