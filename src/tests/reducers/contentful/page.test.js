@@ -7,7 +7,7 @@ describe('Page reducer', () => {
     expect(
       reducer(undefined, {})
     ).toEqual({
-      status: statuses.FETCHING,
+      status: statuses.NOT_FETCHED,
     })
   })
 

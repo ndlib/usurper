@@ -14,7 +14,7 @@ describe('components/Contentful/Page/presenter', () => {
       fields: {
         title: 'Fake Title',
         shortContent: 'Fake short content',
-        content: 'Fake content',
+        body: 'Fake content',
         image: 'Fake image',
         relatedResources: ['Fake related resources'],
         relatedServices: ['Fake related services'],
@@ -25,6 +25,10 @@ describe('components/Contentful/Page/presenter', () => {
 
   afterEach(() => {
     enzymeWrapper = undefined
+  })
+
+  it('should render a top level div with correct class name', () => {
+    expect(enzymeWrapper.is('.container-fluid')).toBe(true)
   })
 
   it('should renders the title of the content', () => {

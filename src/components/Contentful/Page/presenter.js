@@ -6,15 +6,14 @@ import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
-import PageWrapper from '../../PageWrapper'
 
 const PagePresenter = ({ cfPageEntry }) => (
-  <PageWrapper>
+  <div className='container-fluid'>
     <h2>{ cfPageEntry.fields.title }</h2>
     <hr />
     <div className='row'>
       <div className='col-md-9'>
-        <LibMarkdown>{ cfPageEntry.fields.content }</LibMarkdown>
+        <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <Related className='p-resources' title='Resources'>{ cfPageEntry.fields.relatedResources }</Related>
         <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
@@ -24,7 +23,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Librarians netids={cfPageEntry.fields.contactPeople} />
       </div>
     </div>
-  </PageWrapper>
+  </div>
 )
 
 PagePresenter.propTypes = {

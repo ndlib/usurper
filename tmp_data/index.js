@@ -40,7 +40,6 @@ const fetch = (params) => {
     host: host,
   })
 
-  let items = []
   contentTypes.forEach(
     (contentType) => {
       heslog.info('Get entries for content type ' + contentType + '.')
@@ -51,7 +50,34 @@ const fetch = (params) => {
 
           content.items.forEach(
             (item) => {
-              fs.writeFile('../public/' + item.fields.slug + '.json', JSON.stringify(item), (err) => {
+              let slug = item.fields.slug
+
+              if (item.fields.requiresLogin) {
+                fs.writeFile('../public/secure/' + slug + '.json', JSON.stringify(item), function (err) {
+                  if (err) {
+                    heslog.error(err)
+                  }
+                })
+
+                // make the public item super basic
+                item = {
+                  sys: {
+                    contentType: {
+                      sys: {
+                        id: item.sys.contentType.sys.id,
+                      },
+                    },
+                  },
+                  fields: {
+                    requiresLogin: item.fields.requiresLogin,
+                    title: item.fields.title,
+                    type: item.fields.type,
+                    slug: item.fields.slug,
+                  },
+                }
+              }
+
+              fs.writeFile('../public/' + slug + '.json', JSON.stringify(item), function (err) {
                 if (err) {
                   heslog.error(err)
                 }

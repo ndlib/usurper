@@ -3,22 +3,31 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPage } from '../../../actions/contentful/page'
+import { fetchPage, clearPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
+import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state) => {
   return { cfPageEntry: state.cfPageEntry }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchPage }, dispatch)
+  return bindActionCreators({ fetchPage, clearPage }, dispatch)
 }
 
 export class ContentfulPageContainer extends Component {
   componentDidMount () {
     let pageSlug = this.props.match.params.id
     this.props.fetchPage(pageSlug)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.cfPageEntry.status === statuses.SUCCESS
+      && nextProps.cfPageEntry.json.fields.requiresLogin) {
+      this.props.clearPage()
+      this.props.history.push('/secure/' + nextProps.match.params.id)
+    }
   }
 
   render () {

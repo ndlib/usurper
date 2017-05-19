@@ -12,6 +12,7 @@ import * as statuses from '../../constants/APIStatuses'
 class APIPresenterFactory extends Component {
   render () {
     switch(this.props.status) {
+      case statuses.NOT_FETCHED:
       case statuses.FETCHING:
         return <Loading/>
       case statuses.SUCCESS:
