@@ -11,9 +11,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
+    onClick: (e) => {
       dispatch(setSearchType(ownProps.item.uid))
       dispatch(closeSearchBox())
+      e.stopPropagation()
+      e.nativeEvent.stopImmediatePropagation()
     },
   }
 }

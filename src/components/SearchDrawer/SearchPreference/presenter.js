@@ -1,14 +1,13 @@
 'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { searchOptions } from '../searchOptions.js'
 import '../../../static/css/global.css'
 
 const SearchPreference = (props) => {
   const HasPref = () => {
     return (
-      <div>{
-        props.currentSearch.title
+      <div className='has-default-search'>{
+        props.search.pref.title
       } is your default search. <a onClick={props.forgetClick}>clear</a></div>
     )
   }
@@ -18,7 +17,7 @@ const SearchPreference = (props) => {
       <div className='set-default-search'>
         <input type='checkbox' name='sp' onClick={props.saveClick} />
         <label htmlFor='sp'>Save {
-            props.currentSearch.title
+          props.currentSearch.title
         } as my default search</label>
       </div>
     )
@@ -36,7 +35,7 @@ SearchPreference.propTypes = {
   forgetClick: PropTypes.func.isRequired,
   search: PropTypes.shape({
     hasPref: PropTypes.bool.isRequired,
-    pref: PropTypes.string,
+    pref: PropTypes.object,
   }).isRequired,
 }
 

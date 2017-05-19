@@ -1,20 +1,20 @@
-.hlhome {
+.Home .hlhome {
 	padding: 32px 0 30px;
 }
 
-#banner .container-fluid {
+.Home #banner .container-fluid {
 	background-image: url('../images/jesus.gif');
 }
 
-#banner {
+.Home #banner {
 	height: 100px;
 }
 
-#drawer {
+.Home #drawer {
 	  top: 203px;
 }
 
-#wrapper {
+.Home #wrapper {
 	display: block;
 }
 
@@ -23,15 +23,15 @@
 
 }
 
-.login {
+.Home .login {
 	top: 80px;
 }
 
-.logout {
+.Home .logout {
 	top: 79px;
 }
 
-.header-hours {
+.Home .header-hours {
 	margin-top: 30px;
 	display: none;
 }
