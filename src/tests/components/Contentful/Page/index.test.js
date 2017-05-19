@@ -5,13 +5,20 @@ import { ContentfulPageContainer } from '../../../../components/Contentful/Page'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
 import configureStore from 'redux-mock-store'
+import createRouterContext from 'react-router-test-context'
+import PropTypes from 'prop-types'
 
 const setup = (props) => {
   const store = configureStore()(props)
+  const context = createRouterContext()
+  const childContextTypes = {
+    router: PropTypes.object,
+  }
   return mount(
     <Provider store={store}>
       <ContentfulPageContainer {...props} />
-    </Provider>)
+    </Provider>, { context, childContextTypes }
+  )
 }
 
 let enzymeWrapper
@@ -22,6 +29,18 @@ describe('components/Contentful/Page/Container', () => {
       cfPageEntry: { status: 'test', json: {} },
       fetchPage: jest.fn(),
       match: { params: { id: 'fake page slug' } },
+      personal: {
+        login: {},
+        loggedIn: true,
+        label: 'label',
+      },
+      search: {
+        drawerOpen: false,
+        hasPref: false,
+        usePref: false,
+        searchType: 'FAKE_TYPE',
+      },
+      menus: {},
     }
     enzymeWrapper = setup(props)
   })
