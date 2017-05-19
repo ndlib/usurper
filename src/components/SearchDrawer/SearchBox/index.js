@@ -5,8 +5,10 @@ import SearchBox from './presenter'
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClick:() => {
+    onClick:(e) => {
       ownProps.dispatch(openSearchBox())
+      e.stopPropagation()
+      e.nativeEvent.stopImmediatePropagation()
     },
   }
 }

@@ -27,7 +27,6 @@ export const closeSearchBox = () => {
 export const saveSearchPreference = (pref) => {
   return {
     type: SAVE_SEARCH_PREFERENCE,
-    hasPref: true,
     pref,
   }
 }
@@ -35,8 +34,6 @@ export const saveSearchPreference = (pref) => {
 export const clearSearchPreference = () => {
   return {
     type: CLEAR_SEARCH_PREFERENCE,
-    hasPref: false,
-    pref: null,
   }
 }
 

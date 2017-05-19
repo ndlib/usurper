@@ -23,6 +23,18 @@ describe('components/Contentful/Page/Container', () => {
         history: {
           push: jest.fn(),
         },
+        personal: {
+          login: {},
+          loggedIn: true,
+          label: 'label',
+        },
+        search: {
+          drawerOpen: false,
+          hasPref: false,
+          usePref: false,
+          searchType: 'FAKE_TYPE',
+        },
+        menus: {},
       }
       enzymeWrapper = setup(props)
     })

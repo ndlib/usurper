@@ -41,7 +41,7 @@ SearchDrawer.propTypes = {
     hasPref: PropTypes.bool.isRequired,
     usePref: PropTypes.bool.isRequired,
     pref: PropTypes.oneOfType([
-      PropTypes.string,
+      PropTypes.object,
       null,
     ]),
     searchType: PropTypes.string.isRequired,

@@ -22,6 +22,18 @@ describe('components/Contentful/Floor/Container', () => {
       cfFloorEntry: { status: 'test' },
       fetchFloor: jest.fn(),
       match: { params: { id: 'fake page slug' } },
+      personal: {
+        login: {},
+        loggedIn: true,
+        label: 'label',
+      },
+      search: {
+        drawerOpen: false,
+        hasPref: false,
+        usePref: false,
+        searchType: 'FAKE_TYPE',
+      },
+      menus: {},
     }
     enzymeWrapper = setup(props)
   })
