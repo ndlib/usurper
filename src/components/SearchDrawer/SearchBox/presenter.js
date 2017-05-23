@@ -7,11 +7,11 @@ import '../../../static/css/search.css'
 
 const SearchBox = (props) => {
   return (
-    <span>
+    <span className='uSearchBox'>
       <label htmlFor='q'>
         <ul id='searchAction' >
           <li id='selected-search' onClick={props.onClick}>
-            <p>{ props.currentSearch.title}</p>
+            <p className='current-search'>{ props.currentSearch.title}</p>
           </li>
           <SearchOptionList {...props} />
         </ul>
