@@ -13,7 +13,7 @@ const SearchOptionList = (props) => {
         )
       }
     )
-    return <span>{ options }</span>
+    return <span className='uSearchOptionList'>{ options }</span>
   }
   return null
 }
