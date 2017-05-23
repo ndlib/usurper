@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import * as statuses from '../../../../constants/APIStatuses'
+import * as statuses from '../../../constants/APIStatuses'
 
 class InlineContainer extends Component {
-  componentDidMount () {
-    if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
-      this.props.fetchHours()
-    }
-  }
-
   render () {
     switch (this.props.hoursEntry.status) {
       case statuses.FETCHING:
@@ -23,8 +17,6 @@ class InlineContainer extends Component {
 
 InlineContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
-  jsonHoursApiKey: PropTypes.string.isRequired,
-  fetchHours: PropTypes.func.isRequired,
   presenter: PropTypes.func.isRequired,
 }
 
