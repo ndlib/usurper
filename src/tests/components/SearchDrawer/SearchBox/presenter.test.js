@@ -43,8 +43,12 @@ describe('components/SearchDrawer/SearchBox/presenter.js', () => {
     expect(enzymeWrapper.find('ul#searchAction').exists()).toBe(true)
   })
 
-  it('Has 3 inputs', () => {
-    expect(enzymeWrapper.find('input')).toHaveLength(3)
+  it('Has one visible text input field', () => {
+    expect(enzymeWrapper.find('input[name=\'q\']').exists()).toBe(true)
+  })
+
+  it('Has 2 hidden inputs', () => {
+    expect(enzymeWrapper.find('input.hidden')).toHaveLength(2)
   })
 
   it('Has a search button', () => {
