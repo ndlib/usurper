@@ -1,10 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import Footer from '../../../components/Footer'
 import FooterInfo from '../../../components/Footer/FooterInfo'
 import FooterLinks from '../../../components/Footer/FooterLinks'
 
-let enzymeWrapper = mount(<Footer />)
+let enzymeWrapper = shallow(<Footer />)
 
 describe('components/Footer/index.js', () => {
   it('Renders a FooterInfo component', () => {
