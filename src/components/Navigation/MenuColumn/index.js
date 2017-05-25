@@ -17,6 +17,6 @@ MenuColumn.propTypes = {
     PropTypes.element,
   ]).isRequired,
   classes: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 export default MenuColumn

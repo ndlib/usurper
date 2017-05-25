@@ -1,15 +1,11 @@
 export const aboutData = [
   {
-    title: 'Research By Subject',
     classes: 'col-md-offset-2 col-md-2',
     items: [
-    { title: 'Title 1', url: '/url-1' },
-    { title: 'Title 2', url: '/url-2' },
-    { title: 'Title 3', url: '/url-3' },
+    { title: 'Title 1', url: '/url-1', image: '/images/image-1.png' },
     ],
   },
   {
-    title: 'Research Support',
     classes: 'col-md-3',
     items: [
     { title: 'Title A', url: '/url-a' },
@@ -20,7 +16,6 @@ export const aboutData = [
     ],
   },
   {
-    title: 'Unique Collections',
     classes: 'col-md-3',
     items: [
     { title: 'Title X', url: '/url-x' },

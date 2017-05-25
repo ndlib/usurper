@@ -1,6 +1,6 @@
 export const servicesData = [
   {
-    title: 'Research By Subject',
+    title: 'Featured Services',
     classes: 'col-md-offset-2 col-md-2',
     items: [
     { title: 'Title 1', url: '/url-1' },
@@ -9,18 +9,17 @@ export const servicesData = [
     ],
   },
   {
-    title: 'Research Support',
+    title: 'Borrow',
     classes: 'col-md-3',
     items: [
     { title: 'Title A', url: '/url-a' },
     { title: 'Title B', url: '/url-b' },
     { title: 'Title C', url: '/url-c' },
-    { title: 'Title D', url: '/url-d' },
-    { title: 'Title E', url: '/url-e' },
+
     ],
   },
   {
-    title: 'Unique Collections',
+    title: 'Teaching and Consulting',
     classes: 'col-md-3',
     items: [
     { title: 'Title X', url: '/url-x' },

@@ -1,6 +1,6 @@
 export const librariesData = [
   {
-    title: 'Research By Subject',
+    title: 'Hesburgh Libraries',
     classes: 'col-md-offset-2 col-md-2',
     items: [
     { title: 'Title 1', url: '/url-1' },
@@ -9,7 +9,7 @@ export const librariesData = [
     ],
   },
   {
-    title: 'Research Support',
+    title: 'Global Gateways',
     classes: 'col-md-3',
     items: [
     { title: 'Title A', url: '/url-a' },
@@ -20,7 +20,7 @@ export const librariesData = [
     ],
   },
   {
-    title: 'Unique Collections',
+    title: 'Area Libraries',
     classes: 'col-md-3',
     items: [
     { title: 'Title X', url: '/url-x' },
