@@ -3,9 +3,8 @@ export const researchData = [
     title: 'Research By Subject',
     classes: 'col-md-offset-2 col-md-2',
     items: [
-    { title: 'Title 1', url: '/url-1' },
-    { title: 'Title 2', url: '/url-2' },
-    { title: 'Title 3', url: '/url-3' },
+    { title: 'Title 1', url: '/url-1', image: '/images/a.png' },
+    { title: 'Title 2', url: '/url-2', image: '/images/b.png' },
     ],
   },
   {
