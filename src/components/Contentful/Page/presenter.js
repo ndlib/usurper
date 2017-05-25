@@ -6,9 +6,11 @@ import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
+import PageTitle from '../../PageTitle'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid'>
+    <PageTitle title={cfPageEntry.fields.title} />
     <h2>{ cfPageEntry.fields.title }</h2>
     <hr />
     <div className='row'>

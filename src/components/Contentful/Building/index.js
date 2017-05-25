@@ -4,17 +4,19 @@ import PropTypes from 'prop-types'
 import '../../../static/css/global.css'
 import Link from '../../Link'
 import Image from '../../Image'
+import PageTitle from '../../PageTitle'
 
 const BuildingPresenter = ({ cfBuildingEntry }) => (
-  <div key={ `ContentfulBuilding_${cfBuildingEntry.sys.id}` } >
+  <div key={`ContentfulBuilding_${cfBuildingEntry.sys.id}`} >
+    <PageTitle title={cfBuildingEntry.fields.title} />
     <h2>{ cfBuildingEntry.fields.title }</h2>
-    <Image cfImage={ cfBuildingEntry.fields.image } />
-    <Link to={ cfBuildingEntry.fields.mapLink }>Map</Link>
+    <Image cfImage={cfBuildingEntry.fields.image} />
+    <Link to={cfBuildingEntry.fields.mapLink}>Map</Link>
   </div>
 )
 
 BuildingPresenter.propTypes = {
-  cfBuildingEntry: PropTypes.object.isRequired
+  cfBuildingEntry: PropTypes.object.isRequired,
 }
 
 export default BuildingPresenter
