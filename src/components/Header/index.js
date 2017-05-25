@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react'
-import { Route, Switch } from 'react-router'
+import { Route } from 'react-router'
 import BrandingBanner from './BrandingBanner'
 import HesburghBanner from './HesburghBanner'
 import FeedbackButton from '../FeedbackButton'
@@ -19,7 +19,6 @@ const Header = (props) => {
         <SearchDrawer {...props} />
       </div>
     </div>
-
   )
 }
 
