@@ -2,6 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Navigation from './presenter'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../actions/search'
+import { researchData } from './data/research.js'
+import { servicesData } from './data/services.js'
+import { librariesData } from './data/libraries.js'
+import { aboutData } from './data/about.js'
 import {
   openMenu,
   closeMenus,
@@ -62,15 +66,43 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (state, dispatchProps, ownProps) => {
+  const dropDowns = [
+    {
+      title: 'Research',
+      landingPage: '/research',
+      menuId: RESEARCH_MENU,
+      menuData: researchData,
+      onClick: state.menus.menuId === RESEARCH_MENU ? dispatchProps.closeMenus : dispatchProps.openResearch,
+    },
+    {
+      title: 'Services',
+      landingPage: '/services',
+      menuId: SERVICES_MENU,
+      menuData: servicesData,
+      onClick: state.menus.menuId === SERVICES_MENU ? dispatchProps.closeMenus : dispatchProps.openServices,
+    },
+    {
+      title: 'Libraries',
+      landingPage: '/libraries',
+      menuId: LIBRARIES_MENU,
+      menuData: librariesData,
+      onClick: state.menus.menuId === LIBRARIES_MENU ? dispatchProps.closeMenus : dispatchProps.openLibraries,
+    },
+    {
+      title: 'About',
+      landingPage: '/about',
+      menuId: ABOUT_MENU,
+      menuData: aboutData,
+      onClick: state.menus.menuId === ABOUT_MENU ? dispatchProps.closeMenus : dispatchProps.openAbout,
+    },
+  ]
   return {
+    dropDowns: dropDowns,
     handleDrawerClick: state.search.drawerOpen ? dispatchProps.closeSearchDrawer : dispatchProps.openSearchDrawer,
-    handleResearchClick: state.menus.menuId === RESEARCH_MENU ? dispatchProps.closeMenus : dispatchProps.openResearch,
-    handleServicesClick: state.menus.menuId === SERVICES_MENU ? dispatchProps.closeMenus : dispatchProps.openServices,
-    handleLibrariesClick: state.menus.menuId === LIBRARIES_MENU ? dispatchProps.closeMenus : dispatchProps.openLibraries,
-    handleAboutClick: state.menus.menuId === ABOUT_MENU ? dispatchProps.closeMenus : dispatchProps.openAbout,
     handleAskClick: state.menus.menuId === ASK_MENU ? dispatchProps.closeMenus : dispatchProps.openAsk,
     ...state,
     ...dispatchProps,
+    ...ownProps,
   }
 }
 

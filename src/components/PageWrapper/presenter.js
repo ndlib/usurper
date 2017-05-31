@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Header from '../Header'
 import Footer from '../Footer'
+import '../../static/css/_base.scss'
+import '../../static/css/fonts.css'
+import '../../static/css/flexboxgrid.css'
 import '../../static/css/global.css'
 
 const PageWrapper = (props) => (
@@ -19,5 +22,6 @@ PageWrapper.propTypes = {
     PropTypes.object,
     PropTypes.array,
   ]).isRequired,
+  clickOnPage: PropTypes.func.isRequired,
 }
 export default PageWrapper
