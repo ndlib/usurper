@@ -8,19 +8,15 @@ export const aboutData = [
   {
     classes: 'col-md-3',
     items: [
-    { title: 'Title A', url: '/url-a' },
-    { title: 'Title B', url: '/url-b' },
-    { title: 'Title C', url: '/url-c' },
-    { title: 'Title D', url: '/url-d' },
-    { title: 'Title E', url: '/url-e' },
+
     ],
   },
   {
     classes: 'col-md-3',
     items: [
-    { title: 'Title X', url: '/url-x' },
-    { title: 'Title Y', url: '/url-y' },
-    { title: 'Title Z', url: '/url-z' },
+    { title: 'Directory', url: 'http://library.nd.edu/directory' },
+    { title: 'Contact Us', url: '/get-help' },
+    { title: 'Library Employment', url: '/employment' },
     ],
   },
 ]

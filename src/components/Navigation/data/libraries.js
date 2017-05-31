@@ -1,31 +1,108 @@
 export const librariesData = [
   {
     title: 'Hesburgh Libraries',
-    classes: 'col-md-offset-2 col-md-2',
+    classes: 'col-md-offset-2 col-md-3',
     items: [
-    { title: 'Title 1', url: '/url-1' },
-    { title: 'Title 2', url: '/url-2' },
-    { title: 'Title 3', url: '/url-3' },
+      {
+        title: 'Architecture Library',
+        url: '/architecture',
+      },
+      {
+        title: 'Business Library',
+        url: '/business',
+      },
+      {
+        title: 'Center for Digital Scholarship',
+        url: 'http://library.nd.edu/cds/',
+      },
+      {
+        title: 'Chemistry/Physics Library',
+        url: '/chemistry',
+      },
+      {
+        title: 'Engineering Library',
+        url: '/engineering',
+      },
+      {
+        title: 'Kellogg/Kroc Library',
+        url: '/kellogg-kroc',
+      },
+      {
+        title: 'Mathematics Library',
+        url: '/mathematics',
+      },
+      {
+        title: 'Medieval Institute Library',
+        url: '/medieval',
+      },
+      {
+        title: 'Preservation',
+        url: '/preservation',
+      },
+      {
+        title: 'Rare Books and Special Collections',
+        url: 'http://rarebooks.library.nd.edu/',
+      },
+      {
+        title: 'University Archives',
+        url: 'http://archives.nd.edu/',
+      },
+      {
+        title: 'Visual Resources Cente',
+        url: '/visual-resources-center',
+      },
     ],
   },
   {
     title: 'Global Gateways',
-    classes: 'col-md-3',
+    classes: 'col-md-2',
     items: [
-    { title: 'Title A', url: '/url-a' },
-    { title: 'Title B', url: '/url-b' },
-    { title: 'Title C', url: '/url-c' },
-    { title: 'Title D', url: '/url-d' },
-    { title: 'Title E', url: '/url-e' },
+      {
+        title: 'London',
+        url: '/london-global-gateway',
+      },
+      {
+        title: 'Rome',
+        url: '/rome-global-gateway',
+      },
+      {
+        title: 'Tantur',
+        url: '/jerusalem-global-gateway',
+      },
     ],
   },
   {
     title: 'Area Libraries',
     classes: 'col-md-3',
     items: [
-    { title: 'Title X', url: '/url-x' },
-    { title: 'Title Y', url: '/url-y' },
-    { title: 'Title Z', url: '/url-z' },
+      {
+        title: 'St. Joseph County Public Library',
+        url: 'http://sjcpl.lib.in.us/',
+      },
+      {
+        title: 'Bethel College Bowen Library',
+        url: 'https://www.bethelcollege.edu/library/',
+      },
+      {
+        title: 'Saint Mary\'s College Cushwa-Leighton Library',
+        url: 'https://www.saintmarys.edu/library/',
+      },
+      {
+        title: 'Holy Cross College McKenna Library',
+        url: 'http://www.hcc-nd.edu/mckenna-library/',
+      },
+      {
+        title: 'Indiana University South Bend',
+        url: 'https://www.iusb.edu/library/',
+      },
+      {
+        title: 'Kresge Law Library',
+        url: 'http://law.nd.edu/library/',
+      },
+      {
+        title: 'Institute for Latino Studies Julian Samora Library',
+        url: 'http://latinostudies.nd.edu/library-archives/',
+      },
     ],
   },
 ]

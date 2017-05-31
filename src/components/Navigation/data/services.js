@@ -3,18 +3,38 @@ export const servicesData = [
     title: 'Featured Services',
     classes: 'col-md-offset-2 col-md-2',
     items: [
-    { title: 'Title 1', url: '/url-1' },
-    { title: 'Title 2', url: '/url-2' },
-    { title: 'Title 3', url: '/url-3' },
+      {
+        title: 'Reserve a Room',
+        url: '/room-reservations',
+        image: '/images/reserveroom.jpg',
+      },
+      {
+        title: 'Copy, Print, Scan',
+        url: '/copy-print-scan',
+        image: '/images/scan.jpg',
+      },
     ],
   },
   {
     title: 'Borrow',
     classes: 'col-md-3',
     items: [
-    { title: 'Title A', url: '/url-a' },
-    { title: 'Title B', url: '/url-b' },
-    { title: 'Title C', url: '/url-c' },
+      {
+        title: 'Borrow, Renew, Request Policies',
+        url: '/borrow-renew-request',
+      },
+      {
+        title: 'Interlibrary Loan & Document Delivery',
+        url: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll',
+      },
+      {
+        title: 'Course Reserves',
+        url: 'https://reserves.library.nd.edu/courses',
+      },
+      {
+        title: 'Technology Lending Policies',
+        url: '/technology-lending',
+      },
 
     ],
   },
@@ -22,9 +42,22 @@ export const servicesData = [
     title: 'Teaching and Consulting',
     classes: 'col-md-3',
     items: [
-    { title: 'Title X', url: '/url-x' },
-    { title: 'Title Y', url: '/url-y' },
-    { title: 'Title Z', url: '/url-z' },
+      {
+        title: 'Request Library Research Instruction',
+        url: '/request-library-research-instruction',
+      },
+      {
+        title: 'Workshops',
+        url: '/workshops',
+      },
+      {
+        title: 'Thesis and Dissertation Camps',
+        url: '/thesis-dissertation-camps',
+      },
+      {
+        title: 'Consultations (Meet with a Librarian)',
+        url: '/consultation-teaching',
+      },
     ],
   },
 ]
