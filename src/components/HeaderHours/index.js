@@ -1,7 +1,6 @@
 'use strict'
 import React, { Component } from 'react'
 import '../../static/css/global.css'
-import '../../static/css/home.css'
 
 class HeaderHours extends Component {
   render () {
