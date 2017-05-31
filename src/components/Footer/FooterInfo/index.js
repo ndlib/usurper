@@ -19,7 +19,7 @@ const FooterInfo = () => {
           </div>
           <div className='col-xs-12 col-md-4'>
             <div className='box right'>
-              <img src='/images/logo.png' className='flogo' />
+              <img src='/static/media/logo.png' className='flogo' />
             </div>
           </div>
         </div>
