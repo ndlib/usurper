@@ -4,9 +4,13 @@
   color: #999;
 }
 
+* { Box-sizing: Border-box } 
+
 body {
   background: url("../images/background.png");
   min-height: 100%;
+  font-family: sans-serif;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -422,8 +426,8 @@ body.gold-blue #header h4 a {
 
 /*
 .scrolled .hlhome {
-	padding:16px 0 16px !important;
-	transition-duration: .5s, .5s;
+  padding:16px 0 16px !important;
+  transition-duration: .5s, .5s;
 }*/
 .hours-display p {
   text-align: center;
@@ -461,9 +465,7 @@ body.gold-blue #header h4 a {
   padding-right:  35px;
 }
 
-.Home .login {
-    top: 15px;
-}
+
 .login {
   position: absolute;
   right: 30px;
@@ -484,7 +486,7 @@ body.gold-blue #header h4 a {
   height: 0;
   padding-top: 37px;
   overflow: hidden;
-  background: url('../images/logout.png');
+  background: url('/images/logout.png');
 }
 
 
@@ -648,13 +650,13 @@ div.visible > .menu-drawer {
   left: 13vw;
   left: calc(((100vw - 1200px) / 2) + 2vw);
   top: 3vw;
+  width: 60vw;
 }
 .appliance label {
   color: #fff;
 
   border-right: none;
   font-size: 18px;
-  margin-right: -7px;
 }
 
 label {position:relative}
@@ -666,7 +668,8 @@ label[for='q']:after {
     -moz-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg);
-    right:10px; top:2px;
+    right:10px; 
+    top:10px;
     padding:0 0 2px;
     border-bottom:1px solid #fff;
     position:absolute;
@@ -688,7 +691,6 @@ label[for='q']:after {
 .appliance ul li {
   background: #5b412d;
   color: #fff;
-  width: 100%;
   padding:10px 0 7px 20px;
 }
 
@@ -769,7 +771,7 @@ label[for='q']:after {
   padding: 6px;
   border-right: none;
   font-size: 18px;
-  height: 34px;
+
 }
 
 .appliance option {
@@ -787,6 +789,27 @@ label[for='q']:after {
   text-decoration: none;
 }
 
+.appliance .additional-links {
+  margin-top: -1.5em;
+  padding-top: 3px;
+}
+
+
+.set-default-search label, .additional-links, .has-default-search {
+  font-size: 12px !important;
+  color: #fff;
+  padding-left: 5px;
+}
+
+.has-default-search a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.set-default-search, .additional-links, .has-default-search {
+  padding-top: 4px;
+}
+
 .search-on {
 }
 
@@ -796,6 +819,15 @@ label[for='q']:after {
 
 .sidebar img {
   max-width: 100%;
+}
+
+.uSearchBox {
+  display: grid;
+  grid-template-columns:2fr 3fr 1fr;
+}
+
+.uSearchBox label {
+
 }
 
 /* Landing Pages */
@@ -1333,38 +1365,46 @@ button a {
   text-decoration: none;
 }
 
+.topnav, .menu-icon {
+  display: none;
+}
 
+.responsivenav {
+  display: block;
+  position: absolute;
+  right: 0;
+  background: #fff;
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  width: 50vw;
+}
 
-
-
-@media screen and (max-width: 1200px) {
-    .container-fluid {
-        margin: 0 2vw;
-    }
-    .login {
-      right: 50px;
-    }
-    .appliance {
-      left: 1vw;
-    }
-    .logout {
-      right: 1vw;
-    }
+.responsivenav a {
+  padding: 4px;
+  color: #333;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .feedback-notice-me {
   position: absolute;
-  right: 0;
+  right: 0px;
   top: 224px;
   z-index: 199;
+  background: rgba(0, 0, 0, 0) repeating-linear-gradient(45deg, #000, #000 5px, #fcc828 5px, #fcc828 10px) repeat scroll 0 0;
+  padding: 6px;
 }
 
 .feedback-notice-me a {
   margin: 0;
   padding: 10px;
-  color: white;
-  background-color: red;
+  color: #333;
+  background-color: #f1ff62;
   text-decoration: none;
+  display: block;
+  font-family: GPCBold;
 }
 
 .feedback-notice-me a:hover {
@@ -1374,9 +1414,9 @@ button a {
 .feedback-notice-me a .tool-tip {
   display: none;
   top:50px; /* - top padding */
-  right:9999px;
+  right:20px;
   width:200px;
-  margin-left:-40px; /* width + left/right padding */
+  margin-left:-70px; /* width + left/right padding */
   padding:10px;
   color:#fff;
   background:#333;
@@ -1400,29 +1440,143 @@ button a {
   border-bottom-color: #333;
 }
 
+@media screen and (max-width: 560px) {
+  .dept-prov, .header-hours {
+    display: none;
+  }
+  #header.gtype .nddotedu {
+    margin: 0 auto !important;
+    float: none !important;
+  }
+  .hlhome {
+    font-size: 22px;
+  }
+  .hlhome em {
+    display: block;
+  }
+  .hlhome span {
+    font-size: 9px;
+    bottom: .8em;
+    padding:1px 2px;
+  }
+  .news-card img {
+    width: 100%;
+    max-width: 100%;
+    float: none;
+  }
+  .news-card header {
+    clear: both;
+  }
+  .menu-list div:not(:first-child) {display: none;}
+
+  .menu-list div.menu-icon {
+    display: block;
+    float: right;
+    position: relative;
+    z-index: 4000;
+  }
+  .menu-list div.search {
+    display: block;
+    float: right;
+  }
+  #drawer {
+
+  }
+  .appliance {
+    left: 0 !important;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .alpha {
+    font-size: 15px;
+    top: 28px;
+
+  }
+  .alpha img {
+    height: 15px;
+  }
+  .feedback-notice-me {
+    top: 0;
+    right: 25vw;
+    display: none;
+  }
+
+  #drawer {
+    height: auto;
+  }
+
+
+  .appliance ul {
+    width: 100%;
+  }
+
+  .uSearchBox {
+    grid-template-columns:2fr 1fr;
+  }
+  .uSearchBox label {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+  .uSearchBox input {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  .uSearchBox button {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+}
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .container-fluid {
+        margin: 0 2vw;
+    }
+    .login {
+      right: 50px;
+    }
+    .appliance {
+      left: 1vw;
+    }
+    .logout {
+      right: 1vw;
+    }
+}
+
 
 body {
-		background: url("../images/background.png");
+    background: url("../images/background.png");
 }
 
 
 .hours {
-	background: url('../images/hours.png') no-repeat right 5px top 9px;
+  background: url('../images/hours.png') no-repeat right 5px top 9px;
 }
 
 
 
 nav {
-	background: #fff url('../images/glass.gif') ;
-	}
+  background: #fff url('../images/glass.gif') ;
+  }
 
 #banner .container-fluid {
-	background-image: url('../images/jesus.gif');
-	background-size: contain;
-	background-position: right 200px top;
+  background-image: url('../images/jesus.gif');
+  background-size: contain;
+  background-position: right 200px top;
 }
 
 #drawer {
-	background: url('../images/couch.jpg') top;
-	background-size: cover;
+  background: url('../images/couch.jpg') top;
+  background-size: cover;
 }

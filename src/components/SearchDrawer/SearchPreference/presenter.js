@@ -8,7 +8,7 @@ const SearchPreference = (props) => {
     return (
       <div className='has-default-search'>{
         props.search.pref.title
-      } is your default search. <a onClick={props.forgetClick}>clear</a></div>
+      } is your default search. <a onClick={props.forgetClick}>CLEAR</a></div>
     )
   }
 
