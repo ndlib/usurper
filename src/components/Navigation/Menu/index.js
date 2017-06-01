@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Menu = (props) => {
   return (
-    <div className='menu-drawer'>
+    <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'}>
       <div className='container-fluid row'>
         {props.children}
       </div>
@@ -25,6 +25,7 @@ Menu.propTypes = {
   ]),
   title: PropTypes.string.isRequired,
   landingPage: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
 }
 
 export default Menu

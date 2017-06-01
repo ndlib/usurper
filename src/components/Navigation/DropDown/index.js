@@ -5,8 +5,7 @@ import MenuColumn from '../MenuColumn'
 import MenuList from '../MenuColumn/MenuList'
 
 const DropDown = (props) => {
-  if (props.open) {
-    const columns = props.menuData.map(
+  const columns = props.menuData.map(
       (column, index) => {
         return (
           <MenuColumn
@@ -17,17 +16,16 @@ const DropDown = (props) => {
             <MenuList items={column.items} />
           </MenuColumn>)
       })
-    return (
-      <Menu
-        title={props.title}
-        landingPage={props.landingPage}
-        menuData={props.menuData}
+  return (
+    <Menu
+      title={props.title}
+      landingPage={props.landingPage}
+      menuData={props.menuData}
+      open={props.open}
       >
-        {columns}
-      </Menu>
-    )
-  }
-  return null
+      {columns}
+    </Menu>
+  )
 }
 
 DropDown.propTypes = {
