@@ -38,8 +38,6 @@ Resources:
         ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/nodejs:7.0.0
         EnvironmentVariables:
-        - Name: NODE_ENV
-          Value: production
         - Name: REACT_OUTPUT
           Value: !Ref OutBucket
       Source:

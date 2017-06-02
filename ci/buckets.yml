@@ -33,3 +33,16 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${ServiceName}-built
+
+  WebPolicy:
+    Type: AWS::S3::BucketPolicy
+    DependsOn: OutBucket
+    Properties:
+      Bucket: !Ref OutBucket
+      PolicyDocument:
+        Version: "2008-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${OutBucket}/*"
