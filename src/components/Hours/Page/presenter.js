@@ -11,11 +11,13 @@ const Presenter = (hoursEntry) => {
       <div>
         <p>View building and service desk hours.</p>
       </div>
+      <div className="service-point-list">
       {
         Object.keys(hoursEntry).map((hoursKey) => {
           return (<CurrentHours jsonHoursApiKey={hoursKey} key={hoursKey} />)
         })
       }
+      </div>
     </div>
   )
 }

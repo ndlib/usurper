@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from '../images/logo.png'
 
 const FooterInfo = () => {
   return (
@@ -19,7 +20,7 @@ const FooterInfo = () => {
           </div>
           <div className='col-xs-12 col-md-4'>
             <div className='box right'>
-              <img src='/static/media/logo.png' className='flogo' />
+              <img src={Logo} className='flogo' />
             </div>
           </div>
         </div>

@@ -1,4 +1,6 @@
 import React from 'react'
+import Facebook from '../images/facebook.png'
+import Twitter from '../images/twitter.png'
 
 const FooterLinks = () => {
   return (
@@ -18,9 +20,9 @@ const FooterLinks = () => {
 
           <div className='col-xs-4 col-xs-offset-2'>
             <div className='box right'>
-              <ul><li><a href='http://twitter.com/ndlibraries' target='_blank'><img src='/images/twitter.png' /> NDLibraries</a></li>
+              <ul><li><a href='http://twitter.com/ndlibraries' target='_blank'><img src={Twitter} /> NDLibraries</a></li>
 
-                <li><a href='https://www.facebook.com/hesburghlibraries/' target='_blank'><img src='/images/facebook.png' /> NDLibraries</a></li></ul>
+                <li><a href='https://www.facebook.com/hesburghlibraries/' target='_blank'><img src={Facebook} /> NDLibraries</a></li></ul>
             </div>
           </div>
         </div>

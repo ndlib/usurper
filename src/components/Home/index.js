@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../../static/css/global.css'
+
 import HomePageHours from '../Hours/HomePage'
 import HeaderHours from '../Hours/Header'
 import PageTitle from '../PageTitle'
