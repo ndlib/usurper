@@ -18,15 +18,21 @@ const mapDispatchToProps = (dispatch) => {
 
 export class ContentfulPageContainer extends Component {
   componentDidMount () {
-    let pageSlug = this.props.match.params.id
+    const pageSlug = this.props.match.params.id
     this.props.fetchPage(pageSlug)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.cfPageEntry.status === statuses.SUCCESS
-      && nextProps.cfPageEntry.json.fields.requiresLogin) {
+    if (nextProps.cfPageEntry.status === statuses.SUCCESS &&
+      nextProps.cfPageEntry.json.fields.requiresLogin) {
       this.props.clearPage()
       this.props.history.push('/secure/' + nextProps.match.params.id)
+    }
+
+    const slug = this.props.match.params.id
+    const nextSlug = nextProps.match.params.id
+    if (slug !== nextSlug) {
+      this.props.fetchPage(nextSlug)
     }
   }
 
