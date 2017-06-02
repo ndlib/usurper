@@ -8,9 +8,9 @@ Parameters:
   OAuth:
     Type: String
     Description: The OAuth token to use for the repo
-  Stage:
+  ServiceName:
     Type: String
-    Description: The stage for this stack
+    Description: The Service name
   TemplateLoc:
     Type: String
     Description: The bucket url where these templates are stored
@@ -19,31 +19,30 @@ Resources:
   BucketsStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL:
-        Fn::Sub: ${TemplateLoc}/buckets.yml
+      TemplateURL: !Sub ${TemplateLoc}/buckets.yml
       Parameters:
-        ServiceName:
-          Fn::Sub: ${Repo}-ci-${Stage}
+        ServiceName: !Ref ServiceName
 
   RolesStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: BucketsStack
     Properties:
-      TemplateURL:
-        Fn::Sub: ${TemplateLoc}/roles.yml
+      TemplateURL: !Sub ${TemplateLoc}/roles.yml
       Parameters:
-        ServiceName:
-          Fn::Sub: ${Repo}-ci-${Stage}
+        ServiceName: !Ref ServiceName
+        OutBucket: !GetAtt BucketsStack.Outputs.OutBucket
+        ArtifactBucket: !GetAtt BucketsStack.Outputs.ArtifactBucket
 
   ResourcesStack:
     Type: AWS::CloudFormation::Stack
     DependsOn: RolesStack
     Properties:
-      TemplateURL:
-        Fn::Sub: ${TemplateLoc}/resources.yml
+      TemplateURL: !Sub ${TemplateLoc}/resources.yml
       Parameters:
-        ServiceName:
-          Fn::Sub: ${Repo}-ci-${Stage}
+        OutBucket: !GetAtt BucketsStack.Outputs.OutBucket
+        ArtifactBucket: !GetAtt BucketsStack.Outputs.ArtifactBucket
+        RoleArn: !GetAtt RolesStack.Outputs.RoleArn
+        ServiceName: !Ref ServiceName
         Repo: !Ref Repo
         Branch: !Ref Branch
         OAuth: !Ref OAuth

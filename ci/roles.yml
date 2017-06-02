@@ -1,20 +1,21 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Roles for CI stack"
 
-Outputs:
-  RoleName:
-    Description: The build role for CI
-    Value:
-      Fn::GetAtt:
-        - BuildServiceRole
-        - Arn
-    Export:
-      Name: !Sub ${ServiceName}-ServiceRole
-
 Parameters:
   ServiceName:
     Type: String
     Description: The name of the service
+  OutBucket:
+    Type: String
+    Description: Name of the output bucket
+  ArtifactBucket:
+    Type: String
+    Description: Name of the artifact bucket
+
+Outputs:
+  RoleArn:
+    Description: The build role for CI
+    Value: !GetAtt BuildServiceRole.Arn
 
 Resources:
   BuildServiceRole:
@@ -44,22 +45,7 @@ Resources:
                 Effect: "Allow"
                 Action: "s3:*"
                 Resource:
-                  - Fn::Sub:
-                    - "arn:aws:s3:::${OutBucket}"
-                    - OutBucket:
-                        Fn::ImportValue: !Sub ${ServiceName}-OutBucket
-
-                  - Fn::Sub:
-                    - "arn:aws:s3:::${OutBucket}/*"
-                    - OutBucket:
-                        Fn::ImportValue: !Sub ${ServiceName}-OutBucket
-
-                  - Fn::Sub:
-                    - "arn:aws:s3:::${ArtifactBucket}"
-                    - ArtifactBucket:
-                        Fn::ImportValue: !Sub ${ServiceName}-ArtifactBucket
-
-                  - Fn::Sub:
-                    - "arn:aws:s3:::${ArtifactBucket}/*"
-                    - ArtifactBucket:
-                        Fn::ImportValue: !Sub ${ServiceName}-ArtifactBucket
+                  - !Sub "arn:aws:s3:::${OutBucket}"
+                  - !Sub "arn:aws:s3:::${OutBucket}/*"
+                  - !Sub "arn:aws:s3:::${ArtifactBucket}"
+                  - !Sub "arn:aws:s3:::${ArtifactBucket}/*"

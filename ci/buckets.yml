@@ -5,13 +5,9 @@ Outputs:
   ArtifactBucket:
     Description: The artifact bucket for the build CI
     Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${ServiceName}-ArtifactBucket
   OutBucket:
     Description: The out bucket for the build CI
     Value: !Ref OutBucket
-    Export:
-      Name: !Sub ${ServiceName}-OutBucket
 
 Parameters:
   ServiceName:
@@ -31,6 +27,9 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub ${ServiceName}-built
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
       Tags:
         - Key: Name
           Value: !Sub ${ServiceName}-built
