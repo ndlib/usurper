@@ -465,12 +465,13 @@ body.gold-blue #header h4 a {
   padding-right:  35px;
 }
 
-
+.log-in-out {
+  position: relative;
+}
 .login {
   position: absolute;
   right: 30px;
-  right: calc(((100vw - 1200px) / 2) + 40px);
-  top: 15px;
+  top: -53px;
   z-index: 200;
   color: #f8e999;
   cursor: pointer;
