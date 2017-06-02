@@ -1,0 +1,25 @@
+Service: usurper-ci
+
+Stacks:
+  Single:
+    - Name: $SERVICE-$STAGE
+      Template: root.yml
+      Parameters:
+        Repo: usurper
+        Branch: master
+        OAuth: ${OAUTH}
+        ServiceName: $SERVICE-$STAGE
+        TemplateLoc: https://s3.amazonaws.com/$DEPLOY_BUCKET/$DEPLOY_FOLDER
+      Tags:
+        Name: $SERVICE-$STAGE
+        Owner: ${USER}
+        Contact: ${USER}@nd.edu
+        Description: CI for the Usurper Project
+        InceptDate: $TIMESTAMP
+
+Artifacts:
+  Templates:
+    - root.yml
+    - buckets.yml
+    - resources.yml
+    - roles.yml

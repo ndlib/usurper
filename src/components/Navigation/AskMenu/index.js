@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const AskMenu = (props) => {
   if (props.open) {
     return (
-      <div className='menu-drawer'>
+      <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'}>
         <div className='container-fluid row'>
           <ul className='child'>
             <li><a href='/chat/'>Chat with a Librarian</a></li>

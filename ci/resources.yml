@@ -14,16 +14,23 @@ Parameters:
   OAuth:
     Type: String
     Description: The OAuth token to use for the repo
+  RoleArn:
+    Type: String
+    Description: Arn of the Execution Role
+  OutBucket:
+    Type: String
+    Description: Name of the output bucket
+  ArtifactBucket:
+    Type: String
+    Description: Name of the artifact bucket
 
 Resources:
   BuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Ref ServiceName
-      Description:
-        Fn::Sub: ${Repo} Continuous Integration
-      ServiceRole:
-        Fn::ImportValue: !Sub ${ServiceName}-ServiceRole
+      Description: !Sub ${Repo} Continuous Integration
+      ServiceRole: !Ref RoleArn
       Artifacts:
         Type: CODEPIPELINE
       Environment:
@@ -34,8 +41,7 @@ Resources:
         - Name: NODE_ENV
           Value: production
         - Name: REACT_OUTPUT
-          Value:
-            Fn::ImportValue: !Sub ${ServiceName}-OutBucket
+          Value: !Ref OutBucket
       Source:
         Type: CODEPIPELINE
       TimeoutInMinutes: 10
@@ -44,8 +50,7 @@ Resources:
     Type: "AWS::CodePipeline::Pipeline"
     Properties:
       Name: !Ref ServiceName
-      RoleArn:
-        Fn::Sub: arn:aws:iam::${AWS::AccountId}:role/AWS-CodePipeline-Service
+      RoleArn: !Sub arn:aws:iam::${AWS::AccountId}:role/AWS-CodePipeline-Service
       Stages:
         -
           Name: Source
@@ -83,6 +88,5 @@ Resources:
                   Ref: BuildProject
       ArtifactStore:
         Type: S3
-        Location:
-          Fn::ImportValue: !Sub ${ServiceName}-ArtifactBucket
+        Location: !Ref ArtifactBucket
 
