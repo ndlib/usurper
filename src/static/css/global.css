@@ -4,7 +4,7 @@
   color: #999;
 }
 
-* { Box-sizing: Border-box } 
+* { Box-sizing: Border-box }
 
 body {
   background: url("../images/background.png");
@@ -552,6 +552,7 @@ nav a.search:hover {
   transition-duration: .2s, 1s;
   overflow: hidden;
   box-shadow: none;
+  height: 0;
 
 }
 .menu-drawer h4 {
@@ -573,7 +574,7 @@ nav a.search:hover {
   background: rgba(0,0,0,0.3);
 }
 
-div.visible > .menu-drawer {
+.menu-drawer.visible {
   height: auto;
   padding: 1.5em 0;
   box-shadow: 0px 5px 5px rgba(0,0,0,0.3);
@@ -668,7 +669,7 @@ label[for='q']:after {
     -moz-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg);
-    right:10px; 
+    right:10px;
     top:10px;
     padding:0 0 2px;
     border-bottom:1px solid #fff;
