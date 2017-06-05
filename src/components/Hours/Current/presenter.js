@@ -9,7 +9,7 @@ const Presenter = (hoursEntry) => {
       <h4>{hoursEntry.name}</h4>
       <WeeklyHours hours={hoursEntry.thisWeek} title='Current Hours' showEffectiveDates={false} />
       <WeeklyHours hours={hoursEntry.upcomingDifferentHours} title='Upcoming Hours' showEffectiveDates={true} />
-      <hr />
+      
     </div>
   )
 }

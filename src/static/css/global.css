@@ -377,7 +377,7 @@ body.gold-blue #header h4 a {
 
 #banner {
   clear: both;
-  background: #082142;
+  background: #082142 url('../images/fade.png') top repeat-x;
   height: 70px;
 }
 #banner .container-fluid {
@@ -574,6 +574,7 @@ nav a.search:hover {
 
 .menu-link:hover > a {
   background: rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
 .menu-drawer.visible {
@@ -1078,8 +1079,7 @@ hr {
 .service-point h5 {
   color: #601700;
   font-size: 16px;
-  font-weight: bold;
-  font-family: GPMed, sans-serif;
+  font-family: GPBold, sans-serif;
   margin-bottom: 13px;
 }
 
@@ -1391,6 +1391,37 @@ button a {
   display: inline-block;
 }
 
+.alpha {
+  position: absolute;
+  font-size: 30px;
+  padding: 6px;
+  line-height: initial;
+  transform: rotate(-45deg);
+  background: rgba(252,200,40,.6);
+  z-index: 4000;
+  color: #333;
+  text-transform: uppercase;
+  font-family: GPCMed;
+  top: 70px;
+  left: -70px;
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0) repeating-linear-gradient(45deg, #000, #000 5px, #fcc828 5px, #fcc828 10px) repeat scroll 0 0;
+}
+.alpha div {
+   padding: 3px 60px;
+   background: #F1FF62;
+}
+
+.alpha img {
+  height: 30px;
+}
+
+.alpha a {
+  color: #333;
+  text-decoration: none;
+}
+
+
 .feedback-notice-me {
   position: absolute;
   right: 0px;
@@ -1574,7 +1605,7 @@ nav {
   }
 
 #banner .container-fluid {
-  background-image: url('../images/jesus.gif');
+  background-image: url('../images/jesus.2.png');
   background-size: contain;
   background-position: right 200px top;
 }

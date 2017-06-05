@@ -1,0 +1,62 @@
+.service-point-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 40px;
+}
+
+.service-point {
+	width: 100%;
+	display: grid;
+	grid-template-columns: auto 1fr ;
+	grid-template-rows: auto auto ;
+	grid-gap: 10px;
+
+}
+
+.service-point h4 {
+	font-size: 32px;
+	background-image: none;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	min-height: 100%;
+	min-width: 106px;
+	max-width: 106px;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	
+	height: 200px;
+
+	width: auto;
+	writing-mode: vertical-rl;
+	transform: rotate(-180deg);
+
+	margin: 0 0 0 0;
+	padding: 10px;
+
+}
+
+.hours-grid {
+	margin: 0;
+	width: 100%;
+	line-height: 1.4em;
+}
+
+.service-point h5 {
+	font-size: 18px;
+}
+
+@media screen and (max-width: 800px) {
+	.service-point-list  {
+		grid-template-columns: 1fr;
+	}
+
+	.service-point h4 {
+		font-size: 24px;
+		min-width: 90px;
+		max-width: 90px;
+	}
+}
+
