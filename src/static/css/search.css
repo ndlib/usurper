@@ -1,5 +1,5 @@
 #drawer {
-	background: url('../images/moses.jpg') top;
+	background: url('../images/search.sepia.jpg') top;
 	background-size: cover;
 }
 
@@ -13,8 +13,10 @@
 	border: 1px solid #000;
 }
 
-#selected-search, #selected-search:hover, .appliance ul li, .appliance label:after  {
-	background-color: #00853A;
+#selected-search, #selected-search:hover, .appliance ul li, .appliance label:after, .appliance button  {
+	background: #00853A; /* green */
+	background-color: #5aabbc; /* teal */
+	background-color: #5a412f;
 
 }
 
@@ -22,9 +24,7 @@
 	background-color: #63B788;
 }
 
-.appliance button {
-	background: #00853A;
-}
+
 
 .hidden {
   display: none;

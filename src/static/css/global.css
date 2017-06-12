@@ -515,7 +515,7 @@ nav div > a, .menu div > a {
   font-size: 13px;
   font-family: GPHeavy, sans-serif;
   letter-spacing: 1.5px;
-  padding: 18px 19px 16px;
+  padding: 15px 19px 15px;
   display: inline-block;
 }
 nav .right, .menu .right {
@@ -526,7 +526,7 @@ nav a.search {
   border-width: 0 1px;
   background: url(../images/search.png) no-repeat;
   background-position: 16px 16px;
-  padding: 18px 26px;
+  padding: 15px 26px;
   width: 0px;
   overflow: hidden;
   text-indent: 50px;
@@ -648,7 +648,7 @@ nav a.search:hover {
 
 .appliance {
   background: rgba(10, 34, 65, 0.5);
-  padding: 14px;
+  padding: 24px;
   display: inline-block;
   position: relative;
   left: 13vw;
@@ -665,7 +665,7 @@ nav a.search:hover {
 
 label {position:relative}
 label[for='q']:after {
-    content:'<>';
+    content:'▶';
     font:11px "Consolas", monospace;
     color:#fff;
     -webkit-transform:rotate(90deg);
@@ -675,14 +675,14 @@ label[for='q']:after {
     right:10px;
     top:10px;
     padding:0 0 2px;
-    border-bottom:1px solid #fff;
+    
     position:absolute;
     pointer-events:none;
     background: #5B412D;
 }
 
 .appliance ul {
-  min-width: 320px;
+  min-width: 170px;
   display: inline-block;
   height: 34px;
   overflow-y: visible;
@@ -827,7 +827,7 @@ label[for='q']:after {
 
 .uSearchBox {
   display: grid;
-  grid-template-columns:2fr 3fr 1fr;
+  grid-template-columns:auto 3fr 1fr;
 }
 
 .uSearchBox label {
@@ -1472,6 +1472,28 @@ button a {
   margin-bottom:-10px; /* - border width */
   border: 10px solid transparent;
   border-bottom-color: #333;
+}
+
+#chat {
+  position: fixed;
+  right: 2em;
+  bottom: 0;
+}
+
+.chat-button {
+  background: #f8e999;
+  text-decoration: none;
+  padding: 8px 20px;
+  color: #041f44;
+  display: inline-block;
+  border-radius: 3px 3px 0 0;
+  font-weight: bold;
+  box-shadow: 1px 1px 3px #333;
+}
+
+.chat-button img {
+  height: .8em;
+  vertical-align: top;
 }
 
 @media screen and (max-width: 560px) {
