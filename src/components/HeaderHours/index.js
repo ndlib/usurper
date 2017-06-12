@@ -6,7 +6,7 @@ class HeaderHours extends Component {
   render () {
     return (
       <div className='header-hours'>
-        <p>Hesburgh Libraries Service Points: <a href='/page/hours/'>Open All Day</a></p>
+        <p>Hesburgh Libraries Service Points: <a href='/hours/'>Open All Day</a></p>
       </div>
     )
   }

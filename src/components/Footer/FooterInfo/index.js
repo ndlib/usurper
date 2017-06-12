@@ -16,7 +16,7 @@ const FooterInfo = () => {
           </div>
           <div className='col-xs-12 col-md-4'>
             <div className='box center'>
-              <a href='/page/hours/' className='hours'>Hours</a>
+              <a href='/hours/' className='hours'>Hours</a>
             </div>
           </div>
           <div className='col-xs-12 col-md-4'>
