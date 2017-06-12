@@ -1,4 +1,5 @@
 import React from 'react'
+import PageTitle from '../PageTitle'
 
 const Chat = () => {
   return (
@@ -20,6 +21,7 @@ const Chat = () => {
           />
         </div>
       </div>
+      <PageTitle title='Chat with a Librarian' />
     </div>
   )
 }
