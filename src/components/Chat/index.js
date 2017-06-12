@@ -3,6 +3,8 @@ import React from 'react'
 const Chat = () => {
   return (
     <div className='chat'>
+      <h1>Chat with a Librarian</h1>
+      <br />
       <p>Chat is normally staffed 9:00 a.m. to 10:00 p.m.</p>
       <div>
         <div className='libraryh3lp'>
