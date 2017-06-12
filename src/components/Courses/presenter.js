@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import PageTitle from '../PageTitle'
 
 class Courses extends Component {
-  componentDidMount () {
-    if (!this.props.linkOnly) {
-      document.title = 'Courses | Hesburgh Library'
-    }
-  }
-
   courseCard (course, showInstructors = true) {
 // courseNumber:'27800',
 // department:'PSY',
@@ -88,6 +83,7 @@ class Courses extends Component {
     }
     return (
       <div key='courses'>
+        <PageTitle title='Courses' />
         <Link to='/personal'>My Items</Link>
         <div className='alert'>
           <p><strong>Attention:</strong> Courses listed below are for demonstration purposes only.</p>
