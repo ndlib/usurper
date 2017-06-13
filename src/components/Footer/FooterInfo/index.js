@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../images/logo.png'
 import Chat from '../images/chat.png'
+import Link from '../../Link'
 
 const FooterInfo = () => {
   return (
@@ -27,7 +28,7 @@ const FooterInfo = () => {
         </div>
       </div>
       <div id='chat'>
-        <a href='' className='chat-button'><img src={Chat} /> Chat with us</a>
+        <Link to='/chat' className='chat-button'><img src={Chat} /> Chat with us</Link>
 
       </div>
     </div>
