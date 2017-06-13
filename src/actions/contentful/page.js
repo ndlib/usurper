@@ -15,7 +15,7 @@ export const CF_NO_SUCH_PAGE = 'CF_NO_SUCH_PAGE'
 const receivePage = (page, response) => {
   let error = {
     type: CF_RECEIVE_PAGE,
-    status: statuses.ERROR,
+    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
     receivedAt: Date.now(),
   }
@@ -56,10 +56,8 @@ export const fetchPage = (page) => {
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
-    return fetch(url, {
-      headers: headers,
-    })
-      .then(response => response.json())
+    return fetch(url, { headers })
+      .then(response => response.ok ? response.json() : { status: response.status })
       .then(json => dispatch(receivePage(page, json)))
       .catch(response => dispatch(receivePage(page, response)))
   }

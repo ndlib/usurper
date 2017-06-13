@@ -11,11 +11,10 @@ export const requestFloor = (floor) => {
 }
 
 export const CF_RECEIVE_FLOOR = 'CF_RECEIVE_FLOOR'
-export const CF_NO_SUCH_FLOOR = 'CF_NO_SUCH_FLOOR'
 const receiveFloor = (floor, response) => {
   let error = {
     type: CF_RECEIVE_FLOOR,
-    status: statuses.ERROR,
+    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
     receivedAt: Date.now(),
   }
@@ -43,7 +42,7 @@ export const fetchFloor = (floor) => {
   return dispatch => {
     dispatch(requestFloor(floor))
     return fetch(url)
-      .then(response => response.json())
+      .then(response => response.ok ? response.json() : { status: response.status })
       .then(json => dispatch(receiveFloor(floor, json)))
       .catch(response => dispatch(receiveFloor(floor, response)))
   }
