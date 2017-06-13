@@ -37,8 +37,8 @@ const receiveFloor = (floor, response) => {
   }
 }
 
-export const fetchFloor = (floor) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${floor}`
+export const fetchFloor = (floor, preview) => {
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${floor}&preview=${preview}`
   return dispatch => {
     dispatch(requestFloor(floor))
     return fetch(url)

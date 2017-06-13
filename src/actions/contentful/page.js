@@ -48,8 +48,8 @@ export function clearPage () {
   }
 }
 
-export const fetchPage = (page) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${page}`
+export const fetchPage = (page, preview) => {
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${page}&preview=${preview}`
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 

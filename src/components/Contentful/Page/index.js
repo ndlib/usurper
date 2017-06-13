@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
 export class ContentfulPageContainer extends Component {
   componentDidMount () {
     const pageSlug = this.props.match.params.id
-    this.props.fetchPage(pageSlug)
+    const preview = this.props.match.path === '/preview/:id'
+    this.props.fetchPage(pageSlug, preview)
   }
 
   componentWillReceiveProps (nextProps) {
