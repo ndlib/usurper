@@ -35,7 +35,7 @@ const Loaded = (info, className) => {
                 phone={librarian.phone}
                 email={librarian.email}
               />
-              <Image src={librarian.photo} alt={librarian.name} defaultImage='/images/librarian.gif' />
+              <Image src={librarian.photo} alt={librarian.name} defaultImage='images/librarian.gif' />
             </div>
           )
         })
