@@ -1,14 +1,14 @@
 'use strict'
 import React from 'react'
-import LoginStatus from '../Login'
 import Recommendations from '../Recommendations'
 import LoanResources from '../LoanResources'
 import Courses from '../Courses'
+import PageTitle from '../PageTitle'
 
 const PersonalInfo = () => {
   return (
     <div className='container-fluid'>
-      <LoginStatus />
+      <PageTitle title='Items' />
       <Courses linkOnly />
       <Recommendations />
       <div><LoanResources /></div>
