@@ -8,7 +8,7 @@ import Home from '../../components/Home'
 import PersonalInfo from '../../components/PersonalInfo'
 import Courses from '../../components/FakeCourses'
 import Hours from '../../components/Hours/Page'
-
+import Chat from '../../components/Chat'
 import ContentfulPage from '../../components/Contentful/Page'
 import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
@@ -32,6 +32,7 @@ const App = () => {
           <Route exact path='/personal' component={PersonalInfo} />
           <Route exact path='/courses' component={Courses} />
           <Route exact path='/hours' component={Hours} />
+          <Route exact path='/chat' component={Chat} />
           <Route exact path='/preview/floor/:id' component={ContentfulFloor} />
           <Route exact path='/preview/:id' component={ContentfulPage} />
           <Route exact path='/floor/:id' component={ContentfulFloor} />
