@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import Config from '../../shared/Configuration'
 import * as statuses from '../../constants/APIStatuses'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
@@ -49,7 +50,7 @@ export function clearPage () {
 }
 
 export const fetchPage = (page) => {
-  let url = `/${page}.json`
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${page}`
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 

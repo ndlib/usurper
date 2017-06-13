@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import Config from '../../shared/Configuration'
 import * as statuses from '../../constants/APIStatuses'
 
 export const CF_REQUEST_FLOOR = 'CF_REQUEST_FLOOR'
@@ -38,7 +39,7 @@ const receiveFloor = (floor, response) => {
 }
 
 export const fetchFloor = (floor) => {
-  let url = `/${floor}.json`
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${floor}`
   return dispatch => {
     dispatch(requestFloor(floor))
     return fetch(url)
