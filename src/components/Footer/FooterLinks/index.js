@@ -12,7 +12,7 @@ const FooterLinks = () => {
               <ul>
                 <li><a href='https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLSdL4MnInHvXcQke9dJQ1Idkv2O23u9dBV_9ky40WDOV77B_MA/viewform?c=0&amp;w=1'>Feedback</a></li>
                 <li><a href='http://librarygiving.nd.edu'>Library Giving</a></li>
-                <li><a href='/page/employment/'>Jobs</a></li>
+                <li><a href='/employment/'>Jobs</a></li>
                 <li><a href='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</a></li>
               </ul>
             </div>

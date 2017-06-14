@@ -39,6 +39,16 @@ const Navigation = (props) => {
             onClick={props.handleDrawerClick}
             >Search</a>
         </div>
+        <div className="menu-icon">
+          <a href="javascript:void(0);" class="icon" onclick="menu()">☰</a>
+          <ul className="topnav" id="topNav">
+            <li><a href="/research/">Research</a></li>
+            <li><a href="/services/">Services</a></li>
+            <li><a href="/libraries/">Libraries &amp; Centers</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/page/contact-quick-guide/">Ask Us</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   )

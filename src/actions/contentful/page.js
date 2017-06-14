@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import Config from '../../shared/Configuration'
 import * as statuses from '../../constants/APIStatuses'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
@@ -10,11 +11,10 @@ export const requestPage = (page) => {
 }
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
-export const CF_NO_SUCH_PAGE = 'CF_NO_SUCH_PAGE'
 const receivePage = (page, response) => {
   let error = {
     type: CF_RECEIVE_PAGE,
-    status: statuses.ERROR,
+    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
     receivedAt: Date.now(),
   }
@@ -48,17 +48,15 @@ export function clearPage () {
   }
 }
 
-export const fetchPage = (page) => {
-  let url = `/${page}.json`
+export const fetchPage = (page, preview) => {
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${page}&preview=${preview}`
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
-    return fetch(url, {
-      headers: headers,
-    })
-      .then(response => response.json())
+    return fetch(url, { headers })
+      .then(response => response.ok ? response.json() : { status: response.status })
       .then(json => dispatch(receivePage(page, json)))
       .catch(response => dispatch(receivePage(page, response)))
   }

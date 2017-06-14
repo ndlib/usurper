@@ -48,7 +48,7 @@ export const librariesData = [
         url: 'http://archives.nd.edu/',
       },
       {
-        title: 'Visual Resources Cente',
+        title: 'Visual Resources Center',
         url: '/visual-resources-center',
       },
     ],
