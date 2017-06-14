@@ -15,7 +15,7 @@ const Libraries = () => {
           <h3><Link to='/hesburgh-libraries/'>Hesburgh Libraries</Link></h3>
           <ul className='child'>
 
-            <li><Link to='/Linkrchitecture/'>Architecture Library</Link></li>
+            <li><Link to='/architecture/'>Architecture Library</Link></li>
 
             <li><Link to='/business/'>Business Library</Link></li>
 
@@ -35,7 +35,7 @@ const Libraries = () => {
 
             <li><Link to='http://rarebooks.library.nd.edu/'>Rare Books and Special Collections</Link></li>
 
-            <li><Link to='http://Linkrchives.nd.edu/'>University Archives</Link></li>
+            <li><Link to='http://archives.nd.edu/'>University Archives</Link></li>
 
             <li><Link to='/visual-resources-center/'>Visual Resources Center</Link></li>
 
