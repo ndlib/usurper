@@ -31,9 +31,11 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/personal' component={PersonalInfo} />
           <Route exact path='/courses' component={Courses} />
-          <Route exact path='/floor/:id' component={ContentfulFloor} />
           <Route exact path='/hours' component={Hours} />
           <Route exact path='/chat' component={Chat} />
+          <Route exact path='/preview/floor/:id' component={ContentfulFloor} />
+          <Route exact path='/preview/:id' component={ContentfulPage} />
+          <Route exact path='/floor/:id' component={ContentfulFloor} />
           <Route exact path='/secure/:id' component={SecureContentfulPage} />
           <Route exact path='/:id' component={ContentfulPage} />
         </Switch>
