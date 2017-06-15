@@ -11,7 +11,7 @@ const Internal = (to, className, alt, children) => {
 }
 
 const External = (to, className, alt, children, noTarget) => {
-  let target = noTarget ? '' : '_blank'
+  let target = noTarget ? '_self' : '_blank'
   return (
     <a href={to} className={className} alt={alt} target={target}>
       {children}
