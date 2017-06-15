@@ -28,6 +28,9 @@ const Navigation = (props) => {
           <Link to='/'>Home</Link>
         </div>
         {dropDowns}
+        <div className='menu-link hours-m'>
+          <a className='right m' href='/hours/'>Hours</a>
+        </div>
         <div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
