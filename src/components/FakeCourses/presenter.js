@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Lgicon from '../../static/images/icons/libguide.png'
 
 class Courses extends Component {
   constructor (props, context) {
@@ -71,7 +72,7 @@ class Courses extends Component {
           <small className='course-subtitle'>{course.id}</small>
         </div>
         <div className='course-guides'>
-          <a href={guideURL}><img src='/images/icons/libguide.png' /> LibGuide</a>
+          <a href={guideURL}><img src={Lgicon} /> LibGuide</a>
         </div>
         <div className='course-reserves'>
           {reserves}
@@ -122,8 +123,8 @@ class Courses extends Component {
       )
     }
     return (
-      <div key='courses'>
-        <Link to='/personal'>My Items</Link>
+      <div key='courses' className=''>
+        <Link to='/personal' className='button fright'>My Items</Link>
         <div className='alert'>
           <p><strong>Attention:</strong> Courses listed below are for demonstration purposes only.</p>
         </div>

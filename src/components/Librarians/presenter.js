@@ -5,6 +5,7 @@ import * as statuses from '../../constants/APIStatuses'
 import Contact from '../Contact'
 import Image from '../Image'
 
+
 const Loading = (className) => {
   return (
     <div className={className}>
