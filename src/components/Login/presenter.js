@@ -6,14 +6,17 @@ import Link from '../Link'
 const LoginStatus = (props) => {
   return (
     <div key='log-in-out' className='log-in-out'>
-      <Link to={props.buttonUrl} className={props.loggedIn
-          ? 'login' : 'login logged-in'}>
+      <Link to={props.buttonUrl}
+        className={props.loggedIn ? 'login' : 'login logged-in'}
+        noTarget
+      >
         {props.label}
       </Link>
       <Link
         to={props.logoutUrl}
         query={{ service: window.location.href }}
         className='logout'
+        noTarget
         hideIfNull
       >
         Log Out

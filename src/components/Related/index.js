@@ -17,6 +17,9 @@ const Related = ({ title, className, children }) => {
         {
           children.map((currentItem) => {
             let link = currentItem.fields.slug ? currentItem.fields.slug : currentItem.fields.url
+            if (!link) {
+              link = currentItem.fields.purl
+            }
 
             return (
               <li key={currentItem.fields.title}>

@@ -10,9 +10,10 @@ const Internal = (to, className, alt, children) => {
   )
 }
 
-const External = (to, className, alt, children) => {
+const External = (to, className, alt, children, noTarget) => {
+  let target = noTarget ? '_self' : '_blank'
   return (
-    <a href={to} className={className} alt={alt} target="_blank">
+    <a href={to} className={className} alt={alt} target={target}>
       {children}
     </a>
   )
@@ -54,7 +55,7 @@ const LibLink = (props) => {
   to = to + query
 
   if (to.startsWith('http')) {
-    return External(to, props.className, props.alt, props.children)
+    return External(to, props.className, props.alt, props.children, props.noTarget)
   }
 
   return Internal(to, props.className, props.alt, props.children)
@@ -67,6 +68,7 @@ LibLink.propTypes = {
   query: PropTypes.object,
   children: PropTypes.any,
 
+  noTarget: PropTypes.bool,
   hideIfNull: PropTypes.bool,
 }
 
