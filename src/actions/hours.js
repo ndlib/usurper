@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import { hoursAPIURL } from '../shared/Configuration'
 import * as statuses from '../constants/APIStatuses'
 import Config from '../shared/Configuration'
 

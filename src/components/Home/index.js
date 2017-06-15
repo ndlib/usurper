@@ -15,8 +15,8 @@ class Home extends Component {
       <div className='Home main'>
 
         <PageTitle tile='Hesburgh Library' />
-        <HomePageHours jsonHoursApiKey='hesburghlibrariesservicepoints' />
-        <HeaderHours jsonHoursApiKey='hesburghlibrariesservicepoints' />
+        <HomePageHours jsonHoursApiKey='hesburghlibrary' />
+        <HeaderHours jsonHoursApiKey='hesburghlibrary' />
         <div className='row services'>
 			<div className='col-sm-4 col-xs-4'>
 				<a href='https://reserves.library.nd.edu" title="Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></a>

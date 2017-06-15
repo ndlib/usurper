@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Presenter = ({ hours, title, showEffectiveDates }) => {
-  if (!hours) {
+  if (!hours.rows) {
     return (<div />)
   }
 

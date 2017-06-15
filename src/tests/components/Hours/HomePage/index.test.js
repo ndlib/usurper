@@ -22,7 +22,7 @@ describe('components/Hours/HomePage/Container', () => {
     props = {
       hoursEntry: { status: statuses.NOT_FETCHED },
       fetchHours: jest.fn(),
-      jsonHoursApiKey: 'hesburghlibrariesservicepoints',
+      jsonHoursApiKey: 'hesburghlibrary',
     }
     enzymeWrapper = setup(props)
   })
