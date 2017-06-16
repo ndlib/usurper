@@ -96,7 +96,7 @@ a {
 
 .p-resources li {
   line-height: 1.5em;
-  
+
 }
 
 .p-resources a {
@@ -690,7 +690,7 @@ label[for='q']:after {
     right:10px;
     top:10px;
     padding:0 0 2px;
-    
+
     position:absolute;
     pointer-events:none;
     background: #5B412D;
@@ -1387,7 +1387,7 @@ button a {
   text-decoration: none;
 }
 
-.topnav, .menu-icon {
+.menu-icon {
   display: none;
 }
 

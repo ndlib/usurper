@@ -6,6 +6,7 @@ import {
   LIBRARIES_MENU,
   ABOUT_MENU,
   ASK_MENU,
+  MOBILE_MENU,
 } from '../actions/menu'
 
 export default (
