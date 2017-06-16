@@ -1,3 +1,6 @@
+import RoomImage from '../../../static/images/reserveroom.jpg'
+import ScanImage from '../../../static/images/scan.jpg'
+
 export const servicesData = [
   {
     title: 'Featured Services',
@@ -6,12 +9,12 @@ export const servicesData = [
       {
         title: 'Reserve a Room',
         url: '/room-reservations',
-        image: '/images/reserveroom.jpg',
+        image: RoomImage,
       },
       {
         title: 'Copy, Print, Scan',
         url: '/copy-print-scan',
-        image: '/images/scan.jpg',
+        image: ScanImage,
       },
     ],
   },

@@ -1,3 +1,6 @@
+import DatabaseImage from '../../../static/images/databases.jpg'
+import SubjectImage from '../../../static/images/subjects.jpg'
+
 export const researchData = [
   {
     title: 'Research By Subject',
@@ -6,12 +9,12 @@ export const researchData = [
       {
         title: 'Browse A-Z Databases',
         url: '/database-az',
-        image: '/images/databases.jpg',
+        image: DatabaseImage,
       },
       {
         title: 'Browse A-Z Subjects',
         url: '/database-subject',
-        image: '/images/subjects.jpg',
+        image: SubjectImage,
       },
     ],
   },
