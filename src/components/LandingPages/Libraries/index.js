@@ -1,10 +1,10 @@
 import React from 'react'
 import Link from '../../Link'
-import PageTitle from '../../PageTitle'
+import LandingPage from '../index.js'
 
 const Libraries = () => {
   return (
-    <div>
+    <LandingPage title='Libraries and Centers'>
       <h2>All Libraries and Centers</h2>
       <hr />
       <p>Lucas ipsum dolor sit amet wesell hutt naberrie airen pellaeon wookiee rahm nagai breha wessell. Gorax aayla thakwaash spar winter aramandi saffa. Ryn moff sluis sio thrackan mccool pellaeon mon vao. Wilhuff monkey-lizard yuvernian fortuna orus feeorin ailyn kit sidious. Dexter nadon rebo coruscant. </p>
@@ -76,8 +76,7 @@ const Libraries = () => {
           </ul>
         </div>
       </div>
-      <PageTitle title='Libraries' />
-    </div>
+    </LandingPage>
   )
 }
 

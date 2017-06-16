@@ -1,12 +1,11 @@
 import React from 'react'
 import Link from '../../Link'
-import PageTitle from '../../PageTitle'
-
+import LandingPage from '../index.js'
 const About = () => {
   return (
-    <div>
-      <PageTitle title='About' />
-    </div>
+    <LandingPage title='About'>
+      <h1>All About</h1>
+    </LandingPage>
   )
 }
 

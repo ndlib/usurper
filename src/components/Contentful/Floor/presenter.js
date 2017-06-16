@@ -7,10 +7,12 @@ import LibMarkdown from '../../LibMarkdown'
 import Building from '../Building'
 import Image from '../../Image'
 import PageTitle from '../../PageTitle'
+import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const FloorPresenter = ({ cfFloorEntry }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid'>
     <PageTitle title={cfFloorEntry.fields.title} />
+    <SearchProgramaticSet open={false} />
     <h2>{cfFloorEntry.fields.title}</h2>
     <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
     <Image cfImage={cfFloorEntry.fields.image} />
