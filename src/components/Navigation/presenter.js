@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DropDown from './DropDown'
 import AskMenu from './AskMenu'
+import MobileMenu from './MobileMenu'
 import Link from '../Link'
-import { ASK_MENU } from '../../actions/menu'
+import { ASK_MENU, MOBILE_MENU } from '../../actions/menu'
 
 const Navigation = (props) => {
   const dropDowns = props.dropDowns.map((menu, index) => {
@@ -28,6 +29,9 @@ const Navigation = (props) => {
           <Link to='/'>Home</Link>
         </div>
         {dropDowns}
+        <div className='menu-link hours-m'>
+          <a className='right m' href='/hours/'>Hours</a>
+        </div>
         <div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
@@ -39,15 +43,9 @@ const Navigation = (props) => {
             onClick={props.handleDrawerClick}
             >Search</a>
         </div>
-        <div className="menu-icon">
-          <a href="javascript:void(0);" class="icon" onclick="menu()">☰</a>
-          <ul className="topnav" id="topNav">
-            <li><a href="/research/">Research</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/libraries/">Libraries &amp; Centers</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/page/contact-quick-guide/">Ask Us</a></li>
-          </ul>
+        <div className='menu-icon'>
+          <a onClick={props.handleMobileClick}>☰</a>
+          <MobileMenu open={props.menus.menuId === MOBILE_MENU} />
         </div>
       </div>
     </nav>

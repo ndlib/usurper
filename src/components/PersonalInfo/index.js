@@ -7,7 +7,7 @@ import PageTitle from '../PageTitle'
 
 const PersonalInfo = () => {
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid content'>
       <PageTitle title='Items' />
       <Courses linkOnly />
       <Recommendations />

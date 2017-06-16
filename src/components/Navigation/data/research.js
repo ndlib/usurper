@@ -29,7 +29,7 @@ export const researchData = [
       },
       {
         title: 'Data Management',
-        url: 'http://libguides.library.nd.edu/c.php?g=277306&p=1849931',
+        url: 'http://libguides.library.nd.edu/datamanagement',
       },
       {
         title: 'Research Guides',
@@ -51,15 +51,15 @@ export const researchData = [
       },
       {
         title: 'Digital Exhibits and Collections',
-        url: '/dec',
+        url: 'http://collections.library.nd.edu',
       },
       {
         title: 'CurateND',
-        url: '/curate-nd',
+        url: 'http://curate.nd.edu',
       },
       {
         title: 'Archives Collections',
-        url: '/archives-collections',
+        url: 'http://archives.nd.edu/findaids/ead/xml/',
       },
       {
         title: 'Exhibits',

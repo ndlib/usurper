@@ -1,6 +1,7 @@
 import React from 'react'
 import Facebook from '../images/facebook.png'
 import Twitter from '../images/twitter.png'
+import Link from '../../Link'
 
 const FooterLinks = () => {
   return (
@@ -10,19 +11,19 @@ const FooterLinks = () => {
           <div className='col-xs-6'>
             <div className='box'>
               <ul>
-                <li><a href='https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLSdL4MnInHvXcQke9dJQ1Idkv2O23u9dBV_9ky40WDOV77B_MA/viewform?c=0&amp;w=1'>Feedback</a></li>
-                <li><a href='http://librarygiving.nd.edu'>Library Giving</a></li>
-                <li><a href='/employment/'>Jobs</a></li>
-                <li><a href='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</a></li>
+                <li><Link to='https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLSdL4MnInHvXcQke9dJQ1Idkv2O23u9dBV_9ky40WDOV77B_MA/viewform?c=0&amp;w=1'>Feedback</Link></li>
+                <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
+                <li><Link to='/employment/'>Jobs</Link></li>
+                <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
               </ul>
             </div>
           </div>
 
           <div className='col-xs-4 col-xs-offset-2'>
             <div className='box right'>
-              <ul><li><a href='http://twitter.com/ndlibraries' target='_blank'><img src={Twitter} /> NDLibraries</a></li>
+              <ul><li><Link to='http://twitter.com/ndlibraries' target='_blank'><img src={Twitter} /> NDLibraries</Link></li>
 
-                <li><a href='https://www.facebook.com/hesburghlibraries/' target='_blank'><img src={Facebook} /> NDLibraries</a></li></ul>
+                <li><Link to='https://www.facebook.com/hesburghlibraries/' target='_blank'><img src={Facebook} /> NDLibraries</Link></li></ul>
             </div>
           </div>
         </div>
