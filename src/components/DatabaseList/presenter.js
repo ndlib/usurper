@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import '../../static/css/global.css'
 import LibMarkdown from '../LibMarkdown'
 import PageTitle from '../PageTitle'
+import SearchProgramaticSet from '../SearchProgramaticSet'
 import Link from '../Link'
 import Loading from '../Messages/Loading'
 import ErrorLoading from '../Messages/Error'
@@ -13,11 +14,12 @@ const Content = (letter, data) => {
   return (
     <div className='container-fluid content-area'>
       <PageTitle title={'Databases A-Z: ' + letter} />
+      <SearchProgramaticSet open={false} />
       <h2>{'Databases: ' + letter.toUpperCase()}</h2>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
           return (
-            <span key={"letter_link_" + item}>
+            <span key={'letter_link_' + item}>
               <Link to={item}>{ item.toUpperCase() }</Link>
             </span>
           )
@@ -35,26 +37,24 @@ const Content = (letter, data) => {
 }
 
 const DBLoading = (letter) => {
-  return Content(letter, "Loading Databases")
+  return Content(letter, 'Loading Databases')
 }
 
 const Loaded = (letter, list) => {
   return Content(letter,
     list.map((item) => {
-
       return (
         <div key={item.fields.alephSystemNumber + item.fields.title}>
           <Link to={item.fields.purl}>{item.fields.title}</Link>
           <p>{item.fields.description}</p>
         </div>
       )
-
     })
   )
 }
 
 const NotFound = (letter) => {
-  return Content(letter, "Nothing found for this letter")
+  return Content(letter, 'Nothing found for this letter')
 }
 
 const ListPresenter = ({ cfDatabaseLetter, letter }) => {
