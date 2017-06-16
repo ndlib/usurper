@@ -5,7 +5,9 @@ import CurrentHours from '../Current'
 
 const Presenter = (hoursEntry) => {
   return (
-    <div className='container-fluid content-area'>
+
+    <div className='content'>
+
       <h2>Hours</h2>
       <hr />
       <div>

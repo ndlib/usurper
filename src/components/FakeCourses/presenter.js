@@ -123,7 +123,7 @@ class Courses extends Component {
       )
     }
     return (
-      <div key='courses' className=''>
+      <div key='courses' className='content'>
         <Link to='/personal' className='button fright'>My Items</Link>
         <div className='alert'>
           <p><strong>Attention:</strong> Courses listed below are for demonstration purposes only.</p>

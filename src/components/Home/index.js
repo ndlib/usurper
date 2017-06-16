@@ -8,6 +8,7 @@ import FakeNews from './FakeNews'
 import Reserves from '../../static/images/reserves.jpg'
 import Account from '../../static/images/myaccount.jpg'
 import Room from '../../static/images/reserveroom.jpg'
+import '../../static/images/favicon.ico';
 
 class Home extends Component {
   render () {

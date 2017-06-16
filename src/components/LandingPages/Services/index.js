@@ -5,7 +5,9 @@ import LandingPage from '../index.js'
 
 const Services = () => {
   return (
-    <LandingPage title='Services'>
+
+    <LandingPage title='Services' className='content'>
+
       <h1>All Services</h1>
       <hr />
       <p>A description about the services</p>

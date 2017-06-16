@@ -82,7 +82,7 @@ class Courses extends Component {
       )
     }
     return (
-      <div key='courses' className=''>
+      <div key='courses' className='content'>
         <PageTitle title='Courses' />
         <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright'>My Items</Link>
