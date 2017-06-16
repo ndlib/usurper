@@ -19,15 +19,14 @@ const mapDispatchToProps = (dispatch) => {
 export class ContentfulPageContainer extends Component {
   componentDidMount () {
     const pageSlug = this.props.match.params.id
-    const preview = this.props.match.path === '/preview/:id'
-    this.props.fetchPage(pageSlug, preview)
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+    this.props.fetchPage(pageSlug, preview, false)
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.cfPageEntry.status === statuses.SUCCESS &&
-      nextProps.cfPageEntry.json.fields.requiresLogin) {
+    if (nextProps.cfPageEntry.status === statuses.UNAUTHORIZED) {
       this.props.clearPage()
-      this.props.history.push('/secure/' + nextProps.match.params.id)
+      this.props.history.push('/secure/' + nextProps.match.params.id + nextProps.location.search)
     }
 
     const slug = this.props.match.params.id

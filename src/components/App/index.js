@@ -42,8 +42,6 @@ const App = () => {
           <Route exact path='/floor/:id' component={ContentfulFloor} />
           <Route exact path='/libraries' component={Libraries} />
           <Route exact path='/personal' component={PersonalInfo} />
-          <Route exact path='/preview/floor/:id' component={ContentfulFloor} />
-          <Route exact path='/preview/:id' component={ContentfulPage} />
           <Route exact path='/database-subject' component={SubjectList} />
           <Route exact path='/databases/:id' component={DatabaseList} />
           <Route exact path='/research' component={Research} />

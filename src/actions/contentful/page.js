@@ -14,7 +14,7 @@ export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 const receivePage = (page, response) => {
   let error = {
     type: CF_RECEIVE_PAGE,
-    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
+    status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
     receivedAt: Date.now(),
   }
@@ -49,15 +49,16 @@ export function clearPage () {
 }
 
 export const fetchPage = (page, preview, secure) => {
-  let resource = secure ? 'securedentry' : 'entry'
-  let url = `${Config.contentfulAPI}/${resource}?locale=en-US&slug=${page}&preview=${preview}`
+  const resource = secure ? 'securedentry' : 'entry'
+  const pageEnc = encodeURIComponent(page)
+  let url = `${Config.contentfulAPI}/${resource}?locale=en-US&slug=${pageEnc}&preview=${preview}`
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
     return fetch(url, { headers })
-      .then(response => response.ok ? response.json() : { status: response.status })
+      .then(response => response.ok ? response.json() : { errorStatus: response.status })
       .then(json => dispatch(receivePage(page, json)))
       .catch(response => dispatch(receivePage(page, response)))
   }

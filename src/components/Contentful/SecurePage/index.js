@@ -25,9 +25,10 @@ const mapDispatchToProps = (dispatch) => {
 export class ContentfulPageContainer extends Component {
   checkLoggedIn (props) {
     let pageSlug = props.match.params.id
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
     if (props.isLoggedIn && props.cfPageEntry.status === statuses.NOT_FETCHED) {
-      props.fetchPage(pageSlug, false, true)
+      props.fetchPage(pageSlug, preview, true)
     } else if (props.loginLoc) {
       window.location = props.loginLoc
     }
