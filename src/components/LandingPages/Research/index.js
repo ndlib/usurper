@@ -4,7 +4,9 @@ import Link from '../../Link'
 
 const Research = () => {
   return (
-    <LandingPage title='Research'>
+
+    <LandingPage title='Research' className='content'>
+
       <h1>All Research</h1>
       <hr />
       <div className='row'>

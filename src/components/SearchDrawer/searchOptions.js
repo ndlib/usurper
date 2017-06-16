@@ -19,6 +19,7 @@ export const searchOptions = [
     title: 'CurateND',
     description:'Theses, dissertations and articles by ND researchers',
     target: 'https://curate.nd.edu/catalog?utf8=%E2%9C%93&amp;search_field=all_fields&amp;q=',
+    additionalLinks: '\u00a0'
   },
   {
     uid: 'LIBRARY',
