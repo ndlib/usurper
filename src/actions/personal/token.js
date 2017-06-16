@@ -7,7 +7,6 @@ import fetch from 'isomorphic-fetch'
 // Constants
 // ------------------------------------
 const loginUrl = Config.viceroyAPI + '/token'
-const logoutUrl = Config.viceroyAPI + '/logout'
 
 const handleToken = (dispatch, data) => {
   if (data.redirect) {
@@ -15,7 +14,7 @@ const handleToken = (dispatch, data) => {
       states.recievePersonal(
         'login',
         statuses.SUCCESS,
-        { buttonUrl: data.redirect }
+        { redirectUrl: data.redirect }
       )
     )
   } else if (data.jwt) {
@@ -23,7 +22,7 @@ const handleToken = (dispatch, data) => {
       states.recievePersonal(
         'login',
         statuses.SUCCESS,
-        { token: data.jwt, buttonUrl: '/personal', logoutUrl: logoutUrl }
+        { token: data.jwt, redirectUrl: null }
       )
     )
   }

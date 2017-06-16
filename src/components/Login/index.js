@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import getToken from '../../actions/personal/token'
-import LoginStatus from './presenter'
+import Presenter from './presenter'
 import * as states from '../../constants/APIStatuses'
+
+import Config from '../../shared/Configuration'
 
 class Login extends Component {
   componentWillMount () {
     if (!this.props.login) {
-      this.props.dispatch(getToken())
+      this.props.getToken()
     }
   }
 
   render () {
-    return <LoginStatus {...this.props} />
+    return <Presenter {...this.props} />
   }
 }
 
 export const mapStateToProps = (state) => {
   const { personal } = state
-
   let loggedIn = (personal.login && personal.login.token) ? true : false
   let label = loggedIn ? 'My Account' : 'Log In'
 
@@ -27,11 +29,14 @@ export const mapStateToProps = (state) => {
     loggedIn: loggedIn,
     label: label,
 
-    buttonUrl: personal.login ? personal.login.buttonUrl : '',
     // This "service = window.location" is to redirect back to this location after logging out
       // It will only work if you're on a site https://*.library.nd.edu (eg. alpha) because OIT CAS is very strict
-    logoutUrl: personal.login ? personal.login.logoutUrl : null,
+    logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
   }
 }
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getToken }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

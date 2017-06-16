@@ -6,7 +6,7 @@ import Link from '../Link'
 const LoginStatus = (props) => {
   return (
     <div key='log-in-out' className='log-in-out'>
-      <Link to={props.buttonUrl}
+      <Link to={'/personal'}
         className={props.loggedIn ? 'login' : 'login logged-in'}
         noTarget
       >
@@ -29,7 +29,6 @@ LoginStatus.propTypes = {
   loggedIn: PropTypes.bool,
   label: PropTypes.string,
 
-  buttonUrl: PropTypes.string,
   logoutUrl: PropTypes.string,
 }
 
