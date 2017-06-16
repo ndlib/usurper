@@ -1,5 +1,6 @@
 import React from 'react'
 import PageTitle from '../PageTitle'
+import SearchProgramaticSet from '../SearchProgramaticSet'
 
 const Chat = () => {
   return (
@@ -22,6 +23,7 @@ const Chat = () => {
         </div>
       </div>
       <PageTitle title='Chat with a Librarian' />
+      <SearchProgramaticSet open={false} />
     </div>
   )
 }

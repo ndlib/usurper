@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
-
+import SearchProgramaticSet from '../SearchProgramaticSet'
 class Courses extends Component {
   courseCard (course, showInstructors = true) {
 // courseNumber:'27800',
@@ -84,6 +84,7 @@ class Courses extends Component {
     return (
       <div key='courses' className=''>
         <PageTitle title='Courses' />
+        <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright'>My Items</Link>
         <div className='alert'>
           <p><strong>Attention:</strong> Courses listed below are for demonstration purposes only.</p>
