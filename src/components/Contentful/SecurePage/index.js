@@ -9,7 +9,7 @@ import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state, ownProps) => {
   let personal = state.personal
-  let isLoggedIn = (personal && personal.login && personal.login.token) ? true : false
+  let isLoggedIn = (personal && personal.login && personal.login.token)
 
   return {
     cfPageEntry: state.cfPageEntry,
@@ -27,9 +27,9 @@ export class ContentfulPageContainer extends Component {
     let pageSlug = props.match.params.id
 
     if (props.isLoggedIn && props.cfPageEntry.status === statuses.NOT_FETCHED) {
-      props.fetchPage('secure/' + pageSlug)
+      props.fetchPage(pageSlug, false, true)
     } else if (props.loginLoc) {
-      this.props.history.replace(props.loginLoc)
+      window.location = props.loginLoc
     }
   }
 
@@ -43,9 +43,9 @@ export class ContentfulPageContainer extends Component {
 
   render () {
     return <PresenterFactory
-              presenter={ ContentfulPagePresenter }
-              status={ this.props.cfPageEntry.status }
-              props={ {cfPageEntry: this.props.cfPageEntry.json} } />
+      presenter={ContentfulPagePresenter}
+      status={this.props.cfPageEntry.status}
+      props={{ cfPageEntry: this.props.cfPageEntry.json }} />
   }
 }
 

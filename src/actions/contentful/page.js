@@ -48,8 +48,9 @@ export function clearPage () {
   }
 }
 
-export const fetchPage = (page, preview) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${page}&preview=${preview}`
+export const fetchPage = (page, preview, secure) => {
+  let resource = secure ? 'securedentry' : 'entry'
+  let url = `${Config.contentfulAPI}/${resource}?locale=en-US&slug=${page}&preview=${preview}`
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 
