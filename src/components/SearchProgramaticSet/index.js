@@ -10,10 +10,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onGetProps: (open) => {
       if (open) {
-        console.log('open drawer')
         dispatch(openSearchDrawer())
       } else {
-        console.log('close drawer')
         dispatch(closeSearchDrawer())
       }
     },
