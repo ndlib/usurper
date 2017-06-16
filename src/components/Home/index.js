@@ -3,6 +3,7 @@ import '../../static/css/global.css'
 import Link from '../Link'
 import HomePageHours from '../Hours/HomePage'
 import PageTitle from '../PageTitle'
+import AccountLink from '../Login/AccountLink'
 import FakeNews from './FakeNews'
 import Reserves from '../../static/images/reserves.jpg'
 import Account from '../../static/images/myaccount.jpg'
@@ -19,7 +20,7 @@ class Home extends Component {
             <Link to='https://reserves.library.nd.edu' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
           </div>
           <div className='col-sm-4 col-xs-4'>
-            <Link to='https://nd.illiad.oclc.org/illiad/IND/illiad.dll' title='My Account'><img src={Account} alt='My Account. ' /></Link>
+            <AccountLink><img src={Account} alt='My Account. ' /></AccountLink>
           </div>
           <div className='col-sm-4 col-xs-4'>
             <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. Students sitting at a table receiving instruction.' /></Link>
