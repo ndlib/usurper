@@ -1,10 +1,11 @@
 import React from 'react'
 import Link from '../../Link'
 import ReserveRoom from '../../../static/images/reserveroom.jpg'
-import PageTitle from '../../PageTitle'
+import LandingPage from '../index.js'
+
 const Services = () => {
   return (
-    <div >
+    <LandingPage title='Services'>
       <h1>All Services</h1>
       <hr />
       <p>A description about the services</p>
@@ -37,8 +38,7 @@ const Services = () => {
 
         </div>
       </div>
-      <PageTitle title='Services' />
-    </div>
+    </LandingPage>
   )
 }
 

@@ -7,10 +7,12 @@ import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
+import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
+    <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <h2>{ cfPageEntry.fields.title }</h2>
     <hr />
     <div className='row'>
