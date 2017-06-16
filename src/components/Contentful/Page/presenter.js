@@ -7,6 +7,7 @@ import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
+import CurrentHours from '../../Hours/Current'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
@@ -23,6 +24,7 @@ const PagePresenter = ({ cfPageEntry }) => (
       </div>
       <div className='col-md-4 right'>
         <Librarians netids={cfPageEntry.fields.contactPeople} />
+        <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />
       </div>
     </div>
   </div>
