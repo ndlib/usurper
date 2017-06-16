@@ -1,50 +1,51 @@
 // Container component for a Page content type from Contentful
 import React from 'react'
+import Link from '../Link'
 
 const SubjectList = () => {
   return (
     <div className='container-fluid row'>
       <div className='col-md-6'>
-        <p><a href='/architecture'>Architecture</a></p>
-        <p><a href='/africana-studies'>Africana Studies</a></p>
-        <p><a href='/american-studies'>American Studies</a></p>
-        <p><a href='/mathematics'>Applied Computational Mathematics &amp; Statistics</a></p>
-        <p><a href='/anthropology'>Anthropology</a></p>
-        <p><a href='/art-art-history-design'>Art, Art History, &amp; Design</a></p>
-        <p><a href='/biology'>Biology, Environmental, &amp; Life Sciences</a></p>
-        <p><a href='/business'>Business</a></p>
-        <p><a href='/byzantine-studies'>Byzantine Studies</a></p>
-        <p><a href='/catholic-studies'>Catholic Studies</a></p>
-        <p><a href='/chemistry'>Chemistry &amp; Biochemistry</a></p>
-        <p><a href='/classics'>Classics</a></p>
-        <p><a href='/east-asian-studies'>East Asian Language, Literature, &amp; Culture</a></p>
-        <p><a href='/economics'>Economics</a></p>
-        <p><a href='/education'>Education</a></p>
-        <p><a href='/engineering'>Engineering</a></p>
-        <p><a href='/english'>English Language &amp; Literature</a></p>
-        <p><a href='/film-television-theatre'>Film, Television, &amp; Theatre</a></p>
-        <p><a href='/french'>French Language, Literature, &amp; Culture</a></p>
+        <p><Link to='/architecture'>Architecture</Link></p>
+        <p><Link to='/africana-studies'>Africana Studies</Link></p>
+        <p><Link to='/american-studies'>American Studies</Link></p>
+        <p><Link to='/mathematics'>Applied Computational Mathematics &amp; Statistics</Link></p>
+        <p><Link to='/anthropology'>Anthropology</Link></p>
+        <p><Link to='/art-art-history-design'>Art, Art History, &amp; Design</Link></p>
+        <p><Link to='/biology'>Biology, Environmental, &amp; Life Sciences</Link></p>
+        <p><Link to='/business'>Business</Link></p>
+        <p><Link to='/byzantine-studies'>Byzantine Studies</Link></p>
+        <p><Link to='/catholic-studies'>Catholic Studies</Link></p>
+        <p><Link to='/chemistry'>Chemistry &amp; Biochemistry</Link></p>
+        <p><Link to='/classics'>Classics</Link></p>
+        <p><Link to='/east-asian-studies'>East Asian Language, Literature, &amp; Culture</Link></p>
+        <p><Link to='/economics'>Economics</Link></p>
+        <p><Link to='/education'>Education</Link></p>
+        <p><Link to='/engineering'>Engineering</Link></p>
+        <p><Link to='/english'>English Language &amp; Literature</Link></p>
+        <p><Link to='/film-television-theatre'>Film, Television, &amp; Theatre</Link></p>
+        <p><Link to='/french'>French Language, Literature, &amp; Culture</Link></p>
       </div>
       <div className='col-md-6'>
-        <p><a href='/gender-studies'>Gender Studies</a></p>
-        <p><a href='/german'>German Language, Literature, &amp; Culture</a></p>
-        <p><a href='/global-affairs'>Global Affairs</a></p>
-        <p><a href='/history'>History</a></p>
-        <p><a href='/history-and-philosophy-of-science'>History and Philosophy of Science</a></p>
-        <p><a href='/irish-studies'>Irish Studies</a></p>
-        <p><a href='/italian'>Italian Language, Literature, &amp; Culture</a></p>
-        <p><a href='/spanish'>Latin American and Iberian Language, Literature, &amp; Culture</a></p>
-        <p><a href='/mathematics'>Mathematics</a></p>
-        <p><a href='/medieval'>Medieval Studies</a></p>
-        <p><a href='/music'>Music</a></p>
-        <p><a href='/kellogg-kroc'>Peace Studies</a></p>
-        <p><a href='/philosophy'>Philosophy</a></p>
-        <p><a href='/chemistry'>Physics</a></p>
-        <p><a href='/political-science'>Political Science</a></p>
-        <p><a href='/psychology'>Psychology</a></p>
-        <p><a href='/russian'>Russian and East European Language, Literature, &amp; Culture</a></p>
-        <p><a href='/sociology'>Sociology</a></p>
-        <p><a href='/theology-religion'>Theology and Religion</a></p>
+        <p><Link to='/gender-studies'>Gender Studies</Link></p>
+        <p><Link to='/german'>German Language, Literature, &amp; Culture</Link></p>
+        <p><Link to='/global-affairs'>Global Affairs</Link></p>
+        <p><Link to='/history'>History</Link></p>
+        <p><Link to='/history-and-philosophy-of-science'>History and Philosophy of Science</Link></p>
+        <p><Link to='/irish-studies'>Irish Studies</Link></p>
+        <p><Link to='/italian'>Italian Language, Literature, &amp; Culture</Link></p>
+        <p><Link to='/spanish'>Latin American and Iberian Language, Literature, &amp; Culture</Link></p>
+        <p><Link to='/mathematics'>Mathematics</Link></p>
+        <p><Link to='/medieval'>Medieval Studies</Link></p>
+        <p><Link to='/music'>Music</Link></p>
+        <p><Link to='/kellogg-kroc'>Peace Studies</Link></p>
+        <p><Link to='/philosophy'>Philosophy</Link></p>
+        <p><Link to='/chemistry'>Physics</Link></p>
+        <p><Link to='/political-science'>Political Science</Link></p>
+        <p><Link to='/psychology'>Psychology</Link></p>
+        <p><Link to='/russian'>Russian and East European Language, Literature, &amp; Culture</Link></p>
+        <p><Link to='/sociology'>Sociology</Link></p>
+        <p><Link to='/theology-religion'>Theology and Religion</Link></p>
       </div>
     </div>
   )
