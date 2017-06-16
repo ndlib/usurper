@@ -1,19 +1,23 @@
-'use strict'
-import React from 'react'
-import Recommendations from '../Recommendations'
-import LoanResources from '../LoanResources'
-import Courses from '../Courses'
-import PageTitle from '../PageTitle'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import getToken from '../../actions/personal/token'
+import Presenter from './presenter'
+import * as states from '../../constants/APIStatuses'
 
-const PersonalInfo = () => {
-  return (
-    <div className='container-fluid content'>
-      <PageTitle title='Items' />
-      <Courses linkOnly />
-      <Recommendations />
-      <div><LoanResources /></div>
-    </div>
-  )
+export const mapStateToProps = (state) => {
+  const { personal } = state
+
+  let loggedIn = (personal.login && personal.login.token) ? true : false
+
+  return {
+    loggedIn: loggedIn,
+    redirectUrl: personal.login.redirectUrl,
+  }
 }
 
-export default PersonalInfo
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getToken }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Presenter)
