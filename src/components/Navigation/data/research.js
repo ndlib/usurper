@@ -5,7 +5,7 @@ export const researchData = [
     items: [
       {
         title: 'Browse A-Z Databases',
-        url: '/database-az',
+        url: '/databases/a',
         image: '/images/databases.jpg',
       },
       {

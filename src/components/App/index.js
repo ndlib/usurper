@@ -16,6 +16,7 @@ import Research from '../../components/LandingPages/Research'
 import Services from '../../components/LandingPages/Services'
 import Libraries from '../../components/LandingPages/Libraries'
 import About from '../../components/LandingPages/About'
+import DatabaseList from '../../components/DatabaseList'
 import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
 
@@ -42,6 +43,7 @@ const App = () => {
           <Route exact path='/personal' component={PersonalInfo} />
           <Route exact path='/preview/floor/:id' component={ContentfulFloor} />
           <Route exact path='/preview/:id' component={ContentfulPage} />
+          <Route exact path='/databases/:id' component={DatabaseList} />
           <Route exact path='/research' component={Research} />
           <Route exact path='/secure/:id' component={SecureContentfulPage} />
           <Route exact path='/services' component={Services} />

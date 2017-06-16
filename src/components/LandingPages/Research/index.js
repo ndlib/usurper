@@ -47,7 +47,7 @@ const Research = () => {
         <div className='col-md-4 col-md-offset-1 col-xs-12'>
           <h3>Databases</h3>
           <p>
-            <Link to='/database-az/'>Browse A-Z</Link><br />
+            <Link to='/databases/a'>Browse A-Z</Link><br />
             <span>Browse an alphabetical</span>
 
           </p>
