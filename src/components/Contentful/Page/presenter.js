@@ -27,7 +27,7 @@ const PagePresenter = ({ cfPageEntry }) => (
       </div>
       <div className='col-md-4 right'>
         <Librarians netids={cfPageEntry.fields.contactPeople} />
-        <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />
+        {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
       </div>
     </div>
   </div>
