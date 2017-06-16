@@ -1,10 +1,10 @@
 import React from 'react'
-import PageTitle from '../../PageTitle'
+import LandingPage from '../index.js'
 import Link from '../../Link'
 
 const Research = () => {
   return (
-    <div>
+    <LandingPage title='Research'>
       <h1>All Research</h1>
       <hr />
       <div className='row'>
@@ -47,7 +47,7 @@ const Research = () => {
         <div className='col-md-4 col-md-offset-1 col-xs-12'>
           <h3>Databases</h3>
           <p>
-            <Link to='/database-az/'>Browse A-Z</Link><br />
+            <Link to='/databases/a'>Browse A-Z</Link><br />
             <span>Browse an alphabetical</span>
 
           </p>
@@ -80,8 +80,7 @@ const Research = () => {
 
       </div>
 
-      <PageTitle title='Research' />
-    </div>
+    </LandingPage>
   )
 }
 

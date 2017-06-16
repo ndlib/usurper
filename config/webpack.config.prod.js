@@ -8,6 +8,7 @@ var ManifestPlugin = require('webpack-manifest-plugin')
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 var paths = require('./paths')
 var getClientEnvironment = require('./env')
+var genConfig = require('./configurationGen')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -211,6 +212,8 @@ module.exports = {
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
+    // Generate the config containing api endpoints
+    new webpack.DefinePlugin(genConfig()),
     // This helps ensure the builds are consistent if source hasn't changed:
     new webpack.optimize.OccurrenceOrderPlugin(),
     // Try to dedupe duplicated modules, if any:

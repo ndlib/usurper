@@ -96,7 +96,7 @@ a {
 
 .p-resources li {
   line-height: 1.5em;
-  
+
 }
 
 .p-resources a {
@@ -495,12 +495,15 @@ body.gold-blue #header h4 a {
 .logout {
   position: absolute;
   top: 14px;
+  top:  -54px;
   right: calc((100vw - 1200px) / 2);
+  right: -5px;
   width: 32px;
   height: 0;
   padding-top: 37px;
   overflow: hidden;
-  background: url('/images/logout.png');
+  background: url('../images/logout.png');
+  z-index: 500;
 }
 
 
@@ -687,7 +690,7 @@ label[for='q']:after {
     right:10px;
     top:10px;
     padding:0 0 2px;
-    
+
     position:absolute;
     pointer-events:none;
     background: #5B412D;
@@ -1193,7 +1196,7 @@ hr {
   overflow: hidden;
 }
 
-.content-area {
+.content-area, .content {
   position: relative;
   padding-top: 40px;
 }
@@ -1384,7 +1387,7 @@ button a {
   text-decoration: none;
 }
 
-.topnav, .menu-icon {
+.menu-icon {
   display: none;
 }
 
@@ -1633,7 +1636,17 @@ body {
 
 
 .hours {
-  background: url('../images/hours.png') no-repeat right 5px top 9px;
+  background: url('../images/hours.png') no-repeat right 8px top 7px;
+
+}
+
+.hours-m a, .hours-m:hover a {
+  background: url('../images/hours.b.png') no-repeat right 2px top 15px;
+  padding-right: 24px;
+}
+
+.hours-m:hover a {
+  background-color: rgba(0,0,0,0.3);
 }
 
 

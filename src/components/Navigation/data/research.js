@@ -1,3 +1,6 @@
+import DatabaseImage from '../../../static/images/databases.jpg'
+import SubjectImage from '../../../static/images/subjects.jpg'
+
 export const researchData = [
   {
     title: 'Research By Subject',
@@ -5,13 +8,13 @@ export const researchData = [
     items: [
       {
         title: 'Browse A-Z Databases',
-        url: '/database-az',
-        image: '/images/databases.jpg',
+        url: '/databases/a',
+        image: DatabaseImage,
       },
       {
         title: 'Browse A-Z Subjects',
         url: '/database-subject',
-        image: '/images/subjects.jpg',
+        image: SubjectImage,
       },
     ],
   },
@@ -29,7 +32,7 @@ export const researchData = [
       },
       {
         title: 'Data Management',
-        url: 'http://libguides.library.nd.edu/c.php?g=277306&p=1849931',
+        url: 'http://libguides.library.nd.edu/datamanagement',
       },
       {
         title: 'Research Guides',
@@ -51,15 +54,15 @@ export const researchData = [
       },
       {
         title: 'Digital Exhibits and Collections',
-        url: '/dec',
+        url: 'http://collections.library.nd.edu',
       },
       {
         title: 'CurateND',
-        url: '/curate-nd',
+        url: 'http://curate.nd.edu',
       },
       {
         title: 'Archives Collections',
-        url: '/archives-collections',
+        url: 'http://archives.nd.edu/findaids/ead/xml/',
       },
       {
         title: 'Exhibits',

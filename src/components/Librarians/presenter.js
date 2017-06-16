@@ -4,6 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 import Contact from '../Contact'
 import Image from '../Image'
+import PrivateLibrarianImage from '../../static/images/librarian.gif'
 
 const Loading = (className) => {
   return (
@@ -35,7 +36,7 @@ const Loaded = (info, className) => {
                 phone={librarian.phone}
                 email={librarian.email}
               />
-              <Image src={librarian.photo} alt={librarian.name} defaultImage='images/librarian.gif' />
+              <Image src={librarian.photo} alt={librarian.name} defaultImage={PrivateLibrarianImage} />
             </div>
           )
         })

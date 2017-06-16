@@ -5,6 +5,7 @@ export const SERVICES_MENU = 'SERVICES_MENU'
 export const LIBRARIES_MENU = 'LIBRARIES_MENU'
 export const ABOUT_MENU = 'ABOUT_MENU'
 export const ASK_MENU = 'ASK_MENU'
+export const MOBILE_MENU = 'MOBILE_MENU'
 
 export function openMenu (menuId) {
   return {

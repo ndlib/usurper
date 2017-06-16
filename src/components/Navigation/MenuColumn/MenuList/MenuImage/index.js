@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Link from '../../../../Link'
 
 const MenuImage = (props) => {
+
   return (
     <dt>
       <Link to={props.url}>
