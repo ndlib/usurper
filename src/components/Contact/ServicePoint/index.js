@@ -48,7 +48,7 @@ const Contact = (props) => {
 }
 
 Contact.propTypes = {
-  servicePoint: PropTypes.object.isRequired,
+  servicePoint: PropTypes.object,
 }
 
 export default Contact
