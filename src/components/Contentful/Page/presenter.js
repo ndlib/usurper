@@ -10,7 +10,6 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import CurrentHours from '../../Hours/Current'
 
-
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
