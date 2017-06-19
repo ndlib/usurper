@@ -17,7 +17,6 @@ const FloorPresenter = ({ cfFloorEntry }) => (
     <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
     <Image cfImage={cfFloorEntry.fields.image} />
     <Building cfBuildingEntry={cfFloorEntry.fields.building} />
-    <Link to={'/'}>Home</Link>
   </div>
 )
 
