@@ -11,7 +11,7 @@ const LibLink = (props) => {
   // The markdown component will still call this override function even though it's not
   // a valid markdown link, so we have to handle it here.
   if (url === undefined) {
-    return (<span>[{ props.children }]</span>)
+    return (<span>{ props.children }</span>)
   }
 
   // Urls to remove so links are local
@@ -32,7 +32,7 @@ const LibLink = (props) => {
 
 LibLink.propTypes = {
   href: PropTypes.string,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.any,
 }
 
 class LibMarkdown extends Component {

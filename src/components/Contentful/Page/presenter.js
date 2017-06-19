@@ -5,6 +5,7 @@ import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
+import Contact from '../../Contact/ServicePoint'
 import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
@@ -27,6 +28,7 @@ const PagePresenter = ({ cfPageEntry }) => (
       <div className='col-md-4 right'>
         <Librarians netids={cfPageEntry.fields.contactPeople} />
         {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
+        <Contact servicePoint={cfPageEntry.fields.servicePoint} />
       </div>
     </div>
   </div>
