@@ -8,13 +8,9 @@ import ContentfulPagePresenter from '../Page/presenter.js'
 import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state, ownProps) => {
-  let personal = state.personal
-  let isLoggedIn = (personal && personal.login && personal.login.token)
-
   return {
     cfPageEntry: state.cfPageEntry,
-    isLoggedIn: isLoggedIn,
-    loginLoc: (!isLoggedIn && personal && personal.login) ? personal.login.buttonUrl : null,
+    personal: state.personal,
   }
 }
 
@@ -27,10 +23,12 @@ export class ContentfulPageContainer extends Component {
     let pageSlug = props.match.params.id
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
-    if (props.isLoggedIn && props.cfPageEntry.status === statuses.NOT_FETCHED) {
+    let personal = props.personal
+    let isLoggedIn = (personal && personal.login && personal.login.token)
+    if (isLoggedIn && props.cfPageEntry.status === statuses.NOT_FETCHED) {
       props.fetchPage(pageSlug, preview, true)
-    } else if (props.loginLoc) {
-      window.location = props.loginLoc
+    } else if (props.personal.login.redirectUrl) {
+      window.location = props.personal.login.redirectUrl
     }
   }
 
