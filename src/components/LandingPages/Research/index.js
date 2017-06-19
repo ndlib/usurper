@@ -54,7 +54,7 @@ const Research = () => {
 
           </p>
           <p>
-            <Link to='/database-subject/'>Browse by Subject</Link><br />
+            <Link to='/subjects/'>Browse by Subject</Link><br />
             <span>Browse databases organized by Subject</span>
 
           </p>

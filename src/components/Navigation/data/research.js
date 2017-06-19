@@ -13,7 +13,7 @@ export const researchData = [
       },
       {
         title: 'Browse A-Z Subjects',
-        url: '/database-subject',
+        url: '/subjects',
         image: SubjectImage,
       },
     ],
