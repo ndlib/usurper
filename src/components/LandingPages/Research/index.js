@@ -5,15 +5,31 @@ import Link from '../../Link'
 const Research = () => {
   return (
 
-    <LandingPage title='Research' className='content'>
+    <LandingPage title='Research'>
 
       <h1>All Research</h1>
       <hr />
       <div className='row'>
-        <div className='col-md-4 col-xs-12'>
-          <h3><Link to='/subject-librarians/'>Subject Librarians</Link></h3>
-          <p>&nbsp;</p>
+        <div className='col-md-6 col-xs-12'>
+
           <h3>Research Support</h3>
+          <p>
+            <Link to='/databases/a'>Browse A-Z</Link><br />
+            <span>Browse an alphabetical</span>
+
+          </p>
+          <p>
+            <Link to='/subjects/'>Browse by Subject</Link><br />
+            <span>Browse databases organized by Subject</span>
+
+          </p>
+          <p>
+            <Link to='/electronic-resource-trials/'>ER Trials</Link><br />
+            <span>Current trials for databases or other electronic content lives here</span>
+          </p>
+          <p>
+            <Link to='/subject-librarians/'>Subject Librarians</Link>
+          </p>
           <p>
             <Link to='http://libguides.library.nd.edu'>Research Guides</Link><br />
             <span>Guides, by subject area, to help pilot your research</span>
@@ -46,25 +62,9 @@ const Research = () => {
 
         </div>
 
-        <div className='col-md-4 col-md-offset-1 col-xs-12'>
-          <h3>Databases</h3>
-          <p>
-            <Link to='/databases/a'>Browse A-Z</Link><br />
-            <span>Browse an alphabetical</span>
 
-          </p>
-          <p>
-            <Link to='/subjects/'>Browse by Subject</Link><br />
-            <span>Browse databases organized by Subject</span>
-
-          </p>
-          <p>
-            <Link to='/electronic-resource-trials/'>ER Trials</Link><br />
-            <span>Current trials for databases or other electronic content lives here</span>
-          </p>
-          <p>&nbsp;</p>
-
-          <h3>Collections</h3>
+        <div className='col-md-6 col-xs-12'>
+           <h3>Unique Collections</h3>
 
           <p><Link to='/medieval-institute-library/'>Medieval Institute Library</Link></p>
 
@@ -77,7 +77,6 @@ const Research = () => {
           <p><Link to='/Linkrchives-collections/'>Archives Collections</Link></p>
 
           <p><Link to='/exhibits/'>Exhibits</Link></p>
-
         </div>
 
       </div>

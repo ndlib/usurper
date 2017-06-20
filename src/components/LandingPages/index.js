@@ -5,7 +5,7 @@ import PageTitle from '../PageTitle'
 
 const LandingPage = (props) => {
   return (
-    <div>
+    <div className='content'>
       <SearchProgramaticSet open={false} />
       <PageTitle title={props.title} />
       {props.children}

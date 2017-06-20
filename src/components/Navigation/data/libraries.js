@@ -16,7 +16,7 @@ export const librariesData = [
         url: 'http://library.nd.edu/cds/',
       },
       {
-        title: 'Chemistry/Physics Library',
+        title: 'Chemistry-Physics Library',
         url: '/chemistry',
       },
       {
@@ -24,7 +24,7 @@ export const librariesData = [
         url: '/engineering',
       },
       {
-        title: 'Kellogg/Kroc Library',
+        title: 'Kellogg Kroc Library',
         url: '/kellogg-kroc',
       },
       {
@@ -80,27 +80,27 @@ export const librariesData = [
         url: 'http://sjcpl.lib.in.us/',
       },
       {
-        title: 'Bethel College Bowen Library',
+        title: 'Bethel College Library',
         url: 'https://www.bethelcollege.edu/library/',
       },
       {
-        title: 'Saint Mary\'s College Cushwa-Leighton Library',
+        title: 'Saint Mary\'s College Library',
         url: 'https://www.saintmarys.edu/library/',
       },
       {
-        title: 'Holy Cross College McKenna Library',
+        title: 'Holy Cross College Library',
         url: 'http://www.hcc-nd.edu/mckenna-library/',
       },
       {
-        title: 'Indiana University South Bend',
+        title: 'Indiana University South Bend Library',
         url: 'https://www.iusb.edu/library/',
       },
       {
-        title: 'Kresge Law Library',
+        title: 'ND Law Library',
         url: 'http://law.nd.edu/library/',
       },
       {
-        title: 'Institute for Latino Studies Julian Samora Library',
+        title: 'Institute for Latino Studies Library',
         url: 'http://latinostudies.nd.edu/library-archives/',
       },
     ],

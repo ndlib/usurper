@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onGetProps: (open) => {
       if (open) {
-        dispatch(openSearchDrawer())
+        dispatch(openSearchDrawer());
       } else {
         dispatch(closeSearchDrawer())
       }

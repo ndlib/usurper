@@ -6,7 +6,7 @@ import LandingPage from '../index.js'
 const Services = () => {
   return (
 
-    <LandingPage title='Services' className='content'>
+    <LandingPage title='Services'>
 
       <h1>All Services</h1>
       <hr />
@@ -20,7 +20,7 @@ const Services = () => {
 
         </div>
         <div className='col-md-4 col-md-offset-1 col-xs-12'>
-          <h3>Borrowing</h3>
+          <h3>Borrow</h3>
 
           <p><Link to='/borrow-renew-request/'>Borrow, Renew, Request Policies</Link> </p>
 

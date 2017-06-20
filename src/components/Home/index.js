@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../../static/css/global.css'
+
 import Link from '../Link'
 import HomePageHours from '../Hours/HomePage'
 import PageTitle from '../PageTitle'

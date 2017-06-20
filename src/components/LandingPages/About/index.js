@@ -4,7 +4,7 @@ import LandingPage from '../index.js'
 const About = () => {
   return (
 
-    <LandingPage title='About' className='content'>
+    <LandingPage title='About'>
       <h1>All About</h1>
     </LandingPage>
 

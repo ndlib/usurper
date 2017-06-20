@@ -4,7 +4,7 @@
 }
 
 .appliance {
-	left: calc((100vw - 1400px) / 2 + 18vw);
+	/*left: calc((100vw - 1400px) / 2 + 18vw);*/
 }
 
 /* GREEN BUTTONS */
