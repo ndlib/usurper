@@ -5,7 +5,7 @@ import LandingPage from '../index.js'
 const Libraries = () => {
   return (
 
-    <LandingPage title='Libraries and Centers' className='content'>
+    <LandingPage title='Libraries and Centers'>
 
       <h2>All Libraries and Centers</h2>
       <hr />

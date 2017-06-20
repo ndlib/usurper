@@ -2,26 +2,21 @@ import DatabaseImage from '../../../static/images/databases.jpg'
 import SubjectImage from '../../../static/images/subjects.jpg'
 
 export const researchData = [
+
   {
-    title: 'Research By Subject',
-    classes: 'col-md-offset-2 col-md-2',
+    title: 'Research Support',
+    classes: 'col-md-offset-2 col-md-4',
     items: [
       {
         title: 'Browse A-Z Databases',
         url: '/databases/a',
-        image: DatabaseImage,
+
       },
       {
         title: 'Browse A-Z Subjects',
         url: '/subjects',
-        image: SubjectImage,
+
       },
-    ],
-  },
-  {
-    title: 'Research Support',
-    classes: 'col-md-3',
-    items: [
       {
         title: 'Subject Librarians',
         url: '/subject-librarians',
@@ -42,7 +37,7 @@ export const researchData = [
   },
   {
     title: 'Unique Collections',
-    classes: 'col-md-3',
+    classes: 'col-md-4',
     items: [
       {
         title: 'Medieval Institute Library',

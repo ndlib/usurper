@@ -9,8 +9,8 @@ const Menu = (props) => {
         {props.children}
       </div>
       <div className='container-fluid row'>
-        <div className='col-md-offset-10 col-md-2'>
-          <Link to={props.landingPage}>All {props.title}</Link>
+        <div className='col-md-offset-2 col-md-8'>
+          <Link to={props.landingPage} className='more'>More Information </Link>
         </div>
       </div>
     </div>

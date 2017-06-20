@@ -3,7 +3,7 @@
 }
 
 #banner .container-fluid {
-	background-image: url('/images/jesus.2.png');
+	background-image: url('../../static/images/jesus.2.png');
 }
 
 #banner {
@@ -24,11 +24,11 @@
 }
 
 .login {
-	top: 80px;
+	top: -65px;
 }
 
 .logout {
-	top: 79px;
+	top: -66px;
 }
 
 .header-hours {
