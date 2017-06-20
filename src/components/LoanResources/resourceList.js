@@ -25,7 +25,6 @@ const ResourceList = ({ list, emptyText }) => {
               <div className='card-status'>{'Status: ' + (item.transactionStatus ? item.transactionStatus : item.status)}</div>
               <div className='card-due'>{ 'Due Date: ' + item.dueDate }</div>
               <div className={item.title + ' actions'}>
-                <button><Link>Renew</Link></button>
                 <IlliadActions item={item} />
               </div>
             </div>

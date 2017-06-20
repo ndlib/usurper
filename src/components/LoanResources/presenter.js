@@ -7,15 +7,11 @@ import ResourceList from './resourceList'
 const LoanResources = (props) => {
   return (
     <div key='LoanResources' className='resources-list'>
-      <div className='alert'>
-        <p><strong>Attention:</strong> Renew button on this page is for demonstration purposes only.</p>
-      </div>
-
       <h3>Checked out</h3>
-      <ResourceList list={props.resources.have.items} emptyText={'You have no checked out items.'} />
+      <ResourceList list={props.resources.have.items} emptyText={props.resources.have.emptyText} />
       <br />
       <h3>Pending</h3>
-      <ResourceList list={props.resources.pending.items} emptyText={'You have no pending items.'} />
+      <ResourceList list={props.resources.pending.items} emptyText={props.resources.pending.emptyText} />
     </div>
   )
 }
