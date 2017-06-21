@@ -16,6 +16,7 @@ const Libraries = () => {
 
           <h3><Link to='/hesburgh-libraries/'>Hesburgh Libraries</Link></h3>
           <ul className='child'>
+            <li><Link to='/hesburgh'>Hesburgh Library</Link></li>
 
             <li><Link to='/architecture/'>Architecture Library</Link></li>
 

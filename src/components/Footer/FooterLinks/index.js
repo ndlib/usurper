@@ -23,7 +23,7 @@ const FooterLinks = () => {
             <div className='box right'>
               <ul><li><Link to='http://twitter.com/ndlibraries' target='_blank'><img src={Twitter} /> NDLibraries</Link></li>
 
-                <li><Link to='https://www.facebook.com/hesburghlibraries/' target='_blank'><img src={Facebook} /> NDLibraries</Link></li></ul>
+                <li><Link to='https://www.facebook.com/NDLibraries/' target='_blank'><img src={Facebook} /> NDLibraries</Link></li></ul>
             </div>
           </div>
         </div>

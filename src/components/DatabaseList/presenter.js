@@ -17,16 +17,18 @@ const Content = (letter, data) => {
       <PageTitle title={'Databases A-Z: ' + letter} />
       <SearchProgramaticSet open={false} />
       <h2>{'Databases: ' + letter.toUpperCase()}</h2>
+      <hr />
+      <div className='alphabet'>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
           return (
-            <span key={'letter_link_' + item}>
+            <span key={'letter_link_' + item} className='letter'>
               <Link to={item}>{ item.toUpperCase() }</Link>
             </span>
           )
         })
       }
-      <hr />
+      </div>
 
       <div className='row'>
         <div className='col-md-8'>
@@ -60,11 +62,7 @@ const LetterNotFound = (letter) => {
 
 const ListPresenter = ({ cfDatabaseLetter, letter }) => {
   if (letter.length > 1) {
-    return (
-      <span>
-        <SearchProgramaticSet open={false} />
-        <PageNotFound />
-      </span>)
+    return <PageNotFound />
   }
 
   switch (cfDatabaseLetter.status) {
