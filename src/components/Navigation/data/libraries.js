@@ -4,6 +4,10 @@ export const librariesData = [
     classes: 'col-md-offset-2 col-md-3',
     items: [
       {
+        title: 'Hesburgh Library',
+        url: '/hesburgh',
+      },
+      {
         title: 'Architecture Library',
         url: '/architecture',
       },
