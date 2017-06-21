@@ -74,8 +74,8 @@ class Courses extends Component {
       this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', 'Upcoming Courses')
     }
     if (courses.instructs) {
-      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
-      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
+//      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
+//      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
     }
     return out
   }
