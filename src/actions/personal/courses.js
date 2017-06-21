@@ -2,7 +2,7 @@ import Config from '../../shared/Configuration'
 import * as states from './constants'
 import * as statuses from '../../constants/APIStatuses'
 
-const coursesURL = Config.coursesAPI + '/courses'
+const coursesURL = Config.coursesAPI + 'courses'
 
 const handleCourses = (dispatch, data) => {
   if (data.enrollments || data.instructs) {

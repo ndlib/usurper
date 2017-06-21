@@ -6,7 +6,7 @@ import Link from '../../Link'
 
 const NotFound = ({ message = 'The requested page could not be found' }) => (
   <div className={'NotFound content'}>
-    <SearchProgramaticSet open={true} />
+    <SearchProgramaticSet open={false} />
     <PageTitle title='Not Found' />
     <div className='notfound'>
       <h1>404</h1>
