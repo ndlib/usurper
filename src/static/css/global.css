@@ -831,7 +831,7 @@ label[for='q']:after {
   background: #5B412D;
   padding: 16px;
   font-size: 18px;
-  
+
   cursor: pointer;
 
 }
@@ -1058,7 +1058,7 @@ hr {
 .card-actions {
   width: 20%;
   text-align: right;
-  
+
 }
 
 .actions {
@@ -1410,6 +1410,43 @@ hr {
 }
 
 .p-services .frame img {
+  width: 100%;
+  display: block;
+}
+
+.p-pages {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.p-pages li {
+  width: 31%;
+  list-style: none;
+  margin: 0 0 2em 0;
+  padding: 0;
+}
+
+.p-pages li span {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  text-align: center;
+
+}
+
+.p-pages .frame {
+  border: solid 2px #fff;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  margin-bottom: 1em;
+}
+
+.p-pages .frame img {
   width: 100%;
   display: block;
 }
@@ -1788,7 +1825,7 @@ button a {
   }
   .appliance ul li#selected-search {
     padding: 0 20px;
-    
+
   }
 
   label[for="q"]::after {

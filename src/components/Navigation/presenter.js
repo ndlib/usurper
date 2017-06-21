@@ -30,7 +30,7 @@ const Navigation = (props) => {
         </div>
         {dropDowns}
         <div className='menu-link hours-m'>
-          <a className='right m' href='/hours/'>Hours</a>
+          <Link to='/hours' className='right m'>Hours</Link>
         </div>
         <div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
