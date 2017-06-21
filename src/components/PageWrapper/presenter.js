@@ -9,7 +9,7 @@ import '../../static/css/global.css'
 const PageWrapper = (props) => (
   <div onClick={props.clickOnPage}>
     <Header {...props} />
-    <div className={'container-fluid'}>
+    <div className={'container-fluid content'}>
       {props.children}
     </div>
     <Footer />

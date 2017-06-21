@@ -2,16 +2,35 @@
 
 export const aboutData = [
   {
-    classes: 'col-md-offset-2 col-md-8',
+    title: 'People',
+    classes: 'col-md-offset-2 col-md-2',
     items: [
-    { title: 'Staff Directory', url: 'http://library.nd.edu/directory' },
-    { title: 'Building Renovation', url: 'http://renovation.library.nd.edu' },
-    { title: 'University Committee on Libraries', url: '/ucl' },
+    { title: 'Contact Us', url: '/get-help' },
+    { title: 'Faculty & Staff Directory', url: 'http://library.nd.edu/directory' },
+    { title: 'Employment Opportunities', url: '/employment' },
+    
+    
+    
+    ],
+  },
+  {
+    title: 'Spaces',
+    classes: 'col-md-3',
+    items: [
+    { title: 'Floor Maps & Locations', url: '/maps' },
+    { title: 'Hesburgh Library Renovation', url: 'http://renovation.library.nd.edu' },
+
+    ],
+  },
+  {
+    title: 'Library Leadership',
+    classes: 'col-md-3',
+    items: [
     { title: 'Mission and Vision', url: '/' },
     { title: 'Library Giving', url: 'http://librarygiving.nd.edu' },
-    { title: 'Maps', url: '/maps' },
-    { title: 'Contact Us', url: '/get-help' },
-    { title: 'Library Employment', url: '/employment' },
+    { title: 'University Committee on Libraries', url: '/ucl' }, 
+    
+
     ],
   },
   
