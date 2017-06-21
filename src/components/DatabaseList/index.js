@@ -18,19 +18,19 @@ const mapDispatchToProps = (dispatch) => {
 export class DatabaseListContainer extends Component {
   componentDidMount () {
     const pageSlug = this.props.match.params.id
-    this.props.fetchLetter(pageSlug, false)
+    this.props.fetchLetter(pageSlug.toLowerCase(), false)
   }
 
   componentWillReceiveProps (nextProps) {
     const slug = this.props.match.params.id
     const nextSlug = nextProps.match.params.id
     if (slug !== nextSlug) {
-      this.props.fetchLetter(nextSlug, false)
+      this.props.fetchLetter(nextSlug.toLowerCase(), false)
     }
   }
 
   render () {
-    return <ListPresenter cfDatabaseLetter={this.props.cfDatabaseLetter} letter={this.props.match.params.id} />
+    return <ListPresenter cfDatabaseLetter={this.props.cfDatabaseLetter} letter={this.props.match.params.id.toLowerCase()} />
   }
 }
 

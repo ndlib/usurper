@@ -7,6 +7,7 @@ import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import Link from '../Link'
 import Loading from '../Messages/Loading'
+import PageNotFound from '../Messages/NotFound'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
 
@@ -53,18 +54,26 @@ const Loaded = (letter, list) => {
   )
 }
 
-const NotFound = (letter) => {
+const LetterNotFound = (letter) => {
   return Content(letter, 'Nothing found for this letter')
 }
 
 const ListPresenter = ({ cfDatabaseLetter, letter }) => {
+  if (letter.length > 1) {
+    return (
+      <span>
+        <SearchProgramaticSet open={false} />
+        <PageNotFound />
+      </span>)
+  }
+
   switch (cfDatabaseLetter.status) {
     case statuses.FETCHING:
       return DBLoading(letter)
     case statuses.SUCCESS:
       return Loaded(letter, cfDatabaseLetter.json.fields[letter])
     case statuses.NOT_FOUND:
-      return NotFound(letter)
+      return LetterNotFound(letter)
     default:
       return <ErrorLoading message='Error loading page' />
   }
