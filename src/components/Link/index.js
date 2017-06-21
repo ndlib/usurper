@@ -58,6 +58,10 @@ const LibLink = (props) => {
     return External(to, props.className, props.alt, props.children, props.noTarget)
   }
 
+  if (to.startsWith('mailto:') || to.startsWith('tel:')) {
+    return External(to, props.className, props.alt, props.children, false)
+  }
+
   return Internal(to, props.className, props.alt, props.children)
 }
 
