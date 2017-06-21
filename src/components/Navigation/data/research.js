@@ -61,7 +61,7 @@ export const researchData = [
       },
       {
         title: 'Exhibits',
-        url: '/exhibits',
+        url: 'http://rarebooks.library.nd.edu/exhibits/index.shtml',
       },
     ],
   },

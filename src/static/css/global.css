@@ -197,6 +197,7 @@ a {
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   overflow: hidden;
   max-width: 150px;
+  background: #fff;
 }
 
 .librarian .frame img {
@@ -1648,6 +1649,10 @@ button a {
 
 /* LOADER */
 
+.loading h1 {
+  text-align: center;
+}
+
 .sk-three-bounce {
   margin: 40px auto;
   width: 80px;
@@ -1844,6 +1849,10 @@ button a {
   .course {
     grid-column: 1 / 3;
     width: 100%;
+  }
+  .p-resources {
+    -ms-grid-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   }
 }
 

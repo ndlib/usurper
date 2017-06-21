@@ -10,7 +10,7 @@ const Services = () => {
 
       <h1>All Services</h1>
       <hr />
-      <p>A description about the services</p>
+ 
 
       <div className='row'>
         <div className='col-md-4 col-xs-12'>
