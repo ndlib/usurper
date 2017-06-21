@@ -6,16 +6,12 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import Lgicon from '../../static/images/icons/libguide.png'
 
 class Courses extends Component {
-  courseCard (course, showInstructors = true) {
-    console.log(course)
+  courseCard (course) {
 // courseNumber:'27800',
 // department:'PSY',
 // endDate:1493769600,
 // id:'201620-24315',
-// instructors:
-  // name:'Jessica Payne',
-  // netid:'jpayne7',
-  // role:'Instructor',
+// instructor_name:
 // sectionNumber:'48',
 // startDate:1484611200,
 // term:'201620',
