@@ -60,11 +60,7 @@ const LetterNotFound = (letter) => {
 
 const ListPresenter = ({ cfDatabaseLetter, letter }) => {
   if (letter.length > 1) {
-    return (
-      <span>
-        <SearchProgramaticSet open={false} />
-        <PageNotFound />
-      </span>)
+    return <PageNotFound />
   }
 
   switch (cfDatabaseLetter.status) {
