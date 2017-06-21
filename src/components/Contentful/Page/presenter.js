@@ -24,6 +24,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Related className='p-resources' title='Resources'>{ cfPageEntry.fields.relatedResources }</Related>
         <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
+        <Related className='p-pages' title='Related Pages'>{ cfPageEntry.fields.relatedPages }</Related>
       </div>
       <div className='col-md-4 right'>
         <Librarians netids={cfPageEntry.fields.contactPeople} />
