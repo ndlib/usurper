@@ -24,7 +24,7 @@ class CoursesContainer extends Component {
 
   render () {
     if (!this.props.courses) {
-      return <div>Hi</div>
+      return <div></div>
     }
 
     return <Courses {...this.props} />
