@@ -55,7 +55,7 @@ const Research = () => {
 
           </p>
           <p>
-            <Link to='/osf/'>Open Science Framework</Link><br />
+            <Link to='/open-science-framework-osf'>Open Science Framework</Link><br />
             <span>Helps researchers collaborate and make their work accessible</span>
 
           </p>

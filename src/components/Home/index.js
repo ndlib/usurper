@@ -28,8 +28,9 @@ class Home extends Component {
           <div className='col-sm-4 col-xs-4'>
             <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. Students sitting at a table receiving instruction.' /></Link>
           </div>
-          <FakeNews />
+          
         </div>
+        <FakeNews />
       </div>
     )
   }
