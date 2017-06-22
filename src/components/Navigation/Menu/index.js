@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from '../../Link'
 
 const Menu = (props) => {
   return (
@@ -10,7 +10,7 @@ const Menu = (props) => {
       </div>
       <div className='container-fluid row'>
         <div className='col-md-offset-2 col-md-8'>
-          <Link to={props.landingPage} className='more'>More Information </Link>
+          <Link to={props.landingPage} className='more' hideIfNull>More Information </Link>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@ Menu.propTypes = {
     PropTypes.element,
   ]),
   title: PropTypes.string.isRequired,
-  landingPage: PropTypes.string.isRequired,
+  landingPage: PropTypes.string,
   open: PropTypes.bool.isRequired,
 }
 
