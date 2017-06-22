@@ -1665,6 +1665,7 @@ button a {
   position: fixed;
   right: 2em;
   bottom: 0;
+  z-index: 200;
 }
 
 .chat-button {
