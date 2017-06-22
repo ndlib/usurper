@@ -17,7 +17,7 @@ const FooterInfo = () => {
           </div>
           <div className='col-xs-12 col-md-4'>
             <div className='box center'>
-              <Link to='/hours/' className='hours'>Hours</Link>
+            
             </div>
           </div>
           <div className='col-xs-12 col-md-4'>
