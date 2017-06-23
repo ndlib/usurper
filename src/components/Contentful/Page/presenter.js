@@ -15,10 +15,12 @@ const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
-    <h2>{ cfPageEntry.fields.title }</h2>
+    <h2>{ cfPageEntry.fields.title } </h2>
+
     <hr />
     <div className='row'>
       <div className='col-md-8'>
+        
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
         
         <Related className='p-resources' title='Resources'>{ cfPageEntry.fields.relatedResources }</Related>
@@ -27,6 +29,8 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Related className='p-pages' title='Related Pages'>{ cfPageEntry.fields.relatedPages }</Related>
       </div>
       <div className='col-md-4 right'>
+        
+        
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
         {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
