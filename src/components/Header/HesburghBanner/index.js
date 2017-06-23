@@ -20,7 +20,6 @@ class HomeHesburghBanner extends Component {
         <div id='banner'>
           <div className='container-fluid'>
             <Link to='/' className='hlhome'>Hesburgh <em>Libraries</em></Link>
-            {/*<Login />*/}
           </div>
         </div>
       </div>
