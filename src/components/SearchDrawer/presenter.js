@@ -3,6 +3,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SearchPreference from './SearchPreference'
 import SearchBox from './SearchBox'
+import AdvancedSearch from './AdvancedSearch'
+import AdditionalLinks from './AdditionalLinks'
 import '../../static/css/global.css'
 import '../../static/css/search.css'
 
@@ -12,14 +14,16 @@ const Drawer = (props) => {
       <div className='appliance'>
         <form id='searchAppliance' method='get' action={props.currentSearch.target}>
           <SearchBox
+            visible={!props.search.advancedSearch}
             currentSearch={props.currentSearch}
             {...props}
           />
+          <AdvancedSearch visible={props.search.advancedSearch} />
           <SearchPreference
             currentSearch={props.currentSearch}
             {...props}
           />
-          <div className='additional-links'>{ props.currentSearch.additionalLinks}</div>
+          <AdditionalLinks {...props} />
         </form>
       </div>
     </div>
