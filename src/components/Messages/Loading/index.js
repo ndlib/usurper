@@ -3,8 +3,8 @@ import React from 'react'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const Loading = ({ message = '' }) => (
-  <div className={'loading'}>
-  	<SearchProgramaticSet open={false} />
+  <div className={'Loading content'}>
+    <SearchProgramaticSet open={false} />
     <h1>Loading</h1>
     	<div className="sk-three-bounce">
         	<div className="sk-child sk-bounce1"></div>

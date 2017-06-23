@@ -3,74 +3,79 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
+import Lgicon from '../../static/images/icons/libguide.png'
+
 class Courses extends Component {
-  courseCard (course, showInstructors = true) {
+  courseCard (course) {
 // courseNumber:'27800',
 // department:'PSY',
 // endDate:1493769600,
 // id:'201620-24315',
-// instructors:
-  // name:'Jessica Payne',
-  // netid:'jpayne7',
-  // role:'Instructor',
+// instructor_name:
 // sectionNumber:'48',
 // startDate:1484611200,
 // term:'201620',
 // title:'Research Lab',
-    var instructors = []
-    if (showInstructors) {
-      for (var i in course.instructors) {
-        var instructor = course.instructors[i]
-        var key = course.id + instructor.netid
-        instructors.push(
-          <div key={key}>
-            Instructor: {instructor.name}
-            <br />
-            Email: { instructor.netid }@nd.edu
-          </div>
-        )
-      }
+    let courseReserves = ''
+    if (course.courseReserveLink) {
+      courseReserves = <a href={course.courseReserveLink}>Course Reserves</a>
+    }
+
+    let courseGuide = ''
+    if (course.courseGuide) {
+      courseGuide = <a href={course.courseGuide}><img src={Lgicon} /> Course Guide</a>
     }
 
     return (
-      <div className='card' key={course.id}>
-        <div className='card-header'>
-          {course.title}
+      <div className='course-card' key={course.id}>
+        <div className='course'>
+          <p className='course-header'>{course.title}</p>
+          <small className='course-subtitle'>{course.instructor_name}</small>
         </div>
-        <div className='card-subtitle'>
-          {course.department}
+        <div className='course-guides'>
+          {courseGuide}
         </div>
-        <div className='card-text expandable'>
-          {instructors}
+        <div className='course-reserves'>
+          {courseReserves}
+        </div>
+        <div className='course-resources'>
+          <Link to={course.pathfinder}>Biology Resources</Link>
         </div>
       </div>
     )
   }
 
   cardsForArray (outArray, array, key, name, showInstructors = true) {
+    var cards = []
     if (array && array.length > 0) {
-      outArray.push(<h4 key={key}>{name}</h4>)
       for (var i in array) {
-        outArray.push(
+        cards.push(
           this.courseCard(array[i], showInstructors)
         )
       }
+
+      outArray.push(
+        <div className='course-section' key={key + '-section'}>
+          <h3 className='course-title' key={key}>{name}</h3>
+          {cards}
+        </div>
+      )
     }
   }
 
   courseCards () {
-    var courses = this.props.courses
+    var courses = this.props.courses.courses
     var out = []
     if (!courses) {
       return out
     }
     if (courses.enrollments) {
-      this.cardsForArray(out, courses.enrollments.current, 'enrollment-current', 'Current Enrollments')
-      this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', 'Future Enrollments')
+      this.cardsForArray(out, courses.enrollments.current, 'enrollment-current', 'Current Courses')
+      this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', 'Upcoming Courses')
     }
     if (courses.instructs) {
-      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Instructs', false)
-      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Future Instructs', false)
+//      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
+//      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
     }
     return out
   }
@@ -86,9 +91,6 @@ class Courses extends Component {
         <PageTitle title='Courses' />
         <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright'>My Items</Link>
-        <div className='alert'>
-          <p><strong>Attention:</strong> Courses listed below are for demonstration purposes only.</p>
-        </div>
         <div key='courseCards'>
           { this.courseCards() }
         </div>
