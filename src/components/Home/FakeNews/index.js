@@ -40,7 +40,7 @@ const FakeNews = () => {
       <div className='col-md-4 col-xs-12'>
         <h3>Events</h3>
         <div className='event-card'>
-          <time datetime="2014-09-24" className="date-as-calendar inline-flex">
+          <time dateTime="2014-09-24" className="date-as-calendar inline-flex">
             <span className="weekday">&nbsp;</span>
             <span className="day">&nbsp;</span>
             <span className="month">Jan-Aug</span>
@@ -57,7 +57,7 @@ const FakeNews = () => {
         </div>
 
         <div className='event-card'>
-          <time datetime="2014-09-24" className="date-as-calendar inline-flex">
+          <time dateTime="2014-09-24" className="date-as-calendar inline-flex">
             <span className="weekday">&nbsp;</span>
             <span className="day">19-24</span>
             <span className="month">May</span>
@@ -74,9 +74,9 @@ const FakeNews = () => {
         </div>
 
         <div className='event-card'>
-          
-          
-          <time datetime="2014-09-24" className="date-as-calendar inline-flex">
+
+
+          <time dateTime="2014-09-24" className="date-as-calendar inline-flex">
             <span className="weekday">Wednesday</span>
             <span className="day">24</span>
             <span className="month">September</span>

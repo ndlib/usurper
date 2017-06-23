@@ -3,12 +3,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import getCourses from '../../actions/personal/courses'
 import * as statuses from '../../constants/APIStatuses'
+import Loading from '../Messages/Loading'
 
-import Courses from './presenter'
+import CoursesPresenter from './presenter'
+
+const get = (dict, key, defaultVal) => {
+  if (!dict || !dict.hasOwnProperty(key)) {
+    return defaultVal
+  }
+  return dict[key]
+}
 
 class CoursesContainer extends Component {
   checkLoggedIn (props) {
-    if (!props.courses &&
+    if (props.courses.state === statuses.NOT_FETCHED &&
       props.loggedIn) {
       props.dispatch(getCourses(props.login.token))
     }
@@ -23,26 +31,19 @@ class CoursesContainer extends Component {
   }
 
   render () {
-    if (!this.props.courses) {
-      return <div></div>
+    let courses = get(this.props, 'courses', { state: statuses.NOT_FETCHED })
+    if (courses.state === statuses.FETCHING || courses.state === statuses.NOT_FETCHED) {
+      return <Loading />
     }
 
-    return <Courses {...this.props} />
+    return <CoursesPresenter {...this.props} />
   }
-}
-
-const get = (dict, key, defaultVal) => {
-  if (!dict || !dict.hasOwnProperty(key)) {
-    return defaultVal
-  }
-  return dict[key]
 }
 
 export const mapStateToProps = (state) => {
   const { personal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
-
-  const courses = personal.courses
+  const courses = get(personal, 'courses', { state: statuses.NOT_FETCHED })
 
   return {
     loggedIn: loggedIn,

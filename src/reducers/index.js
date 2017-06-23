@@ -7,6 +7,7 @@ import hoursReducer from './hours'
 import searchReducer from './search'
 import librarianInfo from './librarians'
 import menuReducer from './menu'
+import chatReducer from './chat'
 
 import { combineReducers } from 'redux'
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   hours: hoursReducer,
   search: searchReducer,
   menus: menuReducer,
+  chat: chatReducer,
 })
 
 export default rootReducer

@@ -8,9 +8,19 @@ if (typeof Promise === 'undefined') {
   window.Promise = require('promise/lib/es6-extensions.js')
 }
 
+if (!String.prototype.startsWith) {
+  String.prototype.startsWith = function (searchString, position) {
+    return this.substr(position || 0, searchString.length) === searchString
+  }
+}
+
 // fetch() polyfill for making API calls.
 require('whatwg-fetch')
+
+// URLSearchParams
 require('url-search-params-polyfill')
+// find
+require('ie-array-find-polyfill')
 
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.

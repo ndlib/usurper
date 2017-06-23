@@ -8,7 +8,7 @@ import Home from '../../components/Home'
 import PersonalInfo from '../../components/PersonalInfo'
 import Courses from '../../components/Courses'
 import Hours from '../../components/Hours/Page'
-import Chat from '../../components/Chat'
+import ChatPage from '../../components/ChatPage'
 import ContentfulPage from '../../components/Contentful/Page'
 import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
@@ -36,7 +36,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/about' component={About} />
-          <Route exact path='/chat' component={Chat} />
+          <Route exact path='/chat' component={ChatPage} />
           <Route exact path='/courses' component={Courses} />
           <Route exact path='/hours' component={Hours} />
           <Route exact path='/floor/:id' component={ContentfulFloor} />

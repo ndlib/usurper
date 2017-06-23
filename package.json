@@ -5,6 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "enzyme": "^2.8.2",
+    "ie-array-find-polyfill": "^1.1.0",
     "markdown-to-jsx": "^5.3.3",
     "nock": "^9.0.13",
     "prop-types": "^15.5.8",

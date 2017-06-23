@@ -31,7 +31,7 @@ const DropDown = (props) => {
 DropDown.propTypes = {
   open: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  landingPage: PropTypes.string.isRequired,
+  landingPage: PropTypes.string,
   menuData: PropTypes.array.isRequired,
 }
 
