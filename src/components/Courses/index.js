@@ -7,9 +7,16 @@ import Loading from '../Messages/Loading'
 
 import CoursesPresenter from './presenter'
 
+const get = (dict, key, defaultVal) => {
+  if (!dict || !dict.hasOwnProperty(key)) {
+    return defaultVal
+  }
+  return dict[key]
+}
+
 class CoursesContainer extends Component {
   checkLoggedIn (props) {
-    if (!props.courses &&
+    if (props.courses.state === statuses.NOT_FETCHED &&
       props.loggedIn) {
       props.dispatch(getCourses(props.login.token))
     }
@@ -24,9 +31,8 @@ class CoursesContainer extends Component {
   }
 
   render () {
-    if (!this.props.courses) {
-      return <Loading />
-    } else if (this.props.courses.state == statuses.FETCHING) {
+    let courses = get(this.props, 'courses', { state: statuses.NOT_FETCHED })
+    if (courses.state === statuses.FETCHING || courses.state === statuses.NOT_FETCHED) {
       return <Loading />
     }
 
@@ -34,18 +40,10 @@ class CoursesContainer extends Component {
   }
 }
 
-const get = (dict, key, defaultVal) => {
-  if (!dict || !dict.hasOwnProperty(key)) {
-    return defaultVal
-  }
-  return dict[key]
-}
-
 export const mapStateToProps = (state) => {
   const { personal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
-
-  const courses = personal.courses
+  const courses = get(personal, 'courses', { state: statuses.NOT_FETCHED })
 
   return {
     loggedIn: loggedIn,
