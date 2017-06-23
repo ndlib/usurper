@@ -4,23 +4,8 @@ import * as statuses from '../../constants/APIStatuses'
 
 import Contact from '../Contact'
 import Image from '../Image'
+import Loading from '../Messages/Loading'
 import PrivateLibrarianImage from '../../static/images/librarian.gif'
-
-const Loading = (className) => {
-  return (
-    <div className={className}>
-      <span>Librarians Loading</span>
-    </div>
-  )
-}
-
-const ErrorLoading = (className) => {
-  return (
-    <div className={className}>
-      <span>Librarian Error</span>
-    </div>
-  )
-}
 
 const Loaded = (info, className) => {
   return (
@@ -49,13 +34,13 @@ const Loaded = (info, className) => {
 const Librarians = ({ librarianInfo, className }) => {
   switch (librarianInfo.status) {
     case statuses.FETCHING:
-      return Loading(className)
+      return <Loading className={className} />
     case statuses.SUCCESS:
       return Loaded(librarianInfo.json, className)
     case statuses.NOT_FOUND:
       return null
     default:
-      return ErrorLoading(className)
+      return null
   }
 }
 

@@ -44,5 +44,6 @@ export const fetchLibrarians = (netids) => {
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receivePage(netids, json)))
+      .catch(e => dispatch(receivePage(netids, e)))
   }
 }

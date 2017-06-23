@@ -11,6 +11,10 @@ const LibLink = (props) => {
   // The markdown component will still call this override function even though it's not
   // a valid markdown link, so we have to handle it here.
   if (url === undefined) {
+    // Exception for named anchors
+    if (props.id) {
+      return (<a id={props.id}>{ props.children }</a>)
+    }
     return (<span>{ props.children }</span>)
   }
 
@@ -25,6 +29,13 @@ const LibLink = (props) => {
       url = url.substr(replaceUrls[index].length)
       break
     }
+  }
+
+  // Link to named anchor using native browser behavior
+  if (url.search('#') > -1) {
+    return (
+      <a href={url}>{props.children}</a>
+    )
   }
 
   return <Link to={url}>{props.children}</Link>

@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import React from 'react'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 
-
 const Loading = ({ message = '' }) => (
   <div className={'Loading content'}>
     <SearchProgramaticSet open={false} />

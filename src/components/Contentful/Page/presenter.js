@@ -20,12 +20,14 @@ const PagePresenter = ({ cfPageEntry }) => (
     <div className='row'>
       <div className='col-md-8'>
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
-        <Image cfImage={cfPageEntry.fields.image} className='cover' />
+        
         <Related className='p-resources' title='Resources'>{ cfPageEntry.fields.relatedResources }</Related>
         <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
+        <Related className='p-pages' title='Related Pages'>{ cfPageEntry.fields.relatedPages }</Related>
       </div>
       <div className='col-md-4 right'>
+        <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
         {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
         <Contact servicePoint={cfPageEntry.fields.servicePoint} />
