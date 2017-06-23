@@ -21,9 +21,9 @@ const FooterLinks = () => {
 
           <div className='col-xs-4 col-xs-offset-2'>
             <div className='box right'>
-              <ul><li><Link to='http://twitter.com/ndlibraries' target='_blank'><img src={Twitter} /> NDLibraries</Link></li>
+              <ul><li><Link to='http://twitter.com/ndlibraries' target='_blank'><img src={Twitter} alt='' /> NDLibraries</Link></li>
 
-                <li><Link to='https://www.facebook.com/NDLibraries/' target='_blank'><img src={Facebook} /> NDLibraries</Link></li></ul>
+                <li><Link to='https://www.facebook.com/NDLibraries/' target='_blank'><img src={Facebook} alt='' /> NDLibraries</Link></li></ul>
             </div>
           </div>
         </div>

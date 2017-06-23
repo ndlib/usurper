@@ -3,7 +3,7 @@ import Chat from '../../../Chat'
 import ChatImage from '../../images/chat.png'
 
 const ChatModal = (props) => {
-  let buttonMessage = (<span><img src={ChatImage} /> Chat with us</span>)
+  let buttonMessage = (<span><img src={ChatImage} alt='' /> Chat with us</span>)
   if (props.chatOpen) {
     buttonMessage = (<span>Hide Chat</span>)
   }

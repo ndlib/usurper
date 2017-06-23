@@ -21,7 +21,7 @@ const Loaded = (info, className) => {
                 phone={librarian.phone}
                 email={librarian.email}
               />
-              <Image src={librarian.photo} alt={librarian.name} defaultImage={PrivateLibrarianImage} />
+              <Image src={librarian.photo} defaultImage={PrivateLibrarianImage} />
             </div>
           )
         })
