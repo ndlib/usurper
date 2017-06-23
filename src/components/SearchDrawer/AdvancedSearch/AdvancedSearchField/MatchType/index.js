@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const MatchType = (props) => {
   return (
-    <select>
+    <select id={props.id}>
       <option value='contains'>contains</option>
       <option value='exact'>is (exact)</option>
       <option value='begins_with'>starts with</option>

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SearchField from './SearchField'
-import MatchType from './MatchType'
-import SearchInput from './SearchInput'
+import AdvancedSearchField from './AdvancedSearchField'
 import Bool from './Bool'
 import MaterialType from './MaterialType'
 import Language from './Language'
@@ -10,18 +8,12 @@ import DateField from './DateField'
 const AdvancedSearch = (props) => {
   if (props.visible) {
     return (
-      <div>
-        <fieldset>
-          <SearchField /><MatchType /><SearchInput />
-        </fieldset>
+      <div id='advanced-search'>
+        <AdvancedSearchField id={0} />
         <Bool />
-        <fieldset>
-          <SearchField /><MatchType /><SearchInput />
-        </fieldset>
+        <AdvancedSearchField id={1} />
         <Bool />
-        <fieldset>
-          <SearchField /><MatchType /><SearchInput />
-        </fieldset>
+        <AdvancedSearchField id={2} />
         <fieldset>
           <MaterialType />
           <Language />
