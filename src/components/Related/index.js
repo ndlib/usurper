@@ -11,7 +11,7 @@ const Related = ({ title, className, children }) => {
 
   return (
     <div>
-      <h3>{title}</h3>
+      { title && <h3>{title}</h3> }
       <ul className={className}>
 
         {
