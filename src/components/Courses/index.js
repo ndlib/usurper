@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import getCourses from '../../actions/personal/courses'
 import * as statuses from '../../constants/APIStatuses'
+import Loading from '../Messages/Loading'
 
-import Courses from './presenter'
+import CoursesPresenter from './presenter'
 
 class CoursesContainer extends Component {
   checkLoggedIn (props) {
@@ -24,10 +25,12 @@ class CoursesContainer extends Component {
 
   render () {
     if (!this.props.courses) {
-      return <div></div>
+      return <Loading />
+    } else if (this.props.courses.state == statuses.FETCHING) {
+      return <Loading />
     }
 
-    return <Courses {...this.props} />
+    return <CoursesPresenter {...this.props} />
   }
 }
 
