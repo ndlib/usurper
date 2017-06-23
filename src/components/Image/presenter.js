@@ -6,9 +6,9 @@ const Image = (props) => {
     return null
   }
   return (
-    <span className='frame'>
+    <div className='frame'>
       <img className={props.className} src={props.src} alt={props.alt} />
-    </span>
+    </div>
   )
 }
 

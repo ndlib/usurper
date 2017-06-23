@@ -93,28 +93,29 @@ a {
   text-decoration: underline;
 }
 
-.alphabet {
-  margin-bottom: 1em;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  max-width: 75ch;
-  width: 100%;
-}
+
 
 .letter {
-  margin-right: .8em;
+  margin-right: .5em;
   width: 1em;
+  text-align: center;
+
 }
 
 .letter a {
   text-decoration: none;
-  padding: .5em;
+  padding: .6em;
   display: inline-block;
+  width: 2em;
+  font-size: 20px;
 }
 
 .letter a:hover {
   background: rgba(0, 0, 0, .3)
+}
+
+.alphabet {
+  width: 70ch;
 }
 
 .p-resources li {
@@ -150,8 +151,8 @@ a {
 
 .p-guides li {
   margin-bottom: 2em;
-  text-align: center;
-  flex-grow: 1;
+
+  /*flex-grow: 1;*/
 }
 
 .p-guides a {
@@ -162,6 +163,7 @@ a {
   font-size: 13px;
   line-height: 1.5em;
   display: grid;
+  display: -ms-grid;
   margin-bottom: 2em;
   -ms-grid-columns: 2fr 1fr;
   grid-template-columns: .61fr .39fr;
@@ -171,6 +173,8 @@ a {
   flex-grow: 2;
   text-align: right;
   padding-right: 8px;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
 }
 
 .librarian h3 {
@@ -190,7 +194,6 @@ a {
 .librarian .frame {
 
   height: 100px;
-
   text-align: center;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
@@ -198,10 +201,13 @@ a {
   overflow: hidden;
   max-width: 150px;
   background: #fff;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
 }
 
 .librarian .frame img {
-  height: 100%;
+
+  height: 100px;
 
 }
 
@@ -832,8 +838,9 @@ label[for='q']:after {
   background: #5B412D;
   padding: 16px;
   font-size: 18px;
-
+  
   cursor: pointer;
+  -ms-grid-column: 3;
 
 }
 .appliance input {
@@ -841,7 +848,7 @@ label[for='q']:after {
   padding: 16px;
   border-right: none;
   font-size: 18px;
-
+  -ms-grid-column: 2;
 }
 
 .appliance option {
@@ -884,6 +891,26 @@ label[for='q']:after {
 .search-on {
 }
 
+.row {
+  clear: both;
+}
+
+
+/* sub-page Search */
+#drawer {
+  height: 132px;
+  background: none !important;
+}
+
+.appliance {
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px calc((100% - 1200px) / 2);
+  vertical-align: middle;
+}
+
+
 #reactRoot {
   min-height: 80vh;
 }
@@ -896,6 +923,7 @@ label[for='q']:after {
   display: grid;
   -ms-grid-columns:auto 3fr 1fr;
   grid-template-columns:auto 3fr 1fr;
+  display: -ms-grid;
 }
 
 .uSearchBox label {
@@ -1018,8 +1046,10 @@ hr {
   border-width: 1px 0;
   background: #F9F9F9;
   display: grid;
-  -ms-grid-columns: 1.5fr 1fr 1fr 1fr ;
+  display: -ms-grid;
+  
   grid-template-columns: 1.5fr 1fr 1fr 1fr ;
+  -ms-grid-columns: 1.5fr 1fr 1fr 1fr ;
   width: 80%;
   justify-content: left;
   font-size: 16px;
@@ -1032,6 +1062,8 @@ hr {
 
 .card-header {
   grid-row: 1 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
   background: #F1F1F1;
 }
 
@@ -1045,15 +1077,21 @@ hr {
 }
 
 .card-published {
-
+  -ms-grid-column: 2;
 }
 
 .card-status {
-
+  -ms-grid-column: 3;
 }
 
 .card-due {
+  -ms-grid-column: 4;
+}
 
+.card-pickup {
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+  -ms-grid-column-span: 2;
 }
 
 .card-actions {
@@ -1065,6 +1103,8 @@ hr {
 .actions {
   grid-column: 3 / 5;
   text-align: right;
+  -ms-grid-column: 4;
+  -ms-grid-row: 2;
 }
 
 .actions div {
@@ -1128,6 +1168,7 @@ hr {
   border: solid #dcdcdc;
   border-width: 1px 0;
   background: #F9F9F9;
+  display: -ms-grid;
   display: grid;
   -ms-grid-columns:  1fr 1.5fr .5fr;
   grid-template-columns:  1fr 1.5fr .5fr;
@@ -1159,11 +1200,12 @@ hr {
 }
 
 .course-guides {
-
+  -ms-grid-column: 2;
 }
 .course-reserves {
 
   text-align: right;
+  -ms-grid-column: 3;
 }
 
 .all-points {
@@ -1203,7 +1245,7 @@ hr {
 
 .right .service-point {
   margin-bottom: 2em;
-  padding: 2em 0;
+  padding: 2em 0 0;
   border-top: 3px solid rgba(0, 0, 0, .3);
   border-bottom: 3px solid rgba(0, 0, 0, .3);
 }
@@ -1233,6 +1275,7 @@ hr {
 .hours-grid {
   float: left;
   margin-top: 0;
+  margin-bottom: 2em;
 }
 
 .hours-grid dt {
@@ -1276,7 +1319,7 @@ hr {
 
 .news-card h3, .event-card h3 {
   color: #001E45;
-  font-size: 24px;
+  font-size: 22px;
   font-family: GPMed, sans-serif;
   font-weight: normal;
 }
@@ -1338,10 +1381,7 @@ hr {
 }
 
 .cover {
-  border: solid 2px #fff;
-  -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
-  box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
+
   height: 140px;
   width: 650px;
   position: absolute;
@@ -1349,16 +1389,59 @@ hr {
   top: -2px;
 }
 
+
+.col-md-4.right {
+  position: relative;
+  
+}
+.col-md-4.right > .frame {
+  width: 450px;
+  height: 253px;
+  overflow: hidden;
+    border: solid 2px #fff;
+  -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
+  background: #fff;
+  left: -70px;
+  position: relative;
+   margin-bottom: -110px;
+   top: -150px;
+}
+.cover {
+  width: 100%;
+  height: auto;
+  
+ 
+}
+
 .p-resources {
   list-style: outside none none;
   padding: 0;
-  display: grid;
-  -ms-grid-columns: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  -ms-grid-rows: auto auto auto;
-  grid-template-rows: auto auto auto;
-  grid-auto-flow: column;
+  
   margin-bottom: 3em;
+}
+
+
+
+@supports (display: grid) and (not (display: -ms-grid)) {
+  .p-resources { 
+    display: grid;
+    -ms-grid-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    -ms-grid-rows: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-auto-flow: column;
+  }
+  .alphabet {
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    display: -ms-grid;
+    -ms-grid-columns: (1em)[13];
+    max-width: 75ch;
+    width: 100%;
+  }
 }
 
 .p-resources li {
@@ -1411,43 +1494,6 @@ hr {
 }
 
 .p-services .frame img {
-  width: 100%;
-  display: block;
-}
-
-.p-pages {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  list-style: none;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.p-pages li {
-  width: 31%;
-  list-style: none;
-  margin: 0 0 2em 0;
-  padding: 0;
-}
-
-.p-pages li span {
-  width: 100%;
-  overflow: hidden;
-  display: block;
-  text-align: center;
-
-}
-
-.p-pages .frame {
-  border: solid 2px #fff;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  margin-bottom: 1em;
-}
-
-.p-pages .frame img {
   width: 100%;
   display: block;
 }
@@ -1807,17 +1853,22 @@ button a {
   }
   .uSearchBox label {
     -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
     grid-column-start: 1;
     grid-column-end: 4;
     -ms-grid-row: 1;
+
     grid-row-start: 1;
     grid-row-end: 2;
+
+    width: 100%;
   }
   .uSearchBox input {
     -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
     grid-column-start: 1;
     grid-column-end: 3;
-    -ms-grid-row: 1;
+    -ms-grid-row: 2;
     grid-row-start: 2;
     grid-row-end: 3;
   }
@@ -1831,7 +1882,7 @@ button a {
   }
   .appliance ul li#selected-search {
     padding: 0 20px;
-
+    
   }
 
   label[for="q"]::after {
@@ -1861,15 +1912,44 @@ button a {
   }
   .card-item {
     grid-template-columns: 1fr 1fr 1fr ;
+    -ms-grid-columns: 1fr 1fr 1fr ;
+    -ms-grid-rows: auto auto auto auto;
     width: 100%;
   }
   .card-header {
     grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-column-span: 3;
+    -ms-grid-row-span: 1;
+  }
+  .card-published {
+    -ms-grid-column: 1;
+    -ms-grid-row: 2;
+  }
+  .card-status {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+  }
+  .card-due {
+    -ms-grid-column: 3;
+    -ms-grid-row: 2;
   }
   .actions {
     grid-column: 2 / 4;
     grid-row: 3;
     text-align: right;
+    -ms-grid-column: 3;
+    -ms-grid-row: 4;
+  }
+
+  .card-pickup {
+    -ms-grid-column: 1;
+    -ms-grid-row: 3;
+    -ms-grid-column-span: 3;
+    grid-row: 3;
+    grid-column: 1 / 3;
   }
   .actions div {
     display: inline-block;
@@ -1887,10 +1967,19 @@ button a {
   .course {
     grid-column: 1 / 3;
     width: 100%;
+    -ms-grid-column-span: 2;
+  }
+  .course-guides {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+  .course-reserves {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
   }
   .p-resources {
     -ms-grid-columns: repeat(1, 1fr);
-  grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -1945,7 +2034,4 @@ nav {
   background-position: right 200px top;
 }
 
-#drawer {
-  background: url('../images/couch.jpg') top;
-  background-size: cover;
-}
+
