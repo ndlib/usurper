@@ -26,11 +26,16 @@ class Courses extends Component {
       courseGuide = <a href={course.courseGuide}><img src={Lgicon} /> Course Guide</a>
     }
 
+    let subtitle = course.instructor_name
+    if (course.codes) {
+      subtitle = course.codes.join(', ') + ' - ' + course.sectionNumbers.join(', ')
+    }
+
     return (
       <div className='course-card' key={course.id}>
         <div className='course'>
           <p className='course-header'>{course.title}</p>
-          <small className='course-subtitle'>{course.instructor_name}</small>
+          <small className='course-subtitle'>{subtitle}</small>
         </div>
         <div className='course-guides'>
           {courseGuide}
@@ -45,12 +50,12 @@ class Courses extends Component {
     )
   }
 
-  cardsForArray (outArray, array, key, name, showInstructors = true) {
+  cardsForArray (outArray, array, key, name) {
     var cards = []
     if (array && array.length > 0) {
       for (var i in array) {
         cards.push(
-          this.courseCard(array[i], showInstructors)
+          this.courseCard(array[i])
         )
       }
 
@@ -74,8 +79,8 @@ class Courses extends Component {
       this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', 'Upcoming Courses')
     }
     if (courses.instructs) {
-//      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
-//      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
+      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
+      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
     }
     return out
   }
