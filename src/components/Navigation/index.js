@@ -14,6 +14,7 @@ import {
   LIBRARIES_MENU,
   ABOUT_MENU,
   ASK_MENU,
+  USER_MENU,
   MOBILE_MENU,
 } from '../../actions/menu'
 
@@ -57,6 +58,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     openAsk: (e) => {
       dispatch(openMenu(ASK_MENU))
+      preventDefault(e)
+    },
+    openUser: (e) => {
+      dispatch(openMenu(USER_MENU))
       preventDefault(e)
     },
     openMobile: (e) => {
@@ -105,6 +110,7 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     dropDowns: dropDowns,
     handleDrawerClick: state.search.drawerOpen ? dispatchProps.closeSearchDrawer : dispatchProps.openSearchDrawer,
     handleAskClick: state.menus.menuId === ASK_MENU ? dispatchProps.closeMenus : dispatchProps.openAsk,
+    handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
     ...state,
     ...dispatchProps,

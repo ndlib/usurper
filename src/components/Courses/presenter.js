@@ -83,14 +83,14 @@ class Courses extends Component {
   render () {
     if (this.props.linkOnly) {
       return (
-        <Link to='/courses' className='button fright'>My Courses</Link>
+        <Link to='/courses' className='button fright tab'>My Courses</Link>
       )
     }
     return (
       <div key='courses' className='content'>
         <PageTitle title='Courses' />
         <SearchProgramaticSet open={false} />
-        <Link to='/personal' className='button fright'>My Items</Link>
+        <Link to='/personal' className='button fright tab'>My Items</Link>
         <div key='courseCards'>
           { this.courseCards() }
         </div>
