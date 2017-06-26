@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import DropDown from './DropDown'
 import AskMenu from './AskMenu'
 import MobileMenu from './MobileMenu'
+import Login from '../Login'
 import Link from '../Link'
 import { ASK_MENU, MOBILE_MENU } from '../../actions/menu'
 
@@ -29,13 +30,15 @@ const Navigation = (props) => {
           <Link to='/'>Home</Link>
         </div>
         {dropDowns}
+        
         <div className='menu-link hours-m'>
           <Link to='/hours' className='right m'>Hours</Link>
         </div>
-        <div className='menu-link ask' onClick={props.handleAskClick}>
+        <div className='menu-link login-m right'><Login /></div>
+        {/*<div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
-        </div>
+        </div>*/}
         <div className='menu-link search'>
           <a
             className='right search'

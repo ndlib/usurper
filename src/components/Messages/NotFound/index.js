@@ -18,9 +18,6 @@ const NotFound = ({ message = 'The requested page could not be found' }) => (
         <div className='sk-child sk-bounce3'></div>
       </div>
     </div>
-    <ul>
-      <li><Link to='/'> Home </Link></li>
-    </ul>
   </div>
 )
 

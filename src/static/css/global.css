@@ -479,7 +479,7 @@ body.gold-blue #header h4 a {
   color: #333;
 }
 
-.hours, .login {
+.hours, #banner .login {
   float: right;
   border: solid 1px #FFD000;
   color: #F8E999;
@@ -512,7 +512,7 @@ body.gold-blue #header h4 a {
 .log-in-out {
   position: relative;
 }
-.login {
+#banner .login {
   position: absolute;
   right: 30px;
   top: -53px;
@@ -523,7 +523,7 @@ body.gold-blue #header h4 a {
   padding:9px 11px !important;
 }
 
-.logout {
+#banner .logout {
   position: absolute;
   top: 14px;
   top:  -54px;
@@ -582,7 +582,7 @@ nav .more:hover {
   background-color: #f8e999;
 }
 
-nav .right, .menu .right {
+nav .right, .menu .right, .login-m.right {
   float: right;
 }
 nav a.search {
@@ -1147,8 +1147,9 @@ hr {
   font-size: 26px;
 }
 
-.error {
+.errored {
   background: url("../images/500.png");
+  background-size: cover;
 }
 
 
@@ -1373,7 +1374,7 @@ hr {
 }
 
 .col-md-4.right {
-  padding-top: 50px;
+  padding-top: 0px;
 }
 
 .pathfinder .service-point {
@@ -1405,8 +1406,8 @@ hr {
   background: #fff;
   left: -70px;
   position: relative;
-   margin-bottom: -110px;
-   top: -150px;
+   margin-bottom: -60px;
+   top: -100px;
 }
 .cover {
   width: 100%;
@@ -1427,9 +1428,7 @@ hr {
 @supports (display: grid) and (not (display: -ms-grid)) {
   .p-resources { 
     display: grid;
-    -ms-grid-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    -ms-grid-rows: auto auto auto;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto auto;
     grid-auto-flow: column;
   }
@@ -1601,6 +1600,13 @@ button a {
   text-decoration: none;
 }
 
+.button.contact {
+  background-color: #f8e999;
+  color: #041f44;
+  display: inline-block;
+  float: right;
+}
+
 .menu-icon {
   display: none;
 }
@@ -1723,6 +1729,7 @@ button a {
   border-radius: 3px 3px 0 0;
   font-weight: bold;
   box-shadow: 1px 1px 3px #333;
+  cursor: pointer;
 }
 
 .chat-button img {
@@ -1991,7 +1998,7 @@ button a {
     .container-fluid {
         margin: 0 2vw;
     }
-    .login {
+    #banner .login {
       right: 50px;
     }
     .appliance {
@@ -2014,8 +2021,8 @@ body {
 }
 
 .hours-m a, .hours-m:hover a {
-  background: url('../images/hours.b.png') no-repeat right 2px top 15px;
-  padding-right: 24px;
+  background: url('../images/hours.b.png') no-repeat right 22px top 15px;
+  padding-right: 44px;
 }
 
 .hours-m:hover a {
