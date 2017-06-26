@@ -3,10 +3,11 @@ import { Route } from 'react-router'
 import PropTypes from 'prop-types'
 import DropDown from './DropDown'
 import AskMenu from './AskMenu'
+import UserMenu from './UserMenu'
 import MobileMenu from './MobileMenu'
 import Login from '../Login'
 import Link from '../Link'
-import { ASK_MENU, MOBILE_MENU } from '../../actions/menu'
+import { ASK_MENU, USER_MENU, MOBILE_MENU } from '../../actions/menu'
 
 const Navigation = (props) => {
   const dropDowns = props.dropDowns.map((menu, index) => {
@@ -40,6 +41,10 @@ const Navigation = (props) => {
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
         </div>*/}
+        <div className='menu-link user' onClick={props.handleUserClick}>
+          <a className='right m'>My Account (new)</a>
+          <UserMenu open={props.menus.menuId === USER_MENU} />
+        </div>
         <div className='menu-link search'>
           <a
             className={'right search ' + props.toggleClass}
