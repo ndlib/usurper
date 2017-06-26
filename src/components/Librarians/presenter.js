@@ -10,6 +10,7 @@ import PrivateLibrarianImage from '../../static/images/librarian.gif'
 const Loaded = (info, className) => {
   return (
     <div className={className}>
+    <h3>Librarians <a href='#' className='button contact'>Ask a XXX Librarian</a></h3>
       {
 
         info.librarians.map((librarian) => {
