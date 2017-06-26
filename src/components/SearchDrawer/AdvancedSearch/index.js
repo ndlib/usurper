@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import AdvancedSearch from './presenter'
+import searchQuery from '../searchQueryBuilder'
 const mapStateToProps = (state, ownProps) => {
   return {
     ...state,
@@ -15,7 +16,7 @@ const mergeProps = (state, dispatch, ownProps) => {
   return {
     onSubmit: (e) => {
       e.preventDefault()
-      console.log(state.advancedSearch)
+      searchQuery(state.search, state.advancedSearch)
     },
     ...state,
     ...dispatch,

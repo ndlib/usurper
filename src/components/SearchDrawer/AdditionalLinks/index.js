@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import searchOptions from '../searchOptions'
+import searchOptions, { ONESEARCH, NDCATALOG } from '../searchOptions'
 
 const AdditionalLinks = (props) => {
   let links = []
   let key = 0
-  if (props.currentSearch.uid === 'ONESEARCH' || props.currentSearch.uid === 'NDCATALOG') {
+  if (props.currentSearch.uid === ONESEARCH || props.currentSearch.uid === NDCATALOG) {
     links.push(<a onClick={props.toggleAdvancedSearch} key={key++}>{props.advancedButtonLabel}</a>)
   }
   if (props.currentSearch.additionalLinks) {

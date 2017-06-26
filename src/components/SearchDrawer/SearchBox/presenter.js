@@ -17,10 +17,8 @@ const SearchBox = (props) => {
             <SearchOptionList {...props} />
           </ul>
         </label>
-        <input name='q' />
-        <button type='submit'>Search</button>
-        <input className='hidden' name='site' value='library' disabled />
-        <input className='hidden' name='client' value='lib_site_srch' disabled />
+        <input id='basic-search-field' name='q' onChange={props.onChange} />
+        <button onClick={props.onSubmit}>Search</button>
       </span>
     )
   }
