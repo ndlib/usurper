@@ -6,15 +6,17 @@ import '../../static/css/fonts.css'
 import '../../static/css/flexboxgrid.css'
 import '../../static/css/global.css'
 
-const PageWrapper = (props) => (
-  <div onClick={props.clickOnPage}>
-    <Header {...props} />
-    <div className={'container-fluid content'}>
-      {props.children}
+const PageWrapper = (props) => {
+  return (
+    <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
+      <Header {...props} />
+      <div className={'container-fluid content'}>
+        {props.children}
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-)
+  )
+}
 
 PageWrapper.propTypes = {
   children: PropTypes.oneOfType([
