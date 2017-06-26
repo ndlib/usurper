@@ -14,9 +14,10 @@ const Contact = (props) => {
   let building
   if (sp.floor) {
     let rawFloor = sp.floor.fields
+    let floorLink = rawFloor.image ? 'floor/' + rawFloor.slug : null
     floor = (
       <Link
-        to={'floor/' + rawFloor.slug}
+        to={floorLink}
         title={'Link to map of ' + rawFloor.title}
       >
         {rawFloor.title}<br />
