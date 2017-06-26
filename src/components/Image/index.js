@@ -12,8 +12,8 @@ export const mapStateToProps = (state, thisProps) => {
     src = thisProps.defaultImage
   }
 
-  if (!alt && thisProps.cfImage) {
-    alt = thisProps.cfImage.fields.title
+  if (!alt) {
+    alt = ''
   }
 
   return { src: src, alt: alt, className: thisProps.className }

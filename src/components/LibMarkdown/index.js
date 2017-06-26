@@ -21,7 +21,12 @@ const LibLink = (props) => {
   // Urls to remove so links are local
   let replaceUrls = [
     'https://alpha.library.nd.edu',
+    'https://alpha.library.nd.edu',
+    'https://library.nd.edu',
+    'http://library.nd.edu',
+
     'http://localhost:4000',
+    'http://localhost:3000',
   ]
 
   for (var index in replaceUrls) {

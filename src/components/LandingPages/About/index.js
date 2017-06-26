@@ -12,8 +12,6 @@ const About = () => {
         	<ul className='child'>
         		<li><Link to='/get-help'>Contact Us</Link></li>
         		<li><Link to='http://library.nd.edu/directory'>Faculty &amp; Staff Directory</Link></li>
-        		
-        		
         		<li><Link to='/employment'> Employment Opportunities</Link></li>
         	</ul>
         </div>
@@ -27,10 +25,10 @@ const About = () => {
         <div className='col-md-4 col-xs-12'>
         	<h3>Library Leadership</h3>
         	<ul className='child'>
-        		<li><Link to='/'>Mission and Vision</Link></li>
+        		<li><Link to='/mission-vision'>Mission and Vision</Link></li>
         		<li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
         		<li><Link to='/ucl'>University Committee on Libraries</Link></li>
-        		
+
         	</ul>
         </div>
        </div>
