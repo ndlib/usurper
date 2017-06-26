@@ -3,22 +3,48 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { fetchHours } from '../../../actions/hours'
+import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
 import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
+import { flattenLocale } from '../../../shared/ContentfulLibs'
 
 const mapStateToProps = (state) => {
-  return { hoursEntry: state.hours }
+  let combinedStatus = statuses.NOT_FETCHED
+  if (state.cfServicePoints.status === statuses.SUCCESS && state.hours.status === statuses.SUCCESS) {
+    combinedStatus = statuses.SUCCESS
+  } else if (state.cfServicePoints.status === statuses.ERROR || state.hours.status === statuses.ERROR) {
+    combinedStatus = statuses.ERROR
+  }
+
+  let servicePointsWithHours = []
+  if (combinedStatus === statuses.SUCCESS) {
+    servicePointsWithHours = state.cfServicePoints.json
+      .filter((servicePoint) => servicePoint.fields.hoursCode)
+      .map((servicePoint) => {
+        flattenLocale(servicePoint.fields, 'en-US')
+        return servicePoint
+      })
+  }
+  return {
+    combinedStatus,
+    hoursStatus: state.hours.status,
+    servicePointsStatus: state.cfServicePoints.status,
+    servicePointsWithHours,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchHours }, dispatch)
+  return bindActionCreators({ fetchHours, fetchServicePoints }, dispatch)
 }
 
 export class HoursPageContainer extends Component {
   componentDidMount () {
-    if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
+    if (this.props.hoursStatus === statuses.NOT_FETCHED) {
       this.props.fetchHours()
+    }
+    if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
+      this.props.fetchServicePoints('publish')
     }
   }
 
@@ -26,15 +52,18 @@ export class HoursPageContainer extends Component {
     return (
       <PresenterFactory
         presenter={HoursPagePresenter}
-        props={this.props.hoursEntry.json}
-        status={this.props.hoursEntry.status} />
+        props={this.props.servicePointsWithHours}
+        status={this.props.combinedStatus} />
     )
   }
 }
 
 PropTypes.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursStatus: PropTypes.string.isRequired,
   fetchHours: PropTypes.func.isRequired,
+  servicePointsStatus: PropTypes.string.isRequired,
+  fetchServicePoints: PropTypes.func.isRequired,
+  combinedStatus: PropTypes.string.isRequired,
 }
 
 const HoursPage = connect(

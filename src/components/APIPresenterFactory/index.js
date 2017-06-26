@@ -11,16 +11,16 @@ import * as statuses from '../../constants/APIStatuses'
 
 class APIPresenterFactory extends Component {
   render () {
-    switch(this.props.status) {
+    switch (this.props.status) {
       case statuses.NOT_FETCHED:
       case statuses.FETCHING:
-        return <Loading/>
+        return <Loading />
       case statuses.SUCCESS:
         return this.props.presenter(this.props.props)
       case statuses.NOT_FOUND:
-        return <NotFound/>
+        return <NotFound />
       default:
-        return <Error message={ 'There was an error loading the page.' }/>
+        return <Error message={'There was an error loading the page.'} />
     }
   }
 }
@@ -28,7 +28,9 @@ class APIPresenterFactory extends Component {
 APIPresenterFactory.propTypes = {
   presenter: PropTypes.func.isRequired, // The presenter to render when status === success
   status: PropTypes.string.isRequired,  // The current API status code
-  props: PropTypes.object.isRequired,   // The props to pass to the given presenter when status === success
+  props: PropTypes.oneOfType([          // The props to pass to the given presenter when status === success
+    PropTypes.object,
+    PropTypes.array]).isRequired,
 }
 
 export default APIPresenterFactory

@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
 import CurrentHours from '../Current'
+import Contact from '../../Contact/ServicePoint'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 
-const Presenter = (hoursEntry) => {
+const Presenter = (servicePoints) => {
   return (
     <div className='content'>
       <SearchProgramaticSet open={false} />
@@ -14,16 +15,23 @@ const Presenter = (hoursEntry) => {
         <p>View building and service desk hours.</p>
       </div>
       <div className='service-point-list'>
-        {Object.keys(hoursEntry).map((hoursKey) => {
-          return (<CurrentHours jsonHoursApiKey={hoursKey} key={hoursKey} />)
-        })}
+        {
+          servicePoints.map((servicePoint) => {
+            return (
+              <div key={servicePoint.sys.id}>
+                <CurrentHours jsonHoursApiKey={servicePoint.fields.hoursCode} />
+                <Contact servicePoint={servicePoint} />
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   )
 }
 
 Presenter.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  servicePoints: PropTypes.object.isRequired,
 }
 
 export default Presenter
