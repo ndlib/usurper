@@ -41,7 +41,7 @@ export const researchData = [
     items: [
       {
         title: 'Medieval Institute Library',
-        url: '/medieval-institute-library',
+        url: '/medieval',
       },
       {
         title: 'Rare Books and Special Collections',
