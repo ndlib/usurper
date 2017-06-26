@@ -39,6 +39,17 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export class HoursPageContainer extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { expandedId: null }
+    this.setCurrent = this.setCurrent.bind(this)
+  }
+
+  setCurrent (id) {
+    console.log(id)
+    this.setState({ expandedId: id })
+  }
+
   componentDidMount () {
     if (this.props.hoursStatus === statuses.NOT_FETCHED) {
       this.props.fetchHours()
@@ -52,7 +63,11 @@ export class HoursPageContainer extends Component {
     return (
       <PresenterFactory
         presenter={HoursPagePresenter}
-        props={this.props.servicePointsWithHours}
+        props={{
+          servicePoints: this.props.servicePointsWithHours,
+          expandedId: this.state.expandedId,
+          onclick: this.setCurrent,
+        }}
         status={this.props.combinedStatus} />
     )
   }
