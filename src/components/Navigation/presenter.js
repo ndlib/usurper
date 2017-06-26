@@ -30,7 +30,7 @@ const Navigation = (props) => {
           <Link to='/'>Home</Link>
         </div>
         {dropDowns}
-        
+
         <div className='menu-link hours-m'>
           <Link to='/hours' className='right m'>Hours</Link>
         </div>
@@ -41,7 +41,7 @@ const Navigation = (props) => {
         </div>*/}
         <div className='menu-link search'>
           <a
-            className='right search'
+            className={'right search ' + props.toggleClass}
             id='header-search-button'
             onClick={props.handleDrawerClick}
             >Search</a>
@@ -60,5 +60,7 @@ Navigation.propTypes = {
   handleDrawerClick: PropTypes.func.isRequired,
   handleAskClick: PropTypes.func.isRequired,
   dropDowns: PropTypes.array.isRequired,
+
+  toggleClass: PropTypes.string.isRequired,
 }
 export default Navigation
