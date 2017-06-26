@@ -1,14 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import MatchType from './presenter'
+import { setSearchOption } from '../../../../../actions/advancedSearch'
 
-const MatchType = (props) => {
-  return (
-    <select id={props.id}>
-      <option value='contains'>contains</option>
-      <option value='exact'>is (exact)</option>
-      <option value='begins_with'>starts with</option>
-    </select>
-  )
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+  }
 }
 
-export default MatchType
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onChange: (e) => {
+      dispatch(setSearchOption(e.target.id, e.target.value))
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MatchType)

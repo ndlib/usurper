@@ -1,8 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import SearchInput from './presenter'
+import { setSearchOption } from '../../../../../actions/advancedSearch'
 
-const SearchInput = (props) => {
-  return (<input id={props.id} />)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+  }
 }
 
-export default SearchInput
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onChange: (e) => {
+      dispatch(setSearchOption(e.target.id, e.target.value))
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchInput)

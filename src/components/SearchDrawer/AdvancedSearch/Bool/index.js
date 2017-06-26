@@ -1,14 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import Bool from './presenter'
+import { setSearchOption } from '../../../../actions/advancedSearch'
 
-const Bool = (props) => {
-  return (
-    <select>
-      <option value='AND'>AND</option>
-      <option value='OR'>OR</option>
-      <option value='NOT'>NOT</option>
-    </select>
-  )
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+  }
 }
 
-export default Bool
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onChange: (e) => {
+      dispatch(setSearchOption(e.target.id, e.target.value))
+    },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Bool)
