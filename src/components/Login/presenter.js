@@ -14,7 +14,7 @@ const LoginStatus = (props) => {
       </Link>
       <Link
         to={props.logoutUrl}
-        query={{ service: window.location.href }}
+        query={{ service: props.location }}
         className='logout'
         noTarget
         hideIfNull
@@ -30,6 +30,7 @@ LoginStatus.propTypes = {
   label: PropTypes.string,
 
   logoutUrl: PropTypes.string,
+  location: PropTypes.string,
 }
 
 export default LoginStatus

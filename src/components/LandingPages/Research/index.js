@@ -65,7 +65,7 @@ const Research = () => {
         <div className='col-md-6 col-xs-12'>
           <h3>Unique Collections</h3>
 
-          <p><Link to='/medieval-institute-library'>Medieval Institute Library</Link></p>
+          <p><Link to='/medieval'>Medieval Institute Library</Link></p>
 
           <p><Link to='http://rarebooks.library.nd.edu/'>Rare Books and Special Collections</Link></p>
 

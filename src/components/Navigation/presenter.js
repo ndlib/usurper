@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router'
 import PropTypes from 'prop-types'
 import DropDown from './DropDown'
 import AskMenu from './AskMenu'
@@ -31,11 +32,11 @@ const Navigation = (props) => {
           <Link to='/'>Home</Link>
         </div>
         {dropDowns}
-        
+
         <div className='menu-link hours-m'>
           <Link to='/hours' className='right m'>Hours</Link>
         </div>
-        <div className='menu-link login-m right'><Login /></div>
+        <div className='menu-link login-m right'><Route component={Login} /></div>
         {/*<div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
@@ -46,7 +47,7 @@ const Navigation = (props) => {
         </div>
         <div className='menu-link search'>
           <a
-            className='right search'
+            className={'right search ' + props.toggleClass}
             id='header-search-button'
             onClick={props.handleDrawerClick}
             >Search</a>
@@ -65,5 +66,7 @@ Navigation.propTypes = {
   handleDrawerClick: PropTypes.func.isRequired,
   handleAskClick: PropTypes.func.isRequired,
   dropDowns: PropTypes.array.isRequired,
+
+  toggleClass: PropTypes.string.isRequired,
 }
 export default Navigation

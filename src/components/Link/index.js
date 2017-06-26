@@ -2,18 +2,18 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Internal = (to, className, alt, children) => {
+const Internal = (to, className, title, children) => {
   return (
-    <Link to={to} className={className} alt={alt}>
+    <Link to={to} className={className} title={title}>
       {children}
     </Link>
   )
 }
 
-const External = (to, className, alt, children, noTarget) => {
+const External = (to, className, title, children, noTarget) => {
   let target = noTarget ? '_self' : '_blank'
   return (
-    <a href={to} className={className} alt={alt} target={target}>
+    <a href={to} className={className} title={title} target={target}>
       {children}
     </a>
   )
@@ -55,20 +55,20 @@ const LibLink = (props) => {
   to = to + query
 
   if (to.startsWith('http')) {
-    return External(to, props.className, props.alt, props.children, props.noTarget)
+    return External(to, props.className, props.title, props.children, props.noTarget)
   }
 
   if (to.startsWith('mailto:') || to.startsWith('tel:')) {
-    return External(to, props.className, props.alt, props.children, false)
+    return External(to, props.className, props.title, props.children, false)
   }
 
-  return Internal(to, props.className, props.alt, props.children)
+  return Internal(to, props.className, props.title, props.children)
 }
 
 LibLink.propTypes = {
   to: PropTypes.string,
   className: PropTypes.string,
-  alt: PropTypes.string,
+  title: PropTypes.string,
   query: PropTypes.object,
   children: PropTypes.any,
 

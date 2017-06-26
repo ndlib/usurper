@@ -634,11 +634,23 @@ nav a.search {
   text-indent: 50px;
 }
 
-nav a.search:hover {
+nav a.search.open {
+  background: url(../images/search.png) no-repeat  16px 16px , url(../images/arrow.b.u.png) no-repeat 43px 20px ;
+}
+
+nav a.search.closed {
+  background: url(../images/search.png) no-repeat  16px 16px , url(../images/arrow.b.d.png) no-repeat 43px 20px ;
+}
+
+nav a.search.open:hover {
   background: url(../images/search.png) no-repeat 16px 16px, url(../images/arrow.b.u.png) no-repeat 43px 20px  rgba(0,0,0,0.3);
   background-size: 21px, 16px;
 }
 
+nav a.search.closed:hover {
+  background: url(../images/search.png) no-repeat 16px 16px, url(../images/arrow.b.d.png) no-repeat 43px 20px  rgba(0,0,0,0.3);
+  background-size: 21px, 16px;
+}
 
 
 .container-fluid.row {
@@ -903,6 +915,7 @@ label[for='q']:after {
   background: #5B412D;
   padding: 16px;
   font-size: 18px;
+
   box-shadow: none;
   cursor: pointer;  
   -ms-grid-column: 3;
@@ -1100,7 +1113,7 @@ hr {
   background: #F9F9F9;
   display: grid;
   display: -ms-grid;
-  
+
   grid-template-columns: 1.5fr 1fr 1fr 1fr ;
   -ms-grid-columns: 1.5fr 1fr 1fr 1fr ;
   width: 88%;
@@ -1456,7 +1469,7 @@ hr {
 
 .col-md-4.right {
   position: relative;
-  
+
 }
 .col-md-4.right > .frame {
   width: 450px;
@@ -1475,21 +1488,21 @@ hr {
 .cover {
   width: 100%;
   height: auto;
-  
- 
+
+
 }
 
 .p-resources {
   list-style: outside none none;
   padding: 0;
-  
+
   margin-bottom: 3em;
 }
 
 
 
 @supports (display: grid) and (not (display: -ms-grid)) {
-  .p-resources { 
+  .p-resources {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto auto auto;
@@ -1924,7 +1937,7 @@ hr {
   }
   .appliance ul li#selected-search {
     padding: 0 20px;
-    
+
   }
 
   label[for="q"]::after {

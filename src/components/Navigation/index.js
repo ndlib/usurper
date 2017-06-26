@@ -112,6 +112,7 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     handleAskClick: state.menus.menuId === ASK_MENU ? dispatchProps.closeMenus : dispatchProps.openAsk,
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
+    toggleClass: state.search.drawerOpen ? 'open' : 'closed',
     ...state,
     ...dispatchProps,
     ...ownProps,
