@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router'
 import PropTypes from 'prop-types'
 import DropDown from './DropDown'
 import AskMenu from './AskMenu'
@@ -34,7 +35,7 @@ const Navigation = (props) => {
         <div className='menu-link hours-m'>
           <Link to='/hours' className='right m'>Hours</Link>
         </div>
-        <div className='menu-link login-m right'><Login /></div>
+        <div className='menu-link login-m right'><Route component={Login} /></div>
         {/*<div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
