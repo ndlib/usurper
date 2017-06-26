@@ -1,0 +1,63 @@
+Parameters:
+  OutBucket:
+    Type: String
+    Description: The bucket to put files into
+  ServiceName:
+    Type: String
+    Description: The Service name
+  TemplateLoc:
+    Type: String
+    Description: The bucket url where these templates are stored
+
+  ViceroyApi:
+    Type: String
+    Description: The ViceroyApi to use for build
+  PersonApi:
+    Type: String
+    Description: The PersonApi to use for build
+  RecommendApi:
+    Type: String
+    Description: The RecommendApi to use for build
+  CoursesApi:
+    Type: String
+    Description: The CoursesApi to use for build
+  ResourcesApi:
+    Type: String
+    Description: The ResourcesApi to use for build
+  IlliadBaseUrl:
+    Type: String
+    Description: The IlliadBaseUrl to use for build
+  HoursApiUrl:
+    Type: String
+    Description: The HoursApiUrl to use for build
+  ContentfulApi:
+    Type: String
+    Description: The ContentfulApi to use for build
+
+Resources:
+  RolesStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub ${TemplateLoc}/roles.yml
+      Parameters:
+        ServiceName: !Ref ServiceName
+        OutBucket: !Ref OutBucket
+
+  ResourcesStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: RolesStack
+    Properties:
+      TemplateURL: !Sub ${TemplateLoc}/resources.yml
+      Parameters:
+        RoleArn: !GetAtt RolesStack.Outputs.RoleArn
+        ServiceName: !Ref ServiceName
+        OutBucket: !Ref OutBucket
+
+        ViceroyApi: !Ref ViceroyApi
+        PersonApi: !Ref PersonApi
+        RecommendApi: !Ref RecommendApi
+        CoursesApi: !Ref CoursesApi
+        ResourcesApi: !Ref ResourcesApi
+        IlliadBaseUrl: !Ref IlliadBaseUrl
+        HoursApiUrl: !Ref HoursApiUrl
+        ContentfulApi: !Ref ContentfulApi
