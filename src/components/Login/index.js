@@ -19,7 +19,7 @@ class Login extends Component {
   }
 }
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state, ownProps) => {
   const { personal } = state
   let loggedIn = (personal.login && personal.login.token) ? true : false
   let label = loggedIn ? 'My Account' : 'Log In'
@@ -32,6 +32,7 @@ export const mapStateToProps = (state) => {
     // This "service = window.location" is to redirect back to this location after logging out
       // It will only work if you're on a site https://*.library.nd.edu (eg. alpha) because OIT CAS is very strict
     logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
+    location: window.location.origin + ownProps.location.pathname,
   }
 }
 
