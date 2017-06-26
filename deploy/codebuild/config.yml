@@ -1,0 +1,31 @@
+Service: usurper-build
+
+Stacks:
+  Single:
+    - Name: $SERVICE-$STAGE
+      Template: root.yml
+      Parameters:
+        ServiceName: $SERVICE-$STAGE
+        TemplateLoc: https://s3.amazonaws.com/$DEPLOY_BUCKET/$DEPLOY_FOLDER
+        OutBucket: ${OUT_BUCKET}
+
+        ViceroyApi: ${VICEROY_API}
+        PersonApi: ${PERSON_API}
+        RecommendApi: ${RECOMMEND_API}
+        CoursesApi: ${COURSES_API}
+        ResourcesApi: ${RESOURCES_API}
+        IlliadBaseUrl: ${ILLIAD_BASE_URL}
+        HoursApiUrl: ${HOURS_API_URL}
+        ContentfulApi: ${CONTENTFUL_API}
+      Tags:
+        Name: $SERVICE-$STAGE
+        Owner: hbeachey
+        Contact: hbeachey@nd.edu
+        Description: Codebuild for the Usurper Project
+        InceptDate: $TIMESTAMP
+
+Artifacts:
+  Templates:
+    - root.yml
+    - resources.yml
+    - roles.yml
