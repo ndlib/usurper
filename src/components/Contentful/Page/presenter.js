@@ -24,8 +24,8 @@ const PagePresenter = ({ cfPageEntry }) => (
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
 
         <Related className='p-resources' title='Resources' showImages={false}>{ cfPageEntry.fields.relatedResources }</Related>
-        <Related className='p-guides'>{ cfPageEntry.fields.libguides }</Related>
-        <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
+        <Related className='p-guides'  showImages={false}>{ cfPageEntry.fields.libguides }</Related>
+        <Related className='p-services' title='Services' showImages={true}>{ cfPageEntry.fields.relatedServices }</Related>
       </div>
       <div className='col-md-4 right'>
 
