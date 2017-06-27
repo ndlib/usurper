@@ -11,8 +11,8 @@ import InlineContainer from '../InlineContainer'
 
 // Parses date/time from the strings given in an hoursEntry.
 const timeToday = (dateString, timeString) => {
-  // The api doesn't give the zone designator, so making an assumption here
-  let utcMs = Date.parse(dateString + 'T' + timeString + '-04:00')
+  // This does not account for time zone differences
+  let utcMs = Date.parse(dateString + 'T' + timeString)
   let date = new Date(utcMs)
   return date
 }
