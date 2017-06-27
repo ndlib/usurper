@@ -18,7 +18,7 @@ const News = (entries) => {
                   <h3>{entry.fields.title}</h3>
                 </header>
                 <div className='description'>
-                  <LibMarkdown>{entry.fields.content}</LibMarkdown>
+                  <LibMarkdown>{entry.fields.shortDescription}</LibMarkdown>
                 </div>
               </div>
             </Link>
