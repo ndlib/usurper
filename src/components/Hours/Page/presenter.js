@@ -17,21 +17,11 @@ const Presenter = (props) => {
       <div className='service-point-list'>
         {
           props.servicePoints.map((servicePoint) => {
-            let expanded = props.expandedId === servicePoint.sys.id
-            if (expanded) {
-              return (
-                <div key={servicePoint.sys.id}>
-                  <CurrentHours jsonHoursApiKey={servicePoint.fields.hoursCode} />
-                  <Contact servicePoint={servicePoint} />
-                </div>
-              )
-            } else {
-              return (
-                <div key={servicePoint.sys.id} onClick={() => props.onclick(servicePoint.sys.id)}>
-                  {servicePoint.fields.title}
-                </div>
-              )
-            }
+            return (<div key={servicePoint.sys.id}>
+              <CurrentHours jsonHoursApiKey={servicePoint.fields.hoursCode}>
+                <Contact servicePoint={servicePoint} />
+              </CurrentHours>
+            </div>)
           })
         }
       </div>
