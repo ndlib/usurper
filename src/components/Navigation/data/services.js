@@ -46,7 +46,7 @@ export const servicesData = [
     classes: 'col-md-3',
     items: [
       {
-        title: 'Request Library Research Instruction',
+        title: 'Library Research Instruction',
         url: '/request-library-research-instruction',
       },
       {
