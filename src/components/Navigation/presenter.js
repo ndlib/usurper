@@ -15,7 +15,7 @@ const Navigation = (props) => {
       <div className='menu-link'
         onClick={menu.onClick}
         key={index}>
-        <a>{menu.title}</a>
+        <a id={menu.title.toLowerCase()}>{menu.title}</a>
         <DropDown
           title={menu.title}
           landingPage={menu.landingPage}
