@@ -1,29 +1,39 @@
-'use strict'
-import React from 'react'
-import PropTypes from 'prop-types'
-import Link from '../../Link'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import getToken from '../../../actions/personal/token'
+import Presenter from './presenter'
+import * as states from '../../../constants/APIStatuses'
 
-const UserMenu = (props) => {
-  if (props.open) {
-    return (
-      <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'}>
-        <div className='container-fluid row'>
-          <ul className='child'>
-            <li><Link to='/personal'>Items &amp; Requests</Link></li>
-            <li><Link to='/courses'>Courses</Link></li>
-            <li><Link to='/#'>Log Out</Link></li>
-          </ul>
-        </div>
-      </div>
-    )
+import Config from '../../../shared/Configuration'
+import { USER_MENU } from '../../../actions/menu'
+
+class Login extends Component {
+  componentWillMount () {
+    if (!this.props.login) {
+      this.props.getToken()
+    }
   }
-  return null
-}
-UserMenu.propTypes = {
-  open: PropTypes.bool,
+
+  render () {
+    return <Presenter {...this.props} />
+  }
 }
 
-UserMenu.defaultProps = {
-  open: false,
+export const mapStateToProps = (state, ownProps) => {
+  const { personal } = state
+  let loggedIn = (personal.login && personal.login.token) ? true : false
+
+  return {
+    login: personal.login,
+    open: state.menus.menuId === USER_MENU,
+    logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
+    location: window.location.origin + ownProps.location.pathname,
+  }
 }
-export default UserMenu
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ getToken }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

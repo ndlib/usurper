@@ -1,6 +1,5 @@
 'use strict'
 import React, { Component } from 'react'
-import Login from '../../Login'
 import Dude from '../../../static/images/dude.png'
 import Link from '../../Link'
 
