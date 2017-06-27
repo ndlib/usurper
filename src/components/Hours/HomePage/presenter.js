@@ -6,7 +6,7 @@ import Link from '../../Link'
 const Presenter = (hoursEntry) => {
   return (
     <div className='hours-display'>
-      <p>Hours Today: <Link to='hours'>{hoursEntry.today.display}</Link></p>
+      <p>Today's Hesburgh Library Hours: <Link to='hours'>{hoursEntry.today.display}</Link></p>
     </div>
   )
 }

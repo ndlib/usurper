@@ -11,7 +11,7 @@ const Loaded = (info, className) => {
   return (
     <div className={className}>
     <p><a href='#' className='button contact'>Special Super Link</a></p>
-    <h3>Librarians </h3>
+    <h3>Contact Info </h3>
       {
 
         info.librarians.map((librarian) => {
