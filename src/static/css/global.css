@@ -49,6 +49,22 @@ p, li {
   max-width: 75ch;
 }
 
+.hours-display {
+  background: #fff;
+  width: 40%;
+  margin: 0 auto;
+  padding: 1em;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+}
+
+.hours-display p {
+  max-width: 100%;
+  margin: 0;
+  line-height: 1em;
+}
+
 li p {
   margin-bottom: 0;
 }
@@ -644,12 +660,12 @@ nav a.search.closed {
 
 nav a.search.open:hover {
   background: url(../images/search.png) no-repeat 16px 16px, url(../images/arrow.b.u.png) no-repeat 43px 20px  rgba(0,0,0,0.3);
-  background-size: 21px, 16px;
+  background-size: 21px, 12px;
 }
 
 nav a.search.closed:hover {
   background: url(../images/search.png) no-repeat 16px 16px, url(../images/arrow.b.d.png) no-repeat 43px 20px  rgba(0,0,0,0.3);
-  background-size: 21px, 16px;
+  background-size: 21px, 12px;
 }
 
 
@@ -781,7 +797,7 @@ nav a.search.closed:hover {
 /* sub-page Search */
 #drawer {
   height: 132px;
-  background: none !important;
+  background: none;
 }
 
 .appliance {
@@ -794,8 +810,23 @@ nav a.search.closed:hover {
 
 /* home-page search */
 
-.Home #drawer {
+.home #banner {
+  height: 100px;
+}
+
+.home .hlhome {
+  padding: 32px 0 30px;
+}
+
+.home #drawer {
   height: 25vw;
+}
+
+.home .appliance {
+  left: calc((100vw - 1200px) / 2);
+  top: 3vw;
+  width: 60vw;
+  padding: 24px;
 }
 
 .appliance label {
@@ -858,7 +889,7 @@ label[for='q']:after {
 
 .appliance ul li small {
   font-size: 70%;
-  opacity: .6;
+  opacity: .8;
 }
 
 .appliance ul li#selected-search p {
@@ -1299,14 +1330,10 @@ hr {
 }
 
 .service-point h4 {
-  background: #818D9C;
-  padding: 5px 58px 5px 8px;
-  color: #fff;
+
   font-family: GPCMed, sans-serif;
   font-size: 24px;
   font-weight: normal;
-  background: #818D9C url(../images/location.w.png) no-repeat right 8px bottom;
-  min-height: 65px;
   margin-bottom: 20px;
 }
 .service-point h5 {
@@ -1335,6 +1362,22 @@ hr {
 .contact address {
   text-align: left;
   line-height: 1.5em;
+  font-style: normal;
+}
+
+.contact address a {
+  font-family: GPCMed, sans-serif;
+  font-size: 24px;
+  margin-bottom: 1em;
+  display: block;
+  padding-left: 30px;
+  background-image: url("../images/map.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.contact address div {
+  font-weight: bold;
 }
 
 .hours-list {
@@ -1443,6 +1486,7 @@ hr {
 .content-area, .content {
   position: relative;
   padding-top: 40px;
+  min-height: 60vh;
 }
 
 .content .content, .content .content-area {
@@ -1456,7 +1500,7 @@ hr {
 .pathfinder .service-point {
   width: 100%;
 }
-
+/*
 .cover {
 
   height: 140px;
@@ -1465,7 +1509,7 @@ hr {
   right: 0;
   top: -2px;
 }
-
+*/
 
 .col-md-4.right {
   position: relative;
@@ -1486,8 +1530,8 @@ hr {
    top: -100px;
 }
 .cover {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 
 
 }
@@ -1867,9 +1911,7 @@ hr {
     display: block;
     float: right;
   }
-  #drawer {
 
-  }
   .appliance {
     left: 0 !important;
     top: 0;

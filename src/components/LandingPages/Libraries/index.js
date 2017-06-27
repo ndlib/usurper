@@ -13,7 +13,7 @@ const Libraries = () => {
       <div className='row'>
         <div className='col-md-4 col-xs-12'>
 
-          <h3><Link to='/hesburgh-libraries/'>Hesburgh Libraries</Link></h3>
+          <h3>Hesburgh Libraries</h3>
           <ul className='child'>
             <li><Link to='/hesburgh'>Hesburgh Library</Link></li>
 
@@ -46,7 +46,7 @@ const Libraries = () => {
         </div>
         <div className='col-md-4 col-md-offset-1 col-xs-12'>
 
-          <h3><Link to='/global-gateways/'>Global Gateways</Link></h3>
+          <h3>Global Gateways</h3>
           <ul className='child'>
 
             <li><Link to='/jerusalem-global-gateway/'>Tantur</Link></li>
@@ -59,7 +59,7 @@ const Libraries = () => {
 
           <p>&nbsp;</p>
 
-          <h3><Link to='/area-libraries/'>Area Libraries</Link></h3>
+          <h3>Area Libraries</h3>
           <ul className='child'>
 
             <li><Link to='http://sjcpl.lib.in.us/'>St. Joseph County Public Library</Link></li>
