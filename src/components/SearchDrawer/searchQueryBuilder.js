@@ -1,8 +1,14 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
 const onesearchBasicURL = (queryTerm, mode) => {
+  if (mode === 'Advanced') {
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=onesearch&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+  }
   return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=${mode}&onCampus=false&pcAvailabiltyMode=true&query=${queryTerm}&search_scope=malc_blended&tab=onesearch&vid=NDU&displayField=title&displayField=creator`
 }
 const ndcatalogBasicURL = (queryTerm, mode) => {
+  if (mode === 'Advanced') {
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=nd_campus&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+  }
   return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=${mode}&onCampus=false&pcAvailabiltyMode=true&query=${queryTerm}&search_scope=nd_campus&tab=nd_campus&vid=NDU&displayField=title&displayField=creator`
 }
 const curateBasicURL = (queryTerm) => {
@@ -65,7 +71,8 @@ const searchQuery = (searchStore, advancedSearch) => {
     `&vl%28drStartYear5%29=${drStartYear}` +
     `&vl%28drEndDay5%29=${drEndDay}` +
     `&vl%28drEndMonth5%29=${drEndMonth}` +
-    `&vl%28drEndYear5%29=${drEndYear}`
+    `&vl%28drEndYear5%29=${drEndYear}` +
+    `&Submit=Search`
     alert(searchTerm)
   } else {
     // Basic Search
@@ -86,9 +93,11 @@ const searchQuery = (searchStore, advancedSearch) => {
       window.location = curateBasicURL(searchTerm)
       break
     case LIBRARY:
-      return libSearchBasicURL(searchTerm)
+      window.location = libSearchBasicURL(searchTerm)
+      break
     default:
-      return libSearchBasicURL(searchTerm)
+      window.location = libSearchBasicURL(searchTerm)
+      break
   }
 }
 
