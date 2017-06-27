@@ -100,7 +100,7 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     },
     {
       title: 'About',
-      landingPage: '/about',
+      landingPage: null,
       menuId: ABOUT_MENU,
       menuData: aboutData,
       onClick: state.menus.menuId === ABOUT_MENU ? dispatchProps.closeMenus : dispatchProps.openAbout,

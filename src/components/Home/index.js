@@ -21,7 +21,7 @@ class Home extends Component {
         <HomePageHours jsonHoursApiKey='hesburghlibrary' />
         <div className='row services'>
           <div className='col-sm-3 col-xs-3'>
-            <Link to='https://reserves.library.nd.edu' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
+            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
           </div>
           <div className='col-sm-3 col-xs-3'>
             <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' /></Link>
@@ -32,7 +32,7 @@ class Home extends Component {
           <div className='col-sm-3 col-xs-3'>
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending. Hand holding an iPad in a classroom.' /></Link>
           </div>
-          
+
         </div>
         <FakeNews />
       </div>

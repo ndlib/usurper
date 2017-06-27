@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import Image from '../Image'
 import Link from '../Link'
 
-const Related = ({ title, className, children }) => {
+const Related = ({ title, className, showImages, children }) => {
   if (!children) {
     return null
   }
+
 
   return (
     <div>
@@ -20,11 +21,14 @@ const Related = ({ title, className, children }) => {
             if (!link) {
               link = currentItem.fields.purl
             }
-
+            let image = ''
+            if (showImages) {
+              image = (<Image cfImage={currentItem.fields.image} />)
+            }
             return (
               <li key={currentItem.fields.title}>
                 <Link to={link}>
-                  <Image cfImage={currentItem.fields.image} />
+                  {image}
                   <span>{currentItem.fields.title}</span>
                 </Link>
               </li>
@@ -40,6 +44,7 @@ const Related = ({ title, className, children }) => {
 Related.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
+  showImages: PropTypes.bool,
   children: PropTypes.array,
 }
 

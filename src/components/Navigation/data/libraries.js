@@ -40,6 +40,10 @@ export const librariesData = [
         url: '/medieval',
       },
       {
+        title: 'Music Library',
+        url: '/music',
+      },
+      {
         title: 'Preservation',
         url: '/preservation',
       },
