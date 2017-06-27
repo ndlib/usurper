@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../Link'
 import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
@@ -86,11 +86,6 @@ class Courses extends Component {
   }
 
   render () {
-    if (this.props.linkOnly) {
-      return (
-        <Link to='/courses' className='button fright tab'>My Courses</Link>
-      )
-    }
     return (
       <div key='courses' className='content'>
         <PageTitle title='Courses' />
@@ -105,9 +100,7 @@ class Courses extends Component {
 }
 
 Courses.propTypes = {
-  login: PropTypes.object,
   courses: PropTypes.object,
-  linkOnly: PropTypes.bool,
 }
 
 Courses.contextTypes = {

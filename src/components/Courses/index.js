@@ -1,9 +1,11 @@
 'use strict'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import getCourses from '../../actions/personal/courses'
 import * as statuses from '../../constants/APIStatuses'
 import Loading from '../Messages/Loading'
+import Link from '../Link'
 
 import CoursesPresenter from './presenter'
 
@@ -19,6 +21,8 @@ class CoursesContainer extends Component {
     if (props.courses.state === statuses.NOT_FETCHED &&
       props.loggedIn) {
       props.dispatch(getCourses(props.login.token))
+    } else if (props.login.redirectUrl) {
+      window.location = props.login.redirectUrl
     }
   }
 
@@ -31,6 +35,12 @@ class CoursesContainer extends Component {
   }
 
   render () {
+    if (this.props.linkOnly) {
+      return (
+        <Link to='/courses' className='button fright tab'>My Courses</Link>
+      )
+    }
+
     let courses = get(this.props, 'courses', { state: statuses.NOT_FETCHED })
     if (courses.state === statuses.FETCHING || courses.state === statuses.NOT_FETCHED) {
       return <Loading />
@@ -50,6 +60,10 @@ export const mapStateToProps = (state) => {
     login: personal.login,
     courses: courses,
   }
+}
+
+CoursesContainer.propTypes = {
+  linkOnly: PropTypes.bool,
 }
 
 export default connect(mapStateToProps)(CoursesContainer)
