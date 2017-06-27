@@ -37,10 +37,5 @@
 		grid-template-columns: 1fr;
 	}
 
-	.service-point h4 {
-		font-size: 24px;
-		min-width: 90px;
-		max-width: 90px;
-	}
 }
 
