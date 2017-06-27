@@ -9,8 +9,10 @@ import '../../static/css/global.css'
 const PageWrapper = (props) => {
   return (
     <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
+      <a id='skiplink' href='#maincontent'>Skip to main content</a>
+
       <Header {...props} />
-      <div className={'container-fluid content'}>
+      <div id='maincontent' className={'container-fluid content'}>
         {props.children}
       </div>
       <Footer />

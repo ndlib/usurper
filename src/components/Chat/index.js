@@ -5,6 +5,7 @@ const Chat = () => {
     <div className='chat'>
       <div className='libraryh3lp'>
         <iframe
+          title="Chat with Us"
           src='https://libraryh3lp.com/chat/nd-ask-a-lib@chat.libraryh3lp.com?skin=10273&amp;theme=gota&amp;title=Ask%20a%20Librarian&amp;identity=asklib&amp;css=https://www.library.nd.edu/local_css/chat.css'
           frameBorder={0}
           style={{
