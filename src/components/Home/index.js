@@ -5,13 +5,14 @@ import Link from '../Link'
 import HomePageHours from '../Hours/HomePage'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
-import FakeNews from './FakeNews'
+import News from './News'
+import Events from './Events'
 import Reserves from '../../static/images/reserves.jpg'
 import Account from '../../static/images/myaccount.jpg'
 import Room from '../../static/images/reserveroom.jpg'
 import Tech from '../../static/images/tech.jpg'
 import Find from '../../static/images/findlibrarian.jpg'
-import '../../static/images/favicon.ico';
+import '../../static/images/favicon.ico'
 
 class Home extends Component {
   render () {
@@ -38,7 +39,10 @@ class Home extends Component {
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending. Hand holding an iPad in a classroom.' /></Link>
           </div>
         </div>
-        <FakeNews />
+        <div className='row news'>
+          <News />
+          <Events />
+        </div>
       </div>
     )
   }

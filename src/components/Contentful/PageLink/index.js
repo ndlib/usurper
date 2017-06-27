@@ -13,7 +13,7 @@ const PageLink = (props) => {
 }
 
 PageLink.propTypes = {
-  cfPage: PropTypes.object.isRequired,
+  cfPage: PropTypes.object,
   className: PropTypes.string,
 }
 
