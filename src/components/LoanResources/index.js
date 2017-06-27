@@ -44,10 +44,7 @@ export const mapStateToProps = (state) => {
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
 
   const have = personal.resources_have
-  const haveEmpty = have && have.state !== statuses.FETCHING ? 'You have no Checked Out Items' : 'Loading'
-
   const pending = personal.resources_pending
-  const pendingEmpty = pending && pending.state !== statuses.FETCHING ? 'You have no Pending Items' : 'Loading'
 
   const web = get(have, 'web', [])
   const checkedOut = get(have, 'checkedOut', [])
@@ -58,14 +55,16 @@ export const mapStateToProps = (state) => {
     login: personal.login,
     resources: {
       have: {
-        state: have ? have.state : null,
+        state: get(have, 'state', false),
+        loading: get(have, 'state', false) === statuses.FETCHING,
         items: web.concat(checkedOut),
-        emptyText: haveEmpty,
+        emptyText: 'You have no Checked Out Items',
       },
       pending: {
-        state: pending ? pending.state : null,
+        state: get(pending, 'state', false),
+        loading: get(pending, 'state', false) === statuses.FETCHING,
         items: pendingItems,
-        emptyText: pendingEmpty,
+        emptyText: 'You have no Pending Items',
       },
     },
   }

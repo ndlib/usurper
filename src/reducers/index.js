@@ -9,6 +9,7 @@ import searchReducer from './search'
 import librarianInfo from './librarians'
 import menuReducer from './menu'
 import chatReducer from './chat'
+import advancedSearch from './advancedSearch'
 
 import { combineReducers } from 'redux'
 
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   menus: menuReducer,
   chat: chatReducer,
+  advancedSearch: advancedSearch,
 })
 
 export default rootReducer

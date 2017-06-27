@@ -2,6 +2,8 @@ import {
   SET_SEARCH,
   OPEN_SEARCHBOX,
   CLOSE_SEARCHBOX,
+  OPEN_ADVANCED_SEARCH,
+  CLOSE_ADVANCED_SEARCH,
   SAVE_SEARCH_PREFERENCE,
   CLEAR_SEARCH_PREFERENCE,
   OPEN_SEARCHDRAWER,
@@ -14,6 +16,7 @@ export default (
     drawerOpen: true,
     searchType: 'ONESEARCH',
     searchBoxOpen: false,
+    advancedSearch: false,
     hasPref: localSearchPref !== null,
     usePref: true,
     pref: JSON.parse(localSearchPref) || null,
@@ -30,6 +33,11 @@ export default (
       return Object.assign({}, state, { searchBoxOpen: true })
     case CLOSE_SEARCHBOX:
       return Object.assign({}, state, { searchBoxOpen: false })
+
+    case OPEN_ADVANCED_SEARCH:
+      return Object.assign({}, state, { advancedSearch: true })
+    case CLOSE_ADVANCED_SEARCH:
+      return Object.assign({}, state, { advancedSearch: false })
     case SAVE_SEARCH_PREFERENCE:
       localStorage.setItem('searchPreference', JSON.stringify(action.pref))
       return Object.assign(

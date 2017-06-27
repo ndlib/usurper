@@ -20,6 +20,7 @@ class Home extends Component {
         <PageTitle tile='Hesburgh Library' />
         <SearchProgramaticSet open />
         <HomePageHours jsonHoursApiKey='hesburghlibrary' />
+
         <div className=' services hservices'>
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' /></Link>
@@ -36,8 +37,6 @@ class Home extends Component {
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending. Hand holding an iPad in a classroom.' /></Link>
           </div>
-          
-          
         </div>
         <FakeNews />
       </div>

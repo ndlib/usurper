@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Link from '../Link'
+import Loading from '../Messages/Loading'
 import IlliadActions from './illiadActions'
 
 const Card = (className, prefix, data) => {
@@ -11,7 +11,11 @@ const Card = (className, prefix, data) => {
   return null
 }
 
-const ResourceList = ({ list, emptyText }) => {
+const ResourceList = ({ loading, list, emptyText }) => {
+  if (loading) {
+    return <Loading />
+  }
+
   if (!list || list.length === 0) {
     return (
       <div>{emptyText}</div>
@@ -44,6 +48,7 @@ const ResourceList = ({ list, emptyText }) => {
 }
 
 ResourceList.propTypes = {
+  loading: PropTypes.bool,
   list: PropTypes.array.isRequired,
   emptyText: PropTypes.string.isRequired,
 }

@@ -5,7 +5,7 @@ import CurrentHours from '../Current'
 import Contact from '../../Contact/ServicePoint'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 
-const Presenter = (servicePoints) => {
+const Presenter = (props) => {
   return (
     <div className='content hours-page'>
       <SearchProgramaticSet open={false} />
@@ -16,13 +16,12 @@ const Presenter = (servicePoints) => {
       </div>
       <div className='service-point-list'>
         {
-          servicePoints.map((servicePoint) => {
-            return (
-              <div key={servicePoint.sys.id}>
-                <CurrentHours jsonHoursApiKey={servicePoint.fields.hoursCode} />
+          props.servicePoints.map((servicePoint) => {
+            return (<div key={servicePoint.sys.id}>
+              <CurrentHours jsonHoursApiKey={servicePoint.fields.hoursCode}>
                 <Contact servicePoint={servicePoint} />
-              </div>
-            )
+              </CurrentHours>
+            </div>)
           })
         }
       </div>

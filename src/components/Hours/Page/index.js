@@ -52,7 +52,9 @@ export class HoursPageContainer extends Component {
     return (
       <PresenterFactory
         presenter={HoursPagePresenter}
-        props={this.props.servicePointsWithHours}
+        props={{
+          servicePoints: this.props.servicePointsWithHours,
+        }}
         status={this.props.combinedStatus} />
     )
   }
