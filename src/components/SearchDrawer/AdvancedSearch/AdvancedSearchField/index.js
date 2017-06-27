@@ -7,9 +7,9 @@ import SearchInput from './SearchInput'
 const AdvancedSearchField = (props) => {
   return (
     <fieldset id={`exlidAdvancedSearchFieldset${props.id}`} >
-      <SearchField id={`exlidInput_scope_${props.id}`} />
-      <MatchType id={`exlidInput_precisionOperator_${props.id}`} />
-      <SearchInput id={`input_freeText${props.id}`} />
+      <SearchField id={`scope_${props.id}`} />
+      <MatchType id={`precisionOperator_${props.id}`} />
+      <SearchInput id={`freeText_${props.id}`} />
     </fieldset>
   )
 }

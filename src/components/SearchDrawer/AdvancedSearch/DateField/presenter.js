@@ -20,13 +20,13 @@ const DateField = (props) => {
   return (
     <div>
       <label>{props.label}: </label>
-      <select id={`exlidInput_${props.id}Day_`} onChange={props.onChange}>
+      <select id={`${props.id}Day`} onChange={props.onChange}>
         {days}
       </select>
-      <select id={`exlidInput_${props.id}Month_`} onChange={props.onChange}>
+      <select id={`${props.id}Month`} onChange={props.onChange}>
         {months}
       </select>
-      <input type='text' id={`input_${props.id}Year5`} placeholder='year' onChange={props.onChange} />
+      <input type='text' id={`${props.id}Year5`} placeholder='year' onChange={props.onChange} />
     </div>
   )
 }
