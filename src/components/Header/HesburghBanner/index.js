@@ -11,7 +11,7 @@ class HomeHesburghBanner extends Component {
         <div className='alpha'>
           <div>
             <Link to='https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLSdL4MnInHvXcQke9dJQ1Idkv2O23u9dBV_9ky40WDOV77B_MA/viewform?c=0&amp;w=1'>
-              <img src={Dude} />
+              <img src={Dude} alt="Illustration of a construction worker"/>
 
              Alpha Preview
             </Link>

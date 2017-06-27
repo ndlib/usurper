@@ -7,7 +7,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const Presenter = (servicePoints) => {
   return (
-    <div className='content'>
+    <div className='content hours-page'>
       <SearchProgramaticSet open={false} />
       <h2>Hours</h2>
       <hr />

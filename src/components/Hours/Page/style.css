@@ -9,18 +9,16 @@
 }
 
 .service-point h4 {
-	font-size: 32px;
-	background-image: none;
-
-	padding: 0;
-
-
-	width: auto;
-
-
-
-	margin: 0 0 0 0;
+	font-size: 22px;
+	font-family: GPCBold, sans-serif;
+	background: #fff;
+	border: solid #333;
+	border-width: 0 1px 1px 8px;
 	padding: 10px;
+	border-left-color: #AA272F;
+}
+
+.service-point h4.open {
 
 }
 

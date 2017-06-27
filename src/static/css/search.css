@@ -1,5 +1,5 @@
-.Home #drawer {
-	background: url('../images/skyline.jpg') top;
+.home #drawer {
+	background: url('../images/search.banner.jpg') top;
 	background-size: cover;
 }
 
@@ -16,7 +16,7 @@
 #selected-search, #selected-search:hover, .appliance ul li, .appliance label:after, .appliance button  {
 	background: #00853A; /* green */
 	background-color: #5aabbc; /* teal */
-	background-color: #5a412f;
+	background-color: #0C2340;
 
 }
 

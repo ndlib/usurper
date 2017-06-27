@@ -30,6 +30,7 @@ const Contact = (props) => {
         <Link
           to={rawBuilding.mapLink}
           title={'Link to map to ' + rawBuilding.title}
+          className='map'
         >
           {rawBuilding.title}<br />
         </Link>
