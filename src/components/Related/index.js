@@ -48,4 +48,8 @@ Related.propTypes = {
   children: PropTypes.array,
 }
 
+Related.defaultProps = {
+  showImages: true,
+}
+
 export default Related
