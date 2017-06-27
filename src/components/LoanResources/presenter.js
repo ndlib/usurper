@@ -5,13 +5,16 @@ import PropTypes from 'prop-types'
 import ResourceList from './resourceList'
 
 const LoanResources = (props) => {
+  let have = props.resources.have
+  let pending = props.resources.pending
+
   return (
     <div key='LoanResources' className='resources-list'>
       <h3>Checked out</h3>
-      <ResourceList list={props.resources.have.items} emptyText={props.resources.have.emptyText} />
+      <ResourceList list={have.items} emptyText={have.emptyText} loading={have.loading} />
       <br />
       <h3>Pending</h3>
-      <ResourceList list={props.resources.pending.items} emptyText={props.resources.pending.emptyText} />
+      <ResourceList list={pending.items} emptyText={pending.emptyText} loading={pending.loading} />
     </div>
   )
 }
