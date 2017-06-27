@@ -24,13 +24,17 @@ const Services = () => {
 
           <p><Link to='/borrow-renew-request/'>Borrow, Renew, Request Policies</Link> </p>
 
+          <p><Link to='https://nd.illiad.oclc.org/illiad/IND/illiad.dll'>Interlibrary Loan &amp; Document Delivery</Link> </p>
+
+          <p><Link to='/courses'>Course Reserves</Link> </p>
+
           <p><Link to='/technology-lending/'>Technology Lending Policies</Link> </p>
 
           <p>&nbsp;</p>
 
           <h3>Teaching and Consulting</h3>
 
-          <p><Link to='/request-library-research-instruction/'>Request Library Research Instruction</Link> </p>
+          <p><Link to='/request-library-research-instruction/'>Library Research Instruction</Link> </p>
 
           <p><Link to='/workshops/'>Workshops</Link> </p>
 

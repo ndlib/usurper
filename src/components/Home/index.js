@@ -10,6 +10,7 @@ import Reserves from '../../static/images/reserves.jpg'
 import Account from '../../static/images/myaccount.jpg'
 import Room from '../../static/images/reserveroom.jpg'
 import Tech from '../../static/images/tech.jpg'
+import Find from '../../static/images/findlibrarian.jpg'
 import '../../static/images/favicon.ico';
 
 class Home extends Component {
@@ -19,20 +20,23 @@ class Home extends Component {
         <PageTitle tile='Hesburgh Library' />
         <SearchProgramaticSet open />
         <HomePageHours jsonHoursApiKey='hesburghlibrary' />
-        <div className='row services'>
-          <div className='col-sm-3 col-xs-3'>
-            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
-          </div>
-          <div className='col-sm-3 col-xs-3'>
+
+        <div className=' services hservices'>
+          <div className='-col-sm-3 -col-xs-6'>
             <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' /></Link>
           </div>
-          <div className='col-sm-3 col-xs-3'>
+          <div className='-col-sm-3 -col-xs-6'>
+            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
+          </div>
+          <div className='-col-sm-3 -col-xs-6'>
+            <Link to='/subject-librarians' title='Find Your Librarian'><img src={Find} alt='Find Your Librarian ' /></Link>
+          </div>
+          <div className='-col-sm-3 -col-xs-6'>
             <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. Students sitting at a table receiving instruction.' /></Link>
           </div>
-          <div className='col-sm-3 col-xs-3'>
+          <div className='-col-sm-3 -col-xs-6'>
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending. Hand holding an iPad in a classroom.' /></Link>
           </div>
-
         </div>
         <FakeNews />
       </div>
