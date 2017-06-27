@@ -44,6 +44,9 @@ const DBLoading = (letter) => {
 }
 
 const Loaded = (letter, list) => {
+  if (!list) {
+    return null
+  }
   list.sort((left, right) => {
     let a = left.fields.title.toLowerCase()
     let b = right.fields.title.toLowerCase()
