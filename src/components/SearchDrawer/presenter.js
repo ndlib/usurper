@@ -12,7 +12,7 @@ const Drawer = (props) => {
   return (
     <div id='drawer'>
       <div className='appliance'>
-        <form id='searchAppliance' method='get' action={props.currentSearch.target}>
+        <form id='searchAppliance'>
           <SearchBox
             visible={!props.search.advancedSearch}
             currentSearch={props.currentSearch}
