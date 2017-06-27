@@ -3,15 +3,23 @@ import { connect } from 'react-redux'
 import { saveSearchPreference, clearSearchPreference } from '../../../actions/search.js'
 import SearchPreference from './presenter'
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+  }
+}
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     saveClick: () => {
-      ownProps.dispatch(saveSearchPreference(ownProps.currentSearch))
+      dispatch(saveSearchPreference(ownProps.currentSearch))
     },
     forgetClick: () => {
-      ownProps.dispatch(clearSearchPreference())
+      dispatch(clearSearchPreference())
     },
   }
 }
 
-export default connect(mapDispatchToProps)(SearchPreference)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchPreference)

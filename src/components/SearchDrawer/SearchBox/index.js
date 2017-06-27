@@ -1,21 +1,38 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { openSearchBox, closeSearchBox } from '../../../actions/search.js'
+import { setSearchOption } from '../../../actions/advancedSearch.js'
+import searchQuery from '../searchQueryBuilder'
 import SearchBox from './presenter'
-
+const mapStateToProps = (state, ownProps) => {
+  return {
+    onSubmit: (e) => {
+      e.preventDefault()
+      searchQuery(state.search, state.advancedSearch)
+    },
+    ...state,
+  }
+}
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick:(e) => {
       if (ownProps.search.searchBoxOpen) {
-        ownProps.dispatch(closeSearchBox())
+        dispatch(closeSearchBox())
       } else {
-        ownProps.dispatch(openSearchBox())
+        dispatch(openSearchBox())
       }
 
       e.stopPropagation()
       e.nativeEvent.stopImmediatePropagation()
     },
+    onChange: (e) => {
+      dispatch(setSearchOption(e.target.id, e.target.value))
+    },
+
   }
 }
 
-export default connect(mapDispatchToProps)(SearchBox)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchBox)
