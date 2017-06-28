@@ -1,3 +1,5 @@
+'use strict'
+
 import React, { Component } from 'react'
 import Link from '../Link'
 import PropTypes from 'prop-types'
@@ -6,7 +8,55 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import Lgicon from '../../static/images/icons/libguide.png'
 
 class Courses extends Component {
-  courseCard (course) {
+  instructorCard (course) {
+    let courseReserves = ''
+    if (course.courseReserveLink) {
+      courseReserves = <a href={course.courseReserveLink}>Course Reserves</a>
+    }
+    let courseGuides = ''
+    if (course.courseGuides.length > 0) {
+      courseGuides = (
+        <ul>
+          {course.courseGuides.map((courseGuide, index) =>
+            <li key={index}><a href={courseGuide}><img src={Lgicon} /> Course Guide</a></li>
+          )}
+        </ul>
+      )
+    }
+    let subtitle = ''
+    if (course.codes) {
+      subtitle = course.codes.join(', ') + ' - ' + course.sectionNumbers.join(', ')
+    }
+    let pathfinders = ''
+    if (Object.keys(course.pathfinders).length) {
+      pathfinders = (
+        <ul>
+          {Object.keys(course.pathfinders).map((key) =>
+            <li key={key}><Link to={course.pathfinders[key].url}>{course.pathfinders[key].title} Resources</Link></li>
+          )}
+        </ul>
+      )
+    }
+    return (
+      <div className='course-card' key={course.id}>
+        <div className='course'>
+          <p className='course-header'>{course.title}</p>
+          <small className='course-subtitle'>{subtitle}</small>
+        </div>
+        <div className='course-guides'>
+          {courseGuides}
+        </div>
+        <div className='course-reserves'>
+          {courseReserves}
+        </div>
+        <div className='course-resources'>
+          {pathfinders}
+        </div>
+      </div>
+    )
+  }
+
+  enrollmentCard (course) {
 // courseNumber:'27800',
 // department:'PSY',
 // endDate:1493769600,
@@ -30,7 +80,10 @@ class Courses extends Component {
     if (course.codes) {
       subtitle = course.codes.join(', ') + ' - ' + course.sectionNumbers.join(', ')
     }
-
+    let pathfinder = ''
+    if (course.pathfinder) {
+      pathfinder = <Link to={course.pathfinder.url}>{course.pathfinder.title} Resources</Link>
+    }
     return (
       <div className='course-card' key={course.id}>
         <div className='course'>
@@ -44,7 +97,7 @@ class Courses extends Component {
           {courseReserves}
         </div>
         <div className='course-resources'>
-          <Link to={course.pathfinder}>Biology Resources</Link>
+          {pathfinder}
         </div>
       </div>
     )
@@ -53,12 +106,13 @@ class Courses extends Component {
   cardsForArray (outArray, array, key, name) {
     var cards = []
     if (array && array.length > 0) {
-      for (var i in array) {
-        cards.push(
-          this.courseCard(array[i])
-        )
-      }
-
+      cards = array.map((row) => {
+        if (row.type === 'section') {
+          return this.enrollmentCard(row)
+        } else if (row.type === 'instructor') {
+          return this.instructorCard(row)
+        }
+      })
       outArray.push(
         <div className='course-section' key={key + '-section'}>
           <h3 className='course-title' key={key}>{name}</h3>
