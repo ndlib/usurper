@@ -7,7 +7,6 @@
 - Added advanced search
 - Hours page will now render service point contact information and allow the user to expand each for more hours info
 - Replaced placeholder news with news read from contentful and added individual news pages
-- 
 
 ### Bug fixes: ###
 - Hours label was not displaying saturdays in dev
