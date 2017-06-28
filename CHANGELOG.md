@@ -10,7 +10,9 @@
 
 ### Bug fixes:
 - Hours label was not displaying saturdays in dev
-
+- Fix issue where clicking on setting default search did not work on
+iOS.
+- Add cursor: pointer to a few places that should have it.
 
 ## [0.1](https://github.com/ndlib/usurper/tree/v0.1.0) (2017-06-27)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.0.0...v0.1.0)
