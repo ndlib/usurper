@@ -1,5 +1,7 @@
 // Import all reducers here
 import contentfulPage from './contentful/page'
+import contentfulNews from './contentful/news'
+import contentfulAllNews from './contentful/allNews'
 import contentfulFloor from './contentful/floor'
 import databaseLetter from './contentful/databaseLetter'
 import servicePoints from './contentful/servicePoints'
@@ -15,6 +17,8 @@ import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   cfPageEntry: contentfulPage,
+  cfNewsEntry: contentfulNews,
+  allNews: contentfulAllNews,
   cfFloorEntry: contentfulFloor,
   cfDatabaseLetter: databaseLetter,
   cfServicePoints: servicePoints,
