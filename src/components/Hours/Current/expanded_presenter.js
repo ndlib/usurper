@@ -9,7 +9,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
-        <div><span className='collapse' onClick={collapseHandler}>Collapse</span></div>
+        <div className="ecarrow"><span className='collapse' onClick={collapseHandler}>Collapse</span></div>
       </h4>
       <div className='row hours-listing'>
         <div className='col-md-4'>

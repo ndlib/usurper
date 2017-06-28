@@ -19,6 +19,7 @@
 	border-left-color: #999623;
 	display: grid;
 	grid-template-columns: 2fr 1fr 2fr;
+	-ms-grid-columns: 2fr 1fr 1fr;
 }
 
 .hours-listing {
@@ -27,6 +28,7 @@
 
 .location {
 	padding: 10px 0;
+	-ms-grid-column: 1;
 }
 
 .today {
@@ -34,6 +36,11 @@
 	padding: 10px;
 	color: #fff;
 	font-family: GPCBook, sans-serif;
+	-ms-grid-column: 2;
+}
+
+.ecarrow {
+		-ms-grid-column: 3;
 }
 
 .expand, .collapse {
@@ -44,6 +51,7 @@
 	overflow: hidden;
 	padding-top: 17px;
 	width: 34px;
+
 
 }
 
