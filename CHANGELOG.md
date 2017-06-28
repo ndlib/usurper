@@ -1,7 +1,7 @@
 # Change Log
 
-## [0.2](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.1.0...master)
+## [0.2](https://github.com/ndlib/usurper/tree/v0.2.0) (2017-06-28)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.1.0...v0.2.0)
 
 ### New features/enhancements:
 - Added advanced search
