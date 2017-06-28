@@ -5,7 +5,7 @@ const MaterialType = (props) => {
   return (
     <div>
       <label htmlFor='materialType'>Material Type:</label>
-      <select id='materialType' onChange={props.onChange}>
+      <span className='selector'><select id='materialType' onChange={props.onChange}>
         <option value='all_items'>All Items</option>
         <option value='articles'>Articles</option>
         <option value='audio_video'>Audio Visual</option>
@@ -20,7 +20,7 @@ const MaterialType = (props) => {
         <option value='newspaper_article'>Newspaper Articles</option>
         <option value='reference_entrys'>Reference Entries</option>
         <option value='scores'>Scores</option>
-      </select>
+      </select></span>
     </div>
   )
 }

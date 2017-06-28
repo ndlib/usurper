@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const SearchField = (props) => {
   return (
-    <select id={props.id} onChange={props.onChange}>
+    <span className='selector'><select id={props.id} onChange={props.onChange}>
       <option value='any'>Any</option>
       <option value='title'>Title</option>
       <option value='creator'>Author/Creator</option>
@@ -15,7 +15,7 @@ const SearchField = (props) => {
       <option value='lsr05'>Call number</option>
       <option value='isbn'>ISBN</option>
       <option value='issn'>ISSN</option>
-    </select>
+    </select></span>
   )
 }
 

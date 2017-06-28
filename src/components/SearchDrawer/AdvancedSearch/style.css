@@ -1,0 +1,73 @@
+#advanced-search {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	-ms-grid-columns: 1fr 1fr;
+
+}
+
+#advanced-search select {
+	background:  #0c2340;
+	min-width: auto;
+	padding-right: 15px;
+	position: static;
+}
+
+#advanced-search .selector {
+	position: relative;
+}
+
+#advanced-search .selector:after {
+    content:'▶';
+    font:11px "Consolas", monospace;
+    color:#fff;
+    -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -ms-transform:rotate(90deg);
+    transform:rotate(90deg);
+    right:10px;
+    top:1px;
+    padding:0 0 2px;
+    position:absolute;
+    pointer-events:none;
+    z-index: 400;
+}
+
+#advanced-search option {
+	padding: 6px;
+}
+
+#advanced-search input {
+	padding: 6px;
+	max-width: 140px;
+}
+
+fieldset {
+	display: inline-block;
+	padding: 0;
+	border: none;
+}
+
+#advanced-search label {
+	display: inline-block;
+	min-width: 130px;
+	font-size: 12px;
+}
+
+.asleft {
+	-ms-grid-column:  1;
+	width: 100%;
+
+	-ms-grid-column-span: 2;
+}
+
+.asright {
+	-ms-grid-column:  3;
+}
+
+.asgo {
+	-ms-grid-row:  2;
+}
+
+select::-ms-expand {
+    display: none;
+}

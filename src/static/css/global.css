@@ -801,7 +801,7 @@ nav a.search.closed:hover {
 
 /* sub-page Search */
 #drawer {
-  height: 132px;
+
   background: none;
 }
 
@@ -830,7 +830,7 @@ nav a.search.closed:hover {
 .home .appliance {
   left: calc((100vw - 1200px) / 2);
   top: 3vw;
-  width: 60vw;
+  width: 70vw;
   padding: 24px;
 }
 
