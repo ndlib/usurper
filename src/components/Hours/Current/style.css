@@ -1,0 +1,26 @@
+.right .service-point h4 {
+	font-family: GPCMed, sans-serif;
+}
+
+.right .location {
+	padding: 10px;
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
+.right .today {
+	grid-row-start: 2;
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
+
+.right .expand, .right .collapse {
+	margin-right: 10px;
+	display: block;
+}
+
+.right .col-md-4 {
+	width: 100%;
+	flex-basis: 100%;
+    max-width: 100%;
+}
