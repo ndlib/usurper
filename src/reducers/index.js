@@ -5,6 +5,7 @@ import contentfulAllNews from './contentful/allNews'
 import contentfulFloor from './contentful/floor'
 import databaseLetter from './contentful/databaseLetter'
 import servicePoints from './contentful/servicePoints'
+import entryReducer from './contentful/entry'
 import personalReducer from './personal'
 import hoursReducer from './hours'
 import searchReducer from './search'
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   cfFloorEntry: contentfulFloor,
   cfDatabaseLetter: databaseLetter,
   cfServicePoints: servicePoints,
+  cfEntry: entryReducer,
   personal: personalReducer,
   librarianInfo: librarianInfo,
   hours: hoursReducer,

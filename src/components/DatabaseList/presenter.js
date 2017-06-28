@@ -64,7 +64,10 @@ const Loaded = (letter, list) => {
       return (
         <div key={item.fields.alephSystemNumber + item.fields.title}>
           <Link to={item.fields.purl}>{item.fields.title}</Link>
-          <p>{item.fields.description}</p>
+          <p>
+            {item.fields.description}
+            <Link to={'/database/' + item.sys.id}>More info</Link>
+          </p>
         </div>
       )
     })
