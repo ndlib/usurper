@@ -25,16 +25,29 @@
 	background-color: #847161;
 }
 
+#save-preference {
+  cursor: pointer;
+  display: inline-block;
+}
 
-
+.search-action,
+.advanced-basic-toggle {
+  cursor: pointer;
+}
 .hidden {
   display: none;
 }
-/* Screen Size */
+
+label[for='sp'] {
+  cursor: pointer;
+}
 
 .appliance label[for='q'] {
   z-index: 1;
+  cursor: pointer;
 }
+
+/* Screen Size */
 @media screen and (max-width: 1000px) {
 
     .appliance {
