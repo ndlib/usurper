@@ -126,8 +126,9 @@ class Courses extends Component {
     var courses = this.props.courses.courses
     var out = []
     if (!courses) {
-      return out
+      return (<p className='noClasses'>No Classes to display for the current semester</p>)
     }
+
     if (courses.enrollments) {
       this.cardsForArray(out, courses.enrollments.current, 'enrollment-current', 'Current Courses')
       this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', 'Upcoming Courses')
@@ -136,6 +137,15 @@ class Courses extends Component {
       this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
       this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
     }
+
+    if (out.length === 0) {
+      return (
+        <p className='noClasses'>
+          No Classes to display for the current semester
+          <br /> If you believe this is an error please contact XXXXXX
+        </p>)
+    }
+
     return out
   }
 
@@ -143,9 +153,25 @@ class Courses extends Component {
     return (
       <div key='courses' className='content'>
         <PageTitle title='Courses' />
+        <h2>Courses</h2>
         <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright tab'>My Items</Link>
         <div key='courseCards'>
+          <div className='course-card header'>
+            <div className='course'>
+              <p className='course-header'>Course</p>
+            </div>
+            <div className='course-guides'>
+              Course Guide
+            </div>
+            <div className='course-reserves'>
+              Course Reserves
+            </div>
+            <div className='course-resources'>
+              Subject Resources
+            </div>
+          </div>
+
           { this.courseCards() }
         </div>
       </div>
