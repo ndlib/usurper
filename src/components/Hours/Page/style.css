@@ -14,12 +14,46 @@
 	background: #fff;
 	border: solid #333;
 	border-width: 0 1px 1px 8px;
-	padding: 10px;
-	border-left-color: #AA272F;
+	padding: 0 10px;
+	border-left-color: #AA272F; /* red */
+	border-left-color: #999623;
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr;
 }
 
-.service-point h4.open {
+.hours-listing {
+	padding: 20px;
+}
 
+.location {
+	padding: 10px 0;
+}
+
+.today {
+	background: #999623;
+	padding: 10px;
+	color: #fff;
+	font-family: GPCBook, sans-serif;
+}
+
+.expand, .collapse {
+	float: right;
+	cursor: pointer;
+	margin: 20px 0 10px;
+	height: 0;
+	overflow: hidden;
+	padding-top: 17px;
+	width: 34px;
+
+}
+
+.expand {
+	background: url('../../../static/images/arrow.g.d.png') no-repeat;
+	
+}
+.collapse {
+	background: url('../../../static/images/arrow.g.u.png') no-repeat;
+	
 }
 
 .hours-grid {
@@ -37,10 +71,5 @@
 		grid-template-columns: 1fr;
 	}
 
-	.service-point h4 {
-		font-size: 24px;
-		min-width: 90px;
-		max-width: 90px;
-	}
 }
 

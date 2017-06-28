@@ -559,7 +559,7 @@ body.gold-blue #header h4 a {
 
 /*BUTTON*/
 
-button, a.button, .p-guides a {
+button, a.button, .p-guides a, div.button {
   background: #5D422C;
   color: #fff;
   font-weight: bold;
@@ -572,6 +572,7 @@ button, a.button, .p-guides a {
   border-radius: 5px;
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   text-decoration: none;
+  cursor: pointer;
 }
 
 button a {
@@ -579,7 +580,7 @@ button a {
   text-decoration: none;
 }
 
-.button.contact {
+.button.callout {
   background-color: #f8e999;
   color: #041f44;
   display: inline-block;
@@ -956,12 +957,20 @@ label[for='q']:after {
   -ms-grid-column: 3;
 
 }
-.appliance input {
+.appliance .input {
   border: solid 1px #000;
-  padding: 16px;
+  padding: 0;
   border-right: none;
   font-size: 18px;
   -ms-grid-column: 2;
+
+}
+
+.appliance .input input {
+  padding: 16px;
+  width: 100%;
+  font-size: 18px;
+  border: none;
 }
 
 .appliance option {
@@ -980,8 +989,10 @@ label[for='q']:after {
 }
 
 .appliance .additional-links {
-  margin-top: -1.5em;
+  margin-top: 1.5em;
   padding-top: 3px;
+  display: inline;
+  float: right;
 }
 
 
@@ -1373,7 +1384,7 @@ hr {
   font-family: GPCMed, sans-serif;
   font-size: 24px;
   margin-bottom: 1em;
-  display: block;
+  display: inline-block;
   padding-left: 30px;
   background-image: url("../images/map.png");
   background-size: contain;
@@ -1413,6 +1424,17 @@ hr {
   margin-top: 2em;
   margin-bottom: 2em;
 }
+
+.hservices {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+}
+
+.hservices img {
+  height: 100%;
+}
+
 
 .services img, .landing img {
   border: solid 2px #fff;
@@ -1534,8 +1556,8 @@ hr {
    top: -100px;
 }
 .cover {
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: auto;
 
 
 }
@@ -1547,12 +1569,21 @@ hr {
   margin-bottom: 3em;
 }
 
+.p-pages {
+  list-style: none;
+  padding-left: 0;
+  -moz-box-pack: justify;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 
 
 @supports (display: grid) and (not (display: -ms-grid)) {
   .p-resources {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto auto;
     grid-auto-flow: column;
   }
@@ -1592,14 +1623,14 @@ hr {
   justify-content: space-between;
 }
 
-.p-services li {
+.p-services li, .p-pages li {
   width: 31%;
   list-style: none;
   margin: 0 0 2em 0;
   padding: 0;
 }
 
-.p-services li span {
+.p-services li span, .p-pages li span {
   width: 100%;
   overflow: hidden;
   display: block;
@@ -1607,7 +1638,7 @@ hr {
 
 }
 
-.p-services .frame {
+.p-services .frame, .p-pages .frame {
 
   border: solid 2px #fff;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
@@ -1616,7 +1647,7 @@ hr {
   margin-bottom: 1em;
 }
 
-.p-services .frame img {
+.p-services .frame img, .p-pages .frame img  {
   width: 100%;
   display: block;
 }
@@ -1916,7 +1947,7 @@ hr {
     float: right;
   }
 
-  .appliance {
+  .appliance, .home .appliance {
     left: 0 !important;
     top: 0;
     height: 100%;
@@ -1939,6 +1970,7 @@ hr {
 
   #drawer {
     height: auto;
+    min-height: 178px;
   }
 
 
@@ -1964,7 +1996,7 @@ hr {
 
     width: 100%;
   }
-  .uSearchBox input {
+  .uSearchBox .input {
     -ms-grid-column: 1;
     -ms-grid-column-span: 2;
     grid-column-start: 1;

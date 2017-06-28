@@ -6,6 +6,7 @@ import '../../../static/css/global.css'
 import '../../../static/css/search.css'
 
 const SearchBox = (props) => {
+
   if (props.visible) {
     return (
       <span className='uSearchBox'>
@@ -17,12 +18,13 @@ const SearchBox = (props) => {
             <SearchOptionList {...props} />
           </ul>
         </label>
-        <input id='basic-search-field' name='q' onChange={props.onChange} />
+        <div className='input'><input id='basic-search-field' name='q' onChange={props.onChange} /></div>
         <button onClick={props.onSubmit}>Search</button>
       </span>
     )
   }
   return null
+
 }
 
 SearchBox.propTypes = {

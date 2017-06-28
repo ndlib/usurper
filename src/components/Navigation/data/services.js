@@ -32,7 +32,7 @@ export const servicesData = [
       },
       {
         title: 'Course Reserves',
-        url: 'https://reserves.library.nd.edu/courses',
+        url: '/courses',
       },
       {
         title: 'Technology Lending Policies',

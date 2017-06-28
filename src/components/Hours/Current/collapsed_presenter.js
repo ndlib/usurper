@@ -7,11 +7,11 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   return (
     <div className='service-point'>
       <h4>
-        <div>{hoursEntry.name}</div>
-        <div>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
-        <button className='button' onClick={expandHandler}>Expand</button>
+        <div className='location'>{hoursEntry.name}</div>
+        <div className='today'>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
+        <div><span className='expand' onClick={expandHandler}>Expand</span></div>
       </h4>
-      {children}
+      
     </div>
   )
 }

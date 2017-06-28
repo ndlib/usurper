@@ -7,13 +7,19 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   return (
     <div className='service-point'>
       <h4>
-        <div>{hoursEntry.name}</div>
-        <div>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
-        <button className='button' onClick={collapseHandler}>Collapse</button>
+        <div className='location'>{hoursEntry.name}</div>
+        <div className='today'>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
+        <div><span className='collapse' onClick={collapseHandler}>Collapse</span></div>
       </h4>
-      <WeeklyHours hours={hoursEntry.thisWeek} title='Current Hours' showEffectiveDates={false} />
-      <WeeklyHours hours={hoursEntry.upcomingDifferentHours} title='Upcoming Hours' showEffectiveDates />
-      {children}
+      <div className='row hours-listing'>
+        <div className='col-md-4'>
+          <WeeklyHours hours={hoursEntry.thisWeek} title='Current Hours' showEffectiveDates={false} />
+          <WeeklyHours hours={hoursEntry.upcomingDifferentHours} title='Upcoming Hours' showEffectiveDates />
+        </div>
+        <div className='col-md-6 col-md-offset-2'>
+          {children}
+        </div>
+      </div>
     </div>
   )
 }

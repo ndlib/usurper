@@ -4,29 +4,26 @@ import PropTypes from 'prop-types'
 import '../../../static/css/global.css'
 
 const SearchPreference = (props) => {
-  const HasPref = () => {
-    return (
-      <div className='has-default-search'>{
-        props.search.pref.title
-      } is your default search. <a onClick={props.forgetClick}>CLEAR</a></div>
-    )
-  }
-
-  const NoPref = () => {
-    return (
-      <div className='set-default-search'>
-        <input type='checkbox' name='sp' onClick={props.saveClick} />
-        <label htmlFor='sp'>Save {
-          props.currentSearch.title
-        } as my default search</label>
-      </div>
-    )
-  }
-
   if (props.search.hasPref) {
-    return (<HasPref />)
+    return (
+      <div
+        className='has-default-search'
+        id='save-preference'
+        onClick={props.forgetClick}>{
+        props.search.pref.title
+      } is your default search. <a >CLEAR</a></div>
+    )
   }
-  return (<NoPref />)
+  return (
+    <div
+      className='set-default-search'
+      id='save-preference'>
+      <input type='checkbox' name='sp' onClick={props.saveClick} />
+      <label htmlFor='sp' onClick={props.saveClick}>Save {
+        props.currentSearch.title
+      } as my default search</label>
+    </div>
+  )
 }
 
 SearchPreference.propTypes = {

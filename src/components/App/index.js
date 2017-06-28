@@ -12,6 +12,7 @@ import ChatPage from '../../components/ChatPage'
 import ContentfulPage from '../../components/Contentful/Page'
 import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
+import ContentfulNews from '../../components/Contentful/News'
 import Research from '../../components/LandingPages/Research'
 import Services from '../../components/LandingPages/Services'
 import Libraries from '../../components/LandingPages/Libraries'
@@ -40,6 +41,7 @@ const App = () => {
           <Route exact path='/courses' component={Courses} />
           <Route exact path='/hours' component={Hours} />
           <Route exact path='/floor/:id' component={ContentfulFloor} />
+          <Route exact path='/news/:id' component={ContentfulNews} />
           <Route exact path='/libraries' component={Libraries} />
           <Route exact path='/personal' component={PersonalInfo} />
           <Route exact path='/subjects' component={SubjectList} />
