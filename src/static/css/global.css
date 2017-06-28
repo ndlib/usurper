@@ -962,7 +962,7 @@ label[for='q']:after {
   border-right: none;
   font-size: 18px;
   -ms-grid-column: 2;
-  
+
 }
 
 .appliance .input input {
@@ -988,8 +988,10 @@ label[for='q']:after {
 }
 
 .appliance .additional-links {
-  margin-top: -1.5em;
+  margin-top: 1.5em;
   padding-top: 3px;
+  display: inline;
+  float: right;
 }
 
 

@@ -25,8 +25,15 @@
 	background-color: #847161;
 }
 
+#save-preference {
+  cursor: pointer;
+  display: inline-block;
+}
 
-
+.search-action,
+.advanced-basic-toggle {
+  cursor: pointer;
+}
 .hidden {
   display: none;
 }
@@ -34,6 +41,7 @@
 
 .appliance label[for='q'] {
   z-index: 1;
+  curosor: pointer;
 }
 @media screen and (max-width: 1000px) {
 
