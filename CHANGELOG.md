@@ -4,16 +4,19 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.1.0...v0.2.0)
 
 ### New features/enhancements:
-- Added advanced search
-- Hours page will now render service point contact information and allow the user to expand each for more hours info
-- Replaced placeholder news with news read from contentful and added individual news pages
+- Added advanced search #121
+- Hours page will now render service point contact information and allow the user to expand each for more hours info #122, #123, #127
+- Replaced placeholder news with news read from contentful and added individual news pages #125
+- Added Hours & My Account to the mobile menu #124
+- Added Find Your Librarian image and link on the home page #124
+- Other minor cosmetic changes #124
 
 ### Bug fixes:
 - Hours label was not displaying saturdays in dev
 - Fix issue where clicking on setting default search did not work on
-iOS.
-- Add cursor: pointer to a few places that should have it.
-- Fixed a problem with the "My Account" button. Was not allowing the user to login if they were not logged in.
+iOS. #126
+- Add cursor: pointer to a few places that should have it. #126
+- Fixed a problem with the "My Account" button. Was not allowing the user to login if they were not logged in. #128
 
 ## [0.1](https://github.com/ndlib/usurper/tree/v0.1.0) (2017-06-27)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.0.0...v0.1.0)
