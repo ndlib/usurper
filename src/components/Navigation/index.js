@@ -19,9 +19,12 @@ import {
 } from '../../actions/menu'
 
 const mapStateToProps = (state, ownProps) => {
+  const { personal } = state
   return {
     search: state.search,
     menus: state.menus,
+    loggedIn: (personal && personal.login && personal.login.token),
+    loginUrl: (personal && personal.login && personal.login.redirectUrl),
   }
 }
 
