@@ -30,7 +30,7 @@ const PagePresenter = ({ cfPageEntry }) => (
       </div>
       <div className='col-md-4 right'>
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
-        <PageLink className='button contact' cfPage={cfPageEntry.fields.callOutLink} />
+        <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
         {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
         <Contact servicePoint={cfPageEntry.fields.servicePoint} />
