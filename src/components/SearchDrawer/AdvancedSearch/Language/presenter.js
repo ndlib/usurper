@@ -5,7 +5,7 @@ const Language = (props) => {
   return (
     <div>
       <label htmlFor='language'>Language:</label>
-      <select id='language' onChange={props.onChange}>
+      <span className='selector'><select id='language' onChange={props.onChange}>
         <option value='all_items'>Any language</option>
         <option value='eng'>English</option>
         <option value='ara'>Arabic</option>
@@ -33,7 +33,7 @@ const Language = (props) => {
         <option value='swa'>Swahili</option>
         <option value='swe'>Swedish</option>
         <option value='tib'>Tibetan</option>
-      </select>
+      </select></span>
     </div>
   )
 }
