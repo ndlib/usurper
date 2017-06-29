@@ -75,8 +75,24 @@
 }
 
 @media screen and (max-width: 800px) {
-	.service-point-list  {
-		grid-template-columns: 1fr;
+	.location {
+		padding-left: 10px;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+
+	.service-point h4 {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.today {
+		grid-row-start: 2;
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+	.ecarrow {
+		margin-right: 10px;
 	}
 
 }

@@ -11,9 +11,9 @@ const BuildingPresenter = ({ cfBuildingEntry }) => (
   <div key={`ContentfulBuilding_${cfBuildingEntry.sys.id}`} >
     <PageTitle title={cfBuildingEntry.fields.title} />
     <SearchProgramaticSet open={false} />
-    <h2>{ cfBuildingEntry.fields.title }</h2>
+    <h3>{ cfBuildingEntry.fields.title }</h3>
     <Image cfImage={cfBuildingEntry.fields.image} />
-    <Link to={cfBuildingEntry.fields.mapLink}>Map</Link>
+    <div className='contact'><address><Link to={cfBuildingEntry.fields.mapLink} className='map'>Map</Link></address></div>
   </div>
 )
 
