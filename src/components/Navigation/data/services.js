@@ -58,8 +58,8 @@ export const servicesData = [
         url: '/thesis-dissertation-camps',
       },
       {
-        title: 'Consultations (Meet with a Librarian)',
-        url: '/consultation-teaching',
+        title: 'Library Research Consultations',
+        url: '/consultations',
       },
     ],
   },
