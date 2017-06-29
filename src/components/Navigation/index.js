@@ -81,6 +81,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (state, dispatchProps, ownProps) => {
+  // Treat menu dropdowns as links to landing pages for accessibiilty
   const keyDown = (e) => {
     if (e.keyCode === 13) {
       const id = e.target.firstChild.id

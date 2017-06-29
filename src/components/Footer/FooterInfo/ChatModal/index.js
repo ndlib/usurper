@@ -10,6 +10,7 @@ import {
 const mapStateToProps = (state, ownProps) => {
   return {
     chatOpen: state.chat.chatOpen,
+    // On keydown we open chat page instead of modal for accessibiilty.
     onKeyDown: (e) => {
       if (e.keyCode === 13) {
         e.preventDefault()
