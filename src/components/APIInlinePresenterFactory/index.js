@@ -4,30 +4,27 @@
 // from an API like contentful, but we may find other objects follow a similar pattern.
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import NotFound from '../Messages/NotFound'
-import Loading from '../Messages/Loading'
-import Error from '../Messages/Error'
+import InlineLoading from '../Messages/InlineLoading'
 import * as statuses from '../../constants/APIStatuses'
 
-class APIPresenterFactory extends Component {
+class APIInlinePresenterFactory extends Component {
   render () {
-    console.log("really ?")
-    console.log(this.props.presenter)
+    console.log("HIHI")
     switch (this.props.status) {
       case statuses.NOT_FETCHED:
       case statuses.FETCHING:
-        return <Loading />
+        return <InlineLoading />
       case statuses.SUCCESS:
         return this.props.presenter(this.props.props)
       case statuses.NOT_FOUND:
-        return <NotFound />
+        return <div />
       default:
-        return <Error message={'There was an error loading the page.'} />
+        return <div />
     }
   }
 }
 
-APIPresenterFactory.propTypes = {
+APIInlinePresenterFactory.propTypes = {
   presenter: PropTypes.func.isRequired, // The presenter to render when status === success
   status: PropTypes.string.isRequired,  // The current API status code
   props: PropTypes.oneOfType([          // The props to pass to the given presenter when status === success
@@ -35,4 +32,4 @@ APIPresenterFactory.propTypes = {
     PropTypes.array]).isRequired,
 }
 
-export default APIPresenterFactory
+export default APIInlinePresenterFactory
