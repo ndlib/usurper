@@ -28,7 +28,7 @@ export const mapStateToProps = (state, ownProps) => {
     login: personal.login,
     open: state.menus.menuId === USER_MENU,
     logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
-    location: window.location.origin + ownProps.location.pathname,
+    location: window.location.origin,
   }
 }
 

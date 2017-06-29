@@ -6,7 +6,7 @@ export const servicesData = [
     title: 'Technology and Spaces',
     classes: 'col-md-offset-2 col-md-3',
     items: [
-      
+
       {
         title: 'Copy, Print, Scan',
         url: '/copy-print-scan',
@@ -24,8 +24,7 @@ export const servicesData = [
       },
       {
         title: 'Reserve a meeting or event space',
-        url: 'https://alpha.library.nd.edu/room-reservations',
-
+        url: '/room-reservations',
       },
     ],
   },
