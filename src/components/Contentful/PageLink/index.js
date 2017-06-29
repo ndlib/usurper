@@ -4,8 +4,10 @@ import Link from '../../Link'
 
 const PageLink = (props) => {
   if (props.cfPage) {
+    const link = props.cfPage.fields.slug ? props.cfPage.fields.slug : props.cfPage.fields.url
+
     return <Link
-      to={props.cfPage.fields.slug}
+      to={link}
       className={props.className}
     >{props.cfPage.fields.title}</Link>
   }
