@@ -11,11 +11,11 @@ const MenuList = (props) => {
         if (item.image) {
           isImageList = true
           return (
-            <MenuImage title={item.title} url={item.url} image={item.image} key={index} />
+            <MenuImage title={item.title} url={item.url} image={item.image} key={index} tabIndexable={props.tabIndexable} />
           )
         }
         return (
-          <MenuListItem title={item.title} url={item.url} key={index} />
+          <MenuListItem title={item.title} url={item.url} key={index} tabIndexable={props.tabIndexable} />
         )
       }
     )

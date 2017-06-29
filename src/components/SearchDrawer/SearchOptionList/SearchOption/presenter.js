@@ -4,7 +4,11 @@ import PropTypes from 'prop-types'
 
 const SearchOption = (props) => {
   return (
-    <li className='uSearchOption' onClick={props.onClick}>
+    <li
+      className='uSearchOption'
+      onClick={props.onClick}
+      onKeyDown={props.onKeyDown}
+      tabIndex='0'>
       <p>{props.item.title}</p>
       <small>{props.item.description}</small>
     </li>

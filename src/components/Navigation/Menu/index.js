@@ -4,7 +4,7 @@ import Link from '../../Link'
 
 const Menu = (props) => {
   return (
-    <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'}>
+    <div className='menu-drawer visible' >
       <div className='container-fluid row'>
         {props.children}
       </div>
@@ -25,7 +25,6 @@ Menu.propTypes = {
   ]),
   title: PropTypes.string.isRequired,
   landingPage: PropTypes.string,
-  open: PropTypes.bool.isRequired,
 }
 
 export default Menu
