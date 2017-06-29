@@ -3,24 +3,35 @@ import ScanImage from '../../../static/images/scan.jpg'
 
 export const servicesData = [
   {
-    title: 'Featured Services',
-    classes: 'col-md-offset-2 col-md-2',
+    title: 'Technology and Spaces',
+    classes: 'col-md-offset-2 col-md-3',
     items: [
-      {
-        title: 'Reserve a Room',
-        url: '/room-reservations',
-        image: RoomImage,
-      },
+      
       {
         title: 'Copy, Print, Scan',
         url: '/copy-print-scan',
-        image: ScanImage,
+
+      },
+      {
+        title: 'Technology Lending',
+        url: '/technology-lending',
+
+      },
+      {
+        title: 'Book a study or multimedia room',
+        url: 'http://nd.libcal.com/#s-lc-box-2749-container-tab1',
+
+      },
+      {
+        title: 'Reserve a meeting or event space',
+        url: 'https://alpha.library.nd.edu/room-reservations',
+
       },
     ],
   },
   {
-    title: 'Borrow',
-    classes: 'col-md-3',
+    title: 'Find, Borrow, Request',
+    classes: 'col-md-2',
     items: [
       {
         title: 'Borrow, Renew, Request Policies',
@@ -35,8 +46,8 @@ export const servicesData = [
         url: '/courses',
       },
       {
-        title: 'Technology Lending Policies',
-        url: '/technology-lending',
+        title: 'ND Catalog',
+        url: 'http://onesearch.library.nd.edu/primo_library/libweb/action/search.do',
       },
 
     ],

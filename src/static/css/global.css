@@ -996,14 +996,14 @@ label[for='q']:after {
 }
 
 
-.set-default-search label, .additional-links, .has-default-search {
+.set-default-search, .additional-links, .has-default-search {
   font-size: 14px !important;
   color: #fff;
   padding-left: 5px;
   padding-top: 5px;
 }
 
-.has-default-search a {
+.has-default-search a, .set-default-search a {
   color: #fff;
   text-decoration: underline;
 }
@@ -1583,7 +1583,7 @@ hr {
 @supports (display: grid) and (not (display: -ms-grid)) {
   .p-resources {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto auto;
     grid-auto-flow: column;
   }
@@ -1620,13 +1620,13 @@ hr {
   display: flex;
   list-style: none;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .p-services li, .p-pages li {
   width: 31%;
   list-style: none;
-  margin: 0 0 2em 0;
+  margin: 0 1em 2em 0;
   padding: 0;
 }
 
@@ -1638,7 +1638,7 @@ hr {
 
 }
 
-.p-services .frame, .p-pages .frame {
+.p-services .frame, .p-pages .frame, .building .frame {
 
   border: solid 2px #fff;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
@@ -1648,6 +1648,15 @@ hr {
 }
 
 .p-services .frame img, .p-pages .frame img  {
+  width: 100%;
+  display: block;
+}
+
+.services-landing p span {
+  display: block;
+}
+
+.building img {
   width: 100%;
   display: block;
 }

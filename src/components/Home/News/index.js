@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { fetchAllNews } from '../../../actions/contentful/allNews'
 import Presenter from './presenter.js'
-import PresenterFactory from '../../APIPresenterFactory'
+import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
@@ -62,9 +62,10 @@ export class AllNewsContainer extends Component {
   }
 }
 
-PropTypes.propTypes = {
+AllNewsContainer.propTypes = {
   allNewsStatus: PropTypes.string.isRequired,
   fetchAllNews: PropTypes.func.isRequired,
+  allNews: PropTypes.array.isRequired,
 }
 
 const HoursPage = connect(

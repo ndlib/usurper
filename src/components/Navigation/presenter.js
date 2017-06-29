@@ -30,7 +30,10 @@ const Navigation = (props) => {
     return (
       <div className='menu-link'
         onClick={menu.onClick}
-        key={index}>
+        onKeyDown={menu.keyDown}
+
+        key={index}
+        tabIndex='0'>
         <a id={menu.title.toLowerCase()}>{menu.title}</a>
         <DropDown
           title={menu.title}
@@ -53,10 +56,10 @@ const Navigation = (props) => {
         <div className='menu-link hours-m'>
           <Link to='/hours' className='right m'>Hours</Link>
         </div>
-        {/*<div className='menu-link ask' onClick={props.handleAskClick}>
+        {/* <div className='menu-link ask' onClick={props.handleAskClick}>
           <a className='right m'>Ask Us</a>
           <AskMenu open={props.menus.menuId === ASK_MENU} />
-        </div>*/}
+        </div> */}
         { myAccountButton(props) }
         <div className='menu-link search'>
           <a

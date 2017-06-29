@@ -4,7 +4,7 @@ import * as statuses from '../../constants/APIStatuses'
 
 import Contact from '../Contact'
 import Image from '../Image'
-import Loading from '../Messages/Loading'
+import InlineLoading from '../Messages/InlineLoading'
 import PrivateLibrarianImage from '../../static/images/librarian.gif'
 
 const Loaded = (info, className) => {
@@ -35,7 +35,7 @@ const Loaded = (info, className) => {
 const Librarians = ({ librarianInfo, className }) => {
   switch (librarianInfo.status) {
     case statuses.FETCHING:
-      return <Loading className={className} />
+      return <InlineLoading className={className} />
     case statuses.SUCCESS:
       return Loaded(librarianInfo.json, className)
     case statuses.NOT_FOUND:

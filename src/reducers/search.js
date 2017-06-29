@@ -14,7 +14,7 @@ const localSearchPref = localStorage.getItem('searchPreference')
 export default (
   state = {
     drawerOpen: true,
-    searchType: 'ONESEARCH',
+    searchType: localSearchPref || 'ONESEARCH',
     searchBoxOpen: false,
     advancedSearch: false,
     hasPref: localSearchPref !== null,

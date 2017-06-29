@@ -14,6 +14,7 @@ import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
 import ContentfulNews from '../../components/Contentful/News'
 import DatabasePage from '../../components/Contentful/Database'
+import ContentfulEvent from '../../components/Contentful/Event'
 import Research from '../../components/LandingPages/Research'
 import Services from '../../components/LandingPages/Services'
 import Libraries from '../../components/LandingPages/Libraries'
@@ -43,6 +44,7 @@ const App = () => {
           <Route exact path='/hours' component={Hours} />
           <Route exact path='/floor/:id' component={ContentfulFloor} />
           <Route exact path='/news/:id' component={ContentfulNews} />
+          <Route exact path='/event/:id' component={ContentfulEvent} />
           <Route exact path='/libraries' component={Libraries} />
           <Route exact path='/personal' component={PersonalInfo} />
           <Route exact path='/subjects' component={SubjectList} />

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import AdvancedSearch from './presenter'
 import searchQuery from '../searchQueryBuilder'
 import './style.css'
@@ -17,7 +18,7 @@ const mergeProps = (state, dispatch, ownProps) => {
   return {
     onSubmit: (e) => {
       e.preventDefault()
-      searchQuery(state.search, state.advancedSearch)
+      searchQuery(state.search, state.advancedSearch, ownProps.history)
     },
     ...state,
     ...dispatch,
@@ -25,8 +26,8 @@ const mergeProps = (state, dispatch, ownProps) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(AdvancedSearch)
+)(AdvancedSearch))

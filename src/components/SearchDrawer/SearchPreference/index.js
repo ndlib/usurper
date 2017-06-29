@@ -10,11 +10,16 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    saveClick: () => {
-      dispatch(saveSearchPreference(ownProps.currentSearch))
+    saveClick: (e) => {
+      console.log(e.type)
+      if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
+        dispatch(saveSearchPreference(ownProps.currentSearch))
+      }
     },
-    forgetClick: () => {
-      dispatch(clearSearchPreference())
+    forgetClick: (e) => {
+      if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
+        dispatch(clearSearchPreference())
+      }
     },
   }
 }

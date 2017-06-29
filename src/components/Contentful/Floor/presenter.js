@@ -15,8 +15,10 @@ const FloorPresenter = ({ cfFloorEntry }) => (
     <SearchProgramaticSet open={false} />
     <h2>{cfFloorEntry.fields.title}</h2>
     <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
-    <Image cfImage={cfFloorEntry.fields.image} />
-    <Building cfBuildingEntry={cfFloorEntry.fields.building} />
+    <div className='row'>
+    <div className='col-md-9 floor'><Image cfImage={cfFloorEntry.fields.image} /></div>
+    <div className='col-md-3 building'><Building cfBuildingEntry={cfFloorEntry.fields.building} /></div>
+    </div>
   </div>
 )
 

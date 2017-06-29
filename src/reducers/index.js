@@ -2,6 +2,8 @@
 import contentfulPage from './contentful/page'
 import contentfulNews from './contentful/news'
 import contentfulAllNews from './contentful/allNews'
+import contentfulEvent from './contentful/event'
+import contentfulAllEvents from './contentful/allEvents'
 import contentfulFloor from './contentful/floor'
 import databaseLetter from './contentful/databaseLetter'
 import servicePoints from './contentful/servicePoints'
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   cfPageEntry: contentfulPage,
   cfNewsEntry: contentfulNews,
   allNews: contentfulAllNews,
+  cfEventEntry: contentfulEvent,
+  allEvents: contentfulAllEvents,
   cfFloorEntry: contentfulFloor,
   cfDatabaseLetter: databaseLetter,
   cfServicePoints: servicePoints,
