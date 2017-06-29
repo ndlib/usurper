@@ -10,7 +10,7 @@ const SearchBox = (props) => {
   if (props.visible) {
     return (
       <span className='uSearchBox'>
-        <label htmlFor='q'>
+        <label htmlFor='basic-search-field'>
           <ul id='searchAction' >
             <li id='selected-search' onClick={props.onClick}>
               <p className='current-search'>{ props.currentSearch.title}</p>
