@@ -18,7 +18,7 @@ const SearchPreference = (props) => {
     <div
       className='set-default-search'
       id='save-preference'>
-      <input type='checkbox' name='sp' onClick={props.saveClick} />
+      <input type='checkbox' id='sp' name='sp' onClick={props.saveClick} />
       <label htmlFor='sp' onClick={props.saveClick}>Save {
         props.currentSearch.title
       } as my default search</label>
