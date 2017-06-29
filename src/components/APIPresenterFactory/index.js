@@ -11,8 +11,6 @@ import * as statuses from '../../constants/APIStatuses'
 
 class APIPresenterFactory extends Component {
   render () {
-    console.log("really ?")
-    console.log(this.props.presenter)
     switch (this.props.status) {
       case statuses.NOT_FETCHED:
       case statuses.FETCHING:

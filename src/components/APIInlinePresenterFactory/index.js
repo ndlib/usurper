@@ -9,7 +9,6 @@ import * as statuses from '../../constants/APIStatuses'
 
 class APIInlinePresenterFactory extends Component {
   render () {
-    console.log("HIHI")
     switch (this.props.status) {
       case statuses.NOT_FETCHED:
       case statuses.FETCHING:
