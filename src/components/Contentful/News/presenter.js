@@ -18,7 +18,7 @@ const PagePresenter = ({ entry }) => (
     <SearchProgramaticSet open={false} />
     <h2>{ entry.fields.title } </h2>
 
-    <hr />
+    <hr aria-hidden="true" />
     <div className='row'>
       <div className='col-md-8'>
         <LibMarkdown>{ entry.fields.content }</LibMarkdown>

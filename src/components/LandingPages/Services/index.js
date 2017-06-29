@@ -9,7 +9,7 @@ const Services = () => {
     <LandingPage title='Services'>
 
       <h1>All Services</h1>
-      <hr />
+      <hr aria-hidden="true" />
  
 
       <div className='row services-landing'>

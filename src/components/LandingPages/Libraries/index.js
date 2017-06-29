@@ -8,7 +8,7 @@ const Libraries = () => {
     <LandingPage title='Libraries and Centers'>
 
       <h2>All Libraries and Centers</h2>
-      <hr />
+      <hr aria-hidden="true" />
       
       <div className='row'>
         <div className='col-md-4 col-xs-12'>
