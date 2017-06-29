@@ -18,7 +18,7 @@ class InlineContainer extends Component {
 InlineContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
   presenter: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool,
   children: PropTypes.object,
   toggleExpanded: PropTypes.func,
 }

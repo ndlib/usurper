@@ -23,7 +23,7 @@ const Content = (letter, data) => {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
           return (
             <span key={'letter_link_' + item} className='letter'>
-              <Link to={item}>{ item.toUpperCase() }</Link>
+              <Link to={item} title={'Link to ' + item.toUpperCase() + ' Databases'}>{ item.toUpperCase() }</Link>
             </span>
           )
         })
@@ -66,7 +66,7 @@ const Loaded = (letter, list) => {
           <Link to={item.fields.purl}>{item.fields.title}</Link>
           <p>
             {item.fields.description}
-            <Link to={'/database/' + item.sys.id}>More info</Link>
+            <Link to={'/database/' + item.sys.id} title={'More Information about ' + item.fields.title}>More info</Link>
           </p>
         </div>
       )
