@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { openSearchBox, closeSearchBox } from '../../../actions/search.js'
 import { setSearchOption } from '../../../actions/advancedSearch.js'
 import searchQuery from '../searchQueryBuilder'
@@ -31,8 +32,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   }
 }
-
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchBox)
+)(SearchBox))

@@ -19,7 +19,7 @@ const libSearchBasicURL = (queryTerm) => {
 }
 
 // Actual searchQuery function
-const searchQuery = (searchStore, advancedSearch) => {
+const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
 
   if (searchStore.advancedSearch) {
@@ -91,10 +91,10 @@ const searchQuery = (searchStore, advancedSearch) => {
       window.location = curateBasicURL(searchTerm)
       break
     case LIBRARY:
-      window.location = libSearchBasicURL(searchTerm)
+      history.push(libSearchBasicURL(searchTerm))
       break
     default:
-      window.location = libSearchBasicURL(searchTerm)
+      history.push(libSearchBasicURL(searchTerm))
       break
   }
 }

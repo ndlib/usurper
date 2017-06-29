@@ -15,13 +15,14 @@ const Drawer = (props) => {
         <form id='searchAppliance'>
           <SearchBox
             visible={!props.search.advancedSearch}
-            currentSearch={props.currentSearch}
             {...props}
+            currentSearch={props.currentSearch}
+
           />
           <AdvancedSearch visible={props.search.advancedSearch} />
           <SearchPreference
-            currentSearch={props.currentSearch}
             {...props}
+            currentSearch={props.currentSearch}
           />
           <AdditionalLinks {...props} />
         </form>
