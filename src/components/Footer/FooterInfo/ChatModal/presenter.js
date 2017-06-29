@@ -8,8 +8,16 @@ const ChatModal = (props) => {
     buttonMessage = (<span>Hide Chat</span>)
   }
   return (
-    <div id='chat' className='footer-chat'>
-      <a className='chat-button' onClick={props.onClick}>{buttonMessage}</a>
+    <div
+      id='chat'
+      className='footer-chat'>
+      <a
+        className='chat-button'
+        onClick={props.onClick}
+        onKeyDown={props.onKeyDown}
+        tabIndex='0'
+        href='/chat'
+      >{buttonMessage}</a>
       <div className={props.chatOpen ? 'chat-open' : 'hidden'}><Chat /></div>
     </div>
   )

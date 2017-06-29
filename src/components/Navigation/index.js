@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import Navigation from './presenter'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../actions/search'
 import { researchData } from './data/research.js'
@@ -21,6 +22,7 @@ import {
 const mapStateToProps = (state, ownProps) => {
   const { personal } = state
   return {
+    ...state,
     search: state.search,
     menus: state.menus,
     loggedIn: (personal && personal.login && personal.login.token),
@@ -79,6 +81,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (state, dispatchProps, ownProps) => {
+  const keyDown = (e) => {
+    if (e.keyCode === 13) {
+      const id = e.target.firstChild.id
+      ownProps.history.push(`/${id}`)
+    }
+  }
   const dropDowns = [
     {
       title: 'Research',
@@ -86,6 +94,8 @@ const mergeProps = (state, dispatchProps, ownProps) => {
       menuId: RESEARCH_MENU,
       menuData: researchData,
       onClick: state.menus.menuId === RESEARCH_MENU ? dispatchProps.closeMenus : dispatchProps.openResearch,
+      keyDown: keyDown,
+      onBlur: dispatchProps.closeMenus,
     },
     {
       title: 'Services',
@@ -93,6 +103,8 @@ const mergeProps = (state, dispatchProps, ownProps) => {
       menuId: SERVICES_MENU,
       menuData: servicesData,
       onClick: state.menus.menuId === SERVICES_MENU ? dispatchProps.closeMenus : dispatchProps.openServices,
+      keyDown: keyDown,
+      onBlur: dispatchProps.closeMenus,
     },
     {
       title: 'Libraries',
@@ -100,6 +112,8 @@ const mergeProps = (state, dispatchProps, ownProps) => {
       menuId: LIBRARIES_MENU,
       menuData: librariesData,
       onClick: state.menus.menuId === LIBRARIES_MENU ? dispatchProps.closeMenus : dispatchProps.openLibraries,
+      keyDown: keyDown,
+      onBlur: dispatchProps.closeMenus,
     },
     {
       title: 'About',
@@ -107,7 +121,10 @@ const mergeProps = (state, dispatchProps, ownProps) => {
       menuId: ABOUT_MENU,
       menuData: aboutData,
       onClick: state.menus.menuId === ABOUT_MENU ? dispatchProps.closeMenus : dispatchProps.openAbout,
+      keyDown: keyDown,
+      onBlur: dispatchProps.closeMenus,
     },
+
   ]
   return {
     dropDowns: dropDowns,
@@ -122,8 +139,8 @@ const mergeProps = (state, dispatchProps, ownProps) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(Navigation)
+)(Navigation))
