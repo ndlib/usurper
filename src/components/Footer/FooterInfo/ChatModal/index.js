@@ -11,8 +11,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     chatOpen: state.chat.chatOpen,
     onKeyDown: (e) => {
-      e.preventDefault()
       if (e.keyCode === 13) {
+        e.preventDefault()
         ownProps.history.push('/chat')
       }
     },
