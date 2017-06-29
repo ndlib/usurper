@@ -18,8 +18,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     advancedButtonLabel: ownProps.search.advancedSearch ? 'Basic Search' : 'Advanced Search',
-    toggleAdvancedSearch: () => {
-      ownProps.search.advancedSearch ? dispatch(closeAdvancedSearch()) : dispatch(openAdvancedSearch())
+    toggleAdvancedSearch: (e) => {
+      if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
+        ownProps.search.advancedSearch ? dispatch(closeAdvancedSearch()) : dispatch(openAdvancedSearch())
+      }
     },
   }
 }

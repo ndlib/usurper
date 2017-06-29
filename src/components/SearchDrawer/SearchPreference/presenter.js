@@ -9,6 +9,8 @@ const SearchPreference = (props) => {
       <div
         className='has-default-search'
         id='save-preference'
+        tabIndex='0'
+        onKeyDown={props.forgetClick}
         onClick={props.forgetClick}>{
         props.search.pref.title
       } is your default search. <a >CLEAR</a></div>
@@ -17,11 +19,13 @@ const SearchPreference = (props) => {
   return (
     <div
       className='set-default-search'
-      id='save-preference'>
-      <input type='checkbox' id='sp' name='sp' onClick={props.saveClick} />
-      <label htmlFor='sp' onClick={props.saveClick}>Save {
+      id='save-preference'
+      tabIndex='0'
+      onKeyDown={props.saveClick}
+      onClick={props.saveClick}>
+      <a>SAVE</a> {
         props.currentSearch.title
-      } as my default search</label>
+      } as my default search.
     </div>
   )
 }

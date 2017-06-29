@@ -6,13 +6,16 @@ import '../../../static/css/global.css'
 import '../../../static/css/search.css'
 
 const SearchBox = (props) => {
-
   if (props.visible) {
     return (
       <span className='uSearchBox'>
         <label htmlFor='basic-search-field'>
           <ul id='searchAction' >
-            <li id='selected-search' onClick={props.onClick}>
+            <li
+              id='selected-search'
+              onClick={props.onClick}
+              onKeyDown={props.onKeyDown}
+              tabIndex='0'>
               <p className='current-search'>{ props.currentSearch.title}</p>
             </li>
             <SearchOptionList {...props} />
@@ -24,7 +27,6 @@ const SearchBox = (props) => {
     )
   }
   return null
-
 }
 
 SearchBox.propTypes = {

@@ -10,12 +10,20 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const onSubmit = (e) => {
+    dispatch(setSearchType(ownProps.item.uid))
+    dispatch(closeSearchBox())
+    e.stopPropagation()
+    e.nativeEvent.stopImmediatePropagation()
+  }
   return {
     onClick: (e) => {
-      dispatch(setSearchType(ownProps.item.uid))
-      dispatch(closeSearchBox())
-      e.stopPropagation()
-      e.nativeEvent.stopImmediatePropagation()
+      onSubmit(e)
+    },
+    onKeyDown: (e) => {
+      if (e.keyCode === 13) {
+        onSubmit(e)
+      }
     },
   }
 }

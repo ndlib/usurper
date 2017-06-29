@@ -996,14 +996,14 @@ label[for='q']:after {
 }
 
 
-.set-default-search label, .additional-links, .has-default-search {
+.set-default-search, .additional-links, .has-default-search {
   font-size: 14px !important;
   color: #fff;
   padding-left: 5px;
   padding-top: 5px;
 }
 
-.has-default-search a {
+.has-default-search a, .set-default-search a {
   color: #fff;
   text-decoration: underline;
 }

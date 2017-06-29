@@ -15,16 +15,25 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const toggle = (e) => {
+    if (ownProps.search.searchBoxOpen) {
+      dispatch(closeSearchBox())
+    } else {
+      dispatch(openSearchBox())
+    }
+
+    e.stopPropagation()
+    e.nativeEvent.stopImmediatePropagation()
+  }
+
   return {
     onClick:(e) => {
-      if (ownProps.search.searchBoxOpen) {
-        dispatch(closeSearchBox())
-      } else {
-        dispatch(openSearchBox())
+      toggle(e)
+    },
+    onKeyDown: (e) => {
+      if (e.keyCode === 13) {
+        toggle(e)
       }
-
-      e.stopPropagation()
-      e.nativeEvent.stopImmediatePropagation()
     },
     onChange: (e) => {
       dispatch(setSearchOption(e.target.id, e.target.value))

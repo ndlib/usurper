@@ -6,7 +6,15 @@ const AdditionalLinks = (props) => {
   let links = []
   let key = 0
   if (props.currentSearch.uid === ONESEARCH || props.currentSearch.uid === NDCATALOG) {
-    links.push(<a onClick={props.toggleAdvancedSearch} key={key++} className='advanced-basic-toggle'>{props.advancedButtonLabel}</a>)
+    links.push(
+      <a
+        onClick={props.toggleAdvancedSearch}
+        onKeyDown={props.toggleAdvancedSearch}
+        tabIndex='0'
+        key={key++}
+        className='advanced-basic-toggle'
+        >{props.advancedButtonLabel}</a>
+    )
   }
   if (props.currentSearch.additionalLinks) {
     if (key > 0) {
