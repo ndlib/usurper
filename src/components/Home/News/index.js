@@ -62,9 +62,10 @@ export class AllNewsContainer extends Component {
   }
 }
 
-PropTypes.propTypes = {
+AllNewsContainer.propTypes = {
   allNewsStatus: PropTypes.string.isRequired,
   fetchAllNews: PropTypes.func.isRequired,
+  allNews: PropTypes.array.isRequired,
 }
 
 const HoursPage = connect(
