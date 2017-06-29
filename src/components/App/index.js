@@ -13,6 +13,7 @@ import ContentfulPage from '../../components/Contentful/Page'
 import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
 import ContentfulNews from '../../components/Contentful/News'
+import DatabasePage from '../../components/Contentful/Database'
 import Research from '../../components/LandingPages/Research'
 import Services from '../../components/LandingPages/Services'
 import Libraries from '../../components/LandingPages/Libraries'
@@ -45,6 +46,7 @@ const App = () => {
           <Route exact path='/libraries' component={Libraries} />
           <Route exact path='/personal' component={PersonalInfo} />
           <Route exact path='/subjects' component={SubjectList} />
+          <Route exact path='/database/:id' component={DatabasePage} />
           <Route exact path='/databases/:id' component={DatabaseList} />
           <Route exact path='/research' component={Research} />
           <Route exact path='/secure/:id' component={SecureContentfulPage} />
