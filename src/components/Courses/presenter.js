@@ -116,6 +116,20 @@ class Courses extends Component {
       outArray.push(
         <div className='course-section' key={key + '-section'}>
           <h3 className='course-title' key={key}>{name}</h3>
+          <div className='course-card header'>
+            <div className='course'>
+              <p className='course-header'>Course</p>
+            </div>
+            <div className='course-guides'>
+              Course Guide
+            </div>
+            <div className='course-reserves'>
+              Course Reserves
+            </div>
+            <div className='course-resources'>
+              Subject Resources
+            </div>
+          </div>
           {cards}
         </div>
       )
@@ -157,21 +171,6 @@ class Courses extends Component {
         <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright tab'>My Items</Link>
         <div key='courseCards'>
-          <div className='course-card header'>
-            <div className='course'>
-              <p className='course-header'>Course</p>
-            </div>
-            <div className='course-guides'>
-              Course Guide
-            </div>
-            <div className='course-reserves'>
-              Course Reserves
-            </div>
-            <div className='course-resources'>
-              Subject Resources
-            </div>
-          </div>
-
           { this.courseCards() }
         </div>
       </div>
