@@ -15,7 +15,7 @@ const FloorPresenter = ({ cfDatabaseEntry }) => (
     <h2>{cfDatabaseEntry.fields.title}</h2>
     <LibMarkdown>{cfDatabaseEntry.fields.description}</LibMarkdown>
     <Image cfImage={cfDatabaseEntry.fields.image} />
-    <Link to={cfDatabaseEntry.fields.purl} title={'Link to database ' + cfDatabaseEntry.fields.title} >Go there</Link>
+    <Link to={cfDatabaseEntry.fields.purl}>{'Go to ' + cfDatabaseEntry.fields.title}</Link>
   </div>
 )
 
