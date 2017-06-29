@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     } else {
       dispatch(openSearchBox())
     }
-
+    e.preventDefault()
     e.stopPropagation()
     e.nativeEvent.stopImmediatePropagation()
   }
