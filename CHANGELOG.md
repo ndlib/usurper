@@ -1,5 +1,23 @@
 # Change Log
 
+## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)
+
+### New features/enhancements:
+- Added Database Landing Pages [#132](https://github.com/ndlib/usurper/pull/132)
+- Added Pathfinder Pages for individual Courses[#129](https://github.com/ndlib/usurper/pull/129)
+- Added News from Contenful in the home page [#125](https://github.com/ndlib/usurper/pull/125)
+- Added Advanced Search to the search box [#130](https://github.com/ndlib/usurper/pull/130)
+
+### Bug fixes:
+- Various Links in the menus.
+- Fixed an issue where the login menu item was not paying attention to if you were actually logged in or not
+- Fixed missing titles on the courses pages
+- Fixed missing tabular data headings on the courses pages. 
+- Fixed some rendering issues on the hours page. 
+
+
+
 ## [0.2](https://github.com/ndlib/usurper/tree/v0.2.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.1.0...v0.2.0)
 
