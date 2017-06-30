@@ -21,7 +21,7 @@ const SearchBox = (props) => {
             <SearchOptionList {...props} />
           </ul>
         </label>
-        <div className='input'><input id='basic-search-field' name='q' onChange={props.onChange} /></div>
+        <div className='input'><input id='basic-search-field' role='searchbox' name='q' onChange={props.onChange} /></div>
         <button onClick={props.onSubmit}>Search</button>
       </span>
     )

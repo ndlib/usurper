@@ -31,7 +31,7 @@ class Home extends Component {
         <SearchProgramaticSet open />
         <HomePageHours jsonHoursApiKey='hesburghlibrary' />
 
-        <div className=' services hservices'>
+        <section className=' services hservices' title='Quicklinks'>
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' /></Link>
           </div>
@@ -47,7 +47,7 @@ class Home extends Component {
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending. Hand holding an iPad in a classroom.' /></Link>
           </div>
-        </div>
+        </section>
         <div className='row news'>
           <News />
           <Events />

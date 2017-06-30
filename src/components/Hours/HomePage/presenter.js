@@ -5,9 +5,9 @@ import Link from '../../Link'
 
 const Presenter = (hoursEntry) => {
   return (
-    <div className='hours-display'>
+    <section className='hours-display' title='Today&#39;s Hours'>
       <p>Today's Hesburgh Library Hours: <Link to='hours'>{hoursEntry.today.display}</Link></p>
-    </div>
+    </section>
   )
 }
 

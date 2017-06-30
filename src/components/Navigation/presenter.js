@@ -46,7 +46,7 @@ const Navigation = (props) => {
   })
 
   return (
-    <nav className='uNavigation'>
+    <nav className='uNavigation' title='Main Navigtion'>
       <div className='container-fluid menu-list'>
         <div className='menu-link'>
           <Link to='/'>Home</Link>
