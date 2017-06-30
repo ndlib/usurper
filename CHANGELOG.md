@@ -23,6 +23,7 @@
 - Fixed a screen reader issue with expanded hours [#141](https://github.com/ndlib/usurper/pull/141)
 - Fixed an issue with the room-reservations link [#141](https://github.com/ndlib/usurper/pull/141)
 - Screen readers will now ignore the chat image, and several other tags [#143](https://github.com/ndlib/usurper/pull/143), [#143](https://github.com/ndlib/usurper/pull/143)
+- Fixed an issue with contact people showing on incorrect pages [#144](https://github.com/ndlib/usurper/pull/144)
 
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)
@@ -37,8 +38,8 @@
 - Various Links in the menus.
 - Fixed an issue where the login menu item was not paying attention to if you were actually logged in or not
 - Fixed missing titles on the courses pages
-- Fixed missing tabular data headings on the courses pages. 
-- Fixed some rendering issues on the hours page. 
+- Fixed missing tabular data headings on the courses pages.
+- Fixed some rendering issues on the hours page.
 
 
 
