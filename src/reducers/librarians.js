@@ -11,6 +11,7 @@ export default(state = { status: statuses.FETCHING }, action) => {
       return Object.assign({}, state, {
         status: action.status,
         json: action.data,
+        netids: action.netids,
       })
     default:
       return state
