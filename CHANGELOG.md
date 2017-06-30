@@ -25,6 +25,12 @@
 - Screen readers will now ignore the chat image, and several other tags [#143](https://github.com/ndlib/usurper/pull/143), [#143](https://github.com/ndlib/usurper/pull/143)
 - Service points in hours components will now be rendered in red when closed [#147](https://github.com/ndlib/usurper/pull/147)
 - Fixed an issue with contact people showing on incorrect pages [#144](https://github.com/ndlib/usurper/pull/144)
+- Mimic native dropdown select/option behavior with the search type selection.
+ * Down arrow opens dropdown.
+ * Up and Down arrow is used to navigate options. Tab is disabled.
+ * Enter selects option and retains focus on top level component instead of advancing to next tabIndex as happens in click selection.
+- Add search button in navigation to tabIndex order and toggle on enterbeing pressed
+[#152](https://github.com/ndlib/usurper/pull/152)
 
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)
