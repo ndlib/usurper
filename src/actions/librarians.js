@@ -10,10 +10,11 @@ export const requestLibrarians = (netids) => {
   }
 }
 
-const genResponse = (status, data) => {
+const genResponse = (status, data, netids) => {
   return {
     type: RECEIVE_LIBRARIANS,
     status: status,
+    netids: netids,
     data: data,
     receivedAt: Date.now(),
   }
@@ -23,12 +24,12 @@ export const RECEIVE_LIBRARIANS = 'RECEIVE_LIBRARIANS'
 const receivePage = (netids, response) => {
   try {
     if (response.librarians) {
-      return genResponse(statuses.SUCCESS, response)
+      return genResponse(statuses.SUCCESS, response, netids)
     } else {
-      return genResponse(statuses.ERROR, response)
+      return genResponse(statuses.ERROR, response, netids)
     }
   } catch (e) {
-    return genResponse(statuses.ERROR, response)
+    return genResponse(statuses.ERROR, response, netids)
   }
 }
 
