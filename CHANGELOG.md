@@ -17,7 +17,7 @@
 - Fixed database list link titles for accessibility [#138](https://github.com/ndlib/usurper/pull/138)
 - Some style changes to the services landing page [#139](https://github.com/ndlib/usurper/pull/139)
 - Add mobile icons [#140](https://github.com/ndlib/usurper/pull/140)
-- Use the Inline presenter for events [#140](https://github.com/ndlib/usurper/pull/140)
+- Fixed an issue with the search panel incorrectly turning off for several pages [#140](https://github.com/ndlib/usurper/pull/140)
 - Updated data management links [#140](https://github.com/ndlib/usurper/pull/140)
 - Logout button always redirects back to home page [#141](https://github.com/ndlib/usurper/pull/141)
 - Fixed a screen reader issue with expanded hours [#141](https://github.com/ndlib/usurper/pull/141)
