@@ -12,7 +12,9 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{todayLabel}</div>
-        <div className="ecarrow"><a className='collapse' onClick={collapseHandler}>Collapse</a></div>
+        <div className='ecarrow'>
+          <a id='collapse_hours' className='collapse' tabIndex={0} onClick={collapseHandler} onKeyDown={collapseHandler}>Collapse</a>
+        </div>
       </h4>
       <div className='row hours-listing'>
         <div className='col-md-4'>
