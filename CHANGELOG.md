@@ -1,7 +1,14 @@
 # Change Log
 
-## [0.4](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.3.0...master)
+## [0.5](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.4.0...master)
+
+### New features/enhancements:
+
+### Bug fixes:
+
+## [0.4](https://github.com/ndlib/usurper/tree/master) (2017-06-30)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.3.0...v0.4.0)
 
 ### New features/enhancements:
 - Events now use actual data from Contentful [#134](https://github.com/ndlib/usurper/pull/134)
