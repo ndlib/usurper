@@ -127,11 +127,19 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     },
 
   ]
+
+  const handleUserKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      ownProps.history.push('/personal')
+    }
+  }
+
   return {
     dropDowns: dropDowns,
     handleDrawerClick: state.search.drawerOpen ? dispatchProps.closeSearchDrawer : dispatchProps.openSearchDrawer,
     handleAskClick: state.menus.menuId === ASK_MENU ? dispatchProps.closeMenus : dispatchProps.openAsk,
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
+    handleUserKeyDown: handleUserKeyDown,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
     toggleClass: state.search.drawerOpen ? 'open' : 'closed',
     ...state,

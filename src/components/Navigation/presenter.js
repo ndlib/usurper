@@ -11,7 +11,11 @@ import { ASK_MENU, MOBILE_MENU } from '../../actions/menu'
 const myAccountButton = (props) => {
   if (props.loggedIn) {
     return (
-      <div className='menu-link user' onClick={props.handleUserClick} tabIndex='0'>
+      <div
+        className='menu-link user'
+        onClick={props.handleUserClick}
+        onKeyDown={props.handleUserKeyDown}
+        tabIndex='0'>
         <a className='m'>My Account</a>
         <Route component={UserMenu} />
       </div>
