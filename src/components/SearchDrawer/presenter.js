@@ -10,7 +10,7 @@ import '../../static/css/search.css'
 
 const Drawer = (props) => {
   return (
-    <section id='drawer' role='Search'>
+    <section id='drawer' role='Search' aria-hidden='false'>
       <div className='appliance'>
         <form id='searchAppliance'>
           <SearchBox
@@ -35,7 +35,7 @@ const SearchDrawer = (props) => {
   if (props.search.drawerOpen) {
     return <Drawer {...props} />
   } else {
-    return null
+    return (<section id='drawer' role='Search' aria-hidden='true' />)
   }
 }
 
