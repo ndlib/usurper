@@ -134,13 +134,23 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     }
   }
 
+  const handleDrawer = (e) => {
+    if (e.type === 'click' || (e.type === 'keydown' && e.keyCode === 13)) {
+      if (state.search.drawerOpen) {
+        dispatchProps.closeSearchDrawer(e)
+      } else {
+        dispatchProps.openSearchDrawer(e)
+      }
+    }
+  }
   return {
     dropDowns: dropDowns,
-    handleDrawerClick: state.search.drawerOpen ? dispatchProps.closeSearchDrawer : dispatchProps.openSearchDrawer,
+    handleDrawer: handleDrawer,
     handleAskClick: state.menus.menuId === ASK_MENU ? dispatchProps.closeMenus : dispatchProps.openAsk,
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleUserKeyDown: handleUserKeyDown,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
+    isDrawerOpen: state.search.drawerOpen ? true : false,
     toggleClass: state.search.drawerOpen ? 'open' : 'closed',
     ...state,
     ...dispatchProps,
