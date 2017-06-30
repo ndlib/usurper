@@ -13,8 +13,10 @@
 - Various Links in the menus.
 - Fixed an issue where the login menu item was not paying attention to if you were actually logged in or not
 - Fixed missing titles on the courses pages
-- Fixed missing tabular data headings on the courses pages. 
-- Fixed some rendering issues on the hours page. 
+- Fixed missing tabular data headings on the courses pages.
+- Fixed some rendering issues on the hours page.
+- Hours and account were readling ltr in the tab order, but were visually rtl. Switched order and removed floats to get visual and tab order the same.
+- Go to account page on 'enter' keyDown on 'My Account' button when tabbing through UI.
 
 
 
@@ -53,4 +55,3 @@ iOS. [#126](https://github.com/ndlib/usurper/issues/126)
 
 
 ### Bug fixes: ###
-
