@@ -614,7 +614,7 @@ nav div > a, .menu div > a {
   font-family: GPHeavy, sans-serif;
   letter-spacing: 1.5px;
   padding: 15px 19px 15px;
-  display: inline-block;
+  display: inline-flex;
 }
 nav .more {
   border: solid 1px #555;
@@ -730,7 +730,6 @@ nav a.search.closed:hover {
 
 .user {
   position: relative;
-  float: right;
 }
 
 .ask {
@@ -740,9 +739,7 @@ nav a.search.closed:hover {
 
 .ask .menu-drawer, .user .menu-drawer {
   width: 200px;
-
-  left: initial;
-  top: 51px;
+  top: 34px;
   padding: 0 !important;
 
 }
