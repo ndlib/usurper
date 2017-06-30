@@ -8,7 +8,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const servicePointClassName = 'service-point' + (!isOpen ? ' closed' : '')
   const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
-    <section className='service-point' title={title}>
+    <section className='service-point' aria-label={title}>
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{todayLabel}</div>

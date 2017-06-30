@@ -6,12 +6,12 @@ import './style.css'
 
 const News = (entries) => {
   return (
-    <section className='col-md-8 col-xs-12' title="News">
+    <section className='col-md-8 col-xs-12' aria-label="News">
       <h3>News</h3>
       {
         entries.map((entry) => {
           return (
-            <Link key={entry.fields.slug} to={'/news/' + entry.fields.slug}>
+            <Link key={entry.fields.slug} title={entry.fields.title} to={'/news/' + entry.fields.slug}>
               <div className='news-card'>
                 <Image cfImage={entry.fields.image} />
                 <header>
