@@ -18,7 +18,7 @@ const Presenter = (props) => {
         {
           props.servicePoints.map((servicePoint) => {
             return (<div key={servicePoint.sys.id}>
-              <CurrentHours jsonHoursApiKey={servicePoint.fields.hoursCode}>
+              <CurrentHours servicePoint={servicePoint} >
                 <Contact servicePoint={servicePoint} />
               </CurrentHours>
             </div>)
