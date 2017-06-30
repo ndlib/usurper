@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     saveClick: (e) => {
-      console.log(e.type)
       if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
         dispatch(saveSearchPreference(ownProps.currentSearch))
       }
