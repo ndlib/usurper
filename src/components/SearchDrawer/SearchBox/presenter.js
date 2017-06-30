@@ -16,6 +16,7 @@ const SearchBox = (props) => {
               onClick={props.onClick}
               onKeyDown={props.onKeyDown}
               tabIndex='0'>
+              <span className="screen-reader-only">Search </span>
               <p className='current-search'>{ props.currentSearch.title}</p>
             </li>
             <SearchOptionList {...props} />
