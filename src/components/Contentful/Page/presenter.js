@@ -18,7 +18,7 @@ const PagePresenter = ({ cfPageEntry }) => (
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <h2>{ cfPageEntry.fields.title } </h2>
 
-    <hr />
+    <hr aria-hidden="true" />
     <div className='row'>
       <div className='col-md-8'>
 

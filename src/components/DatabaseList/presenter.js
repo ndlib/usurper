@@ -17,7 +17,7 @@ const Content = (letter, data) => {
       <PageTitle title={'Databases A-Z: ' + letter} />
       <SearchProgramaticSet open={false} />
       <h2>{'Databases: ' + letter.toUpperCase()}</h2>
-      <hr />
+      <hr aria-hidden="true" />
       <div className='alphabet'>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {

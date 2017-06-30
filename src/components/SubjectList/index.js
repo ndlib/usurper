@@ -10,7 +10,7 @@ const SubjectList = () => {
       <SearchProgramaticSet open={false} />
       <PageTitle title='Subjects' />
       <h2>Subjects</h2>
-      <hr />
+      <hr aria-hidden="true" />
       <div className='row'>
         <div className='col-md-6'>
           <p><Link to='/aerospace-and-mechanical-engineering'>Aerospace &amp; Mechanical Engineering</Link></p>

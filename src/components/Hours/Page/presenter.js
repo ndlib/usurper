@@ -10,7 +10,7 @@ const Presenter = (props) => {
     <div className='content hours-page'>
       <SearchProgramaticSet open={false} />
       <h2>Hours</h2>
-      <hr />
+      <hr aria-hidden="true" />
       <div>
         <p>View building and service desk hours.</p>
       </div>
