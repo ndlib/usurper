@@ -8,7 +8,7 @@
 #advanced-search select {
 	background:  #0c2340;
 	min-width: auto;
-	padding-right: 15px;
+	padding-right: 18px;
 	position: static;
 }
 
@@ -24,9 +24,9 @@
     -moz-transform:rotate(90deg);
     -ms-transform:rotate(90deg);
     transform:rotate(90deg);
-    right:10px;
+    right:7px;
     top:1px;
-    padding:0 0 2px;
+    padding: 0;
     position:absolute;
     pointer-events:none;
 

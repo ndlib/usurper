@@ -23,6 +23,7 @@
 .appliance ul li:hover, .appliance ul li.active-search {
 	background-color: #63B788;
 	background-color: #847161;
+  background-color: #425166;
 }
 
 #save-preference {

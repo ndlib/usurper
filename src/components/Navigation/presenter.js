@@ -11,15 +11,19 @@ import { ASK_MENU, MOBILE_MENU } from '../../actions/menu'
 const myAccountButton = (props) => {
   if (props.loggedIn) {
     return (
-      <div className='menu-link user' onClick={props.handleUserClick}>
-        <a className='right m'>My Account</a>
+      <div
+        className='menu-link user'
+        onClick={props.handleUserClick}
+        onKeyDown={props.handleUserKeyDown}
+        tabIndex='0'>
+        <a className='m'>My Account</a>
         <Route component={UserMenu} />
       </div>
     )
   } else {
     return (
       <div className='menu-link user'>
-        <a href={props.loginUrl} className='right m'>Login</a>
+        <a href={props.loginUrl} className='m'>Login</a>
         <Route component={UserMenu} />
       </div>
     )
@@ -52,21 +56,18 @@ const Navigation = (props) => {
           <Link to='/'>Home</Link>
         </div>
         {dropDowns}
-
-        <div className='menu-link hours-m'>
-          <Link to='/hours' className='right m'>Hours</Link>
-        </div>
-        {/* <div className='menu-link ask' onClick={props.handleAskClick}>
-          <a className='right m'>Ask Us</a>
-          <AskMenu open={props.menus.menuId === ASK_MENU} />
-        </div> */}
-        { myAccountButton(props) }
-        <div className='menu-link search'>
-          <a
-            className={'right search ' + props.toggleClass}
-            id='header-search-button'
-            onClick={props.handleDrawerClick}
-            >Search</a>
+        <div className='right'>
+          <div className='menu-link search'>
+            <a
+              className={'search ' + props.toggleClass}
+              id='header-search-button'
+              onClick={props.handleDrawerClick}
+              >Search</a>
+          </div>
+          { myAccountButton(props) }
+          <div className='menu-link hours-m'>
+            <Link to='/hours' className='m'>Hours</Link>
+          </div>
         </div>
         <div className='menu-icon'>
           <a onClick={props.handleMobileClick}>☰</a>

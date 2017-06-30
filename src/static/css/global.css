@@ -614,7 +614,7 @@ nav div > a, .menu div > a {
   font-family: GPHeavy, sans-serif;
   letter-spacing: 1.5px;
   padding: 15px 19px 15px;
-  display: inline-block;
+  display: inline-flex;
 }
 nav .more {
   border: solid 1px #555;
@@ -730,7 +730,6 @@ nav a.search.closed:hover {
 
 .user {
   position: relative;
-  float: right;
 }
 
 .ask {
@@ -740,9 +739,7 @@ nav a.search.closed:hover {
 
 .ask .menu-drawer, .user .menu-drawer {
   width: 200px;
-
-  left: initial;
-  top: 51px;
+  top: 34px;
   padding: 0 !important;
 
 }
@@ -842,7 +839,8 @@ nav a.search.closed:hover {
 }
 
 label {position:relative}
-label[for='q']:after {
+
+label[for='q']:after, .uSearchBox label:after {
     content:'▶';
     font:11px "Consolas", monospace;
     color:#fff;
@@ -853,7 +851,7 @@ label[for='q']:after {
     right:10px;
     top:20px;
     padding:0 0 2px;
-
+    z-index: 20;
     position:absolute;
     pointer-events:none;
     background: #5B412D;
@@ -1384,15 +1382,20 @@ hr {
   font-family: GPCMed, sans-serif;
   font-size: 24px;
   margin-bottom: 1em;
-  display: inline-block;
+  display: block;
   padding-left: 30px;
   background-image: url("../images/map.png");
   background-size: contain;
   background-repeat: no-repeat;
+
 }
 
 .contact address div {
   font-weight: bold;
+}
+
+.contact address span {
+  display: block;
 }
 
 .hours-list {
@@ -1985,6 +1988,7 @@ hr {
 
   .appliance ul {
     width: 100%;
+    cursor: pointer;
   }
 
   .uSearchBox {
@@ -2174,4 +2178,11 @@ nav {
   background-image: url('../images/jesus.2.png');
   background-size: contain;
   background-position: right 200px top;
+}
+
+.screen-reader-only {
+    position: absolute;
+    left: -999em;
+    width: 1em;
+    overflow: hidden;
 }
