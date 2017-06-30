@@ -5,6 +5,7 @@
 
 ### New features/enhancements:
 - Events now use actual data from Contentful [#134](https://github.com/ndlib/usurper/pull/134)
+- Updated the UI to have a better tags and title for screen readers. [#149](https://github.com/ndlib/usurper/pull/149)
 
 ### Bug fixes:
 - Fixed an issue with the search panel rendering behind the news components [#135](https://github.com/ndlib/usurper/pull/135)
@@ -37,8 +38,8 @@
 - Various Links in the menus.
 - Fixed an issue where the login menu item was not paying attention to if you were actually logged in or not
 - Fixed missing titles on the courses pages
-- Fixed missing tabular data headings on the courses pages. 
-- Fixed some rendering issues on the hours page. 
+- Fixed missing tabular data headings on the courses pages.
+- Fixed some rendering issues on the hours page.
 
 
 
@@ -77,4 +78,3 @@ iOS. [#126](https://github.com/ndlib/usurper/issues/126)
 
 
 ### Bug fixes: ###
-
