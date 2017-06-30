@@ -63,6 +63,9 @@ const Navigation = (props) => {
               onClick={props.handleDrawer}
               onKeyDown={props.handleDrawer}
               tabIndex='0'
+              aria-expanded={props.isDrawerOpen}
+              aria-controls='drawer'
+              aria-label='Search Drawer'
               >Search</a>
           </div>
           { myAccountButton(props) }

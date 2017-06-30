@@ -150,6 +150,7 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleUserKeyDown: handleUserKeyDown,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
+    isDrawerOpen: state.search.drawerOpen ? true : false,
     toggleClass: state.search.drawerOpen ? 'open' : 'closed',
     ...state,
     ...dispatchProps,
