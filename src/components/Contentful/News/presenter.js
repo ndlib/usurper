@@ -16,9 +16,9 @@ const PagePresenter = ({ entry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={entry.fields.title} />
     <SearchProgramaticSet open={false} />
-    <h2>{ entry.fields.title } </h2>
+    <h2 className='headline'>{ entry.fields.title } </h2>
 
-    <hr />
+    <hr aria-hidden="true" />
     <div className='row'>
       <div className='col-md-8'>
         <LibMarkdown>{ entry.fields.content }</LibMarkdown>

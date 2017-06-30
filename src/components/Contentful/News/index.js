@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { fetchNews } from '../../../actions/contentful/news'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulNewsPresenter from './presenter.js'
+import './style.css'
 import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state) => {
