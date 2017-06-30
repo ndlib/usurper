@@ -80,7 +80,8 @@ export class CurrentHoursContainer extends Component {
 
 CurrentHoursContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
-  jsonHoursApiKey: PropTypes.string.isRequired,
+  jsonHoursApiKey: PropTypes.string,
+  servicePoint: PropTypes.object,
   fetchHours: PropTypes.func.isRequired,
 }
 
