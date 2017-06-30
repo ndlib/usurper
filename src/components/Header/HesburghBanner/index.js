@@ -15,11 +15,11 @@ class HomeHesburghBanner extends Component {
             </Link>
           </div>
         </div>
-        <div id='banner'>
+        <header id='banner' title='Website Home'>
           <div className='container-fluid'>
-            <Link to='/' className='hlhome'>Hesburgh <em>Libraries</em></Link>
+            <Link to='/'  title="Hesburgh Library Home" className='hlhome'>Hesburgh <em>Libraries</em></Link>
           </div>
-        </div>
+        </header>
       </div>
     )
   }

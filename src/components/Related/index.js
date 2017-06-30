@@ -9,9 +9,8 @@ const Related = ({ title, className, showImages, children }) => {
     return null
   }
 
-
   return (
-    <div>
+    <section title={title}>
       { title && <h3>{title}</h3> }
       <ul className={className}>
 
@@ -37,7 +36,7 @@ const Related = ({ title, className, showImages, children }) => {
         }
 
       </ul>
-    </div>
+    </section>
   )
 }
 

@@ -9,23 +9,23 @@ const FooterLinks = () => {
       <div className='container-fluid'>
         <div className='row bottom-xs'>
           <div className='col-xs-6'>
-            <div className='box'>
+            <section className='box' role='navigation' title='Footer Menu'>
               <ul>
                 <li><Link to='https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLSdL4MnInHvXcQke9dJQ1Idkv2O23u9dBV_9ky40WDOV77B_MA/viewform?c=0&amp;w=1'>Feedback</Link></li>
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
               </ul>
-            </div>
+            </section>
           </div>
 
           <div className='col-xs-4 col-xs-offset-2'>
-            <div className='box right'>
+            <section className='box right' role='navigation' title='Social Media Links'>
               <ul>
                 <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>
                 <li><Link to='https://www.facebook.com/NDLibraries/' title='Hesburgh Libraries Faceebook' target='_blank'><img src={Facebook} alt='Facebook' /> NDLibraries</Link></li>
               </ul>
-            </div>
+            </section>
           </div>
         </div>
       </div>

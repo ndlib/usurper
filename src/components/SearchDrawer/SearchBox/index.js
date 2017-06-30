@@ -32,7 +32,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onKeyDown: (e) => {
       if (e.keyCode === 13) {
-        toggle(e)
+        dispatch(toggle(e))
+      } else if (e.keyCode === 40) {
+        e.preventDefault()
+        dispatch(openSearchBox())
+        setTimeout(() => { document.getElementById('uSearchOption_0').focus() }, 50)
       }
     },
     onChange: (e) => {
