@@ -35,7 +35,6 @@ const Navigation = (props) => {
       <div className='menu-link'
         onClick={menu.onClick}
         onKeyDown={menu.keyDown}
-
         key={index}
         tabIndex='0'>
         <a id={menu.title.toLowerCase()}>{menu.title}</a>
@@ -61,7 +60,9 @@ const Navigation = (props) => {
             <a
               className={'search ' + props.toggleClass}
               id='header-search-button'
-              onClick={props.handleDrawerClick}
+              onClick={props.handleDrawer}
+              onKeyDown={props.handleDrawer}
+              tabIndex='0'
               >Search</a>
           </div>
           { myAccountButton(props) }
@@ -80,7 +81,7 @@ const Navigation = (props) => {
 
 Navigation.propTypes = {
   menus: PropTypes.object.isRequired,
-  handleDrawerClick: PropTypes.func.isRequired,
+  handleDrawer: PropTypes.func.isRequired,
   handleAskClick: PropTypes.func.isRequired,
   dropDowns: PropTypes.array.isRequired,
 
