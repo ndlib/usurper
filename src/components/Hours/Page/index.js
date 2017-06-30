@@ -7,7 +7,6 @@ import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
 import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
-import { flattenLocale } from '../../../shared/ContentfulLibs'
 
 const mapStateToProps = (state) => {
   let combinedStatus = statuses.NOT_FETCHED
@@ -21,10 +20,7 @@ const mapStateToProps = (state) => {
   if (combinedStatus === statuses.SUCCESS) {
     servicePointsWithHours = state.cfServicePoints.json
       .filter((servicePoint) => servicePoint.fields.hoursCode)
-      .map((servicePoint) => {
-        flattenLocale(servicePoint.fields, 'en-US')
-        return servicePoint
-      })
+      .sort((a, b) => a.fields.title.localeCompare(b.fields.title, 'en'))
   }
   return {
     combinedStatus,
