@@ -5,7 +5,7 @@ import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   const servicePointClassName = 'service-point' + (!isOpen ? ' closed' : '')
-  const todayLabel = (isOpen ? 'Today: ' +  hoursEntry.today.display : 'Closed')
+  const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
     <div className={servicePointClassName}>
       <h4>
