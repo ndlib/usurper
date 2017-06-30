@@ -4,11 +4,13 @@ import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
+  const servicePointClassName = 'service-point' + (!isOpen ? ' closed' : '')
+  const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
-    <div className='service-point'>
+    <div className={servicePointClassName}>
       <h4>
         <div className='location'>{hoursEntry.name}</div>
-        <div className='today'>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
+        <div className='today'>{todayLabel}</div>
         <div className="ecarrow"><a className='collapse' onClick={collapseHandler}>Collapse</a></div>
       </h4>
       <div className='row hours-listing'>

@@ -23,6 +23,7 @@
 - Fixed a screen reader issue with expanded hours [#141](https://github.com/ndlib/usurper/pull/141)
 - Fixed an issue with the room-reservations link [#141](https://github.com/ndlib/usurper/pull/141)
 - Screen readers will now ignore the chat image, and several other tags [#143](https://github.com/ndlib/usurper/pull/143), [#143](https://github.com/ndlib/usurper/pull/143)
+- Service points in hours components will now be rendered in red when closed [#147](https://github.com/ndlib/usurper/pull/147)
 - Fixed an issue with contact people showing on incorrect pages [#144](https://github.com/ndlib/usurper/pull/144)
 
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
