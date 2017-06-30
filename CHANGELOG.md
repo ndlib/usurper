@@ -25,6 +25,7 @@
 - Screen readers will now ignore the chat image, and several other tags [#143](https://github.com/ndlib/usurper/pull/143), [#143](https://github.com/ndlib/usurper/pull/143)
 - Service points in hours components will now be rendered in red when closed [#147](https://github.com/ndlib/usurper/pull/147)
 - Fixed an issue with contact people showing on incorrect pages [#144](https://github.com/ndlib/usurper/pull/144)
+- Non-published images no longer cause infinite loading on referencing pages [#150](https://github.com/ndlib/usurper/pull/150)
 
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)

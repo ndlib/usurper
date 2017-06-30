@@ -6,10 +6,12 @@ export const mapStateToProps = (state, thisProps) => {
   let src = thisProps.src
   let alt = thisProps.alt
 
-  if (!src && thisProps.cfImage) {
+  if (!src && thisProps.cfImage && thisProps.cfImage.fields) {
     src = thisProps.cfImage.fields.file.url
   } else if (!src && thisProps.defaultImage) {
     src = thisProps.defaultImage
+  } else {
+    console.log('No image passed to image component')
   }
 
   if (!alt) {
