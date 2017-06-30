@@ -9,7 +9,7 @@ const SearchOptionList = (props) => {
     const options = searchOptions.map(
       (item, index) => {
         return (
-          <SearchOption {...props} item={item} key={index} />
+          <SearchOption {...props} item={item} key={index} index={index} />
         )
       }
     )

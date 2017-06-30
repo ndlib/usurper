@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 const Contact = (props) => {
   let name
   if (props.name) {
-    name = <h3>{props.name}</h3>
+    name = <h4>{props.name}</h4>
   }
 
   let title
   if (props.title) {
-    title = (<h4>{props.title}</h4>)
+    title = (<h5>{props.title}</h5>)
   }
 
   let phone

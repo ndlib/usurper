@@ -4,10 +4,11 @@ import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
+  const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point' + (!isOpen ? ' closed' : '')
   const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
-    <div className={servicePointClassName}>
+    <section className='service-point' title={title}>
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{todayLabel}</div>
@@ -22,7 +23,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
           {children}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

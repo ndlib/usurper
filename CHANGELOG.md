@@ -5,6 +5,7 @@
 
 ### New features/enhancements:
 - Events now use actual data from Contentful [#134](https://github.com/ndlib/usurper/pull/134)
+- Updated the UI to have a better tags and title for screen readers. [#149](https://github.com/ndlib/usurper/pull/149)
 
 ### Bug fixes:
 - Fixed an issue with the search panel rendering behind the news components [#135](https://github.com/ndlib/usurper/pull/135)
@@ -26,6 +27,12 @@
 - Service points in hours components will now be rendered in red when closed [#147](https://github.com/ndlib/usurper/pull/147)
 - Fixed an issue with contact people showing on incorrect pages [#144](https://github.com/ndlib/usurper/pull/144)
 - Fixed the sorting of hours [#153](https://github.com/ndlib/usurper/pull/153)
+- Mimic native dropdown select/option behavior with the search type selection.
+ * Down arrow opens dropdown.
+ * Up and Down arrow is used to navigate options. Tab is disabled.
+ * Enter selects option and retains focus on top level component instead of advancing to next tabIndex as happens in click selection.
+- Add search button in navigation to tabIndex order and toggle on enterbeing pressed
+[#152](https://github.com/ndlib/usurper/pull/152)
 
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)
