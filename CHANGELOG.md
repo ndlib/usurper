@@ -35,6 +35,8 @@
  * Enter selects option and retains focus on top level component instead of advancing to next tabIndex as happens in click selection.
 - Add search button in navigation to tabIndex order and toggle on enterbeing pressed
 [#152](https://github.com/ndlib/usurper/pull/152)
+- Use the existing search.nd.edu instead of the newer /search?q=
+[#157](https://github.com/ndlib/usurper/pull/157)
 
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)
