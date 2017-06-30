@@ -2175,3 +2175,10 @@ nav {
   background-size: contain;
   background-position: right 200px top;
 }
+
+.screen-reader-only {
+    position: absolute;
+    left: -999em;
+    width: 1em;
+    overflow: hidden;
+}
