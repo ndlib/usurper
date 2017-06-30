@@ -22,6 +22,10 @@
 	-ms-grid-columns: 2fr 1fr 1fr;
 }
 
+.service-point.closed h4 {
+	border-left-color: #AA272F;
+}
+
 .hours-listing {
 	padding: 20px;
 }
@@ -37,6 +41,10 @@
 	color: #fff;
 	font-family: GPCBook, sans-serif;
 	-ms-grid-column: 2;
+}
+
+.closed .today {
+	background: #AA272F;
 }
 
 .ecarrow {
