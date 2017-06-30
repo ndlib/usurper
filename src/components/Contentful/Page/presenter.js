@@ -18,24 +18,24 @@ const PagePresenter = ({ cfPageEntry }) => (
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <h2>{ cfPageEntry.fields.title } </h2>
 
-    <hr aria-hidden="true" />
+    <hr />
     <div className='row'>
-      <div className='col-md-8'>
+      <section className='col-md-8'>
 
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
 
         <Related className='p-resources' title='Resources' showImages={false}>{ cfPageEntry.fields.relatedResources }</Related>
-        <Related className='p-guides'  showImages={false}>{ cfPageEntry.fields.libguides }</Related>
+        <Related className='p-guides' title='Guides' showTitle={false}  showImages={false}>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
-      </div>
-      <div className='col-md-4 right'>
+      </section>
+      <section className='col-md-4 right' role='complementary'>
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
         {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
         <Contact servicePoint={cfPageEntry.fields.servicePoint} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ cfPageEntry.fields.relatedPages }</Related>
-      </div>
+      </section>
     </div>
   </div>
 )

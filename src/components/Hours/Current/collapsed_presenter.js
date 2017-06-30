@@ -4,15 +4,16 @@ import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
+  let title = 'Hours for ' + hoursEntry.name
   return (
-    <div className='service-point'>
+    <section className='service-point' title={title}>
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{(isOpen ? 'Today: ' +  hoursEntry.today.display : 'Closed')}</div>
         <div className="ecarrow"><a className='expand' onClick={expandHandler}>Expand</a></div>
       </h4>
 
-    </div>
+    </section>
   )
 }
 

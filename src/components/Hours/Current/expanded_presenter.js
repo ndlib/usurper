@@ -4,8 +4,9 @@ import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
+  let title = 'Hours for ' + hoursEntry.name
   return (
-    <div className='service-point'>
+    <section className='service-point' title={title}>
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{'Today: ' + (isOpen ? hoursEntry.today.display : 'Closed')}</div>
@@ -20,7 +21,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
           {children}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 
