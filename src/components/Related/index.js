@@ -10,7 +10,7 @@ const Related = ({ title, className, showImages, children }) => {
   }
 
   return (
-    <section title={title}>
+    <section aria-label={title}>
       { title && <h3>{title}</h3> }
       <ul className={className}>
 

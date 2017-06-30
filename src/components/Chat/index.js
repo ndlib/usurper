@@ -2,7 +2,7 @@ import React from 'react'
 
 const Chat = () => {
   return (
-    <section className='chat' title='Chat with Us'>
+    <section className='chat' aria-label='Chat with Us'>
       <div className='libraryh3lp'>
         <iframe
           title="Chat with Us"
