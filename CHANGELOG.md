@@ -5,6 +5,7 @@
 
 ### New features/enhancements:
 - Events now use actual data from Contentful [#134](https://github.com/ndlib/usurper/pull/134)
+- Updated the UI to have a better tags and title for screen readers. [#149](https://github.com/ndlib/usurper/pull/149)
 
 ### Bug fixes:
 - Fixed an issue with the search panel rendering behind the news components [#135](https://github.com/ndlib/usurper/pull/135)

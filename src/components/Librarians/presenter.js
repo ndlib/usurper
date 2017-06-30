@@ -9,7 +9,7 @@ import PrivateLibrarianImage from '../../static/images/librarian.gif'
 
 const Loaded = (info, className) => {
   return (
-    <div className={className}>
+    <section className={className} title='Contact Info'>
       <h3>Contact Info </h3>
       {
 
@@ -28,7 +28,7 @@ const Loaded = (info, className) => {
         })
 
       }
-    </div>
+    </section>
   )
 }
 

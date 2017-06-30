@@ -10,7 +10,7 @@ import '../../static/css/search.css'
 
 const Drawer = (props) => {
   return (
-    <div id='drawer'>
+    <section id='drawer' role='Search'>
       <div className='appliance'>
         <form id='searchAppliance'>
           <SearchBox
@@ -27,7 +27,7 @@ const Drawer = (props) => {
           <AdditionalLinks {...props} />
         </form>
       </div>
-    </div>
+    </section>
   )
 }
 

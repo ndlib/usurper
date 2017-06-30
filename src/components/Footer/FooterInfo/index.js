@@ -6,7 +6,7 @@ import ChatModal from './ChatModal'
 
 const FooterInfo = () => {
   return (
-    <div id='footer-info'>
+    <section id='footer-info' role='contentinfo' title='Hesburgh Libraries'>
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-xs-12 col-md-4'>
@@ -27,7 +27,7 @@ const FooterInfo = () => {
         </div>
       </div>
       <ChatModal />
-    </div>
+    </section>
   )
 }
 

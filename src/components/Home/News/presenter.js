@@ -6,7 +6,7 @@ import './style.css'
 
 const News = (entries) => {
   return (
-    <div className='col-md-8 col-xs-12'>
+    <section className='col-md-8 col-xs-12' title="News">
       <h3>News</h3>
       {
         entries.map((entry) => {
@@ -25,7 +25,7 @@ const News = (entries) => {
           )
         })
       }
-    </div>
+    </section>
   )
 }
 

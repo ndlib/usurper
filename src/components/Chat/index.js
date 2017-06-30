@@ -2,7 +2,7 @@ import React from 'react'
 
 const Chat = () => {
   return (
-    <div className='chat'>
+    <section className='chat' title='Chat with Us'>
       <div className='libraryh3lp'>
         <iframe
           title="Chat with Us"
@@ -16,7 +16,7 @@ const Chat = () => {
           }}
           />
       </div>
-    </div>
+    </section>
   )
 }
 
