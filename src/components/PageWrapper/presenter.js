@@ -12,7 +12,7 @@ const PageWrapper = (props) => {
       <a id='skiplink' href='#maincontent'>Skip to main content</a>
 
       <Header {...props} />
-      <section id='maincontent' role='main' title='Main Content' className={'container-fluid content'}>
+      <section id='maincontent' role='main' aria-label='Main Content' className={'container-fluid content'}>
         {props.children}
       </section>
       <Footer />

@@ -57,8 +57,10 @@ export class CurrentHoursContainer extends Component {
     }
   }
 
-  toggleExpanded () {
-    this.setState({ expanded: !this.state.expanded })
+  toggleExpanded (e) {
+    if (e.type === 'click' || (e.type === 'keydown' && e.keyCode === 13)) {
+      this.setState({ expanded: !this.state.expanded })
+    }
   }
 
   render () {

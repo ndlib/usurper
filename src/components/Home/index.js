@@ -31,7 +31,7 @@ class Home extends Component {
         <SearchProgramaticSet open />
         <HomePageHours jsonHoursApiKey='hesburghlibrary' />
 
-        <section className=' services hservices' title='Quicklinks'>
+        <section className=' services hservices' aria-label='Quicklinks'>
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' /></Link>
           </div>
