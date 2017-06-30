@@ -49,7 +49,7 @@ const Navigation = (props) => {
   })
 
   return (
-    <nav className='uNavigation' title='Main Navigtion'>
+    <nav className='uNavigation' aria-label='Main Navigtion'>
       <div className='container-fluid menu-list'>
         <div className='menu-link'>
           <Link to='/'>Home</Link>

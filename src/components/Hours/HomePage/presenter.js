@@ -5,7 +5,7 @@ import Link from '../../Link'
 
 const Presenter = (hoursEntry) => {
   return (
-    <section className='hours-display' title='Today&#39;s Hours'>
+    <section className='hours-display' aria-label='Today&#39;s Hours'>
       <p>Today's Hesburgh Library Hours: <Link to='hours'>{hoursEntry.today.display}</Link></p>
     </section>
   )

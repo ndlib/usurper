@@ -5,12 +5,12 @@ import './style.css'
 
 const Events = (entries) => {
   return (
-    <section className='col-md-4 col-xs-12' title='Events'>
+    <section className='col-md-4 col-xs-12' aria-label='Events'>
       <h3>Events</h3>
       {
         entries.map((entry) => {
           return (
-            <Link key={entry.slug} to={'/event/' + entry.slug}>
+            <Link key={entry.slug} title={entry.title} to={'/event/' + entry.slug}>
               <div className='event-card'>
                 <time dateTime="2014-09-24" className="date-as-calendar inline-flex">
                   <span className="weekday">{entry.displayWeekday}</span>

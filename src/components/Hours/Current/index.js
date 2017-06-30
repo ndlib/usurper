@@ -57,8 +57,10 @@ export class CurrentHoursContainer extends Component {
     }
   }
 
-  toggleExpanded () {
-    this.setState({ expanded: !this.state.expanded })
+  toggleExpanded (e) {
+    if (e.type === 'click' || (e.type === 'keydown' && e.keyCode === 13)) {
+      this.setState({ expanded: !this.state.expanded })
+    }
   }
 
   render () {
@@ -80,7 +82,8 @@ export class CurrentHoursContainer extends Component {
 
 CurrentHoursContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
-  jsonHoursApiKey: PropTypes.string.isRequired,
+  jsonHoursApiKey: PropTypes.string,
+  servicePoint: PropTypes.object,
   fetchHours: PropTypes.func.isRequired,
 }
 
