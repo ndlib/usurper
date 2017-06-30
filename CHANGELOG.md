@@ -1,5 +1,29 @@
 # Change Log
 
+## [0.4](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.3.0...master)
+
+### New features/enhancements:
+- Events now use actual data from Contentful [#134](https://github.com/ndlib/usurper/pull/134)
+
+### Bug fixes:
+- Fixed an issue with the search panel rendering behind the news components [#135](https://github.com/ndlib/usurper/pull/135)
+- Fixes a bug where the course tabular heading was not connected to the data in a couple instances. [#136](https://github.com/ndlib/usurper/pull/136)
+- Fix tab order and behavior for navigation menu and chat button. [#137](https://github.com/ndlib/usurper/pull/137)
+- Fix bug related to stored search [#137](https://github.com/ndlib/usurper/pull/137)
+- Fixed several issues related to the site responding to tab and enter key presses [#137](https://github.com/ndlib/usurper/pull/137)
+- Fixed a bug that prevented the searchbox from dropping down [#137](https://github.com/ndlib/usurper/pull/137)
+- Updated CurateND dropdown description [#138](https://github.com/ndlib/usurper/pull/138)
+- Fixed database list link titles for accessibility [#138](https://github.com/ndlib/usurper/pull/138)
+- Some style changes to the services landing page [#139](https://github.com/ndlib/usurper/pull/139)
+- Add mobile icons [#140](https://github.com/ndlib/usurper/pull/140)
+- Fixed an issue with the search panel incorrectly turning off for several pages [#140](https://github.com/ndlib/usurper/pull/140)
+- Updated data management links [#140](https://github.com/ndlib/usurper/pull/140)
+- Logout button always redirects back to home page [#141](https://github.com/ndlib/usurper/pull/141)
+- Fixed a screen reader issue with expanded hours [#141](https://github.com/ndlib/usurper/pull/141)
+- Fixed an issue with the room-reservations link [#141](https://github.com/ndlib/usurper/pull/141)
+- Screen readers will now ignore the chat image, and several other tags [#143](https://github.com/ndlib/usurper/pull/143), [#143](https://github.com/ndlib/usurper/pull/143)
+
 ## [0.3](https://github.com/ndlib/usurper/tree/v0.3.0) (2017-06-28)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.2.0...v0.3.0)
 

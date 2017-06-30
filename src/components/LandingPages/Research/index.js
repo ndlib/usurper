@@ -8,7 +8,7 @@ const Research = () => {
     <LandingPage title='Research'>
 
       <h1>All Research</h1>
-      <hr />
+      <hr aria-hidden="true" />
       <div className='row'>
         <div className='col-md-6 col-xs-12'>
 
