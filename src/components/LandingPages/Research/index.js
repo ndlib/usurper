@@ -76,6 +76,18 @@ const Research = () => {
           <p><Link to='http://archives.nd.edu/findaids/ead/xml/'>Archives Collections</Link></p>
 
           <p><Link to='http://rarebooks.library.nd.edu/exhibits/index.shtml'>Exhibits</Link></p>
+
+
+          <h3>Search Tools</h3>
+
+          <p><Link to='http://library.nd.edu/utilities/search/ndu/onesearch'>OneSearch</Link></p>
+
+          <p><Link to='http://library.nd.edu/utilities/search/ndu/nd_campus'>ND Catalog</Link></p>
+
+          <p><Link to='https://ejl.library.nd.edu/'>EJournal Locator</Link></p>
+
+          <p><Link to='https://xerxes.library.nd.edu/quicksearch/databases/subject/general-multidisciplinary'>Article QuickSearch</Link></p>
+
         </div>
 
       </div>

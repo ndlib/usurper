@@ -20,11 +20,11 @@ const PagePresenter = ({ entry }) => (
 
     <hr aria-hidden="true" />
     <div className='row'>
-      <div className='col-md-8'>
+      <div className='col-md-8 col-sm-8'>
         <LibMarkdown>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </div>
-      <div className='col-md-4 right'>
+      <div className='col-md-4 col-sm-4 right news'>
         <Image cfImage={entry.fields.image} className='cover' />
         <Librarians netids={entry.fields.contactPeople} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>

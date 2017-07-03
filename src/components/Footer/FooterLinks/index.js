@@ -12,6 +12,7 @@ const FooterLinks = () => {
             <section className='box' role='navigation' aria-label='Footer Menu'>
               <ul>
                 <li><Link to='https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLSdL4MnInHvXcQke9dJQ1Idkv2O23u9dBV_9ky40WDOV77B_MA/viewform?c=0&amp;w=1'>Feedback</Link></li>
+                <li><Link to='/library-policies'>Library Policies</Link></li>
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>

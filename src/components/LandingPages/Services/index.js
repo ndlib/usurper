@@ -58,7 +58,7 @@ const Services = () => {
           <span>Available to graduate students in the College of Arts & Letters</span></p>
           <p><Link to='http://hr.nd.edu/work-life-balance/lactation-rooms'>Lactation Room</Link> 
           <span>A lactation room, located on the fifth floor of Hesburgh, is available for faculty, staff and graduate students. Contact HR for more information or <Link to='http://hr.nd.edu/work-life-balance/lactation-rooms/'>request access</Link>.</span> </p>
-          <p><Link to='#'>Meeting Space and Group Study Room Reservations</Link>
+          <p><Link to='/room-reservations'>Meeting Space and Group Study Room Reservations</Link>
           <span>Reserve spaces in Libraries facilities</span> </p>
           <p><Link to='/writing-center'>Writing Center</Link></p> 
 

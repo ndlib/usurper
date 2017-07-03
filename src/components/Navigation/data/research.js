@@ -33,6 +33,10 @@ export const researchData = [
         title: 'Research Guides',
         url: 'http://libguides.library.nd.edu',
       },
+      {
+        title: 'Center for Digital Scholarship',
+        url: 'http://cds.library.nd.edu',
+      },
     ],
   },
   {
