@@ -26,15 +26,7 @@
   background-color: #425166;
 }
 
-#save-preference {
-  cursor: pointer;
-  display: inline-block;
-}
 
-.search-action,
-.advanced-basic-toggle {
-  cursor: pointer;
-}
 .hidden {
   display: none;
 }
