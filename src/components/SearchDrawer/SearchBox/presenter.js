@@ -9,20 +9,23 @@ const SearchBox = (props) => {
   if (props.visible) {
     return (
       <span className='uSearchBox'>
-        <label htmlFor='basic-search-field'>
+        <label>
           <ul id='searchAction' >
             <li
               id='selected-search'
               onClick={props.onClick}
               onKeyDown={props.onKeyDown}
               tabIndex='0'>
-              <span className="screen-reader-only">Search </span>
-              <p className='current-search'>{ props.currentSearch.title}</p>
+              <span className="screen-reader-only" id='label-for-current-search-selector'>Select a search option. Your current search option is</span>
+              <p className='current-search' aria-labelledby='label-for-current-search-selector'>{ props.currentSearch.title}</p>
             </li>
             <SearchOptionList {...props} />
           </ul>
         </label>
-        <div className='input'><input id='basic-search-field' role='searchbox' name='q' onChange={props.onChange} /></div>
+        <div className='input'>
+          <span className="screen-reader-only" id='label-for-basic-search-field'>Search in { props.currentSearch.title }</span>
+          <input id='basic-search-field' role='searchbox' name='q' onChange={props.onChange} aria-labelledby="label-for-basic-search-field"/>
+        </div>
         <button onClick={props.onSubmit}>Search</button>
       </span>
     )

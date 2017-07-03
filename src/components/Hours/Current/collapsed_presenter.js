@@ -12,7 +12,9 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
       <h4>
         <div className='location'>{hoursEntry.name}</div>
         <div className='today'>{todayLabel}</div>
-        <div className="ecarrow"><a className='expand' onClick={expandHandler}>Expand</a></div>
+        <div className='ecarrow'>
+          <a id='expand_hours' className='expand' tabIndex={0} onClick={expandHandler} onKeyDown={expandHandler}>Expand</a>
+        </div>
       </h4>
 
     </section>
