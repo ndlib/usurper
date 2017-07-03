@@ -12,16 +12,6 @@ import Account from '../../static/images/myaccount.jpg'
 import Room from '../../static/images/reserveroom.jpg'
 import Tech from '../../static/images/tech.jpg'
 import Find from '../../static/images/findlibrarian.jpg'
-import '../../static/images/icons/favicon.ico'
-import '../../static/images/icons/android-chrome-192x192.png'
-import '../../static/images/icons/android-chrome-256x256.png'
-import '../../static/images/icons/apple-touch-icon.png'
-import '../../static/images/icons/browserconfig.xml'
-import '../../static/images/icons/favicon-16x16.png'
-import '../../static/images/icons/favicon-32x32.png'
-import '../../static/images/icons/manifest.json'
-import '../../static/images/icons/mstile-150x150.png'
-import '../../static/images/icons/safari-pinned-tab.svg'
 
 class Home extends Component {
   render () {
