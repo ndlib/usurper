@@ -15,17 +15,17 @@ const Research = () => {
           <h3>Research Support</h3>
           <p>
             <Link to='/databases/a'>Browse A-Z</Link><br />
-            <span>Browse an alphabetical</span>
+            <span>Browse an alphabetical list of subjects</span>
 
           </p>
           <p>
             <Link to='/subjects/'>Browse by Subject</Link><br />
-            <span>Browse databases organized by Subject</span>
+            <span>Browse databases organized by subject</span>
 
           </p>
           <p>
             <Link to='/electronic-resource-trials/'>ER Trials</Link><br />
-            <span>Current trials for databases or other electronic content lives here</span>
+            <span>Current trials for databases or other electronic content</span>
           </p>
           <p>
             <Link to='/subject-librarians/'>Subject Librarians</Link>

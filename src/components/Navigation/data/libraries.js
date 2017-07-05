@@ -1,7 +1,7 @@
 export const librariesData = [
   {
     title: 'Hesburgh Libraries',
-    classes: 'col-md-offset-2 col-md-3',
+    classes: 'col-md-offset-2 col-md-3 col-sm-4',
     items: [
       {
         title: 'Hesburgh Library',
@@ -63,7 +63,7 @@ export const librariesData = [
   },
   {
     title: 'Global Gateways',
-    classes: 'col-md-2',
+    classes: 'col-md-2 col-sm-4',
     items: [
       {
         title: 'London',
@@ -81,7 +81,7 @@ export const librariesData = [
   },
   {
     title: 'Area Libraries',
-    classes: 'col-md-3',
+    classes: 'col-md-3 col-sm-4',
     items: [
       {
         title: 'St. Joseph County Public Library',
