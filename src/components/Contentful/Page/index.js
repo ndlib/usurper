@@ -26,7 +26,7 @@ export class ContentfulPageContainer extends Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.cfPageEntry.status === statuses.UNAUTHORIZED) {
       this.props.clearPage()
-      this.props.history.push('/secure/' + nextProps.match.params.id + nextProps.location.search)
+      this.props.history.replace('/secure/' + nextProps.match.params.id + nextProps.location.search)
     }
 
     const slug = this.props.match.params.id
