@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import Lgicon from '../../static/images/icons/libguide.png'
+import LogOut from '../LogOut'
 
 class Courses extends Component {
   instructorCard (course) {
@@ -170,6 +171,7 @@ class Courses extends Component {
         <h2>Courses</h2>
         <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright tab'>My Items</Link>
+        <LogOut />
         <div key='courseCards'>
           { this.courseCards() }
         </div>
