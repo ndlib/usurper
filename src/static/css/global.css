@@ -151,7 +151,7 @@ a {
   list-style: none;
   padding-left: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
    flex-wrap:wrap;
    align-content: space-between;
    margin-bottom: 3em;
@@ -171,6 +171,7 @@ a {
 
 .p-guides li {
   margin-bottom: 2em;
+  margin-right: 1em;
 
   /*flex-grow: 1;*/
 }
@@ -197,7 +198,7 @@ a {
   -ms-grid-column-span: 2;
 }
 
-.librarian h3 {
+.librarian h4 {
   font-size: 16px;
   font-weight: bold;
   color: #333;
@@ -206,7 +207,7 @@ a {
 
 }
 
-.librarian h4 {
+.librarian h5 {
   margin-bottom: 5px;
   font-size: 13px;
 }
@@ -1399,6 +1400,15 @@ hr {
 
 }
 
+.moreinfo {
+  display: inline-block;
+  padding-left: 28px;
+  background-image: url("../images/more.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: 6px 3px;
+}
+
 .contact address div {
   font-weight: bold;
 }
@@ -1587,10 +1597,14 @@ hr {
 .p-pages {
   list-style: none;
   padding-left: 0;
-  -moz-box-pack: justify;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+
+}
+
+.p-pages li {
+  text-align: left;
+  width: 100%;
+  padding-left: 1.4rem;
+  position: relative;
 }
 
 
@@ -1621,7 +1635,7 @@ hr {
   position: relative;
 }
 
-.p-resources li::before {
+.p-resources li::before , .p-pages li::before {
   color: #b3b3b3;
   content: "›";
   left: 3px;
@@ -1638,14 +1652,14 @@ hr {
   justify-content: flex-start;
 }
 
-.p-services li, .p-pages li {
+.p-services li {
   width: 31%;
   list-style: none;
   margin: 0 1em 2em 0;
   padding: 0;
 }
 
-.p-services li span, .p-pages li span {
+.p-services li span{
   width: 100%;
   overflow: hidden;
   display: block;

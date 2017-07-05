@@ -44,7 +44,8 @@ label[for='sp'] {
 @media screen and (max-width: 1000px) {
 
     .appliance {
-      left: 1vw;
+      left: 0;
+      padding: 1em;
     }
 
 }
