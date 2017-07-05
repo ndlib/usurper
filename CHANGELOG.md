@@ -5,6 +5,7 @@
 
 ### New features/enhancements:
 - Updated the layout of how service point location information is displayed [#164](https://github.com/ndlib/usurper/pull/164)
+- Hours will now expand/collapse when clicking anywhere on the row, not just the arrow [#166](https://github.com/ndlib/usurper/pull/166)
 
 ### Bug fixes:
 - fix an issue with incorrect links on secure pages [#163](https://github.com/ndlib/usurper/pull/163)
