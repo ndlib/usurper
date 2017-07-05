@@ -26,7 +26,7 @@ const Related = ({ title, className, showImages, children }) => {
             }
             return (
               <li key={currentItem.fields.title}>
-                <Link to={link}>
+                <Link to={'/' + link}>
                   {image}
                   <span>{currentItem.fields.title}</span>
                 </Link>

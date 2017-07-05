@@ -6,7 +6,7 @@ export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
 export const requestPage = (page) => {
   return {
     type: CF_REQUEST_PAGE,
-    page,
+    slug: page,
   }
 }
 
@@ -23,6 +23,7 @@ const receivePage = (page, response) => {
     type: CF_RECEIVE_PAGE,
     status: statuses.SUCCESS,
     page: response,
+    slug: page,
     receivedAt: Date.now(),
   }
 

@@ -6,6 +6,11 @@
 ### New features/enhancements:
 
 ### Bug fixes:
+- fix an issue with incorrect links on secure pages [#163](https://github.com/ndlib/usurper/pull/163)
+- allow back button to work correctly with secure pages [#163](https://github.com/ndlib/usurper/pull/163)
+- fix issue with hours causing pages not to load [#163](https://github.com/ndlib/usurper/pull/163)
+- fix a couple small js errors [#163](https://github.com/ndlib/usurper/pull/163)
+
 
 ## [0.4](https://github.com/ndlib/usurper/tree/master) (2017-06-30)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.3.0...v0.4.0)

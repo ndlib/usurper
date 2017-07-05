@@ -21,6 +21,9 @@ const getHoursName = (state, props) => {
   if (props.servicePoint && props.servicePoint.fields.title) {
     return props.servicePoint.fields.title
   }
+  if (!props.jsonHoursApiKey) {
+    return ''
+  }
   return state.hours.json[props.jsonHoursApiKey].name
 }
 
