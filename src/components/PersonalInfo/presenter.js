@@ -6,6 +6,7 @@ import Courses from '../Courses'
 import PageTitle from '../PageTitle'
 import Loading from '../Messages/Loading'
 import SearchProgramaticSet from '../SearchProgramaticSet'
+import LogOut from '../LogOut'
 
 const LoggedIn = () => {
   return (
@@ -13,6 +14,7 @@ const LoggedIn = () => {
       <PageTitle title='Items' />
       <SearchProgramaticSet open={false} />
       <Courses linkOnly />
+      <LogOut />
       <Recommendations />
       <div><LoanResources /></div>
     </div>
