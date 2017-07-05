@@ -51,7 +51,7 @@ const SubjectList = () => {
           <p><Link to='/mathematics'>Mathematics</Link></p>
           <p><Link to='/medieval'>Medieval Studies</Link></p>
           <p><Link to='/music'>Music</Link></p>
-          <p><Link to='/kellogg-kroc'>Peace Studies</Link></p>
+          <p><Link to='/peace-studies'>Peace Studies</Link></p>
           <p><Link to='/philosophy'>Philosophy</Link></p>
           <p><Link to='/chemistry'>Physics</Link></p>
           <p><Link to='/political-science'>Political Science</Link></p>

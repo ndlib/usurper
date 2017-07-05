@@ -38,10 +38,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
   return {
     openSearchDrawer: (e) => {
+      dispatch(closeMenus())
       dispatch(openSearchDrawer())
       preventDefault(e)
     },
     closeSearchDrawer: (e) => {
+      dispatch(closeMenus())
       dispatch(closeSearchDrawer())
       preventDefault(e)
     },
@@ -150,7 +152,7 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleUserKeyDown: handleUserKeyDown,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
-    isDrawerOpen: state.search.drawerOpen ? true : false,
+    isDrawerOpen: !!state.search.drawerOpen,
     toggleClass: state.search.drawerOpen ? 'open' : 'closed',
     ...state,
     ...dispatchProps,

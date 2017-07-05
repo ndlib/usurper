@@ -44,7 +44,7 @@ export const librariesData = [
         url: '/music',
       },
       {
-        title: 'Preservation',
+        title: 'Preservation Lab',
         url: '/preservation',
       },
       {

@@ -25,7 +25,8 @@ export class ContentfulPageContainer extends Component {
 
     let personal = props.personal
     let isLoggedIn = (personal && personal.login && personal.login.token)
-    if (isLoggedIn && props.cfPageEntry.status === statuses.NOT_FETCHED) {
+
+    if (isLoggedIn && props.cfPageEntry.slug !== pageSlug) {
       props.fetchPage(pageSlug, preview, true)
     } else if (props.personal.login.redirectUrl) {
       window.location = props.personal.login.redirectUrl
@@ -38,6 +39,12 @@ export class ContentfulPageContainer extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.checkLoggedIn(nextProps)
+
+    const slug = this.props.match.params.id
+    const nextSlug = nextProps.match.params.id
+    if (slug !== nextSlug) {
+      this.props.fetchPage(nextSlug)
+    }
   }
 
   render () {

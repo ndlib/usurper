@@ -151,7 +151,7 @@ a {
   list-style: none;
   padding-left: 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
    flex-wrap:wrap;
    align-content: space-between;
    margin-bottom: 3em;
@@ -171,6 +171,7 @@ a {
 
 .p-guides li {
   margin-bottom: 2em;
+  margin-right: 1em;
 
   /*flex-grow: 1;*/
 }
@@ -197,7 +198,7 @@ a {
   -ms-grid-column-span: 2;
 }
 
-.librarian h3 {
+.librarian h4 {
   font-size: 16px;
   font-weight: bold;
   color: #333;
@@ -206,7 +207,7 @@ a {
 
 }
 
-.librarian h4 {
+.librarian h5 {
   margin-bottom: 5px;
   font-size: 13px;
 }
@@ -586,6 +587,7 @@ button a {
   display: inline-block;
   width: 100%;
   text-align: center;
+  margin-bottom: 2.5em;
 }
 
 
@@ -728,8 +730,17 @@ nav a.search.closed:hover {
 
 }
 
+div.search, .user, .hours-m {
+  float: left;
+}
+
 .user {
   position: relative;
+
+}
+
+.hours-m {
+
 }
 
 .ask {
@@ -851,7 +862,6 @@ label[for='q']:after, .uSearchBox label:after {
     right:10px;
     top:20px;
     padding:0 0 2px;
-    z-index: 20;
     position:absolute;
     pointer-events:none;
     background: #5B412D;
@@ -1385,9 +1395,18 @@ hr {
   display: block;
   padding-left: 30px;
   background-image: url("../images/map.png");
-  background-size: contain;
+  background-size: 24px;
   background-repeat: no-repeat;
 
+}
+
+.moreinfo {
+  display: inline-block;
+  padding-left: 28px;
+  background-image: url("../images/more.png");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: 6px 3px;
 }
 
 .contact address div {
@@ -1558,12 +1577,15 @@ hr {
    margin-bottom: -60px;
    top: -100px;
 }
+
 .cover {
   width: 100%;
   height: auto;
 
 
 }
+
+
 
 .p-resources {
   list-style: outside none none;
@@ -1575,10 +1597,14 @@ hr {
 .p-pages {
   list-style: none;
   padding-left: 0;
-  -moz-box-pack: justify;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+
+}
+
+.p-pages li {
+  text-align: left;
+  width: 100%;
+  padding-left: 1.4rem;
+  position: relative;
 }
 
 
@@ -1609,7 +1635,7 @@ hr {
   position: relative;
 }
 
-.p-resources li::before {
+.p-resources li::before , .p-pages li::before {
   color: #b3b3b3;
   content: "›";
   left: 3px;
@@ -1626,14 +1652,14 @@ hr {
   justify-content: flex-start;
 }
 
-.p-services li, .p-pages li {
+.p-services li {
   width: 31%;
   list-style: none;
   margin: 0 1em 2em 0;
   padding: 0;
 }
 
-.p-services li span, .p-pages li span {
+.p-services li span{
   width: 100%;
   overflow: hidden;
   display: block;
@@ -1803,7 +1829,7 @@ hr {
 .feedback-notice-me {
   position: absolute;
   right: 0px;
-  top: 224px;
+  top: 10px;
   z-index: 199;
   background: rgba(0, 0, 0, 0) repeating-linear-gradient(45deg, #000, #000 5px, #fcc828 5px, #fcc828 10px) repeat scroll 0 0;
   padding: 6px;
@@ -1951,9 +1977,20 @@ hr {
   .menu-list div.menu-icon {
     display: block;
     float: right;
-    position: relative;
+    position: absolute;
     z-index: 4000;
+    right: 10px;
+    top: -67px;
+    cursor: pointer;
+
   }
+
+    .menu-list div.menu-icon > a {
+      color: #fff;
+      font-size: 24px;
+      line-height: 1em;
+    }
+
   .menu-list div.search {
     display: block;
     float: right;
@@ -1966,14 +2003,8 @@ hr {
     width: 100%;
   }
 
-  .alpha {
-    font-size: 15px;
-    top: 28px;
 
-  }
-  .alpha img {
-    height: 15px;
-  }
+  
   .feedback-notice-me {
     top: 0;
     right: 25vw;
@@ -2050,8 +2081,10 @@ hr {
     font-family: GPHeavy,sans-serif;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: normal;
+    display: block;
+    padding: 5px ;
   }
   .row {
     margin: 0 !important;
@@ -2127,6 +2160,10 @@ hr {
     -ms-grid-columns: repeat(1, 1fr);
     grid-template-columns: repeat(1, 1fr);
   }
+    #drawer {
+    min-height: auto;
+  }
+
 }
 
 
@@ -2146,6 +2183,29 @@ hr {
     .logout {
       right: 1vw;
     }
+    .alpha {
+      font-size: 15px;
+      top: 28px;
+    }
+    .alpha img {
+    height: 15px;
+  }
+  .col-sm-4.right.news > .frame {
+  width: 193px;
+  height: auto;
+  left: 0;
+  top: 0;
+}
+}
+
+#save-preference {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.search-action,
+.advanced-basic-toggle {
+  cursor: pointer;
 }
 
 
@@ -2185,4 +2245,23 @@ nav {
     left: -999em;
     width: 1em;
     overflow: hidden;
+}
+
+@media screen and (max-width: 620px) {
+  .hours-display {
+    width: 90%;
+  }
+  .row.news {
+    display: none;
+  }
+  .hservices {
+    grid-template-columns: 1fr 1fr;
+  }
+  .appliance .additional-links, #save-preference {
+    display: none;
+  }
+
+  #banner .container-fluid {
+    background-position: right 0px top;
+  }
 }

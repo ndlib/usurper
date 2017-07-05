@@ -26,15 +26,7 @@
   background-color: #425166;
 }
 
-#save-preference {
-  cursor: pointer;
-  display: inline-block;
-}
 
-.search-action,
-.advanced-basic-toggle {
-  cursor: pointer;
-}
 .hidden {
   display: none;
 }
@@ -52,7 +44,8 @@ label[for='sp'] {
 @media screen and (max-width: 1000px) {
 
     .appliance {
-      left: 1vw;
+      left: 0;
+      padding: 1em;
     }
 
 }
