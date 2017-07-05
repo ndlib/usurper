@@ -28,7 +28,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Related className='p-guides' title='Guides' showTitle={false}  showImages={false}>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
       </section>
-      <section className='col-md-4 right' role='complementary'>
+      <section className='col-md-4 col-xs-12 right' role='complementary'>
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
