@@ -14,26 +14,26 @@ const Contact = (props) => {
   let building
   if (sp.floor) {
     let rawFloor = sp.floor.fields
-    let floorLink = rawFloor.image ? 'floor/' + rawFloor.slug : null
-    floor = (
-      <Link
-        to={floorLink}
-        title={'Link to map of ' + rawFloor.title}
-      >
-        {rawFloor.title}<br />
-      </Link>
-    )
+    if (rawFloor.image) {
+      let floorLink = 'floor/' + rawFloor.slug
+      floor = (
+        <li><Link
+          to={floorLink}
+          title={'Link to floor map of ' + rawFloor.title}
+        >
+          Floor Map
+        </Link></li>
+      )
+    }
 
     if (rawFloor.building) {
       let rawBuilding = rawFloor.building.fields
       building = (
-        <Link
+        <li><Link
           to={rawBuilding.mapLink}
           title={'Link to map to ' + rawBuilding.title}
           className='map'
-        >
-          {rawBuilding.title}<br />
-        </Link>
+        >Campus Map</Link></li>
       )
     }
   }
@@ -43,22 +43,19 @@ const Contact = (props) => {
     addr1 = <span>{sp.address}<br /></span>
   }
 
-  let addr2
-  if (sp.city || sp.state || sp.zipcode) {
-    let str = sp.city ? sp.city : ''
-    str += sp.state ? ', ' + sp.state : ''
-    str += sp.zipcode ? ' ' + sp.zipcode : ''
-    addr2 = <span>{str}</span>
+  let phone
+  if (sp.phoneNumber) {
+    phone = <li><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
   }
 
   return (
     <div className='contact'>
-      <address>
+      <h2>{addr1}</h2>
+      <ul>
         {building}
         {floor}
-        {addr1}
-        {addr2}
-      </address>
+        {phone}
+      </ul>
     </div>
   )
 }
