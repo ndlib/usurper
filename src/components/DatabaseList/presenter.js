@@ -66,7 +66,7 @@ const Loaded = (letter, list) => {
           <Link to={item.fields.purl}>{item.fields.title}</Link>
           <p>
             {item.fields.description}
-            <Link to={'/database/' + item.sys.id} title={'More Information about ' + item.fields.title}>More info</Link>
+            <Link to={'/database/' + item.sys.id} title={'More Information about ' + item.fields.title} className='moreinfo'>More info</Link>
           </p>
         </div>
       )
