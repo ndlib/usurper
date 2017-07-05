@@ -1,5 +1,5 @@
 .service-point-list {
-	
+
 }
 
 .service-point {
@@ -47,29 +47,27 @@
 	background: #AA272F;
 }
 
-.ecarrow {
-		-ms-grid-column: 3;
-}
-
 .expand, .collapse {
-	float: right;
 	cursor: pointer;
-	margin: 20px 0 10px;
-	height: 0;
-	overflow: hidden;
-	padding-top: 17px;
-	width: 34px;
-
-
 }
 
-.expand {
+.earrow, .carrow {
+		-ms-grid-column: 3;
+  	float: right;
+  	margin: 20px 0 10px;
+  	height: 0;
+  	overflow: hidden;
+  	padding-top: 17px;
+  	width: 34px;
+}
+
+.earrow {
 	background: url('../../../static/images/arrow.g.d.png') no-repeat;
-	
+
 }
-.collapse {
+.carrow {
 	background: url('../../../static/images/arrow.g.u.png') no-repeat;
-	
+
 }
 
 .hours-grid {
@@ -104,4 +102,3 @@
 	}
 
 }
-
