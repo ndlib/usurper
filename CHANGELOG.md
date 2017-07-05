@@ -6,6 +6,8 @@
 ### New features/enhancements:
 - When users tab through the menu pressing enter on the 'My Account' menu item takes the user to the 'personal page.' The user could switch between courses and personal page via links on the page when tabbing through the interface, but had no opportunity to log out. A log out button was added to both pages.
 [#165](https://github.com/ndlib/usurper/pull/165)
+- Updated the layout of how service point location information is displayed [#164](https://github.com/ndlib/usurper/pull/164)
+- Hours will now expand/collapse when clicking anywhere on the row, not just the arrow [#166](https://github.com/ndlib/usurper/pull/166)
 
 ### Bug fixes:
 - fix an issue with incorrect links on secure pages [#163](https://github.com/ndlib/usurper/pull/163)

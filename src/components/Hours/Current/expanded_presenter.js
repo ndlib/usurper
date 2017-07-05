@@ -9,13 +9,15 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
     <section className='service-point' aria-label={title}>
-      <h4>
-        <div className='location'>{hoursEntry.name}</div>
-        <div className='today'>{todayLabel}</div>
-        <div className='ecarrow'>
-          <a id='collapse_hours' className='collapse' tabIndex={0} onClick={collapseHandler} onKeyDown={collapseHandler}>Collapse</a>
-        </div>
-      </h4>
+      <div id='collapse_hours' className='collapse' tabIndex={0} onClick={collapseHandler} onKeyDown={collapseHandler}>
+        <h4>
+          <div className='location'>{hoursEntry.name}</div>
+          <div className='today'>{todayLabel}</div>
+          <div>
+            <div className='carrow' />
+          </div>
+        </h4>
+      </div>
       <div className='row hours-listing'>
         <div className='col-md-4'>
           <WeeklyHours hours={hoursEntry.thisWeek} title='Current Hours' showEffectiveDates={false} />
