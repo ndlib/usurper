@@ -8,7 +8,8 @@
 
 ### Bug fixes:
 - Fixed a problem with rendering a published page that contained related pages that were unpublished [#176] (https://github.com/ndlib/usurper/pull/176)
-
+- Fixed issues with the news and events in screen readers. [#177] (https://github.com/ndlib/usurper/pull/177)
+- Fixed links to be able to have an aria-label [#177] (https://github.com/ndlib/usurper/pull/177)
 
 ## [0.5](https://github.com/ndlib/usurper/tree/v0.5.0) (2017-07-06)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.4.0...v0.5.0)
