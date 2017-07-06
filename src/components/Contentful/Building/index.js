@@ -13,7 +13,7 @@ const BuildingPresenter = ({ cfBuildingEntry }) => (
     <SearchProgramaticSet open={false} />
     <h3>{ cfBuildingEntry.fields.title }</h3>
     <Image cfImage={cfBuildingEntry.fields.image} />
-    <div className='contact'><address><Link to={cfBuildingEntry.fields.mapLink} className='map'>Campus Map</Link></address></div>
+    <div className='point'><address className='building'><Link to={cfBuildingEntry.fields.mapLink} className='map'>Campus Map</Link></address></div>
   </div>
 )
 

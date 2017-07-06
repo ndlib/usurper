@@ -157,7 +157,7 @@ class Courses extends Component {
       return (
         <p className='noClasses'>
           No Classes to display for the current semester
-          <br /> If you believe this is an error please contact XXXXXX
+          <br /> If you believe this is an error please <Link to='https://nd.service-now.com/ess/create_lib_incident.do'>report it</Link>.
         </p>)
     }
 
@@ -167,11 +167,14 @@ class Courses extends Component {
   render () {
     return (
       <div key='courses' className='content'>
-        <PageTitle title='Courses' />
-        <h2>Courses</h2>
-        <SearchProgramaticSet open={false} />
-        <Link to='/personal' className='button fright tab'>My Items</Link>
+      <Link to='/personal' className='button fright tab'>My Items</Link>
         <LogOut />
+        <PageTitle title='Courses' />
+
+        <h2>Courses</h2>
+        <hr className='hr-cor' />
+        <SearchProgramaticSet open={false} />
+        
         <div key='courseCards'>
           { this.courseCards() }
         </div>
