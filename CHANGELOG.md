@@ -3,7 +3,7 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...master)
 
 ### New features/enhancements:
-
+- Content admins can now set a search preference for a page. [#170](https://github.com/ndlib/usurper/pull/170)
 ### Bug fixes:
 
 
