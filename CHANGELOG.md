@@ -5,9 +5,10 @@
 ### New features/enhancements:
 - Updated the layout of how service point location information is displayed [#169](https://github.com/ndlib/usurper/pull/169)
 - Content admins can now set a search preference for a page. [#170](https://github.com/ndlib/usurper/pull/170)
+- Added aria-hidden to the images when alt='' for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
 
 ### Bug fixes:
-
+- Added a better page title to 404 and 500 pages for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
 
 
 ## [0.5](https://github.com/ndlib/usurper/tree/v0.5.0) (2017-07-06)
