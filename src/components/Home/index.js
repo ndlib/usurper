@@ -29,7 +29,7 @@ class Home extends Component {
             <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='/subject-librarians' title='Find Your Librarian'><img src={Find} alt='Find Your Librarian ' /></Link>
+            <a href='http://library.nd.edu/directory/subjects' title='Find Your Librarian'><img src={Find} alt='Find Your Librarian ' /></a>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. Students sitting at a table receiving instruction.' /></Link>

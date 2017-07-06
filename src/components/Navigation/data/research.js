@@ -19,7 +19,7 @@ export const researchData = [
       },
       {
         title: 'Subject Librarians',
-        url: '/subject-librarians',
+        url: 'https://library.nd.edu/directory/subjects',
       },
       {
         title: 'Copyright',
