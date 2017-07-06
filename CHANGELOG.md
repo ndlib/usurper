@@ -8,6 +8,8 @@
 [#165](https://github.com/ndlib/usurper/pull/165)
 - Updated the layout of how service point location information is displayed [#164](https://github.com/ndlib/usurper/pull/164)
 - Hours will now expand/collapse when clicking anywhere on the row, not just the arrow [#166](https://github.com/ndlib/usurper/pull/166)
+- Updated the search to point at the GSS and fixed the site information [#160](https://github.com/ndlib/usurper/pull/160)
+- Added a logout button to the courses and items and requests page.  [#165](https://github.com/ndlib/usurper/pull/165)
 
 ### Bug fixes:
 - fix an issue with incorrect links on secure pages [#163](https://github.com/ndlib/usurper/pull/163)
