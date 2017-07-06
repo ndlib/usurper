@@ -3,6 +3,7 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...master)
 
 ### New features/enhancements:
+- Updated the layout of how service point location information is displayed [#169](https://github.com/ndlib/usurper/pull/169)
 
 ### Bug fixes:
 
@@ -24,7 +25,7 @@
 - allow back button to work correctly with secure pages [#163](https://github.com/ndlib/usurper/pull/163)
 - fix issue with hours causing pages not to load [#163](https://github.com/ndlib/usurper/pull/163)
 - fix a couple small js errors [#163](https://github.com/ndlib/usurper/pull/163)
-- fixed a wide variety of small visual errors. 
+- fixed a wide variety of small visual errors.
 
 
 ## [0.4](https://github.com/ndlib/usurper/tree/v0.4.0)  (2017-06-30)
