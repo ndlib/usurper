@@ -62,6 +62,10 @@ const LibLink = (props) => {
     return External(to, props.className, props.title, props.children, false)
   }
 
+  // Ensure internal links start with '/'
+  if (!to.startsWith('/')) {
+    to = '/' + to
+  }
   return Internal(to, props.className, props.title, props.children)
 }
 

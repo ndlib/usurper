@@ -4,6 +4,7 @@
 
 ### New features/enhancements:
 - Updated the layout of how service point location information is displayed [#169](https://github.com/ndlib/usurper/pull/169)
+- Content admins can now set a search preference for a page. [#170](https://github.com/ndlib/usurper/pull/170)
 
 ### Bug fixes:
 
