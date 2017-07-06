@@ -9,7 +9,6 @@ const Rewrite = () => {
       <LibRedirect
         path={route.path}
         target={route.target}
-        external={route.external}
         key={index} />
     )
   })
