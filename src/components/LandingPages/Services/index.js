@@ -70,7 +70,7 @@ const Services = () => {
                     <span>Contact us for assistance with data management plans, and more.</span></p>
           <p><Link to='http://library.nd.edu/cds/expertise/Analysis.shtml'>Data Use & Analysis </Link>
                     <span>Request help in formulating an analysis, identifying appropriate data sets, or preparing and working with data.</span></p>
-          <p>Digital Humanities 
+          <p><Link to='/digital-humanities'>Digital Humanities </Link>
                     <span></span></p>
           <p><Link to='http://library.nd.edu/cds/expertise/GIS.shtml'>Geographic Information Systems </Link>
                    <span> Request assistance with the generation of images from spatial data and spatial data analysis.</span></p>
@@ -90,7 +90,7 @@ const Services = () => {
 
           <p><Link to='/courses'>Course Reserves</Link>
           <span>For students and faculty to access reserve items or place items on reserve</span> </p>
-          <p>Consultations (Meet with a Librarian) 
+          <p><Link to='/consultations'>Library Research Consultations</Link>
                     <span>Make an appointment to meet with a librarian</span></p>
           <p>Request Instruction 
                     <span>Request library instruction for your class sessions</span></p>

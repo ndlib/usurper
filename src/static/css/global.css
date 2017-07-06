@@ -1751,6 +1751,7 @@ hr {
 
 .flogo {
   width: 230px;
+  image-rendering: -webkit-auto;
 }
 
 .chat-alternative-contact {
@@ -2004,7 +2005,7 @@ hr {
   }
 
 
-  
+
   .feedback-notice-me {
     top: 0;
     right: 25vw;
@@ -2240,6 +2241,11 @@ nav {
   background-position: right 200px top;
 }
 
+
+.logout-button-personal {
+  clear: right;
+  margin-top: 20px;
+}
 .screen-reader-only {
     position: absolute;
     left: -999em;
