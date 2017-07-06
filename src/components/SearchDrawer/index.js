@@ -5,10 +5,8 @@ import { searchOptions } from './searchOptions.js'
 import { openAdvancedSearch, closeAdvancedSearch } from '../../actions/search'
 
 const mapStateToProps = (state, ownProps) => {
-  const searchType = (state.search.hasPref && state.search.usePref) ? state.search.pref.uid : state.search.searchType
-
-  const currentSearch = searchOptions.find(op => op.uid === searchType) ? searchOptions.find(op => op.uid === searchType) : searchOptions[0]
-
+  const selectedOption = searchOptions.find(op => op.uid === state.search.searchType)
+  const currentSearch = selectedOption || searchOptions[0]
   return {
     search: state.search,
     currentSearch: currentSearch,
