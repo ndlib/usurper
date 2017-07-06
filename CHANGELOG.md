@@ -14,6 +14,7 @@
 - allow back button to work correctly with secure pages [#163](https://github.com/ndlib/usurper/pull/163)
 - fix issue with hours causing pages not to load [#163](https://github.com/ndlib/usurper/pull/163)
 - fix a couple small js errors [#163](https://github.com/ndlib/usurper/pull/163)
+- fixed a wide variety of small visual errors. 
 
 
 ## [0.4](https://github.com/ndlib/usurper/tree/master) (2017-06-30)
