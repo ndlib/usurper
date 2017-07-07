@@ -2,18 +2,18 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Internal = (to, className, title, children) => {
+const Internal = (to, className, title, children, ariaLabel) => {
   return (
-    <Link to={to} className={className} title={title}>
+    <Link to={to} className={className} title={title} aria-label={ariaLabel}>
       {children}
     </Link>
   )
 }
 
-const External = (to, className, title, children, noTarget) => {
+const External = (to, className, title, children, ariaLabel, noTarget) => {
   let target = noTarget ? '_self' : '_blank'
   return (
-    <a href={to} className={className} title={title} target={target}>
+    <a href={to} className={className} title={title} target={target} aria-label={ariaLabel}>
       {children}
     </a>
   )
@@ -55,24 +55,25 @@ const LibLink = (props) => {
   to = to + query
 
   if (to.startsWith('http')) {
-    return External(to, props.className, props.title, props.children, props.noTarget)
+    return External(to, props.className, props.title, props.children, props.ariaLabel, props.noTarget)
   }
 
   if (to.startsWith('mailto:') || to.startsWith('tel:')) {
-    return External(to, props.className, props.title, props.children, false)
+    return External(to, props.className, props.title, props.children, props.ariaLabel, false)
   }
 
   // Ensure internal links start with '/'
   if (!to.startsWith('/')) {
     to = '/' + to
   }
-  return Internal(to, props.className, props.title, props.children)
+  return Internal(to, props.className, props.title, props.children, props.ariaLabel)
 }
 
 LibLink.propTypes = {
   to: PropTypes.string,
   className: PropTypes.string,
   title: PropTypes.string,
+  ariaLabel: PropTypes.string,
   query: PropTypes.object,
   children: PropTypes.any,
 
