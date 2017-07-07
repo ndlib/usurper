@@ -162,7 +162,7 @@ const Services = () => {
 <span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
 <p>Science Equipment for Teachers</p>
 <p>Students with Disabilities </p>
-<p>USGS Map Printing
+<p><Link to='https://alpha.library.nd.edu/usgs-map-printing'>USGS Map Printing</Link>
 <span>The U.S. Geological Survey map printing service is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
 
     

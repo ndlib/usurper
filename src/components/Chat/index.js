@@ -10,7 +10,7 @@ const Chat = () => {
           frameBorder={0}
           style={{
             width: '100%',
-            height:' 600px',
+            height:' 45vh',
             border: '0px',
             inset: '#2a4480',
           }}

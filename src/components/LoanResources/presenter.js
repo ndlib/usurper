@@ -11,6 +11,7 @@ const LoanResources = (props) => {
   return (
     <div key='LoanResources' className='resources-list'>
       <h2>Items & Requests</h2>
+      <hr />
       <h3>Checked out</h3>
       <ResourceList list={have.items} emptyText={have.emptyText} loading={have.loading} />
       <br />
