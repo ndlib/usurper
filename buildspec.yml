@@ -7,7 +7,7 @@ env:
 phases:
   install:
     commands:
-      - npm install -g yarn
+      - npm install -g yarn@0.17.8
       - yarn
 
   build:
