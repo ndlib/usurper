@@ -4,6 +4,7 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.6.0...master)
 
 ### New features/enhancements:
+- Added the page html title to the PageTitle component [#188](https://github.com/ndlib/usurper/pull/182)
 
 ### Bug fixes:
 
@@ -25,7 +26,7 @@
 - Fixed off site links to Libguides in pathfinders [#173] (https://github.com/ndlib/usurper/pull/173)
 - Added a better page title to 404 and 500 pages for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
 - Fixed a problem with rendering a published page that contained related pages that were unpublished [#176](https://github.com/ndlib/usurper/pull/176)
-- Fixed the location of the subject librarians 
+- Fixed the location of the subject librarians
 - Fixed various mobile and website related css [#178](https://github.com/ndlib/usurper/pull/178)
 - Several PRs related to home page accessability.  [#174](https://github.com/ndlib/usurper/pull/174) [#177](https://github.com/ndlib/usurper/pull/177)
 - Search menu readded to mobile [#178](https://github.com/ndlib/usurper/pull/178)
