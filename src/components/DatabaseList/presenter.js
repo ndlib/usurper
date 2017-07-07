@@ -14,10 +14,8 @@ import * as statuses from '../../constants/APIStatuses'
 const Content = (letter, data) => {
   return (
     <div className='container-fluid content-area'>
-      <PageTitle title={'Databases A-Z: ' + letter} />
+      <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-      <h2>{'Databases: ' + letter.toUpperCase()}</h2>
-      <hr aria-hidden="true" />
       <div className='alphabet'>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {

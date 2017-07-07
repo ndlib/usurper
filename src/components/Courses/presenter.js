@@ -168,7 +168,6 @@ class Courses extends Component {
     return (
       <div key='courses' className='content'>
         <PageTitle title='Courses' />
-        <h2>Courses</h2>
         <SearchProgramaticSet open={false} />
         <Link to='/personal' className='button fright tab'>My Items</Link>
         <LogOut />

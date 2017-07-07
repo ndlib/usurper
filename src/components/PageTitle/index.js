@@ -13,7 +13,10 @@ class PageTitle extends Component {
 
   render () {
     return (
-      <span />
+      <div>
+        <h2>{this.props.title}</h2>
+        <hr aria-hidden='true' />
+      </div>
     )
   }
 }
