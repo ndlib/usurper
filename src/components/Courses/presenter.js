@@ -169,12 +169,9 @@ class Courses extends Component {
       <div key='courses' className='content'>
       <Link to='/personal' className='button fright tab'>My Items</Link>
         <LogOut />
-        <PageTitle title='Courses' />
-
-        <h2>Courses</h2>
-        <hr className='hr-cor' />
+        <PageTitle title='Courses' classaName='hr-cor' />
         <SearchProgramaticSet open={false} />
-        
+
         <div key='courseCards'>
           { this.courseCards() }
         </div>

@@ -16,16 +16,13 @@ const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
-    <h2>{ cfPageEntry.fields.title } </h2>
-
-    <hr />
     <div className='row'>
       <section className='col-md-8 col-sm-7'>
 
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
 
         <Related className='p-resources' title='Resources' showImages={false}>{ cfPageEntry.fields.relatedResources }</Related>
-        <Related className='p-guides' title='Guides' showTitle={false}  showImages={false}>{ cfPageEntry.fields.libguides }</Related>
+        <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
       </section>
       <section className='col-md-4 col-sm-5 col-xs-12 right' role='complementary'>
