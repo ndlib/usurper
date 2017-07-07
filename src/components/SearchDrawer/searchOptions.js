@@ -27,6 +27,6 @@ export const searchOptions = [
     uid: LIBRARY,
     title: 'Library Website',
     description:'Research guides, services, people and places',
-    additionalLinks: 'This doesn\'t work yet, but we\'re working on it',
+    additionalLinks: '\u00a0',
   },
 ]

@@ -49,8 +49,8 @@ const Navigation = (props) => {
   })
 
   return (
-    <nav className='uNavigation' aria-label='Main Navigtion'>
-      <div className='container-fluid menu-list'>
+    <div className='uNavigation'>
+      <nav className='container-fluid menu-list' aria-label='Main Navigtion'>
         <div className='menu-link'>
           <Link to='/'>Home</Link>
         </div>
@@ -77,8 +77,8 @@ const Navigation = (props) => {
           <a onClick={props.handleMobileClick}>☰</a>
           <MobileMenu open={props.menus.menuId === MOBILE_MENU} />
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }
 

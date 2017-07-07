@@ -23,19 +23,19 @@ class Home extends Component {
 
         <section className=' services hservices' aria-label='Quicklinks'>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' /></Link>
+            <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' aria-hidden={true} /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves. A row of textbooks.' /></Link>
+            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves' aria-hidden={true} /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='/subject-librarians' title='Find Your Librarian'><img src={Find} alt='Find Your Librarian ' /></Link>
+            <Link to='http://library.nd.edu/directory/subjects' title='Find Your Librarian' noTarget={true}><img src={Find} alt='Find Your Librarian ' aria-hidden={true} /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. Students sitting at a table receiving instruction.' /></Link>
+            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. ' aria-hidden={true} /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending. Hand holding an iPad in a classroom.' /></Link>
+            <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending.' aria-hidden={true} /></Link>
           </div>
         </section>
         <div className='row news'>

@@ -1,22 +1,37 @@
 # Change Log
+## [0.6](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...master)
 
-## [0.5](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.4.0...master)
+### New features/enhancements:
+- Updated the layout of how service point location information is displayed [#169](https://github.com/ndlib/usurper/pull/169)
+- Content admins can now set a search preference for a page. [#170](https://github.com/ndlib/usurper/pull/170)
+- Added aria-hidden to the images when alt='' for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
+
+### Bug fixes:
+- Added a better page title to 404 and 500 pages for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
+- Fixed a problem with rendering a published page that contained related pages that were unpublished [#176] (https://github.com/ndlib/usurper/pull/176)
+
+
+## [0.5](https://github.com/ndlib/usurper/tree/v0.5.0) (2017-07-06)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.4.0...v0.5.0)
 
 ### New features/enhancements:
 - When users tab through the menu pressing enter on the 'My Account' menu item takes the user to the 'personal page.' The user could switch between courses and personal page via links on the page when tabbing through the interface, but had no opportunity to log out. A log out button was added to both pages.
 [#165](https://github.com/ndlib/usurper/pull/165)
 - Updated the layout of how service point location information is displayed [#164](https://github.com/ndlib/usurper/pull/164)
 - Hours will now expand/collapse when clicking anywhere on the row, not just the arrow [#166](https://github.com/ndlib/usurper/pull/166)
+- Updated the search to point at the GSS and fixed the site information [#160](https://github.com/ndlib/usurper/pull/160)
+- Added a logout button to the courses and items and requests page.  [#165](https://github.com/ndlib/usurper/pull/165)
 
 ### Bug fixes:
 - fix an issue with incorrect links on secure pages [#163](https://github.com/ndlib/usurper/pull/163)
 - allow back button to work correctly with secure pages [#163](https://github.com/ndlib/usurper/pull/163)
 - fix issue with hours causing pages not to load [#163](https://github.com/ndlib/usurper/pull/163)
 - fix a couple small js errors [#163](https://github.com/ndlib/usurper/pull/163)
+- fixed a wide variety of small visual errors.
 
 
-## [0.4](https://github.com/ndlib/usurper/tree/master) (2017-06-30)
+## [0.4](https://github.com/ndlib/usurper/tree/v0.4.0)  (2017-06-30)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.3.0...v0.4.0)
 
 ### New features/enhancements:

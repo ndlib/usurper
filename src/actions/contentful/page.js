@@ -11,31 +11,32 @@ export const requestPage = (page) => {
 }
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
-const receivePage = (page, response) => {
-  let error = {
+const receiveError = (page, response) => {
+  return {
     type: CF_RECEIVE_PAGE,
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
     receivedAt: Date.now(),
   }
-
-  let success = {
+}
+const receiveSuccess = (page, response) => {
+  return {
     type: CF_RECEIVE_PAGE,
     status: statuses.SUCCESS,
     page: response,
     slug: page,
     receivedAt: Date.now(),
   }
+}
 
-  try {
-    if (response.sys.contentType.sys.id === 'page') {
-      return success
-    } else {
-      return error
-    }
-  } catch (e) {
-    return error
+const receivePage = (page, response) => {
+  if (response.sys &&
+      response.sys.contentType &&
+      response.sys.contentType.sys &&
+      response.sys.contentType.sys.id === 'page') {
+    return receiveSuccess(page, response)
   }
+  return receiveError(page, response)
 }
 
 export const CF_CLEAR_PAGE = 'CF_CLEAR_PAGE'
@@ -61,6 +62,6 @@ export const fetchPage = (page, preview, secure) => {
     return fetch(url, { headers })
       .then(response => response.ok ? response.json() : { errorStatus: response.status })
       .then(json => dispatch(receivePage(page, json)))
-      .catch(response => dispatch(receivePage(page, response)))
+      .catch(response => dispatch(receiveError(page, response)))
   }
 }
