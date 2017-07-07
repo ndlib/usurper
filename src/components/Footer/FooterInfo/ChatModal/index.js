@@ -21,14 +21,25 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const onClick = (e, func) => {
+    e.preventDefault()
+    if (ownProps.location.pathname === '/chat') {
+      return
+    }
+
+    if (window.innerWidth <= 450) {
+      ownProps.history.push('/chat')
+      return
+    }
+    dispatch(func())
+  }
+
   return {
     openChat: (e) => {
-      e.preventDefault()
-      dispatch(openChat())
+      onClick(e, openChat)
     },
     closeChat: (e) => {
-      e.preventDefault()
-      dispatch(closeChat())
+      onClick(e, closeChat)
     },
   }
 }
