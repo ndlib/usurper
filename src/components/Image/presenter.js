@@ -7,7 +7,7 @@ const Image = (props) => {
   }
   return (
     <div className='frame'>
-      <img className={props.className} src={props.src} alt={props.alt} />
+      <img className={props.className} src={props.src} alt={props.alt} aria-hidden={props.ariaHidden} />
     </div>
   )
 }
@@ -16,6 +16,7 @@ Image.propTypes = {
   src: PropTypes.string,
   className: PropTypes.string,
   alt: PropTypes.string,
+  ariaHidden: PropTypes.bool,
 
   // removed in container
   cfImage: PropTypes.object,
