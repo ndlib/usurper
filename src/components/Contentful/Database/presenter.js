@@ -12,7 +12,8 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 const FloorPresenter = ({ cfDatabaseEntry }) => (
   <div key={`ContentfulDatabase_${cfDatabaseEntry.sys.id}`} className='container-fluid'>
     <PageTitle title={cfDatabaseEntry.fields.title} />
-    <h2>{cfDatabaseEntry.fields.title}</h2>
+    <SearchProgramaticSet open={false} />
+
     <LibMarkdown>{cfDatabaseEntry.fields.description}</LibMarkdown>
     <Image cfImage={cfDatabaseEntry.fields.image} />
     <Link to={cfDatabaseEntry.fields.purl}>{'Go to ' + cfDatabaseEntry.fields.title}</Link>
