@@ -9,6 +9,7 @@
 
 ### Bug fixes:
 - Added a better page title to 404 and 500 pages for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
+- Fixed a problem with rendering a published page that contained related pages that were unpublished [#176] (https://github.com/ndlib/usurper/pull/176)
 
 
 ## [0.5](https://github.com/ndlib/usurper/tree/v0.5.0) (2017-07-06)

@@ -10,6 +10,7 @@ import {
   CLOSE_SEARCHDRAWER,
 } from '../actions/search.js'
 import { CF_RECEIVE_PAGE } from '../actions/contentful/page'
+import * as statuses from '../constants/APIStatuses'
 
 const localSearchPref = localStorage.getItem('searchPreference')
 
@@ -92,11 +93,14 @@ export default (
       return Object.assign({}, state, { drawerOpen: false })
     case CF_RECEIVE_PAGE:
       {
-        let newState = Object.assign({}, state, {
-          pageSearchPref: action.page.fields.defaultSearchScope,
-        })
-        setSearchType(newState)
-        return newState
+        if (action.status === statuses.SUCCESS) {
+          let newState = Object.assign({}, state, {
+            pageSearchPref: action.page.fields.defaultSearchScope,
+          })
+          setSearchType(newState)
+          return newState
+        }
+        return state
       }
     default:
       return state
