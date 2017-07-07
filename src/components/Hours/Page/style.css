@@ -97,7 +97,7 @@
 		grid-column-start: 1;
 		grid-column-end: 4;
 	}
-	.ecarrow {
+	.earrow, .carrow {
 		margin-right: 10px;
 	}
 

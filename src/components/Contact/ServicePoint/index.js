@@ -17,7 +17,7 @@ const Contact = (props) => {
     if (rawFloor.image) {
       let floorLink = 'floor/' + rawFloor.slug
       floor = (
-        <li><Link
+        <li className='floor'><Link
           to={floorLink}
           title={'Link to floor map of ' + rawFloor.title}
         >
@@ -29,7 +29,7 @@ const Contact = (props) => {
     if (rawFloor.building) {
       let rawBuilding = rawFloor.building.fields
       building = (
-        <li><Link
+        <li className='building'><Link
           to={rawBuilding.mapLink}
           title={'Link to map to ' + rawBuilding.title}
           className='map'
@@ -45,11 +45,11 @@ const Contact = (props) => {
 
   let phone
   if (sp.phoneNumber) {
-    phone = <li><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
+    phone = <li className='phone'><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
   }
 
   return (
-    <div className='contact'>
+    <div className='point'>
       <h2>{addr1}</h2>
       <ul>
         {building}

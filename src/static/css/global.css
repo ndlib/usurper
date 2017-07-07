@@ -4,6 +4,10 @@
   color: #999;
 }
 
+#maincontent {
+  min-height: 80vh;
+}
+
 
 * { Box-sizing: Border-box }
 
@@ -12,6 +16,7 @@ body {
   min-height: 100%;
   font-family: sans-serif;
   image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -39,6 +44,11 @@ hr {
   border: solid #061F43;
   border-width: 0 0 1px 0;
   background: #061F43;
+}
+
+.resources-list hr, hr.hr-cor {
+  width: 80%;
+  clear: left;
 }
 
 p, li {
@@ -187,13 +197,12 @@ a {
   display: -ms-grid;
   margin-bottom: 2em;
   -ms-grid-columns: 2fr 1fr;
-  grid-template-columns: .61fr .39fr;
+  grid-template-columns: 59fr 41fr;
+  grid-gap: 8px;
 }
 
 .contact {
-  flex-grow: 2;
   text-align: right;
-  padding-right: 8px;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
 }
@@ -750,7 +759,7 @@ div.search, .user, .hours-m {
 
 .ask .menu-drawer, .user .menu-drawer {
   width: 200px;
-  top: 34px;
+  top: 52px;
   padding: 0 !important;
 
 }
@@ -791,7 +800,7 @@ div.search, .user, .hours-m {
 #drawer {
   top: 123px;
   width: 100%;
-
+  height: auto;
   border-bottom: solid 2px #666;
   z-index: 5;
 }
@@ -1185,15 +1194,18 @@ hr {
   -ms-grid-row: 1;
   -ms-grid-row-span: 2;
   background: #F1F1F1;
+
 }
 
 .card-title {
   font-weight: bold;
+  line-height: 1.4em;
 }
 
 .card-subtitle {
   font-size: 14px;
   color: #868686;
+  line-height: 1.4em;
 }
 
 .card-published {
@@ -1323,16 +1335,27 @@ hr {
 .course-guides {
   -ms-grid-column: 2;
 }
+
+.course-guides ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
 .course-reserves {
 
-  text-align: right;
   -ms-grid-column: 3;
 }
 
 .course-resources {
 
-  text-align: right;
   -ms-grid-column: 4;
+}
+
+.course-resources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .all-points {
@@ -1382,7 +1405,17 @@ hr {
   margin-bottom: 1em;
 }
 
-.contact address {
+.right .service-point .earrow, .right .service-point .carrow {
+  margin-right: 10px;
+}
+
+.point h2 {
+  color: #001E45;
+  font-size: 24px;
+  font-family: GPCMed, sans-serif;
+}
+
+address {
   text-align: left;
   line-height: 1.5em;
   font-style: normal;
@@ -1397,7 +1430,30 @@ hr {
   background-image: url("../images/map.png");
   background-size: 24px;
   background-repeat: no-repeat;
+}
 
+.point ul {
+  list-style: none;
+  padding-left: 1em;
+}
+
+.point .building a, .point .floor a, .point .phone a {
+  font-family: GPCMed, sans-serif;
+  font-size: 20px;
+  margin-bottom: 1em;
+  display: block;
+  padding-left: 30px;
+  background-image: url("../images/map.png");
+  background-size: 24px;
+  background-repeat: no-repeat;
+}
+
+.point .floor a {
+  background-image: url("../images/floor.png");
+}
+
+.point .phone a {
+  background-image: url("../images/phone.png");
 }
 
 .moreinfo {
@@ -1751,7 +1807,8 @@ hr {
 
 .flogo {
   width: 230px;
-  image-rendering: -webkit-auto;
+
+  image-rendering: crisp-edges;
 }
 
 .chat-alternative-contact {
@@ -1886,6 +1943,10 @@ hr {
   z-index: 200;
 }
 
+.chat {
+  box-shadow: 1px 1px 3px #333;
+}
+
 .chat-button {
   background: #f8e999;
   text-decoration: none;
@@ -1945,8 +2006,23 @@ hr {
     -webkit-transform: scale(1);
             transform: scale(1); } }
 
+@media screen and (max-width:1200px) {
+  .appliance, .home .appliance {
+    left: 0 !important;
 
-@media screen and (max-width: 840px) {
+  }
+}
+
+
+@media screen and (max-width: 885px) {
+  
+  .appliance, .home .appliance {
+    left: 0 !important;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
   .dept-prov, .header-hours {
     display: none;
   }
@@ -1973,7 +2049,18 @@ hr {
   .news-card header {
     clear: both;
   }
-  .menu-list div:not(:first-child) {display: none;}
+
+  .menu-list .menu-link {
+    display: none;
+  }
+
+  .menu-list div:first-child, .menu-link.search {
+    display: inline-block;
+  }
+
+
+
+  
 
   .menu-list div.menu-icon {
     display: block;
@@ -1997,12 +2084,7 @@ hr {
     float: right;
   }
 
-  .appliance, .home .appliance {
-    left: 0 !important;
-    top: 0;
-    height: 100%;
-    width: 100%;
-  }
+  
 
 
 
@@ -2012,9 +2094,10 @@ hr {
     display: none;
   }
 
-  #drawer {
+
+  #drawer, .home #drawer {
     height: auto;
-    min-height: 178px;
+
   }
 
 
@@ -2165,6 +2248,24 @@ hr {
     min-height: auto;
   }
 
+  .librarian .frame {
+    height: 70px;
+  }
+
+  .librarian .frame img {
+    height: 70px;
+  }
+
+  .col-md-4.right > .frame {
+    height: 175px;
+    left: -20px;
+    width: 311px;
+  }
+
+  .p-services li {
+    width: 45%;
+  }
+
 }
 
 
@@ -2173,7 +2274,7 @@ hr {
 
 @media screen and (max-width: 1200px) {
     .container-fluid {
-        margin: 0 2vw;
+        margin: 0 1vw;
     }
     #banner .login {
       right: 50px;
@@ -2192,11 +2293,11 @@ hr {
     height: 15px;
   }
   .col-sm-4.right.news > .frame {
-  width: 193px;
-  height: auto;
-  left: 0;
-  top: 0;
-}
+    width: 193px;
+    height: auto;
+    left: 0;
+    top: 0;
+  }
 }
 
 #save-preference {

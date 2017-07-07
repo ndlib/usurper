@@ -10,7 +10,7 @@ import LogOut from '../LogOut'
 
 const LoggedIn = () => {
   return (
-    <div className='container-fluid content'>
+    <div className=' content'>
       <PageTitle title='Items' />
       <SearchProgramaticSet open={false} />
       <Courses linkOnly />

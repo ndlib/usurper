@@ -1,15 +1,35 @@
 # Change Log
-## [0.6](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...master)
+
+## [0.7](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.6.0...master)
+
+### New features/enhancements:
+
+### Bug fixes:
+
+## [0.6](https://github.com/ndlib/usurper/tree/master) (2017-08-06)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...v0.6.0)
 
 ### New features/enhancements:
 - Updated the layout of how service point location information is displayed [#169](https://github.com/ndlib/usurper/pull/169)
 - Content admins can now set a search preference for a page. [#170](https://github.com/ndlib/usurper/pull/170)
+- Added aria-hidden to the images when alt='' for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
+- Added a service to rewrite old website urls [#174](https://github.com/ndlib/usurper/pull/174)
 
 ### Bug fixes:
+<<<<<<< HEAD
 - Fixed a problem with rendering a published page that contained related pages that were unpublished [#176] (https://github.com/ndlib/usurper/pull/176)
 - Fixed issues with the news and events in screen readers. [#177] (https://github.com/ndlib/usurper/pull/177)
 - Fixed links to be able to have an aria-label [#177] (https://github.com/ndlib/usurper/pull/177)
+=======
+- Fixed off site links to Libguides in pathfinders [#173] (https://github.com/ndlib/usurper/pull/173)
+- Added a better page title to 404 and 500 pages for screen readers. [#174](https://github.com/ndlib/usurper/pull/174)
+- Fixed a problem with rendering a published page that contained related pages that were unpublished [#176](https://github.com/ndlib/usurper/pull/176)
+- Fixed the location of the subject librarians 
+- Fixed various mobile and website related css [#178](https://github.com/ndlib/usurper/pull/178)
+- Several PRs related to home page accessability.  [#174](https://github.com/ndlib/usurper/pull/174) [#177](https://github.com/ndlib/usurper/pull/177)
+- Search menu readded to mobile [#178](https://github.com/ndlib/usurper/pull/178)
+>>>>>>> master
 
 ## [0.5](https://github.com/ndlib/usurper/tree/v0.5.0) (2017-07-06)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.4.0...v0.5.0)
