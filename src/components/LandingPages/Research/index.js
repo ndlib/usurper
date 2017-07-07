@@ -9,18 +9,18 @@ const Research = () => {
 
       <h1>All Research</h1>
       <hr aria-hidden="true" />
-      <div className='row'>
+      <div className='row research-landing'>
         <div className='col-md-6 col-xs-12'>
 
           <h3>Research Support</h3>
           <p>
-            <Link to='/databases/a'>Browse A-Z</Link><br />
-            <span>Browse an alphabetical list of subjects</span>
+            <Link to='/databases/a'>Browse A-Z Databases</Link><br />
+            <span>Browse an alphabetical list of databases and online resources</span>
 
           </p>
           <p>
             <Link to='/subjects/'>Browse by Subject</Link><br />
-            <span>Browse databases organized by subject</span>
+            <span>Browse an alphabetical list of subjects</span>
 
           </p>
           <p>
@@ -45,7 +45,7 @@ const Research = () => {
 
           </p>
           <p>
-            <Link to='/citation-management/'>Citation Management</Link><br />
+            <Link to='http://libguides.library.nd.edu/citemanage/home'>Citation Management</Link><br />
             <span>Tools to help with your citation management</span>
 
           </p>
