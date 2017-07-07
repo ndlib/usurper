@@ -27,8 +27,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       return
     }
 
+    // small screen, go to chat page and make sure chat box is closed
     if (window.innerWidth <= 450) {
       ownProps.history.push('/chat')
+      dispatch(closeChat())
       return
     }
     dispatch(func())
