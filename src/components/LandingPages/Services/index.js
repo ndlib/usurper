@@ -168,11 +168,6 @@ const Services = () => {
 <p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
 <span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
         </div>
       </div>
     </LandingPage>
