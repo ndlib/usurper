@@ -156,8 +156,7 @@ class Courses extends Component {
     if (out.length === 0) {
       return (
         <p className='noClasses'>
-          No Classes to display for the current semester
-          <br /> If you believe this is an error please <Link to='https://nd.service-now.com/ess/create_lib_incident.do'>report it</Link>.
+          No Classes to display for the current semester.
         </p>)
     }
 
@@ -175,6 +174,7 @@ class Courses extends Component {
         <div key='courseCards'>
           { this.courseCards() }
         </div>
+        <br /> If you believe you see an error please <Link to='https://nd.service-now.com/ess/create_lib_incident.do'>report it</Link>.
       </div>
     )
   }
