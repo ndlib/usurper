@@ -9,7 +9,7 @@ import PrivateLibrarianImage from '../../static/images/librarian.gif'
 
 const Loaded = (info, className) => {
   return (
-    <section className={className} aria-label='Contact Info'>
+    <section className={className} aria-label='Contact Information'>
       <h3>Contact Info </h3>
       {
 

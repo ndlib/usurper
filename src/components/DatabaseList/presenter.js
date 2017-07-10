@@ -2,11 +2,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../../static/css/global.css'
-import LibMarkdown from '../LibMarkdown'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import Link from '../Link'
-import Loading from '../Messages/Loading'
 import PageNotFound from '../Messages/NotFound'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
@@ -14,25 +12,25 @@ import * as statuses from '../../constants/APIStatuses'
 const Content = (letter, data) => {
   return (
     <div className='container-fluid content-area'>
-      <PageTitle title={'Databases A-Z: ' + letter} />
+      <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-      <h2>{'Databases: ' + letter.toUpperCase()}</h2>
-      <hr aria-hidden="true" />
-      <div className='alphabet'>
+      <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
           return (
             <span key={'letter_link_' + item} className='letter'>
-              <Link to={item} title={'Link to ' + item.toUpperCase() + ' Databases'}>{ item.toUpperCase() }</Link>
+              <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
             </span>
           )
         })
       }
-      </div>
+      </section>
 
       <div className='row'>
         <div className='col-md-8'>
-          {data}
+          <section aria-label={'List of all "' + letter.toUpperCase() + '" Databases'}>
+            {data}
+          </section>
         </div>
       </div>
     </div>
@@ -63,10 +61,10 @@ const Loaded = (letter, list) => {
     list.map((item) => {
       return (
         <div key={item.fields.alephSystemNumber + item.fields.title}>
-          <Link to={item.fields.purl}>{item.fields.title}</Link>
-          <p>
+          <p aria-label={item.fields.title}>
+            <Link to={item.fields.purl} title={'Go to ' + item.fields.title}>{item.fields.title}</Link><br />
             {item.fields.description}
-            <Link to={'/database/' + item.sys.id} title={'More Information about ' + item.fields.title} className='moreinfo'>More info</Link>
+            <Link to={'/database/' + item.sys.id} ariaLabel={'More Information about ' + item.fields.title} className='moreinfo'>More info</Link>
           </p>
         </div>
       )
