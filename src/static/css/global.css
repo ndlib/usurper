@@ -59,6 +59,10 @@ p, li {
   max-width: 75ch;
 }
 
+#searchAction li {
+  max-width: none;
+}
+
 .hours-display {
   background: #fff;
   width: 40%;
@@ -601,7 +605,7 @@ button a {
 
 
 
-nav, .menu {
+.uNavigation{
   border-top: solid 2px #56ABBD;
   border-bottom: solid 2px #FFD000;
   z-index: 10;
@@ -741,6 +745,10 @@ nav a.search.closed:hover {
 
 div.search, .user, .hours-m {
   float: left;
+}
+
+div.search {
+  width: 74px;
 }
 
 .user {
@@ -1737,6 +1745,10 @@ address {
   display: block;
 }
 
+.services-landing a, .research-landing a {
+  font-weight: bold;
+}
+
 .services-landing p span {
   display: block;
 }
@@ -2023,6 +2035,10 @@ address {
     width: 100%;
   }
 
+  label[for="q"]::after, .uSearchBox label::after {
+    top: 10px;
+  }
+
   .dept-prov, .header-hours {
     display: none;
   }
@@ -2050,13 +2066,7 @@ address {
     clear: both;
   }
 
-  .menu-list .menu-link {
-    display: none;
-  }
 
-  .menu-list div:first-child, .menu-link.search {
-    display: inline-block;
-  }
 
 
 
@@ -2083,10 +2093,6 @@ address {
     display: block;
     float: right;
   }
-
-  
-
-
 
   .feedback-notice-me {
     top: 0;
@@ -2256,11 +2262,7 @@ address {
     height: 70px;
   }
 
-  .col-md-4.right > .frame {
-    height: 175px;
-    left: -20px;
-    width: 311px;
-  }
+
 
   .p-services li {
     width: 45%;
@@ -2268,7 +2270,23 @@ address {
 
 }
 
+@media screen and (max-width:905px) {
+    .menu-list .menu-link {
+    display: none;
+  }
 
+  .menu-list div:first-child, .menu-link.search {
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width:1120px) {
+    .col-md-4.right > .frame {
+      height: 175px;
+      left: -20px;
+      width: 311px;
+    }
+}
 
 
 
@@ -2332,7 +2350,7 @@ body {
 
 
 
-nav {
+.uNavigation {
   background: #fff url('../images/glass.gif') ;
   }
 
@@ -2370,5 +2388,12 @@ nav {
 
   #banner .container-fluid {
     background-position: right 0px top;
+  }
+  .col-md-4.right > .frame {
+    height: 175px;
+    left: -0;
+    top: 0;
+    width: 311px;
+    margin-bottom: 1.5em;
   }
 }

@@ -58,7 +58,9 @@ const Services = () => {
           <span>Available to graduate students in the College of Arts & Letters</span></p>
           <p><Link to='http://hr.nd.edu/work-life-balance/lactation-rooms'>Lactation Room</Link>
           <span>A lactation room, located on the fifth floor of Hesburgh, is available for faculty, staff and graduate students. Contact HR for more information or <Link to='http://hr.nd.edu/work-life-balance/lactation-rooms/'>request access</Link>.</span> </p>
-          <p><Link to='/room-reservations'>Meeting Space and Group Study Room Reservations</Link>
+          <p><Link to='/room-reservations'>Reserve a Meeting or Event Space</Link>
+          <span>Reserve spaces in Libraries facilities</span> </p>
+          <p><Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1'>Book a Study or Multimedia Room</Link>
           <span>Reserve spaces in Libraries facilities</span> </p>
           <p><Link to='/writing-center'>Writing Center</Link></p>
 
@@ -66,11 +68,11 @@ const Services = () => {
 
           <p><Link to='http://libguides.library.nd.edu/datamanagement'>Copyright Consulting</Link>
                     <span>Submit a question to the copyright team.</span></p>
-          <p><Link to='http://library.nd.edu/cds/expertise/Analysis.shtml'>Data Management Consulting </Link>
+          <p><Link to='http://libguides.library.nd.edu/datamanagement'>Data Management Consulting Team</Link>
                     <span>Contact us for assistance with data management plans, and more.</span></p>
           <p><Link to='http://library.nd.edu/cds/expertise/Analysis.shtml'>Data Use & Analysis </Link>
                     <span>Request help in formulating an analysis, identifying appropriate data sets, or preparing and working with data.</span></p>
-          <p><Link to='/digital-humanities'>Digital Humanities </Link>
+          <p><Link to='http://library.nd.edu/cds/expertise/digital-humanities/'>Digital Humanities </Link>
                     <span></span></p>
           <p><Link to='http://library.nd.edu/cds/expertise/GIS.shtml'>Geographic Information Systems </Link>
                    <span> Request assistance with the generation of images from spatial data and spatial data analysis.</span></p>
@@ -80,10 +82,17 @@ const Services = () => {
                     <span>Tutoring can be scheduled for an individual or a small group for half-hour sessions.</span></p>
           <p><Link to='http://library.nd.edu/cds/expertise/TextMining.shtml'>Text Mining & Analysis</Link>
                     <span>The Center for Digital Scholarship supports the analysis of both structured and unstructured texts.</span></p>
+          <p><Link to='http://library.nd.edu/cds/print/'>3D Modeling and Printing</Link>
+                    <span></span></p>
+          <p><Link to='http://library.nd.edu/cds/expertise/Digitization.shtml'>Digitization and Metadata Services</Link></p>
 
 
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
         </div>
         <div className='col-md-4 col-xs-12'>
           <h3>Teaching and Consulting</h3>
@@ -105,8 +114,13 @@ const Services = () => {
           <span>Submit a 3D print job or request assistance with finding or designing a 3D model</span></p>
           <p><Link to='/copy-print-scan'>Copying, Printing, and Scanning</Link>
           <span>Locate computers and other technology within Libraries facilities</span></p>
+<<<<<<< HEAD
           <p>Listening Stations</p>
           <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link>
+=======
+          <p><Link to='/computer-clusters'>Computer Clusters</Link></p>
+          <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link> 
+>>>>>>> origin/master
           <span>Reserve the One Button Studio video recording space</span></p>
           <p><Link to='https://oit.nd.edu/help-desk/'>OIT Help Desk Outpost </Link>
           <span>Located in the Hesburgh Library near the Ask Us Desk on the 1st floor</span></p>
@@ -118,12 +132,18 @@ const Services = () => {
           <span>Reserve laptops, cameras, headphones, accessories, and more</span> </p>
           <p><Link to='http://libguides.library.nd.edu/transcriptionstation'>Transcription Station </Link>
           <span>Make transcriptions of audio or video files more easily with our transcription pedal</span></p>
+          <p><Link to='/request-library-research-instruction'>Request Instruction</Link></p>
 
 
 
 
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/master
 
 
         </div>
@@ -138,15 +158,15 @@ const Services = () => {
           </p>
           <p><Link to='http://collections.library.nd.edu/'>DEC</Link>
           <span>View digital exhibits and collections online</span></p>
-          <p>DMPTool
+          <p><Link to='http://libguides.library.nd.edu/c.php?g=670290&p=4716454#s-lg-box-14788259'>DMPTool</Link>
           <span>DMPTool is a flexible online tool that guides users through each step of creating a compliant data management plan for specific funding agencies.</span> </p>
-          <p>Open Science Framework
+          <p><Link to='/osf'>Open Science Framework</Link>
           <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
-          <p>OrcID
+          <p><Link to='https://orcid.org/'>OrcID</Link>
           <span>ORCID provides a persistent digital identifier that distinguishes you from every other researcher and, through integration in key research workflows such as manuscript and grant submission, supports automated linkages between you and your professional activities ensuring that your work is recognized.</span></p>
           <p><Link to='https://remix.nd.edu/'>Remix Digital Resource Portal</Link>
           <span>Remix assembles a broad variety of tools in one place to help you find, mix, and create new digital media and visual material</span></p>
-          <p>Proxy Bookmarklet
+          <p><Link to='/proxy-bookmarklet'>Proxy Bookmarklet</Link>
           <span>Access library resources while off-campus</span></p>
 
 
@@ -154,18 +174,26 @@ const Services = () => {
 
           <p>Document Shredding
           <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
+<<<<<<< HEAD
 <p><Link to='/lokmobiles'>Lokmobiles</Link>
+=======
+<p><Link to='/lokmobiles'>Lokmobiles</Link> </p>
+>>>>>>> origin/master
 <span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>
 <p>Lost & Found
 <span>Please contact Library Monitors at (574) 631-6350</span></p>
 <p>Notary Public
 <span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
 <p>Science Equipment for Teachers</p>
-<p>Students with Disabilities </p>
-<p><Link to='https://alpha.library.nd.edu/usgs-map-printing'>USGS Map Printing</Link>
-<span>The U.S. Geological Survey map printing service is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
+<p><Link to='/services-for-library-users-with-disabilities'>Services for Library Users with Disabilities</Link> </p>
+<p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
+<span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
         </div>
       </div>
     </LandingPage>

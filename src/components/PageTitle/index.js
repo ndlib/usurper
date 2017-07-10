@@ -12,14 +12,19 @@ class PageTitle extends Component {
   }
 
   render () {
+    console.log(this.props)
     return (
-      <span />
+      <div>
+        <h2>{this.props.title}</h2>
+        <hr aria-hidden='true' className={this.props.className} />
+      </div>
     )
   }
 }
 
 PageTitle.propTypes = {
   title: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default PageTitle

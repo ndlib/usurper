@@ -9,8 +9,6 @@ const SubjectList = () => {
     <div className='container-fluid content-area'>
       <SearchProgramaticSet open={false} />
       <PageTitle title='Subjects' />
-      <h2>Subjects</h2>
-      <hr aria-hidden="true" />
       <div className='row'>
         <div className='col-md-6'>
           <p><Link to='/aerospace-and-mechanical-engineering'>Aerospace &amp; Mechanical Engineering</Link></p>
@@ -35,7 +33,7 @@ const SubjectList = () => {
           <p><Link to='/electrical-engineering'>Electrical Engineering</Link></p>
           <p><Link to='/engineering'>Engineering</Link></p>
           <p><Link to='/english'>English Language &amp; Literature</Link></p>
-          
+
         </div>
         <div className='col-md-6'>
           <p><Link to='/film-television-theatre'>Film, Television, &amp; Theatre</Link></p>

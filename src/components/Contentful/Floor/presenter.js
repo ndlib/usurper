@@ -13,7 +13,6 @@ const FloorPresenter = ({ cfFloorEntry }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid'>
     <PageTitle title={cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
-    <h2>{cfFloorEntry.fields.title}</h2>
     <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
     <div className='row'>
     <div className='col-md-9 col-sm-12 floor'><Image cfImage={cfFloorEntry.fields.image} /></div>

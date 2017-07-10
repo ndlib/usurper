@@ -4,16 +4,13 @@ import './style.css'
 import CurrentHours from '../Current'
 import Contact from '../../Contact/ServicePoint'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
+import PageTitle from '../../PageTitle'
 
 const Presenter = (props) => {
   return (
     <div className='content hours-page'>
+      <PageTitle title={'Hours'} />
       <SearchProgramaticSet open={false} />
-      <h2>Hours</h2>
-      <hr aria-hidden="true" />
-      <div>
-        <p>View building and service desk hours.</p>
-      </div>
       <div className='service-point-list'>
         {
           props.servicePoints.map((servicePoint) => {
