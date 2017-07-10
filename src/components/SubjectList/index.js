@@ -5,59 +5,83 @@ import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 
 const SubjectList = () => {
+  const links = [
+    { name: 'Aerospace & Mechanical Engineering',    url: '/aerospace-and-mechanical-engineering' },
+    { name: 'Architecture',                          url: '/architecture' },
+    { name: 'Africana Studies',                      url: '/africana-studies' },
+    { name: 'American Studies',                      url: '/american-studies' },
+    { name: 'Anthropology',                          url: '/anthropology' },
+    { name: 'Art, Art History, & Design',            url: '/art-art-history-design' },
+    { name: 'Biology, Environmental Sciences, & Medicine', url: '/biology' },
+    { name: 'Business',                              url: '/business' },
+    { name: 'Byzantine Studies',                     url: '/byzantine-studies' },
+    { name: 'Catholic Studies',                      url: '/catholic-studies' },
+    { name: 'Chemical Engineering',                  url: '/chemical-engineering' },
+    { name: 'Chemistry & Biochemistry',              url: '/chemistry' },
+    { name: 'Civil & Environmental Engineering',     url: '/civil-and-environmental-engineering' },
+    { name: 'Classics',                              url: '/classics' },
+    { name: 'Computer Science & Engineering',        url: '/computer-science-and-engineering' },
+    { name: 'Earth Science',                         url: '/earth-science' },
+    { name: 'East Asian Languages, Literatures, & Cultures', url: '/east-asian-studies' },
+    { name: 'Economics',                             url: '/economics' },
+    { name: 'Education',                             url: '/education' },
+    { name: 'Electrical Engineering',                url: '/electrical-engineering' },
+    { name: 'Engineering',                           url: '/engineering' },
+    { name: 'English Language & Literature',         url: '/english' },
+    { name: 'Film, Television, & Theatre',           url: '/film-television-theatre' },
+    { name: 'French Language, Literature, & Culture',url: '/french' },
+    { name: 'Gender Studies',                        url: '/gender-studies' },
+    { name: 'German Language, Literature, & Culture',url: '/german' },
+    { name: 'Global Affairs',                        url: '/global-affairs' },
+    { name: 'History',                               url: '/history' },
+    { name: 'History and Philosophy of Science',     url: '/history-and-philosophy-of-science' },
+    { name: 'Irish Studies',                         url: '/irish-studies' },
+    { name: 'Italian Language, Literature, & Culture', url: '/italian' },
+    { name: 'Latin American and Iberian Languages, Literatures, & Cultures', url: '/spanish' },
+    { name: 'Mathematics',                           url: '/mathematics' },
+    { name: 'Medieval Studies',                      url: '/medieval' },
+    { name: 'Music',                                 url: '/music' },
+    { name: 'Peace Studies',                         url: '/peace-studies' },
+    { name: 'Philosophy',                            url: '/philosophy' },
+    { name: 'Physics',                               url: '/chemistry' },
+    { name: 'Political Science',                     url: '/political-science' },
+    { name: 'Psychology',                            url: '/psychology' },
+    { name: 'Russian and East European Languages, Literatures, & Cultures', url: '/russian' },
+    { name: 'Sociology',                             url: '/sociology' },
+    { name: 'Statistics & Probability',              url: '/statistics-and-probability' },
+    { name: 'Theology and Religion',                 url: '/theology-religion' },
+  ]
+
+  // alphabetical sort
+  links.sort((a, b) => {
+    let left = a.name
+    let right = b.name
+    if (left < right) {
+      return -1
+    } else if (right < left) {
+      return 1
+    }
+    return 0
+  })
+
   return (
     <div className='container-fluid content-area'>
       <SearchProgramaticSet open={false} />
       <PageTitle title='Subjects' />
       <div className='row'>
         <div className='col-md-6'>
-          <p><Link to='/aerospace-and-mechanical-engineering'>Aerospace &amp; Mechanical Engineering</Link></p>
-          <p><Link to='/architecture'>Architecture</Link></p>
-          <p><Link to='/africana-studies'>Africana Studies</Link></p>
-          <p><Link to='/american-studies'>American Studies</Link></p>
-          <p><Link to='/anthropology'>Anthropology</Link></p>
-          <p><Link to='/art-art-history-design'>Art, Art History, &amp; Design</Link></p>
-          <p><Link to='/biology'>Biology, Environmental Sciences, &amp; Medicine</Link></p>
-          <p><Link to='/business'>Business</Link></p>
-          <p><Link to='/byzantine-studies'>Byzantine Studies</Link></p>
-          <p><Link to='/catholic-studies'>Catholic Studies</Link></p>
-          <p><Link to='/chemical-engineering'>Chemical Engineering</Link></p>
-          <p><Link to='/chemistry'>Chemistry &amp; Biochemistry</Link></p>
-          <p><Link to='/civil-and-environmental-engineering'>Civil &amp; Environmental Engineering</Link></p>
-          <p><Link to='/classics'>Classics</Link></p>
-          <p><Link to='/computer-science-and-engineering'>Computer Science &amp; Engineering</Link></p>
-          <p><Link to='/earth-science'>Earth Science</Link></p>
-          <p><Link to='/east-asian-studies'>East Asian Languages, Literatures, &amp; Cultures</Link></p>
-          <p><Link to='/economics'>Economics</Link></p>
-          <p><Link to='/education'>Education</Link></p>
-          <p><Link to='/electrical-engineering'>Electrical Engineering</Link></p>
-          <p><Link to='/engineering'>Engineering</Link></p>
-          <p><Link to='/english'>English Language &amp; Literature</Link></p>
-
+          {
+            links.slice(0, links.length / 2).map((entry) => {
+              return <p key={entry.name}><Link to={entry.url}>{entry.name}</Link></p>
+            })
+          }
         </div>
         <div className='col-md-6'>
-          <p><Link to='/film-television-theatre'>Film, Television, &amp; Theatre</Link></p>
-          <p><Link to='/french'>French Language, Literature, &amp; Culture</Link></p>
-          <p><Link to='/gender-studies'>Gender Studies</Link></p>
-          <p><Link to='/german'>German Language, Literature, &amp; Culture</Link></p>
-          <p><Link to='/global-affairs'>Global Affairs</Link></p>
-          <p><Link to='/history'>History</Link></p>
-          <p><Link to='/history-and-philosophy-of-science'>History and Philosophy of Science</Link></p>
-          <p><Link to='/irish-studies'>Irish Studies</Link></p>
-          <p><Link to='/italian'>Italian Language, Literature, &amp; Culture</Link></p>
-          <p><Link to='/spanish'>Latin American and Iberian Languages, Literatures, &amp; Cultures</Link></p>
-          <p><Link to='/mathematics'>Mathematics</Link></p>
-          <p><Link to='/medieval'>Medieval Studies</Link></p>
-          <p><Link to='/music'>Music</Link></p>
-          <p><Link to='/peace-studies'>Peace Studies</Link></p>
-          <p><Link to='/philosophy'>Philosophy</Link></p>
-          <p><Link to='/chemistry'>Physics</Link></p>
-          <p><Link to='/political-science'>Political Science</Link></p>
-          <p><Link to='/psychology'>Psychology</Link></p>
-          <p><Link to='/russian'>Russian and East European Languages, Literatures, &amp; Cultures</Link></p>
-          <p><Link to='/sociology'>Sociology</Link></p>
-          <p><Link to='/statistics-and-probability'>Statistics &amp; Probability</Link></p>
-          <p><Link to='/theology-religion'>Theology and Religion</Link></p>
+          {
+            links.slice(links.length / 2).map((entry) => {
+              return <p key={entry.name}><Link to={entry.url}>{entry.name}</Link></p>
+            })
+          }
         </div>
       </div>
     </div>
