@@ -25,6 +25,8 @@ import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
 import Rewrite from './Rewrite'
 
+import NotFound from '../../components/Messages/NotFound'
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   rootReducers,
@@ -57,6 +59,8 @@ const App = () => {
             <Route exact path='/secure/:id' component={SecureContentfulPage} />
             <Route exact path='/services' component={Services} />
             <Route exact path='/:id' component={ContentfulPage} />
+
+            <Route path='*' component={NotFound} />
           </Switch>
         </PageWrapper>
       </div>
