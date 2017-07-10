@@ -50,7 +50,7 @@ const Navigation = (props) => {
 
   return (
     <div className='uNavigation'>
-      <nav className='container-fluid menu-list' aria-label='Main Navigtion'>
+      <nav className='container-fluid menu-list' aria-label='Main Navigation'>
         <div className='menu-link'>
           <Link to='/'>Home</Link>
         </div>
