@@ -3,12 +3,15 @@ import React from 'react'
 
 const Error = ({ message = 'An error has occured' }) => (
   <div className={'Error'}>
-    <SearchProgramaticSet open={false} />
+    <SearchProgramaticSet open={true} />
     <PageTitle title='Server Error' />
     <div className='notfound errored'>
     	<h1>500</h1>
         <h2>Error</h2>
-        <div>{ message }</div>
+        <div>{ message }
+		<br />
+		If you think you've reached this page in error, please <Link to='https://nd.service-now.com/ess/create_lib_incident.do'>report your problem</Link>.
+        </div>
     </div>
   </div>
 )

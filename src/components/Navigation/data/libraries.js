@@ -21,7 +21,7 @@ export const librariesData = [
       },
       {
         title: 'Chemistry-Physics Library',
-        url: '/chemistry',
+        url: '/chemistry-physics-library',
       },
       {
         title: 'Engineering Library',
@@ -104,7 +104,7 @@ export const librariesData = [
         url: 'https://www.iusb.edu/library/',
       },
       {
-        title: 'ND Law Library',
+        title: 'Notre Dame Law Library',
         url: 'http://law.nd.edu/library/',
       },
       {
