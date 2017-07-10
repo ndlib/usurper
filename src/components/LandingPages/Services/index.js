@@ -86,13 +86,6 @@ const Services = () => {
                     <span></span></p>
           <p><Link to='http://library.nd.edu/cds/expertise/Digitization.shtml'>Digitization and Metadata Services</Link></p>
 
-
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
         </div>
         <div className='col-md-4 col-xs-12'>
           <h3>Teaching and Consulting</h3>
@@ -114,13 +107,9 @@ const Services = () => {
           <span>Submit a 3D print job or request assistance with finding or designing a 3D model</span></p>
           <p><Link to='/copy-print-scan'>Copying, Printing, and Scanning</Link>
           <span>Locate computers and other technology within Libraries facilities</span></p>
-<<<<<<< HEAD
           <p>Listening Stations</p>
           <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link>
-=======
-          <p><Link to='/computer-clusters'>Computer Clusters</Link></p>
-          <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link> 
->>>>>>> origin/master
+
           <span>Reserve the One Button Studio video recording space</span></p>
           <p><Link to='https://oit.nd.edu/help-desk/'>OIT Help Desk Outpost </Link>
           <span>Located in the Hesburgh Library near the Ask Us Desk on the 1st floor</span></p>
@@ -138,12 +127,6 @@ const Services = () => {
 
 
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
 
 
         </div>
@@ -174,11 +157,7 @@ const Services = () => {
 
           <p>Document Shredding
           <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
-<<<<<<< HEAD
 <p><Link to='/lokmobiles'>Lokmobiles</Link>
-=======
-<p><Link to='/lokmobiles'>Lokmobiles</Link> </p>
->>>>>>> origin/master
 <span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>
 <p>Lost & Found
 <span>Please contact Library Monitors at (574) 631-6350</span></p>
