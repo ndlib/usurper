@@ -6,10 +6,14 @@
 ### New features/enhancements:
 - Added the page html title to the PageTitle component [#182](https://github.com/ndlib/usurper/pull/182)
 - Added Static Sidebar/Body components to dynamic pages [#188](https://github.com/ndlib/usurper/pull/188)
+- The Chat button on small screens now opens the chat page instead of an unhelpful popup [#181](https://github.com/ndlib/usurper/pull/181)
 
 ### Bug fixes:
 - Add aria-controls to hours components [#190](https://github.com/ndlib/usurper/pull/190)
 - Fix "top" anchors on all pages [#190](https://github.com/ndlib/usurper/pull/190)
+- Hours cards colors now update according to open/closed state [#193](https://github.com/ndlib/usurper/pull/193)
+- Make sure all invalid urls show the 404 page [#187](https://github.com/ndlib/usurper/pull/187)
+- Subjects page is now sorted alphabetically [#184](https://github.com/ndlib/usurper/pull/184)
 
 ## [0.6](https://github.com/ndlib/usurper/tree/master) (2017-08-06)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...v0.6.0)
