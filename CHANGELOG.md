@@ -4,7 +4,8 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.6.0...master)
 
 ### New features/enhancements:
-- Added the page html title to the PageTitle component [#188](https://github.com/ndlib/usurper/pull/182)
+- Added the page html title to the PageTitle component [#182](https://github.com/ndlib/usurper/pull/182)
+- Added Static Sidebar/Body components to dynamic pages [#188](https://github.com/ndlib/usurper/pull/188)
 
 ### Bug fixes:
 - Add aria-controls to hours components [#190](https://github.com/ndlib/usurper/pull/190)

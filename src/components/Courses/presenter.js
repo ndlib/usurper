@@ -7,6 +7,8 @@ import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import Lgicon from '../../static/images/icons/libguide.png'
 import LogOut from '../LogOut'
+import StaticSidebar from '../Contentful/StaticContent/Sidebar'
+import StaticBody from '../Contentful/StaticContent/Body'
 
 class Courses extends Component {
   instructorCard (course) {
@@ -165,16 +167,24 @@ class Courses extends Component {
 
   render () {
     return (
-      <div key='courses' className='content'>
-      <Link to='/personal' className='button fright tab'>My Items</Link>
-        <LogOut />
-        <PageTitle title='Courses' classaName='hr-cor' />
-        <SearchProgramaticSet open={false} />
+      <div className='container-fluid content-area'>
+        <div key='courses' className='content'>
+          <Link to='/personal' className='button fright tab'>My Items</Link>
+          <LogOut />
+          <PageTitle title='Courses' classaName='hr-cor' />
+          <SearchProgramaticSet open={false} />
 
-        <div key='courseCards'>
-          { this.courseCards() }
+          <StaticBody slug='courses' preview={true} />
+
+          <div className='row'>
+            <div className='col-md-8 col-sm-7'>
+              <div key='courseCards'>
+                { this.courseCards() }
+              </div>
+            </div>
+            <StaticSidebar slug='courses' preview={true} />
+          </div>
         </div>
-        <br /> If you believe you see an error please <Link to='https://nd.service-now.com/ess/create_lib_incident.do'>report it</Link>.
       </div>
     )
   }

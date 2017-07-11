@@ -7,16 +7,24 @@ import PageTitle from '../PageTitle'
 import Loading from '../Messages/Loading'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import LogOut from '../LogOut'
+import StaticSidebar from '../Contentful/StaticContent/Sidebar'
+import StaticBody from '../Contentful/StaticContent/Body'
 
 const LoggedIn = () => {
   return (
-    <div className=' content'>
-      <PageTitle title='Items' />
-      <SearchProgramaticSet open={false} />
+    <div className='content'>
       <Courses linkOnly />
       <LogOut />
-      <Recommendations />
-      <div><LoanResources /></div>
+      <SearchProgramaticSet open={false} />
+      <PageTitle title='Items & Requests' />
+      <div className='row'>
+        <div className='col-md-8 col-sm-7'>
+          <Recommendations />
+          <div><LoanResources /></div>
+          <StaticBody slug='personal' preview={true} />
+        </div>
+        <StaticSidebar slug='personal' preview={true} />
+      </div>
     </div>
   )
 }
