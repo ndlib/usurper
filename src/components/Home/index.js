@@ -17,7 +17,7 @@ class Home extends Component {
   render () {
     return (
       <div className='Home main'>
-        <PageTitle tile='Hesburgh Library' />
+        <PageTitle title='Hesburgh Library' hideInPage={true} />
         <SearchProgramaticSet open />
         <HomePageHours jsonHoursApiKey='hesburghlibrary' />
 
