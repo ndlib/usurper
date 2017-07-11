@@ -14,6 +14,35 @@ if (!String.prototype.startsWith) {
   }
 }
 
+if (!Array.prototype.equals) {
+  Array.prototype.equals = function(compare) {
+    if (!compare || !(compare instanceof Array)) {
+      return false
+    }
+
+    if (this.length != compare.length) {
+      return false
+    }
+
+    for (let i = 0; i < this.length; ++i) {
+      if (this[i] instanceof Array && compare[i] instanceof Array) {
+        if (!this[i].equals(compare[i])) {
+          return false
+        }
+      }
+
+      // this wont corerctly compare objects, eg. { foo: 2 } != { foo: 2 }
+      if (this[i] != compare[i]) {
+        return false
+      }
+      return true
+    }
+  }
+
+  // hide from for:in
+  Object.defineProperty(Array.prototype, 'equals', { enumerable: false })
+}
+
 // fetch() polyfill for making API calls.
 require('whatwg-fetch')
 
