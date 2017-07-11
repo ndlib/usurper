@@ -174,7 +174,7 @@ class Courses extends Component {
           <PageTitle title='Courses' classaName='hr-cor' />
           <SearchProgramaticSet open={false} />
 
-          <StaticBody slug='courses' preview={true} />
+          <StaticBody slug='courses' preview={this.props.preview} />
 
           <div className='row'>
             <div className='col-md-8 col-sm-7'>
@@ -182,7 +182,7 @@ class Courses extends Component {
                 { this.courseCards() }
               </div>
             </div>
-            <StaticSidebar slug='courses' preview={true} />
+            <StaticSidebar slug='courses' preview={this.props.preview} />
           </div>
         </div>
       </div>
@@ -192,6 +192,7 @@ class Courses extends Component {
 
 Courses.propTypes = {
   courses: PropTypes.object,
+  preview: PropTypes.bool,
 }
 
 Courses.contextTypes = {
