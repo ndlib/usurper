@@ -14,6 +14,7 @@ class PageTitle extends Component {
   render () {
     return (
       <div>
+        <a id='top' />
         <h2>{this.props.title}</h2>
         <hr aria-hidden='true' className={this.props.className} />
       </div>

@@ -9,7 +9,15 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
     <section className='service-point' aria-label={title}>
-      <div id='expand_hours' className='expand' tabIndex={0} onClick={expandHandler} onKeyDown={expandHandler}>
+      <a
+        id='expand_hours'
+        className='expand'
+        tabIndex={0}
+        onClick={expandHandler}
+        onKeyDown={expandHandler}
+        aria-expanded={false}
+        aria-controls={hoursEntry.name}
+      >
         <h4>
           <div className='location'>{hoursEntry.name}</div>
           <div className='today'>{todayLabel}</div>
@@ -17,7 +25,8 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
             <div className='earrow' />
           </div>
         </h4>
-      </div>
+      </a>
+      <div id={hoursEntry.name} aria-hidden={true} />
     </section>
   )
 }
