@@ -10,6 +10,7 @@
 ### Bug fixes:
 - Add aria-controls to hours components [#190](https://github.com/ndlib/usurper/pull/190)
 - Fix "top" anchors on all pages [#190](https://github.com/ndlib/usurper/pull/190)
+- Hours cards colors now update according to open/closed state [#193](https://github.com/ndlib/usurper/pull/193)
 
 ## [0.6](https://github.com/ndlib/usurper/tree/master) (2017-08-06)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...v0.6.0)
