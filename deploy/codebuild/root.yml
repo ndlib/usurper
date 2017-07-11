@@ -12,9 +12,6 @@ Parameters:
   ViceroyApi:
     Type: String
     Description: The ViceroyApi to use for build
-  PersonApi:
-    Type: String
-    Description: The PersonApi to use for build
   RecommendApi:
     Type: String
     Description: The RecommendApi to use for build
@@ -54,7 +51,6 @@ Resources:
         OutBucket: !Ref OutBucket
 
         ViceroyApi: !Ref ViceroyApi
-        PersonApi: !Ref PersonApi
         RecommendApi: !Ref RecommendApi
         CoursesApi: !Ref CoursesApi
         ResourcesApi: !Ref ResourcesApi

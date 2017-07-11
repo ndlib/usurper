@@ -10,7 +10,6 @@ Stacks:
         OutBucket: ${OUT_BUCKET}
 
         ViceroyApi: ${VICEROY_API}
-        PersonApi: ${PERSON_API}
         RecommendApi: ${RECOMMEND_API}
         CoursesApi: ${COURSES_API}
         ResourcesApi: ${RESOURCES_API}
