@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import PropTypes from 'prop-types'
 import Recommendations from '../Recommendations'
 import LoanResources from '../LoanResources'
 import Courses from '../Courses'
@@ -10,7 +11,7 @@ import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 
-const LoggedIn = () => {
+const LoggedIn = (preview) => {
   return (
     <div className='content'>
       <Courses linkOnly />
@@ -21,9 +22,9 @@ const LoggedIn = () => {
         <div className='col-md-8 col-sm-7'>
           <Recommendations />
           <div><LoanResources /></div>
-          <StaticBody slug='personal' preview={true} />
+          <StaticBody slug='personal' preview={preview} />
         </div>
-        <StaticSidebar slug='personal' preview={true} />
+        <StaticSidebar slug='personal' preview={preview} />
       </div>
     </div>
   )
@@ -31,12 +32,18 @@ const LoggedIn = () => {
 
 const Presenter = (props) => {
   if (props.loggedIn) {
-    return LoggedIn()
+    return LoggedIn(props.preview)
   } else if (props.redirectUrl) {
     window.location = props.redirectUrl
   } else {
     return <Loading message='Loading Your Account' />
   }
+}
+
+Presenter.propTypes = {
+  loggedIn: PropTypes.bool,
+  preview: PropTypes.bool,
+  redirectUrl: PropTypes.string,
 }
 
 export default Presenter
