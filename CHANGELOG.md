@@ -7,6 +7,8 @@
 - Added the page html title to the PageTitle component [#188](https://github.com/ndlib/usurper/pull/182)
 
 ### Bug fixes:
+- Add aria-controls to hours components [#190](https://github.com/ndlib/usurper/pull/190)
+- Fix "top" anchors on all pages [#190](https://github.com/ndlib/usurper/pull/190)
 
 ## [0.6](https://github.com/ndlib/usurper/tree/master) (2017-08-06)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...v0.6.0)
