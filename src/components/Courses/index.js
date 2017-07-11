@@ -50,12 +50,13 @@ class CoursesContainer extends Component {
   }
 }
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state, ownProps) => {
   const { personal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
   const courses = get(personal, 'courses', { state: statuses.NOT_FETCHED })
 
   return {
+    preview: ownProps.location ? (new URLSearchParams(ownProps.location.search)).get('preview') === 'true' : false,
     loggedIn: loggedIn,
     login: personal.login,
     courses: courses,
