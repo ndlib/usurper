@@ -36,6 +36,8 @@ const SearchBox = (props) => {
 SearchBox.propTypes = {
   currentSearch: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  visible: PropTypes.bool,
 }
 
 export default SearchBox

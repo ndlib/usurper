@@ -18,10 +18,6 @@ export default(state = { status: statuses.NOT_FETCHED }, action) => {
       return {
         status: statuses.NOT_FETCHED,
       }
-    case CF_NO_SUCH_PAGE:
-      return Object.assign({}, state, {
-        status: action.status
-      })
     default:
       return state
   }

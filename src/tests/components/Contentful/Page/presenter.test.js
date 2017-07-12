@@ -32,7 +32,7 @@ describe('components/Contentful/Page/presenter', () => {
   })
 
   it('should renders the title of the content', () => {
-    expect(enzymeWrapper.children().someWhere(n => n.children().node === 'Fake Title')).toBe(true)
+    expect(enzymeWrapper.children().someWhere(n => n.node.props.title === 'Fake Title')).toBe(true)
   })
 
   it('should render LibMarkdown for content', () => {

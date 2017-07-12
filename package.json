@@ -82,11 +82,23 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
+    "globals": {
+      "__APP_CONFIG__": {
+        "viceroyAPI": "http://viceroyAPI.edu",
+        "recommendAPI": "http://recommendAPI.edu",
+        "coursesAPI": "http://coursesAPI.edu",
+        "resourcesAPI": "http://resourcesAPI.edu",
+        "illiadBaseURL": "http://illiadBaseURL.edu",
+        "hoursAPIURL": "http://hoursAPIURL.edu",
+        "contentfulAPI": "http://contentfulAPI.edu"
+      }
+    },
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/jest.config.js"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"

@@ -51,7 +51,7 @@ describe('components/Hours/Page/presenter', () => {
   })
 
   it('adds the home page className', () => {
-    expect(enzymeWrapper.find('div.hours-display').exists()).toBe(true)
+    expect(enzymeWrapper.find('section.hours-display').exists()).toBe(true)
   })
 
   it('Adds a Link to the hours page', () => {

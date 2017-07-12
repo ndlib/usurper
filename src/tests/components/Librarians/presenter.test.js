@@ -89,8 +89,8 @@ describe('components/Librarians/presenter.js', () => {
       })
     })
 
-    it('should render an error message', () => {
-      expect(enzymeWrapper.findWhere(n => n.text().includes('Error')).exists()).toBe(true)
+    it('should render nothing', () => {
+      expect(enzymeWrapper.node).toBe(null)
     })
   })
 })

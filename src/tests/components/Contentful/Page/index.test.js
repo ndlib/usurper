@@ -21,7 +21,7 @@ describe('components/Contentful/Page/Container', () => {
         fetchPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         history: {
-          push: jest.fn(),
+          replace: jest.fn(),
         },
         personal: {
           login: {},
@@ -35,6 +35,7 @@ describe('components/Contentful/Page/Container', () => {
           searchType: 'FAKE_TYPE',
         },
         menus: {},
+        location: { search: null },
       }
       enzymeWrapper = setup(props)
     })
@@ -58,7 +59,7 @@ describe('components/Contentful/Page/Container', () => {
 
     it('does not attempt to redirect to secure version', () => {
       enzymeWrapper.setProps(props)
-      expect(props.history.push.mock.calls.length).toBe(0)
+      expect(props.history.replace.mock.calls.length).toBe(0)
     })
   })
 
@@ -66,7 +67,7 @@ describe('components/Contentful/Page/Container', () => {
     beforeEach(() => {
       props = {
         cfPageEntry: {
-          status: statuses.SUCCESS,
+          status: statuses.UNAUTHORIZED,
           json: {
             fields: {
               requiresLogin: true,
@@ -77,8 +78,9 @@ describe('components/Contentful/Page/Container', () => {
         clearPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         history: {
-          push: jest.fn(),
+          replace: jest.fn(),
         },
+        location: { search: null },
       }
       enzymeWrapper = setup(props)
     })
@@ -107,7 +109,7 @@ describe('components/Contentful/Page/Container', () => {
 
     it('redirects to secure page', () => {
       enzymeWrapper.setProps(props)
-      expect(props.history.push.mock.calls.length).toBe(1)
+      expect(props.history.replace.mock.calls.length).toBe(1)
     })
   })
 })

@@ -30,15 +30,14 @@ describe('components/Contact/index.js', () => {
   })
 
   it('should render phone number with the tel: prefix', () => {
-    expect(children.someWhere(n => n.type() === 'a' && n.props().href === 'tel:555.555.5555')).toBe(true)
+    expect(children.someWhere(n => n.children().node.type === 'a' && n.children().node.props.href === 'tel:555.555.5555')).toBe(true)
   })
 
   it('should render email with the mailto: prefix', () => {
-    expect(children.someWhere(n => n.type() === 'a' && n.props().href === 'mailto:test@nd.edu')).toBe(true)
+    expect(children.someWhere(n => n.children().node.type === 'a' && n.children().node.props.href === 'mailto:test@nd.edu')).toBe(true)
   })
 
   it('should render the address on multiple lines', () => {
-    expect(children.findWhere(n => n.text() === '555 SR 1').length).toBe(1)
-    expect(children.findWhere(n => n.text() === '55555 Notre Dame, IN').length).toBe(1)
+    expect(children.find('address').children().length).toBe(2)
   })
 })

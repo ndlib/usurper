@@ -36,12 +36,6 @@ describe('components/Image/index.js', () => {
     })
   })
 
-  describe('without alt and with cfImage', () => {
-    it('should return cfImage alt', () => {
-      expect(mapStateToProps(null, cfImage)).toHaveProperty('alt', 'foo')
-    })
-  })
-
   describe('with className', () => {
     it('should return valid className', () => {
       expect(mapStateToProps(null, { className: 'foo' })).toHaveProperty('className', 'foo')
