@@ -12,6 +12,10 @@ class PageTitle extends Component {
   }
 
   render () {
+    if (this.props.hideInPage) {
+      return null
+    }
+    
     return (
       <div>
         <a id='top' />
@@ -25,6 +29,11 @@ class PageTitle extends Component {
 PageTitle.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
+  hideInPage: PropTypes.bool,
+}
+
+PageTitle.defaultProps = {
+  hideInPage: false,
 }
 
 export default PageTitle
