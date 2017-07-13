@@ -1,6 +1,7 @@
 import React from 'react'
 import * as statuses from '../../../constants/APIStatuses'
 import ResourceList from '../../../components/LoanResources/resourceList'
+import IlliadActions from '../../../components/LoanResources/illiadActions'
 import { shallow } from 'enzyme'
 
 import Config from '../../../shared/Configuration'
@@ -11,6 +12,7 @@ const setup = (props) => {
   enzymeWrapper = shallow(<ResourceList {...props} />)
 }
 
+let props
 describe('components/LoanResources/resourceList.js', () => {
   afterEach(() => {
     enzymeWrapper = undefined
@@ -18,17 +20,18 @@ describe('components/LoanResources/resourceList.js', () => {
 
   describe('on success', () => {
     beforeEach(() => {
-      setup({
+      props = {
         list: [{
           title: 'title',
           author: 'author',
           published: 'published',
           status: 'status',
-          dueDate: '20170531',
+          dueDate: '2017-05-31',
           transactionNumber: '4000',
         }],
         emptyText: 'empty',
-      })
+      }
+      setup(props)
     })
 
     it('should render item title', () => {
@@ -51,12 +54,8 @@ describe('components/LoanResources/resourceList.js', () => {
       expect(enzymeWrapper.containsMatchingElement(<div className='card-due'>{'Due Date: 2017-05-31'}</div>)).toBe(true)
     })
 
-    it('should render renew action', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Link>Renew</Link>)).toBe(true)
-    })
-
-    it('should render ILL action', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Link to={Config.illiadBaseURL + '4000'}>View in ILL</Link>)).toBe(true)
+    it('should render ILL actions', () => {
+      expect(enzymeWrapper.containsMatchingElement(<IlliadActions item={props.list[0]} />)).toBe(true)
     })
   })
 

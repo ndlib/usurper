@@ -34,6 +34,7 @@ describe('components/Contentful/Floor/Container', () => {
         searchType: 'FAKE_TYPE',
       },
       menus: {},
+      location: { search: null },
     }
     enzymeWrapper = setup(props)
   })

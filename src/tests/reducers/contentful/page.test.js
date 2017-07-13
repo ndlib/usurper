@@ -33,16 +33,4 @@ describe('Page reducer', () => {
       json: 'page from receivePage',
     })
   })
-
-  it('should handle CF_NO_SUCH_PAGE', () => {
-    expect(
-      reducer(undefined, {
-        type: actions.CF_NO_SUCH_PAGE,
-        status: 'status from receivePage',
-        page: 'page from receivePage',
-      })
-    ).toEqual({
-      status: 'status from receivePage',
-    })
-  })
 })

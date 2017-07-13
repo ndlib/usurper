@@ -50,8 +50,7 @@ describe('token fetch async action creator', () => {
         state: statuses.SUCCESS,
         requestType: 'login',
         payload: {
-          buttonUrl: '/personal',
-          logoutUrl: Config.viceroyAPI + '/logout',
+          redirectUrl: null,
           token: 'token',
         },
       }
@@ -106,7 +105,7 @@ describe('token fetch async action creator', () => {
         state: statuses.SUCCESS,
         requestType: 'login',
         payload: {
-          buttonUrl: redirectResponse.redirect,
+          redirectUrl: redirectResponse.redirect,
         },
       }
 

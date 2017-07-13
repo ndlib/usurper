@@ -36,9 +36,13 @@ let props = {
     usePref: false,
     searchType: '',
   },
+  chat: {
+    chatOpen: false,
+  },
   menus: {
     menuId: 'FAKE_MENU',
   },
+  clickOnPage: jest.fn(),
 }
 
 describe('components/PageWrapper/presenter.js', () => {

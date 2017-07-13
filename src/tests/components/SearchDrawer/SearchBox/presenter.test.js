@@ -24,7 +24,9 @@ let props = {
   currentSearch: {
     title: 'FAKE SEARCH',
   },
-  onClick: () => {},
+  visible: true,
+  onClick: jest.fn(),
+  onSubmit: jest.fn(),
 }
 
 describe('components/SearchDrawer/SearchBox/presenter.js', () => {
@@ -47,12 +49,8 @@ describe('components/SearchDrawer/SearchBox/presenter.js', () => {
     expect(enzymeWrapper.find('input[name=\'q\']').exists()).toBe(true)
   })
 
-  it('Has 2 hidden inputs', () => {
-    expect(enzymeWrapper.find('input.hidden')).toHaveLength(2)
-  })
-
   it('Has a search button', () => {
-    expect(enzymeWrapper.containsMatchingElement(<button type='submit'>Search</button>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<button onClick={props.onSubmit}>Search</button>)).toBe(true)
   })
 
   it('Renders the SearchOptionList component', () => {

@@ -3,6 +3,7 @@ import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'
 import * as statuses from '../../constants/APIStatuses'
+import Config from '../../shared/Configuration'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -24,16 +25,16 @@ const mockPageResponse = {
 
 const storeInit = {
   personal: {
-    login: null
-  }
+    login: null,
+  },
 }
 
 describe('contentful requestPage action creator', () => {
   it('should create a CF_REQUEST_PAGE action for the requested page', () => {
     const pageUri = 'Page data'
     const expectedAction = {
-      page: pageUri,
-      type: actions.CF_REQUEST_PAGE
+      slug: pageUri,
+      type: actions.CF_REQUEST_PAGE,
     }
     expect(actions.requestPage(pageUri)).toEqual(expectedAction)
   })
@@ -53,13 +54,13 @@ describe('contentful clearPage action creator', () => {
 
 describe('contentful fetchPage async action creator', () => {
   it('should first create a CF_REQUEST_PAGE action for the requested page', () => {
-    nock(/https:\/\/localhost/)
-      .get(/.*.json/)
+    nock(Config.contentfulAPI)
+      .get(/.*/)
       .reply(200, mockPageResponse)
     const pageUri = 'Page data'
     const expectedAction = {
       type: actions.CF_REQUEST_PAGE,
-      page: pageUri
+      slug: pageUri,
     }
 
     const store = mockStore(storeInit)
@@ -71,8 +72,8 @@ describe('contentful fetchPage async action creator', () => {
 
   describe('on search hit', () => {
     beforeEach(() => {
-      nock(/https:\/\/localhost/)
-        .get(/.*.json/)
+      nock(Config.contentfulAPI)
+        .get(/.*/)
         .reply(200, mockPageResponse)
     })
     afterEach(() => {
@@ -97,8 +98,8 @@ describe('contentful fetchPage async action creator', () => {
 
   describe('on receiving an error from contentful API', () => {
     beforeEach(() => {
-      nock(/https:\/\/localhost/)
-        .get(/.*.json/)
+      nock(Config.contentfulAPI)
+        .get(/.*/)
         .reply(200, { sys: { type: 'Error' }, error: 'Error message' })
     })
     afterEach(() => {
@@ -110,7 +111,7 @@ describe('contentful fetchPage async action creator', () => {
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
         status: statuses.ERROR,
-        error: { sys: { type: 'Error' }, error: 'Error message' }
+        error: { sys: { type: 'Error' }, error: 'Error message' },
       }
 
       const store = mockStore(storeInit)
@@ -123,8 +124,8 @@ describe('contentful fetchPage async action creator', () => {
 
   describe('on throwing an exception when fetching the page', () => {
     beforeEach(() => {
-      nock(/https:\/\/localhost/)
-        .get(/.*.json/)
+      nock(Config.contentfulAPI)
+        .get(/.*/)
         .replyWithError('Crash Message')
     })
     afterEach(() => {
@@ -149,8 +150,8 @@ describe('contentful fetchPage async action creator', () => {
 
   describe('on receiving a 404 from contentful API', () => {
     beforeEach(() => {
-      nock(/https:\/\/localhost/)
-        .get(/.*.json/)
+      nock(Config.contentfulAPI)
+        .get(/.*/)
         .reply(404, {})
     })
     afterEach(() => {
@@ -161,8 +162,8 @@ describe('contentful fetchPage async action creator', () => {
       const pageUri = 'mypage'
       const expectedAction = {
         type: actions.CF_RECEIVE_PAGE,
-        status: statuses.ERROR,
-        error: {}
+        status: statuses.NOT_FOUND,
+        error: { errorStatus: 404 },
       }
 
       const store = mockStore(storeInit)

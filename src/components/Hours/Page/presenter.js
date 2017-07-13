@@ -27,7 +27,7 @@ const Presenter = (props) => {
 }
 
 Presenter.propTypes = {
-  servicePoints: PropTypes.object.isRequired,
+  servicePoints: PropTypes.array.isRequired,
 }
 
 export default Presenter

@@ -55,7 +55,7 @@ describe('components/Link', () => {
       enzymeWrapper = setup({
         to: '/internal',
         className: 'testClass',
-        alt: 'foo',
+        title: 'foo',
       })
     })
 
@@ -63,8 +63,8 @@ describe('components/Link', () => {
       expect(enzymeWrapper.containsMatchingElement(<Link to='/internal' />)).toBe(true)
     })
 
-    it('should render a react Link with alt tag', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Link to='/internal' alt='foo' />)).toBe(true)
+    it('should render a react Link with title tag', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Link to='/internal' title='foo' />)).toBe(true)
     })
 
     it('should render a react Link with the correct class', () => {
@@ -114,7 +114,7 @@ describe('components/Link', () => {
       enzymeWrapper = setup({
         to: 'http://example.org',
         className: 'testClass',
-        alt: 'foo',
+        title: 'foo',
       })
     })
 
@@ -122,8 +122,8 @@ describe('components/Link', () => {
       expect(enzymeWrapper.containsMatchingElement(<a href='http://example.org' />)).toBe(true)
     })
 
-    it('should render an a tag with alt tag', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a alt='foo' />)).toBe(true)
+    it('should render an a tag with title tag', () => {
+      expect(enzymeWrapper.containsMatchingElement(<a title='foo' />)).toBe(true)
     })
 
     it('should render an a tag with the correct classname', () => {

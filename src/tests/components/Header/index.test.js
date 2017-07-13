@@ -72,10 +72,6 @@ describe('components/Header/index.js', () => {
     expect(enzymeWrapper.find('.uNavigation').exists()).toBe(true)
   })
 
-  it('Doesn\'t render a SearchDrawer component when it is closed', () => {
-    expect(enzymeWrapper.find('#drawer').exists()).toBe(false)
-  })
-
   it('Renders a SearchDrawer component when it is open', () => {
     enzymeWrapper = setup(Object.assign({}, props, {
       search: {

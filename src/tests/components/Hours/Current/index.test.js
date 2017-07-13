@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import { CurrentHoursContainer } from '../../../../components/Hours/Current'
-import PagePresenter from '../../../../components/Hours/Current/presenter'
+import CollapsedPresenter from '../../../../components/Hours/Current/collapsed_presenter'
 import configureStore from 'redux-mock-store'
 import * as statuses from '../../../../constants/APIStatuses'
 import InlineContainer from '../../../../components/Hours/InlineContainer'
@@ -31,13 +31,13 @@ describe('components/Hours/Current/Container', () => {
     enzymeWrapper = undefined
   })
 
-  it('only renders InlineContainer with hoursEntry status and PagePresenter', () => {
+  it('only renders InlineContainer with hoursEntry status and CollapsedPresenter', () => {
     expect(enzymeWrapper
       .containsMatchingElement(
         <InlineContainer
           status={props.hoursEntry.status}
           hoursEntry={props.hoursEntry}
-          presenter={PagePresenter} />))
+          presenter={CollapsedPresenter} />))
       .toBe(true)
   })
 
