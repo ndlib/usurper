@@ -8,7 +8,7 @@ import * as statuses from '../../constants/APIStatuses'
 const mapStateToProps = (state, ownProps) => {
   return {
     // only those librarians for this page will affect this page
-    librarianInfo: ownProps.netids.equals(state.librarianInfo.netids) ? state.librarianInfo : {status: statuses.NOT_FOUND},
+    librarianInfo: ownProps.netids && ownProps.netids.equals(state.librarianInfo.netids) ? state.librarianInfo : {status: statuses.NOT_FOUND},
     ...ownProps,
   }
 }
