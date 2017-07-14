@@ -26,15 +26,8 @@ const makeMapStateToProps = () => {
     let ret = {
       jsonHoursApiKey: props.jsonHoursApiKey, // the key to look up hours component in the store used in the selector.
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
-      isOpen: true,
     }
 
-    if (ret.hoursEntry && ret.hoursEntry.today) {
-      const opens = timeToday(ret.hoursEntry.today.date, ret.hoursEntry.today.opens)
-      const closes = timeToday(ret.hoursEntry.today.date, ret.hoursEntry.today.closes)
-      const now = new Date()
-      ret.isOpen = (opens <= now && now <= closes)
-    }
     return ret
   }
   return mapStateToProps
@@ -47,20 +40,45 @@ const mapDispatchToProps = (dispatch) => {
 export class CurrentHoursContainer extends Component {
   constructor (props) {
     super(props)
-    this.state = { expanded: false }
+    this.state = {
+      expanded: false,
+      isOpen: this.checkOpen(props),
+    }
     this.toggleExpanded = this.toggleExpanded.bind(this)
   }
 
   componentDidMount () {
+    // check current time every second to update color
+    setInterval(this.tick.bind(this), 1000)
     if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
       this.props.fetchHours()
     }
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.setState({ isOpen: this.checkOpen(newProps) })
   }
 
   toggleExpanded (e) {
     if (e.type === 'click' || (e.type === 'keydown' && e.keyCode === 13)) {
       this.setState({ expanded: !this.state.expanded })
     }
+  }
+
+  checkOpen (props) {
+    try {
+      const entry = props.hoursEntry
+      const opens = timeToday(entry.today.date, entry.today.opens)
+      const closes = timeToday(entry.today.date, entry.today.closes)
+      const now = new Date()
+      return opens <= now && now <= closes
+    } catch (e) {
+      return false
+    }
+  }
+
+  tick () {
+    this.setState({ isOpen: this.checkOpen(this.props) })
   }
 
   render () {
@@ -73,7 +91,7 @@ export class CurrentHoursContainer extends Component {
       <InlineContainer
         status={this.props.hoursEntry.status}
         hoursEntry={this.props.hoursEntry}
-        isOpen={this.props.isOpen}
+        isOpen={this.state.isOpen}
         presenter={presenter}
         toggleExpanded={this.toggleExpanded}
       >{this.props.children}</InlineContainer>)

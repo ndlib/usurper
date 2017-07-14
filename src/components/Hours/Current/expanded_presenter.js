@@ -5,10 +5,10 @@ import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
-  const servicePointClassName = 'service-point' + (!isOpen ? ' closed' : '')
+  const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
   return (
-    <section className='service-point' aria-label={title}>
+    <section className={servicePointClassName} aria-label={title}>
       <a
         id='collapse_hours'
         className='collapse'

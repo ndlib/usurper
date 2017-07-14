@@ -5,10 +5,10 @@ import WeeklyHours from '../WeeklyHours'
 
 const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
-  const servicePointClassName = 'service-point' + (!isOpen ? ' closed' : '')
-  const todayLabel = (isOpen ? 'Today: ' + hoursEntry.today.display : 'Closed')
+  const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
+  const todayLabel = 'Today: ' + hoursEntry.today.display
   return (
-    <section className='service-point' aria-label={title}>
+    <section className={servicePointClassName} aria-label={title}>
       <a
         id='expand_hours'
         className='expand'
