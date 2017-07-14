@@ -16,6 +16,7 @@ const FooterLinks = () => {
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
+                <li><Link to={`https://nddev.service-now.com/ess/create_lib_incident.do?URL=${window.location}`}>Report A Problem</Link></li>
               </ul>
             </div>
           </div>
