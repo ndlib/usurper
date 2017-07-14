@@ -11,12 +11,12 @@ const FooterLinks = () => {
           <div className='col-xs-7'>
             <div className='box'>
               <ul role='navigation' aria-label='Footer Menu'>
-                <li><Link to={`https://nddev.service-now.com/ess/create_lib_incident.do?URL=${window.location}&lib_list_problem=lib_list_web_content`}>Website Feedback</Link></li>
+                <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}&lib_list_problem=lib_list_web_content`}>Website Feedback</Link></li>
                 <li><Link to='/library-policies'>Library Policies</Link></li>
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
-                <li><Link to={`https://nddev.service-now.com/ess/create_lib_incident.do?URL=${window.location}`}>Report A Problem</Link></li>
+                <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}`}>Report A Problem</Link></li>
               </ul>
             </div>
           </div>
