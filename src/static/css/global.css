@@ -30,12 +30,14 @@ h2 {
   color: #061F43;
   margin-bottom: 15px;
   margin-top: 0;
+  max-width: 650px;
 }
 
 h3 {
   color: #001E45;
   font-size: 24px;
   font-family: GPCMed, sans-serif;
+  max-width: 650px;
 
 }
 
@@ -1805,6 +1807,11 @@ address {
   padding-top: 25px;
   padding-bottom: 50px;
 }
+
+#footer-info a {
+  color: #fff;
+}
+
 #footer-info .box.center {
   text-align: center;
 }
@@ -1819,8 +1826,8 @@ address {
 
 .flogo {
   width: 230px;
+  height: 75px;
 
-  image-rendering: crisp-edges;
 }
 
 .chat-alternative-contact {
@@ -1880,6 +1887,7 @@ address {
   left: -70px;
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.4);
   background: rgba(0, 0, 0, 0) repeating-linear-gradient(45deg, #000, #000 5px, #fcc828 5px, #fcc828 10px) repeat scroll 0 0;
+  display: none;
 }
 .alpha div {
    padding: 3px 60px;
@@ -1903,6 +1911,7 @@ address {
   z-index: 199;
   background: rgba(0, 0, 0, 0) repeating-linear-gradient(45deg, #000, #000 5px, #fcc828 5px, #fcc828 10px) repeat scroll 0 0;
   padding: 6px;
+  display: none;
 }
 
 .feedback-notice-me a {
@@ -1963,7 +1972,7 @@ address {
   background: #f8e999;
   text-decoration: none;
   padding: 8px 20px;
-  color: #041f44;
+  color: #041f44 !important;
   display: inline-block;
   border-radius: 3px 3px 0 0;
   font-weight: bold;
