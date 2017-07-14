@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme'
 import { ContentfulPageContainer } from '../../../../components/Contentful/Page'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
-import * as statuses from '../../../../CONSTANTS/APIStatuses'
+import * as statuses from '../../../../constants/APIStatuses'
 import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
