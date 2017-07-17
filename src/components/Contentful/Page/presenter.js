@@ -11,10 +11,12 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
+import PageAlert from '../Alert/Page'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
+    <PageAlert alert={cfPageEntry.fields.alert} />
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
       <section className='col-md-8 col-sm-7'>

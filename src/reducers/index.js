@@ -2,6 +2,7 @@
 import contentfulPage from './contentful/page'
 import contentfulNews from './contentful/news'
 import contentfulAllNews from './contentful/allNews'
+import contentfulAllAlerts from './contentful/allAlerts'
 import contentfulEvent from './contentful/event'
 import contentfulAllEvents from './contentful/allEvents'
 import contentfulFloor from './contentful/floor'
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   cfPageEntry: contentfulPage,
   cfNewsEntry: contentfulNews,
   allNews: contentfulAllNews,
+  allAlerts: contentfulAllAlerts,
   cfEventEntry: contentfulEvent,
   allEvents: contentfulAllEvents,
   cfFloorEntry: contentfulFloor,
