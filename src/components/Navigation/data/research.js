@@ -8,17 +8,17 @@ export const researchData = [
     classes: 'col-md-offset-2 col-md-4',
     items: [
       {
-        title: 'Browse A-Z Databases',
+        title: 'Databases A-Z',
         url: '/databases/a',
 
       },
       {
-        title: 'Browse A-Z Subjects',
+        title: 'Subjects A-Z',
         url: '/subjects',
 
       },
       {
-        title: 'Subject Librarians',
+        title: 'Subject Librarians and Specialists',
         url: 'https://library.nd.edu/directory/subjects',
       },
       {

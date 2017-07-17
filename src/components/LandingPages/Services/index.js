@@ -8,10 +8,6 @@ const Services = () => {
 
     <LandingPage title='Services'>
 
-      <h1>All Services</h1>
-      <hr aria-hidden="true" />
-
-
       <div className='row services-landing'>
         <div className='col-md-4 col-xs-12'>
           {/*<h3>Featured Services</h3>
@@ -24,15 +20,15 @@ const Services = () => {
           <span>Who can check out materials, loan periods for different types of materials and users</span>
           </p>
 
-          <p><Link to='https://nd.illiad.oclc.org/illiad/IND/illiad.dll'>Interlibrary Loan</Link>
-          <span>Notre Dame faculty, students and staff may request articles, books, media, and more from other libraries when the Hesburgh Libraries do not have what you need</span>
-          </p>
-
-          <p><Link to='https://nd.illiad.oclc.org/illiad/IND/illiad.dll'>Document Delivery</Link>
-          <span>Notre Dame faculty, students and staff may request articles, books and book chapters from the Hesburgh Libraries' collections</span>
+          <p><Link to='https://nd.illiad.oclc.org/illiad/IND/illiad.dll'>Interlibrary Loan & Document Delivery</Link>
+          <span>Notre Dame faculty, students and staff may request articles, books and book chapters from the Hesburgh Libraries' collections, and articles, books, media, and more from other libraries when the Hesburgh Libraries do not have what you need</span>
           </p>
 
           <p><Link to='/dvds'>DVDs</Link>
+          <span></span>
+          </p>
+
+          <p><Link to='/microtext-and-media'>Microtext and Media</Link>
           <span></span>
           </p>
 
@@ -123,12 +119,6 @@ const Services = () => {
           <span>Make transcriptions of audio or video files more easily with our transcription pedal</span></p>
           <p><Link to='/request-library-research-instruction'>Request Instruction</Link></p>
 
-
-
-
-
-
-
         </div>
         <div className='col-md-4 col-xs-12'>
 
@@ -147,8 +137,16 @@ const Services = () => {
           <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
           <p><Link to='https://orcid.org/'>OrcID</Link>
           <span>ORCID provides a persistent digital identifier that distinguishes you from every other researcher and, through integration in key research workflows such as manuscript and grant submission, supports automated linkages between you and your professional activities ensuring that your work is recognized.</span></p>
+
+          <p><Link to='https://refworks.proquest.com/'>New RefWorks</Link>
+          <span></span></p>
+
+          <p><Link to='https://www.refworks.com/refworks2/default.aspx?r=authentication::init&groupcode=RWUnivNotreDame'>Legacy RefWorks </Link>
+          <span></span></p>
+
           <p><Link to='https://remix.nd.edu/'>Remix Digital Resource Portal</Link>
           <span>Remix assembles a broad variety of tools in one place to help you find, mix, and create new digital media and visual material</span></p>
+
           <p><Link to='/proxy-bookmarklet'>Proxy Bookmarklet</Link>
           <span>Access library resources while off-campus</span></p>
 
