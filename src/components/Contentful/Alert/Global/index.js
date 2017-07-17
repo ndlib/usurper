@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
   }
   return {
     allAlerts,
-    allAlertsStatus: state.allAlerts.status,
+    allAlertsStatus: state.allAlerts ? state.allAlerts.status : '',
   }
 }
 
