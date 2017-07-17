@@ -52,6 +52,23 @@ const LibLink = (props) => {
     return Invalid(props.className, props.children)
   }
 
+    // Urls to remove so links are local
+  let replaceUrls = [
+    'https://alpha.library.nd.edu',
+    'http://alpha.library.nd.edu',
+    'https://beta.library.nd.edu',
+    'http://beta.library.nd.edu',
+    'https://library.nd.edu',
+    'http://library.nd.edu',
+  ]
+
+  for (var index in replaceUrls) {
+    if (to.startsWith(replaceUrls[index])) {
+      to = to.substr(replaceUrls[index].length)
+      break
+    }
+  }
+
   to = to + query
 
   if (to.startsWith('http')) {
