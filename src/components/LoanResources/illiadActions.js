@@ -13,7 +13,7 @@ const IlliadActions = ({ item }) => {
   }
 
   let webButton = null
-  if (item.transactionStatus === 'Delivered to Web') {
+  if (item.status === 'Delivered to Web') {
     webButton = (
       <button>
         <Link to={Config.illiadBaseURL.replace('<<form>>', illWebForm).replace('<<value>>', item.transactionNumber)}>
