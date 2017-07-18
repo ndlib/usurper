@@ -1385,8 +1385,7 @@ hr {
   display: inline-block;
 }
 
-.service-point h4 {
-
+.service-point a h4 {
   font-family: GPCMed, sans-serif;
   font-size: 24px;
   font-weight: normal;
@@ -1447,7 +1446,7 @@ address {
   padding-left: 1em;
 }
 
-.point .building a, .point .floor a, .point .phone a {
+.point .building a, .point .floor a, .point .phone a, .point .email a {
   font-family: GPCMed, sans-serif;
   font-size: 20px;
   margin-bottom: 1em;
@@ -1464,6 +1463,11 @@ address {
 
 .point .phone a {
   background-image: url("../images/phone.png");
+}
+
+.point .email a {
+  background-image: url("../images/email.png");
+  background-position: 0 6px;
 }
 
 .moreinfo {
