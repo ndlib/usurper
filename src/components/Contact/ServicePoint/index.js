@@ -48,13 +48,19 @@ const Contact = (props) => {
     phone = <li className='phone'><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
   }
 
+  let email
+  if (sp.email) {
+    email = <li className='email'><a title={'Email ' + sp.email} href={'mailto:+' + sp.email }>{sp.email}</a></li>
+  }
+
   return (
     <div className='point'>
-      <h2>{addr1}</h2>
+      <h4>{addr1}</h4>
       <ul>
         {building}
         {floor}
         {phone}
+        {email}
       </ul>
     </div>
   )
