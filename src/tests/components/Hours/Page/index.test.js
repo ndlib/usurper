@@ -38,7 +38,7 @@ describe('components/Hours/Page/Container', () => {
       containsMatchingElement(
         <APIPresenterFactory
           status={props.hoursEntry.status}
-          props={{ servicePoints: [] }}
+          props={{ servicePoints: [], preview: false }}
           presenter={HoursPagePresenter}
         />)
       ).toBe(true)

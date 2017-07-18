@@ -50,6 +50,7 @@ export class HoursPageContainer extends Component {
         presenter={HoursPagePresenter}
         props={{
           servicePoints: this.props.servicePointsWithHours,
+          preview: this.props.location ? (new URLSearchParams(this.props.location.search)).get('preview') === 'true' : false,
         }}
         status={this.props.combinedStatus} />
     )
