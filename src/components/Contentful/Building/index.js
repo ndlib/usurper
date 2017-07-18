@@ -9,7 +9,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const BuildingPresenter = ({ cfBuildingEntry }) => (
   <div key={`ContentfulBuilding_${cfBuildingEntry.sys.id}`} >
-    <h3>{cfBuildingEntry.fields.title} </h3>
+    <h3>{cfBuildingEntry.fields.title}</h3>
 
     <Image cfImage={cfBuildingEntry.fields.image} />
     <div className='point'>
