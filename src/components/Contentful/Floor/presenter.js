@@ -13,10 +13,13 @@ const FloorPresenter = ({ cfFloorEntry }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid'>
     <PageTitle title={cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
-    <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
     <div className='row'>
     <div className='col-md-9 col-sm-12 floor'><Image cfImage={cfFloorEntry.fields.image} /></div>
-    <div className='col-md-3 col-sm-12 building'><Building cfBuildingEntry={cfFloorEntry.fields.building} /></div>
+    <div className='col-md-3 col-sm-12 building'>
+      <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
+      { cfFloorEntry.fields.callNumberRange && (<p>Call Number Ranges: {cfFloorEntry.fields.callNumberRange}</p>) }
+      <Building cfBuildingEntry={cfFloorEntry.fields.building} />
+    </div>
     </div>
   </div>
 )
