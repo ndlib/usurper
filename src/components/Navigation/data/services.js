@@ -6,25 +6,22 @@ export const servicesData = [
     title: 'Technology and Spaces',
     classes: 'col-md-offset-2 col-md-3',
     items: [
-
+      {
+        title: 'Book a Study or Multimedia Room',
+        url: 'http://nd.libcal.com/#s-lc-box-2749-container-tab1',
+      },
       {
         title: 'Copy, Print, Scan',
         url: '/copy-print-scan',
-
+      },
+      {
+        title: 'Reserve a Meeting or Event Space',
+        url: '/room-reservations',
       },
       {
         title: 'Technology Lending',
         url: '/technology-lending',
 
-      },
-      {
-        title: 'Book a study or multimedia room',
-        url: 'http://nd.libcal.com/#s-lc-box-2749-container-tab1',
-
-      },
-      {
-        title: 'Reserve a meeting or event space',
-        url: '/room-reservations',
       },
     ],
   },
@@ -37,12 +34,12 @@ export const servicesData = [
         url: '/borrow-renew-request',
       },
       {
-        title: 'Interlibrary Loan & Document Delivery',
-        url: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll',
-      },
-      {
         title: 'Course Reserves',
         url: '/courses',
+      },
+      {
+        title: 'Interlibrary Loan & Document Delivery',
+        url: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll',
       },
       {
         title: 'ND Catalog',
@@ -56,21 +53,22 @@ export const servicesData = [
     classes: 'col-md-3',
     items: [
       {
+        title: 'Library Research Consultations',
+        url: '/consultations',
+      },
+      {
         title: 'Library Research Instruction',
         url: '/request-library-research-instruction',
       },
-      {
-        title: 'Workshops',
-        url: '/workshops',
-      },
+
       {
         title: 'Thesis and Dissertation Camps',
         url: '/thesis-dissertation-camps',
       },
       {
-        title: 'Library Research Consultations',
-        url: '/consultations',
-      },
+        title: 'Workshops',
+        url: '/workshops',
+      },      
     ],
   },
 ]

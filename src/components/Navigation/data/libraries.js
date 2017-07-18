@@ -48,6 +48,10 @@ export const librariesData = [
         url: '/preservation',
       },
       {
+        title: 'Radiation Lab Reading Room',
+        url: '/radiation-lab-reading-room',
+      },
+      {
         title: 'Rare Books and Special Collections',
         url: 'http://rarebooks.library.nd.edu/',
       },

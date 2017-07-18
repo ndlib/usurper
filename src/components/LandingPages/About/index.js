@@ -5,7 +5,6 @@ const About = () => {
   return (
 
     <LandingPage title='About'>
-      <h1>All About</h1>
       <div className='row'>
         <div className='col-md-4 col-xs-12'>
         	<h3>People</h3>
