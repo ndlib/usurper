@@ -1,7 +1,17 @@
 # Change Log
 
-## [0.7](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.6.0...master)
+## [0.8](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.7.2...master)
+
+### New features/enhancements:
+- Added Alerts to both Page and Global scopes [#200](https://github.com/ndlib/usurper/pull/200)
+- Added Sidebar to Hours Page [#199](https://github.com/ndlib/usurper/pull/199)
+
+### Bug fixes:
+- All Internal links are now rewritten to be truely internal [#199](https://github.com/ndlib/usurper/pull/199)
+
+## [0.7](https://github.com/ndlib/usurper/tree/master) (2017-14-07)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.6.0...v0.7.2)
 
 ### New features/enhancements:
 - Added the page html title to the PageTitle component [#182](https://github.com/ndlib/usurper/pull/182)
