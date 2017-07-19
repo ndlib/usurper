@@ -254,14 +254,21 @@ a {
 
 .alert {
   padding: 9px;
-  border: solid 2px #FFD300;
-  background: #FFF2AF;
-  margin-bottom: 1.5em;
-  width: 80%;
 }
 
-.alert p:last-child {
-  margin-bottom: 0;
+.alert > a {
+  color: #061F43;
+}
+
+.alert.global {
+  border: solid 2px #DB2730;
+  background: #FC7279;
+}
+
+.alert.page {
+  border: solid 2px #DF7728;
+  background: #FFB073;
+  margin-bottom: 9px;
 }
 
 .top {
@@ -2046,7 +2053,7 @@ address {
 
 
 @media screen and (max-width: 885px) {
-  
+
   .appliance, .home .appliance {
     left: 0 !important;
     top: 0;
@@ -2089,7 +2096,7 @@ address {
 
 
 
-  
+
 
   .menu-list div.menu-icon {
     display: block;

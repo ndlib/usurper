@@ -17,7 +17,7 @@ export const librariesData = [
       },
       {
         title: 'Center for Digital Scholarship',
-        url: 'http://library.nd.edu/cds/',
+        url: 'http://cds.library.nd.edu/',
       },
       {
         title: 'Chemistry-Physics Library',

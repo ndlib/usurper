@@ -50,90 +50,89 @@ const Services = () => {
           <h3>Spaces</h3>
 
           <p><Link to='/graduate-student-carrels'>Graduate Student Carrels</Link>
-          <span>Available to graduate students in the College of Arts & Letters</span></p>
+            <span>Available to graduate students in the College of Arts & Letters</span></p>
           <p><Link to='http://hr.nd.edu/work-life-balance/lactation-rooms'>Lactation Room</Link>
-          <span>A lactation room, located on the fifth floor of Hesburgh, is available for faculty, staff and graduate students. Contact HR for more information or <Link to='http://hr.nd.edu/work-life-balance/lactation-rooms/'>request access</Link>.</span> </p>
+            <span>A lactation room, located on the fifth floor of Hesburgh, is available for faculty, staff and graduate students. Contact HR for more information or <Link to='http://hr.nd.edu/work-life-balance/lactation-rooms/'>request access</Link>.</span> </p>
           <p><Link to='/room-reservations'>Reserve a Meeting or Event Space</Link>
-          <span>Reserve spaces in Libraries facilities</span> </p>
+            <span>Reserve spaces in Libraries facilities</span> </p>
           <p><Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1'>Book a Study or Multimedia Room</Link>
-          <span>Reserve spaces in Libraries facilities</span> </p>
+            <span>Reserve spaces in Libraries facilities</span> </p>
           <p><Link to='/writing-center'>Writing Center</Link></p>
 
           <h3>Specialty Expertise and Consultation Areas</h3>
 
           <p><Link to='http://libguides.library.nd.edu/datamanagement'>Copyright Consulting</Link>
-                    <span>Submit a question to the copyright team.</span></p>
+            <span>Submit a question to the copyright team.</span></p>
           <p><Link to='http://libguides.library.nd.edu/datamanagement'>Data Management Consulting Team</Link>
-                    <span>Contact us for assistance with data management plans, and more.</span></p>
-          <p><Link to='http://library.nd.edu/cds/expertise/Analysis.shtml'>Data Use & Analysis </Link>
-                    <span>Request help in formulating an analysis, identifying appropriate data sets, or preparing and working with data.</span></p>
-          <p><Link to='http://library.nd.edu/cds/expertise/digital-humanities/'>Digital Humanities </Link>
-                    <span></span></p>
-          <p><Link to='http://library.nd.edu/cds/expertise/GIS.shtml'>Geographic Information Systems </Link>
-                   <span> Request assistance with the generation of images from spatial data and spatial data analysis.</span></p>
+            <span>Contact us for assistance with data management plans, and more.</span></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/Analysis.shtml'>Data Use & Analysis </Link>
+            <span>Request help in formulating an analysis, identifying appropriate data sets, or preparing and working with data.</span></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/digital-humanities/'>Digital Humanities </Link>
+            <span /></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/GIS.shtml'>Geographic Information Systems </Link>
+            <span> Request assistance with the generation of images from spatial data and spatial data analysis.</span></p>
           <p><Link to='http://libguides.library.nd.edu/latex'>LaTeX Consulting</Link>
-                    <span>Request help with using LaTeX for document typesetting.</span></p>
+            <span>Request help with using LaTeX for document typesetting.</span></p>
           <p><Link to='/math-tutoring'>Math Tutoring</Link>
-                    <span>Tutoring can be scheduled for an individual or a small group for half-hour sessions.</span></p>
-          <p><Link to='http://library.nd.edu/cds/expertise/TextMining.shtml'>Text Mining & Analysis</Link>
-                    <span>The Center for Digital Scholarship supports the analysis of both structured and unstructured texts.</span></p>
-          <p><Link to='http://library.nd.edu/cds/print/'>3D Modeling and Printing</Link>
-                    <span></span></p>
-          <p><Link to='http://library.nd.edu/cds/expertise/Digitization.shtml'>Digitization and Metadata Services</Link></p>
+            <span>Tutoring can be scheduled for an individual or a small group for half-hour sessions.</span></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/TextMining.shtml'>Text Mining & Analysis</Link>
+            <span>The Center for Digital Scholarship supports the analysis of both structured and unstructured texts.</span></p>
+          <p><Link to='http://cds.library.nd.edu/print/'>3D Modeling and Printing</Link>
+            <span /></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/Digitization.shtml'>Digitization and Metadata Services</Link></p>
 
         </div>
         <div className='col-md-4 col-xs-12'>
           <h3>Teaching and Consulting</h3>
 
           <p><Link to='/courses'>Course Reserves</Link>
-          <span>For students and faculty to access reserve items or place items on reserve</span> </p>
+            <span>For students and faculty to access reserve items or place items on reserve</span> </p>
           <p><Link to='/consultations'>Library Research Consultations</Link>
-                    <span>Make an appointment to meet with a librarian</span></p>
+            <span>Make an appointment to meet with a librarian</span></p>
           <p>Request Instruction
-                    <span>Request library instruction for your class sessions</span></p>
+            <span>Request library instruction for your class sessions</span></p>
           <p><Link to='http://libguides.library.nd.edu/dissertation-camp'>Research and Writing Camps</Link>
-                              <span>The Libraries offer a variety of research and writing camps, such as thesis and dissertation camps, research and statistical tools camps, and custom boot camps for groups by request.</span></p>
+            <span>The Libraries offer a variety of research and writing camps, such as thesis and dissertation camps, research and statistical tools camps, and custom boot camps for groups by request.</span></p>
           <p><Link to='http://nd.libcal.com/calendar/allworkshops/?cid=447&t=m&d=0000-00-00&cal%5B%5D=447'>Workshops</Link>
-                    <span>Library workshops are available on a variety of topics. Sign up for sessions, review handouts from past sessions, or request a custom session.</span></p>
-
+            <span>Library workshops are available on a variety of topics. Sign up for sessions, review handouts from past sessions, or request a custom session.</span></p>
 
           <h3>Technology and Technology Lending</h3>
           <p><Link to='http://library.nd.edu/cds/print/'>3D Modeling and Printing</Link>
-          <span>Submit a 3D print job or request assistance with finding or designing a 3D model</span></p>
+            <span>Submit a 3D print job or request assistance with finding or designing a 3D model</span></p>
           <p><Link to='/copy-print-scan'>Copying, Printing, and Scanning</Link>
-          <span>Locate computers and other technology within Libraries facilities</span></p>
+            <span>Locate computers and other technology within Libraries facilities</span></p>
           <p>Listening Stations</p>
           <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link>
 
-          <span>Reserve the One Button Studio video recording space</span></p>
+            <span>Reserve the One Button Studio video recording space</span></p>
           <p><Link to='https://oit.nd.edu/help-desk/'>OIT Help Desk Outpost </Link>
-          <span>Located in the Hesburgh Library near the Ask Us Desk on the 1st floor</span></p>
+            <span>Located in the Hesburgh Library near the Ask Us Desk on the 1st floor</span></p>
           <p><Link to='http://libguides.library.nd.edu/soundstudio'>Sound Studio </Link>
-          <span>Reserve the Sound Studio audio recording space</span></p>
-          <p><Link to='http://library.nd.edu/cds/technology/#Software'>Specialty Software</Link>
-          <span>View special software titles available via the Libraries</span></p>
+            <span>Reserve the Sound Studio audio recording space</span></p>
+          <p><Link to='http://cds.library.nd.edu/technology/#Software'>Specialty Software</Link>
+            <span>View special software titles available via the Libraries</span></p>
           <p><Link to='http://nd.libcal.com/reserve/equipment'>Technology and Miscellaneous Equipment Lending</Link>
-          <span>Reserve laptops, cameras, headphones, accessories, and more</span> </p>
+            <span>Reserve laptops, cameras, headphones, accessories, and more</span> </p>
           <p><Link to='http://libguides.library.nd.edu/transcriptionstation'>Transcription Station </Link>
-          <span>Make transcriptions of audio or video files more easily with our transcription pedal</span></p>
+            <span>Make transcriptions of audio or video files more easily with our transcription pedal</span></p>
           <p><Link to='/request-library-research-instruction'>Request Instruction</Link></p>
 
         </div>
         <div className='col-md-4 col-xs-12'>
 
- <h3>Research and Scholarship Tools</h3>
+          <h3>Research and Scholarship Tools</h3>
 
           <p><Link to='http://libguides.library.nd.edu/citemanage/home'>Citation Managers</Link>
-          <span>Citation Management software allows you to create and track references (aka citations) and to create bibliographies or reference lists formatted in the appropriate style, such as APA, MLA, Chicago or Turabian.</span></p>
+            <span>Citation Management software allows you to create and track references (aka citations) and to create bibliographies or reference lists formatted in the appropriate style, such as APA, MLA, Chicago or Turabian.</span></p>
           <p><Link to='https://curate.nd.edu/'>CurateND</Link>
-          <span>CurateND is the campus’ institutional repository, enabling Notre Dame faculty, students, and staff to share and preserve their research and scholarship </span>
+            <span>CurateND is the campus’ institutional repository, enabling Notre Dame faculty, students, and staff to share and preserve their research and scholarship </span>
           </p>
           <p><Link to='http://collections.library.nd.edu/'>DEC</Link>
-          <span>View digital exhibits and collections online</span></p>
+            <span>View digital exhibits and collections online</span></p>
           <p><Link to='http://libguides.library.nd.edu/c.php?g=670290&p=4716454#s-lg-box-14788259'>DMPTool</Link>
-          <span>DMPTool is a flexible online tool that guides users through each step of creating a compliant data management plan for specific funding agencies.</span> </p>
+            <span>DMPTool is a flexible online tool that guides users through each step of creating a compliant data management plan for specific funding agencies.</span> </p>
           <p><Link to='/osf'>Open Science Framework</Link>
-          <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
+            <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
           <p><Link to='https://orcid.org/'>OrcID</Link>
           <span>ORCID provides a persistent digital identifier that distinguishes you from every other researcher and, through integration in key research workflows such as manuscript and grant submission, supports automated linkages between you and your professional activities ensuring that your work is recognized.</span></p>
 
@@ -145,25 +144,24 @@ const Services = () => {
 
           <p><Link to='https://remix.nd.edu/'>Remix Digital Resource Portal</Link>
           <span>Remix assembles a broad variety of tools in one place to help you find, mix, and create new digital media and visual material</span></p>
-
+            
           <p><Link to='/proxy-bookmarklet'>Proxy Bookmarklet</Link>
-          <span>Access library resources while off-campus</span></p>
+            <span>Access library resources while off-campus</span></p>
 
-
- <h3>Miscellaneous Services</h3>
+          <h3>Miscellaneous Services</h3>
 
           <p>Document Shredding
-          <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
-<p><Link to='/lokmobiles'>Lokmobiles</Link>
-<span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>
-<p>Lost & Found
-<span>Please contact Library Monitors at (574) 631-6350</span></p>
-<p>Notary Public
-<span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
-<p>Science Equipment for Teachers</p>
-<p><Link to='/services-for-library-users-with-disabilities'>Services for Library Users with Disabilities</Link> </p>
-<p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
-<span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
+            <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
+          <p><Link to='/lokmobiles'>Lokmobiles</Link>
+            <span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>
+          <p>Lost & Found
+            <span>Please contact Library Monitors at (574) 631-6350</span></p>
+          <p>Notary Public
+            <span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
+          <p>Science Equipment for Teachers</p>
+          <p><Link to='/services-for-library-users-with-disabilities'>Services for Library Users with Disabilities</Link> </p>
+          <p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
+            <span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
 
         </div>
       </div>

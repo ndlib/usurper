@@ -7,6 +7,7 @@ import HesburghBanner from './HesburghBanner'
 import FeedbackButton from '../FeedbackButton'
 import Navigation from '../Navigation'
 import SearchDrawer from '../SearchDrawer'
+import GlobalAlert from '../Contentful/Alert/Global'
 import '../../static/css/global.css'
 
 const Header = (props) => {
@@ -16,6 +17,7 @@ const Header = (props) => {
       <Route exact path='/' component={BrandingBanner} />
       <HesburghBanner />
       <FeedbackButton />
+      <GlobalAlert />
       <div className='nav-search'>
         <Navigation {...props} />
         <SearchDrawer {...props} />
