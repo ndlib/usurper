@@ -46,9 +46,6 @@ class Courses extends Component {
           <p className='course-header'>{course.title}</p>
           <small className='course-subtitle'>{subtitle}</small>
         </div>
-        <div className='course-guides'>
-          {courseGuides}
-        </div>
         <div className='course-reserves'>
           {courseReserves}
         </div>
@@ -93,9 +90,6 @@ class Courses extends Component {
           <p className='course-header'>{course.title}</p>
           <small className='course-subtitle'>{subtitle}</small>
         </div>
-        <div className='course-guides'>
-          {courseGuide}
-        </div>
         <div className='course-reserves'>
           {courseReserves}
         </div>
@@ -122,9 +116,6 @@ class Courses extends Component {
           <div className='course-card header'>
             <div className='course'>
               <p className='course-header'>Course</p>
-            </div>
-            <div className='course-guides'>
-              Course Guide
             </div>
             <div className='course-reserves'>
               Course Reserves

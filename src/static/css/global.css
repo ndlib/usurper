@@ -1313,8 +1313,8 @@ hr {
   background: #F9F9F9;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns:  1fr 1.5fr .5fr .5fr;
-  grid-template-columns: 1.5fr 1fr  1fr 1fr;
+  -ms-grid-columns:  1fr 1.5fr .5fr;
+  grid-template-columns: 1.5fr 1fr  1fr;
 }
 
 .course-card div {
@@ -2042,7 +2042,7 @@ address {
 
 
 @media screen and (max-width: 885px) {
-  
+
   .appliance, .home .appliance {
     left: 0 !important;
     top: 0;
@@ -2085,7 +2085,7 @@ address {
 
 
 
-  
+
 
   .menu-list div.menu-icon {
     display: block;
