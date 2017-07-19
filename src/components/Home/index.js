@@ -19,7 +19,7 @@ class Home extends Component {
       <div className='Home main'>
         <PageTitle title='Hesburgh Library' hideInPage={true} />
         <SearchProgramaticSet open />
-        <HomePageHours jsonHoursApiKey='hesburghlibrary' />
+        <HomePageHours />
 
         <section className=' services hservices' aria-label='Quicklinks'>
           <div className='-col-sm-3 -col-xs-6'>

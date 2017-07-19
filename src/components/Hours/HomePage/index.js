@@ -12,10 +12,16 @@ import InlineContainer from '../InlineContainer'
 // this is done by creating a private instance of the conector for each component.
 const makeMapStateToProps = () => {
   const getHoursForServicePoint = makeGetHoursForServicePoint()
-  const mapStateToProps = (state, props) => {
+  const mapStateToProps = (state) => {
     // these props are required for the inline container.
+    let props = {
+      servicePoint: {
+        fields: {
+          hoursCode: 'hesburghlibrary',
+        },
+      },
+    }
     let ret = {
-      jsonHoursApiKey: props.jsonHoursApiKey, // the key to look up hours component in the store used in the selector.
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
     return ret
@@ -45,7 +51,6 @@ export class HomePageHoursContainer extends Component {
 
 HomePageHoursContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
-  jsonHoursApiKey: PropTypes.string.isRequired,
   fetchHours: PropTypes.func.isRequired,
 }
 
