@@ -5,39 +5,17 @@ import PropTypes from 'prop-types'
 import { fetchAllAlerts } from '../../../../actions/contentful/allAlerts'
 import Presenter from '../presenter.js'
 import * as statuses from '../../../../constants/APIStatuses'
-import { flattenLocale } from '../../../../shared/ContentfulLibs'
+import makeAlertSelector from '../../../../selectors/alerts'
 
-const mapStateToProps = (state) => {
-  let allAlerts = []
-  if (state.allAlerts && state.allAlerts.status === statuses.SUCCESS) {
-    let now = new Date()
-
-    allAlerts = state.allAlerts.json
-      .map((entry) => {
-        flattenLocale(entry.fields, 'en-US')
-        return entry
-      })
-      .filter((entry) => {
-        let start = new Date(entry.fields.startTime)
-        let end = new Date(entry.fields.endTime)
-        return start <= now && end >= now && entry.fields.global
-      })
-      .sort((left, right) => {
-        let a = new Date(left.fields.startTime)
-        let b = new Date(right.fields.startTime)
-
-        if (a < b) {
-          return 1
-        } else if (b < a) {
-          return -1
-        }
-        return 0
-      })
+const makeMapStateToProps = () => {
+  const selector = makeAlertSelector()
+  const mapStateToProps = (state) => {
+    return {
+      allAlerts: selector(state),
+      allAlertsStatus: state.allAlerts ? state.allAlerts.status : '',
+    }
   }
-  return {
-    allAlerts,
-    allAlertsStatus: state.allAlerts ? state.allAlerts.status : '',
-  }
+  return mapStateToProps
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -66,7 +44,7 @@ AllAlertsContainer.propTypes = {
 }
 
 const Alerts = connect(
-  mapStateToProps,
+  makeMapStateToProps,
   mapDispatchToProps
 )(AllAlertsContainer)
 
