@@ -8,7 +8,7 @@ const Research = () => {
     <LandingPage title='Research'>
 
       <h1>All Research</h1>
-      <hr aria-hidden="true" />
+      <hr aria-hidden='true' />
       <div className='row research-landing'>
         <div className='col-md-6 col-xs-12'>
 
@@ -28,7 +28,7 @@ const Research = () => {
             <span>Current trials for databases or other electronic content</span>
           </p>
           <p>
-            <Link to='https://library.nd.edu/directory/subjects' noTarget={true}>Subject Librarians</Link>
+            <Link to='https://directory.library.nd.edu/directory/subjects' noTarget>Subject Librarians</Link>
           </p>
           <p>
             <Link to='http://libguides.library.nd.edu'>Research Guides</Link><br />
@@ -77,12 +77,11 @@ const Research = () => {
 
           <p><Link to='http://rarebooks.library.nd.edu/exhibits/index.shtml'>Exhibits</Link></p>
 
-
           <h3>Search Tools</h3>
 
-          <p><Link to='http://library.nd.edu/utilities/search/ndu/onesearch'>OneSearch</Link></p>
+          <p><Link to='http://onesearch.library.nd.edu/utilities/search/ndu/onesearch'>OneSearch</Link></p>
 
-          <p><Link to='http://library.nd.edu/utilities/search/ndu/nd_campus'>ND Catalog</Link></p>
+          <p><Link to='http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&query=&search_scope=nd_campus&tab=nd_campus&vid=NDU&displayField=title&displayField=creator'>ND Catalog</Link></p>
 
           <p><Link to='https://ejl.library.nd.edu/'>EJournal Locator</Link></p>
 

@@ -1,12 +1,11 @@
 
-
 export const aboutData = [
   {
     title: 'People',
     classes: 'col-md-offset-2 col-md-2',
     items: [
       { title: 'Contact Us', url: '/get-help' },
-      { title: 'Faculty & Staff Directory', url: 'http://library.nd.edu/directory' },
+      { title: 'Faculty & Staff Directory', url: 'http://directory.library.nd.edu/directory' },
       { title: 'Employment Opportunities', url: '/employment' },
     ],
   },
@@ -27,6 +26,5 @@ export const aboutData = [
       { title: 'University Committee on Libraries', url: '/ucl' },
     ],
   },
-
 
 ]

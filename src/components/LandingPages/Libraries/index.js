@@ -8,8 +8,8 @@ const Libraries = () => {
     <LandingPage title='Libraries and Centers'>
 
       <h2>All Libraries and Centers</h2>
-      <hr aria-hidden="true" />
-      
+      <hr aria-hidden='true' />
+
       <div className='row'>
         <div className='col-md-4 col-xs-12'>
 
@@ -21,7 +21,7 @@ const Libraries = () => {
 
             <li><Link to='/business/'>Business Library</Link></li>
 
-            <li><Link to='http://library.nd.edu/cds/'>Center for Digital Scholarship</Link></li>
+            <li><Link to='http://cds.library.nd.edu/'>Center for Digital Scholarship</Link></li>
 
             <li><Link to='/chemistry/'>Chemistry/Physics Library</Link></li>
 
