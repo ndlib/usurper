@@ -38,7 +38,7 @@ describe('components/Contentful/Building', () => {
   })
 
   it('should renders the title of the content', () => {
-    expect(enzymeWrapper.children().someWhere(n => n.node.props.title === 'Fake Title')).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<h3>Fake Title</h3>)).toBe(true)
   })
 
   it('should render Image for image', () => {
