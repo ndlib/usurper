@@ -18,7 +18,7 @@ const Libraries = () => {
 
             <li><Link to='/business/'>Business Library</Link></li>
 
-            <li><Link to='http://library.nd.edu/cds/'>Center for Digital Scholarship</Link></li>
+            <li><Link to='http://cds.library.nd.edu/'>Center for Digital Scholarship</Link></li>
 
             <li><Link to='/chemistry/'>Chemistry/Physics Library</Link></li>
 
