@@ -18,7 +18,6 @@ const LibRedirect = (props) => {
   // index.php redirect
   } else if (props.path.indexOf('index.php') > 1) {
     const target = props.target + props.location.pathname.replace('index.php', '')
-    console.log(target)
     return (
       <Route
         path={props.path}
