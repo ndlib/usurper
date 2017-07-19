@@ -5,20 +5,20 @@ export const researchData = [
 
   {
     title: 'Research Support',
-    classes: 'col-md-offset-2 col-md-4',
+    classes: 'col-md-offset-2 col-md-3',
     items: [
       {
-        title: 'Browse A-Z Databases',
+        title: 'Databases A-Z',
         url: '/databases/a',
 
       },
       {
-        title: 'Browse A-Z Subjects',
+        title: 'Subjects A-Z',
         url: '/subjects',
 
       },
       {
-        title: 'Subject Librarians',
+        title: 'Subject Librarians and Specialists',
         url: 'https://directory.library.nd.edu/directory/subjects',
       },
       {
@@ -41,7 +41,7 @@ export const researchData = [
   },
   {
     title: 'Unique Collections',
-    classes: 'col-md-4',
+    classes: 'col-md-3',
     items: [
       {
         title: 'Medieval Institute Library',
@@ -66,6 +66,33 @@ export const researchData = [
       {
         title: 'Exhibits',
         url: 'http://rarebooks.library.nd.edu/exhibits/index.shtml',
+      },
+    ],
+  },
+  {
+    title: 'Featured Resources',
+    classes: 'col-md-3',
+    items: [
+      {
+        title: 'Academic Search Premier',
+        url: 'http://eresources.library.nd.edu/databases/academicsearch',
+      },
+      {
+        title: 'Google Scholar',
+        url: 'http://eresources.library.nd.edu/databases/googlescholar',
+      },
+
+      {
+        title: 'JSTOR',
+        url: 'http://eresources.library.nd.edu/databases/jstor',
+      },
+      {
+        title: 'Web of Science',
+        url: 'http://eresources.library.nd.edu/databases/webofscience',
+      },
+      {
+        title: 'WorldCat',
+        url: 'http://www.worldcat.org.proxy.library.nd.edu/',
       },
     ],
   },

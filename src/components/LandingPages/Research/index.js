@@ -7,19 +7,17 @@ const Research = () => {
 
     <LandingPage title='Research'>
 
-      <h1>All Research</h1>
-      <hr aria-hidden='true' />
       <div className='row research-landing'>
         <div className='col-md-6 col-xs-12'>
 
           <h3>Research Support</h3>
           <p>
-            <Link to='/databases/a'>Browse A-Z Databases</Link><br />
+            <Link to='/databases/a'>Databases A-Z</Link><br />
             <span>Browse an alphabetical list of databases and online resources</span>
 
           </p>
           <p>
-            <Link to='/subjects/'>Browse by Subject</Link><br />
+            <Link to='/subjects/'>Subjects A-Z</Link><br />
             <span>Browse an alphabetical list of subjects</span>
 
           </p>
@@ -28,7 +26,12 @@ const Research = () => {
             <span>Current trials for databases or other electronic content</span>
           </p>
           <p>
-            <Link to='https://directory.library.nd.edu/directory/subjects' noTarget>Subject Librarians</Link>
+
+            <Link to='https://directory.library.nd.edu/directory/subjects' noTarget={true}>Subject Librarians and Specialists</Link>
+          </p>
+          <p>
+            <Link to='http://libguides.library.nd.edu/first-year-studies'>Starting Your Research</Link><br />
+            <span>Guide for first year students to help starting research.</span>
           </p>
           <p>
             <Link to='http://libguides.library.nd.edu'>Research Guides</Link><br />
