@@ -17,7 +17,7 @@ const PagePresenter = ({ entry }) => (
     <PageTitle title={entry.fields.title} />
     <SearchProgramaticSet open={false} />
     <div className='row'>
-      <div className='col-md-8 col-sm-8'>
+      <div className='col-md-8 col-sm-8 article'>
         <LibMarkdown>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </div>

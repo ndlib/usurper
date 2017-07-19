@@ -10,14 +10,11 @@ const Services = () => {
 
       <div className='row services-landing'>
         <div className='col-md-4 col-xs-12'>
-          {/*<h3>Featured Services</h3>
-
-          <p><Link to='/room-reservations/'><img src={ReserveRoom} /></Link></p>*/}
-
           <h3>Borrow</h3>
 
-          <p><Link to='/borrow-renew-request/'>Borrow, Renew, Request Policies</Link>
-          <span>Who can check out materials, loan periods for different types of materials and users</span>
+          <p>
+            <Link to='/borrow-renew-request/'>Borrow, Renew, Request Policies</Link>
+            <span>Who can check out materials, loan periods for different types of materials and users</span>
           </p>
 
           <p><Link to='https://nd.illiad.oclc.org/illiad/IND/illiad.dll'>Interlibrary Loan & Document Delivery</Link>
@@ -28,15 +25,17 @@ const Services = () => {
           <span></span>
           </p>
 
-          <p><Link to='/microtext-and-media'>Microtext and Media</Link>
-          <span></span>
+          <p>
+            <Link to='/microtext-and-media'>Microtext and Media</Link>
+            <span />
           </p>
 
           <h3>Request and Problem Report Forms</h3>
           <h4>Buy, Hold, or Find</h4>
           <ul>
+
             <li><Link to='#'>Missing Book Search Requests</Link> </li>
-            <li><Link to='#'>Recommend a Purchase</Link> </li>
+            <li><Link to='https://library.nd.edu/utilities/forms/purchase'>Recommend a Purchase</Link> </li>
             <li><Link to='#'>Request an In Process or On Order Item</Link> </li>
           </ul>
           <h4>Problem Report Forms</h4>

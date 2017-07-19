@@ -48,12 +48,15 @@ export class CurrentHoursContainer extends Component {
 
   componentDidMount () {
     // check current time every second to update color
-    setInterval(this.tick.bind(this), 1000)
+    const intervalId = setInterval(this.tick.bind(this), 1000)
+    this.setState({ intervalId: intervalId })
     if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
       this.props.fetchHours()
     }
   }
-
+  componentWillUnmount () {
+    clearInterval(this.state.intervalId)
+  }
   componentWillReceiveProps (newProps) {
     this.setState({ isOpen: this.checkOpen(newProps) })
   }

@@ -97,6 +97,7 @@ a {
   color: #93601D;
 }
 
+
 #skiplink {
   display: none;
 }
@@ -1189,7 +1190,6 @@ hr {
 
   grid-template-columns: 1.5fr 1fr 1fr 1fr ;
   -ms-grid-columns: 1.5fr 1fr 1fr 1fr ;
-  width: 88%;
   justify-content: left;
   font-size: 16px;
 
@@ -1315,7 +1315,6 @@ hr {
   display: grid;
   -ms-grid-columns:  1fr 1.5fr .5fr .5fr;
   grid-template-columns: 1.5fr 1fr  1fr 1fr;
-  width: 88%;
 }
 
 .course-card div {
@@ -1628,6 +1627,13 @@ address {
   top: -2px;
 }
 */
+
+.article img {
+  border: solid 2px #fff;
+  float: right;
+  margin:  0 0 15px 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
+}
 
 .col-md-4.right {
   position: relative;
@@ -2370,7 +2376,7 @@ body {
 #banner .container-fluid {
   background-image: url('../images/jesus.2.png');
   background-size: contain;
-  background-position: right 200px top;
+  background-position: right top;
 }
 
 
