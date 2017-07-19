@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 
 const getHoursStatus = (state, props) => {
-  const key = props.servicePoint ? props.servicePoint.fields.hoursCode : props.jsonHoursApiKey
+  const key = props.servicePoint.fields.hoursCode
   if (state.hours.status === statuses.SUCCESS && !state.hours.json[key]) {
     return statuses.NOT_FOUND
   }
@@ -10,7 +10,7 @@ const getHoursStatus = (state, props) => {
 }
 
 const getHours = (state, props) => {
-  const key = props.servicePoint ? props.servicePoint.fields.hoursCode : props.jsonHoursApiKey
+  const key = props.servicePoint.fields.hoursCode
   return Object.assign({}, state.hours.json[key])
 }
 
@@ -18,24 +18,24 @@ const getHoursName = (state, props) => {
   if (state.hours.status !== statuses.SUCCESS) {
     return ''
   }
-  if (props.servicePoint && props.servicePoint.fields.title) {
-    return props.servicePoint.fields.title
-  }
-  if (!props.jsonHoursApiKey) {
-    return ''
-  }
-  return state.hours.json[props.jsonHoursApiKey].name
+
+  return props.servicePoint.fields.title
+}
+
+const getServicePoint = (state, props) => {
+  return props.servicePoint.fields
 }
 
 const makeGetHoursForServicePoint = () => {
   return createSelector(
-    [getHoursStatus, getHours, getHoursName],
-    (status, hours, name) => {
+    [getHoursStatus, getHours, getHoursName, getServicePoint],
+    (status, hours, name, servicePoint) => {
       if (!hours) {
         hours = {}
       }
       hours.name = name
       hours.status = status
+      hours.servicePoint = servicePoint
       return hours
     }
   )

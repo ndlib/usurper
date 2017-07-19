@@ -12,7 +12,9 @@ const ServicePoint = ({ cfServicePoint }) => {
   return (
     <section aria-label={'Service Point: ' + cfServicePoint.fields.title} role='complementary'>
       <h3>{cfServicePoint.fields.title}</h3>
-      <CurrentHours jsonHoursApiKey={cfServicePoint.fields.hoursCode} />
+      <h4>{cfServicePoint.fields.address}</h4>
+
+      <CurrentHours servicePoint={cfServicePoint} />
       <Contact servicePoint={cfServicePoint} />
     </section>
   )

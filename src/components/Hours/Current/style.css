@@ -19,7 +19,9 @@
 
 .right .service-point {
 	border-top: none;
+	border-bottom: none;
 	padding-top: 0;
+	margin-bottom: auto;
 }
 
 

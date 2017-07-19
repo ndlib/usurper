@@ -21,6 +21,7 @@ const Presenter = (props) => {
               props.servicePoints.map((servicePoint) => {
                 return (<div key={servicePoint.sys.id}>
                   <CurrentHours servicePoint={servicePoint} >
+                    <h4>{servicePoint.fields.address}</h4>
                     <Contact servicePoint={servicePoint} />
                   </CurrentHours>
                 </div>)
