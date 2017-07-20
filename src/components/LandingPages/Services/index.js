@@ -68,18 +68,19 @@ const Services = () => {
           <p><Link to='http://cds.library.nd.edu/expertise/Analysis.shtml'>Data Use & Analysis </Link>
             <span>Request help in formulating an analysis, identifying appropriate data sets, or preparing and working with data.</span></p>
           <p><Link to='http://cds.library.nd.edu/expertise/digital-humanities/'>Digital Humanities </Link>
-            <span /></p>
+            <span>Request help in working with digital texts, marking editions, or assessing/creating digital scholarship and projects.</span></p>
           <p><Link to='http://cds.library.nd.edu/expertise/GIS.shtml'>Geographic Information Systems </Link>
-            <span> Request assistance with the generation of images from spatial data and spatial data analysis.</span></p>
+            <span> Get help generating a map or analyzing spatial data.</span></p>
           <p><Link to='http://libguides.library.nd.edu/latex'>LaTeX Consulting</Link>
             <span>Request help with using LaTeX for document typesetting.</span></p>
           <p><Link to='/math-tutoring'>Math Tutoring</Link>
             <span>Tutoring can be scheduled for an individual or a small group for half-hour sessions.</span></p>
           <p><Link to='http://cds.library.nd.edu/expertise/TextMining.shtml'>Text Mining & Analysis</Link>
-            <span>The Center for Digital Scholarship supports the analysis of both structured and unstructured texts.</span></p>
+            <span>Given hundreds of websites, thousands of journal articles, or tens-of-thousands of books, request assistance with using and understanding the content of large corpora.</span></p>
           <p><Link to='http://cds.library.nd.edu/print/'>3D Modeling and Printing</Link>
-            <span /></p>
-          <p><Link to='http://cds.library.nd.edu/expertise/Digitization.shtml'>Digitization and Metadata Services</Link></p>
+            <span>Get help with designing 3D models and creating 3D prints.</span></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/Digitization.shtml'>Digitization and Metadata Services</Link>
+            <span>Consult with staff on digitization, description, and preservation of digital collections to enable long-term discovery and sustainability of materials.</span></p>
 
         </div>
         <div className='col-md-4 col-xs-12'>

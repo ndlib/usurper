@@ -22,19 +22,19 @@ class Home extends Component {
         <HomePageHours />
 
         <section className=' services hservices' aria-label='Quicklinks'>
-          <div className='-col-sm-3 -col-xs-6'>
+          <div className='-col-sm-3 -col-xs-6 one'>
             <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' aria-hidden /></Link>
           </div>
-          <div className='-col-sm-3 -col-xs-6'>
+          <div className='-col-sm-3 -col-xs-6 two'>
             <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves' aria-hidden /></Link>
           </div>
-          <div className='-col-sm-3 -col-xs-6'>
+          <div className='-col-sm-3 -col-xs-6 three'>
             <Link to='http://directory.library.nd.edu/directory/subjects' title='Find Your Librarian' noTarget><img src={Find} alt='Find Your Librarian ' aria-hidden /></Link>
           </div>
-          <div className='-col-sm-3 -col-xs-6'>
+          <div className='-col-sm-3 -col-xs-6 four'>
             <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. ' aria-hidden /></Link>
           </div>
-          <div className='-col-sm-3 -col-xs-6'>
+          <div className='-col-sm-3 -col-xs-6 five'>
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending.' aria-hidden /></Link>
           </div>
         </section>

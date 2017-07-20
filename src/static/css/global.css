@@ -1202,6 +1202,10 @@ hr {
 
 }
 
+.card-item button {
+  margin-left: 10px;
+}
+
 .card-item > div {
   padding: 10px;
 }
@@ -1526,11 +1530,32 @@ address {
 .hservices {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1em;
 }
 
 .hservices img {
   height: 100%;
+}
+
+.one {
+  -ms-grid-column: 1;
+}
+
+.two {
+  -ms-grid-column: 2;
+}
+
+.three {
+  -ms-grid-column: 3;
+}
+
+.four {
+  -ms-grid-column: 4;
+}
+
+.five {
+  -ms-grid-column: 5;
 }
 
 
