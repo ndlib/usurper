@@ -8,6 +8,26 @@ import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 
+const hoursPageOrder = [
+  { servicePointSlug: 'hesburghlibrary', main: true },
+  { servicePointSlug: 'askusdesk', main: false },
+  { servicePointSlug: 'circulationservicedesk', main: false },
+  { servicePointSlug: 'oitoutpost', main: false },
+  { servicePointSlug: 'reservesmicrotextandmediadesk', main: false },
+  { servicePointSlug: 'architecturelibrary', main: true },
+  { servicePointSlug: 'byzantinestudiesreadingroom', main: true },
+  { servicePointSlug: 'centerfordigitalscholarship', main: true },
+  { servicePointSlug: 'centerfordigitalscholarshiprooms', main: false },
+  { servicePointSlug: 'chemistryphysicslibrary', main: true },
+  { servicePointSlug: 'engineeringlibrary', main: true },
+  { servicePointSlug: 'kelloggkroclibrary', main: true },
+  { servicePointSlug: 'mahaffeybusinesslibrary', main: true },
+  { servicePointSlug: 'medievalinstitutelibrary', main: true },
+  { servicePointSlug: 'musiclibrary', main: true },
+  { servicePointSlug: 'radiationchemistryreadingroom', main: true },
+  { servicePointSlug: 'visualresourcescenter', main: true },
+]
+
 const mapStateToProps = (state) => {
   let combinedStatus = statuses.NOT_FETCHED
   if (state.cfServicePoints.status === statuses.SUCCESS && state.hours.status === statuses.SUCCESS) {
@@ -20,7 +40,10 @@ const mapStateToProps = (state) => {
   if (combinedStatus === statuses.SUCCESS) {
     servicePointsWithHours = state.cfServicePoints.json
       .filter((servicePoint) => servicePoint.fields.hoursCode)
-      .sort((a, b) => a.fields.title.localeCompare(b.fields.title, 'en'))
+      .reduce((map, obj) => {
+        map[obj.fields.slug] = obj
+        return map
+      }, {})
   }
   return {
     combinedStatus,
@@ -51,6 +74,7 @@ export class HoursPageContainer extends Component {
         props={{
           servicePoints: this.props.servicePointsWithHours,
           preview: this.props.location ? (new URLSearchParams(this.props.location.search)).get('preview') === 'true' : false,
+          hoursPageOrder: hoursPageOrder,
         }}
         status={this.props.combinedStatus} />
     )

@@ -1529,9 +1529,30 @@ address {
 
 .hservices {
   display: grid;
+  display: -ms-grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns:  1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1em;
+}
+
+.one {
+  -ms-grid-column: 1;
+}
+
+.two {
+  -ms-grid-column: 2;
+}
+
+.three {
+  -ms-grid-column: 3;
+}
+
+.four {
+  -ms-grid-column: 4;
+}
+
+.five {
+  -ms-grid-column: 5;
 }
 
 .hservices img {

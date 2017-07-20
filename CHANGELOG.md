@@ -3,6 +3,7 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.8.0...master)
 
 ### New features/enhancements:
+- Update the hours page to have a specified list and order with a way to indicate that some lists are sub-listings.  Current CSS is to indent [#208](https://github.com/ndlib/usurper/pull/208)
 
 ### Bug fixes:
 
