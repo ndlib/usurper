@@ -32,13 +32,13 @@ const Libraries = () => {
 
             <li><Link to='/preservation/'>Preservation</Link></li>
 
-            <li><Link to='/radiation-lab-reading-room/'>Radiation Lab Reading Room</Link></li>
+            <li><Link to='/radlab'>Radiation Lab Reading Room</Link></li>
 
             <li><Link to='http://rarebooks.library.nd.edu/'>Rare Books and Special Collections</Link></li>
 
             <li><Link to='http://archives.nd.edu/'>University Archives</Link></li>
 
-            <li><Link to='/visual-resources-center/'>Visual Resources Center</Link></li>
+            <li><Link to='/vrc/'>Visual Resources Center</Link></li>
 
           </ul>
 

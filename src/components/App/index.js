@@ -51,7 +51,7 @@ const App = () => {
             <Route exact path='/news/:id' component={ContentfulNews} />
             <Route exact path='/event/:id' component={ContentfulEvent} />
             <Route exact path='/libraries' component={Libraries} />
-            <Route exact path='/personal' component={PersonalInfo} />
+            <Route exact path='/items-requests' component={PersonalInfo} />
             <Route exact path='/subjects' component={SubjectList} />
             <Route exact path='/database/:id' component={DatabasePage} />
             <Route exact path='/databases/:id' component={DatabaseList} />

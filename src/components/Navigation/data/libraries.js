@@ -49,7 +49,7 @@ export const librariesData = [
       },
       {
         title: 'Radiation Lab Reading Room',
-        url: '/radiation-lab-reading-room',
+        url: '/radlab',
       },
       {
         title: 'Rare Books and Special Collections',
@@ -61,7 +61,7 @@ export const librariesData = [
       },
       {
         title: 'Visual Resources Center',
-        url: '/visual-resources-center',
+        url: '/vrc',
       },
     ],
   },
