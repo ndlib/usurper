@@ -134,7 +134,7 @@ const Services = () => {
             <span>DMPTool is a flexible online tool that guides users through each step of creating a compliant data management plan for specific funding agencies.</span> </p>
           <p><Link to='/osf'>Open Science Framework</Link>
             <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
-          <p><Link to='https://orcid.org/'>OrcID</Link>
+          <p><Link to='https://orcid.org/'>ORCID</Link>
           <span>ORCID provides a persistent digital identifier that distinguishes you from every other researcher and, through integration in key research workflows such as manuscript and grant submission, supports automated linkages between you and your professional activities ensuring that your work is recognized.</span></p>
 
           <p><Link to='https://refworks.proquest.com/'>New RefWorks</Link>
@@ -145,7 +145,7 @@ const Services = () => {
 
           <p><Link to='https://remix.nd.edu/'>Remix Digital Resource Portal</Link>
           <span>Remix assembles a broad variety of tools in one place to help you find, mix, and create new digital media and visual material</span></p>
-            
+
           <p><Link to='/proxy-bookmarklet'>Proxy Bookmarklet</Link>
             <span>Access library resources while off-campus</span></p>
 
@@ -160,10 +160,11 @@ const Services = () => {
           <p>Notary Public
             <span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
           <p>Science Equipment for Teachers</p>
-          <p><Link to='/services-for-library-users-with-disabilities'>Services for Library Users with Disabilities</Link> </p>
+          <p><Link to='/accessibility'>Services for Library Users with Disabilities</Link> </p>
           <p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
             <span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
-
+          <p><Link to='/ulra'>Undergraduate Library Research Award</Link>
+            <span></span></p>
         </div>
       </div>
     </LandingPage>
