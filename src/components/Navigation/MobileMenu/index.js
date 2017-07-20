@@ -10,7 +10,7 @@ const MobileMenu = (props) => {
         <li><Link to='/services/'>Services</Link></li>
         <li><Link to='/libraries/'>Libraries &amp; Centers</Link></li>
         <li><Link to='/about/'>About</Link></li>
-        <li><Link to='/personal'>My Account</Link></li>
+        <li><Link to='/items-requests'>My Account</Link></li>
         <li><Link to='/hours'>Hours</Link></li>
       </ul>
     )

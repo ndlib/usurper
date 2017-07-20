@@ -68,18 +68,19 @@ const Services = () => {
           <p><Link to='http://cds.library.nd.edu/expertise/Analysis.shtml'>Data Use & Analysis </Link>
             <span>Request help in formulating an analysis, identifying appropriate data sets, or preparing and working with data.</span></p>
           <p><Link to='http://cds.library.nd.edu/expertise/digital-humanities/'>Digital Humanities </Link>
-            <span /></p>
+            <span>Request help in working with digital texts, marking editions, or assessing/creating digital scholarship and projects.</span></p>
           <p><Link to='http://cds.library.nd.edu/expertise/GIS.shtml'>Geographic Information Systems </Link>
-            <span> Request assistance with the generation of images from spatial data and spatial data analysis.</span></p>
+            <span> Get help generating a map or analyzing spatial data.</span></p>
           <p><Link to='http://libguides.library.nd.edu/latex'>LaTeX Consulting</Link>
             <span>Request help with using LaTeX for document typesetting.</span></p>
           <p><Link to='/math-tutoring'>Math Tutoring</Link>
             <span>Tutoring can be scheduled for an individual or a small group for half-hour sessions.</span></p>
           <p><Link to='http://cds.library.nd.edu/expertise/TextMining.shtml'>Text Mining & Analysis</Link>
-            <span>The Center for Digital Scholarship supports the analysis of both structured and unstructured texts.</span></p>
+            <span>Given hundreds of websites, thousands of journal articles, or tens-of-thousands of books, request assistance with using and understanding the content of large corpora.</span></p>
           <p><Link to='http://cds.library.nd.edu/print/'>3D Modeling and Printing</Link>
-            <span /></p>
-          <p><Link to='http://cds.library.nd.edu/expertise/Digitization.shtml'>Digitization and Metadata Services</Link></p>
+            <span>Get help with designing 3D models and creating 3D prints.</span></p>
+          <p><Link to='http://cds.library.nd.edu/expertise/Digitization.shtml'>Digitization and Metadata Services</Link>
+            <span>Consult with staff on digitization, description, and preservation of digital collections to enable long-term discovery and sustainability of materials.</span></p>
 
         </div>
         <div className='col-md-4 col-xs-12'>
@@ -133,7 +134,7 @@ const Services = () => {
             <span>DMPTool is a flexible online tool that guides users through each step of creating a compliant data management plan for specific funding agencies.</span> </p>
           <p><Link to='/osf'>Open Science Framework</Link>
             <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
-          <p><Link to='https://orcid.org/'>OrcID</Link>
+          <p><Link to='https://orcid.org/'>ORCID</Link>
           <span>ORCID provides a persistent digital identifier that distinguishes you from every other researcher and, through integration in key research workflows such as manuscript and grant submission, supports automated linkages between you and your professional activities ensuring that your work is recognized.</span></p>
 
           <p><Link to='https://refworks.proquest.com/'>New RefWorks</Link>
@@ -144,7 +145,7 @@ const Services = () => {
 
           <p><Link to='https://remix.nd.edu/'>Remix Digital Resource Portal</Link>
           <span>Remix assembles a broad variety of tools in one place to help you find, mix, and create new digital media and visual material</span></p>
-            
+
           <p><Link to='/proxy-bookmarklet'>Proxy Bookmarklet</Link>
             <span>Access library resources while off-campus</span></p>
 
@@ -159,10 +160,11 @@ const Services = () => {
           <p>Notary Public
             <span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
           <p>Science Equipment for Teachers</p>
-          <p><Link to='/services-for-library-users-with-disabilities'>Services for Library Users with Disabilities</Link> </p>
+          <p><Link to='/accessibility'>Services for Library Users with Disabilities</Link> </p>
           <p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
             <span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
-
+          <p><Link to='/ulra'>Undergraduate Library Research Award</Link>
+            <span></span></p>
         </div>
       </div>
     </LandingPage>
