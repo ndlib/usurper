@@ -4,7 +4,8 @@ import PagePresenter from '../../../../components/Hours/Page/presenter'
 import CurrentHours from '../../../../components/Hours/Current'
 
 const setup = (hoursEntry) => {
-  return shallow(<PagePresenter servicePoints={ hoursEntry } />)
+  return shallow(<PagePresenter servicePoints={hoursEntry} hoursPageOrder={[
+    { servicePointSlug: 'hesburghlibrary', main: true }]} />)
 }
 
 let enzymeWrapper

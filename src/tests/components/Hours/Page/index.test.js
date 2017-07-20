@@ -35,13 +35,7 @@ describe('components/Hours/Page/Container', () => {
 
   it('only renders APIPresenterFactory with hoursEntry slice and HoursPagePresenter', () => {
     expect(enzymeWrapper.
-      containsMatchingElement(
-        <APIPresenterFactory
-          status={props.hoursEntry.status}
-          props={{ servicePoints: [], preview: false }}
-          presenter={HoursPagePresenter}
-        />)
-      ).toBe(true)
+      find('APIPresenterFactory').nodes.length).toBe(1)
   })
 
   it('calls the bound fetch hours action on load', () => {
