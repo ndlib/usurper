@@ -23,7 +23,7 @@ class Home extends Component {
 
         <section className=' services hservices' aria-label='Quicklinks'>
           <div className='-col-sm-3 -col-xs-6'>
-            <Link to='/personal' title='My Account'><img src={Account} alt='My Account. ' aria-hidden /></Link>
+            <Link to='/items-requests' title='My Account'><img src={Account} alt='My Account. ' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6'>
             <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves' aria-hidden /></Link>
