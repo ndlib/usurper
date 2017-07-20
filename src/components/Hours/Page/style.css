@@ -11,6 +11,11 @@
 .service-point h4 {
 	font-size: 22px;
 	font-family: GPCBold, sans-serif;
+}
+
+.service-point a h4 {
+	font-size: 22px;
+	font-family: GPCBold, sans-serif;
 	background: #fff;
 	border: solid #333;
 	border-width: 0 1px 1px 8px;
@@ -20,6 +25,7 @@
 	display: grid;
 	grid-template-columns: 2fr 1fr 2fr;
 	-ms-grid-columns: 2fr 1fr 1fr;
+	color: #000;
 }
 
 .service-point.closed h4 {

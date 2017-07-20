@@ -24,7 +24,6 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => {
     // these props are required for the inline container.
     let ret = {
-      jsonHoursApiKey: props.jsonHoursApiKey, // the key to look up hours component in the store used in the selector.
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
 

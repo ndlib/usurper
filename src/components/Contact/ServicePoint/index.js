@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Link from '../../Link'
+import LibMarkdown from '../../LibMarkdown'
 
 const Contact = (props) => {
   if (!props.servicePoint) {
@@ -37,24 +38,30 @@ const Contact = (props) => {
       )
     }
   }
-
-  let addr1
-  if (sp.address) {
-    addr1 = <span>{sp.address}<br /></span>
-  }
-
+  
   let phone
   if (sp.phoneNumber) {
     phone = <li className='phone'><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
   }
 
+  let email
+  if (sp.email) {
+    email = <li className='email'><a title={'Email ' + sp.email} href={'mailto:+' + sp.email }>{sp.email}</a></li>
+  }
+
+  let accessNote
+  if (sp.accessNote) {
+    accessNote = <LibMarkdown>{ sp.accessNote }</LibMarkdown>
+  }
+
   return (
     <div className='point'>
-      <h2>{addr1}</h2>
+      {accessNote}
       <ul>
         {building}
         {floor}
         {phone}
+        {email}
       </ul>
     </div>
   )

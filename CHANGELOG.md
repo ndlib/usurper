@@ -19,6 +19,11 @@
 - The Chat button on small screens now opens the chat page instead of an unhelpful popup [#181](https://github.com/ndlib/usurper/pull/181)
 - Hours will now change color depending on if they're currently open or not [#193](https://github.com/ndlib/usurper/pull/193)
 - Update the floor maps to display the call number range on the floor.[#201](https://github.com/ndlib/usurper/pull/201)
+- Update the display of the hours component on pathfinders to have a title outside the hours component [#206](https://github.com/ndlib/usurper/pull/206)
+- Contact Service point part of pathfinder can now have extra text describing how to get access to the service point [#206](https://github.com/ndlib/usurper/pull/206)
+- Contact Service point part of pathfinder can now have an email to the service point [#206](https://github.com/ndlib/usurper/pull/206)
+- Update the hours page to have a class name on the components so libraries can be distinct from service points [#206](https://github.com/ndlib/usurper/pull/206)
+- Updated pathfinder sidenav to list individual sections as complementary to the screen reader rather than a [#206](https://github.com/ndlib/usurper/pull/206)
 
 ### Bug fixes:
 - Add aria-controls to hours components [#190](https://github.com/ndlib/usurper/pull/190)

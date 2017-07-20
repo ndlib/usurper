@@ -5,12 +5,11 @@ import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
-import Contact from '../../Contact/ServicePoint'
 import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
+import ServicePoint from '../ServicePoint'
 import PageAlert from '../Alert/Page'
 
 const PagePresenter = ({ cfPageEntry }) => (
@@ -27,12 +26,11 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
       </section>
-      <section className='col-md-4 col-sm-5 col-xs-12 right' role='complementary'>
+      <section className='col-md-4 col-sm-5 col-xs-12 right'>
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
-        {cfPageEntry.fields.servicePoint && <CurrentHours jsonHoursApiKey={cfPageEntry.fields.servicePoint.fields.hoursCode} />}
-        <Contact servicePoint={cfPageEntry.fields.servicePoint} />
+        <ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ cfPageEntry.fields.relatedPages }</Related>
       </section>
     </div>
