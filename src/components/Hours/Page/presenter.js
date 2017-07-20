@@ -8,6 +8,26 @@ import PageTitle from '../../PageTitle'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
 
+const hoursPageOrder = [
+  { servicePointSlug: 'hesburghlibrary', main: true },
+  { servicePointSlug: 'askusdesk', main: false },
+  { servicePointSlug: 'circulationservicedesk', main: false },
+  { servicePointSlug: 'oitoutpost', main: false },
+  { servicePointSlug: 'reservesmicrotextandmediadesk', main: false },
+  { servicePointSlug: 'architecturelibrary', main: true },
+  { servicePointSlug: 'byzantinestudiesreadingroom', main: true },
+  { servicePointSlug: 'centerfordigitalscholarship', main: true },
+  { servicePointSlug: 'centerfordigitalscholarshiprooms', main: false },
+  { servicePointSlug: 'chemistryphysicslibrary', main: true },
+  { servicePointSlug: 'engineeringlibrary', main: true },
+  { servicePointSlug: 'kelloggkroclibrary', main: true },
+  { servicePointSlug: 'mahaffeybusinesslibrary', main: true },
+  { servicePointSlug: 'medievalinstitutelibrary', main: true },
+  { servicePointSlug: 'musiclibrary', main: true },
+  { servicePointSlug: 'radiationchemistryreadingroom', main: true },
+  { servicePointSlug: 'visualresourcescenter', main: true },
+]
+
 const Presenter = (props) => {
   return (
     <div className='content hours-page'>
@@ -18,11 +38,12 @@ const Presenter = (props) => {
         <div className='col-md-8 col-sm-7'>
           <div className='service-point-list'>
             {
-              props.servicePoints.map((servicePoint) => {
-                return (<div key={servicePoint.sys.id}>
-                  <CurrentHours servicePoint={servicePoint} >
-                    <h4>{servicePoint.fields.address}</h4>
-                    <Contact servicePoint={servicePoint} />
+              hoursPageOrder.map((servicePointOrder) => {
+                let sp = props.servicePoints[servicePointOrder.servicePointSlug]
+                return (<div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
+                  <CurrentHours servicePoint={sp} >
+                    <h4>{sp.fields.address}</h4>
+                    <Contact servicePoint={sp} />
                   </CurrentHours>
                 </div>)
               })

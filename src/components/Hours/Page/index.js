@@ -20,7 +20,10 @@ const mapStateToProps = (state) => {
   if (combinedStatus === statuses.SUCCESS) {
     servicePointsWithHours = state.cfServicePoints.json
       .filter((servicePoint) => servicePoint.fields.hoursCode)
-      .sort((a, b) => a.fields.title.localeCompare(b.fields.title, 'en'))
+      .reduce((map, obj) => {
+        map[obj.fields.slug] = obj
+        return map
+      }, {})
   }
   return {
     combinedStatus,
