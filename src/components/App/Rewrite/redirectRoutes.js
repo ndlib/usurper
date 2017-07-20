@@ -5,6 +5,7 @@ const RedirectRoutes = [
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
+  { path: '/about/employment', target: '/employment' },
   { path: '/about/libprinters.shtml', target: '/copy-print-scan' },
   { path: '/about/rooms', target: '/room-reservations' },
   { path: '/about/hours', target: '/hours' },
