@@ -133,7 +133,7 @@ const Services = () => {
             <span>DMPTool is a flexible online tool that guides users through each step of creating a compliant data management plan for specific funding agencies.</span> </p>
           <p><Link to='/osf'>Open Science Framework</Link>
             <span>The Open Science Framework (OSF) provides free and open source project management support for researchers across the entire research lifecycle.</span></p>
-          <p><Link to='https://orcid.org/'>OrcID</Link>
+          <p><Link to='https://orcid.org/'>ORCID</Link>
           <span>ORCID provides a persistent digital identifier that distinguishes you from every other researcher and, through integration in key research workflows such as manuscript and grant submission, supports automated linkages between you and your professional activities ensuring that your work is recognized.</span></p>
 
           <p><Link to='https://refworks.proquest.com/'>New RefWorks</Link>
@@ -144,7 +144,7 @@ const Services = () => {
 
           <p><Link to='https://remix.nd.edu/'>Remix Digital Resource Portal</Link>
           <span>Remix assembles a broad variety of tools in one place to help you find, mix, and create new digital media and visual material</span></p>
-            
+
           <p><Link to='/proxy-bookmarklet'>Proxy Bookmarklet</Link>
             <span>Access library resources while off-campus</span></p>
 
