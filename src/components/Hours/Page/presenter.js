@@ -40,6 +40,10 @@ const Presenter = (props) => {
             {
               hoursPageOrder.map((servicePointOrder) => {
                 let sp = props.servicePoints[servicePointOrder.servicePointSlug]
+                if (!sp) {
+                  return null
+                }
+                
                 return (<div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
                   <CurrentHours servicePoint={sp} >
                     <h4>{sp.fields.address}</h4>

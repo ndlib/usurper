@@ -11,6 +11,7 @@ let enzymeWrapper
 describe('components/Hours/Page/presenter', () => {
   beforeEach(() => {
     let servicePoints = [{
+      hesburghlibrary: {
       fields: {
         address: '117 Bond Hall',
         city: 'Notre Dame',
@@ -40,7 +41,7 @@ describe('components/Hours/Page/presenter', () => {
         type: 'Entry',
         updatedAt: '2017-07-03T18:23:15.202Z',
       },
-    }]
+    } }]
 
     enzymeWrapper = setup(servicePoints)
   })
