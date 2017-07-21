@@ -161,7 +161,7 @@ class Courses extends Component {
       <div className='container-fluid content-area'>
         <div key='courses' className='content'>
           <LogOut />
-          <Link to='/personal' className='button fright tab'>My Items</Link>
+          <Link to='/items-requests' className='button fright tab'>My Items</Link>
           
           <PageTitle title='Courses' classaName='hr-cor' />
           <SearchProgramaticSet open={false} />
