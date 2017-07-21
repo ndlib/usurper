@@ -9,7 +9,7 @@ const UserMenu = (props) => {
       <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'}>
         <div className='container-fluid row'>
           <ul className='child'>
-            <li><Link to='/personal'>Items &amp; Requests</Link></li>
+            <li><Link to='/items-requests'>Items &amp; Requests</Link></li>
             <li><Link to='/courses'>Courses</Link></li>
             <li>
               <Link

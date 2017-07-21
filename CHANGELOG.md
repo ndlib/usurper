@@ -1,7 +1,22 @@
 # Change Log
+## [0.10](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...master)
 
-## [0.8](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.7.2...master)
+### New features/enhancements:
+
+## [0.9](https://github.com/ndlib/usurper/tree/v0.9.0) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.8.0...v0.9.0)
+
+### New features/enhancements:
+- Update the hours page to have a specified list and order with a way to indicate that some lists are sub-listings.  Current CSS is to indent [#208](https://github.com/ndlib/usurper/pull/208)
+- Updated a number of routes in the nav to point to new slugs [#209](https://github.com/ndlib/usurper/pull/209)
+- Removed course guides from courses until we can work with libguides [#207](https://github.com/ndlib/usurper/pull/207)
+
+### Bug fixes:
+- Display fixes for mobile [#210](https://github.com/ndlib/usurper/pull/210)
+
+## [0.8](https://github.com/ndlib/usurper/tree/v0.8.0) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.7.2...v0.8.0)
 
 ### New features/enhancements:
 - Added Alerts to both Page and Global scopes [#200](https://github.com/ndlib/usurper/pull/200)
@@ -20,7 +35,7 @@
 - Fixed bug with SetIntraval not getting unmounted when the hours are displayed.[#205](https://github.com/ndlib/usurper/pull/205)
 - Fixed bug with preventing an svg image in the footer from being displayed [#204](https://github.com/ndlib/usurper/pull/204)
 
-## [0.7](https://github.com/ndlib/usurper/tree/master) (2017-14-07)
+## [0.7](https://github.com/ndlib/usurper/tree//v0.7.2) (2017-14-07)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.6.0...v0.7.2)
 
 ### New features/enhancements:
@@ -38,7 +53,7 @@
 - Subjects page is now sorted alphabetically [#184](https://github.com/ndlib/usurper/pull/184)
 - Fix "Delievered to web" button for illiad web deliveries
 
-## [0.6](https://github.com/ndlib/usurper/tree/master) (2017-08-06)
+## [0.6](https://github.com/ndlib/usurper/tree/v0.6.0) (2017-08-06)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.5.0...v0.6.0)
 
 ### New features/enhancements:

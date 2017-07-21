@@ -28,6 +28,11 @@
 	color: #000;
 }
 
+.sub-service-point {
+	margin-left: 1.5em;
+	width: calc(100% - 1.5em);
+}
+
 .service-point.closed h4 {
 	border-left-color: #AA272F;
 }
