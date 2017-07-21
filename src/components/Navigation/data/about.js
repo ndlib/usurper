@@ -13,7 +13,7 @@ export const aboutData = [
     title: 'Spaces',
     classes: 'col-md-3',
     items: [
-      { title: 'Floor Maps & Locations', url: '/maps' },
+      { title: 'Hours, Locations and Maps', url: '/hours' },
       { title: 'Hesburgh Library Renovation', url: 'http://renovation.library.nd.edu' },
     ],
   },

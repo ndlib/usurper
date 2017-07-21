@@ -38,7 +38,7 @@ const SubjectList = () => {
     { name: 'Irish Studies',                         url: '/irish-studies' },
     { name: 'Italian Language, Literature, & Culture', url: '/italian' },
     { name: 'Latin American, Iberian, and Latino Studies', url: '/spanish' },
-    { name: 'Mathematics',                           url: '/mathematics' },
+    { name: 'Mathematics and Applied Mathematics',   url: '/mathematics' },
     { name: 'Medieval Studies',                      url: '/medieval' },
     { name: 'Music',                                 url: '/music' },
     { name: 'Peace Studies',                         url: '/peace-studies' },
@@ -48,7 +48,7 @@ const SubjectList = () => {
     { name: 'Psychology',                            url: '/psychology' },
     { name: 'Russian and East European Languages, Literatures, & Cultures', url: '/russian' },
     { name: 'Sociology',                             url: '/sociology' },
-    { name: 'Statistics & Probability',              url: '/statistics-and-probability' },
+    { name: 'Statistics & Probability',              url: '/mathematics' },
     { name: 'Theology and Religion',                 url: '/theology-religion' },
   ]
 
