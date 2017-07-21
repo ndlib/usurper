@@ -15,21 +15,23 @@ const IlliadActions = ({ item }) => {
   let webButton = null
   if (item.status === 'Delivered to Web') {
     webButton = (
-      <button>
-        <Link to={Config.illiadBaseURL.replace('<<form>>', illWebForm).replace('<<value>>', item.transactionNumber)}>
-          View On Web
-        </Link>
-      </button>
+      <Link
+        to={Config.illiadBaseURL.replace('<<form>>', illWebForm).replace('<<value>>', item.transactionNumber)}
+        className='button'
+      >
+        View On Web
+      </Link>
     )
   }
 
   return (
     <div className={item.title + 'illiadActions'}>
-      <button>
-        <Link to={Config.illiadBaseURL.replace('<<form>>', illViewForm).replace('<<value>>', item.transactionNumber)}>
-          View in ILL
-        </Link>
-      </button>
+      <Link
+        to={Config.illiadBaseURL.replace('<<form>>', illViewForm).replace('<<value>>', item.transactionNumber)}
+        className='button'
+      >
+        View in ILL
+      </Link>
       { webButton }
     </div>
   )
