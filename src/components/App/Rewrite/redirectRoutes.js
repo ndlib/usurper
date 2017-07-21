@@ -2,6 +2,11 @@ const RedirectRoutes = [
   // external redirects
   { path: '/cds', target: 'http://cds.library.nd.edu' },
   { path: '/directory', target: 'https://directory.library.nd.edu/directory' },
+  { path: '/ill', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
+  { path: '/docdel', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
+  { path: '/specialists', target: 'https://directory.library.nd.edu/directory/subjects' },
+  { path: '/catalog', target: 'http://factotum.library.nd.edu/utilities/search/ndu/nd_campus' },
+  { path: '/onesearch', target: 'http://factotum.library.nd.edu/utilities/search/ndu/onesearch' },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
