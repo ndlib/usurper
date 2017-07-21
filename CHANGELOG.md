@@ -4,6 +4,11 @@
 
 ### New features/enhancements:
 
+### Bug fixes:
+- Images now handle errors and render null instead of broken link [#212](https://github.com/ndlib/usurper/pull/212)
+- Button on my items page will now link no matter where you click [#212](https://github.com/ndlib/usurper/pull/212)
+
+
 ## [0.9](https://github.com/ndlib/usurper/tree/v0.9.0) (In development)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.8.0...v0.9.0)
 

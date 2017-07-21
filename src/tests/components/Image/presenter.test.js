@@ -20,9 +20,9 @@ describe('components/Image/index.js', () => {
   })
 
   describe('with no src', () => {
-    it('should return null', () => {
+    it('should return image with no source', () => {
       setup({})
-      expect(enzymeWrapper.equals(null)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<img src={undefined} />)).toBe(true)
     })
   })
 
