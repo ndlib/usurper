@@ -253,20 +253,39 @@ a {
 }
 
 .alert {
-  padding: 9px;
+  padding: 20px;
 }
 
-.alert > a {
+.alert .width {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.alert a {
   color: #061F43;
 }
 
+.alert strong {
+  color: #AA272F;
+  background: url('../images/alert.png') no-repeat;
+  background-size: contain;
+  padding-left: 34px;
+  padding-top: 4px;
+  font-size: 20px;
+  line-height: 1em;
+}
+
 .alert.global {
-  border: solid 2px #DB2730;
+  border: solid 2px #AA272F;
   background: #FC7279;
 }
 
+.alert.global strong {
+  color: #fff;
+}
+
 .alert.page {
-  border: solid 2px #DF7728;
+  border: solid 2px #AA272F;
   background: #FFB073;
   margin-bottom: 9px;
 }
@@ -2413,8 +2432,7 @@ body {
 
 
 .logout-button-personal {
-  clear: right;
-  margin-top: 20px;
+  margin-left: 15px;
 }
 .screen-reader-only {
     position: absolute;

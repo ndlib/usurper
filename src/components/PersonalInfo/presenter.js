@@ -14,8 +14,9 @@ import StaticBody from '../Contentful/StaticContent/Body'
 const LoggedIn = (preview) => {
   return (
     <div className='content'>
-      <Courses linkOnly />
       <LogOut />
+      <Courses linkOnly />
+      
       <SearchProgramaticSet open={false} />
       <PageTitle title='Items & Requests' />
       <div className='row'>
