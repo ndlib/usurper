@@ -14,8 +14,8 @@ const FloorPresenter = ({ cfFloorEntry }) => (
     <PageTitle title={cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
     <div className='row'>
-    <div className='col-md-9 col-sm-12 floor'><Image cfImage={cfFloorEntry.fields.image} /></div>
-    <div className='col-md-3 col-sm-12 building'>
+    <div className='col-md-9 col-xs-12 floor'><Image cfImage={cfFloorEntry.fields.image} /></div>
+    <div className='col-md-3 col-sxs-12 building'>
       <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
       { cfFloorEntry.fields.callNumberRange && (<p>Call Number Ranges: {cfFloorEntry.fields.callNumberRange}</p>) }
       <Building cfBuildingEntry={cfFloorEntry.fields.building} />

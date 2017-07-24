@@ -133,7 +133,7 @@ a {
 
 
 .letter {
-  margin-right: .5em;
+
   width: 1em;
   text-align: center;
 
@@ -143,7 +143,6 @@ a {
   text-decoration: none;
   padding: .6em;
   display: inline-block;
-  width: 2em;
   font-size: 20px;
 }
 
@@ -886,6 +885,7 @@ div.search {
   top: 3vw;
   width: 70vw;
   padding: 24px;
+  max-width: 1200px;
 }
 
 .appliance label {
@@ -1277,6 +1277,11 @@ hr {
   text-align: right;
   -ms-grid-column: 4;
   -ms-grid-row: 2;
+}
+
+.actions a {
+  margin: 0 0 10px 10px;
+  display: inline-block;
 }
 
 .actions div {
@@ -2485,5 +2490,9 @@ body {
     top: 0;
     width: 311px;
     margin-bottom: 1.5em;
+  }
+
+  #footer-links li {
+    display: block;
   }
 }

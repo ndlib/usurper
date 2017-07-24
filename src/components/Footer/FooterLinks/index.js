@@ -21,7 +21,7 @@ const FooterLinks = () => {
             </div>
           </div>
 
-          <div className='col-xs-3 col-xs-offset-2'>
+          <div className='col-xs-5'>
             <div className='box right'>
               <ul role='navigation' aria-label='Social Media Links'>
                 <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>

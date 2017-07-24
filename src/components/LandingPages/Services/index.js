@@ -112,11 +112,11 @@ const Services = () => {
             <span>Reserve the Sound Studio audio recording space</span></p>
           <p><Link to='http://cds.library.nd.edu/technology/#Software'>Specialty Software</Link>
             <span>View special software titles available via the Libraries</span></p>
-          <p><Link to='http://nd.libcal.com/reserve/equipment'>Technology and Miscellaneous Equipment Lending</Link>
+          <p><Link to='/technology-lending'>Technology and Miscellaneous Equipment Lending</Link>
             <span>Reserve laptops, cameras, headphones, accessories, and more</span> </p>
           <p><Link to='http://libguides.library.nd.edu/transcriptionstation'>Transcription Station </Link>
             <span>Make transcriptions of audio or video files more easily with our transcription pedal</span></p>
-          <p><Link to='/request-library-research-instruction'>Request Instruction</Link></p>
+         
 
         </div>
         <div className='col-md-4 col-xs-12'>
@@ -155,11 +155,10 @@ const Services = () => {
             <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
           <p><Link to='/lokmobiles'>Lokmobiles</Link>
             <span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>
-          <p>Lost & Found
+          <p><strong>Lost & Found</strong>
             <span>Please contact Library Monitors at (574) 631-6350</span></p>
-          <p>Notary Public
+          <p><strong>Notary Public</strong>
             <span>The Hesburgh Libraries has a licensed Notary Public on staff who will provide a free notary service to university students, faculty, and staff</span></p>
-          <p>Science Equipment for Teachers</p>
           <p><Link to='/accessibility'>Services for Library Users with Disabilities</Link> </p>
           <p><Link to='/usgs-map-printing'>USGS Map Printing</Link>
             <span>The <Link to='https://store.usgs.gov/'>U.S. Geological Survey map printing service</Link> is provided by the Frontline Services unit in support of the curriculum and research needs of University of Notre Dame students, faculty, staff and the local community, as guaranteed by public law (Title 44 United States Code)</span></p>
