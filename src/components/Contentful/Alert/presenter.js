@@ -5,9 +5,10 @@ import Link from '../../Link'
 const AlertDisplay = (className, link, text, title) => {
   return (
     <div className={className} key={title}>
-      <Link to={link}>
-        {'ATTENTION: ' + text}
+      <div className='width'><strong>ATTENTION:</strong> <Link to={link}>
+        {text}
       </Link>
+      </div>
     </div>
   )
 }

@@ -160,8 +160,9 @@ class Courses extends Component {
     return (
       <div className='container-fluid content-area'>
         <div key='courses' className='content'>
-          <Link to='/items-requests' className='button fright tab'>My Items</Link>
           <LogOut />
+          <Link to='/items-requests' className='button fright tab'>My Items</Link>
+          
           <PageTitle title='Courses' classaName='hr-cor' />
           <SearchProgramaticSet open={false} />
 

@@ -11,7 +11,7 @@ import Reserves from '../../static/images/reserves.jpg'
 import Account from '../../static/images/myaccount.jpg'
 import Room from '../../static/images/reserveroom.jpg'
 import Tech from '../../static/images/tech.jpg'
-import Find from '../../static/images/findlibrarian.jpg'
+import Find from '../../static/images/subjects.jpg'
 
 class Home extends Component {
   render () {
@@ -29,7 +29,7 @@ class Home extends Component {
             <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 three'>
-            <Link to='http://directory.library.nd.edu/directory/subjects' title='Find Your Librarian' noTarget><img src={Find} alt='Find Your Librarian ' aria-hidden /></Link>
+            <Link to='/subjects' title='Subjects A-Z' noTarget><img src={Find} alt='Find Your Librarian ' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 four'>
             <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. ' aria-hidden /></Link>
