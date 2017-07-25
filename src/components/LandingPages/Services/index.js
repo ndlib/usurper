@@ -106,7 +106,7 @@ const Services = () => {
           <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link>
 
             <span>Reserve the One Button Studio video recording space</span></p>
-          <p><Link to='https://oit.nd.edu/help-desk/'>OIT Help Desk Outpost </Link>
+          <p><Link to='https://oit.nd.edu/help-desk/'>OIT Outpost </Link>
             <span>Located in the Hesburgh Library near the Ask Us Desk on the 1st floor</span></p>
           <p><Link to='http://libguides.library.nd.edu/soundstudio'>Sound Studio </Link>
             <span>Reserve the Sound Studio audio recording space</span></p>

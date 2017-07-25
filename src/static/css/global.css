@@ -286,7 +286,12 @@ a {
 .alert.page {
   border: solid 2px #AA272F;
   background: #FFB073;
-  margin-bottom: 9px;
+  margin-bottom: 1.5em;
+  max-width: 75ch;
+}
+
+.alert div {
+  margin-top: 1em;
 }
 
 .top {
@@ -1484,7 +1489,7 @@ address {
   font-family: GPCMed, sans-serif;
   font-size: 20px;
   margin-bottom: 1em;
-  display: block;
+  display: inline-block;
   padding-left: 30px;
   background-image: url("../images/map.png");
   background-size: 24px;
