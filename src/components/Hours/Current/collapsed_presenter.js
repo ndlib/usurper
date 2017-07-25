@@ -22,7 +22,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
         <h4>
           <div className='location'>{hoursEntry.name}</div>
           <div className='today'>{todayLabel}</div>
-          <div>
+          <div className='arrow'>
             <div className='earrow' />
           </div>
         </h4>
