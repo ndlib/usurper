@@ -39,16 +39,22 @@ const setSearchType = (newState) => {
   newState.searchType = 'ONESEARCH'
 }
 
-export default (
-  state = {
+const defaultState = () => {
+  let state = {
     drawerOpen: true,
-    searchType: 'ONESEARCH',
+    searchType: null,
     searchBoxOpen: false,
     advancedSearch: false,
     hasPref: localSearchPref !== null,
     usePref: true,
     pref: JSON.parse(localSearchPref) || null,
-  },
+  }
+  setSearchType(state)
+  return state
+}
+
+export default (
+  state = defaultState(),
   action
 ) => {
   switch (action.type) {
