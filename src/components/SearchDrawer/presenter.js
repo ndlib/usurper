@@ -35,7 +35,7 @@ const SearchDrawer = (props) => {
   if (props.search.drawerOpen) {
     return <Drawer {...props} />
   } else {
-    return (<section id='drawer' role='Search' aria-hidden='true' />)
+    return (<section id='drawer' role='Search' aria-hidden='true' className='hidden' />)
   }
 }
 
