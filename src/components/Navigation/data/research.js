@@ -44,12 +44,20 @@ export const researchData = [
     classes: 'col-md-3',
     items: [
       {
+        title: 'Rare Books &amp; Special Collections',
+        url: 'http://rarebooks.library.nd.edu/',
+      },
+      {
+        title: 'University Archives',
+        url: 'http://archives.nd.edu/findaids/ead/xml/',
+      },
+      {
         title: 'Medieval Institute Library',
         url: '/medieval',
       },
       {
-        title: 'Rare Books and Special Collections',
-        url: 'http://rarebooks.library.nd.edu/',
+        title: 'Library Exhibits',
+        url: 'http://rarebooks.library.nd.edu/exhibits/index.shtml',
       },
       {
         title: 'Digital Exhibits and Collections',
@@ -58,14 +66,6 @@ export const researchData = [
       {
         title: 'CurateND',
         url: 'http://curate.nd.edu',
-      },
-      {
-        title: 'Archives Collections',
-        url: 'http://archives.nd.edu/findaids/ead/xml/',
-      },
-      {
-        title: 'Exhibits',
-        url: 'http://rarebooks.library.nd.edu/exhibits/index.shtml',
       },
     ],
   },

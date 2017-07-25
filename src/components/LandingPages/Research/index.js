@@ -68,17 +68,17 @@ const Research = () => {
         <div className='col-md-6 col-xs-12'>
           <h3>Unique Collections</h3>
 
+          <p><Link to='http://rarebooks.library.nd.edu/'>Rare Books &amp; Special Collections</Link></p>
+
+          <p><Link to='http://archives.nd.edu/findaids/ead/xml/'>University Archives</Link></p>
+
           <p><Link to='/medieval'>Medieval Institute Library</Link></p>
 
-          <p><Link to='http://rarebooks.library.nd.edu/'>Rare Books and Special Collections</Link></p>
+          <p><Link to='http://rarebooks.library.nd.edu/exhibits/index.shtml'>Library Exhibits</Link></p>
 
           <p><Link to='http://collections.library.nd.edu'>Digital Exhibits and Collections</Link></p>
 
           <p><Link to='http://curate.nd.edu'>CurateND</Link></p>
-
-          <p><Link to='http://archives.nd.edu/findaids/ead/xml/'>Archives Collections</Link></p>
-
-          <p><Link to='http://rarebooks.library.nd.edu/exhibits/index.shtml'>Exhibits</Link></p>
 
           <h3>Search Tools</h3>
 

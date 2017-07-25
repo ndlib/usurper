@@ -52,7 +52,7 @@ export const librariesData = [
         url: '/radlab',
       },
       {
-        title: 'Rare Books and Special Collections',
+        title: 'Rare Books &amp; Special Collections',
         url: 'http://rarebooks.library.nd.edu/',
       },
       {
