@@ -37,7 +37,10 @@ const Navigation = (props) => {
         onKeyDown={menu.keyDown}
         key={index}
         tabIndex='0'>
-        <a id={menu.title.toLowerCase()}>{menu.title}</a>
+        <a
+          id={menu.title.toLowerCase()}
+          aria-label={menu.title}
+        >{menu.title}</a>
         <DropDown
           title={menu.title}
           landingPage={menu.landingPage}
