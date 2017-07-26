@@ -928,6 +928,7 @@ label[for='q']:after, .uSearchBox label:after {
   vertical-align: top;
   -webkit-padding-start: 0;
   padding-left: 0;
+  width: 100%;
 }
 .appliance ul li {
   background: #5b412d;
@@ -1091,6 +1092,7 @@ label[for='q']:after, .uSearchBox label:after {
 }
 
 .uSearchBox {
+
   display: grid;
   -ms-grid-columns:auto 3fr 1fr;
   grid-template-columns:auto 3fr 1fr;
@@ -1099,6 +1101,38 @@ label[for='q']:after, .uSearchBox label:after {
 
 .uSearchBox label {
 
+}
+
+@supports not (display:grid) {
+  .uSearchBox {
+    display: flex;
+  }
+  .hservices {
+    display: flex;
+  }
+  .hservices div {
+    margin-right: 5px;
+  }
+  .uSearchBox label {
+    width: 17%;
+  }
+  .uSearchBox .input {
+    width: 70%;
+  }
+  .uSearchBox button {
+    width: 13%;
+  }
+  @media screen and (max-width: 780px) {
+    .uSearchBox {
+      flex-wrap: wrap;
+    }
+    .uSearchBox .input {
+      width: 75%;
+    }
+    .uSearchBox button {
+      width: 25%;
+    }
+  }
 }
 
 /* Landing Pages */
@@ -1559,8 +1593,10 @@ address {
 .hservices {
   display: grid;
   display: -ms-grid;
+
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   -ms-grid-columns:  1fr 1fr 1fr 1fr 1fr;
+  -moz-grid-columns:  1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1em;
 }
 
@@ -2126,14 +2162,16 @@ address {
   }
 }
 
-
 @media screen and (max-width: 885px) {
 
-  .appliance, .home .appliance {
-    left: 0 !important;
+}
+
+
+@media screen and (max-width: 780px) {
+
+  .col-md-4.right > .frame {
     top: 0;
-    height: 100%;
-    width: 100%;
+    margin-bottom: 1em;
   }
 
   label[for="q"]::after, .uSearchBox label::after {
