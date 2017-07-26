@@ -15,11 +15,11 @@ import PageAlert from '../Alert/Page'
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
-    <PageAlert alert={cfPageEntry.fields.alert} />
+    
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
       <section className='col-md-8 col-sm-7'>
-
+        <PageAlert alert={cfPageEntry.fields.alert} />
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
 
         <Related className='p-resources' title='Resources' showImages={false}>{ cfPageEntry.fields.relatedResources }</Related>
