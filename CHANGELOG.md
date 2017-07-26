@@ -7,6 +7,10 @@
 ### Bug fixes:
 - Add Math library to hours page [#225](https://github.com/ndlib/usurper/pull/225)
 - Fix Safari hours coloring [#225](https://github.com/ndlib/usurper/pull/225)
+- Fixed missing Monday data and "Today: undefined" bugs on the hours page. Note: This does require data changes in libcal before it will be fully fixed. [#224](https://github.com/ndlib/usurper/pull/224)
+- Fixed a javascript warning related to passing an array into the InlineHours component [#224](https://github.com/ndlib/usurper/pull/224)
+- Fixed dom ids on the hours page to be unique and not contain spaces [#224](https://github.com/ndlib/usurper/pull/224)
+- Removed CDS Scholarship Rooms and added University Archives to hours page [#224](https://github.com/ndlib/usurper/pull/224)
 
 ## [0.10](https://github.com/ndlib/usurper/tree/master) (2017-7-26)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...v0.10.0)
