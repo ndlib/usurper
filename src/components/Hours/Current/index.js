@@ -12,9 +12,14 @@ import InlineContainer from '../InlineContainer'
 // Parses date/time from the strings given in an hoursEntry.
 const timeToday = (dateString, timeString) => {
   // This does not account for time zone differences
-  let utcMs = Date.parse(dateString + 'T' + timeString)
-  let date = new Date(utcMs)
-  return date
+  // We have to split the strings instead of concating as [date]T[time] because different browsers
+  //   parse the timezone differently if it's not defined (UTC vs local)
+  //   while all handle constructors the same (always local)
+  let dateArray = dateString.split('-')
+  let timeArray = timeString.split(':')
+  // Month is month - 1 because date month is 0 based
+  return new Date(Number(dateArray[0]), Number(dateArray[1]) - 1, Number(dateArray[2]),
+                          Number(timeArray[0]), Number(timeArray[1]))
 }
 
 // We  need a way to give each instance of a container access to its own private selector.
