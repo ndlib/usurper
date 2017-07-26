@@ -22,10 +22,13 @@
 	padding: 0 10px;
 	border-left-color: #AA272F; /* red */
 	border-left-color: #999623;
+
 	display: grid;
 	grid-template-columns: 2fr 2fr 1fr;
 	-ms-grid-columns: 2fr 2fr 1fr;
+	-moz-grid-template-columns: 2fr 2fr 1fr;
 	color: #000;
+	width: 100%;
 }
 
 .sub-service-point {
@@ -52,6 +55,8 @@
 	color: #fff;
 	font-family: GPCBook, sans-serif;
 	-ms-grid-column: 2;
+	-moz-grid-column: 2;
+	-moz-grid-row: 2 / 3;
 }
 
 .closed .today {
@@ -93,6 +98,25 @@
 
 .service-point h5 {
 	font-size: 18px;
+}
+
+
+@supports not (display:grid) {
+	.service-point a h4 {
+		display: flex;
+	}
+
+	.location, .today, .arrow  {
+		width: 33%;
+		display: inline-block;
+	}
+	.right .today  {
+		width: 75%;
+		display: inline-block;
+	}
+	.right .arrow {
+		width: 25%;
+	}
 }
 
 @media screen and (max-width: 800px) {

@@ -63,6 +63,17 @@ const Research = () => {
 
           </p>
 
+          <p>
+            <Link to='https://refworks.proquest.com/'>RefWorks (New)</Link><br />
+         
+          </p>
+
+          <p>
+            <Link to='https://www.refworks.com/refworks2/default.aspx?r=authentication::init&groupcode=RWUnivNotreDame'>RefWorks (Legacy)</Link><br />
+     
+
+          </p>
+
         </div>
 
         <div className='col-md-6 col-xs-12'>
