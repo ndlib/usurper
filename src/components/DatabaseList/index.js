@@ -18,14 +18,16 @@ const mapDispatchToProps = (dispatch) => {
 export class DatabaseListContainer extends Component {
   componentDidMount () {
     const pageSlug = this.props.match.params.id
-    this.props.fetchLetter(pageSlug.toLowerCase(), false)
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+    this.props.fetchLetter(pageSlug.toLowerCase(), preview)
   }
 
   componentWillReceiveProps (nextProps) {
     const slug = this.props.match.params.id
     const nextSlug = nextProps.match.params.id
+    const preview = (new URLSearchParams(nextProps.location.search)).get('preview') === 'true'
     if (slug !== nextSlug) {
-      this.props.fetchLetter(nextSlug.toLowerCase(), false)
+      this.props.fetchLetter(nextSlug.toLowerCase(), preview)
     }
   }
 
