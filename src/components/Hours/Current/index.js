@@ -70,10 +70,15 @@ export class CurrentHoursContainer extends Component {
   checkOpen (props) {
     try {
       const entry = props.hoursEntry
-      const opens = timeToday(entry.today.date, entry.today.opens)
-      const closes = timeToday(entry.today.date, entry.today.closes)
-      const now = new Date()
-      return opens <= now && now <= closes
+      const currentOpenBlocks = entry.today.hours.filter(hoursBlock => {
+        let opens = timeToday(hoursBlock.date, hoursBlock.opens)
+        let closes = timeToday(hoursBlock.date, hoursBlock.closes)
+        let now = new Date()
+        if (opens <= now && now <= closes) {
+          return true
+        }
+      })
+      return (currentOpenBlocks.length > 0)
     } catch (e) {
       return false
     }

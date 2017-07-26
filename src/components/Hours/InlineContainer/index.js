@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as statuses from '../../../constants/APIStatuses'
 
-class InlineContainer extends Component {
+class HoursInlineContainer extends Component {
   render () {
     switch (this.props.hoursEntry.status) {
       case statuses.FETCHING:
@@ -15,12 +15,11 @@ class InlineContainer extends Component {
   }
 }
 
-InlineContainer.propTypes = {
+HoursInlineContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
   presenter: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
-  children: PropTypes.object,
   toggleExpanded: PropTypes.func,
 }
 
-export default InlineContainer
+export default HoursInlineContainer
