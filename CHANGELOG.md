@@ -5,6 +5,8 @@
 ### New features/enhancements:
 
 ### Bug fixes:
+- Add Math library to hours page [#225](https://github.com/ndlib/usurper/pull/225)
+- Fix Safari hours coloring [#225](https://github.com/ndlib/usurper/pull/225)
 
 ## [0.10](https://github.com/ndlib/usurper/tree/master) (2017-7-26)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...v0.10.0)
