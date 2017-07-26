@@ -11,13 +11,12 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   return (
     <section className={servicePointClassName} aria-label={title}>
       <a
-        id='expand_hours'
         className='expand'
         tabIndex={0}
         onClick={expandHandler}
         onKeyDown={expandHandler}
         aria-expanded={false}
-        aria-controls={hoursEntry.name}
+        aria-controls={hoursEntry.servicePoint.slug}
       >
         <h4>
           <div className='location'>{hoursEntry.name}</div>
@@ -27,7 +26,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
           </div>
         </h4>
       </a>
-      <div id={hoursEntry.name} aria-hidden={true} />
+      <div id={hoursEntry.servicePoint.slug} aria-hidden={true} />
     </section>
   )
 }
