@@ -17,7 +17,6 @@ const hoursPageOrder = [
   { servicePointSlug: 'architecturelibrary', main: true },
   { servicePointSlug: 'byzantinestudiesreadingroom', main: true },
   { servicePointSlug: 'centerfordigitalscholarship', main: true },
-  { servicePointSlug: 'centerfordigitalscholarshiprooms', main: false },
   { servicePointSlug: 'chemistryphysicslibrary', main: true },
   { servicePointSlug: 'engineeringlibrary', main: true },
   { servicePointSlug: 'kelloggkroclibrary', main: true },
@@ -25,6 +24,7 @@ const hoursPageOrder = [
   { servicePointSlug: 'medievalinstitutelibrary', main: true },
   { servicePointSlug: 'musiclibrary', main: true },
   { servicePointSlug: 'radiationchemistryreadingroom', main: true },
+  { servicePointSlug: 'universityarchives', main: true },
   { servicePointSlug: 'visualresourcescenter', main: true },
 ]
 
