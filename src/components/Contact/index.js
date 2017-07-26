@@ -4,32 +4,32 @@ import PropTypes from 'prop-types'
 const Contact = (props) => {
   let name
   if (props.name) {
-    name = <h4>{props.name}</h4>
+    name = <h4>{props.name.trim()}</h4>
   }
 
   let title
   if (props.title) {
-    title = (<h5>{props.title}</h5>)
+    title = (<h5>{props.title.trim()}</h5>)
   }
 
   let phone
   if (props.phone) {
-    phone = (<span><a href={'tel:' + props.phone}>{props.phone}</a><br /></span>)
+    phone = (<span><a href={'tel:' + props.phone}>{props.phone.trim()}</a><br /></span>)
   }
 
   let email
   if (props.email) {
-    email = (<span><a href={'mailto:' + props.email}>{props.email}</a><br /></span>)
+    email = (<span><a href={'mailto:' + props.email}>{props.email.trim()}</a><br /></span>)
   }
 
   let addr1
   if (props.addr1) {
-    addr1 = <span>{props.addr1}<br /></span>
+    addr1 = <span>{props.addr1.trim()}<br /></span>
   }
 
   let addr2
   if (props.addr2) {
-    addr2 = <span>{props.addr2}</span>
+    addr2 = <span>{props.addr2.trim()}</span>
   }
 
   let address

@@ -86,6 +86,8 @@ const Research = () => {
 
           <p><Link to='http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&query=&search_scope=nd_campus&tab=nd_campus&vid=NDU&displayField=title&displayField=creator'>ND Catalog</Link></p>
 
+          <p><Link to='http://alephprod.library.nd.edu/F/?func=find-b-0'>Catalog Classic</Link></p>
+
           <p><Link to='https://ejl.library.nd.edu/'>EJournal Locator</Link></p>
 
           <p><Link to='https://xerxes.library.nd.edu/quicksearch/databases/subject/general-multidisciplinary'>Article QuickSearch</Link></p>
