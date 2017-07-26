@@ -1,15 +1,26 @@
 # Change Log
-## [0.10](https://github.com/ndlib/usurper/tree/master) (In development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...master)
+## [0.11](https://github.com/ndlib/usurper/tree/master) (In development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.10.0...master)
+
+### New features/enhancements:
+
+### Bug fixes:
+
+## [0.10](https://github.com/ndlib/usurper/tree/master) (2017-7-26)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...v0.10.0)
 
 ### New features/enhancements:
 
 ### Bug fixes:
 - Images now handle errors and render null instead of broken link [#212](https://github.com/ndlib/usurper/pull/212)
 - Button on my items page will now link no matter where you click [#212](https://github.com/ndlib/usurper/pull/212)
+- Hide search bar image on homepage when closed [#218](https://github.com/ndlib/usurper/pull/218)
+- Search preferences should work correctly again [#214](https://github.com/ndlib/usurper/pull/214)
+- Hotjar should work again
+- Handle image errors and render null instead of broken link [#212](https://github.com/ndlib/usurper/pull/212)
 
 
-## [0.9](https://github.com/ndlib/usurper/tree/v0.9.0) (In development)
+## [0.9](https://github.com/ndlib/usurper/tree/v0.9.0) (2017-7-24)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.8.0...v0.9.0)
 
 ### New features/enhancements:
@@ -20,7 +31,7 @@
 ### Bug fixes:
 - Display fixes for mobile [#210](https://github.com/ndlib/usurper/pull/210)
 
-## [0.8](https://github.com/ndlib/usurper/tree/v0.8.0) (In development)
+## [0.8](https://github.com/ndlib/usurper/tree/v0.8.0) (2017-7-21)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.7.2...v0.8.0)
 
 ### New features/enhancements:
