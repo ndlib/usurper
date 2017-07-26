@@ -20,6 +20,7 @@ const hoursPageOrder = [
   { servicePointSlug: 'chemistryphysicslibrary', main: true },
   { servicePointSlug: 'engineeringlibrary', main: true },
   { servicePointSlug: 'kelloggkroclibrary', main: true },
+  { servicePointSlug: 'omearamathematicslibrary', main:true },
   { servicePointSlug: 'medievalinstitutelibrary', main: true },
   { servicePointSlug: 'byzantinestudiesreadingroom', main: false },
   { servicePointSlug: 'musiclibrary', main: true },
