@@ -34,17 +34,17 @@ const Services = () => {
           <h4>Buy, Hold, or Find</h4>
           <ul>
 
-            <li><Link to='#'>Missing Book Search Requests</Link> </li>
-            <li><Link to='https://library.nd.edu/utilities/forms/purchase'>Recommend a Purchase</Link> </li>
-            <li><Link to='#'>Request an In Process or On Order Item</Link> </li>
+            <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_circulation'>Missing Book Search Requests</Link> </li>
+            <li><Link to='https://factotum.library.nd.edu/utilities/forms/purchase'>Recommend a Purchase</Link> </li>
+            
           </ul>
           <h4>Problem Report Forms</h4>
           <ul>
             <li><Link to='#'>Catalog Record Problems</Link> </li>
-            <li><Link to='#'>General Problem</Link> </li>
-            <li><Link to='#'>Interlibrary Loan Problems</Link> </li>
-            <li><Link to='#'>Online Resource Problem</Link> </li>
-            <li><Link to='#'>Reserves Problems</Link> </li>
+            <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_general'>General Problem</Link> </li>
+            <li><Link to='mailto:Library.ill.1@nd.edu'>Interlibrary Loan Problems</Link> </li>
+            <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_online'>Online Resource Problem</Link> </li>
+            <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_reserves'>Reserves Problems</Link> </li>
           </ul>
 
           <h3>Spaces</h3>
@@ -61,7 +61,7 @@ const Services = () => {
 
           <h3>Specialty Expertise and Consultation Areas</h3>
 
-          <p><Link to='http://libguides.library.nd.edu/datamanagement'>Copyright Consulting</Link>
+          <p><Link to='http://libguides.library.nd.edu/scholarly-publishing/copyright'>Copyright Consulting</Link>
             <span>Submit a question to the copyright team.</span></p>
           <p><Link to='http://libguides.library.nd.edu/datamanagement'>Data Management Consulting Team</Link>
             <span>Contact us for assistance with data management plans, and more.</span></p>
@@ -102,7 +102,7 @@ const Services = () => {
             <span>Submit a 3D print job or request assistance with finding or designing a 3D model</span></p>
           <p><Link to='/copy-print-scan'>Copying, Printing, and Scanning</Link>
             <span>Locate computers and other technology within Libraries facilities</span></p>
-          <p>Listening Stations</p>
+
           <p><Link to='http://libguides.library.nd.edu/onebutton'>One Button Studio</Link>
 
             <span>Reserve the One Button Studio video recording space</span></p>

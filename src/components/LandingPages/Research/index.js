@@ -27,7 +27,7 @@ const Research = () => {
           </p>
           <p>
 
-            <Link to='https://directory.library.nd.edu/directory/subjects' noTarget={true}>Subject Librarians and Specialists</Link>
+            <Link to='https://directory.library.nd.edu/directory/subjects' noTarget={true}>Librarians by Subject &amp; Specialty</Link>
           </p>
           <p>
             <Link to='http://libguides.library.nd.edu/first-year-studies'>Starting Your Research</Link><br />
