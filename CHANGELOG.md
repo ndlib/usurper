@@ -1,6 +1,14 @@
 # Change Log
-## [0.11](https://github.com/ndlib/usurper/tree/master) (In development)
+## [0.12](https://github.com/ndlib/usurper/tree/master) (In Development)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.10.0...master)
+
+### New features/enhancements:
+
+### Bug fixes:
+
+
+## [0.11](https://github.com/ndlib/usurper/tree/master) (2017-7-27)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.10.0...v0.11.0)
 
 ### New features/enhancements:
 
@@ -12,6 +20,7 @@
 - Fixed dom ids on the hours page to be unique and not contain spaces [#224](https://github.com/ndlib/usurper/pull/224)
 - Removed CDS Scholarship Rooms and added University Archives to hours page [#224](https://github.com/ndlib/usurper/pull/224)
 - Fixed major display issues on older firefox versions [#226](https://github.com/ndlib/usurper/pull/226)
+
 
 ## [0.10](https://github.com/ndlib/usurper/tree/master) (2017-7-26)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...v0.10.0)
