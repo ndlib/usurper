@@ -11,6 +11,7 @@
 - Fixed a javascript warning related to passing an array into the InlineHours component [#224](https://github.com/ndlib/usurper/pull/224)
 - Fixed dom ids on the hours page to be unique and not contain spaces [#224](https://github.com/ndlib/usurper/pull/224)
 - Removed CDS Scholarship Rooms and added University Archives to hours page [#224](https://github.com/ndlib/usurper/pull/224)
+- Fixed major display issues on older firefox versions [#226](https://github.com/ndlib/usurper/pull/226)
 
 ## [0.10](https://github.com/ndlib/usurper/tree/master) (2017-7-26)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...v0.10.0)
