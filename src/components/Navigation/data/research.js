@@ -49,7 +49,7 @@ export const researchData = [
       },
       {
         title: 'University Archives',
-        url: 'http://archives.nd.edu/findaids/ead/xml/',
+        url: 'http://archives.nd.edu/search/',
       },
       {
         title: 'Medieval Institute Library',
