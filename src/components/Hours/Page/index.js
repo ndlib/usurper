@@ -17,7 +17,6 @@ const hoursPageOrder = [
   { servicePointSlug: 'architecturelibrary', main: true, link: '/architecture' },
   { servicePointSlug: 'mahaffeybusinesslibrary', main: true, link: '/business' },
   { servicePointSlug: 'centerfordigitalscholarship', main: true, link: 'http://cds.library.nd.edu' },
-  { servicePointSlug: 'centerfordigitalscholarshiprooms', main: false },
   { servicePointSlug: 'chemistryphysicslibrary', main: true, link: '/chemistry-physics-library' },
   { servicePointSlug: 'engineeringlibrary', main: true, link: '/engineering' },
   { servicePointSlug: 'kelloggkroclibrary', main: true, link: '/kellogg-kroc' },
@@ -26,6 +25,7 @@ const hoursPageOrder = [
   { servicePointSlug: 'byzantinestudiesreadingroom', main: false },
   { servicePointSlug: 'musiclibrary', main: true, link: '/music' },
   { servicePointSlug: 'radiationchemistryreadingroom', main: true, link: '/radlab' },
+  { servicePointSlug: 'universityarchives', main: true },
   { servicePointSlug: 'visualresourcescenter', main: true, link: '/vrc' },
 ]
 
