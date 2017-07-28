@@ -18,7 +18,7 @@ export const researchData = [
 
       },
       {
-        title: 'Subject Librarians and Specialists',
+        title: 'Librarians by Subject & Specialty',
         url: 'https://directory.library.nd.edu/directory/subjects',
       },
       {
@@ -44,12 +44,12 @@ export const researchData = [
     classes: 'col-md-3',
     items: [
       {
-        title: 'Rare Books &amp; Special Collections',
+        title: 'Rare Books & Special Collections',
         url: 'http://rarebooks.library.nd.edu/',
       },
       {
         title: 'University Archives',
-        url: 'http://archives.nd.edu/findaids/ead/xml/',
+        url: 'http://archives.nd.edu/search/',
       },
       {
         title: 'Medieval Institute Library',
