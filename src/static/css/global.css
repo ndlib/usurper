@@ -114,7 +114,6 @@ a {
 
 .landing p a, .landing .child li a {
   font-size: 110%;
-  display: block;
 }
 
 .landing .child li:before {
@@ -130,6 +129,13 @@ a {
   text-decoration: underline;
 }
 
+.landing a {
+  font-weight: bold;
+}
+
+.landing p span {
+  display: block;
+}
 
 
 .letter {
@@ -1471,6 +1477,15 @@ hr {
   margin-bottom: 13px;
 }
 
+.service-point a.more-info {
+  font-family: GPCMed, sans-serif;
+  font-size: 20px;
+  margin-bottom: 1em;
+  display: inline-block;
+  background-size: 24px;
+  background-repeat: no-repeat;
+}
+
 .right .service-point {
   margin-bottom: 2em;
   padding: 2em 0 0;
@@ -1872,14 +1887,6 @@ address {
 
 .p-services .frame img, .p-pages .frame img  {
   width: 100%;
-  display: block;
-}
-
-.services-landing a, .research-landing a {
-  font-weight: bold;
-}
-
-.services-landing p span {
   display: block;
 }
 

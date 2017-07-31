@@ -1,19 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Navigation from './presenter'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../actions/search'
-import { researchData } from './data/research.js'
-import { servicesData } from './data/services.js'
-import { librariesData } from './data/libraries.js'
-import { aboutData } from './data/about.js'
+import * as statuses from '../../constants/APIStatuses'
 import {
   openMenu,
   closeMenus,
-  RESEARCH_MENU,
-  SERVICES_MENU,
-  LIBRARIES_MENU,
-  ABOUT_MENU,
+  fetchNavigation,
   ASK_MENU,
   USER_MENU,
   MOBILE_MENU,
@@ -37,6 +31,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     e.nativeEvent.stopImmediatePropagation()
   }
   return {
+    fetchNavigation: (e) => {
+      dispatch(fetchNavigation())
+    },
     openSearchDrawer: (e) => {
       dispatch(closeMenus())
       dispatch(openSearchDrawer())
@@ -47,20 +44,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(closeSearchDrawer())
       preventDefault(e)
     },
-    openResearch: (e) => {
-      dispatch(openMenu(RESEARCH_MENU))
-      preventDefault(e)
-    },
-    openServices: (e) => {
-      dispatch(openMenu(SERVICES_MENU))
-      preventDefault(e)
-    },
-    openLibraries: (e) => {
-      dispatch(openMenu(LIBRARIES_MENU))
-      preventDefault(e)
-    },
-    openAbout: (e) => {
-      dispatch(openMenu(ABOUT_MENU))
+    openMenu: (id, e) => {
+      dispatch(openMenu(id))
       preventDefault(e)
     },
     openAsk: (e) => {
@@ -83,6 +68,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 const mergeProps = (state, dispatchProps, ownProps) => {
+  if (state.menus.status !== statuses.SUCCESS) {
+    return {
+      ...dispatchProps,
+      ...ownProps,
+    }
+  }
+
   // Treat menu dropdowns as links to landing pages for accessibiilty
   const keyDown = (e) => {
     if (e.keyCode === 13) {
@@ -90,45 +82,20 @@ const mergeProps = (state, dispatchProps, ownProps) => {
       ownProps.history.push(`/${id}`)
     }
   }
-  const dropDowns = [
-    {
-      title: 'Research',
-      landingPage: '/research',
-      menuId: RESEARCH_MENU,
-      menuData: researchData,
-      onClick: state.menus.menuId === RESEARCH_MENU ? dispatchProps.closeMenus : dispatchProps.openResearch,
-      keyDown: keyDown,
-      onBlur: dispatchProps.closeMenus,
-    },
-    {
-      title: 'Services',
-      landingPage: '/services',
-      menuId: SERVICES_MENU,
-      menuData: servicesData,
-      onClick: state.menus.menuId === SERVICES_MENU ? dispatchProps.closeMenus : dispatchProps.openServices,
-      keyDown: keyDown,
-      onBlur: dispatchProps.closeMenus,
-    },
-    {
-      title: 'Libraries',
-      landingPage: null,
-      menuId: LIBRARIES_MENU,
-      menuData: librariesData,
-      onClick: state.menus.menuId === LIBRARIES_MENU ? dispatchProps.closeMenus : dispatchProps.openLibraries,
-      keyDown: keyDown,
-      onBlur: dispatchProps.closeMenus,
-    },
-    {
-      title: 'About',
-      landingPage: null,
-      menuId: ABOUT_MENU,
-      menuData: aboutData,
-      onClick: state.menus.menuId === ABOUT_MENU ? dispatchProps.closeMenus : dispatchProps.openAbout,
-      keyDown: keyDown,
-      onBlur: dispatchProps.closeMenus,
-    },
 
-  ]
+  let dropDowns = []
+  state.menus.data.fields.columns.forEach(menu => {
+    let current = menu.fields
+    dropDowns.push({
+      title: current.title,
+      landingPage: current.landingPage ? current.landingPage.fields.slug : null,
+      menuId: current.slug,
+      menuData: current.columns,
+      onClick: state.menus.menuId === current.slug ? dispatchProps.closeMenus : dispatchProps.openMenu.bind(null, current.slug),
+      keyDown: keyDown,
+      onBlur: dispatchProps.closeMenus,
+    })
+  })
 
   const handleUserKeyDown = (e) => {
     if (e.keyCode === 13) {
@@ -160,8 +127,24 @@ const mergeProps = (state, dispatchProps, ownProps) => {
   }
 }
 
+class NavigationContainer extends Component {
+  componentWillMount () {
+    this.props.fetchNavigation()
+  }
+
+  render () {
+    if (!this.props.dropDowns) {
+      return null
+    }
+
+    return (
+      <Navigation {...this.props} />
+    )
+  }
+}
+
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(Navigation))
+)(NavigationContainer))
