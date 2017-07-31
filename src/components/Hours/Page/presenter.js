@@ -7,6 +7,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageTitle from '../../PageTitle'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
+import Link from '../../Link'
 
 const Presenter = (props) => {
   return (
@@ -26,6 +27,7 @@ const Presenter = (props) => {
 
                 return (<div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
                   <CurrentHours servicePoint={sp} >
+                    <Link to={servicePointOrder.link} className='more-info' hideIfNull>More Information</Link>
                     <h4>{sp.fields.address}</h4>
                     <Contact servicePoint={sp} />
                   </CurrentHours>
