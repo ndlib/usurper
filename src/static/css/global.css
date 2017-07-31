@@ -1128,6 +1128,19 @@ label[for='q']:after, .uSearchBox label:after {
   .uSearchBox button {
     width: 13%;
   }
+  .librarian {
+    float: left;
+    clear: left;
+    width: 100%;
+  }
+  .librarian .contact {
+    float: left;
+    clear: left;
+    width: 210px;
+  }
+  .librarian .frame {
+    float: right;
+  }
   @media screen and (max-width: 780px) {
     .uSearchBox {
       flex-wrap: wrap;
@@ -2400,13 +2413,7 @@ address {
     min-height: auto;
   }
 
-  .librarian .frame {
-    height: 70px;
-  }
 
-  .librarian .frame img {
-    height: 70px;
-  }
 
 
 
