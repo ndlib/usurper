@@ -1,27 +1,15 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
-import { MemoryRouter } from 'react-router'
+import { shallow } from 'enzyme'
+import { Route } from 'react-router'
 import Header from '../../../components/Header'
 import BrandingBanner from '../../../components/Header/BrandingBanner'
 import HesburghBanner from '../../../components/Header/HesburghBanner'
-import configureStore from 'redux-mock-store'
+import Navigation from '../../../components/Navigation'
 import createRouterContext from 'react-router-test-context'
-import PropTypes from 'prop-types'
 
 const setup = (props, path) => {
-  const store = configureStore()(props)
-  const context = createRouterContext()
-  const childContextTypes = {
-    router: PropTypes.object,
-  }
-  return mount(
-    <Provider store={store}>
-      <MemoryRouter initialEntries={[path]}>
-        <Header {...props} />
-      </MemoryRouter>
-    </Provider>, { context, childContextTypes }
-  )
+  const context = createRouterContext({ location: { pathname: path } })
+  return shallow(<Header {...props} />, { context })
 }
 
 let enzymeWrapper
@@ -65,21 +53,10 @@ describe('components/Header/index.js', () => {
 
   it('Renders a BrandingBanner component on the home page', () => {
     enzymeWrapper = setup(props, '/')
-    expect(enzymeWrapper.containsMatchingElement(<BrandingBanner />)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Route exact path='/' component={BrandingBanner} />)).toBe(true)
   })
 
   it('Renders a Navigation component', () => {
-    expect(enzymeWrapper.find('.uNavigation').exists()).toBe(true)
-  })
-
-  it('Renders a SearchDrawer component when it is open', () => {
-    enzymeWrapper = setup(Object.assign({}, props, {
-      search: {
-        drawerOpen: true,
-        hasPref: false,
-        usePref: false,
-        searchType: '',
-      } }), '/')
-    expect(enzymeWrapper.find('#drawer').exists()).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Navigation />)).toBe(true)
   })
 })
