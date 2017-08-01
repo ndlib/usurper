@@ -27,11 +27,29 @@ import Rewrite from './Rewrite'
 
 import NotFound from '../../components/Messages/NotFound'
 
+import { LINK_CLICK } from '../Link'
+import { SET_SEARCH, SAVE_SEARCH_PREFERENCE } from '../../actions/search.js'
+
+const analyticsActions = [LINK_CLICK, SET_SEARCH, SAVE_SEARCH_PREFERENCE]
+
+const analytics = () => next => action => {
+  window.dataLayer = window.dataLayer || []
+  if (analyticsActions.indexOf(action.type) > -1) {
+    window.dataLayer.push({
+      event: action.type,
+      ...action,
+    })
+  }
+
+  return next(action)
+}
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   rootReducers,
   composeEnhancers(applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
+    thunkMiddleware, // lets us dispatch() functions
+    analytics
   ))
 )
 

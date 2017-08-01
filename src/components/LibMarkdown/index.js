@@ -38,13 +38,6 @@ const LibLink = (props) => {
     }
   }
 
-  // Link to named anchor using native browser behavior
-  if (url.search('#') > -1) {
-    return (
-      <a href={url}>{props.children}</a>
-    )
-  }
-
   return <Link to={url}>{props.children}</Link>
 }
 
