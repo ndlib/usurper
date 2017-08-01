@@ -1,6 +1,7 @@
 import React from 'react'
 import Facebook from '../images/facebook.png'
 import Twitter from '../images/twitter.png'
+import Gov from '../images/fdlp-emblem-color.png'
 import Link from '../../Link'
 
 const FooterLinks = () => {
@@ -8,7 +9,7 @@ const FooterLinks = () => {
     <div id='footer-links'>
       <div className='container-fluid'>
         <div className='row bottom-xs'>
-          <div className='col-xs-7'>
+          <div className='col-xs-8'>
             <div className='box'>
               <ul role='navigation' aria-label='Footer Menu'>
                 <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}&lib_list_problem=lib_list_web_content`}>Website Feedback</Link></li>
@@ -17,11 +18,12 @@ const FooterLinks = () => {
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
                 <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}`}>Report A Problem</Link></li>
+                <li><Link to='http://libguides.library.nd.edu/trumpadmin1' title='Federal Depository Library'><img src={Gov} className='gov' /></Link></li>
               </ul>
             </div>
           </div>
 
-          <div className='col-xs-5'>
+          <div className='col-xs-4'>
             <div className='box right'>
               <ul role='navigation' aria-label='Social Media Links'>
                 <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>

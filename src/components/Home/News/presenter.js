@@ -7,7 +7,7 @@ import './style.css'
 const News = (entries) => {
   return (
     <div className='col-md-8 col-xs-12'>
-      <h3>News</h3>
+      <h3>News and Announcements</h3>
       <section aria-label='News'>
         {
           entries.map((entry) => {

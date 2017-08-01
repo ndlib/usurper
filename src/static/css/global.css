@@ -1506,7 +1506,7 @@ hr {
   border-bottom: 3px solid rgba(0, 0, 0, .3);
 }
 
-.right .service-point h4 {
+.right .service-point h4, .sp-hidden .service-point h4 {
   background: none;
   font-size: 24px;
   padding: 0;
@@ -2133,6 +2133,15 @@ address {
   vertical-align: top;
 }
 
+.gov {
+  height:  20px;
+
+}
+
+.sp-hidden {
+  display: none;
+}
+
 
 /* LOADER */
 
@@ -2550,6 +2559,9 @@ body {
   }
 
   #footer-links li {
+    display: block;
+  }
+  .sp-hidden {
     display: block;
   }
 }
