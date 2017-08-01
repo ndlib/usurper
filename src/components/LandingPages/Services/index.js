@@ -90,7 +90,7 @@ const Services = () => {
             <span>For students and faculty to access reserve items or place items on reserve</span> </p>
           <p><Link to='/consultations'>Library Research Consultations</Link>
             <span>Make an appointment to meet with a librarian</span></p>
-          <p>Request Instruction
+          <p><Link to='/request-library-research-instruction'>Request Instruction</Link>
             <span>Request library instruction for your class sessions</span></p>
           <p><Link to='http://libguides.library.nd.edu/dissertation-camp'>Research and Writing Camps</Link>
             <span>The Libraries offer a variety of research and writing camps, such as thesis and dissertation camps, research and statistical tools camps, and custom boot camps for groups by request.</span></p>
@@ -151,7 +151,7 @@ const Services = () => {
 
           <h3>Miscellaneous Services</h3>
 
-          <p>Document Shredding
+          <p><strong>Document Shredding</strong>
             <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
           <p><Link to='/lokmobiles'>Lokmobiles</Link>
             <span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>

@@ -73,6 +73,11 @@ const Research = () => {
      
 
           </p>
+          <p>
+            <Link to='https://potofgold.library.nd.edu'>Pot of Gold</Link><br />
+     
+
+          </p>
 
         </div>
 

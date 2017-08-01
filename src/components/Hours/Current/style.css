@@ -3,12 +3,12 @@
 
 }
 
-.right .service-point h4 {
+.right .service-point h4, .sp-hidden .service-point h4 {
 	grid-template-columns: 5fr 1fr;
 	background: #fff;
 }
 
-.right .location {
+.right .location, .sp-hidden .location {
 	padding: 10px;
 	grid-column-start: 1;
 	grid-column-end: 3;
@@ -17,7 +17,7 @@
 	display: none;
 }
 
-.right .service-point {
+.right .service-point, .sp-hidden .service-point {
 	border-top: none;
 	border-bottom: none;
 	padding-top: 0;
@@ -25,7 +25,7 @@
 }
 
 
-.right .today {
+.right .today, .sp-hidden .today {
 	grid-row-start: 1;
 	grid-column-start: 1;
 	grid-column-end: 2;
@@ -34,7 +34,7 @@
 	-ms-grid-column-span: 3;
 }
 
-.right .arrow {
+.right .arrow, .sp-hidden .arrow {
 	-ms-grid-row: 1;
 	-ms-grid-column: 3;
 	grid-row-start: 1;
