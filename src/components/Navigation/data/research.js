@@ -37,6 +37,10 @@ export const researchData = [
         title: 'Center for Digital Scholarship',
         url: 'http://cds.library.nd.edu',
       },
+      {
+        title: 'Pot of Gold',
+        url: 'http://potofgold.library.nd.edu',
+      },
     ],
   },
   {
