@@ -5,6 +5,7 @@ import Footer from '../Footer'
 import '../../static/css/fonts.css'
 import '../../static/css/flexboxgrid.css'
 import '../../static/css/global.css'
+import '../../static/css/print.css'
 
 const PageWrapper = (props) => {
   return (
