@@ -1532,7 +1532,8 @@ address {
   padding-left: 1em;
 }
 
-.point .building a, .point .floor a, .point .phone a, .point .email a {
+.point .building a, .point .floor a, .point .phone a,
+  .point .email a, .point .web a, .point .fax a {
   font-family: GPCMed, sans-serif;
   font-size: 20px;
   margin-bottom: 1em;
@@ -1554,6 +1555,18 @@ address {
 .point .email a {
   background-image: url("../images/email.png");
   background-position: 0 6px;
+}
+
+.point .web {
+  display: none;
+}
+
+.contact-page .point .web {
+  display: inline-block;
+}
+
+.contact-page .point .access-note {
+  display: none;
 }
 
 .moreinfo {

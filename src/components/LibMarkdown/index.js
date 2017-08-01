@@ -68,15 +68,18 @@ class LibMarkdown extends Component {
     }
 
     return (
-      <Markdown options={overrides}>
-        { this.props.children }
-      </Markdown>
+      <span className={this.props.className}>
+        <Markdown options={overrides}>
+          { this.props.children }
+        </Markdown>
+      </span>
     )
   }
 }
 
 LibMarkdown.propTypes = {
   children: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default LibMarkdown
