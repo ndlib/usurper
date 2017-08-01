@@ -18,11 +18,6 @@ const mapStateToProps = (state) => {
         flattenLocale(entry.fields, 'en-US')
         return entry
       })
-      .filter((entry) => {
-        let start = new Date(entry.fields.displayStartDate)
-        let end = new Date(entry.fields.displayEndDate)
-        return start <= now && end >= now
-      })
       .sort((left, right) => {
         let a = new Date(left.fields.displayStartDate)
         let b = new Date(right.fields.displayStartDate)
