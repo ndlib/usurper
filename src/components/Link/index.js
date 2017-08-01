@@ -35,7 +35,7 @@ const Hidden = (
   null
 )
 
-const LibLink = (props) => {
+export const LibLink = (props) => {
   let query = ''
   for (var k in props.query) {
     if (props.query.hasOwnProperty(k)) {
