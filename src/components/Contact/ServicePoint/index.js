@@ -46,7 +46,7 @@ const Contact = (props) => {
 
   let fax
   if (sp.faxNumber) {
-    fax = <li className='fax'><a title={'Fax ' + sp.faxNumber} href={'fax:+' + sp.faxNumber.replace(/[() -.]/g, '')}>{sp.faxNumber}</a></li>
+    fax = <li className='fax'>{'Fax: ' + sp.faxNumber}</li>
   }
 
   let email
@@ -62,8 +62,8 @@ const Contact = (props) => {
 
   // this is hidden in css everywhere except the contact page
   let webPage
-  if (sp.webPage) {
-    const link = sp.webPage.fields.slug ? sp.webPage.fields.slug : sp.webPage.fields.url
+  if (sp.relatedWebPage) {
+    const link = sp.relatedWebPage.fields.slug ? sp.relatedWebPage.fields.slug : sp.relatedWebPage.fields.url
     webPage = <li className='web'><Link to={link}>Web Page</Link></li>
   }
 

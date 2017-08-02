@@ -10,18 +10,19 @@ import Presenter from './presenter'
 
 const contactPoints = [
   {
-    'title': 'Services',
+    'title': 'Services and Offices',
     'points': [
-      'askusdesk',
       'circulationservicedesk',
+      'askusdesk',
       'reservesmicrotextandmediadesk',
       'admin',
       'ill-office',
       'course-reserves-office',
+      'docdel-office',
     ],
   },
   {
-    'title': 'Libraries',
+    'title': 'Libraries and Centers',
     'points': [
       'hesburghlibrary',
       'architecturelibrary',

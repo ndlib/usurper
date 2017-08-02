@@ -1533,7 +1533,7 @@ address {
 }
 
 .point .building a, .point .floor a, .point .phone a,
-  .point .email a, .point .web a, .point .fax a {
+  .point .email a, .point .web a, .point .fax {
   font-family: GPCMed, sans-serif;
   font-size: 20px;
   margin-bottom: 1em;
@@ -1552,16 +1552,20 @@ address {
   background-image: url("../images/phone.png");
 }
 
+.point .fax {
+  background-image: url("../images/phone.png");
+}
+
 .point .email a {
   background-image: url("../images/email.png");
   background-position: 0 6px;
 }
 
-.point .web {
+.point .web a {
   display: none;
 }
 
-.contact-page .point .web {
+.contact-page .point .web a {
   display: inline-block;
 }
 
