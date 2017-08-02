@@ -18,9 +18,9 @@ const ContactPresenter = (props) => {
 
       <div className='row'>
       {
-        props.sections.map((section) => {
+        props.sections.map((section, index) => {
           return (
-            <section className='col-md-6 col-xs-12'>
+            <section className='col-md-6 col-xs-12' key={"section_" + index}>
               <h2>{section.title}</h2>
               {
                 section.points.map((slug) => {
@@ -29,7 +29,7 @@ const ContactPresenter = (props) => {
                     return null
                   }
 
-                  return <span>
+                  return <span key={slug}>
                     <h3>{props.points[slug].fields.title}</h3>
                     <Contact servicePoint={props.points[slug]} />
                   </span>

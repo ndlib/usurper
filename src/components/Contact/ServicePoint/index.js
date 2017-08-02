@@ -62,7 +62,7 @@ const Contact = (props) => {
 
   // this is hidden in css everywhere except the contact page
   let webPage
-  if (sp.relatedWebPage) {
+  if (sp.relatedWebPage && sp.relatedWebPage.fields) {
     const link = sp.relatedWebPage.fields.slug ? sp.relatedWebPage.fields.slug : sp.relatedWebPage.fields.url
     webPage = <li className='web'><Link to={link}>Web Page</Link></li>
   }

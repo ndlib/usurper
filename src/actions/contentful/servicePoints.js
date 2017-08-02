@@ -24,7 +24,6 @@ const receiveServicePoints = (response) => {
     servicePoints: response,
     receivedAt: Date.now(),
   }
-console.log (response)
 
   try {
     if (response) {
