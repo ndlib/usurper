@@ -1,13 +1,20 @@
 # Change Log
-## [0.12](https://github.com/ndlib/usurper/tree/master) (In Development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.10.0...master)
+## [0.13](https://github.com/ndlib/usurper/tree/master) (In Development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.0...master)
 
 ### New features/enhancements:
 
 ### Bug fixes:
 
+## [0.12](https://github.com/ndlib/usurper/tree/v0.12.0) (2017-8-2)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.11.0...v0.12.0)
 
-## [0.11](https://github.com/ndlib/usurper/tree/master) (2017-7-27)
+### New features/enhancements:
+
+### Bug fixes:
+- Fixed a bug that caused service points on hours pages to appear closed after 8pm [#234](https://github.com/ndlib/usurper/pull/234)
+
+## [0.11](https://github.com/ndlib/usurper/tree/v0.11.0) (2017-7-27)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.10.0...v0.11.0)
 
 ### New features/enhancements:
@@ -22,7 +29,7 @@
 - Fixed major display issues on older firefox versions [#226](https://github.com/ndlib/usurper/pull/226)
 
 
-## [0.10](https://github.com/ndlib/usurper/tree/master) (2017-7-26)
+## [0.10](https://github.com/ndlib/usurper/tree/v0.10.0) (2017-7-26)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.9.0...v0.10.0)
 
 ### New features/enhancements:
