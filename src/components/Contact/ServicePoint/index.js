@@ -46,7 +46,7 @@ const Contact = (props) => {
 
   let fax
   if (sp.faxNumber) {
-    fax = <li className='fax'>{'Fax: ' + sp.faxNumber}</li>
+    fax = <li className='fax' title={'Fax: ' + sp.faxNumber}>{sp.faxNumber}</li>
   }
 
   let email
