@@ -84,7 +84,7 @@ export const librariesData = [
     ],
   },
   {
-    title: 'Area Libraries',
+    title: 'Partner Libraries',
     classes: 'col-md-3 col-sm-4',
     items: [
       {
@@ -102,10 +102,6 @@ export const librariesData = [
       {
         title: 'Holy Cross College Library',
         url: 'http://www.hcc-nd.edu/mckenna-library/',
-      },
-      {
-        title: 'Indiana University South Bend Library',
-        url: 'https://www.iusb.edu/library/',
       },
       {
         title: 'Notre Dame Law Library',
