@@ -12,6 +12,7 @@ const RedirectRoutes = [
   { path: '/onesearch', target: 'http://factotum.library.nd.edu/utilities/search/ndu/onesearch' },
   { path: '/instruction/potofgold/', target: 'https://potofgold.library.nd.edu/' },
   { path: '/clavius/', target: 'http://clavius.library.nd.edu/' },
+  { path: '/rigorandrelevance/', target: 'http://rigorandrelevance.library.nd.edu/' },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
