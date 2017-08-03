@@ -13,6 +13,7 @@ const RedirectRoutes = [
   { path: '/instruction/potofgold/', target: 'https://potofgold.library.nd.edu/' },
   { path: '/clavius/', target: 'http://clavius.library.nd.edu/' },
   { path: '/rigorandrelevance/', target: 'http://rigorandrelevance.library.nd.edu/' },
+  { path: '/GLSBC2016/', target: 'http://glsbc2016.library.nd.edu/' },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
