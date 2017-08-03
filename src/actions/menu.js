@@ -36,7 +36,6 @@ export const requestNavigation = () => {
 }
 
 const receiveNavigation = (response) => {
-  console.log(response)
   if (response === 'TypeError: Failed to fetch') {
     return {
       type: NAV_RECEIVE,

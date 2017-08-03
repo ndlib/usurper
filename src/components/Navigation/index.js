@@ -7,7 +7,6 @@ import * as statuses from '../../constants/APIStatuses'
 import {
   openMenu,
   closeMenus,
-  fetchNavigation,
   ASK_MENU,
   USER_MENU,
   MOBILE_MENU,
@@ -31,9 +30,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     e.nativeEvent.stopImmediatePropagation()
   }
   return {
-    fetchNavigation: (e) => {
-      dispatch(fetchNavigation())
-    },
     openSearchDrawer: (e) => {
       dispatch(closeMenus())
       dispatch(openSearchDrawer())
@@ -128,10 +124,6 @@ const mergeProps = (state, dispatchProps, ownProps) => {
 }
 
 class NavigationContainer extends Component {
-  componentWillMount () {
-    this.props.fetchNavigation()
-  }
-
   render () {
     if (!this.props.dropDowns) {
       return null
