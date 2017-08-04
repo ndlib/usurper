@@ -27,6 +27,8 @@ import Rewrite from './Rewrite'
 
 import NotFound from '../../components/Messages/NotFound'
 
+import Config from '../../shared/Configuration'
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
   rootReducers,
@@ -39,6 +41,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <div>
+        <meta id='nd-version' content={Config.version} />
         <Rewrite />
         <PageWrapper>
           <Switch>
