@@ -5,6 +5,8 @@ import { Route, Redirect } from 'react-router'
 const Rewrite = (props) => {
   return RedirectRoutes.map((route, index) => {
     const forwardPath = route.forwardPath ? props.location.pathname : ''
+    const forwardSearch = route.forwardQuery ? props.location.search : ''
+    const target = route.target + forwardPath + forwardSearch
     // external redirect
     if (route.target.indexOf('http') === 0) {
       return (
@@ -13,7 +15,7 @@ const Rewrite = (props) => {
           exact path={route.path}
           render={
               () => {
-                window.location = route.target + forwardPath
+                window.location = target
                 return null
               }
             }
@@ -37,7 +39,7 @@ const Rewrite = (props) => {
           key={index}
           path={route.path}
           render={() => (
-            <Redirect to={route.target + forwardPath} />
+            <Redirect to={target} />
           )}
       />)
     // internal redirect
@@ -47,7 +49,7 @@ const Rewrite = (props) => {
           key={index}
           exact path={route.path}
           render={() => (
-            <Redirect to={route.target + forwardPath} />
+            <Redirect to={target} />
           )}
       />)
     }
