@@ -43,7 +43,7 @@ export const servicesData = [
       },
       {
         title: 'ND Catalog',
-        url: 'http://onesearch.library.nd.edu/primo_library/libweb/action/search.do',
+        url: 'https://factotum.library.nd.edu/utilities/search/ndu/nd_campus',
       },
 
     ],
@@ -68,7 +68,7 @@ export const servicesData = [
       {
         title: 'Workshops',
         url: '/workshops',
-      },      
+      },
     ],
   },
 ]
