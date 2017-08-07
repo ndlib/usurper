@@ -10,7 +10,8 @@ const RedirectRoutes = [
   { path: '/specialists', target: 'https://directory.library.nd.edu/directory/subjects' },
   { path: '/catalog', target: 'http://factotum.library.nd.edu/utilities/search/ndu/nd_campus' },
   { path: '/onesearch', target: 'http://factotum.library.nd.edu/utilities/search/ndu/onesearch' },
-  { path: '/instruction/potofgold/', target: 'https://potofgold.library.nd.edu/' },
+  { path: '/instruction/potofgold', target: 'https://potofgold.library.nd.edu' },
+  { path: '/utilities/acquisitions/order', target: 'https://factotum.library.nd.edu/utilities/forms/purchase/new' },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
