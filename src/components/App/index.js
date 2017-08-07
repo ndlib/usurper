@@ -41,7 +41,6 @@ const App = (props) => {
       { Rewrite(props) }
       <Provider store={store}>
         <div>
-          <meta id='nd-version' content={Config.version} />
           <PageWrapper>
             <Switch>
               <Route exact path='/' component={Home} />

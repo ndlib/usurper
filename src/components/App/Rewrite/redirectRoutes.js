@@ -12,8 +12,7 @@ const RedirectRoutes = [
   { path: '/catalog', target: 'http://factotum.library.nd.edu/utilities/search/ndu/nd_campus' },
   { path: '/onesearch', target: 'http://factotum.library.nd.edu/utilities/search/ndu/onesearch' },
   { path: '/instruction/potofgold/', target: 'https://potofgold.library.nd.edu/' },
-  { path: '/utilities/search/smc/smc', target: 'https://factotum.library.nd.edu', forwardPath: true, forwardQuery: true },
-  { path: '/utilities/search/bci/onesearch', target: 'https://factotum.library.nd.edu', forwardPath: true, forwardQuery: true },
+  { path: '/utilities/search/*', target: 'https://factotum.library.nd.edu', forwardPath: true, forwardQuery: true },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
