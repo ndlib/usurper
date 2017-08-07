@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Redirect, withRouter } from 'react-router'
 
 const LibRedirect = (props) => {
+  const path = props.forwardPath ? '/' + props.computedMatch.url : ''
   // external redirect
   if (props.target.indexOf('http') === 0) {
     return (
@@ -9,7 +10,7 @@ const LibRedirect = (props) => {
         exact path={props.path}
         render={
             () => {
-              window.location = props.target
+              window.location = props.target + path
               return null
             }
           }
@@ -17,7 +18,7 @@ const LibRedirect = (props) => {
     )
   // index.php redirect
   } else if (props.path.indexOf('index.php') > 1) {
-    const target = props.target + props.location.pathname.replace('index.php', '')
+    const target = props.target + props.location.pathname.replace('index.php', '') + path
     return (
       <Route
         path={props.path}
@@ -31,7 +32,7 @@ const LibRedirect = (props) => {
       <Route
         path={props.path}
         render={() => (
-          <Redirect to={props.target} />
+          <Redirect to={props.target + path} />
         )}
     />)
   // internal redirect
@@ -40,7 +41,7 @@ const LibRedirect = (props) => {
       <Route
         exact path={props.path}
         render={() => (
-          <Redirect to={props.target} />
+          <Redirect to={props.target + path} />
         )}
     />)
   }
