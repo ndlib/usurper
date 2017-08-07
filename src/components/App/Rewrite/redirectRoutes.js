@@ -1,6 +1,7 @@
 const RedirectRoutes = [
   // external redirects
   { path: '/cds', target: 'http://cds.library.nd.edu' },
+  { path: '/directory', target: 'https://directory.library.nd.edu' },
   { path: '/directory/*', target: 'https://directory.library.nd.edu', forwardPath: true },
   { path: '/ill', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
   { path: '/docdel', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
