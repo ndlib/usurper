@@ -1,7 +1,8 @@
 const RedirectRoutes = [
   // external redirects
   { path: '/cds', target: 'http://cds.library.nd.edu' },
-  { path: '/directory', target: 'https://directory.library.nd.edu/directory' },
+  { path: '/directory', target: 'https://directory.library.nd.edu' },
+  { path: '/directory/*', target: 'https://directory.library.nd.edu', forwardPath: true },
   { path: '/ill', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
   { path: '/docdel', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
   { path: '/ovgtsl2018', target: 'http://ovgtsl2018.library.nd.edu' },
@@ -11,6 +12,7 @@ const RedirectRoutes = [
   { path: '/catalog', target: 'http://factotum.library.nd.edu/utilities/search/ndu/nd_campus' },
   { path: '/onesearch', target: 'http://factotum.library.nd.edu/utilities/search/ndu/onesearch' },
   { path: '/instruction/potofgold/', target: 'https://potofgold.library.nd.edu/' },
+  { path: '/utilities/search/*', target: 'https://factotum.library.nd.edu', forwardPath: true, forwardQuery: true },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
