@@ -34,7 +34,7 @@ const Libraries = () => {
 
             <li><Link to='/radlab'>Radiation Lab Reading Room</Link></li>
 
-            <li><Link to='http://rarebooks.library.nd.edu/'>Rare Books and Special Collections</Link></li>
+            <li><Link to='http://rarebooks.library.nd.edu/'>Rare Books &amp; Special Collections</Link></li>
 
             <li><Link to='http://archives.nd.edu/'>University Archives</Link></li>
 

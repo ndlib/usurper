@@ -20,6 +20,7 @@ const PagePresenter = ({ cfPageEntry }) => (
     <div className='row'>
       <section className='col-md-8 col-sm-7'>
         <PageAlert alert={cfPageEntry.fields.alert} />
+        <div className='sp-hidden'><ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} /></div>
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
 
         <Related className='p-resources' title='Resources' showImages={false}>{ cfPageEntry.fields.relatedResources }</Related>
