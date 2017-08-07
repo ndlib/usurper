@@ -6,6 +6,14 @@
 
 ### Bug fixes:
 
+## [0.12.1](https://github.com/ndlib/usurper/tree/v0.12.1) (2017-08-07)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.0...v0.12.1)
+
+### New features/enhancements:
+
+### Bug fixes:
+- Fixed an issue with redirects to deep links in factotum [#244](https://github.com/ndlib/usurper/pull/244)
+
 ## [0.12](https://github.com/ndlib/usurper/tree/v0.12.0) (2017-8-2)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.11.0...v0.12.0)
 

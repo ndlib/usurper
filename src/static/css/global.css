@@ -918,6 +918,12 @@ label[for='q']:after, .uSearchBox label:after {
     background: #5B412D;
 }
 
+@media all and (-ms-high-contrast:none) {
+  label[for='q']:after, .uSearchBox label:after {
+    top: 5px;
+  }
+}
+
 .appliance ul {
   min-width: 170px;
   display: inline-block;
