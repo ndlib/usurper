@@ -36,8 +36,8 @@ const receiveServicePoints = (response) => {
   }
 }
 
-export const fetchServicePoints = (status) => {
-  let url = `${Config.contentfulAPI}/contentType/servicePoint?status=${status}`
+export const fetchServicePoints = (preview) => {
+  let url = `${Config.contentfulAPI}/contentType/servicePoint?preview=${preview}`
   return dispatch => {
     dispatch(requestServicePoints())
     return fetch(url)

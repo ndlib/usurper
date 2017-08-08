@@ -3,6 +3,7 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.0...master)
 
 ### New features/enhancements:
+- Extra information is now given to Google Tag Manager for easier analytics gathering [#231](https://github.com/ndlib/usurper/pull/231)
 
 ### Bug fixes:
 

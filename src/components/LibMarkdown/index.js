@@ -38,13 +38,6 @@ const LibLink = (props) => {
     }
   }
 
-  // Link to named anchor using native browser behavior
-  if (url.search('#') > -1) {
-    return (
-      <a href={url}>{props.children}</a>
-    )
-  }
-
   return <Link to={url}>{props.children}</Link>
 }
 
@@ -68,15 +61,18 @@ class LibMarkdown extends Component {
     }
 
     return (
-      <Markdown options={overrides}>
-        { this.props.children }
-      </Markdown>
+      <span className={this.props.className}>
+        <Markdown options={overrides}>
+          { this.props.children }
+        </Markdown>
+      </span>
     )
   }
 }
 
 LibMarkdown.propTypes = {
   children: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default LibMarkdown
