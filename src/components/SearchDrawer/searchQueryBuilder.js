@@ -44,7 +44,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndMonth = advancedSearch['drEndMonth'] || '00'
     const drEndYear = advancedSearch['drEndYear5'] || '9999'
 
-    searchTerm = `vl%2816833817UI0%29=${scope0}` +
+    searchTerm = `&vl%2816833817UI0%29=${scope0}` +
     `&vl%28UIStartWith0%29=${precision0}` +
     `&vl%28freeText0%29=${freeText0}` +
     `&vl%28boolOperator0%29=${bool0}` +
