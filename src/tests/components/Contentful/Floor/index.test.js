@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import { ContentfulFloorContainer } from '../../../../components/Contentful/Floor'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
@@ -8,10 +8,7 @@ import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
   const store = configureStore()(props)
-  return mount(
-    <Provider store={store}>
-      <ContentfulFloorContainer {...props} />
-    </Provider>)
+  return shallow(<ContentfulFloorContainer {...props} />, { lifecycleExperimental: true })
 }
 
 let enzymeWrapper

@@ -1,20 +1,31 @@
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Internal = (to, className, title, children, ariaLabel) => {
+export const LINK_CLICK = 'LINK_CLICK'
+
+const Internal = (to, className, title, children, ariaLabel, onClick) => {
   return (
-    <Link to={to} className={className} title={title} aria-label={ariaLabel}>
+    <Link to={to} className={className} title={title} aria-label={ariaLabel} onClick={onClick}>
       {children}
     </Link>
   )
 }
 
-const External = (to, className, title, children, ariaLabel, noTarget) => {
+const External = (to, className, title, children, ariaLabel, noTarget, onClick) => {
   let target = noTarget ? '_self' : '_blank'
   let rel = noTarget ? '' : 'noopener'
   return (
-    <a href={to} className={className} title={title} target={target} rel={rel} aria-label={ariaLabel}>
+    <a href={to} 
+    className={className} 
+    title={title} 
+    target={target} 
+    rel={rel} 
+    aria-label={ariaLabel}
+    onClick={onClick}
+    >
       {children}
     </a>
   )
@@ -32,7 +43,7 @@ const Hidden = (
   null
 )
 
-const LibLink = (props) => {
+export const LibLink = (props) => {
   let query = ''
   for (var k in props.query) {
     if (props.query.hasOwnProperty(k)) {
@@ -70,21 +81,37 @@ const LibLink = (props) => {
     }
   }
 
+  // post click event for analytics on all links
+  const onClick = () => {
+    props.dispatch({
+      type: LINK_CLICK,
+      from: props.location.pathname,
+      to: to,
+      query: query,
+    })
+    return true
+  }
+
   to = to + query
 
   if (to.startsWith('http')) {
-    return External(to, props.className, props.title, props.children, props.ariaLabel, props.noTarget)
+    return External(to, props.className, props.title, props.children, props.ariaLabel, props.noTarget, onClick)
   }
 
   if (to.startsWith('mailto:') || to.startsWith('tel:')) {
-    return External(to, props.className, props.title, props.children, props.ariaLabel, false)
+    return External(to, props.className, props.title, props.children, props.ariaLabel, false, onClick)
+  }
+
+  // Link to named anchor using native browser behavior
+  if (to.search('#') > -1) {
+    return External(to, props.className, props.title, props.children, props.ariaLabel, true, onClick)
   }
 
   // Ensure internal links start with '/'
   if (!to.startsWith('/')) {
     to = '/' + to
   }
-  return Internal(to, props.className, props.title, props.children, props.ariaLabel)
+  return Internal(to, props.className, props.title, props.children, props.ariaLabel, onClick)
 }
 
 LibLink.propTypes = {
@@ -99,4 +126,4 @@ LibLink.propTypes = {
   hideIfNull: PropTypes.bool,
 }
 
-export default LibLink
+export default withRouter(connect()(LibLink))
