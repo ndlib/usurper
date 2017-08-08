@@ -25,6 +25,7 @@ const hoursPageOrder = [
   { servicePointSlug: 'byzantinestudiesreadingroom', main: false },
   { servicePointSlug: 'musiclibrary', main: true, link: '/music' },
   { servicePointSlug: 'radiationchemistryreadingroom', main: true, link: '/radlab' },
+  { servicePointSlug: 'rarebooksspecialcollections', main: true, link: 'http://rarebooks.library.nd.edu/' },
   { servicePointSlug: 'universityarchives', main: true },
   { servicePointSlug: 'visualresourcescenter', main: true, link: '/vrc' },
 ]

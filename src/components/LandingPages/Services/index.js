@@ -36,11 +36,11 @@ const Services = () => {
 
             <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_circulation'>Missing Book Search Requests</Link> </li>
             <li><Link to='https://factotum.library.nd.edu/utilities/forms/purchase'>Recommend a Purchase</Link> </li>
-            
+
           </ul>
           <h4>Problem Report Forms</h4>
           <ul>
-            <li><Link to='#'>Catalog Record Problems</Link> </li>
+            <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_catalog'>Catalog Record Problems</Link> </li>
             <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_general'>General Problem</Link> </li>
             <li><Link to='mailto:Library.ill.1@nd.edu'>Interlibrary Loan Problems</Link> </li>
             <li><Link to='https://nd.service-now.com/ess/create_lib_incident.do?lib_list_problem=lib_list_online'>Online Resource Problem</Link> </li>
@@ -90,7 +90,7 @@ const Services = () => {
             <span>For students and faculty to access reserve items or place items on reserve</span> </p>
           <p><Link to='/consultations'>Library Research Consultations</Link>
             <span>Make an appointment to meet with a librarian</span></p>
-          <p>Request Instruction
+          <p><Link to='/request-library-research-instruction'>Request Instruction</Link>
             <span>Request library instruction for your class sessions</span></p>
           <p><Link to='http://libguides.library.nd.edu/dissertation-camp'>Research and Writing Camps</Link>
             <span>The Libraries offer a variety of research and writing camps, such as thesis and dissertation camps, research and statistical tools camps, and custom boot camps for groups by request.</span></p>
@@ -116,7 +116,7 @@ const Services = () => {
             <span>Reserve laptops, cameras, headphones, accessories, and more</span> </p>
           <p><Link to='http://libguides.library.nd.edu/transcriptionstation'>Transcription Station </Link>
             <span>Make transcriptions of audio or video files more easily with our transcription pedal</span></p>
-         
+
 
         </div>
         <div className='col-md-4 col-xs-12'>
@@ -151,7 +151,7 @@ const Services = () => {
 
           <h3>Miscellaneous Services</h3>
 
-          <p>Document Shredding
+          <p><strong>Document Shredding</strong>
             <span>Hesburgh Library has two (2) 32 gallon locked bins for you to use free of charge to put documents that are of a sensitive nature</span></p>
           <p><Link to='/lokmobiles'>Lokmobiles</Link>
             <span>“Desks on wheels” are available to graduate students (priority) and seniors working on a thesis</span></p>
