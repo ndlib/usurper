@@ -3,17 +3,17 @@ import { connect } from 'react-redux'
 import PageWrapper from './presenter.js'
 import { closeSearchBox } from '../../actions/search.js'
 import { closeMenus, fetchNavigation } from '../../actions/menu.js'
-import * as statuses from '../../constants/APIStatuses'
-import APIPresenterFactory from '../APIPresenterFactory'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     ...state,
     ...ownProps,
+    // Override children to be null if nav isn't yet loaded
+    children: state.renderComponents ? ownProps.children : null,
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     clickOnPage: () => {
       dispatch(closeSearchBox())
@@ -31,11 +31,7 @@ class PageWrapperContainer extends Component {
   }
 
   render () {
-    return <APIPresenterFactory
-      status={this.props.menus.status}
-      presenter={PageWrapper}
-      props={this.props}
-    />
+    return <PageWrapper {...this.props} />
   }
 }
 

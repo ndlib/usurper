@@ -54,7 +54,7 @@ const receiveNavigation = (response) => {
 }
 
 export const fetchNavigation = (preview) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=navigation&preview=${preview}`
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=navigation%2froot&resolveLinks=false&preview=${preview}`
   return (dispatch) => {
     dispatch(requestNavigation())
     return fetch(url)

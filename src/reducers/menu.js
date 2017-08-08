@@ -34,3 +34,15 @@ export default (
       return state
   }
 }
+
+export const hasNavigation = (state, action) => {
+  switch (action.type) {
+    case NAV_RECEIVE:
+      if (action.status === statuses.SUCCESS) {
+        return true
+      }
+      return false
+    default:
+      return state === true // same thing as `state : state ? false`
+  }
+}
