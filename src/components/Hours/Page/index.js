@@ -65,7 +65,7 @@ export class HoursPageContainer extends Component {
       this.props.fetchHours()
     }
     if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchServicePoints('publish')
+      this.props.fetchServicePoints(false)
     }
   }
 
