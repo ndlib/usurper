@@ -18,7 +18,7 @@ const FooterLinks = () => {
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
                 <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}`}>Report A Problem</Link></li>
-                <li><Link to='http://libguides.library.nd.edu/trumpadmin1' title='Federal Depository Library'><img src={Gov} className='gov' /></Link></li>
+                <li><Link to='http://libguides.library.nd.edu/trumpadmin1' title='Federal Depository Library'><img src={Gov} className='gov' alt='gov' /></Link></li>
               </ul>
             </div>
           </div>
@@ -26,8 +26,8 @@ const FooterLinks = () => {
           <div className='col-xs-4'>
             <div className='box right'>
               <ul role='navigation' aria-label='Social Media Links'>
-                <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>
-                <li><Link to='https://www.facebook.com/NDLibraries/' title='Hesburgh Libraries Faceebook' target='_blank'><img src={Facebook} alt='Facebook' /> NDLibraries</Link></li>
+                <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank' rel='noopener'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>
+                <li><Link to='https://www.facebook.com/NDLibraries/' title='Hesburgh Libraries Faceebook' target='_blank' rel='noopener'><img src={Facebook} alt='Facebook' /> NDLibraries</Link></li>
               </ul>
             </div>
           </div>

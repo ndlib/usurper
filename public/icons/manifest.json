@@ -1,5 +1,6 @@
 {
-    "name": "",
+  "short_name": "Hesburgh",
+  "name": "Hesburgh Library",
     "icons": [
         {
             "src": "/static/icons/android-chrome-192x192.png",
@@ -10,6 +11,16 @@
             "src": "/static/icons/android-chrome-256x256.png",
             "sizes": "256x256",
             "type": "image/png"
+        },
+        {
+          "src": "icons/android-chrome-192x192.png",
+          "type": "image/png",
+          "sizes": "192x192"
+        },
+        {
+          "src": "icons/android-chrome-256x256.png",
+          "type": "image/png",
+          "sizes": "256x256"
         }
     ],
     "theme_color": "#ffffff",
