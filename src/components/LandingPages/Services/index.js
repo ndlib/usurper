@@ -98,7 +98,7 @@ const Services = () => {
             <span>Library workshops are available on a variety of topics. Sign up for sessions, review handouts from past sessions, or request a custom session.</span></p>
 
           <h3>Technology and Technology Lending</h3>
-          <p><Link to='http://library.nd.edu/cds/print/'>3D Modeling and Printing</Link>
+          <p><Link to='http://cds.library.nd.edu/print/'>3D Modeling and Printing</Link>
             <span>Submit a 3D print job or request assistance with finding or designing a 3D model</span></p>
           <p><Link to='/copy-print-scan'>Copying, Printing, and Scanning</Link>
             <span>Locate computers and other technology within Libraries facilities</span></p>

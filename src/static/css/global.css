@@ -2489,6 +2489,14 @@ address {
     width: 45%;
   }
 
+  .home .appliance {
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 24px;
+    max-width: 100%;
+  }
+
 }
 
 @media screen and (max-width:905px) {
@@ -2596,11 +2604,9 @@ body {
   .hours-display {
     width: 90%;
   }
-  .row.news {
-    display: none;
-  }
+
   .hservices {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .appliance .additional-links, #save-preference {
     display: none;
