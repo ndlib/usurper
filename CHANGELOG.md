@@ -14,6 +14,7 @@
   - /utilities/acquisitions/order -> https://factotum.library.nd.edu/utilities/forms/purchase/new
   - /directory/* -> https://directory.library.nd.edu
   - /utilities/search/* -> https://factotum.library.nd.edu
+- Add News and Events landing pages (/news and /events) [#253](https://github.com/ndlib/usurper/pull/253)
 
 ### Bug fixes:
 - Fixed the search arrow display on IE-11 [#240](https://github.com/ndlib/usurper/pull/240)
