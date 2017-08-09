@@ -8,6 +8,18 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
+export const sortNews = (left, right) => {
+  let a = new Date(left.fields.displayStartDate)
+  let b = new Date(right.fields.displayStartDate)
+
+  if (a < b) {
+    return 1
+  } else if (b < a) {
+    return -1
+  }
+  return 0
+}
+
 const mapStateToProps = (state) => {
   let allNews = []
   if (state.allNews && state.allNews.status === statuses.SUCCESS) {
@@ -23,17 +35,7 @@ const mapStateToProps = (state) => {
         let end = new Date(entry.fields.displayEndDate)
         return start <= now && end >= now
       })
-      .sort((left, right) => {
-        let a = new Date(left.fields.displayStartDate)
-        let b = new Date(right.fields.displayStartDate)
-
-        if (a < b) {
-          return 1
-        } else if (b < a) {
-          return -1
-        }
-        return 0
-      })
+      .sort(sortNews)
   }
   return {
     allNews,

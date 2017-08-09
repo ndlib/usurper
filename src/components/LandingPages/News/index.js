@@ -8,6 +8,8 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
+import { sortNews } from '../../Home/News'
+
 const mapStateToProps = (state) => {
   let allNews = []
   if (state.allNews && state.allNews.status === statuses.SUCCESS) {
@@ -18,17 +20,7 @@ const mapStateToProps = (state) => {
         flattenLocale(entry.fields, 'en-US')
         return entry
       })
-      .sort((left, right) => {
-        let a = new Date(left.fields.displayStartDate)
-        let b = new Date(right.fields.displayStartDate)
-
-        if (a < b) {
-          return 1
-        } else if (b < a) {
-          return -1
-        }
-        return 0
-      })
+      .sort(sortNews)
   }
   return {
     allNews,

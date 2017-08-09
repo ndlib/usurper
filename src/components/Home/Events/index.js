@@ -24,60 +24,65 @@ const collapseDate = (start, end, diffVal, eqVal) => {
   return start + '-' + end
 }
 
+export const mapEvents = (json) => {
+  return json.map((entry) => {
+    // flatten locales to just 'en-us' and convert strings to datetime type
+    flattenLocale(entry.fields, 'en-US')
+    return {
+      ...entry.fields,
+      startDate: new Date(entry.fields.startDate),
+      endDate: entry.fields.endDate ? new Date(entry.fields.endDate) : new Date(entry.fields.startDate),
+    }
+  })
+  .map((entry) => {
+    // Map datetime to displayable text
+    let start = entry.startDate
+    let end = entry.endDate
+
+    return {
+      displayWeekday: collapseDate(
+        start.getDate(),
+        end.getDate(),
+        null,
+        start.toLocaleString('en-us', { weekday: 'long' })
+      ),
+      displayDay: collapseDate(start.getDate(), end.getDate()),
+      displayMonth: collapseDate(
+        start.toLocaleString('en-us', { month: 'short' }),
+        end.toLocaleString('en-us', { month: 'short' }),
+        undefined,
+        start.toLocaleString('en-us', { month: 'long' })
+      ),
+      displayYear: collapseDate(start.getFullYear(), end.getFullYear()),
+      ...entry,
+    }
+  })
+}
+
+export const sortEvents = (left, right) => {
+  // sort so events starting soonest are at the top
+  let a = left.startDate
+  let b = right.startDate
+
+  if (a < b) {
+    return -1
+  } else if (b < a) {
+    return 1
+  }
+  return 0
+}
+
 const mapStateToProps = (state) => {
   let allEvents = []
   if (state.allEvents && state.allEvents.status === statuses.SUCCESS) {
     let now = new Date()
 
-    allEvents = state.allEvents.json
-      .map((entry) => {
-        // flatten locales to just 'en-us' and convert strings to datetime type
-        flattenLocale(entry.fields, 'en-US')
-        return {
-          ...entry.fields,
-          startDate: new Date(entry.fields.startDate),
-          endDate: entry.fields.endDate ? new Date(entry.fields.endDate) : new Date(entry.fields.startDate),
-        }
-      })
-      .map((entry) => {
-        // Map datetime to displayable text
-        let start = entry.startDate
-        let end = entry.endDate
-
-        return {
-          displayWeekday: collapseDate(
-            start.getDate(),
-            end.getDate(),
-            null,
-            start.toLocaleString('en-us', { weekday: 'long' })
-          ),
-          displayDay: collapseDate(start.getDate(), end.getDate()),
-          displayMonth: collapseDate(
-            start.toLocaleString('en-us', { month: 'short' }),
-            end.toLocaleString('en-us', { month: 'short' }),
-            undefined,
-            start.toLocaleString('en-us', { month: 'long' })
-          ),
-          displayYear: collapseDate(start.getFullYear(), end.getFullYear()),
-          ...entry,
-        }
-      })
+    allEvents = mapEvents(state.allEvents.json)
       .filter((entry) => {
         // Only use entries which are in the future or ongoing
         return entry.startDate >= now || entry.endDate >= now
       })
-      .sort((left, right) => {
-        // sort so events starting soonest are at the top
-        let a = left.startDate
-        let b = right.startDate
-
-        if (a < b) {
-          return 1
-        } else if (b < a) {
-          return -1
-        }
-        return 0
-      })
+      .sort(sortEvents)
   }
   return {
     allEvents,
