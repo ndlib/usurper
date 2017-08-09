@@ -31,7 +31,6 @@ export class ContentfulEventContainer extends Component {
   }
 
   render () {
-    console.log(this.props.entry)
     return <PresenterFactory
       presenter={ContentfulEventPresenter}
       status={this.props.entry.status}
