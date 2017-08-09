@@ -137,12 +137,12 @@ describe('components/Link', () => {
         enzymeWrapper = setup({
           to: null,
           className: 'testClass',
-          children: <div />,
+          children: <span />,
         })
       })
 
-      it('should render a div tag with children', () => {
-        expect(enzymeWrapper.first('div').childAt(0).type()).toBe('div')
+      it('should render a span tag with children', () => {
+        expect(enzymeWrapper.first('span').childAt(0).type()).toBe('span')
       })
     })
 
@@ -154,16 +154,16 @@ describe('components/Link', () => {
       })
     })
 
-    it('should render a div instead', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div />)).toBe(true)
+    it('should render a span instead', () => {
+      expect(enzymeWrapper.containsMatchingElement(<span />)).toBe(true)
     })
 
-    it('should render a div with NO alt tag', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div alt='foo' />)).toBe(false)
+    it('should render a span with NO alt tag', () => {
+      expect(enzymeWrapper.containsMatchingElement(<span alt='foo' />)).toBe(false)
     })
 
-    it('should render a div with the correct class', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='testClass' />)).toBe(true)
+    it('should render a span with the correct class', () => {
+      expect(enzymeWrapper.containsMatchingElement(<span className='testClass' />)).toBe(true)
     })
   })
 
