@@ -1,18 +1,44 @@
 # Change Log
 ## [0.13](https://github.com/ndlib/usurper/tree/master) (In Development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.0...master)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.1...master)
+
+### New features/enhancements:
+- Extra information is now given to Google Tag Manager for easier analytics gathering [#231](https://github.com/ndlib/usurper/pull/231)
+- The contact us page is now driven by data from Contentful Service Points [#238](https://github.com/ndlib/usurper/pull/238)
+- The deployed version of the front end can now be retrieved from a meta tag named 'nd-version' [#239](https://github.com/ndlib/usurper/pull/239)
+- Added redirects for the following: [#241](https://github.com/ndlib/usurper/pull/241), [#243](https://github.com/ndlib/usurper/pull/243), [#244](https://github.com/ndlib/usurper/pull/244)
+  - /instruction/potofgold -> https://potofgold.library.nd.edu
+  - /clavius -> http://clavius.library.nd.edu
+  - /rigorandrelevance -> http://rigorandrelevance.library.nd.edu
+  - /GLSBC2016 -> http://glsbc2016.library.nd.edu
+  - /utilities/acquisitions/order -> https://factotum.library.nd.edu/utilities/forms/purchase/new
+  - /directory/* -> https://directory.library.nd.edu
+  - /utilities/search/* -> https://factotum.library.nd.edu
+
+### Bug fixes:
+- Fixed the search arrow display on IE-11 [#240](https://github.com/ndlib/usurper/pull/240)
+- Fixed the catalog link to point to factotum [#242](https://github.com/ndlib/usurper/pull/242)
+
+## [0.12.1](https://github.com/ndlib/usurper/tree/v0.12.1) (2017-08-07)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.0...v0.12.1)
 
 ### New features/enhancements:
 
 ### Bug fixes:
+- Fixed an issue with redirects to deep links in factotum [#244](https://github.com/ndlib/usurper/pull/244)
 
 ## [0.12](https://github.com/ndlib/usurper/tree/v0.12.0) (2017-8-2)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.11.0...v0.12.0)
 
 ### New features/enhancements:
+- Added more info to hours page [#228](https://github.com/ndlib/usurper/pull/228)
+- Added pot of gold redirects [#232](https://github.com/ndlib/usurper/pull/232)
+- Added rare books to the hours page [#235](https://github.com/ndlib/usurper/pull/235)
 
 ### Bug fixes:
 - Fixed a bug that caused service points on hours pages to appear closed after 8pm [#234](https://github.com/ndlib/usurper/pull/234)
+- Fixed the & issue in research menu and other display fixes [#227](https://github.com/ndlib/usurper/pull/227), [#230](https://github.com/ndlib/usurper/pull/230), [#237](https://github.com/ndlib/usurper/pull/237)
+- Fixed problems with service now links [#236](https://github.com/ndlib/usurper/pull/236)
 
 ## [0.11](https://github.com/ndlib/usurper/tree/v0.11.0) (2017-7-27)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.10.0...v0.11.0)

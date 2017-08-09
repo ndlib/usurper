@@ -1,0 +1,53 @@
+@media print {
+	* {
+		font-family: sans-serif !important;
+	}
+	.top, #footer-links, #footer-info {
+		display: none;
+	}
+
+	#maincontent {
+		margin: 1em;
+		padding: 10px;
+	}
+
+	.content-area {
+		max-height: auto;
+		width: 100%;
+	}
+
+	body {
+		background: none;
+	}
+	body, h1, h2, h3, ol, ul, div, section, p {   
+		width: auto !important;  
+		
+		border: 0;    
+		padding: 0;     
+		float: none;     
+		position: static;     
+		overflow: visible; 
+	}
+
+	p {
+		max-width: 100% !important;  
+	}
+	section.right {
+		page-break-before: always;
+	}
+	.row {
+		display: block !important;
+		margin: 0 !important;
+	}
+	.col-md-4.right > .frame {
+		left: 0;
+		top: 0;
+		margin-bottom: 1.2em;
+
+	}
+	.frame .cover {
+		display: block;
+	}
+
+}
+

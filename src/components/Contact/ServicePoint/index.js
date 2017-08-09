@@ -38,20 +38,33 @@ const Contact = (props) => {
       )
     }
   }
-  
+
   let phone
   if (sp.phoneNumber) {
     phone = <li className='phone'><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
   }
 
+  let fax
+  if (sp.faxNumber) {
+    fax = <li className='fax' title={'Fax: ' + sp.faxNumber}>{sp.faxNumber}</li>
+  }
+
   let email
   if (sp.email) {
-    email = <li className='email'><a title={'Email ' + sp.email} href={'mailto:+' + sp.email }>{sp.email}</a></li>
+    email = <li className='email'><a title={'Email ' + sp.email} href={'mailto:+' + sp.email}>{sp.email}</a></li>
   }
 
   let accessNote
   if (sp.accessNote) {
-    accessNote = <LibMarkdown>{ sp.accessNote }</LibMarkdown>
+    // this is hidden in css on the contact page
+    accessNote = <LibMarkdown className='access-note'>{ sp.accessNote }</LibMarkdown>
+  }
+
+  // this is hidden in css everywhere except the contact page
+  let webPage
+  if (sp.relatedWebPage && sp.relatedWebPage.fields) {
+    const link = sp.relatedWebPage.fields.slug ? sp.relatedWebPage.fields.slug : sp.relatedWebPage.fields.url
+    webPage = <li className='web'><Link to={link}>Web Page</Link></li>
   }
 
   return (
@@ -61,7 +74,9 @@ const Contact = (props) => {
         {building}
         {floor}
         {phone}
+        {fax}
         {email}
+        {webPage}
       </ul>
     </div>
   )

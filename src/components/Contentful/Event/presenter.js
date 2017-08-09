@@ -19,7 +19,7 @@ const PagePresenter = ({ entry }) => (
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </div>
       <div className='col-md-4 right'>
-        <Image cfImage={entry.fields.image} className='cover' />
+        <Image cfImage={entry.fields.representationalImage} className='cover' />
         <Librarians netids={entry.fields.contactPeople} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
       </div>

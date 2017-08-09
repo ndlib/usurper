@@ -14,20 +14,20 @@ const hoursPageOrder = [
   { servicePointSlug: 'circulationservicedesk', main: false },
   { servicePointSlug: 'oitoutpost', main: false },
   { servicePointSlug: 'reservesmicrotextandmediadesk', main: false },
-  { servicePointSlug: 'architecturelibrary', main: true, link: '/architecture' },
-  { servicePointSlug: 'mahaffeybusinesslibrary', main: true, link: '/business' },
-  { servicePointSlug: 'centerfordigitalscholarship', main: true, link: 'http://cds.library.nd.edu' },
-  { servicePointSlug: 'chemistryphysicslibrary', main: true, link: '/chemistry-physics-library' },
-  { servicePointSlug: 'engineeringlibrary', main: true, link: '/engineering' },
-  { servicePointSlug: 'kelloggkroclibrary', main: true, link: '/kellogg-kroc' },
-  { servicePointSlug: 'omearamathematicslibrary', main:true, link: '/mathematics' },
-  { servicePointSlug: 'medievalinstitutelibrary', main: true, link: '/medieval' },
+  { servicePointSlug: 'architecturelibrary', main: true },
+  { servicePointSlug: 'mahaffeybusinesslibrary', main: true },
+  { servicePointSlug: 'centerfordigitalscholarship', main: true },
+  { servicePointSlug: 'chemistryphysicslibrary', main: true },
+  { servicePointSlug: 'engineeringlibrary', main: true },
+  { servicePointSlug: 'kelloggkroclibrary', main: true },
+  { servicePointSlug: 'omearamathematicslibrary', main:true },
+  { servicePointSlug: 'medievalinstitutelibrary', main: true },
   { servicePointSlug: 'byzantinestudiesreadingroom', main: false },
-  { servicePointSlug: 'musiclibrary', main: true, link: '/music' },
-  { servicePointSlug: 'radiationchemistryreadingroom', main: true, link: '/radlab' },
-  { servicePointSlug: 'rarebooksspecialcollections', main: true, link: 'http://rarebooks.library.nd.edu/' },
+  { servicePointSlug: 'musiclibrary', main: true },
+  { servicePointSlug: 'radiationchemistryreadingroom', main: true },
+  { servicePointSlug: 'rarebooksspecialcollections', main: true },
   { servicePointSlug: 'universityarchives', main: true },
-  { servicePointSlug: 'visualresourcescenter', main: true, link: '/vrc' },
+  { servicePointSlug: 'visualresourcescenter', main: true },
 ]
 
 const mapStateToProps = (state) => {
@@ -65,7 +65,7 @@ export class HoursPageContainer extends Component {
       this.props.fetchHours()
     }
     if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchServicePoints('publish')
+      this.props.fetchServicePoints(false)
     }
   }
 

@@ -27,7 +27,6 @@ const Presenter = (props) => {
 
                 return (<div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
                   <CurrentHours servicePoint={sp} >
-                    <Link to={servicePointOrder.link} className='more-info' hideIfNull>More Information</Link>
                     <h4>{sp.fields.address}</h4>
                     <Contact servicePoint={sp} />
                   </CurrentHours>

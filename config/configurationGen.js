@@ -9,6 +9,7 @@ const genConfig = () => {
     illiadBaseURL: 'https://nd.illiad.oclc.org/illiad/IND/testweb/illiad.dll?Action=10&Form=<<form>>&Value=<<value>>',
     hoursAPIURL: 'https://3nmbw29969.execute-api.us-east-1.amazonaws.com/dev',
     contentfulAPI: 'https://bj5rh8poa7.execute-api.us-east-1.amazonaws.com/dev',
+    version: 'dev',
   }
 
   let config = {
@@ -19,6 +20,7 @@ const genConfig = () => {
     illiadBaseURL: process.env.ILLIAD_BASE_URL ? process.env.ILLIAD_BASE_URL : defaultConfig.illiadBaseURL,
     hoursAPIURL: process.env.HOURS_API_URL ? process.env.HOURS_API_URL : defaultConfig.hoursAPIURL,
     contentfulAPI: process.env.CONTENTFUL_API ? process.env.CONTENTFUL_API : defaultConfig.contentfulAPI,
+    version: process.env.VERSION ? process.env.VERSION : defaultConfig.version,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }
