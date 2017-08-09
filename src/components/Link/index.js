@@ -16,8 +16,16 @@ const Internal = (to, className, title, children, ariaLabel, onClick) => {
 
 const External = (to, className, title, children, ariaLabel, noTarget, onClick) => {
   let target = noTarget ? '_self' : '_blank'
+  let rel = noTarget ? '' : 'noopener'
   return (
-    <a href={to} className={className} title={title} target={target} aria-label={ariaLabel} onClick={onClick}>
+    <a href={to} 
+    className={className} 
+    title={title} 
+    target={target} 
+    rel={rel} 
+    aria-label={ariaLabel}
+    onClick={onClick}
+    >
       {children}
     </a>
   )
