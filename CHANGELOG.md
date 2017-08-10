@@ -12,8 +12,12 @@
   - /rigorandrelevance -> http://rigorandrelevance.library.nd.edu
   - /GLSBC2016 -> http://glsbc2016.library.nd.edu
   - /utilities/acquisitions/order -> https://factotum.library.nd.edu/utilities/forms/purchase/new
-  - /directory/* -> https://directory.library.nd.edu
-  - /utilities/* -> https://factotum.library.nd.edu
+  - /directory/* -> https://directory.library.nd.edu/directory/*
+  - /utilities/* -> https://factotum.library.nd.edu/utilities/*
+  - /cds/* -> http://cds.library.nd.edu/*
+  - /guide-on-the-side/* -> https://guide-on-the-side.library.nd.edu/*
+  - /documents/* -> https://documents.library.nd.edu/documents/*
+  - /eresources/* -> https://eresources.library.nd.edu/*
 - Add News and Events landing pages (/news and /events) [#253](https://github.com/ndlib/usurper/pull/253)
 - Added copyright link and rearranged the contact page [#254](https://github.com/ndlib/usurper/pull/254)
 - Updated version of React (will require a yarn install) [#251](https://github.com/ndlib/usurper/pull/251)
