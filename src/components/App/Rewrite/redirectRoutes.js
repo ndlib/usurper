@@ -1,8 +1,9 @@
 const RedirectRoutes = [
   // external redirects
   { path: '/cds', target: 'http://cds.library.nd.edu' },
+  { path: '/cds/*', target: 'http://cds.library.nd.edu', forwardPath: /\/cds(.*)/ },
   { path: '/directory', target: 'https://directory.library.nd.edu' },
-  { path: '/directory/*', target: 'https://directory.library.nd.edu', forwardPath: true },
+  { path: '/directory/*', target: 'https://directory.library.nd.edu', forwardPath: /(.*)/ },
   { path: '/ill', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
   { path: '/docdel', target: 'https://nd.illiad.oclc.org/illiad/IND/illiad.dll' },
   { path: '/ovgtsl2018', target: 'http://ovgtsl2018.library.nd.edu' },
@@ -17,7 +18,10 @@ const RedirectRoutes = [
   { path: '/GLSBC2016/', target: 'http://glsbc2016.library.nd.edu/' },
   { path: '/instruction/potofgold', target: 'https://potofgold.library.nd.edu' },
   { path: '/utilities/acquisitions/order', target: 'https://factotum.library.nd.edu/utilities/forms/purchase/new' },
-  { path: '/utilities/*', target: 'https://factotum.library.nd.edu', forwardPath: true, forwardQuery: true },
+  { path: '/utilities/*', target: 'https://factotum.library.nd.edu', forwardPath: /(.*)/, forwardQuery: true },
+  { path: '/guide-on-the-side/*', target: 'https://guide-on-the-side.library.nd.edu', forwardPath: /\/guide-on-the-side(.*)/ },
+  { path: '/documents/*', target: 'https://documents.library.nd.edu', forwardPath: /\/documents(.*)/ },
+  { path: '/eresources/*', target: 'https://eresources.library.nd.edu', forwardPath: /\/eresources(.*)/ },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
@@ -38,6 +42,7 @@ const RedirectRoutes = [
   // wild card redirects
   { path: '/srch-find/*', target: '/research' },
   { path: '/circulation/*', target: '/services' },
+  { path: '/about/hours/*', target: '/hours' },
 
 ]
 export default RedirectRoutes
