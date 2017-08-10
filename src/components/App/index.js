@@ -17,10 +17,6 @@ import DatabasePage from '../../components/Contentful/Database'
 import ContentfulEvent from '../../components/Contentful/Event'
 import News from '../../components/LandingPages/News'
 import Events from '../../components/LandingPages/Events'
-import Research from '../../components/LandingPages/Research'
-import Services from '../../components/LandingPages/Services'
-import Libraries from '../../components/LandingPages/Libraries'
-import About from '../../components/LandingPages/About'
 import Contact from '../LandingPages/Contact'
 import DatabaseList from '../../components/DatabaseList'
 import SubjectList from '../../components/SubjectList'
@@ -68,7 +64,6 @@ const App = (props) => {
           <PageWrapper>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route exact path='/about' component={About} />
               <Route exact path='/chat' component={ChatPage} />
               <Route exact path='/courses' component={Courses} />
               <Route exact path='/hours' component={Hours} />
@@ -78,14 +73,11 @@ const App = (props) => {
               <Route exact path='/floor/:id' component={ContentfulFloor} />
               <Route exact path='/news/:id' component={ContentfulNews} />
               <Route exact path='/event/:id' component={ContentfulEvent} />
-              <Route exact path='/libraries' component={Libraries} />
               <Route exact path='/items-requests' component={PersonalInfo} />
               <Route exact path='/subjects' component={SubjectList} />
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />
-              <Route exact path='/research' component={Research} />
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
-              <Route exact path='/services' component={Services} />
               <Route exact path='/:id' component={ContentfulPage} />
 
               <Route path='*' component={NotFound} />

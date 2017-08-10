@@ -33,7 +33,7 @@ const receivePage = (page, response) => {
   if (response.sys &&
       response.sys.contentType &&
       response.sys.contentType.sys &&
-      response.sys.contentType.sys.id === 'page') {
+      (response.sys.contentType.sys.id === 'page' || response.sys.contentType.sys.id === 'columnContainer')) {
     return receiveSuccess(page, response)
   }
   return receiveError(page, response)

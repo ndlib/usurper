@@ -114,7 +114,6 @@ a {
 
 .landing p a, .landing .child li a {
   font-size: 110%;
-  display: block;
 }
 
 .landing .child li:before {
@@ -130,6 +129,13 @@ a {
   text-decoration: underline;
 }
 
+.landing a {
+  font-weight: bold;
+}
+
+.landing p span {
+  display: block;
+}
 
 
 .letter {
@@ -1490,6 +1496,15 @@ hr {
   margin-bottom: 13px;
 }
 
+.service-point a.more-info {
+  font-family: GPCMed, sans-serif;
+  font-size: 20px;
+  margin-bottom: 1em;
+  display: inline-block;
+  background-size: 24px;
+  background-repeat: no-repeat;
+}
+
 .right .service-point {
   margin-bottom: 2em;
   padding: 2em 0 0;
@@ -1548,6 +1563,7 @@ address {
   background-image: url("../images/map.png");
   background-size: 24px;
   background-repeat: no-repeat;
+  background-position: left;
 }
 
 .point .floor a {
@@ -1563,6 +1579,24 @@ address {
   padding-top: 55px !important;
   background-position: center 15px  !important;
   padding-bottom: 18px;
+}
+
+.contact-page .point .fax {
+  background-image: url("../images/fax.png");
+  padding-top: 15px !important;
+  background-position: center 15px  !important;
+  padding-bottom: 18px;
+  padding-left: 68px !important;
+  background-position: 18px 15px !important;
+}
+
+.point .fax {
+  background-image: url("../images/fax.png");
+  padding-top: 0 !important;
+  background-position: center 15px  !important;
+  padding-bottom: 18px;
+  padding-left: 30px !important;
+  background-position: 0 0 !important;
 }
 
 .point .email a {
@@ -1583,29 +1617,52 @@ address {
 }
 
 .contact-page .point {
-  float: left;
-  width: 100%;
-  margin-bottom: 2em;
+  
 }
 
 .contact-page .point ul {
   margin: 0;
+  margin-left: 0;
+  padding: 0;
 }
 
-.contact-page .point li {
-  width: 26%;
-  float: left;
-  margin-bottom: 10px;
-  margin-right: 15px;
+.contact-page .point-card h3 {
+  margin-left: 15px;
+}
+
+.contact-page .point-card {
   background-color: #fff;
-  padding-top: 15px;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  width: 80%;
+  padding-top: 10px;
+  float: left;
+  margin-bottom: 2em;
+}
+
+.contact-page .point.general {
+  width: 34%;
+}
+
+.contact-page .point li {
+  width: 50%;
+  float: left;
+  margin-bottom: 10px;
+
+  
+  padding-top: 15px;
+
 }
 
 .contact-page .point li a {
   padding-top: 40px;
+}
+
+
+.contact-page .point li a {
+  padding-top: 0px;
+  padding-left: 40px;
 }
 
 .contact-page .point li a, .contact-page .point li {
@@ -1615,6 +1672,17 @@ address {
   background-position: top center;
   background-size: 34px;
   text-align: center;
+}
+
+.contact-page .point li a, .contact-page .point li {
+  text-align: left;
+}
+
+.contact-page .point li a {
+  padding-left: 50px;
+  background-position: left top;
+  height: 35px;
+  margin-left: 1em;
 }
 
 .contact-page h3 {
@@ -1951,14 +2019,6 @@ address {
 
 .p-services .frame img, .p-pages .frame img  {
   width: 100%;
-  display: block;
-}
-
-.services-landing a, .research-landing a {
-  font-weight: bold;
-}
-
-.services-landing p span {
   display: block;
 }
 

@@ -14,7 +14,7 @@ import personalReducer from './personal'
 import hoursReducer from './hours'
 import searchReducer from './search'
 import librarianInfo from './librarians'
-import menuReducer from './menu'
+import menuReducer, { hasNavigation } from './menu'
 import chatReducer from './chat'
 import advancedSearch from './advancedSearch'
 
@@ -39,6 +39,7 @@ const rootReducer = combineReducers({
   menus: menuReducer,
   chat: chatReducer,
   advancedSearch: advancedSearch,
+  renderComponents: hasNavigation,
 })
 
 export default rootReducer

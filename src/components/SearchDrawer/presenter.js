@@ -45,10 +45,7 @@ SearchDrawer.propTypes = {
     drawerOpen: PropTypes.bool.isRequired,
     hasPref: PropTypes.bool.isRequired,
     usePref: PropTypes.bool.isRequired,
-    pref: PropTypes.oneOfType([
-      PropTypes.object,
-      null,
-    ]),
+    pref: PropTypes.object,
     searchType: PropTypes.string.isRequired,
   }),
 }

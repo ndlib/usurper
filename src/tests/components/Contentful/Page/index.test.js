@@ -17,7 +17,7 @@ describe('components/Contentful/Page/Container', () => {
   describe('normal page', () => {
     beforeEach(() => {
       props = {
-        cfPageEntry: { status: 'test', json: {} },
+        cfPageEntry: { status: 'test', json: { sys: { contentType: { sys: { id: 'page' } } } } },
         fetchPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         history: {
@@ -69,6 +69,7 @@ describe('components/Contentful/Page/Container', () => {
         cfPageEntry: {
           status: statuses.UNAUTHORIZED,
           json: {
+            sys: { contentType: { sys: { id: 'page' } } },
             fields: {
               requiresLogin: true,
             },

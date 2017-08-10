@@ -18,13 +18,13 @@ const External = (to, className, title, children, ariaLabel, noTarget, onClick) 
   let target = noTarget ? '_self' : '_blank'
   let rel = noTarget ? '' : 'noopener'
   return (
-    <a href={to} 
-    className={className} 
-    title={title} 
-    target={target} 
-    rel={rel} 
-    aria-label={ariaLabel}
-    onClick={onClick}
+    <a href={to}
+      className={className}
+      title={title}
+      target={target}
+      rel={rel}
+      aria-label={ariaLabel}
+      onClick={onClick}
     >
       {children}
     </a>
@@ -33,9 +33,9 @@ const External = (to, className, title, children, ariaLabel, noTarget, onClick) 
 
 const Invalid = (className, children) => {
   return (
-    <div className={className}>
+    <span className={className}>
       {children}
-    </div>
+    </span>
   )
 }
 
