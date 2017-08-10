@@ -6,7 +6,7 @@
 - Extra information is now given to Google Tag Manager for easier analytics gathering [#231](https://github.com/ndlib/usurper/pull/231)
 - The contact us page is now driven by data from Contentful Service Points [#238](https://github.com/ndlib/usurper/pull/238)
 - The deployed version of the front end can now be retrieved from a meta tag named 'nd-version' [#239](https://github.com/ndlib/usurper/pull/239)
-- Added redirects for the following: [#241](https://github.com/ndlib/usurper/pull/241), [#243](https://github.com/ndlib/usurper/pull/243), [#244](https://github.com/ndlib/usurper/pull/244), [#252](https://github.com/ndlib/usurper/pull/252)
+- Added redirects for the following: [#241](https://github.com/ndlib/usurper/pull/241), [#243](https://github.com/ndlib/usurper/pull/243), [#244](https://github.com/ndlib/usurper/pull/244), [#252](https://github.com/ndlib/usurper/pull/252), [#255](https://github.com/ndlib/usurper/pull/255)
   - /instruction/potofgold -> https://potofgold.library.nd.edu
   - /clavius -> http://clavius.library.nd.edu
   - /rigorandrelevance -> http://rigorandrelevance.library.nd.edu
