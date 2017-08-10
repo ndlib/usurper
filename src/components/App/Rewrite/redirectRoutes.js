@@ -20,7 +20,7 @@ const RedirectRoutes = [
   { path: '/utilities/acquisitions/order', target: 'https://factotum.library.nd.edu/utilities/forms/purchase/new' },
   { path: '/utilities/*', target: 'https://factotum.library.nd.edu', forwardPath: /(.*)/, forwardQuery: true },
   { path: '/guide-on-the-side/*', target: 'https://guide-on-the-side.library.nd.edu', forwardPath: /\/guide-on-the-side(.*)/ },
-  { path: '/documents/*', target: 'https://documents.library.nd.edu', forwardPath: /\/documents(.*)/ },
+  { path: '/documents/*', target: 'https://documents.library.nd.edu', forwardPath: /(.*)/ },
   { path: '/eresources/*', target: 'https://eresources.library.nd.edu', forwardPath: /\/eresources(.*)/ },
 
   // internal redirects
