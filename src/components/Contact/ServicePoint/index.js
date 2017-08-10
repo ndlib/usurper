@@ -71,12 +71,14 @@ const Contact = (props) => {
     <div className='point'>
       {accessNote}
       <ul>
+        {phone}
+        {email}
         {building}
         {floor}
-        {phone}
-        {fax}
-        {email}
         {webPage}
+        {fax}
+        
+        
       </ul>
     </div>
   )

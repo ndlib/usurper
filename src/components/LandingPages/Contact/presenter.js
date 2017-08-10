@@ -9,8 +9,9 @@ const ContactPresenter = (props) => {
     <div className='contact-page'>
       <PageTitle title='Contact Us' />
       <SearchProgramaticSet open={false} />
-      <div className='point'>
+     <div className='point point-card general'>
         <h3>General Contact</h3>
+
         <ul>
           <li className='phone'><Link to='tel:5746316679' title='Call (574) 631-6679'>(574) 631-6679</Link></li>
         </ul>
@@ -30,8 +31,10 @@ const ContactPresenter = (props) => {
                   }
 
                   return <span key={slug}>
+                    <div className='point-card'>
                     <h3>{props.points[slug].fields.title}</h3>
                     <Contact servicePoint={props.points[slug]} />
+                    </div>
                   </span>
                 })
               }
