@@ -36,8 +36,8 @@ const receiveAllNews = (response) => {
   }
 }
 
-export const fetchAllNews = (status) => {
-  let url = `${Config.contentfulAPI}/contentType/news?status=${status}`
+export const fetchAllNews = (preview) => {
+  let url = `${Config.contentfulAPI}/contentType/news?preview=${preview}`
   return dispatch => {
     dispatch(requestAllNews())
     return fetch(url)

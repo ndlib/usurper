@@ -14,10 +14,11 @@
   - /utilities/acquisitions/order -> https://factotum.library.nd.edu/utilities/forms/purchase/new
   - /directory/* -> https://directory.library.nd.edu
   - /utilities/* -> https://factotum.library.nd.edu
+- Add News and Events landing pages (/news and /events) [#253](https://github.com/ndlib/usurper/pull/253)
 - Added copyright link and rearranged the contact page [#254](https://github.com/ndlib/usurper/pull/254)
 - Updated version of React (will require a yarn install) [#251](https://github.com/ndlib/usurper/pull/251)
 - Removed more info links from the hours page [#250](https://github.com/ndlib/usurper/pull/250)
-- Navigation and landing pages are now driven by data from Contentful [#229](https://github.com/ndlib/usurper/pull/229) (Note: This depends on the merge and deploy of [usurper_content#41](https://github.com/ndlib/usurper_content/pull/41)) 
+- Navigation and landing pages are now driven by data from Contentful [#229](https://github.com/ndlib/usurper/pull/229) (Note: This depends on the merge and deploy of [usurper_content#41](https://github.com/ndlib/usurper_content/pull/41))
 
 ### Bug fixes:
 - Fixed the search arrow display on IE-11 [#240](https://github.com/ndlib/usurper/pull/240)

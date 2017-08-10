@@ -107,6 +107,11 @@ export const LibLink = (props) => {
     return External(to, props.className, props.title, props.children, props.ariaLabel, true, onClick)
   }
 
+  // Link to named anchor using native browser behavior
+  if (to.search('#') > -1) {
+    return External(to, props.className, props.title, props.children, props.ariaLabel, true)
+  }
+
   // Ensure internal links start with '/'
   if (!to.startsWith('/')) {
     to = '/' + to

@@ -15,6 +15,8 @@ import ContentfulFloor from '../../components/Contentful/Floor'
 import ContentfulNews from '../../components/Contentful/News'
 import DatabasePage from '../../components/Contentful/Database'
 import ContentfulEvent from '../../components/Contentful/Event'
+import News from '../../components/LandingPages/News'
+import Events from '../../components/LandingPages/Events'
 import Contact from '../LandingPages/Contact'
 import DatabaseList from '../../components/DatabaseList'
 import SubjectList from '../../components/SubjectList'
@@ -65,6 +67,8 @@ const App = (props) => {
               <Route exact path='/chat' component={ChatPage} />
               <Route exact path='/courses' component={Courses} />
               <Route exact path='/hours' component={Hours} />
+              <Route exact path='/events' component={Events} />
+              <Route exact path='/news' component={News} />
               <Route exact path='/contact-us' component={Contact} />
               <Route exact path='/floor/:id' component={ContentfulFloor} />
               <Route exact path='/news/:id' component={ContentfulNews} />
