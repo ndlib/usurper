@@ -6,18 +6,19 @@
 - Extra information is now given to Google Tag Manager for easier analytics gathering [#231](https://github.com/ndlib/usurper/pull/231)
 - The contact us page is now driven by data from Contentful Service Points [#238](https://github.com/ndlib/usurper/pull/238)
 - The deployed version of the front end can now be retrieved from a meta tag named 'nd-version' [#239](https://github.com/ndlib/usurper/pull/239)
-- Added redirects for the following: [#241](https://github.com/ndlib/usurper/pull/241), [#243](https://github.com/ndlib/usurper/pull/243), [#244](https://github.com/ndlib/usurper/pull/244)
+- Added redirects for the following: [#241](https://github.com/ndlib/usurper/pull/241), [#243](https://github.com/ndlib/usurper/pull/243), [#244](https://github.com/ndlib/usurper/pull/244), [#252](https://github.com/ndlib/usurper/pull/252)
   - /instruction/potofgold -> https://potofgold.library.nd.edu
   - /clavius -> http://clavius.library.nd.edu
   - /rigorandrelevance -> http://rigorandrelevance.library.nd.edu
   - /GLSBC2016 -> http://glsbc2016.library.nd.edu
   - /utilities/acquisitions/order -> https://factotum.library.nd.edu/utilities/forms/purchase/new
   - /directory/* -> https://directory.library.nd.edu
-  - /utilities/search/* -> https://factotum.library.nd.edu
+  - /utilities/* -> https://factotum.library.nd.edu
 - Add News and Events landing pages (/news and /events) [#253](https://github.com/ndlib/usurper/pull/253)
 - Added copyright link and rearranged the contact page [#254](https://github.com/ndlib/usurper/pull/254)
 - Updated version of React (will require a yarn install) [#251](https://github.com/ndlib/usurper/pull/251)
 - Removed more info links from the hours page [#250](https://github.com/ndlib/usurper/pull/250)
+- Navigation and landing pages are now driven by data from Contentful [#229](https://github.com/ndlib/usurper/pull/229) (Note: This depends on the merge and deploy of [usurper_content#41](https://github.com/ndlib/usurper_content/pull/41))
 
 ### Bug fixes:
 - Fixed the search arrow display on IE-11 [#240](https://github.com/ndlib/usurper/pull/240)
