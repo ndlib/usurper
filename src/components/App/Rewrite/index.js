@@ -4,9 +4,17 @@ import { Route, Redirect } from 'react-router'
 
 const Rewrite = (props) => {
   return RedirectRoutes.map((route, index) => {
-    const forwardPath = route.forwardPath ? props.location.pathname : ''
+    let path = ''
+    if (route.forwardPath) {
+      let found = props.location.pathname.match(route.forwardPath)
+      if (found) {
+        path = found[1]
+      }
+    }
+
     const forwardSearch = route.forwardQuery ? props.location.search : ''
-    const target = route.target + forwardPath + forwardSearch
+    const target = route.target + path + forwardSearch
+
     // external redirect
     if (route.target.indexOf('http') === 0) {
       return (
