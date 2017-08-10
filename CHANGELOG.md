@@ -1,6 +1,6 @@
 # Change Log
-## [0.13](https://github.com/ndlib/usurper/tree/master) (In Development)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.1...master)
+## [0.13](https://github.com/ndlib/usurper/tree/v0.13.0) (2017-08-10)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.1...v0.13.0)
 
 ### New features/enhancements:
 - Extra information is now given to Google Tag Manager for easier analytics gathering [#231](https://github.com/ndlib/usurper/pull/231)
