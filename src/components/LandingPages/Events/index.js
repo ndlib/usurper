@@ -9,14 +9,24 @@ import * as statuses from '../../../constants/APIStatuses'
 import { mapEvents, sortEvents } from '../../Home/Events'
 
 const mapStateToProps = (state) => {
-  let allEvents = []
+  let pastEvents = []
+  let currentFutureEvents = []
   if (state.allEvents && state.allEvents.status === statuses.SUCCESS) {
     let now = new Date()
 
-    allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
+    let allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
+    currentFutureEvents = allEvents.filter((entry) => {
+      return entry.startDate >= now || entry.endDate >= now
+    })
+
+    pastEvents = allEvents.filter((entry) => {
+      return entry.startDate < now && entry.endDate < now
+    })
   }
+
   return {
-    allEvents,
+    pastEvents,
+    currentFutureEvents,
     allEventsStatus: state.allEvents.status,
   }
 }
@@ -36,7 +46,7 @@ export class AllEventsContainer extends Component {
     return (
       <PresenterFactory
         presenter={Presenter}
-        props={this.props.allEvents}
+        props={{ past: this.props.pastEvents, present: this.props.currentFutureEvents }}
         status={this.props.allEventsStatus} />
     )
   }
@@ -45,7 +55,8 @@ export class AllEventsContainer extends Component {
 AllEventsContainer.propTypes = {
   allEventsStatus: PropTypes.string.isRequired,
   fetchAllEvents: PropTypes.func.isRequired,
-  allEvents: PropTypes.array.isRequired,
+  pastEvents: PropTypes.array.isRequired,
+  currentFutureEvents: PropTypes.array.isRequired,
 }
 
 const HoursPage = connect(

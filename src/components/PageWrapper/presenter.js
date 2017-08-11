@@ -25,7 +25,7 @@ PageWrapper.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
-  ]).isRequired,
+  ]),
   clickOnPage: PropTypes.func.isRequired,
 }
 export default PageWrapper
