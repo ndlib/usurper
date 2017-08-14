@@ -16,7 +16,7 @@ const get = (dict, key, defaultVal) => {
   return dict[key]
 }
 
-class CoursesContainer extends Component {
+export class CoursesContainer extends Component {
   checkLoggedIn (props) {
     if (props.courses.state === statuses.NOT_FETCHED &&
       props.loggedIn) {
