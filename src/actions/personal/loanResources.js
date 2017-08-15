@@ -21,10 +21,19 @@ export const handleResources = (dispatch, data) => {
       states.recievePersonal(
         'resources_pending',
         statuses.SUCCESS,
-        { pending: data.pending }
+        {
+          pending: data.pending,
+        }
       )
     )
   }
+  dispatch(
+    states.recievePersonal(
+      'user',
+      statuses.SUCCESS,
+      data.user,
+    )
+  )
 }
 
 const getResources = () => {
@@ -51,6 +60,22 @@ const getResources = () => {
         dispatch(states.recievePersonal('resources_have', statuses.ERROR, e.message))
       }
     )
+  }
+}
+
+export const renewAleph = (barcode, alephId) => {
+  return dispatch => {
+    dispatch(states.requestPersonal('renewal'))
+    let url = Config.resourcesAPI + '/aleph/renew'
+    return fetch(url, {
+      method: 'post',
+      headers: {
+        'barcode': barcode,
+        'aleph-id': alephId,
+      },
+    })
+    .then(response => { return response.json() })
+    .then(json => dispatch(states.recievePersonal('renewal', statuses.SUCCESS, { barcode: barcode, ...json })))
   }
 }
 

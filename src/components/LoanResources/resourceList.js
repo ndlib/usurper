@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Loading from '../Messages/Loading'
 import IlliadActions from './illiadActions'
+import AlephActions from './AlephActions'
 
 const Card = (className, prefix, data) => {
   if (data) {
@@ -11,7 +12,7 @@ const Card = (className, prefix, data) => {
   return null
 }
 
-const ResourceList = ({ loading, list, emptyText }) => {
+const ResourceList = ({ loading, list, emptyText, alephId, renewal }) => {
   if (loading) {
     return <Loading />
   }
@@ -38,6 +39,7 @@ const ResourceList = ({ loading, list, emptyText }) => {
               { Card('card-pickup', 'Pickup Location', item.pickupLocation) }
               <div className={item.title + ' actions'}>
                 <IlliadActions item={item} />
+                <AlephActions item={item} alephId={alephId} renewal={renewal} />
               </div>
             </div>
           )
@@ -51,6 +53,8 @@ ResourceList.propTypes = {
   loading: PropTypes.bool,
   list: PropTypes.array.isRequired,
   emptyText: PropTypes.string.isRequired,
+  alephId: PropTypes.string,
+  renewal: PropTypes.object,
 }
 
 export default ResourceList

@@ -53,6 +53,8 @@ export const mapStateToProps = (state) => {
   return {
     loggedIn: loggedIn,
     login: personal.login,
+    user: personal.user,
+    renewal: personal.renewal,
     resources: {
       have: {
         state: get(have, 'state', false),
