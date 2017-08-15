@@ -73,7 +73,7 @@ describe('components/Courses/index.js -- CoursesContainer', () => {
 
     it('only renders a link', () => {
       expect(enzymeWrapper
-        .containsMatchingElement(<Link to='/courses' className='button fright tab'>My Courses</Link>))
+        .containsMatchingElement(<Link to='/courses'>My Courses</Link>))
         .toBe(true)
     })
   })
@@ -137,7 +137,7 @@ describe('components/Courses/index.js -- mapStateToProps', () => {
       expect(mapStateToProps(state, ownProp).loggedIn).toBe(true)
     })
 
-    it('should be previewable', () => {
+    it('should use preview content', () => {
       expect(mapStateToProps(state, ownProp).preview).toBe(true)
     })
 
@@ -161,7 +161,7 @@ describe('components/Courses/index.js -- mapStateToProps', () => {
       expect(mapStateToProps(state, ownProp).loggedIn).toBe(false)
     })
 
-    it('should not be previewable', () => {
+    it('should not use preview content', () => {
       expect(mapStateToProps(state, ownProp).preview).toBe(false)
     })
 
