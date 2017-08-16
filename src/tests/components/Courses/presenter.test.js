@@ -198,4 +198,50 @@ describe('components/Courses/presenter.js', () => {
       .containsMatchingElement(<Link to={url}>{title} Resources</Link>)).toBe(true)
     })
   })
+
+  describe('Incorrect data test - props.courses.courses = undefined', () => {
+    beforeEach(() => {
+      props = {
+        preview: false,
+        courses: {
+        },
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    afterEach(() => {
+      enzymeWrapper = undefined
+    })
+
+    it('should not have classes to display', () => {
+      expect(enzymeWrapper
+        .containsMatchingElement(<p>No Classes to display for the current semester</p>))
+        .toBe(true)
+    })
+  })
+
+  describe('Incorrect data test - props.courses.courses.enrollments/instructs = undefined', () => {
+    beforeEach(() => {
+      props = {
+        preview: false,
+        courses: {
+          courses: {
+          },
+        },
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    afterEach(() => {
+      enzymeWrapper = undefined
+    })
+
+    it('should not have classes to display', () => {
+      expect(enzymeWrapper
+        .containsMatchingElement(<p className='noClasses'>
+          No Classes to display for the current semester.
+        </p>))
+        .toBe(true)
+    })
+  })
 })
