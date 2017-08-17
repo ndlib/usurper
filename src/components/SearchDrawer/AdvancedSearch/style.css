@@ -71,3 +71,7 @@ fieldset {
 select::-ms-expand {
     display: none;
 }
+#search-type-title {
+  color: white;
+  margin-bottom: 10px;
+}
