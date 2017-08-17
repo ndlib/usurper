@@ -1,12 +1,12 @@
 # Change Log
 
-## [0.13.2](https://github.com/ndlib/usurper/tree/v0.13.2) (2017-08-17)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.0...v0.13.2)
+## [0.13.3](https://github.com/ndlib/usurper/tree/v0.13.3) (2017-08-17)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.0...v0.13.3)
 
 ### New features/enhancements:
 
 ### Bug fixes:
-- Updated link to service now report a problem form [#261](https://github.com/ndlib/usurper/pull/261), [#262](https://github.com/ndlib/usurper/pull/262)
+- Updated link to service now report a problem form [#261](https://github.com/ndlib/usurper/pull/261), [#262](https://github.com/ndlib/usurper/pull/262), [#264](https://github.com/ndlib/usurper/pull/264)
 - Fixed /personal to redirect to /items-requests [#263](https://github.com/ndlib/usurper/pull/263)
 
 ## [0.13](https://github.com/ndlib/usurper/tree/v0.13.0) (2017-08-10)
