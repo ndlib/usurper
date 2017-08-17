@@ -60,7 +60,7 @@ describe('components/DatabaseList/index.js', () => {
         .toBe(true)
     })
 
-    it('calls the bound fetch page action on load', () => {
+    it('calls the bound fetchLetter action on load', () => {
       expect(props.fetchLetter.mock.calls.length).toBe(1)
     })
   })
