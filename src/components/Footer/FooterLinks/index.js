@@ -12,7 +12,7 @@ const FooterLinks = () => {
           <div className='col-xs-8'>
             <div className='box'>
               <ul role='navigation' aria-label='Footer Menu'>
-                <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}&lib_list_problem=lib_list_web_content`}>Website Feedback</Link></li>
+                <li><Link to={`https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936&URL=${window.location}&lib_list_problem=lib_list_web_content`}>Website Feedback</Link></li>
                 <li><Link to='/library-policies'>Library Policies</Link></li>
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
