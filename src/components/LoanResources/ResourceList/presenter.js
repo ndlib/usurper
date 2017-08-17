@@ -5,7 +5,7 @@ import AlephActions from '../AlephActions'
 
 const Card = (className, prefix, data) => {
   if (data) {
-    return (<div className={className}>{prefix + data}</div>)
+    return (<div className={className}><span>{prefix + data}</span></div>)
   }
   return <div className={className} />
 }
@@ -35,13 +35,13 @@ const ResourceList = (props) => {
       </div>
       <div className='card-item'>
         <div
-          className={'card-title' + SortClass(props.sortOn, 'title', props.sortClass)}
+          className={'sort-title' + SortClass(props.sortOn, 'title', props.sortClass)}
           onClick={(e) => props.sortChange(e, 'title')}
         >
           Title
         </div>
         <div
-          className={'card-author' + SortClass(props.sortOn, 'author', props.sortClass)}
+          className={'sort-author' + SortClass(props.sortOn, 'author', props.sortClass)}
           onClick={(e) => props.sortChange(e, 'author')}
         >
           Author
@@ -49,7 +49,7 @@ const ResourceList = (props) => {
         {
           props.showStatus && (
             <div
-              className={'card-status' + SortClass(props.sortOn, 'status', props.sortClass)}
+              className={'sort-status' + SortClass(props.sortOn, 'status', props.sortClass)}
               onClick={(e) => props.sortChange(e, 'status')}
             >
               Status
@@ -57,7 +57,7 @@ const ResourceList = (props) => {
           )
         }
         <div
-          className={'due-date' + SortClass(props.sortOn, 'dueDate', props.sortClass)}
+          className={'sort-date' + SortClass(props.sortOn, 'dueDate', props.sortClass)}
           onClick={(e) => props.sortChange(e, 'dueDate')}
         >
           Due Date
