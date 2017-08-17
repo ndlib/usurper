@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import ResourceList from './resourceList'
+import ResourceList from './ResourceList'
 import Link from '../Link'
 
 const LoanResources = (props) => {
@@ -20,6 +20,7 @@ const LoanResources = (props) => {
         loading={pending.loading}
         alephId={alephId}
         renewal={props.renewal}
+        showStatus={true}
       />
       <br />
       <h3>Checked out</h3>
@@ -29,6 +30,7 @@ const LoanResources = (props) => {
         loading={have.loading}
         alephId={alephId}
         renewal={props.renewal}
+        showStatus={false}
       />
     </div>
   )

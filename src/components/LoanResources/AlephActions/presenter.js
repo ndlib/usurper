@@ -17,6 +17,8 @@ const AlephActions = (props) => {
         message = props.renewal.statusText
       } else if (props.renewal.renewStatus === 304) {
         message = 'Too early to renew, try again closer to due date.'
+      } else if (props.renewal.renewStatus === 200) {
+        message = 'Renew Successful'
       }
     }
 

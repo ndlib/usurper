@@ -47,6 +47,7 @@ const getResources = () => {
       handleResources,
       state.login.token,
       (e) => {
+        console.log(e)
         dispatch(states.recievePersonal('resources_pending', statuses.ERROR, e.message))
       })
 
@@ -57,6 +58,7 @@ const getResources = () => {
       handleResources,
       state.login.token,
       (e) => {
+        console.log(e)
         dispatch(states.recievePersonal('resources_have', statuses.ERROR, e.message))
       }
     )
