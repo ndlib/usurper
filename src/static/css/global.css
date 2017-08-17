@@ -735,7 +735,7 @@ nav a.search.closed:hover {
 
 .sort-asc {
   background: url(../images/arrow.b.u.png) no-repeat 4px 17px;
-  
+
 }
 
 .sort-desc {
@@ -1300,8 +1300,8 @@ hr {
   display: grid;
   display: -ms-grid;
 
-  grid-template-columns: 1.5fr 1fr 1fr 1fr ;
-  -ms-grid-columns: 1.5fr 1fr 1fr 1fr ;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1.5fr 1fr 1fr 1fr;
   justify-content: left;
   font-size: 16px;
 
@@ -1343,7 +1343,7 @@ hr {
 }
 
 .card-due {
-  -ms-grid-column: 4;
+  -ms-grid-column: 3;
 }
 
 .card-pickup {
@@ -1366,6 +1366,20 @@ hr {
   width: 20%;
   text-align: right;
 
+}
+
+.actions-hidden {
+  display: none;
+}
+
+.actions-button {
+  grid-column: 4;
+  grid-row: 1;
+  text-align: right;
+}
+
+.actions-button span {
+  cursor: pointer;
 }
 
 .actions {
@@ -2540,7 +2554,7 @@ address {
     grid-row: 2;
     grid-column: 3;
   }
-  
+
 
 
   .actions div {

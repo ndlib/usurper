@@ -1,24 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import IlliadActions from '../illiadActions'
-import AlephActions from '../AlephActions'
-
-const Card = (className, prefix, data) => {
-  if (data) {
-    return (<div className={className}><span>{prefix + data}</span></div>)
-  }
-  return <div className={className} />
-}
+import Resource from './Resource'
 
 const SortClass = (sortOn, sortValue, sortClass) => {
   return ' ' + (sortOn === sortValue ? sortClass : 'sort-none')
-}
-
-const dueDate = (item, renewal) => {
-  if (renewal && renewal.renewStatus === 200 && item.barcode === renewal.barcode) {
-    return renewal.dueDate
-  }
-  return item.dueDate
 }
 
 const ResourceList = (props) => {
@@ -56,31 +41,20 @@ const ResourceList = (props) => {
             </div>
           )
         }
-        <div
-          className={'sort-date' + SortClass(props.sortOn, 'dueDate', props.sortClass)}
-          onClick={(e) => props.sortChange(e, 'dueDate')}
-        >
-          Due Date
-        </div>
+        {
+          !props.showStatus && (
+            <div
+              className={'sort-date' + SortClass(props.sortOn, 'dueDate', props.sortClass)}
+              onClick={(e) => props.sortChange(e, 'dueDate')}
+            >
+              Due Date
+            </div>
+          )
+        }
       </div>
       {
         props.list.map((item, index) => {
-          return (
-            <div className='card-item' key={index + 'Card'}>
-              <div className='card-header'>
-                <div className='card-title'>{item.title}</div>
-                <div className='card-subtitle'>{item.published}</div>
-              </div>
-              { Card('card-author', '', item.author) }
-              { props.showStatus && Card('card-status', '', item.status) }
-              { Card('card-due', '', dueDate(item, props.renewal)) }
-              { Card('card-pickup', 'Pickup Location: ', item.pickupLocation) }
-              <div className={'actions'}>
-                <IlliadActions item={item} />
-                <AlephActions item={item} alephId={props.alephId} renewal={props.renewal} />
-              </div>
-            </div>
-          )
+          return <Resource item={item} renewal={props.renewal} alephId={props.alephId} showStatus={props.showStatus} key={index} />
         })
       }
     </div>
