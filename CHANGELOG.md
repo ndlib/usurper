@@ -1,4 +1,13 @@
 # Change Log
+
+## [0.13.1](https://github.com/ndlib/usurper/tree/v0.13.1) (2017-08-17)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.0...v0.13.1)
+
+### New features/enhancements:
+
+### Bug fixes:
+- Updated link to service now report a problem form [#261](https://github.com/ndlib/usurper/pull/261), [#262](https://github.com/ndlib/usurper/pull/262)
+
 ## [0.13](https://github.com/ndlib/usurper/tree/v0.13.0) (2017-08-10)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.1...v0.13.0)
 
