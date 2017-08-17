@@ -3,6 +3,7 @@ import React from 'react'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import Link from '../../Link'
+import ServiceNowLink from '../../ServiceNowLink'
 
 const Error = ({ message = 'An error has occured' }) => (
   <div className={'Error'}>
@@ -13,7 +14,7 @@ const Error = ({ message = 'An error has occured' }) => (
       <h2>Error</h2>
       <div>{ message }
         <br />
-        If you think you've reached this page in error, please <Link to='https://nd.service-now.com/ess/create_lib_incident.do'>report your problem</Link>.
+        If you think you've reached this page in error, please <ServiceNowLink>report your problem</ServiceNowLink>.
       </div>
     </div>
   </div>
