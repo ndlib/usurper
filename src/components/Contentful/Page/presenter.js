@@ -23,11 +23,17 @@ const PagePresenter = ({ cfPageEntry }) => (
         <div className='sp-hidden'><ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} /></div>
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
 
-        <Related className='p-resources' title={ cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources' } showImages={false}>{ cfPageEntry.fields.relatedResources }</Related>
+        <Related
+          className='p-resources'
+          title={ cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources' }
+          showImages={false}
+        >
+          { cfPageEntry.fields.relatedResources }
+        </Related>
         <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfPageEntry.fields.libguides }</Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
         {
-          cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry) => {
+          cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry, index) => {
             let fields = entry.fields
             let className = 'p-resources'
             let showImages = false
@@ -42,7 +48,16 @@ const PagePresenter = ({ cfPageEntry }) => (
                   break
               }
             }
-            return <Related className={className} title={fields.title} showImages={showImages}>{ fields.links }</Related>
+            return (
+              <Related
+                className={className}
+                title={fields.title}
+                showImages={showImages}
+                key={index + '_related'}
+              >
+                { fields.links }
+              </Related>
+            )
           })
         }
       </section>
@@ -50,8 +65,18 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Image cfImage={cfPageEntry.fields.image} className='cover' />
         <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
-        <ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} />
-        <Related className='p-pages' title='Related Pages' showImages={false}>{ cfPageEntry.fields.relatedPages }</Related>
+        {
+          cfPageEntry.fields.servicePoints.map((point, index) => {
+            return <ServicePoint cfServicePoint={point} key={index + '_point'} />
+          })
+        }
+        <Related
+          className='p-pages'
+          title='Related Pages'
+          showImages={false}
+        >
+          { cfPageEntry.fields.relatedPages }
+        </Related>
       </section>
     </div>
   </div>
