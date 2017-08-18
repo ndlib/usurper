@@ -5,10 +5,23 @@ import { openSearchBox, closeSearchBox } from '../../../actions/search.js'
 import { setSearchOption } from '../../../actions/advancedSearch.js'
 import searchQuery from '../searchQueryBuilder'
 import SearchBox from './presenter'
+import ReactGA from 'react-ga'
+import Config from '../../../shared/Configuration'
+ReactGA.initialize(Config.googleAnalyticsId, {
+  debug: false,
+  titleCase: false,
+  gaOptions: {},
+})
+
 const mapStateToProps = (state, ownProps) => {
   return {
     onSubmit: (e) => {
       e.preventDefault()
+      ReactGA.event({
+        category: `LIBRARY WEBSITE SEARCH SUBMISSION`,
+        action: `${state.search.searchType}`,
+        label: `${state.advancedSearch['basic-search-field']}`,
+      })
       searchQuery(state.search, state.advancedSearch)
     },
     ...state,
