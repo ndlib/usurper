@@ -11,6 +11,7 @@ const genConfig = () => {
     contentfulAPI: 'https://bj5rh8poa7.execute-api.us-east-1.amazonaws.com/dev',
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
     version: 'dev',
+    googleAnalyticsId: 'UA-2118378-47',
   }
 
   let config = {
@@ -23,6 +24,7 @@ const genConfig = () => {
     contentfulAPI: process.env.CONTENTFUL_API ? process.env.CONTENTFUL_API : defaultConfig.contentfulAPI,
     serviceNowBaseURL: process.env.SERVICE_NOW_BASE_URL ? process.env.SERVICE_NOW_BASE_URL : defaultConfig.serviceNowBaseURL,
     version: process.env.VERSION ? process.env.VERSION : defaultConfig.version,
+    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID ? process.env.GOOGLE_ANALYTICS_ID : defaultConfig.googleAnalyticsId,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }
