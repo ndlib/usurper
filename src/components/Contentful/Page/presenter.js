@@ -66,7 +66,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
         <Librarians netids={cfPageEntry.fields.contactPeople} />
         {
-          cfPageEntry.fields.servicePoints.map((point, index) => {
+          cfPageEntry.fields.servicePoints && cfPageEntry.fields.servicePoints.map((point, index) => {
             return <ServicePoint cfServicePoint={point} key={index + '_point'} />
           })
         }
