@@ -16,8 +16,8 @@ const ServiceNowLink = ({ children, isWebContent }) => {
 }
 
 ServiceNowLink.propTypes = {
-  children: PropTypes.object,
-  isWebContent: PropTypes.boolean,
+  children: PropTypes.any,
+  isWebContent: PropTypes.bool,
 }
 
 export default ServiceNowLink
