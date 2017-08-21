@@ -1,6 +1,6 @@
 # Change Log
 
-## [0.14.0](https://github.com/ndlib/usurper/tree/v0.14.0) (2017-08-21)
+## [0.14.0](https://github.com/ndlib/usurper/tree/v0.14.0) (Development)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.3...v0.14.0)
 
 ### New features/enhancements:
