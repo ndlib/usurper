@@ -11,7 +11,7 @@ base = "https://cdn.contentful.com/spaces/%s" % hesutil.getEnv("SPACE", throw=Tr
 entryQuery = "/entries?select=%s&limit=200&content_type=%s"
 
 now = datetime.now().strftime("%Y-%m-%d")
-host = "https://beta.library.nd.edu"
+host = "https://library.nd.edu"
 
 routeInfo = [
   {
