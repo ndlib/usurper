@@ -23,19 +23,13 @@ export const sortNews = (left, right) => {
 const mapStateToProps = (state) => {
   let allNews = []
   if (state.allNews && state.allNews.status === statuses.SUCCESS) {
-    let now = new Date()
-
     allNews = state.allNews.json
       .map((entry) => {
         flattenLocale(entry.fields, 'en-US')
         return entry
       })
-      .filter((entry) => {
-        let start = new Date(entry.fields.displayStartDate)
-        let end = new Date(entry.fields.displayEndDate)
-        return start <= now && end >= now
-      })
       .sort(sortNews)
+      .slice(0, 3)
   }
   return {
     allNews,

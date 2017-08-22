@@ -3,6 +3,7 @@ import Facebook from '../images/facebook.png'
 import Twitter from '../images/twitter.png'
 import Gov from '../images/fdlp-emblem-color.png'
 import Link from '../../Link'
+import ServiceNowLink from '../../ServiceNowLink'
 
 const FooterLinks = () => {
   return (
@@ -12,12 +13,12 @@ const FooterLinks = () => {
           <div className='col-xs-8'>
             <div className='box'>
               <ul role='navigation' aria-label='Footer Menu'>
-                <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}&lib_list_problem=lib_list_web_content`}>Website Feedback</Link></li>
+                <li><ServiceNowLink isWebContent>Website Feedback</ServiceNowLink></li>
                 <li><Link to='/library-policies'>Library Policies</Link></li>
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
-                <li><Link to={`https://nd.service-now.com/ess/create_lib_incident.do?URL=${window.location}`}>Report A Problem</Link></li>
+                <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
                 <li><Link to='http://libguides.library.nd.edu/trumpadmin1' title='Federal Depository Library'><img src={Gov} className='gov' alt='gov' /></Link></li>
               </ul>
             </div>

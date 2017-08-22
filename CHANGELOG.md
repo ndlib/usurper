@@ -1,4 +1,31 @@
 # Change Log
+
+## [0.14.0](https://github.com/ndlib/usurper/tree/v0.14.0) (Development)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.3...v0.14.0)
+
+### New features/enhancements:
+- Added ability to have arbitrary pathfinder related sections [#257](https://github.com/ndlib/usurper/pull/257)
+- Updated hotjar code  [#257](https://github.com/ndlib/usurper/pull/257)
+- Added search scope to ND Catalog advanced search [#259](https://github.com/ndlib/usurper/pull/259)
+- Refactored handling of the ServiceNow link. The base url can now be reconfigured via environment [#265](https://github.com/ndlib/usurper/pull/265)
+- News on homepage will now show the 3 most recent entries [#267](https://github.com/ndlib/usurper/pull/267)
+- Added a way to track search usage in Google Analytics [#268](https://github.com/ndlib/usurper/pull/268)
+- Events landing page is now separated into present and past sections [#256](https://github.com/ndlib/usurper/pull/256)
+- Updated sitemap [#256](https://github.com/ndlib/usurper/pull/256)
+- Added additional testing [#260](https://github.com/ndlib/usurper/pull/260), [#266](https://github.com/ndlib/usurper/pull/266), [#258](https://github.com/ndlib/usurper/pull/258)
+
+### Bug fixes:
+- Fixed several react props, node, and css warnings [#266](https://github.com/ndlib/usurper/pull/266), [#267](https://github.com/ndlib/usurper/pull/267)
+
+## [0.13.3](https://github.com/ndlib/usurper/tree/v0.13.3) (2017-08-17)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.0...v0.13.3)
+
+### New features/enhancements:
+
+### Bug fixes:
+- Updated link to service now report a problem form [#261](https://github.com/ndlib/usurper/pull/261), [#262](https://github.com/ndlib/usurper/pull/262), [#264](https://github.com/ndlib/usurper/pull/264)
+- Fixed /personal to redirect to /items-requests [#263](https://github.com/ndlib/usurper/pull/263)
+
 ## [0.13](https://github.com/ndlib/usurper/tree/v0.13.0) (2017-08-10)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.12.1...v0.13.0)
 

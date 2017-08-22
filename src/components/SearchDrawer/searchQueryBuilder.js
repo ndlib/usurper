@@ -43,6 +43,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '00'
     const drEndMonth = advancedSearch['drEndMonth'] || '00'
     const drEndYear = advancedSearch['drEndYear5'] || '9999'
+    const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || 'scope:(hathi_pub),scope:(ndulawrestricted),scope:(dtlrestricted),scope:(NDU),scope:(NDLAW),scope:(ndu_digitool)'
 
     searchTerm = `&vl%2816833817UI0%29=${scope0}` +
     `&vl%28UIStartWith0%29=${precision0}` +
@@ -63,8 +64,11 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     `&vl%28drStartYear5%29=${drStartYear}` +
     `&vl%28drEndDay5%29=${drEndDay}` +
     `&vl%28drEndMonth5%29=${drEndMonth}` +
-    `&vl%28drEndYear5%29=${drEndYear}` +
-    `&Submit=Search`
+    `&vl%28drEndYear5%29=${drEndYear}`
+    if (searchStore.searchType === NDCATALOG) {
+      searchTerm += `&scp.scps=${scopesListAdvanced}`
+    }
+    searchTerm += `&Submit=Search`
   } else {
     // Basic Search
     searchTerm = advancedSearch['basic-search-field'] || ''
