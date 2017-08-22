@@ -7,7 +7,7 @@ const SortClass = (sortOn, sortValue, sortClass) => {
 }
 
 const ResourceList = (props) => {
-  if (!props.list) {
+  if (!props.list || props.list.length === 0) {
     return (
       <div>{props.emptyText}</div>
     )

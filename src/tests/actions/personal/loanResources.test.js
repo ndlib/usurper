@@ -24,6 +24,7 @@ describe('resources fetch async action creator', () => {
 
   beforeEach(() => {
     nock(url)
+      .persist()
       .get(/[borrowed|pending]/)
       .reply(200, {})
 
@@ -54,10 +55,6 @@ describe('resources fetch async action creator', () => {
   })
 
   it('should call startRequest twice', () => {
-    nock(url)
-      .get(/[borrowed|pending]/)
-      .reply(200, {})
-
     const store = mockStore(state)
     store.dispatch(getResources())
 
@@ -65,10 +62,6 @@ describe('resources fetch async action creator', () => {
   })
 
   it('should call startRequest with different params', () => {
-    nock(url)
-      .get(/[borrowed|pending]/)
-      .reply(200, {})
-
     const spy = jest.spyOn(constants, 'startRequest')
     const store = mockStore(state)
     store.dispatch(getResources())
