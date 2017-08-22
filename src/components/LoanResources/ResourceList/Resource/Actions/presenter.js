@@ -41,26 +41,27 @@ const IllView = (item) => {
 }
 
 const AlephRenew = (item, renewal, onRenewClick) => {
-  if (item.status === 'On Loan') {
-    let message
-    if (renewal && item.barcode === renewal.barcode) {
-      if (renewal.statusText) {
-        message = renewal.statusText
-      } else if (renewal.renewStatus === 304) {
-        message = 'Too early to renew, try again closer to due date.'
-      } else if (renewal.renewStatus === 200) {
-        message = 'Renew Successful'
-      }
-    }
+  return null
+  // if (item.status === 'On Loan') {
+  //   let message
+  //   if (renewal && item.barcode === renewal.barcode) {
+  //     if (renewal.statusText) {
+  //       message = renewal.statusText
+  //     } else if (renewal.renewStatus === 304) {
+  //       message = 'Too early to renew, try again closer to due date.'
+  //     } else if (renewal.renewStatus === 200) {
+  //       message = 'Renew Successful'
+  //     }
+  //   }
 
-    if (message) {
-      return (<span>{message}</span>)
-    } else {
-      return (<button onClick={onRenewClick}>Renew</button>)
-    }
-  } else {
-    return null
-  }
+  //   if (message) {
+  //     return (<span>{message}</span>)
+  //   } else {
+  //     return (<button onClick={onRenewClick}>Renew</button>)
+  //   }
+  // } else {
+  //   return null
+  // }
 }
 
 export const hasActions = (item) => {
