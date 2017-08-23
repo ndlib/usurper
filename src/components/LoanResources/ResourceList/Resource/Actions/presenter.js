@@ -46,7 +46,8 @@ const AlephRenew = (item, renewal, onRenewClick, alephMessage) => {
     }
 
     if (alephMessage) {
-      return (<span className='status'>{alephMessage}</span>)
+      let messageClass = 'status' + renewal[item.barcode].data.renewStatus === 200 ? ' success' : ' failure'
+      return (<span className={messageClass}>{alephMessage}</span>)
     } else {
       return (<button onClick={onRenewClick}>Renew</button>)
     }
