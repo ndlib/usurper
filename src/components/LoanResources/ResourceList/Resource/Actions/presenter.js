@@ -66,7 +66,7 @@ const AlephRenew = (item, renewal, onRenewClick) => {
     }
 
     if (message) {
-      return (<span>{message}</span>)
+      return (<span className='status'>{message}</span>)
     } else {
       return (<button onClick={onRenewClick}>Renew</button>)
     }

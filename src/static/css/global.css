@@ -1355,13 +1355,32 @@ hr {
   padding: 0 !important;
 }
 
-  .card-pickup span {
-    border: solid 1px #B2B200;
-    background: #f8e999;
-    padding: 3px 5px;
-    border-radius: 3px;
-    margin: 10px;
-  }
+.card-pickup span {
+  border: solid 1px #B2B200;
+  background: #f8e999;
+  padding: 3px 5px;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.status {
+  border: solid 2px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.failure {
+  border-color: #D61919;
+  background: #FBDFDF;
+  color: #D61919;
+}
+
+.success {
+  border-color: #388538;
+  background: #dff0d6;
+  color: #388538;
+}
 
 .card-actions {
   width: 20%;
