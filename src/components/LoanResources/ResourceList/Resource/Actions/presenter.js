@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Config from '../../../../../shared/Configuration'
 import Link from '../../../../Link'
+import * as Statuses from '../../../../../constants/APIStatuses'
 
 const illViewForm = '67'
 const illWebForm = '75'
@@ -41,27 +42,37 @@ const IllView = (item) => {
 }
 
 const AlephRenew = (item, renewal, onRenewClick) => {
-  return null
-  // if (item.status === 'On Loan') {
-  //   let message
-  //   if (renewal && item.barcode === renewal.barcode) {
-  //     if (renewal.statusText) {
-  //       message = renewal.statusText
-  //     } else if (renewal.renewStatus === 304) {
-  //       message = 'Too early to renew, try again closer to due date.'
-  //     } else if (renewal.renewStatus === 200) {
-  //       message = 'Renew Successful'
-  //     }
-  //   }
+  if (item.status === 'On Loan') {
+    let message
+    if (renewal && renewal[item.barcode]) {
+      if (renewal[item.barcode].state === Statuses.FETCHING) {
+        return (
+          <div className='sk-three-bounce'>
+            <div className='sk-child sk-bounce1' />
+            <div className='sk-child sk-bounce2' />
+            <div className='sk-child sk-bounce3' />
+          </div>
+        )
+      }
 
-  //   if (message) {
-  //     return (<span>{message}</span>)
-  //   } else {
-  //     return (<button onClick={onRenewClick}>Renew</button>)
-  //   }
-  // } else {
-  //   return null
-  // }
+      let itemRenew = renewal[item.barcode].data
+      if (itemRenew.statusText) {
+        message = itemRenew.statusText
+      } else if (itemRenew.renewStatus === 304) {
+        message = 'Too early to renew. Try again closer to due date.'
+      } else if (itemRenew.renewStatus === 200) {
+        message = 'Renew Successful'
+      }
+    }
+
+    if (message) {
+      return (<span>{message}</span>)
+    } else {
+      return (<button onClick={onRenewClick}>Renew</button>)
+    }
+  } else {
+    return null
+  }
 }
 
 export const hasActions = (item) => {

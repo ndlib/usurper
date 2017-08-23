@@ -3,10 +3,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import Loading from '../../../Messages/Loading'
 import Presenter from './presenter'
 
-class ListContainer extends Component {
+class ResourceContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -16,6 +15,23 @@ class ListContainer extends Component {
     this.toggleHidden = this.toggleHidden.bind(this)
   }
 
+  componentWillReceiveProps () {
+    let item = this.props.item
+    let renewal = this.props.renewal ? this.props.renewal[item.barcode] : null
+    let previousDueDate = item.dueDate
+    if (renewal) {
+      if (renewal.data.renewStatus === 200 && previousDueDate !== renewal.data.dueDate) {
+        item.dueDate = renewal.data.dueDate
+      }
+
+      if (renewal.data) {
+        this.setState({
+          hidden: false,
+        })
+      }
+    }
+  }
+
   toggleHidden (event) {
     this.setState({
       hidden: !this.state.hidden,
@@ -23,10 +39,6 @@ class ListContainer extends Component {
   }
 
   render () {
-    if (this.props.loading) {
-      return <Loading />
-    }
-
     return <Presenter toggleHidden={this.toggleHidden} hidden={this.state.hidden} {...this.props} />
   }
 }
@@ -37,8 +49,4 @@ export const mapStateToProps = (state, ownProps) => {
   }
 }
 
-ListContainer.propTypes = {
-  loading: PropTypes.bool,
-}
-
-export default connect(mapStateToProps)(ListContainer)
+export default connect(mapStateToProps)(ResourceContainer)

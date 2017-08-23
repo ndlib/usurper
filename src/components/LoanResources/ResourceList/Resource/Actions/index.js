@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Presenter from './presenter'
-import { renewAleph } from '../../../../../actions/personal/loanResources'
+import { renewAleph } from '../../../../../actions/personal/alephRenewal'
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
   return {

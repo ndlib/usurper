@@ -51,6 +51,7 @@ const ResourceList = (props) => {
             </div>
           )
         }
+        { !props.showStatus && <button onClick={props.renewAll}>Renew All</button> }
       </div>
       {
         props.list.map((item, index) => {

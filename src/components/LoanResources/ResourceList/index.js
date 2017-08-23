@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { renewAleph } from '../../../actions/personal/alephRenewal'
 import Loading from '../../Messages/Loading'
 import Presenter from './presenter'
 
@@ -117,9 +118,10 @@ class ListContainer extends Component {
       sortOn={this.state.sortValue}
       list={this.state.filteredList}
       emptyText={this.props.emptyText}
-      showStatus={this.props.showStatus}
+      showStatus={!this.props.borrowed}
       alephId={this.props.alephId}
       renewal={this.props.renewal}
+      renewAll={this.props.renewAll}
     />
   }
 }
@@ -130,11 +132,25 @@ export const mapStateToProps = (state, ownProps) => {
   }
 }
 
+export const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    renewAll: (e) => {
+      ownProps.list.forEach((item) => {
+        if (item.barcode) {
+          dispatch(renewAleph(item.barcode, ownProps.alephId))
+        }
+      })
+    },
+  }
+}
+
 ListContainer.propTypes = {
   loading: PropTypes.bool,
   list: PropTypes.array.isRequired,
   emptyText: PropTypes.string.isRequired,
-  showStatus: PropTypes.bool,
+  alephId: PropTypes.string,
+  renewal: PropTypes.object,
+  borrowed: PropTypes.bool,
 }
 
-export default connect(mapStateToProps)(ListContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)

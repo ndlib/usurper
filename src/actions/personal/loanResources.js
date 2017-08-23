@@ -65,20 +65,4 @@ const getResources = () => {
   }
 }
 
-export const renewAleph = (barcode, alephId) => {
-  return dispatch => {
-    dispatch(states.requestPersonal('renewal'))
-    let url = Config.resourcesAPI + '/aleph/renew'
-    return fetch(url, {
-      method: 'post',
-      headers: {
-        'barcode': barcode,
-        'aleph-id': alephId,
-      },
-    })
-    .then(response => { return response.json() })
-    .then(json => dispatch(states.recievePersonal('renewal', statuses.SUCCESS, { barcode: barcode, ...json })))
-  }
-}
-
 export default getResources

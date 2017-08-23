@@ -10,13 +10,6 @@ const Card = (className, prefix, data) => {
   return <div className={className} />
 }
 
-const dueDate = (item, renewal) => {
-  if (renewal && renewal.renewStatus === 200 && item.barcode === renewal.barcode) {
-    return renewal.dueDate
-  }
-  return item.dueDate
-}
-
 const actionsButton = (item, toggleHidden) => {
   if (hasActions(item)) {
     return (
@@ -36,7 +29,7 @@ const ResourceList = (props) => {
       </div>
       { Card('card-author', '', props.item.author) }
       { props.showStatus && Card('card-status', '', props.item.status) }
-      { !props.showStatus && Card('card-due', '', dueDate(props.item, props.renewal)) }
+      { !props.showStatus && Card('card-due', '', props.item.dueDate) }
       { Card('card-pickup', 'Pickup Location: ', props.item.pickupLocation) }
 
       { actionsButton(props.item, props.toggleHidden) }
