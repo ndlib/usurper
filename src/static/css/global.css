@@ -1300,8 +1300,8 @@ hr {
   display: grid;
   display: -ms-grid;
 
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  -ms-grid-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1.3fr .7fr;
+  -ms-grid-columns: 1.5fr 1fr 1.3fr .7fr;
   justify-content: left;
   font-size: 16px;
 
@@ -1352,6 +1352,7 @@ hr {
   -ms-grid-column-span: 3;
   grid-column: 2 / 5;
   font-size: 13px;
+  padding: 0 !important;
 }
 
   .card-pickup span {
@@ -1359,13 +1360,18 @@ hr {
     background: #f8e999;
     padding: 3px 5px;
     border-radius: 3px;
-
+    margin: 10px;
   }
 
 .card-actions {
   width: 20%;
   text-align: right;
 
+}
+
+button.renew {
+  padding: 5px 5px;
+  margin: 5px 0;
 }
 
 .actions-hidden {
@@ -1380,6 +1386,7 @@ hr {
 
 .actions-button span {
   cursor: pointer;
+  font-size: 26px;
 }
 
 .actions {
@@ -1570,6 +1577,11 @@ hr {
 
 .right .service-point .earrow, .right .service-point .carrow {
   margin-right: 10px;
+}
+
+.right .service-point .col-md-6 {
+  max-width: 100%;
+  flex-basis: 100%;
 }
 
 .point h2 {
