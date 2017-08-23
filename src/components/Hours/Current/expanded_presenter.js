@@ -26,11 +26,11 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
         </h4>
       </a>
       <div className='row hours-listing' id={hoursEntry.servicePoint.slug}>
-        <div className='col-md-4'>
+        <div className='col-md-5'>
           <WeeklyHours hours={hoursEntry.thisWeek} title='Current Hours' showEffectiveDates={false} />
           <WeeklyHours hours={hoursEntry.upcomingDifferentHours} title='Upcoming Hours' showEffectiveDates />
         </div>
-        <div className='col-md-6 col-md-offset-2'>
+        <div className='col-md-6 col-md-offset-1'>
           {children}
         </div>
       </div>
