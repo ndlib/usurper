@@ -28,8 +28,8 @@ const ResourceList = (props) => {
         <div className='card-subtitle'>{props.item.published}</div>
       </div>
       { Card('card-author', '', props.item.author) }
-      { props.showStatus && Card('card-status', '', props.item.status) }
-      { !props.showStatus && Card('card-due', '', props.item.dueDate) }
+      { !props.borrowed && Card('card-status', '', props.item.status) }
+      { props.borrowed && Card('card-due', '', props.item.dueDate) }
       { Card('card-pickup', 'Pickup Location: ', props.item.pickupLocation) }
 
       { actionsButton(props.item, props.toggleHidden) }

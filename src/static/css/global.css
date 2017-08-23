@@ -727,7 +727,7 @@ nav a.search.closed:hover {
   background-size: 21px, 12px;
 }
 
-.sort-title, .sort-author, .sort-status, .sort-date {
+.sort-title, .sort-author, .sort-status, .sort-dueDate {
   font-weight: bold;
   padding-left: 20px !important;
   line-height: 1.4em;

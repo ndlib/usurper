@@ -53,7 +53,7 @@ export const mapStateToProps = (state) => {
   return {
     loggedIn: loggedIn,
     login: personal.login,
-    user: personal.user,
+    alephId: personal.user ? personal.user.alephId : null,
     renewal: renewal,
     resources: {
       have: {

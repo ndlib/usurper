@@ -8,8 +8,6 @@ const LoanResources = (props) => {
   let have = props.resources.have
   let pending = props.resources.pending
 
-  let alephId = props.user ? props.user.alephId : null
-
   return (
     <div key='LoanResources' className='resources-list'>
       <h3>Pending</h3>
@@ -17,7 +15,7 @@ const LoanResources = (props) => {
         list={pending.items}
         emptyText={pending.emptyText}
         loading={pending.loading}
-        alephId={alephId}
+        alephId={props.alephId}
         renewal={props.renewal}
         borrowed={false}
       />
@@ -27,7 +25,7 @@ const LoanResources = (props) => {
         list={have.items}
         emptyText={have.emptyText}
         loading={have.loading}
-        alephId={alephId}
+        alephId={props.alephId}
         renewal={props.renewal}
         borrowed={true}
       />
@@ -38,7 +36,7 @@ const LoanResources = (props) => {
 LoanResources.propTypes = {
   resources: PropTypes.object,
   renewal: PropTypes.object,
-  user: PropTypes.object,
+  alephId: PropTypes.string,
 }
 
 export default LoanResources

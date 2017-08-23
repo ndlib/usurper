@@ -24,6 +24,7 @@ class ListContainer extends Component {
 
     this.filterChange = this.filterChange.bind(this)
     this.sortChange = this.sortChange.bind(this)
+    this.sortClass = this.sortClass.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -105,23 +106,29 @@ class ListContainer extends Component {
     })
   }
 
+  sortClass (data) {
+    return 'sort-' + data + ' ' + (this.state.sortValue === data ? 'sort-' + this.state.sortDir : 'sort-none')
+  }
+
   render () {
     if (this.props.loading) {
       return <Loading />
     }
 
+    if (!this.state.filteredList || this.state.filteredList.length === 0) {
+      return <div>{this.props.emptyText}</div>
+    }
+
     return <Presenter
       filterValue={this.state.filterValue}
       filterChange={this.filterChange}
-      sortChange={this.sortChange}
-      sortClass={'sort-' + this.state.sortDir}
-      sortOn={this.state.sortValue}
       list={this.state.filteredList}
-      emptyText={this.props.emptyText}
-      showStatus={!this.props.borrowed}
+      borrowed={this.props.borrowed}
       alephId={this.props.alephId}
       renewal={this.props.renewal}
       renewAll={this.props.renewAll}
+      sortClick={this.sortChange}
+      sortClass={this.sortClass}
     />
   }
 }
@@ -151,6 +158,9 @@ ListContainer.propTypes = {
   alephId: PropTypes.string,
   renewal: PropTypes.object,
   borrowed: PropTypes.bool,
+
+  // from mappers
+  renewAll: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)

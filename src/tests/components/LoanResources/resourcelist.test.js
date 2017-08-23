@@ -14,32 +14,35 @@ describe('components/LoanResources/resourceList.js', () => {
     enzymeWrapper = undefined
   })
 
-  describe('with status', () => {
+  describe('pending', () => {
     beforeEach(() => {
       props = {
         list: [{
           title: 'title',
         }],
-        emptyText: 'empty',
-        showStatus: true,
+        borrowed: false,
+        filterValue: 'title',
+        filterChange: jest.fn(),
+        sortClass: jest.fn(),
+        sortClick: jest.fn(),
       }
       setup(props)
     })
 
     it('should render column title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-title sort-none'>{'Title'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Title'}</div>)).toBe(true)
     })
 
     it('should render column author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-author sort-none'>{'Author'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Author'}</div>)).toBe(true)
     })
 
     it('should render column status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-status sort-none'>{'Status'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Status'}</div>)).toBe(true)
     })
 
     it('should not render column due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-date sort-none'>{'Due Date'}</div>)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Due Date'}</div>)).toBe(false)
     })
 
     it('should render item', () => {
@@ -47,51 +50,39 @@ describe('components/LoanResources/resourceList.js', () => {
     })
   })
 
-  describe('no status', () => {
+  describe('borrowed', () => {
     beforeEach(() => {
       props = {
         list: [{
           title: 'title',
         }],
-        emptyText: 'empty',
-        showStatus: false,
+        borrowed: true,
+        filterValue: 'title',
+        filterChange: jest.fn(),
+        sortClass: jest.fn(),
+        sortClick: jest.fn(),
       }
       setup(props)
     })
 
     it('should render column title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-title sort-none'>{'Title'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Title'}</div>)).toBe(true)
     })
 
     it('should render column author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-author sort-none'>{'Author'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Author'}</div>)).toBe(true)
     })
 
     it('should not render column status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-status sort-none'>{'Status'}</div>)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Status'}</div>)).toBe(false)
     })
 
     it('should render column due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='sort-date sort-none'>{'Due Date'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Due Date'}</div>)).toBe(true)
     })
 
     it('should render item', () => {
       expect(enzymeWrapper.containsMatchingElement(<Resource item={props.list[0]} />)).toBe(true)
-    })
-  })
-
-  describe('when empty', () => {
-    beforeEach(() => {
-      props = {
-        list: [],
-        emptyText: 'empty',
-      }
-
-      setup(props)
-    })
-
-    it('should render a loading message', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{props.emptyText}</div>)).toBe(true)
     })
   })
 })
