@@ -1,7 +1,7 @@
 # Change Log
 
-## [0.14.0](https://github.com/ndlib/usurper/tree/v0.14.0) (2017-08-24)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.3...v0.14.0)
+## [v2017.0](https://github.com/ndlib/usurper/tree/v2017.0)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.3...v2017.0)
 
 ### New features/enhancements:
 - Added ability to have arbitrary pathfinder related sections [#257](https://github.com/ndlib/usurper/pull/257)
