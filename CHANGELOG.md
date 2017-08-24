@@ -1,6 +1,6 @@
 # Change Log
 
-## [0.14.0](https://github.com/ndlib/usurper/tree/v0.14.0) (Development)
+## [0.14.0](https://github.com/ndlib/usurper/tree/v0.14.0) (2017-08-24)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.3...v0.14.0)
 
 ### New features/enhancements:
@@ -15,9 +15,15 @@
 - Added additional testing [#260](https://github.com/ndlib/usurper/pull/260), [#266](https://github.com/ndlib/usurper/pull/266), [#258](https://github.com/ndlib/usurper/pull/258)
 - Update Items & Requests page with sort/filter functionality, clean up columns [#272](https://github.com/ndlib/usurper/pull/272)
 - Add Renew and Renew All buttons to Items & Requests page [#273](https://github.com/ndlib/usurper/pull/273)
+- Can now add multiple service points to pages [#270](https://github.com/ndlib/usurper/pull/270)
+- Items page has been enhanced. Cleaned up column names and data, added sort and filter, and put item actions into a collapsable menu [#272](https://github.com/ndlib/usurper/pull/272)
+- Can now renew items [#273](https://github.com/ndlib/usurper/pull/273)
+
 
 ### Bug fixes:
 - Fixed several react props, node, and css warnings [#266](https://github.com/ndlib/usurper/pull/266), [#267](https://github.com/ndlib/usurper/pull/267)
+- Fixed beta links in sitemap [#271](https://github.com/ndlib/usurper/pull/271)
+- Hours page was incorrectly showing locations that closed at midnight as closed all day [#274](https://github.com/ndlib/usurper/pull/274)
 
 ## [0.13.3](https://github.com/ndlib/usurper/tree/v0.13.3) (2017-08-17)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.0...v0.13.3)
