@@ -21,10 +21,19 @@ export const handleResources = (dispatch, data) => {
       states.recievePersonal(
         'resources_pending',
         statuses.SUCCESS,
-        { pending: data.pending }
+        {
+          pending: data.pending,
+        }
       )
     )
   }
+  dispatch(
+    states.recievePersonal(
+      'user',
+      statuses.SUCCESS,
+      data.user,
+    )
+  )
 }
 
 const getResources = () => {
@@ -38,6 +47,7 @@ const getResources = () => {
       handleResources,
       state.login.token,
       (e) => {
+        console.log(e)
         dispatch(states.recievePersonal('resources_pending', statuses.ERROR, e.message))
       })
 
@@ -48,6 +58,7 @@ const getResources = () => {
       handleResources,
       state.login.token,
       (e) => {
+        console.log(e)
         dispatch(states.recievePersonal('resources_have', statuses.ERROR, e.message))
       }
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import * as statuses from '../../../constants/APIStatuses'
 import LoanResources from '../../../components/LoanResources/presenter'
-import ResourceList from '../../../components/LoanResources/resourceList'
+import ResourceList from '../../../components/LoanResources/ResourceList'
 
 import { shallow } from 'enzyme'
 

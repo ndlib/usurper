@@ -1,11 +1,7 @@
 import React from 'react'
-import * as statuses from '../../../constants/APIStatuses'
-import ResourceList from '../../../components/LoanResources/resourceList'
-import IlliadActions from '../../../components/LoanResources/illiadActions'
+import ResourceList from '../../../components/LoanResources/ResourceList/presenter'
+import Resource from '../../../components/LoanResources/ResourceList/Resource'
 import { shallow } from 'enzyme'
-
-import Config from '../../../shared/Configuration'
-import Link from '../../../components/Link'
 
 let enzymeWrapper
 const setup = (props) => {
@@ -18,57 +14,75 @@ describe('components/LoanResources/resourceList.js', () => {
     enzymeWrapper = undefined
   })
 
-  describe('on success', () => {
+  describe('pending', () => {
     beforeEach(() => {
       props = {
         list: [{
           title: 'title',
-          author: 'author',
-          published: 'published',
-          status: 'status',
-          dueDate: '2017-05-31',
-          transactionNumber: '4000',
         }],
-        emptyText: 'empty',
+        borrowed: false,
+        filterValue: 'title',
+        filterChange: jest.fn(),
+        sortClass: jest.fn(),
+        sortClick: jest.fn(),
       }
       setup(props)
     })
 
-    it('should render item title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='card-title'>{'title'}</div>)).toBe(true)
+    it('should render column title', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Title'}</div>)).toBe(true)
     })
 
-    it('should render item author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='card-subtitle'>{'author'}</div>)).toBe(true)
+    it('should render column author', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Author'}</div>)).toBe(true)
     })
 
-    it('should render item published date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='card-published'>{'Published: published'}</div>)).toBe(true)
+    it('should render column status', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Status'}</div>)).toBe(true)
     })
 
-    it('should render item status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='card-status'>{'Status: status'}</div>)).toBe(true)
+    it('should not render column due date', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Due Date'}</div>)).toBe(false)
     })
 
-    it('should render item due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div className='card-due'>{'Due Date: 2017-05-31'}</div>)).toBe(true)
-    })
-
-    it('should render ILL actions', () => {
-      expect(enzymeWrapper.containsMatchingElement(<IlliadActions item={props.list[0]} />)).toBe(true)
+    it('should render item', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Resource item={props.list[0]} />)).toBe(true)
     })
   })
 
-  describe('when empty', () => {
+  describe('borrowed', () => {
     beforeEach(() => {
-      setup({
-        list: [],
-        emptyText: 'empty',
-      })
+      props = {
+        list: [{
+          title: 'title',
+        }],
+        borrowed: true,
+        filterValue: 'title',
+        filterChange: jest.fn(),
+        sortClass: jest.fn(),
+        sortClick: jest.fn(),
+      }
+      setup(props)
     })
 
-    it('should render a loading message', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>empty</div>)).toBe(true)
+    it('should render column title', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Title'}</div>)).toBe(true)
+    })
+
+    it('should render column author', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Author'}</div>)).toBe(true)
+    })
+
+    it('should not render column status', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Status'}</div>)).toBe(false)
+    })
+
+    it('should render column due date', () => {
+      expect(enzymeWrapper.containsMatchingElement(<div>{'Due Date'}</div>)).toBe(true)
+    })
+
+    it('should render item', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Resource item={props.list[0]} />)).toBe(true)
     })
   })
 })

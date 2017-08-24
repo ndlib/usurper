@@ -13,6 +13,8 @@
 - Events landing page is now separated into present and past sections [#256](https://github.com/ndlib/usurper/pull/256)
 - Updated sitemap [#256](https://github.com/ndlib/usurper/pull/256)
 - Added additional testing [#260](https://github.com/ndlib/usurper/pull/260), [#266](https://github.com/ndlib/usurper/pull/266), [#258](https://github.com/ndlib/usurper/pull/258)
+- Update Items & Requests page with sort/filter functionality, clean up columns [#272](https://github.com/ndlib/usurper/pull/272)
+- Add Renew and Renew All buttons to Items & Requests page [#273](https://github.com/ndlib/usurper/pull/273)
 
 ### Bug fixes:
 - Fixed several react props, node, and css warnings [#266](https://github.com/ndlib/usurper/pull/266), [#267](https://github.com/ndlib/usurper/pull/267)

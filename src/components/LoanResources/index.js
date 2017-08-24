@@ -40,7 +40,7 @@ const get = (dict, key, defaultVal) => {
 }
 
 export const mapStateToProps = (state) => {
-  const { personal } = state
+  const { personal, renewal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
 
   const have = personal.resources_have
@@ -53,6 +53,8 @@ export const mapStateToProps = (state) => {
   return {
     loggedIn: loggedIn,
     login: personal.login,
+    alephId: personal.user ? personal.user.alephId : null,
+    renewal: renewal,
     resources: {
       have: {
         state: get(have, 'state', false),

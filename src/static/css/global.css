@@ -727,6 +727,26 @@ nav a.search.closed:hover {
   background-size: 21px, 12px;
 }
 
+.sort-title, .sort-author, .sort-status, .sort-dueDate {
+  font-weight: bold;
+  padding-left: 20px !important;
+  line-height: 1.4em;
+}
+
+.sort-asc {
+  background: url(../images/arrow.b.u.png) no-repeat 4px 17px;
+
+}
+
+.sort-desc {
+  background: url(../images/arrow.b.d.png) no-repeat 4px 17px;
+
+}
+
+.sort-none:after {
+  background: url(../images/arrow.b.d.png) no-repeat 4px 17px;
+  opacity: 0.3;
+}
 
 .container-fluid.row {
   margin-left: auto;
@@ -1268,7 +1288,9 @@ hr {
 
 /* Items Page */
 
-
+.filter {
+  padding: 10px;
+}
 
 .card-item {
   width:100% ;
@@ -1278,8 +1300,8 @@ hr {
   display: grid;
   display: -ms-grid;
 
-  grid-template-columns: 1.5fr 1fr 1fr 1fr ;
-  -ms-grid-columns: 1.5fr 1fr 1fr 1fr ;
+  grid-template-columns: 1.5fr 1fr 1.3fr .7fr;
+  -ms-grid-columns: 1.5fr 1fr 1.3fr .7fr;
   justify-content: left;
   font-size: 16px;
 
@@ -1294,9 +1316,9 @@ hr {
 }
 
 .card-header {
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
   -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
+  -ms-grid-row-span: 3;
   background: #F1F1F1;
 
 }
@@ -1312,7 +1334,7 @@ hr {
   line-height: 1.4em;
 }
 
-.card-published {
+.card-author {
   -ms-grid-column: 2;
 }
 
@@ -1321,13 +1343,43 @@ hr {
 }
 
 .card-due {
-  -ms-grid-column: 4;
+  -ms-grid-column: 3;
 }
 
 .card-pickup {
   -ms-grid-column: 2;
   -ms-grid-row: 2;
-  -ms-grid-column-span: 2;
+  -ms-grid-column-span: 3;
+  grid-column: 2 / 5;
+  font-size: 13px;
+  padding: 0 !important;
+}
+
+.card-pickup span {
+  border: solid 1px #B2B200;
+  background: #f8e999;
+  padding: 3px 5px;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.status {
+  border: solid 2px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.failure {
+  border-color: #D61919;
+  background: #FBDFDF;
+  color: #D61919;
+}
+
+.success {
+  border-color: #388538;
+  background: #dff0d6;
+  color: #388538;
 }
 
 .card-actions {
@@ -1336,11 +1388,32 @@ hr {
 
 }
 
-.actions {
-  grid-column: 3 / 5;
+button.renew {
+  padding: 5px 5px;
+  margin: 5px 0;
+}
+
+.actions-hidden {
+  display: none;
+}
+
+.actions-button {
+  grid-column: 4;
+  grid-row: 1;
   text-align: right;
-  -ms-grid-column: 4;
-  -ms-grid-row: 2;
+}
+
+.actions-button span {
+  cursor: pointer;
+  font-size: 26px;
+}
+
+.actions {
+  grid-column: 2 / 5;
+  grid-row: 3;
+  text-align: right;
+  -ms-grid-column: 2;
+  -ms-grid-row: 3;
 }
 
 .actions a {
@@ -1525,6 +1598,11 @@ hr {
   margin-right: 10px;
 }
 
+.right .service-point .col-md-6 {
+  max-width: 100%;
+  flex-basis: 100%;
+}
+
 .point h2 {
   color: #001E45;
   font-size: 24px;
@@ -1617,7 +1695,7 @@ address {
 }
 
 .contact-page .point {
-  
+
 }
 
 .contact-page .point ul {
@@ -1650,7 +1728,7 @@ address {
   float: left;
   margin-bottom: 10px;
 
-  
+
   padding-top: 15px;
 
 }
@@ -1668,7 +1746,7 @@ address {
 .contact-page .point li a, .contact-page .point li {
   font-size: 18px;
   padding-left: 0;
-  
+
   background-position: top center;
   background-size: 34px;
   text-align: center;
@@ -1953,7 +2031,7 @@ address {
 @supports (display: grid) and (not (display: -ms-grid)) {
   .p-resources {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto auto;
     grid-auto-flow: column;
   }
@@ -2501,12 +2579,15 @@ address {
   }
 
   .card-pickup {
-    -ms-grid-column: 1;
-    -ms-grid-row: 3;
+    -ms-grid-column: 3;
+    -ms-grid-row: 2;
     -ms-grid-column-span: 3;
-    grid-row: 3;
-    grid-column: 1 / 3;
+    grid-row: 2;
+    grid-column: 3;
   }
+
+
+
   .actions div {
     display: inline-block;
     margin-left: 5px;
