@@ -22,6 +22,7 @@ const RedirectRoutes = [
   { path: '/guide-on-the-side/*', target: 'https://guide-on-the-side.library.nd.edu', forwardPath: /\/guide-on-the-side(.*)/ },
   { path: '/documents/*', target: 'https://documents.library.nd.edu', forwardPath: /(.*)/ },
   { path: '/eresources/*', target: 'https://eresources.library.nd.edu', forwardPath: /\/eresources(.*)/ },
+  { path: '/fys', target: 'http://libguides.library.nd.edu/first-year-studies' },
 
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
