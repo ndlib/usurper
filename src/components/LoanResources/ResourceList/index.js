@@ -115,7 +115,7 @@ class ListContainer extends Component {
       return <Loading />
     }
 
-    if (!this.state.filteredList || this.state.filteredList.length === 0) {
+    if (!this.state.itemList || this.state.itemList.length === 0) {
       return <div>{this.props.emptyText}</div>
     }
 
