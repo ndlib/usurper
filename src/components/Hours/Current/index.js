@@ -88,6 +88,10 @@ export class CurrentHoursContainer extends Component {
     try {
       const entry = props.hoursEntry
       const currentOpenBlocks = entry.today.hours.filter(hoursBlock => {
+        if (hoursBlock.opens === hoursBlock.closes) {
+          return false
+        }
+
         let opens = timeToday(hoursBlock.date, hoursBlock.opens, props.hoursEntry.utcOffset, 0)
         let closes = timeToday(hoursBlock.date, hoursBlock.closes, props.hoursEntry.utcOffset, 1)
         let now = new Date()
