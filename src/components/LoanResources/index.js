@@ -8,8 +8,8 @@ import Resources from './presenter'
 
 class ResourceContainer extends Component {
   checkLoggedIn (props) {
-    if (!props.resources.have.state &&
-      !props.resources.pending.state &&
+    if ((!props.resources.have.state ||
+      !props.resources.pending.state) &&
       props.loggedIn) {
       props.dispatch(getResources(props.login.token))
     }

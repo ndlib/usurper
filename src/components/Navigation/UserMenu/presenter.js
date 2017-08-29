@@ -11,6 +11,7 @@ const UserMenu = (props) => {
           <ul className='child'>
             <li><Link to='/items-requests'>Items &amp; Requests</Link></li>
             <li><Link to='/courses'>Courses</Link></li>
+            <li><Link to='/settings'>Settings</Link></li>
             <li>
               <Link
                 to={props.logoutUrl}

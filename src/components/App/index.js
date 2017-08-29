@@ -7,6 +7,7 @@ import PageWrapper from '../../components/PageWrapper'
 import Home from '../../components/Home'
 import PersonalInfo from '../../components/PersonalInfo'
 import Courses from '../../components/Courses'
+import Settings from '../../components/Settings'
 import Hours from '../../components/Hours/Page'
 import ChatPage from '../../components/ChatPage'
 import ContentfulPage from '../../components/Contentful/Page'
@@ -66,6 +67,7 @@ const App = (props) => {
               <Route exact path='/' component={Home} />
               <Route exact path='/chat' component={ChatPage} />
               <Route exact path='/courses' component={Courses} />
+              <Route exact path='/settings' component={Settings} />
               <Route exact path='/hours' component={Hours} />
               <Route exact path='/events' component={Events} />
               <Route exact path='/news' component={News} />

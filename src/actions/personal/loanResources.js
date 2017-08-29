@@ -36,10 +36,9 @@ export const handleResources = (dispatch, data) => {
   )
 }
 
-const getResources = () => {
+export const getPending = () => {
   return (dispatch, getState) => {
     var state = getState().personal
-
     dispatch(states.requestPersonal('resources_pending'))
     states.startRequest(
       resourcesURL + 'pending',
@@ -49,8 +48,14 @@ const getResources = () => {
       (e) => {
         console.log(e)
         dispatch(states.recievePersonal('resources_pending', statuses.ERROR, e.message))
-      })
+      }
+    )
+  }
+}
 
+export const getBorrowed = () => {
+  return (dispatch, getState) => {
+    var state = getState().personal
     dispatch(states.requestPersonal('resources_have'))
     states.startRequest(
       resourcesURL + 'borrowed',
@@ -62,6 +67,13 @@ const getResources = () => {
         dispatch(states.recievePersonal('resources_have', statuses.ERROR, e.message))
       }
     )
+  }
+}
+
+const getResources = () => {
+  return (dispatch, getState) => {
+    getPending()(dispatch, getState)
+    getBorrowed()(dispatch, getState)
   }
 }
 
