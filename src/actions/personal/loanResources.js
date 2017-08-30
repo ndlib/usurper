@@ -66,8 +66,6 @@ export const getUser = () => {
 }
 
 export const getPending = () => {
-  let alephRetry = 0
-  let illRetry = 0
   return (dispatch, getState) => {
     let state = getState().personal
     let token = state.login.token
