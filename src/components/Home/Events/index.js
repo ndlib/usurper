@@ -59,10 +59,23 @@ export const mapEvents = (json) => {
   })
 }
 
-export const sortEvents = (left, right) => {
+// We need to sort twice, first to get preferred items at the top,
+//   then slice to the number we want, then sort to make sure dates are in order
+export const sortEvents = (left, right, withPreferred = false) => {
   // sort so events starting soonest are at the top
   let a = left.startDate
   let b = right.startDate
+
+  if (withPreferred) {
+    let aPreferred = left.preferOnHomepage
+    let bPreferred = right.preferOnHomepage
+
+    if (aPreferred && !bPreferred) {
+      return -1
+    } else if (bPreferred && !aPreferred) {
+      return 1
+    }
+  }
 
   if (a < b) {
     return -1
@@ -82,6 +95,8 @@ const mapStateToProps = (state) => {
         // Only use entries which are in the future or ongoing
         return entry.startDate >= now || entry.endDate >= now
       })
+      .sort((a, b) => sortEvents(a, b, true))
+      .slice(0, 3)
       .sort(sortEvents)
   }
   return {
