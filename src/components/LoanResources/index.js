@@ -8,8 +8,8 @@ import Resources from './presenter'
 
 class ResourceContainer extends Component {
   checkLoggedIn (props) {
-    if ((!props.resources.have.state ||
-      !props.resources.pending.state) &&
+    if ((!props.resources.have.exists ||
+      !props.resources.pending.exists) &&
       props.loggedIn) {
       props.dispatch(getResources(props.login.token))
     }
@@ -43,12 +43,20 @@ export const mapStateToProps = (state) => {
   const { personal, renewal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
 
-  const have = personal.resources_have
-  const pending = personal.resources_pending
+  const alephHave = personal.alephHave
+  const alephPending = personal.alephPending
+  const illHave = personal.illHave
+  const illPending = personal.illPending
 
-  const web = get(have, 'web', [])
-  const checkedOut = get(have, 'checkedOut', [])
-  const pendingItems = get(pending, 'pending', [])
+  const web = get(alephHave, 'web', []).concat(get(illHave, 'web', []))
+  const checkedOut = get(alephHave, 'checkedOut', []).concat(get(illHave, 'checkedOut', []))
+  const pendingItems = get(alephPending, 'pending', []).concat(get(illPending, 'pending', []))
+
+  const haveFetching = (get(alephHave, 'state', false) === statuses.FETCHING
+                        || get(illHave, 'state', false) === statuses.FETCHING)
+
+  const pendingFetching = (get(alephPending, 'state', false) === statuses.FETCHING
+                        || get(illPending, 'state', false) === statuses.FETCHING)
 
   return {
     loggedIn: loggedIn,
@@ -57,14 +65,14 @@ export const mapStateToProps = (state) => {
     renewal: renewal,
     resources: {
       have: {
-        state: get(have, 'state', false),
-        loading: get(have, 'state', false) === statuses.FETCHING,
+        exists: get(alephHave, 'state', false) && get(illHave, 'state', false),
+        loading: haveFetching,
         items: web.concat(checkedOut),
         emptyText: 'You have no Checked Out Items',
       },
       pending: {
-        state: get(pending, 'state', false),
-        loading: get(pending, 'state', false) === statuses.FETCHING,
+        exists: get(alephPending, 'state', false) && get(illPending, 'state', false),
+        loading: pendingFetching,
         items: pendingItems,
         emptyText: 'You have no Pending Items',
       },
