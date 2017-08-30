@@ -9,7 +9,11 @@ import * as constants from '../../../actions/personal/constants'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-const url = Config.resourcesAPI + '/items/'
+const url = Config.resourcesAPI
+
+const any = () => {
+  return expect.anything()
+}
 
 const state = {
   personal: {
@@ -38,27 +42,30 @@ describe('resources fetch async action creator', () => {
   })
 
   it('should first create fetching actions', () => {
+
+    const store = mockStore(state)
+    store.dispatch(getResources())
+
     let expectedAction = {
       type: constants.REQUEST_PERSONAL,
-      requestType: 'resources_pending',
+      requestType: 'user',
     }
-
-    const store = mockStore(state)
-    store.dispatch(getResources())
-    expect(store.getActions()[0]).toMatchObject(expectedAction)
-
-    expectedAction = {
-      type: constants.REQUEST_PERSONAL,
-      requestType: 'resources_have',
-    }
-    expect(store.getActions()[1]).toMatchObject(expectedAction)
+    expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'alephPending'
+    expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'alephHave'
+    expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'illHave'
+    expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'illPending'
+    expect(store.getActions()).toContainEqual(expectedAction)
   })
 
-  it('should call startRequest twice', () => {
+  it('should call startRequest five times', () => {
     const store = mockStore(state)
     store.dispatch(getResources())
 
-    expect(spy.mock.calls.length).toBe(2)
+    expect(spy.mock.calls.length).toBe(5)
   })
 
   it('should call startRequest with different params', () => {
@@ -66,8 +73,11 @@ describe('resources fetch async action creator', () => {
     const store = mockStore(state)
     store.dispatch(getResources())
 
-    expect(spy.mock.calls[0]).toContain(url + 'pending')
-    expect(spy.mock.calls[1]).toContain(url + 'borrowed')
+    expect(spy).toHaveBeenCalledWith(url + '/aleph?type=user', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/aleph?type=borrowed', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/aleph?type=pending', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/illiad?type=borrowed', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/illiad?type=pending', any(), any(), any(), any())
   })
 })
 
@@ -80,16 +90,16 @@ describe('handleResources', () => {
 
     it('should create a recievePersonal action with checked out items', () => {
       const store = mockStore({})
-      handleResources(store.dispatch, data)
+      handleResources('aleph')(store.dispatch, data)
 
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
-        requestType: 'resources_have',
+        requestType: 'alephHave',
         payload: data,
         state: statuses.SUCCESS,
       }
 
-      expect(store.getActions()[0]).toMatchObject(expectedAction)
+      expect(store.getActions()).toContainEqual(expectedAction)
     })
   })
 
@@ -100,11 +110,11 @@ describe('handleResources', () => {
 
     it('should create a recievePersonal action with pending items', () => {
       const store = mockStore({})
-      handleResources(store.dispatch, data)
+      handleResources('aleph')(store.dispatch, data)
 
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
-        requestType: 'resources_pending',
+        requestType: 'alephPending',
         payload: data,
         state: statuses.SUCCESS,
       }

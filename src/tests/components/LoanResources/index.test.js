@@ -8,14 +8,22 @@ describe('components/LoanResources/index.js', () => {
         login: {
           state: statuses.SUCCESS,
         },
-        resources_have: {
+        alephHave: {
           state: statuses.SUCCESS,
           web: ['web'],
-          checkedOut: ['checkedOut'],
+          checkedOut: ['alephCheckedOut'],
         },
-        resources_pending: {
+        alephPending: {
           state: statuses.SUCCESS,
-          pending: ['pending'],
+          pending: ['alephPending'],
+        },
+        illHave: {
+          state: statuses.SUCCESS,
+          checkedOut: ['illCheckedOut'],
+        },
+        illPending: {
+          state: statuses.SUCCESS,
+          pending: ['illPending'],
         },
       },
     }
@@ -28,28 +36,28 @@ describe('components/LoanResources/index.js', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.have).toBeTruthy()
-      expect(resources.have.state).toBe(statuses.SUCCESS)
+      expect(resources.have.exists).toBe(statuses.SUCCESS)
     })
 
     it('should contain pending state', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.pending).toBeTruthy()
-      expect(resources.pending.state).toBe(statuses.SUCCESS)
+      expect(resources.pending.exists).toBe(statuses.SUCCESS)
     })
 
     it('should contain checked out items', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.have).toBeTruthy()
-      expect(resources.have.items).toEqual(['web', 'checkedOut'])
+      expect(resources.have.items).toEqual(['web', 'alephCheckedOut', 'illCheckedOut'])
     })
 
     it('should contain pending items', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.pending).toBeTruthy()
-      expect(resources.pending.items).toEqual(['pending'])
+      expect(resources.pending.items).toEqual(['alephPending', 'illPending'])
     })
   })
 })
