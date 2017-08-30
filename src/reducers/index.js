@@ -12,6 +12,7 @@ import servicePoints from './contentful/servicePoints'
 import entryReducer from './contentful/entry'
 import personalReducer from './personal'
 import renewalReducer from './alephRenewal'
+import settingsReducer from './settings'
 import hoursReducer from './hours'
 import searchReducer from './search'
 import librarianInfo from './librarians'
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   cfEntry: entryReducer,
   personal: personalReducer,
   renewal: renewalReducer,
+  settings: settingsReducer,
   librarianInfo: librarianInfo,
   hours: hoursReducer,
   search: searchReducer,
