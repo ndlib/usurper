@@ -28,7 +28,7 @@ class ListContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this.state.itemList || this.state.itemList.length !== nextProps.list.length) {
+    if (!this.state.itemList || (nextProps.list && this.state.itemList.length !== nextProps.list.length)) {
       this.setState({
         itemList: nextProps.list,
         filteredList: this.filter(this.state.filterValue, this.state.sortValue, this.state.sortDir, nextProps.list),
@@ -111,7 +111,7 @@ class ListContainer extends Component {
   }
 
   render () {
-    if (this.props.loading) {
+    if (this.props.loading && (!this.state.itemList || this.state.itemList.length === 0)) {
       return <Loading />
     }
 
@@ -129,6 +129,7 @@ class ListContainer extends Component {
       renewAll={this.props.renewAll}
       sortClick={this.sortChange}
       sortClass={this.sortClass}
+      loadingMore={this.props.loading}
     />
   }
 }

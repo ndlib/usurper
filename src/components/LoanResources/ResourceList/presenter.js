@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Resource from './Resource'
+import Loading from '../../Messages/Loading'
 
 const ResourceList = (props) => {
   return (
@@ -27,6 +28,7 @@ const ResourceList = (props) => {
         )}
         { props.borrowed && <button className='renew' onClick={props.renewAll}>Renew All</button> }
       </div>
+      { props.loadingMore && <Loading message='Loading more items' /> }
       {
         props.list.map((item, index) => {
           return (
@@ -52,6 +54,7 @@ ResourceList.propTypes = {
   renewAll: PropTypes.func,
   sortClass: PropTypes.func.isRequired,
   sortClick: PropTypes.func.isRequired,
+  loadingMore: PropTypes.bool,
 }
 
 export default ResourceList
