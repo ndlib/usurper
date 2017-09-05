@@ -24,6 +24,7 @@ const makeMapStateToProps = () => {
     let ret = {
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
+    console.log(ret)
     return ret
   }
   return mapStateToProps

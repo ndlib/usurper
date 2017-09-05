@@ -6,7 +6,7 @@ import Link from '../../Link'
 const Presenter = (hoursEntry) => {
   return (
     <section className='hours-display' aria-label='Today&#39;s Hours'>
-      <p>Today's Hesburgh Library Hours: <Link to='hours' ariaLabel={ hoursEntry.today.display + ' Click for more hours' }>{hoursEntry.today.display}</Link></p>
+      <p>Today's Hesburgh Library Hours: <Link to='hours' ariaLabel={ hoursEntry.today.rendered + ' Click for more hours' }>{hoursEntry.today.rendered}</Link></p>
     </section>
   )
 }
