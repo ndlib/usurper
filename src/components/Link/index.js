@@ -6,35 +6,37 @@ import PropTypes from 'prop-types'
 
 export const LINK_CLICK = 'LINK_CLICK'
 
-const Internal = (to, className, title, children, ariaLabel, onClick) => {
+const Internal = (to, onClick, props) => {
   return (
-    <Link to={to} className={className} title={title} aria-label={ariaLabel} onClick={onClick}>
-      {children}
+    <Link
+      to={to}
+      onClick={onClick}
+      {...props}
+    >
+      {props.children}
     </Link>
   )
 }
 
-const External = (to, className, title, children, ariaLabel, noTarget, onClick) => {
+const External = (to, noTarget, onClick, props) => {
   let target = noTarget ? '_self' : '_blank'
   let rel = noTarget ? '' : 'noopener'
   return (
     <a href={to}
-      className={className}
-      title={title}
       target={target}
       rel={rel}
-      aria-label={ariaLabel}
       onClick={onClick}
+      {...props}
     >
-      {children}
+      {props.children}
     </a>
   )
 }
 
-const Invalid = (className, children) => {
+const Invalid = (props) => {
   return (
-    <span className={className}>
-      {children}
+    <span className={props.className}>
+      {props.children}
     </span>
   )
 }
@@ -45,7 +47,7 @@ const Hidden = (
 
 export const LibLink = (props) => {
   let query = ''
-  for (var k in props.query) {
+  for (let k in props.query) {
     if (props.query.hasOwnProperty(k)) {
       if (query.length > 0) {
         query += '&'
@@ -56,12 +58,17 @@ export const LibLink = (props) => {
     }
   }
 
+  let propsToPass = Object.assign({}, props)
+  for (let k in nonTagProps) {
+    delete propsToPass[k]
+  }
+
   let to = props.to
   if (!to) {
     if (props.hideIfNull) {
       return Hidden
     }
-    return Invalid(props.className, props.children)
+    return Invalid(propsToPass)
   }
 
     // Urls to remove so links are local
@@ -74,7 +81,7 @@ export const LibLink = (props) => {
     'http://library.nd.edu',
   ]
 
-  for (var index in replaceUrls) {
+  for (let index in replaceUrls) {
     if (to.startsWith(replaceUrls[index])) {
       to = to.substr(replaceUrls[index].length)
       break
@@ -95,40 +102,50 @@ export const LibLink = (props) => {
   to = to + query
 
   if (to.startsWith('http')) {
-    return External(to, props.className, props.title, props.children, props.ariaLabel, props.noTarget, onClick)
+    return External(to, props.noTarget, onClick, propsToPass)
   }
 
   if (to.startsWith('mailto:') || to.startsWith('tel:')) {
-    return External(to, props.className, props.title, props.children, props.ariaLabel, false, onClick)
+    return External(to, false, onClick, propsToPass)
   }
 
   // Link to named anchor using native browser behavior
   if (to.search('#') > -1) {
-    return External(to, props.className, props.title, props.children, props.ariaLabel, true, onClick)
+    return External(to, true, onClick, propsToPass)
   }
 
   // Link to named anchor using native browser behavior
   if (to.search('#') > -1) {
-    return External(to, props.className, props.title, props.children, props.ariaLabel, true)
+    return External(to, true, undefined, propsToPass)
   }
 
   // Ensure internal links start with '/'
   if (!to.startsWith('/')) {
     to = '/' + to
   }
-  return Internal(to, props.className, props.title, props.children, props.ariaLabel, onClick)
+  return Internal(to, onClick, propsToPass)
 }
 
-LibLink.propTypes = {
+const nonTagProps = {
   to: PropTypes.string,
+  query: PropTypes.object,
+  noTarget: PropTypes.bool,
+  hideIfNull: PropTypes.bool,
+
+  location: PropTypes.object,
+  match: PropTypes.object,
+  rel: PropTypes.string,
+  dispatch: PropTypes.func,
+  staticContext: PropTypes.any,
+  history: PropTypes.object,
+}
+
+LibLink.propTypes = Object.assign({}, nonTagProps, {
   className: PropTypes.string,
   title: PropTypes.string,
   ariaLabel: PropTypes.string,
-  query: PropTypes.object,
   children: PropTypes.any,
-
-  noTarget: PropTypes.bool,
-  hideIfNull: PropTypes.bool,
-}
+  itemProp: PropTypes.string,
+})
 
 export default withRouter(connect()(LibLink))
