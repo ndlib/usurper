@@ -33,7 +33,6 @@ const timeToday = (dateString, timeString, utcOffset, midnightDayOffset) => {
   const year = Number(dateArray[0])
   const month = Number(dateArray[1]) - 1 // Month is month - 1 because date month is 0 based
   const day = Number(dateArray[2]) + (hour === 0 ? midnightDayOffset : 0)
-  console.log(year, month, day, hour, minute)
   let time = new Date(year, month, day, hour, minute)
 
   // The difference in offsets between local time and the api's time, in minutes
@@ -93,16 +92,17 @@ export class CurrentHoursContainer extends Component {
   checkOpen (props) {
     try {
       const entry = props.hoursEntry
-      const testDate = entry.today.date
+      if (entry.today.times.status === 'closed') {
+        return false
+      }
       const currentOpenBlocks = entry.today.times.hours.filter(hoursBlock => {
-        console.log(hoursBlock)
         if (hoursBlock.from === hoursBlock.to) {
           return false
         }
-        console.log("here")
-        let opens = timeToday(testDate, hoursBlock.from, "-04:00", 0)
-        let closes = timeToday(testDate, hoursBlock.to, "-04:00", 1)
-        console.log(opens)
+
+        let opens = new Date(hoursBlock.fromUTCDate)
+        let closes = new Date(hoursBlock.toUTCDate)
+
         let now = new Date()
         if (opens <= now && now <= closes) {
           return true
