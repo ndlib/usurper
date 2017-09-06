@@ -433,6 +433,12 @@ body.gold-blue #header h2 a {
   background-position: 0 0px;
 }
 
+/* Page Title */
+.page-title small {
+  display: inline-block;
+  font-size: 18px;
+}
+
 /* Site title */
 #header h1 {
   float: left;

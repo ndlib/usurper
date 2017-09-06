@@ -27,7 +27,7 @@ const Presenter = (props) => {
           <Dropdown
             entries={props.homeLibraries}
             submit={(value, title) => props.setHomeLibrary(value)}
-            deafultIndex={props.homeIndex}
+            defaultIndex={props.homeIndex}
             useButton={true}
           />
           <UpdateStatus status={props.libraryStatus} />
