@@ -6,7 +6,7 @@ import WeeklyHours from '../WeeklyHours'
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
-  const todayLabel = 'Today: ' + hoursEntry.today.display
+  const todayLabel = 'Today: ' + hoursEntry.today.rendered
   return (
     <section className={servicePointClassName} aria-label={title}>
       <a
@@ -27,8 +27,8 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
       </a>
       <div className='row hours-listing' id={hoursEntry.servicePoint.slug}>
         <div className='col-md-6'>
-          <WeeklyHours hours={hoursEntry.thisWeek} title='Current Hours' showEffectiveDates={false} />
-          <WeeklyHours hours={hoursEntry.upcomingDifferentHours} title='Upcoming Hours' showEffectiveDates />
+          <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
+          <WeeklyHours hours={hoursEntry.weeks[1]} title='Upcoming Hours' showEffectiveDates />
         </div>
         <div className='col-md-5 col-md-offset-1'>
           {children}

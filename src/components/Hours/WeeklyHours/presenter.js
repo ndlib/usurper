@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+const dayOrder = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 const Presenter = ({ hours, title, showEffectiveDates }) => {
-  console.log(hours)
-  if (!hours.rows) {
+  if (Object.keys(hours).length === 0) {
     return (<div />)
   }
 
@@ -17,11 +18,11 @@ const Presenter = ({ hours, title, showEffectiveDates }) => {
       { effectiveMessage }
       <dl className='hours-grid'>
         {
-          hours.rows.map((row, key) => {
+          dayOrder.map((key) => {
             return (
               <span key={key}>
-                <dt>{ row.rowDisplay }</dt>
-                <dd>{ row.display }</dd>
+                <dt>{ key }</dt>
+                <dd>{ hours[key].rendered }</dd>
               </span>
             )
           })

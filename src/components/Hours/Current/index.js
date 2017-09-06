@@ -16,17 +16,24 @@ const timeToday = (dateString, timeString, utcOffset, midnightDayOffset) => {
   // We have to split the strings instead of concating as [date]T[time] because different browsers
   //   parse the timezone differently if it's not defined (UTC vs local)
   //   while all handle constructors the same (always local)
+  console.log("1")
   const dateArray = dateString.split('-')
+  console.log(timeString)
   const timeArray = timeString.split(':')
+  console.log("3")
   const offsetArray = utcOffset.split(':')
+  console.log("4")
   const offsetHrs = parseInt(offsetArray[0])
+  console.log("5")
   const offsetMins = (offsetHrs * 60) + parseInt(offsetArray[1])
+  console.log("6")
 
   const hour = Number(timeArray[0])
   const minute = Number(timeArray[1])
   const year = Number(dateArray[0])
   const month = Number(dateArray[1]) - 1 // Month is month - 1 because date month is 0 based
   const day = Number(dateArray[2]) + (hour === 0 ? midnightDayOffset : 0)
+  console.log(year, month, day, hour, minute)
   let time = new Date(year, month, day, hour, minute)
 
   // The difference in offsets between local time and the api's time, in minutes
@@ -43,7 +50,6 @@ const makeMapStateToProps = () => {
     let ret = {
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
-
     return ret
   }
   return mapStateToProps
@@ -87,13 +93,16 @@ export class CurrentHoursContainer extends Component {
   checkOpen (props) {
     try {
       const entry = props.hoursEntry
-      const currentOpenBlocks = entry.today.hours.filter(hoursBlock => {
-        if (hoursBlock.opens === hoursBlock.closes) {
+      const testDate = entry.today.date
+      const currentOpenBlocks = entry.today.times.hours.filter(hoursBlock => {
+        console.log(hoursBlock)
+        if (hoursBlock.from === hoursBlock.to) {
           return false
         }
-
-        let opens = timeToday(hoursBlock.date, hoursBlock.opens, props.hoursEntry.utcOffset, 0)
-        let closes = timeToday(hoursBlock.date, hoursBlock.closes, props.hoursEntry.utcOffset, 1)
+        console.log("here")
+        let opens = timeToday(testDate, hoursBlock.from, "-04:00", 0)
+        let closes = timeToday(testDate, hoursBlock.to, "-04:00", 1)
+        console.log(opens)
         let now = new Date()
         if (opens <= now && now <= closes) {
           return true

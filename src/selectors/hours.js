@@ -2,17 +2,17 @@ import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 
 const getHoursStatus = (state, props) => {
-  //const key = props.servicePoint.fields.hoursCode
-  if (state.hours.status === statuses.SUCCESS && !state.hours.json['locations'][426]) {
+  const key = props.servicePoint.fields.hoursCode
+  if (state.hours.status === statuses.SUCCESS && !state.hours.json['locations'][key]) {
     return statuses.NOT_FOUND
   }
   return state.hours.status
 }
 
 const getHours = (state, props) => {
-  //const key = props.servicePoint.fields.hoursCode
+  const key = props.servicePoint.fields.hoursCode
   if (state.hours.json['locations']) {
-    return Object.assign({}, state.hours.json['locations'][426])
+    return Object.assign({}, state.hours.json['locations'][key])
   } else {
     return Object.assign({}, '')
   }
@@ -34,13 +34,10 @@ const makeGetHoursForServicePoint = () => {
   return createSelector(
     [getHoursStatus, getHours, getHoursName, getServicePoint],
     (status, hours, name, servicePoint) => {
-      console.log(hours)
       if (!hours) {
-        hours = { today: {} }
-      } else {
-        hours.today = getTodaysHours(hours)
+        hours = { }
       }
-
+      hours.today = getTodaysHours(hours)
       hours.name = name
       hours.status = status
       hours.servicePoint = servicePoint

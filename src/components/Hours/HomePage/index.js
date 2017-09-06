@@ -17,14 +17,13 @@ const makeMapStateToProps = () => {
     let props = {
       servicePoint: {
         fields: {
-          hoursCode: 'hesburghlibrary',
+          hoursCode: '426',
         },
       },
     }
     let ret = {
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
-    console.log(ret)
     return ret
   }
   return mapStateToProps
