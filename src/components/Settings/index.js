@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Presenter from './presenter'
 import { setHomeLibrary, KIND } from '../../actions/personal/settings'
-import { getPending } from '../../actions/personal/loanResources'
+import { getUser } from '../../actions/personal/loanResources'
 import Loading from '../Messages/Loading'
 
 import * as states from '../../constants/APIStatuses'
@@ -12,12 +12,12 @@ import * as states from '../../constants/APIStatuses'
 const homeLibraries = [
   { value: 'HESB', title: 'Hesburgh Library' },
   { value: 'ARCHT', title: 'Architecture Library' },
-  { value: 'CHEMP', title: 'Chem/Physics [231 Nieuwland]' },
-  { value: 'ENGIN', title: 'Engineering' },
-  { value: 'BIC', title: 'Mahaffey Business Library' },
-  { value: 'MATH', title: 'Mathematics [001 Hayes-Healy]' },
+  { value: 'CHEMP', title: 'Chem/Physics Library' },
+  { value: 'ENGIN', title: 'Engineering Library' },
+  { value: 'BIC', title: 'Business Library' },
+  { value: 'MATH', title: 'Mathematics Library' },
   { value: 'MUSIC', title: 'Music Library' },
-  { value: 'NDCAM', title: 'ND Campus Delivery' },
+  { value: 'NDCAM', title: 'Notre Dame Campus Delivery' },
 ]
 
 const updateStatus = {
@@ -29,7 +29,7 @@ const updateStatus = {
 class SettingsContainer extends Component {
   checkLoggedIn (props) {
     if (props.loggedIn && props.homeIndex === null && !props.userState) {
-      props.getPending()
+      props.getUser()
     }
   }
 
@@ -62,7 +62,7 @@ const apiStateToInt = (state) => {
   if (!state) {
     return updateStatus.SUCCESS
   }
-  switch(state) {
+  switch (state) {
     case states.SUCCESS:
       return updateStatus.SUCCESS
     case states.ERROR:
@@ -80,8 +80,9 @@ export const mapStateToProps = (state, ownProps) => {
   let currentHomeTitle = personal.user ? personal.user.homeLibrary : null
   let homeIndex = null
   if (currentHomeTitle) {
+    let libraryName = currentHomeTitle.split(' ')[0]
     for (let i = 0; i < homeLibraries.length; ++i) {
-      if (homeLibraries[i].title === currentHomeTitle) {
+      if (homeLibraries[i].title.includes(libraryName)) {
         homeIndex = i
         break
       }
@@ -90,10 +91,9 @@ export const mapStateToProps = (state, ownProps) => {
 
   let libraryState = settings[KIND.homeLibrary] ? settings[KIND.homeLibrary].state : null
 
-
   return {
     homeIndex: homeIndex,
-    userState: personal.resources_pending ? personal.resources_pending.state : null,
+    userState: personal.user ? personal.user.state : null,
     preview: (new URLSearchParams(ownProps.location.search)).get('preview') === 'true',
     loggedIn: loggedIn,
     redirectUrl: personal.login.redirectUrl,
@@ -102,7 +102,7 @@ export const mapStateToProps = (state, ownProps) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ setHomeLibrary, getPending }, dispatch)
+  return bindActionCreators({ setHomeLibrary, getUser }, dispatch)
 }
 
 SettingsContainer.propTypes = {
