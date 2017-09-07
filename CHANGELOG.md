@@ -1,5 +1,22 @@
 # Change Log
 
+## [v2017.2](https://github.com/ndlib/usurper/tree/v2017.2)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.1...v2017.2)
+
+### New features/enhancements:
+- Add hidden settings page [#278](https://github.com/ndlib/usurper/pull/278)
+- Events marked as "Preferred" will be preferred on the homepage [#279](https://github.com/ndlib/usurper/pull/279)
+- Retry Aleph/Ill queries on failure to attempt to make Items & Request page more friendly [#280](https://github.com/ndlib/usurper/pull/280)
+- Split aleph/illiad queries to speed up the Items & Request page [#281](https://github.com/ndlib/usurper/pull/281)
+- Add subtitle to subjects page [#282](https://github.com/ndlib/usurper/pull/282)
+
+## [v2017.1](https://github.com/ndlib/usurper/tree/v2017.1)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.0...v2017.1)
+
+### New features/enhancements:
+- Fix closed location hours coloring
+- Fix items filter disappearing on no match
+
 ## [v2017.0](https://github.com/ndlib/usurper/tree/v2017.0)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v0.13.3...v2017.0)
 
