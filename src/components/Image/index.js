@@ -20,7 +20,13 @@ export const mapStateToProps = (state, thisProps) => {
     hidden = true
   }
 
-  return { src: src, alt: alt, className: thisProps.className, ariaHidden: hidden }
+  return {
+    src: src,
+    alt: alt,
+    className: thisProps.className,
+    ariaHidden: hidden,
+    itemProp: thisProps.itemProp,
+  }
 }
 
 export class ImageContainer extends Component {
@@ -50,6 +56,7 @@ export class ImageContainer extends Component {
       alt={this.props.alt}
       className={this.props.className}
       ariaHidden={this.props.ariaHidden}
+      itemProp={this.props.itemProp}
       onError={this.onError}
     />
   }
@@ -60,6 +67,7 @@ ImageContainer.propTypes = {
   className: PropTypes.string,
   alt: PropTypes.string,
   ariaHidden: PropTypes.bool,
+  itemProp: PropTypes.string,
 
   // removed in mapping
   cfImage: PropTypes.object,

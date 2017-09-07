@@ -6,11 +6,12 @@ import PropTypes from 'prop-types'
 
 export const LINK_CLICK = 'LINK_CLICK'
 
-const Internal = (to, onClick, props) => {
+const Internal = (to, onClick, ariaLabel, props) => {
   return (
     <Link
       to={to}
       onClick={onClick}
+      aria-label={ariaLabel}
       {...props}
     >
       {props.children}
@@ -18,7 +19,7 @@ const Internal = (to, onClick, props) => {
   )
 }
 
-const External = (to, noTarget, onClick, props) => {
+const External = (to, noTarget, onClick, ariaLabel, props) => {
   let target = noTarget ? '_self' : '_blank'
   let rel = noTarget ? '' : 'noopener'
   return (
@@ -26,6 +27,7 @@ const External = (to, noTarget, onClick, props) => {
       target={target}
       rel={rel}
       onClick={onClick}
+      aria-label={ariaLabel}
       {...props}
     >
       {props.children}
@@ -102,28 +104,28 @@ export const LibLink = (props) => {
   to = to + query
 
   if (to.startsWith('http')) {
-    return External(to, props.noTarget, onClick, propsToPass)
+    return External(to, props.noTarget, onClick, props.ariaLabel, propsToPass)
   }
 
   if (to.startsWith('mailto:') || to.startsWith('tel:')) {
-    return External(to, false, onClick, propsToPass)
+    return External(to, false, onClick, props.ariaLabel, propsToPass)
   }
 
   // Link to named anchor using native browser behavior
   if (to.search('#') > -1) {
-    return External(to, true, onClick, propsToPass)
+    return External(to, true, onClick, props.ariaLabel, propsToPass)
   }
 
   // Link to named anchor using native browser behavior
   if (to.search('#') > -1) {
-    return External(to, true, undefined, propsToPass)
+    return External(to, true, undefined, props.ariaLabel, propsToPass)
   }
 
   // Ensure internal links start with '/'
   if (!to.startsWith('/')) {
     to = '/' + to
   }
-  return Internal(to, onClick, propsToPass)
+  return Internal(to, onClick, props.ariaLabel, propsToPass)
 }
 
 const nonTagProps = {
@@ -131,6 +133,7 @@ const nonTagProps = {
   query: PropTypes.object,
   noTarget: PropTypes.bool,
   hideIfNull: PropTypes.bool,
+  ariaLabel: PropTypes.string,
 
   location: PropTypes.object,
   match: PropTypes.object,
@@ -143,7 +146,6 @@ const nonTagProps = {
 LibLink.propTypes = Object.assign({}, nonTagProps, {
   className: PropTypes.string,
   title: PropTypes.string,
-  ariaLabel: PropTypes.string,
   children: PropTypes.any,
   itemProp: PropTypes.string,
 })
