@@ -28,7 +28,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
       <div className='row hours-listing' id={hoursEntry.servicePoint.slug}>
         <div className='col-md-6'>
           <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
-          <WeeklyHours hours={hoursEntry.weeks[1]} title='Upcoming Hours' showEffectiveDates />
+          <WeeklyHours hours={hoursEntry.upcomingChangedHours} title='Upcoming Hours' showEffectiveDates />
         </div>
         <div className='col-md-5 col-md-offset-1'>
           {children}
