@@ -14,7 +14,7 @@ const actionsButton = (item, toggleHidden) => {
   if (hasActions(item)) {
     return (
       <div className={'actions-button'}>
-        <span onClick={toggleHidden}>☰</span>
+        <span onClick={toggleHidden} title='More Actions' aria-label='More Actions'>⁝</span>
       </div>
     )
   }
