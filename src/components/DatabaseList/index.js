@@ -11,6 +11,7 @@ import PageNotFound from '../Messages/NotFound'
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 
+// Concat all database letters into one big list for searching
 const concatDbs = (raw, status) => {
   if (status === statuses.SUCCESS) {
     let out = []
@@ -24,6 +25,7 @@ const concatDbs = (raw, status) => {
   return []
 }
 
+// sort all letters by title alphabetically
 const sortDbs = (raw) => {
   if (!raw) {
     return raw
@@ -54,6 +56,7 @@ const sortDbs = (raw) => {
 
 const mapStateToProps = (state, thisProps) => {
   let allLettersStatus = statuses.FETCHING
+  // get a status for all letters, either error, fetching or success (not found || success = success)
   if (state.cfDatabaseLetter && state.cfDatabaseLetter.a) {
     allLettersStatus = Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status)
       .reduce((a, b) => {
@@ -122,6 +125,7 @@ export class DatabaseListContainer extends Component {
     }
   }
 
+  // only filter by title for now, may want description in the future
   filter (filterValue, list) {
     const value = filterValue.toLowerCase()
     const filterFields = [
@@ -146,17 +150,20 @@ export class DatabaseListContainer extends Component {
   render () {
     let letter = this.props.currentLetter
 
+    // dont allow going to /foo or /1 etc
     if (letter.length > 1 || letter < 'a' || letter > 'z') {
       return <PageNotFound />
     }
 
     let status = statuses.FETCHING
     let data = []
+    // use status of selected letter
     if (this.props.cfDatabaseLetter[letter]) {
       status = this.props.cfDatabaseLetter[letter].status
       data = this.props.cfDatabaseLetter[letter].data ? this.props.cfDatabaseLetter[letter].data : []
     }
 
+    // if filtering, use status of all letters together, and change title to 'search'
     if (this.state.filterValue) {
       letter = 'search'
       status = this.props.allLettersStatus
