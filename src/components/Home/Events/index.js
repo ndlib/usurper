@@ -30,9 +30,9 @@ export const mapEvents = (json) => {
     flattenLocale(entry.fields, 'en-US')
 
     let end = entry.fields.endDate ? new Date(entry.fields.endDate) : new Date(entry.fields.startDate)
-    // if end time is 0:00, add a day
+    // if end time is 0:00, add 23:59
     if (end.getHours() === 0 && end.getMinutes() === 0) {
-      end.setDate(end.getDate() + 1)
+      end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
     }
 
     return {
