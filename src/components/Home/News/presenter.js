@@ -27,6 +27,7 @@ const News = (entries) => {
           })
         }
       </section>
+      <Link to='/news' className='newsEventsLink'>View All News</Link>
     </div>
   )
 }

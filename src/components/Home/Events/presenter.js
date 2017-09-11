@@ -22,15 +22,13 @@ const Events = (entries) => {
                   <div className='event-card-text'>
                     <h3>{entry.title}</h3>
                   </div>
-                  <div className='description'>
-                    <LibMarkdown>{entry.shortDescription}</LibMarkdown>
-                  </div>
                 </div>
               </Link>
             )
           })
         }
       </section>
+      <Link to='/events' className='newsEventsLink'>View All Events</Link>
     </div>
   )
 }

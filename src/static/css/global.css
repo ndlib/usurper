@@ -1974,6 +1974,11 @@ address {
   width:  100%;
 }
 
+.newsEventsLink {
+  float: left;
+  clear: left;
+}
+
 .news h3 {
   font-size: 28px;
 }
