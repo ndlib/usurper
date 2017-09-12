@@ -1,8 +1,7 @@
 import React from 'react'
-import Image from '../../Image'
-import Link from '../../Link'
-import LibMarkdown from '../../LibMarkdown'
+import { makeNewsEntry } from '../../LandingPages/News/presenter'
 import './style.css'
+import Link from '../../Link'
 
 const News = (entries) => {
   return (
@@ -10,21 +9,7 @@ const News = (entries) => {
       <h3>News</h3>
       <section aria-label='News'>
         {
-          entries.map((entry) => {
-            return (
-              <Link key={entry.fields.slug} ariaLabel={entry.fields.title} to={'/news/' + entry.fields.slug}>
-                <div className='news-card'>
-                  <Image cfImage={entry.fields.image} />
-                  <header>
-                    <h3>{entry.fields.title}</h3>
-                  </header>
-                  <div className='description'>
-                    <LibMarkdown>{entry.fields.shortDescription}</LibMarkdown>
-                  </div>
-                </div>
-              </Link>
-            )
-          })
+          entries.map(makeNewsEntry)
         }
       </section>
       <Link to='/news' className='newsEventsLink'>View All News</Link>

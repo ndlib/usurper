@@ -4,27 +4,45 @@ import PropTypes from 'prop-types'
 const Contact = (props) => {
   let name
   if (props.name) {
-    name = <h4>{props.name.trim()}</h4>
+    name = <h4 itemProp='name'>{props.name.trim()}</h4>
   }
 
   let title
   if (props.title) {
-    title = (<h5>{props.title.trim()}</h5>)
+    title = (<h5 itemProp='jobTitle'>{props.title.trim()}</h5>)
   }
 
   let phone
   if (props.phone) {
-    phone = (<span><a href={'tel:' + props.phone}>{props.phone.trim()}</a><br /></span>)
+    phone = (
+      <span>
+        <a
+          href={'tel:' + props.phone}
+          itemProp='telephone'
+        >
+          {props.phone.trim()}
+        </a><br />
+      </span>
+    )
   }
 
   let email
   if (props.email) {
-    email = (<span><a href={'mailto:' + props.email}>{props.email.trim()}</a><br /></span>)
+    email = (
+      <span>
+        <a
+          href={'mailto:' + props.email}
+          itemProp='email'
+        >
+          {props.email.trim()}
+        </a><br />
+      </span>
+    )
   }
 
   let addr1
   if (props.addr1) {
-    addr1 = <span>{props.addr1.trim()}<br /></span>
+    addr1 = <span itemProp='streetAddress'>{props.addr1.trim()}<br /></span>
   }
 
   let addr2
@@ -35,7 +53,7 @@ const Contact = (props) => {
   let address
   if (addr1 || addr2) {
     address = (
-      <address>
+      <address itemScope itemType='http://schema.org/PostalAddress' itemProp='address'>
         {addr1}
         {addr2}
       </address>
@@ -43,7 +61,7 @@ const Contact = (props) => {
   }
 
   return (
-    <div className='contact'>
+    <div className='contact' itemScope itemType='http://schema.org/Person'>
       {name}
       {title}
       {phone}

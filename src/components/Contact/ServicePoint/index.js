@@ -30,28 +30,62 @@ const Contact = (props) => {
     if (rawFloor.building) {
       let rawBuilding = rawFloor.building.fields
       building = (
-        <li className='building'><Link
-          to={rawBuilding.mapLink}
-          title={'Link to map to ' + rawBuilding.title}
-          className='map'
-        >Campus Map</Link></li>
+        <li
+          className='building'>
+          <Link
+            to={rawBuilding.mapLink}
+            title={'Link to map to ' + rawBuilding.title}
+            className='map'
+            itemProp='hasMap'
+          >
+            Campus Map
+          </Link>
+        </li>
       )
     }
   }
 
   let phone
   if (sp.phoneNumber) {
-    phone = <li className='phone'><a title={'Call ' + sp.phoneNumber} href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}>{sp.phoneNumber}</a></li>
+    phone = (
+      <li className='phone'>
+        <a
+          title={'Call ' + sp.phoneNumber}
+          href={'tel:+' + sp.phoneNumber.replace(/[() -.]/g, '')}
+          itemProp='telephone'
+        >
+          {sp.phoneNumber}
+        </a>
+      </li>
+    )
   }
 
   let fax
   if (sp.faxNumber) {
-    fax = <li className='fax' title={'Fax: ' + sp.faxNumber}>{sp.faxNumber}</li>
+    fax = (
+      <li
+        className='fax'
+        title={'Fax: ' + sp.faxNumber}
+        itemProp='faxNumber'
+      >
+        {sp.faxNumber}
+      </li>
+    )
   }
 
   let email
   if (sp.email) {
-    email = <li className='email'><a title={'Email ' + sp.email} href={'mailto:+' + sp.email}>{sp.email}</a></li>
+    email = (
+      <li className='email'>
+        <a
+          title={'Email ' + sp.email}
+          href={'mailto:+' + sp.email}
+          itemProp='email'
+        >
+          {sp.email}
+        </a>
+      </li>
+    )
   }
 
   let accessNote
@@ -64,7 +98,13 @@ const Contact = (props) => {
   let webPage
   if (sp.relatedWebPage && sp.relatedWebPage.fields) {
     const link = sp.relatedWebPage.fields.slug ? sp.relatedWebPage.fields.slug : sp.relatedWebPage.fields.url
-    webPage = <li className='web'><Link to={link}>Web Page</Link></li>
+    webPage = (
+      <li className='web'>
+        <Link to={link} itemProp='url'>
+          Web Page
+        </Link>
+      </li>
+    )
   }
 
   return (
@@ -77,8 +117,6 @@ const Contact = (props) => {
         {floor}
         {webPage}
         {fax}
-        
-        
       </ul>
     </div>
   )

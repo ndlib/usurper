@@ -10,9 +10,15 @@ const ServicePoint = ({ cfServicePoint }) => {
   }
 
   return (
-    <section aria-label={'Service Point: ' + cfServicePoint.fields.title} role='complementary' className='sp-address'>
-      <h3>{cfServicePoint.fields.title}</h3>
-      <h4>{cfServicePoint.fields.address}</h4>
+    <section
+      aria-label={'Service Point: ' + cfServicePoint.fields.title}
+      role='complementary'
+      className='sp-address'
+      itemScope
+      itemType='http://schema.org/Place'
+    >
+      <h3 itemProp='name'>{cfServicePoint.fields.title}</h3>
+      <h4 itemProp='streetAddress'>{cfServicePoint.fields.address}</h4>
 
       <CurrentHours servicePoint={cfServicePoint} />
       <Contact servicePoint={cfServicePoint} />

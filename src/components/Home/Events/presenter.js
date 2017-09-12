@@ -1,7 +1,7 @@
 import React from 'react'
-import Link from '../../Link'
-import LibMarkdown from '../../LibMarkdown'
+import { makeEventEntry } from '../../LandingPages/Events/presenter'
 import './style.css'
+import Link from '../../Link'
 
 const Events = (entries) => {
   return (
@@ -9,23 +9,7 @@ const Events = (entries) => {
       <h3>Events</h3>
       <section aria-label='Events'>
         {
-          entries.map((entry) => {
-            return (
-              <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug}>
-                <div className='event-card'>
-                  <time dateTime='2014-09-24' className='date-as-calendar inline-flex'>
-                    <span className='weekday'>{entry.displayWeekday}</span>
-                    <span className='day'>{entry.displayDay}</span>
-                    <span className='month'>{entry.displayMonth}</span>
-                    <span className='year'>{entry.displayYear}</span>
-                  </time>
-                  <div className='event-card-text'>
-                    <h3>{entry.title}</h3>
-                  </div>
-                </div>
-              </Link>
-            )
-          })
+          entries.map((entry, index) => makeEventEntry(entry, index, false))
         }
       </section>
       <Link to='/events' className='newsEventsLink'>View All Events</Link>
