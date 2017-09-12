@@ -23,7 +23,7 @@ class PageTitle extends Component {
     return (
       <div>
         <a id='top' />
-        <h2 className="page-title">
+        <h2 className="page-title" itemProp={this.props.itemProp}>
           {this.props.title}
           { this.props.subtitle && <small>{this.props.subtitle}</small> }
         </h2>
@@ -38,6 +38,7 @@ PageTitle.propTypes = {
   subtitle: PropTypes.string,
   className: PropTypes.string,
   hideInPage: PropTypes.bool,
+  itemProp: PropTypes.string,
 }
 
 PageTitle.defaultProps = {

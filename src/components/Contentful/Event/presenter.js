@@ -10,12 +10,19 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const PagePresenter = ({ entry }) => (
-  <div className='container-fluid content-area'>
-    <PageTitle title={entry.fields.title} />
+  <div
+    className='container-fluid content-area'
+    itemScope
+    itemType='http://schema.org/Event'
+    itemProp='mainEntity'
+  >
+    <meta itemProp='startDate' content={entry.fields.startDate} />
+    <meta itemProp='endDate' content={entry.fields.endDate} />
+    <PageTitle title={entry.fields.title} itemProp='name' />
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <div className='col-md-8'>
-        <LibMarkdown>{ entry.fields.content }</LibMarkdown>
+        <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </div>
       <div className='col-md-4 right'>

@@ -13,16 +13,21 @@ import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
 
 const PagePresenter = ({ entry }) => (
-  <div className='container-fluid content-area'>
-    <PageTitle title={entry.fields.title} />
+  <div
+    className='container-fluid content-area'
+    itemScope
+    itemType='http://schema.org/NewsArticle'
+    itemProp='mainEntity'
+  >
+    <PageTitle title={entry.fields.title} itemProp='headline' />
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <div className='col-md-8 col-sm-8 article'>
-        <LibMarkdown>{ entry.fields.content }</LibMarkdown>
+        <LibMarkdown itemProp='articleBody'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </div>
       <div className='col-md-4 col-sm-4 right news'>
-        <Image cfImage={entry.fields.image} className='cover' />
+        <Image cfImage={entry.fields.image} className='cover' itemProp='image' />
         <Librarians netids={entry.fields.contactPeople} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
       </div>

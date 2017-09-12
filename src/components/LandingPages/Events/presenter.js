@@ -5,24 +5,35 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import './style.css'
 
-const makeEntry = (entry) => {
+export const makeEventEntry = (entry, index) => {
   return (
-    <Link key={entry.slug} ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear} to={'/event/' + entry.slug}>
-      <div className='event-card'>
-        <time dateTime='2014-09-24' className='date-as-calendar inline-flex'>
+    <div
+      className='event-card'
+      itemScope
+      itemType='http://schema.org/Event'
+      key={'events_' + index}
+    >
+      <Link
+        ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear}
+        to={'/event/' + entry.slug}
+        itemProp='mainEntityOfPage'
+      >
+        <time dateTime={entry.startDate} className='date-as-calendar inline-flex'>
+          <meta itemProp='startDate' content={entry.startDate} />
+          <meta itemProp='endDate' content={entry.endDate} />
           <span className='weekday'>{entry.displayWeekday}</span>
           <span className='day'>{entry.displayDay}</span>
           <span className='month'>{entry.displayMonth}</span>
           <span className='year'>{entry.displayYear}</span>
         </time>
         <div className='event-card-text'>
-          <h3>{entry.title}</h3>
+          <h3 itemProp='name'>{entry.title}</h3>
         </div>
-        <div className='description'>
+        <div className='description' itemProp='description'>
           <LibMarkdown>{entry.shortDescription}</LibMarkdown>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
 
@@ -35,7 +46,7 @@ const makeSection = (title, entries) => {
     <section aria-label={title}>
       <h3>{title}</h3>
       {
-        entries.map(makeEntry)
+        entries.map(makeEventEntry)
       }
     </section>
   )
