@@ -14,7 +14,12 @@ const Content = (letter, data, filterValue, onFilterChange) => {
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
       <div className='filter'>
-        <strong>Search all Databases by Title: </strong><input type='text' value={filterValue} onChange={onFilterChange} />
+        <strong>Search all Databases by Title: </strong>
+        <input
+          type='text'
+          value={filterValue}
+          onChange={onFilterChange}
+          aria-label='Search all Databases by Title' role='search' />
       </div>
       <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
       {

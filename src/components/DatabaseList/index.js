@@ -165,7 +165,7 @@ export class DatabaseListContainer extends Component {
 
     // if filtering, use status of all letters together, and change title to 'search'
     if (this.state.filterValue) {
-      letter = 'search'
+      letter = 'search - ' + this.state.filterValue
       status = this.props.allLettersStatus
       data = this.state.filteredList
     }
