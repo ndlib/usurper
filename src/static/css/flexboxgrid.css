@@ -21,8 +21,8 @@
   flex-direction: row;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -1rem;
-  margin-left: -1rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
 }
 
 .row.reverse {
