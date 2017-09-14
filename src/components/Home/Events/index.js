@@ -8,20 +8,49 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
-const collapseDate = (start, end, diffVal, eqVal) => {
-  // formats dates to displayble text
-  // eg. collpaseDate(Monday, Monday) => "Monday"
-  // eg. collapseDate(Jan, Feb) => "Jan-Feb"
-  if (start === end) {
-    if (eqVal !== undefined) {
-      return eqVal
+const isSameDay = (start, end) => {
+  return start.getMonth() === end.getMonth() &&
+         start.getDay() === end.getDay() &&
+         start.getYear() === end.getYear()
+}
+
+const startEndDate = (start, end) => {
+  let startYear = ', ' + start.getFullYear()
+  let endYear = ', ' + end.getFullYear()
+  let options = { weekday: 'short', month: 'short', day: 'numeric' }
+
+  let out = start.toLocaleString('en-US', options)
+  if (isSameDay(start, end)) {
+    // only show one day with the year
+    return out + startYear
+  }
+  if (start.getFullYear() === end.getFullYear()) {
+    // only show the year at the end if the start and end are in the same yar
+    startYear = ''
+  }
+  out += startYear + ' - ' + end.toLocaleString('en-US', options) + endYear
+  return out
+}
+
+const hour12 = (date) => {
+  let options = { hour12: true, hour: 'numeric' }
+  // only show minutes if it's not on the hour
+  if (date.getMinutes() !== 0) {
+    options.minute = '2-digit'
+  }
+  return date.toLocaleString('en-US', options)
+}
+
+const startEndTime = (start, end) => {
+  // Only show time if the event is only 1 day
+  if (isSameDay(start, end)) {
+    let out = hour12(start)
+    if (start.getTime() !== end.getTime()) {
+      out += ' - ' + hour12(end)
     }
-    return start
+    return out
   }
-  if (diffVal !== undefined) {
-    return diffVal
-  }
-  return start + '-' + end
+  return null
 }
 
 export const mapEvents = (json) => {
@@ -47,20 +76,8 @@ export const mapEvents = (json) => {
     let end = entry.endDate
 
     return {
-      displayWeekday: collapseDate(
-        start.getDate(),
-        end.getDate(),
-        null,
-        start.toLocaleString('en-us', { weekday: 'long' })
-      ),
-      displayDay: collapseDate(start.getDate(), end.getDate()),
-      displayMonth: collapseDate(
-        start.toLocaleString('en-us', { month: 'short' }),
-        end.toLocaleString('en-us', { month: 'short' }),
-        undefined,
-        start.toLocaleString('en-us', { month: 'long' })
-      ),
-      displayYear: collapseDate(start.getFullYear(), end.getFullYear()),
+      displayDate: startEndDate(start, end),
+      displayTime: startEndTime(start, end),
       ...entry,
     }
   })
