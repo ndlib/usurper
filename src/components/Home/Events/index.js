@@ -28,10 +28,17 @@ export const mapEvents = (json) => {
   return json.map((entry) => {
     // flatten locales to just 'en-us' and convert strings to datetime type
     flattenLocale(entry.fields, 'en-US')
+
+    let end = entry.fields.endDate ? new Date(entry.fields.endDate) : new Date(entry.fields.startDate)
+    // if end time is 0:00, add 23:59
+    if (end.getHours() === 0 && end.getMinutes() === 0) {
+      end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
+    }
+
     return {
       ...entry.fields,
       startDate: new Date(entry.fields.startDate),
-      endDate: entry.fields.endDate ? new Date(entry.fields.endDate) : new Date(entry.fields.startDate),
+      endDate: end,
     }
   })
   .map((entry) => {
