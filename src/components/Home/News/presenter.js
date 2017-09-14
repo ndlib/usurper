@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeNewsEntry } from '../../LandingPages/News/presenter'
 import './style.css'
+import Link from '../../Link'
 
 const News = (entries) => {
   return (
@@ -11,6 +12,7 @@ const News = (entries) => {
           entries.map(makeNewsEntry)
         }
       </section>
+      <Link to='/news' className='newsEventsLink'>View All News</Link>
     </div>
   )
 }

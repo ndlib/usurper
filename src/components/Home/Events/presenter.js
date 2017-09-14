@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeEventEntry } from '../../LandingPages/Events/presenter'
 import './style.css'
+import Link from '../../Link'
 
 const Events = (entries) => {
   return (
@@ -8,9 +9,10 @@ const Events = (entries) => {
       <h3>Events</h3>
       <section aria-label='Events'>
         {
-          entries.map(makeEventEntry)
+          entries.map((entry, index) => makeEventEntry(entry, index, false))
         }
       </section>
+      <Link to='/events' className='newsEventsLink'>View All Events</Link>
     </div>
   )
 }

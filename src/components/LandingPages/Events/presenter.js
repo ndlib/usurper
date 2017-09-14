@@ -5,7 +5,7 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import './style.css'
 
-export const makeEventEntry = (entry, index) => {
+export const makeEventEntry = (entry, index, showDescription = true) => {
   return (
     <div
       className='event-card'
@@ -29,9 +29,12 @@ export const makeEventEntry = (entry, index) => {
         <div className='event-card-text'>
           <h3 itemProp='name'>{entry.title}</h3>
         </div>
-        <div className='description' itemProp='description'>
-          <LibMarkdown>{entry.shortDescription}</LibMarkdown>
-        </div>
+        { showDescription && (
+            <div className='description' itemProp='description'>
+              <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+            </div>
+          )
+        }
       </Link>
     </div>
   )
