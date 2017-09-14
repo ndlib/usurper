@@ -13,14 +13,14 @@ const Content = (letter, data, filterValue, onFilterChange) => {
     <div className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-      <div className='filter'>
+      <label className='filter'>
         <strong>Search all Databases by Title: </strong>
         <input
           type='text'
           value={filterValue}
           onChange={onFilterChange}
-          aria-label='Search all Databases by Title' role='search' />
-      </div>
+          role='search' />
+      </label>
       <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
