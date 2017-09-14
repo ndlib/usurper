@@ -1,17 +1,23 @@
 import { CF_REQUEST_DATABASE_LETTER, CF_RECEIVE_DATABASE_LETTER } from '../../actions/contentful/databaseLetter'
 import * as statuses from '../../constants/APIStatuses'
 
-export default(state = { status: statuses.FETCHING }, action) => {
+export default(state = {}, action) => {
+  let letterData = {}
+
   switch (action.type) {
     case CF_REQUEST_DATABASE_LETTER:
-      return Object.assign({}, state, {
+      letterData[action.letter] = {
         status: statuses.FETCHING,
-      })
+      }
+      return Object.assign({}, state, letterData)
+
     case CF_RECEIVE_DATABASE_LETTER:
-      return Object.assign({}, state, {
+      letterData[action.letter] = {
         status: action.status,
-        json: action.letter,
-      })
+        data: action.data,
+      }
+      return Object.assign({}, state, letterData)
+
     default:
       return state
   }

@@ -15,24 +15,28 @@ const receiveLetter = (letter, response) => {
   let error = {
     type: CF_RECEIVE_DATABASE_LETTER,
     status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
-    error: response,
+    letter: letter,
     receivedAt: Date.now(),
   }
 
-  let success = {
-    type: CF_RECEIVE_DATABASE_LETTER,
-    status: statuses.SUCCESS,
-    letter: response,
-    receivedAt: Date.now(),
+  let success = (data) => {
+    return {
+      type: CF_RECEIVE_DATABASE_LETTER,
+      status: statuses.SUCCESS,
+      letter: letter,
+      data: data,
+      receivedAt: Date.now(),
+    }
   }
 
   try {
-    if (response.fields[letter]) {
-      return success
+    if (response.fields && response.fields[letter]) {
+      return success(response.fields[letter])
     } else {
       return error
     }
   } catch (e) {
+    console.log(e)
     return error
   }
 }
@@ -44,6 +48,6 @@ export const fetchLetter = (letter, preview) => {
     return fetch(url)
       .then(response => response.ok ? response.json() : { status: response.status })
       .then(json => dispatch(receiveLetter(letter, json)))
-      .catch(response => dispatch(receiveLetter(letter, response)))
+      .catch(error => console.log(error))
   }
 }
