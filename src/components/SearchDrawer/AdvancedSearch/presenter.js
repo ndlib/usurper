@@ -23,7 +23,7 @@ const AdvancedSearch = (props) => {
           </div>
           <div className='asright'>
             <fieldset>
-              <MaterialType />
+              <MaterialType searchType={props.search.searchType} />
               <Language />
               <DateField id='drStart' label='Start Date' />
               <DateField id='drEnd' label='End Date' />
