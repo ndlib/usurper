@@ -8,7 +8,7 @@ const ResourceList = (props) => {
     <div>
       <div className='filter'>
         Filter items: <input type='text' value={props.filterValue} onChange={props.filterChange} />
-        { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew All'>Renew All</button> }
+        { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
       </div>
       <div className='card-item'>
         <div className={props.sortClass('title')} onClick={(e) => props.sortClick(e, 'title')} >
