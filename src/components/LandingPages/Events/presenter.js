@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from '../../Image'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import PageTitle from '../../PageTitle'
@@ -35,9 +36,9 @@ export const makeEventEntry = (entry, index, showDescription = true) => {
           </div>
         </div>
         { showDescription && (
-            <div className='description' itemProp='description'>
-              <LibMarkdown>{entry.shortDescription}</LibMarkdown>
-            </div>
+        <div className='description' itemProp='description'>
+          <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+        </div>
           )
         }
       </Link>

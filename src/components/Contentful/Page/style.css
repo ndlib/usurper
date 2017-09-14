@@ -1,0 +1,81 @@
+.group {
+	background: #fff;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+	padding-bottom: 10px;
+	margin-bottom: 20px;
+	float: left;
+	clear: left;
+	width: 80%;
+	position: relative;
+	padding-bottom:3em;
+
+}
+/*
+.group:after {
+	content: '▲ Top';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 5px;
+	border: solid 1px #999;
+	border-width: 1px 0 0 1px;
+	cursor: pointer;
+}
+
+.group:after:hover {
+	background: #ccc;
+}
+*/
+.group h3 {
+	/*height: 213px;
+	background: #666 url('http://images.contentful.com/v19tsd6x3xwy/7BqrHw6BckWYuiQcaWuIc/0b6571d2a4f2e714018a47c107a74884/Circulation_Desk.JPG');
+	position: relative;*/
+	background: url('images/marble.jpg');
+	background-size: cover;
+	color: #fff;
+	
+	width: 100%;
+	
+		-webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+    padding: 20px;
+    text-transform: uppercase;
+    line-height: 1em;
+    font-size: 32px;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+.group h3 span {
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+
+
+.group p {
+	padding: 20px 20px 0;
+	margin-bottom: 0;
+
+
+}
+
+.group p span {
+	margin-left: 1.5em;
+	padding-top: .7em;
+
+}
+
+.linksgroup {
+	-moz-column-count: 2;
+	column-count: 2;
+	float: left;
+	width: 100%;
+}
+
+
+.linksgroup p {
+	-webkit-column-break-inside: avoid;
+          page-break-inside: avoid;
+               break-inside: avoid;
+}
