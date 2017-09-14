@@ -28,7 +28,7 @@ const FooterLinks = () => {
             <div className='box right'>
               <ul role='navigation' aria-label='Social Media Links'>
                 <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank' rel='noopener'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>
-                <li><Link to='https://www.facebook.com/NDLibraries/' title='Hesburgh Libraries Faceebook' target='_blank' rel='noopener'><img src={Facebook} alt='Facebook' /> NDLibraries</Link></li>
+                <li><Link to='https://www.facebook.com/NDLibraries/' title='Hesburgh Libraries Facebook' target='_blank' rel='noopener'><img src={Facebook} alt='Facebook' /> NDLibraries</Link></li>
               </ul>
             </div>
           </div>
