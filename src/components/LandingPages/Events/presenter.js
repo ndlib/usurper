@@ -14,20 +14,25 @@ export const makeEventEntry = (entry, index, showDescription = true) => {
       key={'events_' + index}
     >
       <Link
-        ariaLabel={entry.title + ' on ' + entry.displayWeekday + ', ' + entry.displayDay + ' ' + entry.displayMonth + ' ' + entry.displayYear}
+        ariaLabel={entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime}
         to={'/event/' + entry.slug}
         itemProp='mainEntityOfPage'
       >
-        <time dateTime={entry.startDate} className='date-as-calendar inline-flex'>
-          <meta itemProp='startDate' content={entry.startDate} />
-          <meta itemProp='endDate' content={entry.endDate} />
-          <span className='weekday'>{entry.displayWeekday}</span>
-          <span className='day'>{entry.displayDay}</span>
-          <span className='month'>{entry.displayMonth}</span>
-          <span className='year'>{entry.displayYear}</span>
-        </time>
+        <meta itemProp='startDate' content={entry.startDate} />
+        <meta itemProp='endDate' content={entry.endDate} />
         <div className='event-card-text'>
+
           <h3 itemProp='name'>{entry.title}</h3>
+          <div className='date'>
+            {
+              entry.displayDate
+            }
+          </div>
+          <div className='time'>
+            {
+              entry.displayTime
+            }
+          </div>
         </div>
         { showDescription && (
             <div className='description' itemProp='description'>
