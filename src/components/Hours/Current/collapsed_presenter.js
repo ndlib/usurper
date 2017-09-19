@@ -2,13 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
 import WeeklyHours from '../WeeklyHours'
+const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 
 const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
+
+  const schemaOpeningHours = days[new Date().getDay()] + ' ' + hoursEntry.today.rendered
+
+  let schemaType = 'http://schema.org/ContactPoint'
+  if (hoursEntry.servicePoint.type === 'http://schema.org/Library') {
+    schemaType = 'Library'
+  }
   return (
-    <section className={servicePointClassName} aria-label={title}>
+    <section className={servicePointClassName} aria-label={title} itemScope itemType={schemaType}>
       <a
         className='expand'
         tabIndex={0}
@@ -18,8 +26,8 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
         aria-controls={hoursEntry.servicePoint.slug}
       >
         <h4>
-          <div className='location'>{hoursEntry.name}</div>
-          <div className='today'>{todayLabel}</div>
+          <div className='location' itemProp='name'>{hoursEntry.name}</div>
+          <div className='today' itemProp='openingHours' content={schemaOpeningHours}>{todayLabel}</div>
           <div className='arrow'>
             <div className='earrow' />
           </div>

@@ -3,10 +3,19 @@ import PropTypes from 'prop-types'
 import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
+const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
+
+
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
+  const schemaOpeningHours = days[new Date().getDay()] + ' ' + hoursEntry.today.rendered
+
+  let timezoneMessage = ''
+  if (hoursEntry.timezone !== 'EST' || hoursEntry.timezone !== 'EDT') {
+    timezoneMessage = (<p className='timezoneMessage'> * All times are {hoursEntry.timezone}</p>)
+  }
   return (
     <section className={servicePointClassName} aria-label={title}>
       <a
@@ -18,7 +27,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
         aria-controls={hoursEntry.servicePoint.slug}
       >
         <h4>
-          <div className='location'>{hoursEntry.name}</div>
+          <div className='location' itemProp='name'>{hoursEntry.name}</div>
           <div className='today'>{todayLabel}</div>
           <div className='arrow'>
             <div className='carrow' />
@@ -29,6 +38,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
         <div className='col-md-6'>
           <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
           <WeeklyHours hours={hoursEntry.upcomingChangedHours} title='Upcoming Hours' showEffectiveDates />
+          { timezoneMessage }
         </div>
         <div className='col-md-5 col-md-offset-1'>
           {children}
