@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2017.3](https://github.com/ndlib/usurper/tree/v2017.3)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.2...v2017.3)
+
+### New features/enhancements:
+- Allow Dynamic Pages to have multiple service points [#289](https://github.com/ndlib/usurper/pull/289)
+- ND Advanced Search is different than others [#290](https://github.com/ndlib/usurper/pull/290)
+- Add links to All news and All Events on homepage [#287](https://github.com/ndlib/usurper/pull/287)
+- Add Search box to Database Page [#286](https://github.com/ndlib/usurper/pull/286)
+- Design remediations on Items Page [#285](https://github.com/ndlib/usurper/pull/285)
+
+### Bug Fixes
+- Fix Start-End time display bugs on events [#288](https://github.com/ndlib/usurper/pull/288)
+- Fixed Narrow Display cutoff [#291](https://github.com/ndlib/usurper/pull/291)
+
+
 ## [v2017.2](https://github.com/ndlib/usurper/tree/v2017.2)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.1...v2017.2)
 
