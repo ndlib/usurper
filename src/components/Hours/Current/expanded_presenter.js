@@ -3,14 +3,11 @@ import PropTypes from 'prop-types'
 import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
-const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
-
 
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
-  const schemaOpeningHours = days[new Date().getDay()] + ' ' + hoursEntry.today.rendered
 
   let timezoneMessage = ''
   if (hoursEntry.timezone !== 'EST' || hoursEntry.timezone !== 'EDT') {
@@ -28,7 +25,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
       >
         <h4>
           <div className='location' itemProp='name'>{hoursEntry.name}</div>
-          <div className='today'>{todayLabel}</div>
+          <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
           <div className='arrow'>
             <div className='carrow' />
           </div>

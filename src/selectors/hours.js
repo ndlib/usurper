@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 const _ = require('lodash')
+const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 
 const getHoursStatus = (state, props) => {
   const key = props.servicePoint.fields.hoursCode
@@ -52,9 +53,10 @@ const getTodaysHours = (hours) => {
   if (Object.keys(hours).length === 0) {
     return {}
   }
-
-  let n = new Date().toLocaleString('en-US', { weekday: 'long' })
-  return hours.weeks[0][n]
+  let today = hours.weeks[0][new Date().toLocaleString('en-US', { weekday: 'long' })]
+  today['schemaOpeningHours'] = days[new Date().getDay()] + ' ' + today.rendered
+  
+  return today
 }
 
 const getUpcomingChangedHours = (hours) => {
