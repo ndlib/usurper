@@ -143,9 +143,9 @@ export class DatabaseListContainer extends Component {
 
   onFilterChange (event) {
     let filtered = this.filter(event.target.value, this.props.allDbs)
-    let assistText = filtered.length + ' items beginning with the letter ' + this.props.currentLetter.toUpperCase()
+    let assistText = filtered.length + ' items beginning with the letter "' + this.props.currentLetter.toUpperCase() + '"'
     if (event.target.value) {
-      assistText = filtered.length + ' results found for ' + event.target.value
+      assistText = filtered.length + ' results found for "' + event.target.value +'"'
     }
 
     this.setState({
