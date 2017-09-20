@@ -54,7 +54,8 @@ const getTodaysHours = (hours) => {
   if (Object.keys(hours).length === 0) {
     return {}
   }
-  let n = weekday[new Date().getDay()]
+
+  let n = new Date().toLocaleString('en-US', { weekday: 'long' })
   return hours.weeks[0][n]
 }
 
