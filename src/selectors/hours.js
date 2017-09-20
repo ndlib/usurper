@@ -2,8 +2,6 @@ import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 const _ = require('lodash')
 
-const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-
 const getHoursStatus = (state, props) => {
   const key = props.servicePoint.fields.hoursCode
   if (state.hours.status === statuses.SUCCESS && !(state.hours.json['locations'] && state.hours.json['locations'][key])) {
@@ -63,10 +61,12 @@ const getUpcomingChangedHours = (hours) => {
   if (!hours.weeks) {
     return {}
   }
+  // get all the keys to loop through the days
+  const weekdays = Object.keys(hours.weeks[0])
 
-  const test = weekday.map((day) => { return hours.weeks[0][day].rendered })
+  const test = weekdays.map((day) => { return hours.weeks[0][day].rendered })
   for (let step = 1; step < hours.weeks.length; step++) {
-    let test2 = weekday.map((day) => { return hours.weeks[step][day].rendered })
+    let test2 = weekdays.map((day) => { return hours.weeks[step][day].rendered })
     if (!_.isEqual(test, test2)) {
       return hours.weeks[step]
     }
