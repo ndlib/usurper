@@ -738,20 +738,22 @@ nav a.search.closed:hover {
   padding-left: 20px !important;
   line-height: 1.4em;
   cursor: pointer;
+  text-decoration: none;
+  color: #000;
 }
 
 .sort-asc {
-  background: url(../images/arrow.b.u.png) no-repeat 3px 17px;
+  background: url(../images/arrow.b.u.png) no-repeat 3px 7px;
 
 }
 
 .sort-desc {
-  background: url(../images/arrow.b.d.png) no-repeat 3px 17px;
+  background: url(../images/arrow.b.d.png) no-repeat 3px 7px;
 
 }
 
 .sort-none {
-  background: url(../images/arrow.b.u.d.png) no-repeat 3px 12px;
+  background: url(../images/arrow.b.u.d.png) no-repeat 3px 4px;
 }
 
 .container-fluid.row {
@@ -1389,6 +1391,12 @@ hr {
 }
 .filter .renew {
   float: right;
+}
+.screenReaderText {
+  visibility: visible;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .card-item {

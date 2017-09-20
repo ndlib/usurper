@@ -98,6 +98,7 @@ export class DatabaseListContainer extends Component {
     this.state = {
       filterValue: '',
       filteredList: [],
+      assistText: '',
     }
 
     this.onFilterChange = this.onFilterChange.bind(this)
@@ -141,10 +142,23 @@ export class DatabaseListContainer extends Component {
   }
 
   onFilterChange (event) {
+    let filtered = this.filter(event.target.value, this.props.allDbs)
+    let assistText = filtered.length + ' items beginning with the letter ' + this.props.currentLetter.toUpperCase()
+    if (event.target.value) {
+      assistText = filtered.length + ' results found for ' + event.target.value
+    }
+
     this.setState({
       filterValue: event.target.value,
-      filteredList: this.filter(event.target.value, this.props.allDbs),
+      filteredList: filtered,
+      assistText: assistText,
     })
+
+    setTimeout(() => {
+      this.setState({
+        assistText: '',
+      })
+    }, 1500)
   }
 
   render () {
@@ -176,6 +190,7 @@ export class DatabaseListContainer extends Component {
       status={status}
       filterValue={this.state.filterValue}
       onFilterChange={this.onFilterChange}
+      assistText={this.state.assistText}
     />
   }
 }

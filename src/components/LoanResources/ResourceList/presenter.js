@@ -1,49 +1,85 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Resource from './Resource'
-import Loading from '../../Messages/Loading'
+import Loading from '../../Messages/InlineLoading'
 
 const ResourceList = (props) => {
   return (
-    <div>
+    <section aria-label={props.listType}>
       <div className='filter'>
-        Filter items: <input type='text' value={props.filterValue} onChange={props.filterChange} />
+        <label>
+          Filter items:
+          <input
+            type='text'
+            value={props.filterValue}
+            onChange={props.filterChange}
+            aria-label={'Filter ' + props.listType + ' items'}
+          />
+        </label>
         { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
       </div>
       <div className='card-item'>
-        <div className={props.sortClass('title')} onClick={(e) => props.sortClick(e, 'title')} >
+        <a
+          className={props.sortClass('title')}
+          onClick={(e) => props.sortClick(e, 'title')}
+          aria-label={'Sort By Title ' + props.assistSortDirection('title')}
+          aria-controls={props.listType}
+        >
           Title
-        </div>
-        <div className={props.sortClass('author')} onClick={(e) => props.sortClick(e, 'author')} >
+        </a>
+        <a
+          className={props.sortClass('author')}
+          onClick={(e) => props.sortClick(e, 'author')}
+          aria-label={'Sort By Author ' + props.assistSortDirection('author')}
+          aria-controls={props.listType}
+        >
           Author
-        </div>
+        </a>
         { !props.borrowed && (
-          <div className={props.sortClass('status')} onClick={(e) => props.sortClick(e, 'status')} >
+          <a
+            className={props.sortClass('status')}
+            onClick={(e) => props.sortClick(e, 'status')}
+            aria-label={'Sort By Status ' + props.assistSortDirection('status')}
+            aria-controls={props.listType}
+          >
             Status
-          </div>
+          </a>
         )}
         { props.borrowed && (
-          <div className={props.sortClass('dueDate')} onClick={(e) => props.sortClick(e, 'dueDate')} >
+          <a
+            className={props.sortClass('dueDate')}
+            onClick={(e) => props.sortClick(e, 'dueDate')}
+            aria-label={'Sort By Due Date ' + props.assistSortDirection('dueDate')}
+            aria-controls={props.listType}
+          >
             Due Date
-          </div>
+          </a>
         )}
 
       </div>
+      <div className='screenReaderText' aria-live='assertive'>
+        { props.assistText }
+      </div>
+      <section
+        aria-label={props.listType + ' item list'}
+        id={props.listType}
+      >
+        {
+          props.list.map((item, index) => {
+            return (
+              <Resource
+                item={item}
+                renewal={props.renewal}
+                alephId={props.alephId}
+                borrowed={props.borrowed}
+                key={index}
+              />
+            )
+          })
+        }
+        </section>
       { props.loadingMore && <Loading message='Loading more items' /> }
-      {
-        props.list.map((item, index) => {
-          return (
-            <Resource
-              item={item}
-              renewal={props.renewal}
-              alephId={props.alephId}
-              borrowed={props.borrowed}
-              key={index}
-            />
-          )
-        })
-      }
-    </div>
+    </section>
   )
 }
 
@@ -56,6 +92,8 @@ ResourceList.propTypes = {
   sortClass: PropTypes.func.isRequired,
   sortClick: PropTypes.func.isRequired,
   loadingMore: PropTypes.bool,
+  listType: PropTypes.string.isRequired,
+  assistText: PropTypes.string.isRequired,
 }
 
 export default ResourceList
