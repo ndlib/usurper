@@ -15,7 +15,7 @@ describe('components/Hours/Page/presenter', () => {
       name: 'name',
       today: {
         date: 'today-date',
-        display: 'today-display',
+        rendered: 'today-display',
         opens: 'opens-time',
         closes: 'closes-time',
       },
@@ -55,6 +55,7 @@ describe('components/Hours/Page/presenter', () => {
   })
 
   it('Adds a Link to the hours page', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Link to='hours'>today-display</Link>)).toBe(true)
+    let test = <Link to='hours' ariaLabel='today-display Click for more hours'><span itemProp='openingHours'>today-display</span></Link>
+    expect(enzymeWrapper.containsMatchingElement(test)).toBe(true)
   })
 })

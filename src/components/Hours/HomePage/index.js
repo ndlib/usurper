@@ -8,6 +8,8 @@ import makeGetHoursForServicePoint from '../../../selectors/hours'
 import * as statuses from '../../../constants/APIStatuses'
 import InlineContainer from '../InlineContainer'
 
+const HESBURGH_LIBRARY = '426'
+
 // We  need a way to give each instance of a container access to its own private selector.
 // this is done by creating a private instance of the conector for each component.
 const makeMapStateToProps = () => {
@@ -17,7 +19,7 @@ const makeMapStateToProps = () => {
     let props = {
       servicePoint: {
         fields: {
-          hoursCode: 'hesburghlibrary',
+          hoursCode: HESBURGH_LIBRARY,
         },
       },
     }
