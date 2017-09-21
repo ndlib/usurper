@@ -8,7 +8,7 @@ import Link from '../Link'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
 
-const Content = (letter, data, filterValue, onFilterChange) => {
+const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
     <div className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
@@ -19,7 +19,9 @@ const Content = (letter, data, filterValue, onFilterChange) => {
           type='text'
           value={filterValue}
           onChange={onFilterChange}
-          role='search' />
+          role='search'
+          aria-label='Database Search'
+        />
       </label>
       <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
       {
@@ -35,7 +37,12 @@ const Content = (letter, data, filterValue, onFilterChange) => {
 
       <div className='row'>
         <div className='col-md-8'>
-          <section aria-label={'List of all "' + letter.toUpperCase() + '" Databases'}>
+          <div className='screenReaderText' aria-live='assertive'>
+            { assistText }
+          </div>
+          <section
+            aria-label={'List of all "' + letter.toUpperCase() + '" Databases'}
+          >
             {data}
           </section>
         </div>
@@ -48,12 +55,12 @@ const DBLoading = (letter) => {
   return Content(letter, 'Loading Databases')
 }
 
-const Loaded = (letter, list, filterValue, onFilterChange) => {
-  if (!list) {
+const Loaded = (props) => {
+  if (!props.list) {
     return null
   }
 
-  let data = list.map((item) => {
+  let data = props.list.map((item) => {
     return (
       <div key={item.fields.alephSystemNumber + item.fields.title}>
         <p aria-label={item.fields.title}>
@@ -65,15 +72,14 @@ const Loaded = (letter, list, filterValue, onFilterChange) => {
     )
   })
 
-  if (filterValue && list.length === 50) {
+  if (props.filterValue && props.list.length === 50) {
     data.push(
       <div key='searchClipped'>
         <p>Search is limited to first 50 results. Add more words to your search to see fewer results.</p>
       </div>
     )
   }
-
-  return Content(letter, data, filterValue, onFilterChange)
+  return Content(props.letter, data, props.filterValue, props.onFilterChange, props.assistText)
 }
 
 const LetterNotFound = (letter, filterValue, onFilterChange) => {
@@ -85,7 +91,7 @@ const ListPresenter = (props) => {
     case statuses.FETCHING:
       return DBLoading(props.letter)
     case statuses.SUCCESS:
-      return Loaded(props.letter, props.list, props.filterValue, props.onFilterChange)
+      return Loaded(props)
     case statuses.NOT_FOUND:
       return LetterNotFound(props.letter, props.filterValue, props.onFilterChange)
     default:

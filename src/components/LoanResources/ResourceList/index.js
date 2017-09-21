@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { renewAleph } from '../../../actions/personal/alephRenewal'
-import Loading from '../../Messages/Loading'
+import Loading from '../../Messages/InlineLoading'
 import Presenter from './presenter'
 
 class ListContainer extends Component {
@@ -17,6 +17,7 @@ class ListContainer extends Component {
         filteredList: this.filter('', 'title', 'desc', this.props.list),
         sortValue: 'title',
         sortDir: 'desc',
+        assistText: '',
       }
     } catch (e) {
       console.log(e)
@@ -25,6 +26,7 @@ class ListContainer extends Component {
     this.filterChange = this.filterChange.bind(this)
     this.sortChange = this.sortChange.bind(this)
     this.sortClass = this.sortClass.bind(this)
+    this.getSortDirAfterClick = this.getSortDirAfterClick.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -84,10 +86,23 @@ class ListContainer extends Component {
   }
 
   filterChange (event) {
+    let assistText = this.state.filteredList.length + ' ' + this.props.listType + ' items found'
+    if (event.target.value) {
+      assistText += ' for ' + event.target.value
+    }
+
     this.setState({
       filterValue: event.target.value,
       filteredList: this.filter(event.target.value, this.state.sortValue, this.state.sortDir, this.state.itemList),
+      assistText: assistText,
     })
+
+    // remove assist text after a short delay
+    setTimeout(() => {
+      this.setState({
+        assistText: '',
+      })
+    }, 1500)
   }
 
   sortChange (event, sortField) {
@@ -110,6 +125,11 @@ class ListContainer extends Component {
     return 'sort-' + data + ' ' + (this.state.sortValue === data ? 'sort-' + this.state.sortDir : 'sort-none')
   }
 
+  getSortDirAfterClick (type) {
+    let stateDir = this.state.sortDir === 'desc' ? 'ascending' : 'descending'
+    return this.state.sortValue === type ? stateDir : 'descending'
+  }
+
   render () {
     if (this.props.loading && (!this.state.itemList || this.state.itemList.length === 0)) {
       return <Loading />
@@ -129,7 +149,10 @@ class ListContainer extends Component {
       renewAll={this.props.renewAll}
       sortClick={this.sortChange}
       sortClass={this.sortClass}
+      assistSortDirection={this.getSortDirAfterClick}
       loadingMore={this.props.loading}
+      listType={this.props.listType}
+      assistText={this.state.assistText}
     />
   }
 }
@@ -159,6 +182,7 @@ ListContainer.propTypes = {
   alephId: PropTypes.string,
   renewal: PropTypes.object,
   borrowed: PropTypes.bool,
+  listType: PropTypes.string.isRequired,
 
   // from mappers
   renewAll: PropTypes.func,

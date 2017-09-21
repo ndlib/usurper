@@ -18,6 +18,7 @@ const LoanResources = (props) => {
         alephId={props.alephId}
         renewal={props.renewal}
         borrowed={false}
+        listType='Pending'
       />
       <br />
       <h3>Checked out</h3>
@@ -28,6 +29,7 @@ const LoanResources = (props) => {
         alephId={props.alephId}
         renewal={props.renewal}
         borrowed={true}
+        listType='Checked Out'
       />
     </div>
   )
