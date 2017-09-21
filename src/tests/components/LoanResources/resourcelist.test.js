@@ -25,24 +25,25 @@ describe('components/LoanResources/resourceList.js', () => {
         filterChange: jest.fn(),
         sortClass: jest.fn(),
         sortClick: jest.fn(),
+        assistSortDirection: jest.fn(),
       }
       setup(props)
     })
 
     it('should render column title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Title'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Title'}</a>)).toBe(true)
     })
 
     it('should render column author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Author'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Author'}</a>)).toBe(true)
     })
 
     it('should render column status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Status'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Status'}</a>)).toBe(true)
     })
 
     it('should not render column due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Due Date'}</div>)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Due Date'}</a>)).toBe(false)
     })
 
     it('should render item', () => {
@@ -61,24 +62,25 @@ describe('components/LoanResources/resourceList.js', () => {
         filterChange: jest.fn(),
         sortClass: jest.fn(),
         sortClick: jest.fn(),
+        assistSortDirection: jest.fn(),
       }
       setup(props)
     })
 
     it('should render column title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Title'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Title'}</a>)).toBe(true)
     })
 
     it('should render column author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Author'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Author'}</a>)).toBe(true)
     })
 
     it('should not render column status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Status'}</div>)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Status'}</a>)).toBe(false)
     })
 
     it('should render column due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<div>{'Due Date'}</div>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<a>{'Due Date'}</a>)).toBe(true)
     })
 
     it('should render item', () => {
