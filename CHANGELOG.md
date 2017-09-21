@@ -9,11 +9,15 @@
 - Add links to All news and All Events on homepage [#287](https://github.com/ndlib/usurper/pull/287)
 - Add Search box to Database Page [#286](https://github.com/ndlib/usurper/pull/286)
 - Design remediations on Items Page [#285](https://github.com/ndlib/usurper/pull/285)
+- Update the hours display to use the new api [#284](https://github.com/ndlib/usurper/pull/284)
+- Update the hours to display the timezone if it is not in eastern [#284](https://github.com/ndlib/usurper/pull/284)
+- Update the accessability of the live search in databases and checked out books.  It now uses aria-live to speak the changes as they happen. [#295](https://github.com/ndlib/usurper/pull/295)
+- Display changes to the events.  No longer underline description and changed the date display. [#292](https://github.com/ndlib/usurper/pull/292)
 
 ### Bug Fixes
 - Fix Start-End time display bugs on events [#288](https://github.com/ndlib/usurper/pull/288)
 - Fixed Narrow Display cutoff [#291](https://github.com/ndlib/usurper/pull/291)
-
+- Fixed the link to the libguide for goverenment docs. [#296](https://github.com/ndlib/usurper/pull/296)
 
 ## [v2017.2](https://github.com/ndlib/usurper/tree/v2017.2)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.1...v2017.2)
