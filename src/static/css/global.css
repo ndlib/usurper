@@ -1384,6 +1384,29 @@ hr {
   margin-left: 3px;
 }
 
+/* markdown table */
+.markdown-tr {
+  width:100% ;
+  border-bottom: solid #dcdcdc;
+  border-width: 1px 0;
+  display: grid;
+  display: -ms-grid;
+
+  grid-gap: 7px;
+
+  grid-auto-columns: .7fr 1fr 1.5fr;
+  grid-auto-flow: column;
+  -ms-grid-columns: .7fr 1fr 1.5fr;
+  justify-content: left;
+  font-size: 16px;
+
+  padding: 5px 0;
+}
+
+.markdown-th {
+  font-weight: bold;
+}
+
 /* Items Page */
 
 .filter {

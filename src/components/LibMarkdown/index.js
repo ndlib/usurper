@@ -52,10 +52,33 @@ class LibMarkdown extends Component {
       return null
     }
 
+    const toDiv = (className) => { return (props) => (<div className={className} {...props.props}>{props.children}</div>) }
+
     let overrides = {
       overrides: {
         a: {
           component: LibLink,
+        },
+        tr: {
+          component: toDiv('markdown-tr'),
+        },
+        th: {
+          component: toDiv('markdown-th'),
+        },
+        table: {
+          component: toDiv('markdown-table'),
+        },
+        thead: {
+          component: toDiv('markdown-thead'),
+        },
+        trow: {
+          component: toDiv('markdown-trow'),
+        },
+        tbody: {
+          component: toDiv('markdown-tbody'),
+        },
+        td: {
+          component: toDiv('markdown-td'),
         },
       },
     }
