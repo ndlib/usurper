@@ -78,7 +78,7 @@ const Navigation = (props) => {
         </div>
         <div className='menu-icon'>
           <a onClick={props.handleMobileClick}>☰</a>
-          <MobileMenu open={props.menus.menuId === MOBILE_MENU} />
+          <MobileMenu open={props.menus.menuId === MOBILE_MENU} loggedIn={props.loggedIn} />
         </div>
       </nav>
     </div>
