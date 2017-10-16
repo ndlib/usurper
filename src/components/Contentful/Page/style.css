@@ -30,12 +30,12 @@
 	/*height: 213px;
 	background: #666 url('http://images.contentful.com/v19tsd6x3xwy/7BqrHw6BckWYuiQcaWuIc/0b6571d2a4f2e714018a47c107a74884/Circulation_Desk.JPG');
 	position: relative;*/
-	background: url('images/marble.jpg');
+	background: url('../../../static/images/marble.jpg');
 	background-size: cover;
 	color: #fff;
-	
+
 	width: 100%;
-	
+
 		-webkit-column-break-inside: avoid;
           page-break-inside: avoid;
                break-inside: avoid;
