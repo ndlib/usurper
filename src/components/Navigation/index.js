@@ -121,7 +121,6 @@ class NavigationContainer extends Component {
     if (!this.props.dropDowns) {
       return null
     }
-    console.log(this.props)
     return (
       <Navigation {...this.props} />
     )

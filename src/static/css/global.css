@@ -578,10 +578,6 @@ body.gold-blue #header h4 a {
   border: none;
 }
 
- .menu-link.ask:hover > a {
-  background: rgba(0,0,0,0.3) url("../images/ask.b.png") no-repeat right 5px top 15px;
- }
-
 .hours {
   float: none;
   background: url("../images/hours.png") no-repeat right 5px top 9px;
@@ -2534,12 +2530,11 @@ address {
   }
 
 
+  li.menu-link {
+    list-style: none;
+  }
 
-
-
-
-
-  .menu-list div.menu-icon {
+  .menu-list li.menu-icon {
     display: block;
     float: right;
     position: absolute;
@@ -2550,13 +2545,13 @@ address {
 
   }
 
-    .menu-list div.menu-icon > a {
+    .menu-list li.menu-icon > a {
       color: #fff;
       font-size: 24px;
       line-height: 1em;
     }
 
-  .menu-list div.search {
+  .menu-list li.search {
     display: block;
     float: right;
   }
@@ -2747,7 +2742,7 @@ address {
     display: none;
   }
 
-  .menu-list div:first-child, .menu-link.search {
+  .menu-list li:first-child, .menu-link.search {
     display: inline-block;
   }
 }

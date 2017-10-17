@@ -10,7 +10,7 @@ import { USER_MENU, MOBILE_MENU } from '../../actions/menu'
 const myAccountButton = (props) => {
   if (props.loggedIn) {
     return (
-      <li className='menu-link user'>
+      <li className='menu-link user right'>
         <a
           onClick={props.handleUserClick}
           onKeyDown={props.handleUserKeyDown}
@@ -25,7 +25,7 @@ const myAccountButton = (props) => {
     )
   } else {
     return (
-      <li className='menu-link user'>
+      <li className='menu-link user right'>
         <a href={props.loginUrl} className='m'>Login</a>
         <Route component={UserMenu} />
       </li>
@@ -35,7 +35,7 @@ const myAccountButton = (props) => {
 const Navigation = (props) => {
   const dropDowns = props.dropDowns.map((menu, index) => {
     return (
-      <li className='menu-link'>
+      <li className='menu-link' key={index}>
         <a
           id={menu.title.toLowerCase()}
           onClick={menu.onClick}
@@ -45,7 +45,6 @@ const Navigation = (props) => {
           aria-owns={menu.id}
           aria-controls={menu.id}
           aria-expanded={props.menus.menuId === menu.menuId}
-          key={index}
           tabIndex='0'
           href='#'
         >{menu.title}</a>
@@ -62,8 +61,8 @@ const Navigation = (props) => {
 
   return (
     <div className='uNavigation'>
-      <nav className='container-fluid menu-list' role='navigation' aria-label='Main Navigation'>
-        <ul className='menu-link'>
+      <nav className='container-fluid' role='navigation' aria-label='Main Navigation'>
+        <ul className='menu-list'>
           <li><Link to='/'>Home</Link></li>
           {dropDowns}
           <li className='right menu-link search'>
@@ -77,9 +76,9 @@ const Navigation = (props) => {
               aria-controls='drawer'
               aria-label={props.isDrawerOpen ? 'Close Search Drawer' : 'Open Search Drawer'}
               >Search</a>
-            { myAccountButton(props) }
           </li>
-          <li className='menu-link hours-m'>
+          { myAccountButton(props) }
+          <li className='menu-link hours-m right'>
             <Link to='/hours' className='m'>Hours</Link>
           </li>
         </ul>
