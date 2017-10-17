@@ -15,7 +15,7 @@ export const searchOptions = [
     uid: NDCATALOG,
     title: 'ND Catalog',
     description:'Print and electronic books, journals and databases',
-    additionalLinks: (<a href='http://alephprod.library.nd.edu/F/?func=find-b-0'>Catalog Classic</a>),
+    additionalLinks: (<a href='https://alephprod.library.nd.edu/F/?func=find-b-0'>Catalog Classic</a>),
   },
   {
     uid: CURATEND,

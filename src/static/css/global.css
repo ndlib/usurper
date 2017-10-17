@@ -87,11 +87,28 @@ li p {
 
 table {
   width: 100%;
+  display: block;
 }
 table td, table th {
-  padding: 16px 0 16px 20px;
   text-align: left;
 }
+table tr {
+  display: grid;
+  display: -ms-grid;
+
+  border-bottom: solid #dcdcdc;
+  border-width: 1px 0;
+  grid-gap: 7px;
+
+  grid-auto-columns: .7fr 1fr 1.5fr;
+  grid-auto-flow: column;
+  -ms-grid-columns: .7fr 1fr 1.5fr;
+  justify-content: left;
+  font-size: 16px;
+
+  padding: 5px 0;
+}
+
 
 a {
   color: #93601D;
