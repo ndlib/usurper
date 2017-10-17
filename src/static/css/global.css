@@ -676,10 +676,17 @@ nav > .container-fluid {
   margin-right: auto;
 }
 
-nav div, .menu div {
+nav div, .menu div, .menu-list > li {
   display: inline;
 }
-nav div > a, .menu div > a {
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav div > a, .menu div > a, .menu-list > li > a {
   text-decoration: none;
   text-transform: uppercase;
   color: #555555;
@@ -2823,9 +2830,9 @@ body {
 
 }
 
-.hours-m a, .hours-m:hover a {
+.hours-m > a, .hours-m:hover a {
   background: url('../images/hours.b.png') no-repeat right 22px top 15px;
-  padding-right: 44px;
+  padding-right: 44px !important;
 }
 
 .hours-m:hover a {
