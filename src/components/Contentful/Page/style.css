@@ -73,6 +73,10 @@
 	width: 100%;
 }
 
+.col-md-6 .linksgroup {
+  -moz-column-count: 1;
+  column-count: 1;
+}
 
 .linksgroup p {
 	-webkit-column-break-inside: avoid;
