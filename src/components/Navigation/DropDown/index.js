@@ -28,6 +28,7 @@ const DropDown = (props) => {
         title={props.title}
         landingPage={props.landingPage}
         menuData={props.menuData}
+        id={props.id}
         >
         {columns}
       </Menu>
@@ -41,6 +42,7 @@ DropDown.propTypes = {
   title: PropTypes.string.isRequired,
   landingPage: PropTypes.string,
   menuData: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired,
 }
 
 DropDown.defatultProps = {
