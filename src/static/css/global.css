@@ -1202,6 +1202,14 @@ label[for='q']:after, .uSearchBox label:after {
   float: right;
 }
 
+.appliance .searchPartners {
+  font-size: 14px;
+  color: #fff;
+  float: right;
+  margin-top: 1.5em;
+  padding-top: 3px;
+  padding-right: 1.5em;
+}
 
 .set-default-search, .additional-links, .has-default-search {
   font-size: 14px !important;
@@ -2868,7 +2876,7 @@ body {
   .hservices {
     grid-template-columns: 1fr;
   }
-  .appliance .additional-links, #save-preference {
+  .appliance .additional-links, .appliance .searchPartners, #save-preference {
     display: none;
   }
 
