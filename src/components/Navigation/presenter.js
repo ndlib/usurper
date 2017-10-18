@@ -63,8 +63,12 @@ const Navigation = (props) => {
     <div className='uNavigation'>
       <nav className='container-fluid' role='navigation' aria-label='Main Navigation'>
         <ul className='menu-list'>
-          <li><Link to='/'>Home</Link></li>
+          <li className='menu-link'><Link to='/'>Home</Link></li>
           {dropDowns}
+          <li className='menu-link hours-m right'>
+            <Link to='/hours' className='m'>Hours</Link>
+          </li>
+          { myAccountButton(props) }
           <li className='right menu-link search'>
             <a
               className={'search ' + props.toggleClass}
@@ -76,10 +80,6 @@ const Navigation = (props) => {
               aria-controls='drawer'
               aria-label={props.isDrawerOpen ? 'Close Search Drawer' : 'Open Search Drawer'}
               >Search</a>
-          </li>
-          { myAccountButton(props) }
-          <li className='menu-link hours-m right'>
-            <Link to='/hours' className='m'>Hours</Link>
           </li>
         </ul>
         <div className='menu-icon'>
