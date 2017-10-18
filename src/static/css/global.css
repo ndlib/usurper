@@ -678,6 +678,7 @@ nav > .container-fluid {
 
 nav div, .menu div, .menu-list > li {
   display: inline;
+  line-height: initial;
 }
 
 .menu-list {
