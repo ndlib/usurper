@@ -66,8 +66,8 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     }
   }
 
-  // Treat menu dropdowns as links to landing pages for accessibiilty
   const keyDown = (e) => {
+    // key = esc 
     if (e.keyCode === 27) {
       dispatchProps.closeMenus(e)
     }
