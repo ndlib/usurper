@@ -1,15 +1,8 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
-const onesearchBasicURL = (queryTerm) => {
-  return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&query=${queryTerm}&search_scope=malc_blended&tab=onesearch&vid=NDU&displayField=title&displayField=creator`
-}
-const ndcatalogBasicURL = (queryTerm) => {
-  return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&query=${queryTerm}&search_scope=nd_campus&tab=nd_campus&vid=NDU&displayField=title&displayField=creator`
-}
-const onesearchAdvancedURL = (queryTerm,) => {
-  return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=onesearch&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
-}
-const ndcatalogAdvancedURL = (queryTerm) => {
-  return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=nd_campus&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
+  const mode = isAdvanced ? 'Advanced' : 'Basic'
+  const tab = isOnesearch ? 'onesearch' : 'nd_campus'
+  return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=${mode}&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
 }
 const curateBasicURL = (queryTerm) => {
   return `https://curate.nd.edu/catalog?utf8=%E2%9C%93&amp;search_field=all_fields&amp;q=${queryTerm}`
@@ -21,8 +14,13 @@ const libSearchBasicURL = (queryTerm) => {
 // Actual searchQuery function
 const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
+  let isAdvanced = searchStore.advancedSearch
 
-  if (searchStore.advancedSearch) {
+  // %3A=: %28=( %29=) %2C=, %22="
+  const defaultScopes = 'scope%3A%28hathi_pub%29%2Cscope%3A%28ndulawrestricted%29%2Cscope%3A%28dtlrestricted%29%2Cscope%3A%28NDU%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28ndu_digitool%29'
+  const partnerScopes = 'scope%3A%28NDU%29%2Cscope%3A%28BCI%29%2Cscope%3A%28HCC%29%2Cscope%3A%28SMC%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28%22MALC%22%29'
+
+  if (isAdvanced) {
     // Advanced Search
     const scope0 = advancedSearch['scope_0'] || 'any'
     const scope1 = advancedSearch['scope_1'] || 'any'
@@ -43,7 +41,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '00'
     const drEndMonth = advancedSearch['drEndMonth'] || '00'
     const drEndYear = advancedSearch['drEndYear5'] || '9999'
-    const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || 'scope:(hathi_pub),scope:(ndulawrestricted),scope:(dtlrestricted),scope:(NDU),scope:(NDLAW),scope:(ndu_digitool)'
+    const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
 
     searchTerm = `&vl%2816833817UI0%29=${scope0}` +
     `&vl%28UIStartWith0%29=${precision0}` +
@@ -72,24 +70,15 @@ const searchQuery = (searchStore, advancedSearch, history) => {
   } else {
     // Basic Search
     searchTerm = advancedSearch['basic-search-field'] || ''
+    searchTerm = '&vl%28freeText0%29=' + searchTerm + '&scp.scps=' + (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
   }
 
   switch (searchStore.searchType) {
     case ONESEARCH:
-      if (searchStore.advancedSearch) {
-        window.location = onesearchAdvancedURL(searchTerm)
-      } else {
-        searchTerm = 'any%2Ccontains%2C' + searchTerm
-        window.location = onesearchBasicURL(searchTerm)
-      }
+      window.location = onesearchUrl(searchTerm, isAdvanced, true)
       break
     case NDCATALOG:
-      if (searchStore.advancedSearch) {
-        window.location = ndcatalogAdvancedURL(searchTerm)
-      } else {
-        searchTerm = 'any%2Ccontains%2C' + searchTerm
-        window.location = ndcatalogBasicURL(searchTerm)
-      }
+      window.location = onesearchUrl(searchTerm, isAdvanced, false)
       break
     case CURATEND:
       window.location = curateBasicURL(searchTerm)
