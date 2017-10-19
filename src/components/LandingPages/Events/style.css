@@ -6,6 +6,19 @@
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   margin-right: 15px;
   max-width: 275px;
+.timeline {
+  background: #fff;
+  padding: 3px 6px;
+  box-shadow: 0px 0px 2px rgba(0,0,0,.3);
+  clear: both;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  grid-gap: 3em;
+  margin-bottom: 3em;
 }
 
 .date-as-calendar {
@@ -18,7 +31,32 @@
   /* It seems vertical-align: baseline does not work correctly with display: inline-flex. */
   vertical-align: top;
 
-  /* margin: 1ex; */
+
+
+}
+
+.events-listing .event-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 !important;
+}
+
+.events-listing .event-card-text {
+  order: 1;
+  padding: 10px 10px 0;
+  width: 100%;
+}
+
+.events-listing time {
+  order: 2;
+  padding: 0 10px ;
+}
+
+.events-listing .description {
+  order: 3;
+  padding: 0 10px ;
+}
 
   color: #999;
   background: white;
@@ -82,4 +120,16 @@
   order: 4;
   font-size: 0.87750em;
   padding: 3px 0;
+}
+
+.events-listing .cover {
+  width: 350px;
+}
+
+.event-card {
+  width: 350px;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .4);
+
+  clear: none;
 }

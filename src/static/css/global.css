@@ -2056,8 +2056,19 @@ address {
 
 .event-card-text {
   display: inline-block;
-  width: auto;
+  width: calc(100% - 110px)
 }
+
+.home .event-card .description {
+  display: none;
+}
+
+.event-link {
+  text-decoration: none;
+}
+
+
+
 .description, header {
   overflow: hidden;
 }
