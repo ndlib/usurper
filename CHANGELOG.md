@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2017.4](https://github.com/ndlib/usurper/tree/v2017.4)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.3...v2017.4)
+
+### New features/enhancements:
+- Updated the top nav to have a more standard useability model.  [#302](https://github.com/ndlib/usurper/pull/302)
+- Change link to aleph to https [#298](https://github.com/ndlib/usurper/pull/298)
+- Updated markdown table display [#300](https://github.com/ndlib/usurper/pull/300)
+- Added services landing page [#301](https://github.com/ndlib/usurper/pull/301)
+- Allow the search of partner libraries [#289](https://github.com/ndlib/usurper/pull/289)
+- Update the text of the hours from the hours api [Monarch Libguides](https://github.com/ndlib/monarch_libguides/releases/tag/v2017.2)
+
+### Bug Fixes
+- fixed mobel account button name if not logged in [#299](https://github.com/ndlib/usurper/pull/299)
+
+
 ## [v2017.3](https://github.com/ndlib/usurper/tree/v2017.3)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.2...v2017.3)
 
