@@ -4,7 +4,7 @@ import Link from '../../Link'
 
 const Menu = (props) => {
   return (
-    <div className='menu-drawer visible' >
+    <div className='menu-drawer visible' aria-expanded="true" id={props.id} role='group'>
       <div className='container-fluid row'>
         {props.children}
       </div>
@@ -25,6 +25,7 @@ Menu.propTypes = {
   ]),
   title: PropTypes.string.isRequired,
   landingPage: PropTypes.string,
+  id: PropTypes.string,
 }
 
 export default Menu

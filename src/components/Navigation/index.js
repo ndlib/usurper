@@ -7,7 +7,6 @@ import * as statuses from '../../constants/APIStatuses'
 import {
   openMenu,
   closeMenus,
-  ASK_MENU,
   USER_MENU,
   MOBILE_MENU,
 } from '../../actions/menu'
@@ -44,10 +43,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(openMenu(id))
       preventDefault(e)
     },
-    openAsk: (e) => {
-      dispatch(openMenu(ASK_MENU))
-      preventDefault(e)
-    },
     openUser: (e) => {
       dispatch(openMenu(USER_MENU))
       preventDefault(e)
@@ -71,11 +66,10 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     }
   }
 
-  // Treat menu dropdowns as links to landing pages for accessibiilty
   const keyDown = (e) => {
-    if (e.keyCode === 13) {
-      const id = e.target.firstChild.id
-      ownProps.history.push(`/${id}`)
+    // key = esc 
+    if (e.keyCode === 27) {
+      dispatchProps.closeMenus(e)
     }
   }
 
@@ -111,7 +105,6 @@ const mergeProps = (state, dispatchProps, ownProps) => {
   return {
     dropDowns: dropDowns,
     handleDrawer: handleDrawer,
-    handleAskClick: state.menus.menuId === ASK_MENU ? dispatchProps.closeMenus : dispatchProps.openAsk,
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleUserKeyDown: handleUserKeyDown,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
@@ -128,7 +121,6 @@ class NavigationContainer extends Component {
     if (!this.props.dropDowns) {
       return null
     }
-
     return (
       <Navigation {...this.props} />
     )
