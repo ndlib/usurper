@@ -16,9 +16,9 @@ const myAccountButton = (props) => {
           onKeyDown={props.handleUserKeyDown}
           tabIndex='0'
           aria-haspopup='true'
-          aria-owns={menu.id}
-          aria-controls={menu.id}
-          aria-expanded={state.menus.menuId === USER_MENU}
+          aria-owns='my-account-menu'
+          aria-controls='my-account-menu'
+          aria-expanded={props.menus.menuId === USER_MENU}
           className='m'>My Account</a>
         <Route component={UserMenu} />
       </li>

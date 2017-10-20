@@ -6,7 +6,7 @@ import Link from '../../Link'
 const UserMenu = (props) => {
   if (props.open) {
     return (
-      <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'}>
+      <div className={props.open ? 'menu-drawer visible' : 'menu-drawer'} id='my-account-menu'>
         <div className='container-fluid row'>
           <ul className='child'>
             <li><Link to='/items-requests'>Items &amp; Requests</Link></li>
