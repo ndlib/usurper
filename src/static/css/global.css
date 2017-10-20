@@ -2068,7 +2068,7 @@ address {
 
 .event-card-text {
   display: inline-block;
-  width: calc(100% - 110px)
+
 }
 
 .home .event-card .description {
