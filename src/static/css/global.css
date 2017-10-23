@@ -2578,7 +2578,7 @@ address {
     list-style: none;
   }
 
-  .menu-list li.menu-icon {
+  div.menu-icon {
     display: block;
     float: right;
     position: absolute;
@@ -2589,7 +2589,7 @@ address {
 
   }
 
-    .menu-list li.menu-icon > a {
+    div.menu-icon > a {
       color: #fff;
       font-size: 24px;
       line-height: 1em;
