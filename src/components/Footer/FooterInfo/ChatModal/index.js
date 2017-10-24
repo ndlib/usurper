@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import ChatModal from './presenter.js'
@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const onClick = (e, func) => {
     e.preventDefault()
-    if (ownProps.location.pathname === '/chat') {
+    if (ownProps.location.pathname === '/chat' || ownProps.location.pathname === '/chat/') {
       return
     }
 
@@ -55,8 +55,18 @@ const mergeProps = (state, dispatchProps, ownProps) => {
   }
 }
 
+export class ChatModalContainer extends Component {
+  render () {
+    console.log(this.props.location)
+    if (this.props.location.pathname === '/chat' || this.props.location.pathname === '/chat/') {
+      return null
+    }
+    return <ChatModal {...this.props} />
+  }
+}
+
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
-)(ChatModal))
+)(ChatModalContainer))
