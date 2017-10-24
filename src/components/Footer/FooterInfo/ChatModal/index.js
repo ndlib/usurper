@@ -57,7 +57,6 @@ const mergeProps = (state, dispatchProps, ownProps) => {
 
 export class ChatModalContainer extends Component {
   render () {
-    console.log(this.props.location)
     if (this.props.location.pathname === '/chat' || this.props.location.pathname === '/chat/') {
       return null
     }
