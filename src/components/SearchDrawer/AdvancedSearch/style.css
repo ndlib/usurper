@@ -16,6 +16,10 @@
 	position: relative;
 }
 
+.dateFieldSelector {
+  display: inline-block;
+}
+
 #advanced-search .selector:after {
     content:'▶';
     font:11px "Consolas", monospace;
@@ -74,4 +78,38 @@ select::-ms-expand {
 #search-type-title {
   color: white;
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 804px) {
+  #advanced-search {
+    grid-template-columns: 1fr;
+    -ms-grid-columns: 1fr;
+  }
+  .asleft {
+    -ms-grid-column:  1;
+    width: 100%;
+
+    -ms-grid-column-span: 1;
+  }
+
+  .asright {
+    -ms-grid-column:  1;
+  }
+
+  .asgo {
+    -ms-grid-row:  1;
+  }
+}
+
+
+#advanced-search fieldset, #advanced-search .dateFieldSelector, #materialType, #language, #scopesListAdvanced {
+  margin: 3px 0px;
+}
+
+#advanced-search select {
+  margin-right: 3px;
+}
+
+#advanced-search input {
+  margin-top: 3px;
 }
