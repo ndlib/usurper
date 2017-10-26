@@ -4,6 +4,8 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageTitle from '../../PageTitle'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
+import SideNavPresenter from './sideNavPresenter'
+
 import './style.css'
 
 const Sections = (column, showDescriptions) => {
@@ -11,9 +13,9 @@ const Sections = (column, showDescriptions) => {
     let s = entry.fields
     return (
       <div key={entry.sys.id} className='group'>
-        <h3><span>{s.title}</span></h3>
+        <h3><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h3>
         <div className='linksgroup'><LibMarkdown>{ s.body }</LibMarkdown>
-        {
+          {
           s.links.map((item) => {
             let link = item.fields.url ? item.fields.url : '/' + item.fields.slug
             return (
@@ -53,6 +55,7 @@ const ColumnContainerPresenter = (props) => {
           })
         }
       </div>
+      <SideNavPresenter columns={page.columns} />
     </div>
   )
 }
