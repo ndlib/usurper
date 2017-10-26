@@ -98,11 +98,22 @@
 	float: right;
 	width: calc(20% - 1em);
 	position: relative;
-	padding: 1em 1em 3em;
+	padding: 1em 1em;
 
 }
+
+.side-nav ul {
+	padding-left: 10px;
+	margin: 0;
+}
+
+.side-nav li {
+	margin-bottom: .4em;
+}
+
 a.side-anchors {
   text-decoration: none;
+  font-weight: bold;
 }
 
 ul a.side-anchors {
@@ -116,4 +127,11 @@ a.side-anchors::before {
   content: "›";
   position: absolute;
   margin-left: -15px;
+}
+
+@media screen and (max-width: 780px) {
+	.linksgroup {
+		-moz-column-count: 1;
+		column-count: 1;
+	}
 }
