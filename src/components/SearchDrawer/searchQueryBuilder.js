@@ -38,8 +38,8 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drStartDay = advancedSearch['drStartDay'] || '01'
     const drStartMonth = advancedSearch['drStartMonth'] || '01'
     let drStartYear = advancedSearch['drStartYear5']
-    const drEndDay = advancedSearch['drEndDay'] || '00'
-    const drEndMonth = advancedSearch['drEndMonth'] || '00'
+    const drEndDay = advancedSearch['drEndDay'] || '31'
+    const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
     const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
 
