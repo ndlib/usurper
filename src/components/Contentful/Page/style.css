@@ -105,12 +105,16 @@ a.side-anchors {
   text-decoration: none;
 }
 
+.side-nav ul {
+  -webkit-padding-start: 15px;
+}
 ul a.side-anchors {
   list-style: none;
 }
 
 a.side-anchors li {
   color: #935f1e;
+  padding-bottom: .2em
 }
 a.side-anchors::before {
   content: "›";
