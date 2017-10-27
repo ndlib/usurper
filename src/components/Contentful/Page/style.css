@@ -100,14 +100,14 @@
 
 @media screen and (min-width: 1200px) {
   .side-nav {
-    transform: translateX(calc(1200px - 232px));
+    transform: translateX(calc(1200px - 262px));
     width: 232px;
   }
 }
 
 @media screen and (min-width: 621px) and (max-width: 1199px) {
   .side-nav {
-    transform: translateX(80vw);
+    transform: translateX(calc(80vw - 1em));
     width: calc(20vw - 1em);
   }
 }
