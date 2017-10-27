@@ -2536,6 +2536,26 @@ address {
             transform: scale(1); } }
 
 @media screen and (max-width:1570px) {
+  
+
+  label[for="q"]::after {
+    top: 10px;
+  }
+
+ 
+  #maincontent {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .appliance, .home .appliance {
+    left: 0 !important;
+  }
+}
+
+@media screen and (max-width: 885px) {
   .appliance, .home .appliance {
     left: 0 !important;
   }
@@ -2552,22 +2572,10 @@ address {
     width: 100%;
     cursor: pointer;
   }
-
-  label[for="q"]::after {
-    top: 10px;
-  }
-
-  #drawer, .home #drawer {
+   #drawer, .home #drawer {
     height: auto;
     min-height: auto;
   }
-  #maincontent {
-    padding: 0 1rem;
-  }
-}
-
-@media screen and (max-width: 885px) {
-
 }
 
 
@@ -2844,6 +2852,7 @@ body {
     width: 1em;
     overflow: hidden;
 }
+
 
 @media screen and (max-width: 620px) {
   label[for="q"]::after, .uSearchBox label::after {
