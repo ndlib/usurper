@@ -29,8 +29,8 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const precision1 = advancedSearch['precisionOperator_1'] || 'contains'
     const precision2 = advancedSearch['precisionOperator_2'] || 'contains'
     const freeText0 = advancedSearch['freeText_0'] || ''
-    const freeText1 = advancedSearch['freeText_1'] || ''
-    const freeText2 = advancedSearch['freeText_2'] || ''
+    let freeText1 = advancedSearch['freeText_1'] || ''
+    let freeText2 = advancedSearch['freeText_2'] || ''
     const bool0 = advancedSearch['bool_0'] || 'AND'
     const bool1 = advancedSearch['bool_1'] || 'AND'
     const materialType = advancedSearch['materialType'] || 'all_items'
@@ -42,6 +42,14 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
     const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
+
+    if (drStartYear || drEndYear) {
+      if (!freeText1) {
+        freeText1 = '\''
+      } else if (!freeText2) {
+        freeText2 = '\''
+      }
+    }
 
     searchTerm = `&vl%2816833817UI0%29=${scope0}` +
     `&vl%28UIStartWith0%29=${precision0}` +
