@@ -35,12 +35,12 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const bool1 = advancedSearch['bool_1'] || 'AND'
     const materialType = advancedSearch['materialType'] || 'all_items'
     const language = advancedSearch['language'] || 'all_items'
-    const drStartDay = advancedSearch['drStartDay'] || '00'
-    const drStartMonth = advancedSearch['drStartMonth'] || '00'
-    const drStartYear = advancedSearch['drStartYear5'] || '1900'
-    const drEndDay = advancedSearch['drEndDay'] || '00'
-    const drEndMonth = advancedSearch['drEndMonth'] || '00'
-    const drEndYear = advancedSearch['drEndYear5'] || '9999'
+    const drStartDay = advancedSearch['drStartDay'] || '01'
+    const drStartMonth = advancedSearch['drStartMonth'] || '01'
+    let drStartYear = advancedSearch['drStartYear5']
+    const drEndDay = advancedSearch['drEndDay'] || '31'
+    const drEndMonth = advancedSearch['drEndMonth'] || '12'
+    let drEndYear = advancedSearch['drEndYear5']
     const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
 
     searchTerm = `&vl%2816833817UI0%29=${scope0}` +
@@ -54,15 +54,30 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     `&vl%2816833819UI2%29=${scope2}` +
     `&vl%281UIStartWith2%29=${precision2}` +
     `&vl%28freeText2%29=${freeText2}` +
-    `&vl%28boolOperator2%29=AND` +
     `&vl%2816772486UI3%29=${materialType}` +
-    `&vl%2824400451UI4%29=${language}` +
-    `&vl%28drStartDay5%29=${drStartDay}` +
-    `&vl%28drStartMonth5%29=${drStartMonth}` +
-    `&vl%28drStartYear5%29=${drStartYear}` +
-    `&vl%28drEndDay5%29=${drEndDay}` +
-    `&vl%28drEndMonth5%29=${drEndMonth}` +
-    `&vl%28drEndYear5%29=${drEndYear}`
+    `&vl%2824400451UI4%29=${language}`
+
+    // Check if we have a valid date range, otherwise Primo returns an error
+    if (drStartYear) {
+      // If no end year then use this year
+      drEndYear = drEndYear || (new Date()).getFullYear()
+      searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
+                `&vl%28drStartMonth5%29=${drStartMonth}` +
+                `&vl%28drStartYear5%29=${drStartYear}` +
+                `&vl%28drEndDay5%29=${drEndDay}` +
+                `&vl%28drEndMonth5%29=${drEndMonth}` +
+                `&vl%28drEndYear5%29=${drEndYear}`
+    } else if (drEndYear) {
+      // If no start year then start 100 years before end year.
+      drStartYear = drStartYear || parseInt(drEndYear) - 100
+      searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
+                `&vl%28drStartMonth5%29=${drStartMonth}` +
+                `&vl%28drStartYear5%29=${drStartYear}` +
+                `&vl%28drEndDay5%29=${drEndDay}` +
+                `&vl%28drEndMonth5%29=${drEndMonth}` +
+                `&vl%28drEndYear5%29=${drEndYear}`
+    }
+
     if (searchStore.searchType === NDCATALOG) {
       searchTerm += `&scp.scps=${scopesListAdvanced}`
     }
