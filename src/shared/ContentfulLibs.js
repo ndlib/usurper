@@ -8,6 +8,9 @@
 //   { title: 'English title' }
 export const flattenLocale = (fields, locale) => {
   Object.keys(fields).forEach(fieldKey => {
+    if (!fields[fieldKey]) {
+      return
+    }
     let localizedField = fields[fieldKey][locale]
     if (localizedField !== null && localizedField !== undefined) {
       fields[fieldKey] = localizedField
