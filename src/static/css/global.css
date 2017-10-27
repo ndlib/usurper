@@ -641,12 +641,14 @@ button a {
 }
 
 .button.callout {
-  background-color: #f8e999;
-  color: #041f44;
+  background-color: #7A751A;
+  color: #fff;
   display: inline-block;
   width: 100%;
   text-align: center;
   margin-bottom: 2.5em;
+  font-size: 14px !important;
+
 }
 
 
@@ -1406,6 +1408,10 @@ hr {
 .filter {
   padding: 10px;
 }
+.filter input {
+  margin-left: 5px;
+  padding: 5px;
+}
 .filter .renew {
   float: right;
 }
@@ -1429,6 +1435,15 @@ hr {
   justify-content: left;
   font-size: 16px;
 
+}
+
+.card-item > a {
+  padding: 4px;
+  background-position: 4px 10px;
+}
+
+.card-item > a.sort-none {
+  background-position: 4px 7px;
 }
 
 .card-item button {
@@ -2174,6 +2189,15 @@ address {
     max-width: 75ch;
     width: 100%;
   }
+  @media screen and (max-width: 780px) {
+    .p-resources, .p-guides, .p-services {
+      display: block !important;
+
+    }
+    .p-services li {
+      width: 100% !important;
+    }
+  }
 }
 
 .p-resources li {
@@ -2237,7 +2261,7 @@ address {
 
 /* Footer */
 #footer-links {
-  background: #999;
+  background: #595959;
   color: #fff;
   padding: 15px 0;
   clear: both;
@@ -2536,6 +2560,9 @@ address {
   #drawer, .home #drawer {
     height: auto;
     min-height: auto;
+  }
+  #maincontent {
+    padding: 0 1rem;
   }
 }
 
