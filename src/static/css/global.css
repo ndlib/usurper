@@ -349,26 +349,17 @@ a {
   margin: 0 auto;
 }
 
-#header h3 {
-  float: left;
-}
-
-#header h3 i,
-#header h2 i {
+#header div i {
   text-transform: none;
   font-weight: normal;
 }
 
-#header h3 img {
+#header div img {
   display: none;
 }
 
-#header h2 {
-  float: right;
-}
 
-#header h3,
-#header h2 {
+#header div {
   margin: 18px 0 15px;
   padding: 0;
   font-size: 15px;
@@ -378,8 +369,7 @@ a {
   font-family: "Adobe Garamond Pro", Garamond, Georgia, Times, "Times New Roman", serif;
 }
 
-#header h3 a,
-#header h2 a {
+#header div a {
   margin: 0;
   border: none;
   color: #fff;
@@ -387,29 +377,24 @@ a {
   text-decoration: none;
 }
 
-body.gold-gray #header h3 a,
-body.gold-gray #header h2 a {
+body.gold-gray #header div a {
   color: #002b5c;
 }
 
-body.gold-blue #header h3 a,
-body.gold-blue #header h2 a {
+body.gold-blue #header div a {
   color: #002b5c;
 }
 
-#header h3 a:hover,
-#header h2 a:hover {
+#header div a:hover {
   color: #f6efd2;
 }
 
 /* over-ride for graphic type */
-#header.gtype h3,
-#header.gtype h2 {
+#header.gtype div{
   margin: 0;
 }
 
-#header.gtype h3 a,
-#header.gtype h2 a {
+#header.gtype div a {
   display: block;
   height: 50px;
   text-indent: -9999px;
@@ -419,16 +404,19 @@ body.gold-blue #header h2 a {
   background-repeat: no-repeat;
 }
 
-#header.gtype h3 a {
+#header.gtype div a {
   float: left;
 }
 
-#header.gtype h2 a {
+#header.gtype div a {
   float: right;
 }
 
+.nddotedu {
+  position: absolute;
+}
 .nddotedu a {
-  width: 310px;
+  width: 310px !important;
 }
 
 .blue .nddotedu a {
@@ -653,12 +641,14 @@ button a {
 }
 
 .button.callout {
-  background-color: #f8e999;
-  color: #041f44;
+  background-color: #7A751A;
+  color: #fff;
   display: inline-block;
   width: 100%;
   text-align: center;
   margin-bottom: 2.5em;
+  font-size: 14px !important;
+
 }
 
 
@@ -1418,6 +1408,10 @@ hr {
 .filter {
   padding: 10px;
 }
+.filter input {
+  margin-left: 5px;
+  padding: 5px;
+}
 .filter .renew {
   float: right;
 }
@@ -1441,6 +1435,15 @@ hr {
   justify-content: left;
   font-size: 16px;
 
+}
+
+.card-item > a {
+  padding: 4px;
+  background-position: 4px 10px;
+}
+
+.card-item > a.sort-none {
+  background-position: 4px 7px;
 }
 
 .card-item button {
@@ -2186,6 +2189,15 @@ address {
     max-width: 75ch;
     width: 100%;
   }
+  @media screen and (max-width: 780px) {
+    .p-resources, .p-guides, .p-services {
+      display: block !important;
+
+    }
+    .p-services li {
+      width: 100% !important;
+    }
+  }
 }
 
 .p-resources li {
@@ -2249,7 +2261,7 @@ address {
 
 /* Footer */
 #footer-links {
-  background: #999;
+  background: #595959;
   color: #fff;
   padding: 15px 0;
   clear: both;
@@ -2549,6 +2561,9 @@ address {
     height: auto;
     min-height: auto;
   }
+  #maincontent {
+    padding: 0 1rem;
+  }
 }
 
 @media screen and (max-width: 885px) {
@@ -2557,7 +2572,10 @@ address {
 
 
 @media screen and (max-width: 780px) {
-
+  .nddotedu {
+    position: relative;
+    width: 310px !important;
+  }
   .col-md-4.right > .frame {
     top: 0;
     margin-bottom: 1em;

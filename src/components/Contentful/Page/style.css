@@ -89,7 +89,6 @@
                break-inside: avoid;
 }
 
-
 .side-nav {
 	background: #fff;
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
@@ -98,6 +97,7 @@
 	position: fixed;
 	padding: 1em 1em 3em;
 }
+
 @media screen and (min-width: 1200px) {
   .side-nav {
     transform: translateX(calc(1200px - 232px));
@@ -120,10 +120,18 @@
   .side-nav {
     display: none;
   }
+.side-nav ul {
+	padding-left: 10px;
+	margin: 0;
+}
+
+.side-nav li {
+	margin-bottom: .4em;
 }
 
 a.side-anchors {
   text-decoration: none;
+  font-weight: bold;
 }
 
 .side-nav ul {
@@ -141,4 +149,11 @@ a.side-anchors::before {
   content: "›";
   position: absolute;
   margin-left: -15px;
+}
+
+@media screen and (max-width: 780px) {
+	.linksgroup {
+		-moz-column-count: 1;
+		column-count: 1;
+	}
 }
