@@ -29,8 +29,8 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const precision1 = advancedSearch['precisionOperator_1'] || 'contains'
     const precision2 = advancedSearch['precisionOperator_2'] || 'contains'
     const freeText0 = advancedSearch['freeText_0'] || ''
-    const freeText1 = advancedSearch['freeText_1'] || ''
-    const freeText2 = advancedSearch['freeText_2'] || ''
+    let freeText1 = advancedSearch['freeText_1'] || ''
+    let freeText2 = advancedSearch['freeText_2'] || ''
     const bool0 = advancedSearch['bool_0'] || 'AND'
     const bool1 = advancedSearch['bool_1'] || 'AND'
     const materialType = advancedSearch['materialType'] || 'all_items'
@@ -42,6 +42,15 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
     const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
+
+    // Hack to fix weird date insertion on Primo's end of stuff.
+    if (drStartYear || drEndYear) {
+      if (!freeText1) {
+        freeText1 = '\''
+      } else if (!freeText2) {
+        freeText2 = '\''
+      }
+    }
 
     searchTerm = `&vl%2816833817UI0%29=${scope0}` +
     `&vl%28UIStartWith0%29=${precision0}` +
@@ -60,7 +69,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     // Check if we have a valid date range, otherwise Primo returns an error
     if (drStartYear) {
       // If no end year then use this year
-      drEndYear = drEndYear || (new Date()).getFullYear()
+      drEndYear = drEndYear || '9999'
       searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
                 `&vl%28drStartMonth5%29=${drStartMonth}` +
                 `&vl%28drStartYear5%29=${drStartYear}` +
@@ -69,7 +78,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
                 `&vl%28drEndYear5%29=${drEndYear}`
     } else if (drEndYear) {
       // If no start year then start 100 years before end year.
-      drStartYear = drStartYear || parseInt(drEndYear) - 100
+      drStartYear = drStartYear || '0000'
       searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
                 `&vl%28drStartMonth5%29=${drStartMonth}` +
                 `&vl%28drStartYear5%29=${drStartYear}` +
