@@ -120,6 +120,8 @@
   .side-nav {
     display: none;
   }
+}
+
 .side-nav ul {
 	padding-left: 10px;
 	margin: 0;
