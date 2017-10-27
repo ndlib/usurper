@@ -43,6 +43,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     let drEndYear = advancedSearch['drEndYear5']
     const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
 
+    // Hack to fix weird date insertion on Primo's end of stuff.
     if (drStartYear || drEndYear) {
       if (!freeText1) {
         freeText1 = '\''
