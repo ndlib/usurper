@@ -60,7 +60,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     // Check if we have a valid date range, otherwise Primo returns an error
     if (drStartYear) {
       // If no end year then use this year
-      drEndYear = drEndYear || (new Date()).getFullYear()
+      drEndYear = drEndYear || '9999'
       searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
                 `&vl%28drStartMonth5%29=${drStartMonth}` +
                 `&vl%28drStartYear5%29=${drStartYear}` +
@@ -69,7 +69,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
                 `&vl%28drEndYear5%29=${drEndYear}`
     } else if (drEndYear) {
       // If no start year then start 100 years before end year.
-      drStartYear = drStartYear || parseInt(drEndYear) - 100
+      drStartYear = drStartYear || '0000'
       searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
                 `&vl%28drStartMonth5%29=${drStartMonth}` +
                 `&vl%28drStartYear5%29=${drStartYear}` +
