@@ -4,14 +4,11 @@ import PropTypes from 'prop-types'
 import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
-import Image from '../../Image'
-import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import PageLink from '../PageLink'
 import ServicePoint from '../ServicePoint'
 import PageAlert from '../Alert/Page'
-
+import ContactPoint from '../ContactPoint/'
 const PagePresenter = ({ cfPageEntry }) => (
   <div className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
@@ -22,10 +19,12 @@ const PagePresenter = ({ cfPageEntry }) => (
         <PageAlert alert={cfPageEntry.fields.alert} />
         <div className='sp-hidden'><ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} /></div>
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
-
+        <div className='mobile-only'>
+          <ContactPoint cfPageEntry={cfPageEntry} mobile />
+        </div>
         <Related
           className='p-resources'
-          title={ cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources' }
+          title={cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources'}
           showImages={false}
         >
           { cfPageEntry.fields.relatedResources }
@@ -61,23 +60,8 @@ const PagePresenter = ({ cfPageEntry }) => (
           })
         }
       </section>
-      <section className='col-md-4 col-sm-5 col-xs-12 right'>
-        <Image cfImage={cfPageEntry.fields.image} className='cover' />
-        <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
-        <Librarians netids={cfPageEntry.fields.contactPeople} />
-        {
-          cfPageEntry.fields.servicePoints && cfPageEntry.fields.servicePoints.map((point, index) => {
-            return <ServicePoint cfServicePoint={point} key={index + '_point'} />
-          })
-        }
-        <Related
-          className='p-pages'
-          title='Related Pages'
-          showImages={false}
-        >
-          { cfPageEntry.fields.relatedPages }
-        </Related>
-      </section>
+      <ContactPoint cfPageEntry={cfPageEntry} mobile={false} />
+
     </div>
   </div>
 )

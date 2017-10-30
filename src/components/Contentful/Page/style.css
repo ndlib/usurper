@@ -153,9 +153,21 @@ a.side-anchors::before {
   margin-left: -15px;
 }
 
+.mobile-only {
+  display: none;
+}
+.desktop-only {
+  display: block;
+}
 @media screen and (max-width: 780px) {
 	.linksgroup {
 		-moz-column-count: 1;
 		column-count: 1;
 	}
+  .mobile-only {
+    display: block;
+  }
+  .desktop-only {
+    display: none;
+  }
 }
