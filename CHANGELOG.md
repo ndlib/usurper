@@ -15,7 +15,10 @@
 ### Bug Fixes
 - Fix for the left margin being lost on less than 960px /writing-center [#308](https://github.com/ndlib/usurper/pull/308)
 - Fix the dates in the advanced search [#318](https://github.com/ndlib/usurper/pull/318)
-
+- Rearrange order of items on pathfinder pages
+ [#320](https://github.com/ndlib/usurper/pull/320)
+- Fix mobile display in header
+ [#321](https://github.com/ndlib/usurper/pull/321)
 ## [v2017.4](https://github.com/ndlib/usurper/tree/v2017.4)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.3...v2017.4)
 
