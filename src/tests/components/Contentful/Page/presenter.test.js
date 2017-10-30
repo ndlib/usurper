@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
-import Image from '../../../../components/Image'
+import ContactPoint from '../../../../components/Contentful/ContactPoint'
 
 const setup = (cfPageEntry) => {
   return shallow(<PagePresenter cfPageEntry={cfPageEntry} />)
@@ -39,10 +39,6 @@ describe('components/Contentful/Page/presenter', () => {
     expect(enzymeWrapper.find('LibMarkdown').children().node).toBe('Fake content')
   })
 
-  it('should render Image for image', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Image cfImage={'Fake image'} />)).toBe(true)
-  })
-
   it('should render Related for related resources', () => {
     expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related resources')).toBe(true)
   })
@@ -53,5 +49,9 @@ describe('components/Contentful/Page/presenter', () => {
 
   it('should render Related for libguides', () => {
     expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related libguides')).toBe(true)
+  })
+
+  it('should render ContactPoint twice', () => {
+    expect(enzymeWrapper.find('ContactPoint').length).toBe(2)
   })
 })
