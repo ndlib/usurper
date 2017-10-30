@@ -97,22 +97,27 @@
 	position: fixed;
 	padding: 1em 1em 3em;
 }
-
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 157px) {
+  .side-nav {
+    transform: translateX(calc(1200px - 232px));
+    width: 232px;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1570px) {
   .side-nav {
     transform: translateX(calc(1200px - 262px));
     width: 232px;
   }
 }
 
-@media screen and (min-width: 621px) and (max-width: 1199px) {
+@media screen and (min-width: 981px) and (max-width: 1199px) {
   .side-nav {
     transform: translateX(calc(80vw - 1em));
     width: calc(20vw - 1em);
   }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 980px) {
   .row.landing {
     width: 100%;
   }
