@@ -35,11 +35,6 @@ const Sections = (column, showDescriptions) => {
 const ColumnContainerPresenter = (props) => {
   let page = props.cfPageEntry.fields
 
-  let classes = 'col-md-6 col-xs-12'
-  if (page.columns.length > 2) {
-    classes = 'col-md-12 col-xs-12'
-  }
-
   return (
     <div className='content'>
       <SearchProgramaticSet open={false} />
@@ -48,7 +43,7 @@ const ColumnContainerPresenter = (props) => {
         {
           page.columns.map((column, index) => {
             return (
-              <div className={classes} key={'column_' + index}>
+              <div className='col-md-12 col-xs-12' key={'column_' + index}>
                 { Sections(column, page.showDescriptions) }
               </div>
             )
