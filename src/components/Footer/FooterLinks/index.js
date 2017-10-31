@@ -19,7 +19,7 @@ const FooterLinks = () => {
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
                 <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
-                <li><Link to='https://library.nd.edu/government-documents' title='Federal Depository Library'><img src={Gov} className='gov' alt='gov' /></Link></li>
+                <li><Link to='https://library.nd.edu/government-documents'><img src={Gov} className='gov' alt='Federal Depository Library' /></Link></li>
               </ul>
             </div>
           </div>
