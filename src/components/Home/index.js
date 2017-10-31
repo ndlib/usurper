@@ -21,7 +21,8 @@ class Home extends Component {
         <SearchProgramaticSet open />
         <HomePageHours />
 
-        <section className=' services hservices' aria-label='Quicklinks'>
+        <h2 className='skiplink'>Quicklinks</h2>
+        <section className=' services hservices' aria-label='Quicklinks' role='navigation'>
           <div className='-col-sm-3 -col-xs-6 one'>
             <Link to='/items-requests' title='My Account'><img src={Account} alt='My Account. ' aria-hidden /></Link>
           </div>

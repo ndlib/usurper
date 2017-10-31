@@ -61,7 +61,7 @@ const Navigation = (props) => {
 
   return (
     <div className='uNavigation'>
-      <nav className='container-fluid' role='navigation' aria-label='Main Navigation'>
+      <nav className='container-fluid' role='navigation' aria-label='Main'>
         <ul className='menu-list'>
           <li className='menu-link'><Link to='/'>Home</Link></li>
           {dropDowns}

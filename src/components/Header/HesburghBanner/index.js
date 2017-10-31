@@ -6,12 +6,8 @@ import Link from '../../Link'
 class HomeHesburghBanner extends Component {
   render () {
     return (
-      <div>
-        <header id='banner' title='Website Home'>
-          <div className='container-fluid'>
-            <Link to='/' title='Hesburgh Library Home' className='hlhome'>Hesburgh <em>Libraries</em></Link>
-          </div>
-        </header>
+      <div className='container-fluid'>
+        <h1><Link to='/' title='Hesburgh Library Home' className='hlhome'>Hesburgh <em>Libraries</em></Link></h1>
       </div>
     )
   }

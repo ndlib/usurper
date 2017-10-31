@@ -3,10 +3,10 @@ import FooterLinks from './FooterLinks'
 import FooterInfo from './FooterInfo'
 const Footer = () => {
   return (
-    <div>
+    <footer>
       <FooterLinks />
       <FooterInfo />
-    </div>
+    </footer>
   )
 }
 

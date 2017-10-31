@@ -15,10 +15,12 @@ const PagePresenter = ({ cfPageEntry }) => (
 
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
-      <section className='col-md-8 col-sm-7'>
+      <div className='col-md-8 col-sm-7' aria-describedby="main-page-title">
         <PageAlert alert={cfPageEntry.fields.alert} />
         <div className='sp-hidden'><ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} /></div>
-        <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
+        <article aria-describedby="main-page-title">
+          <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
+        </article>
         <div className='mobile-only'>
           <ContactPoint cfPageEntry={cfPageEntry} mobile />
         </div>
@@ -59,7 +61,7 @@ const PagePresenter = ({ cfPageEntry }) => (
             )
           })
         }
-      </section>
+      </div>
       <ContactPoint cfPageEntry={cfPageEntry} mobile={false} />
 
     </div>

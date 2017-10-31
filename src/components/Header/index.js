@@ -13,15 +13,17 @@ import '../../static/css/global.css'
 const Header = (props) => {
   return (
     <div className='top'>
-      <Route exact path='/preview/*' component={PreviewBanner} />
-      <Route exact path='/' component={BrandingBanner} />
-      <HesburghBanner />
-      <FeedbackButton />
-      <GlobalAlert />
-      <div className='nav-search'>
-        <Navigation {...props} />
-        <SearchDrawer {...props} />
-      </div>
+      <header id='banner'>
+        <Route exact path='/preview/*' component={PreviewBanner} />
+        <Route exact path='/' component={BrandingBanner} />
+        <HesburghBanner />
+        <FeedbackButton />
+        <GlobalAlert />
+        <div className='nav-search'>
+          <Navigation {...props} />
+          <SearchDrawer {...props} />
+        </div>
+      </header>
     </div>
   )
 }

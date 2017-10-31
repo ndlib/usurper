@@ -115,9 +115,22 @@ a {
 }
 
 
-#skiplink {
-  display: none;
+.skiplink {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
 }
+
+.skiplink:focus 
+{
+position:static;
+width:auto;
+height:auto;
+}
+
 
 .container-fluid {
   max-width: 1200px;
@@ -2536,13 +2549,13 @@ address {
             transform: scale(1); } }
 
 @media screen and (max-width:1570px) {
-  
+
 
   label[for="q"]::after {
     top: 10px;
   }
 
- 
+
   #maincontent {
     padding-left: 1rem;
     padding-right: 1rem;
