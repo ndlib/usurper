@@ -6,6 +6,7 @@
 
 #maincontent {
   min-height: 80vh;
+  clear: both;
 }
 
 
@@ -75,7 +76,7 @@ p, li {
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
 }
 
-.hours-display p {
+.hours-display h2 {
   max-width: 100%;
   margin: 0;
   line-height: 1em;
@@ -333,8 +334,6 @@ height:auto;
 .top {
 
   width: 100%;
-  top: 0;
-  z-index: 200;
 }
 
 .nav-search {
@@ -515,15 +514,21 @@ body.gold-blue #header h4 a {
   text-shadow: 0 0 1px #000;
 }
 
-#banner {
+.fade {
   clear: both;
-  background: #082142 url('../images/fade.png') top repeat-x;
+  background: #082142 url('../images/fade.png') 0 0 repeat-x;
   height: 70px;
 }
-#banner .container-fluid {
+
+.home .fade {
+  clear: both;
+  background: #082142 url('../images/fade.png') 0 0px repeat-x;
+  height: 100px;
+}
+
+#banner .jesus {
   background-position: top right;
   background-repeat: no-repeat;
-  height: 100px;
 }
 
 .hlhome {
@@ -570,7 +575,7 @@ body.gold-blue #header h4 a {
   padding:16px 0 16px !important;
   transition-duration: .5s, .5s;
 }*/
-.hours-display p {
+.hours-display h2 {
   text-align: center;
   font-size: 20px;
   color: #333;
@@ -616,7 +621,7 @@ body.gold-blue #header h4 a {
   padding:9px 11px !important;
 }
 
-#banner .logout {
+/*#banner .logout {
   position: absolute;
   top: 14px;
   top:  -54px;
@@ -628,7 +633,7 @@ body.gold-blue #header h4 a {
   overflow: hidden;
   background: url('../images/logout.png');
   z-index: 500;
-}
+}*/
 
 /*BUTTON*/
 
@@ -1003,6 +1008,7 @@ label[for='q']:after, .dropdown label:after {
   left: calc((100vw - 1200px) / 2);
   top: 3vw;
   width: 60vw;
+  margin-top: -2px;
 }
 
 /* sub-page Search */
@@ -1022,7 +1028,7 @@ label[for='q']:after, .dropdown label:after {
 /* home-page search */
 
 .home #banner {
-  height: 100px;
+  height: auto;
 }
 
 .home .hlhome {
@@ -2097,7 +2103,7 @@ address {
 
 
 
-.description, header {
+.description {
   overflow: hidden;
 }
 
@@ -2723,8 +2729,8 @@ address {
   .p-services li {
     width: 45%;
   }
-  #banner .container-fluid {
-    background-size: cover !important;
+  #banner .jesus {
+
   }
 }
 
@@ -2854,7 +2860,7 @@ body {
   background: #fff url('../images/glass.gif') ;
   }
 
-#banner .container-fluid {
+#banner .jesus {
   background-image: url('../images/jesus.2.png');
   background-size: contain;
   background-position: right top;
@@ -2931,7 +2937,7 @@ body {
     display: none;
   }
 
-  #banner .container-fluid {
+  #banner .jesus {
     background-position: right 0px top;
   }
   .col-md-4.right > .frame {
