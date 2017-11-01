@@ -19,6 +19,10 @@
  [#320](https://github.com/ndlib/usurper/pull/320)
 - Fix mobile display in header
  [#321](https://github.com/ndlib/usurper/pull/321)
+- Fix issue with the columing on landing pages 
+ [#323](https://github.com/ndlib/usurper/pull/323)
+ 
+ 
 ## [v2017.4](https://github.com/ndlib/usurper/tree/v2017.4)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.3...v2017.4)
 
