@@ -8,6 +8,37 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
+const makeLocalTimezone = (stringDate) => {
+  // local timezone offset string (eg -04:00)
+  const givenTz = stringDate.slice(-6)
+
+  // local timezone offset in minutes (eg 240)
+  const localOffset = new Date().getTimezoneOffset()
+  const localNeg = localOffset > 0 ? '-' : '+'
+  // 240 / 60 = 4
+  const hour = '' + Math.floor(Math.abs(localOffset / 60))
+  // if we're in a zone with minute offsets
+  const minute = '' + Math.abs(localOffset % 60)
+  // combine above strings into the same fomrat as "givenTz"
+  let stringLocalTz = `${localNeg}${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`
+
+  // use our local timezone string for this information instead of the given one
+  stringDate = stringDate.replace(givenTz, stringLocalTz)
+
+  let ret = new Date(stringDate)
+  // if the given date doesn't have the same tz, we need to offset to negate the Date functionality
+  if (givenTz !== stringLocalTz) {
+    // in minutes
+    let offset = localOffset - ret.getTimezoneOffset()
+    // to milliseconds
+    offset = offset * 60 * 1000
+
+    ret = new Date(ret.getTime() - offset)
+  }
+
+  return ret
+}
+
 const isSameDay = (start, end) => {
   return start.getMonth() === end.getMonth() &&
          start.getDay() === end.getDay() &&
@@ -58,7 +89,8 @@ export const mapEvents = (json) => {
     // flatten locales to just 'en-us' and convert strings to datetime type
     flattenLocale(entry.fields, 'en-US')
 
-    let end = entry.fields.endDate ? new Date(entry.fields.endDate) : new Date(entry.fields.startDate)
+    let start = makeLocalTimezone(entry.fields.startDate)
+    let end = entry.fields.endDate ? makeLocalTimezone(entry.fields.endDate) : makeLocalTimezone(entry.fields.startDate)
     // if end time is 0:00, add 23:59
     if (end.getHours() === 0 && end.getMinutes() === 0) {
       end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
@@ -66,7 +98,7 @@ export const mapEvents = (json) => {
 
     return {
       ...entry.fields,
-      startDate: new Date(entry.fields.startDate),
+      startDate: start,
       endDate: end,
     }
   })
