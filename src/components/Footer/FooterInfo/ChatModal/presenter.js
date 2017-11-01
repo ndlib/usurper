@@ -23,7 +23,7 @@ const ChatModal = (props) => {
         aria-owns='chat-modal'
         aria-expanded={props.chatOpen}
       >{buttonMessage}</a>
-      <div id='chat-modal' className={props.chatOpen ? 'chat-open' : 'hidden'}><Chat /></div>
+      <div id='chat-modal' role='tabpanel' className={props.chatOpen ? 'chat-open' : 'hidden'}><Chat /></div>
     </div>
   )
 }

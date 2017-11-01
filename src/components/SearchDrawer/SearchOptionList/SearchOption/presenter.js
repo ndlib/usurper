@@ -10,6 +10,7 @@ const SearchOption = (props) => {
       onClick={props.onClick}
       onKeyDown={props.onKeyDown}
       tabIndex='0'
+      role='option'
       value={props.index}>
       <p>{props.item.title}</p>
       <small>{props.item.description}</small>

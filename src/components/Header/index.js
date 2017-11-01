@@ -19,10 +19,10 @@ const Header = (props) => {
         <HesburghBanner />
         <FeedbackButton />
         <GlobalAlert />
-        <div className='nav-search'>
+        <hgroup className='nav-search'>
           <Navigation {...props} />
           <SearchDrawer {...props} />
-        </div>
+        </hgroup>
       </header>
     </div>
   )

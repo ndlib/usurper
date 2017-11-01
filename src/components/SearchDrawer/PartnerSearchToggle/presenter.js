@@ -4,11 +4,11 @@ import searchOptions, { NDCATALOG } from '../searchOptions'
 
 const PartnerSearchToggle = (props) => {
   if (props.currentSearch.uid === NDCATALOG) {
-    return (<span className='searchPartners'>Search Partner Libraries<input
+    return (<label className='searchPartners'>Search Partner Libraries<input
       type='checkbox'
       id='searchPartners'
       onChange={props.onChange}
-    /></span>)
+    /></label>)
   }
   return null
 }

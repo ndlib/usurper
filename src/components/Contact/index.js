@@ -53,21 +53,21 @@ const Contact = (props) => {
   let address
   if (addr1 || addr2) {
     address = (
-      <address itemScope itemType='http://schema.org/PostalAddress' itemProp='address'>
+      <div itemScope itemType='http://schema.org/PostalAddress' itemProp='address'>
         {addr1}
         {addr2}
-      </address>
+      </div>
     )
   }
 
   return (
-    <div className='contact' itemScope itemType='http://schema.org/Person'>
+    <address className='contact' aria-label={'Contact ' + props.name.trim()} itemScope itemType='http://schema.org/Person'>
       {name}
       {title}
       {phone}
       {email}
       {address}
-    </div>
+    </address>
   )
 }
 

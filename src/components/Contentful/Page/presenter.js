@@ -11,8 +11,9 @@ import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
 const PagePresenter = ({ cfPageEntry }) => (
   <article aria-describedby="main-page-title" className='container-fluid content-area'>
-    <PageTitle title={cfPageEntry.fields.title} />
-
+    <header>
+      <PageTitle title={cfPageEntry.fields.title} />
+    </header>
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
       <main className='col-md-8 col-sm-7'>

@@ -34,7 +34,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
           </div>
         </h4>
       </a>
-      <div className='row hours-listing' id={hoursEntry.servicePoint.slug} aria-hidden={false}>
+      <div className='row hours-listing' role='tabpanel' id={hoursEntry.servicePoint.slug} aria-hidden={false}>
         <div className='col-md-6'>
           <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
           <WeeklyHours hours={hoursEntry.upcomingChangedHours} title='Upcoming Hours' showEffectiveDates />

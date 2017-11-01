@@ -22,7 +22,6 @@ class PageTitle extends Component {
 
     return (
       <div>
-        <a id='top' />
         <h1 className="page-title" id="main-page-title" itemProp={this.props.itemProp}>
           {this.props.title}
           { this.props.subtitle && <small>{this.props.subtitle}</small> }

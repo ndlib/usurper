@@ -33,15 +33,15 @@ export const makeNewsEntry = (entry, index) => {
 
 const News = (entries) => {
   return (
-    <div className='col-md-8 col-xs-12'>
+    <section className='col-md-8 col-xs-12'>
       <PageTitle title='News' />
       <SearchProgramaticSet open={false} />
-      <section aria-label='News'>
+      <div>
         {
           entries.map(makeNewsEntry)
         }
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }
 
