@@ -26,10 +26,11 @@ const makeLocalTimezone = (stringDate) => {
   stringDate = stringDate.replace(givenTz, stringLocalTz)
 
   let ret = new Date(stringDate)
-  // if the given date doesn't have the same tz, we need to offset to negate the Date functionality
-  if (givenTz !== stringLocalTz) {
+  let retOffset = ret.getTimezoneOffset()
+  // if the changed date is in a different timezone than us (daylight savings) offset it back
+  if (retOffset !== localOffset) {
     // in minutes
-    let offset = localOffset - ret.getTimezoneOffset()
+    let offset = localOffset - retOffset
     // to milliseconds
     offset = offset * 60 * 1000
 
