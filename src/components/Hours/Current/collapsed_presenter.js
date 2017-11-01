@@ -7,25 +7,28 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
+  const ariaLabel = hoursEntry.name + ', Open ' + todayLabel
 
   let schemaType = 'http://schema.org/ContactPoint'
   if (hoursEntry.servicePoint.type === 'http://schema.org/Library') {
     schemaType = 'Library'
   }
   return (
-    <section className={servicePointClassName} aria-label={title} itemScope itemType={schemaType}>
+    <section className={servicePointClassName} itemScope itemType={schemaType}>
       <a
         className='expand'
         tabIndex={0}
         onClick={expandHandler}
         onKeyDown={expandHandler}
-        aria-expanded={false}
-        aria-controls={hoursEntry.servicePoint.slug}
       >
-        <h4>
+        <h4 aria-label={ariaLabel}>
           <div className='location' itemProp='name'>{hoursEntry.name}</div>
           <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
-          <div className='arrow'>
+          <div className='arrow'
+            role='tab'
+            aria-expanded={false}
+            aria-controls={hoursEntry.servicePoint.slug}
+            aria-label={'View Hours For ' + hoursEntry.name}>
             <div className='earrow' />
           </div>
         </h4>

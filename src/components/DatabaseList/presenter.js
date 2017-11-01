@@ -10,19 +10,9 @@ import * as statuses from '../../constants/APIStatuses'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
-    <div className='container-fluid content-area'>
+    <section className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-      <label className='filter'>
-        <strong>Search all Databases by Title: </strong>
-        <input
-          type='text'
-          value={filterValue}
-          onChange={onFilterChange}
-          role='search'
-          aria-label='Database Search'
-        />
-      </label>
       <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
       {
         'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
@@ -34,6 +24,16 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
         })
       }
       </section>
+      <label className='filter'>
+        <strong>Search all Databases by Title: </strong>
+        <input
+          type='text'
+          value={filterValue}
+          onChange={onFilterChange}
+          role='search'
+          aria-label='Database Search'
+        />
+      </label>
 
       <div className='row'>
         <div className='col-md-8'>
@@ -47,7 +47,7 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
           </section>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

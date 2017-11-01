@@ -17,8 +17,13 @@ const ChatModal = (props) => {
         onKeyDown={props.onKeyDown}
         tabIndex='0'
         href='/chat'
+        role='button'
+        aria-selected={props.chatOpen}
+        aria-haspopup='true'
+        aria-owns='chat-modal'
+        aria-expanded={props.chatOpen}
       >{buttonMessage}</a>
-      <div className={props.chatOpen ? 'chat-open' : 'hidden'}><Chat /></div>
+      <div id='chat-modal' className={props.chatOpen ? 'chat-open' : 'hidden'}><Chat /></div>
     </div>
   )
 }

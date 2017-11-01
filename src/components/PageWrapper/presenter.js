@@ -13,9 +13,9 @@ const PageWrapper = (props) => {
       <a className='skiplink' href='#maincontent'>Skip to main content</a>
 
       <Header {...props} />
-      <main id='maincontent' className={'container-fluid content'}>
+      <div id='maincontent' className={'container-fluid content'}>
         {props.children}
-      </main>
+      </div>
       <Footer />
     </div>
   )

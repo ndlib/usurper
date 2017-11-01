@@ -26,8 +26,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
-h2 {
+h1 {
   font-size: 32px;
+  color: #061F43;
+  margin-bottom: 15px;
+  margin-top: 0;
+  max-width: 650px;
+}
+
+h2 {
+  font-size: 28px;
   color: #061F43;
   margin-bottom: 15px;
   margin-top: 0;
@@ -125,7 +133,7 @@ a {
   overflow:hidden;
 }
 
-.skiplink:focus 
+.skiplink:focus
 {
 position:static;
 width:auto;
@@ -577,7 +585,7 @@ body.gold-blue #header h4 a {
 }*/
 .hours-display h2 {
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   color: #333;
 }
 
