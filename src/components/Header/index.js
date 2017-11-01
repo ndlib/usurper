@@ -4,7 +4,6 @@ import { Route } from 'react-router'
 import PreviewBanner from './PreviewBanner'
 import BrandingBanner from './BrandingBanner'
 import HesburghBanner from './HesburghBanner'
-import FeedbackButton from '../FeedbackButton'
 import Navigation from '../Navigation'
 import SearchDrawer from '../SearchDrawer'
 import GlobalAlert from '../Contentful/Alert/Global'
@@ -17,7 +16,6 @@ const Header = (props) => {
         <Route exact path='/preview/*' component={PreviewBanner} />
         <Route exact path='/' component={BrandingBanner} />
         <HesburghBanner />
-        <FeedbackButton />
         <GlobalAlert />
         <hgroup className='nav-search'>
           <Navigation {...props} />

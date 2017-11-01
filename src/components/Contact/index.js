@@ -61,7 +61,7 @@ const Contact = (props) => {
   }
 
   return (
-    <address className='contact' aria-label={'Contact ' + props.name.trim()} itemScope itemType='http://schema.org/Person'>
+    <address className='contact' aria-label={props.name.trim()} itemScope itemType='http://schema.org/Person'>
       {name}
       {title}
       {phone}
