@@ -13,18 +13,8 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
     <section className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-      <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
-      {
-        'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
-          return (
-            <span key={'letter_link_' + item} className='letter'>
-              <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
-            </span>
-          )
-        })
-      }
-      </section>
-      <label className='filter'>
+
+      <label className='filter' role='search' aria-label='Database Search'>
         <strong>Search all Databases by Title: </strong>
         <input
           type='text'
@@ -46,6 +36,18 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
             {data}
           </section>
         </div>
+        <asside aria-label='Select Databases by First Letter' role='navigation' className='alphabet col-md-4 col-sm-5 col-xs-12 right desktop-only'>
+          <h3>Filter By First Letter</h3>
+          {
+            'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
+              return (
+                <span key={'letter_link_' + item} className='letter'>
+                  <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
+                </span>
+              )
+            })
+          }
+        </asside>
       </div>
     </section>
   )
