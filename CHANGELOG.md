@@ -25,7 +25,8 @@
  [#321](https://github.com/ndlib/usurper/pull/321)
 - Fix issue with the columing on landing pages
  [#323](https://github.com/ndlib/usurper/pull/323)
-
+- Replace CSS "fixed" position with React-based positioning on side nav of landing pages
+ [#326](https://github.com/ndlib/usurper/pull/326)
 
 ## [v2017.5](https://github.com/ndlib/usurper/tree/v2017.5)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.4...v2017.5)
