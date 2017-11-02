@@ -32,11 +32,11 @@
 }
 */
 .group h3 {
-	/*height: 213px;
-	background: #666 url('http://images.contentful.com/v19tsd6x3xwy/7BqrHw6BckWYuiQcaWuIc/0b6571d2a4f2e714018a47c107a74884/Circulation_Desk.JPG');
-	position: relative;*/
-	background: url('../../../static/images/marble.jpg');
-	background-size: cover;
+
+  background-image: url('../../../static/images/jesus.2.png');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: #072242;
 	color: #fff;
 
 	width: 100%;
