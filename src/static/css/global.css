@@ -641,7 +641,7 @@ button a {
 }
 
 .button.callout {
-  background-color: #7A751A;
+  background-color: #435265;
   color: #fff;
   display: inline-block;
   width: 100%;
@@ -2536,13 +2536,13 @@ address {
             transform: scale(1); } }
 
 @media screen and (max-width:1570px) {
-  
+
 
   label[for="q"]::after {
     top: 10px;
   }
 
- 
+
   #maincontent {
     padding-left: 1rem;
     padding-right: 1rem;
