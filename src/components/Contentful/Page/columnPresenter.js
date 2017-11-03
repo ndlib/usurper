@@ -4,7 +4,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageTitle from '../../PageTitle'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
-import SideNavPresenter from './sideNavPresenter'
+import SideNav from './SideNav'
 
 import './style.css'
 
@@ -50,7 +50,7 @@ const ColumnContainerPresenter = (props) => {
           })
         }
       </div>
-      <SideNavPresenter columns={page.columns} />
+      <SideNav columns={page.columns} />
     </div>
   )
 }
