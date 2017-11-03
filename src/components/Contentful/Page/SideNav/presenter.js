@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 const SCROLLED = true
 const NOTSCROLLED = false
-const MAGICNUMBER = 245
+const DEFAULT_OFFSET = 245
+const MENU_OPEN_OFFSET = 390
+const ADVANCED_MENU_OFFSET = 578
+
 class SideNavPresenter extends Component {
   constructor (props) {
     super(props)
     this.scrolledStyle = this.scrolledStyle.bind(this)
     this.listenScrollEvent = this.listenScrollEvent.bind(this)
     this.state = {
-      positionType: NOTSCROLLED,
+      isScrolled: NOTSCROLLED,
+      offsetHeight: DEFAULT_OFFSET,
     }
   }
   componentDidMount () {
@@ -20,19 +25,32 @@ class SideNavPresenter extends Component {
     window.removeEventListener('scroll', this.listenScrollEvent)
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.search !== this.props.search) {
+      let currentOffset = DEFAULT_OFFSET
+      if (nextProps.search.drawerOpen) {
+        currentOffset = MENU_OPEN_OFFSET
+        if (nextProps.search.advancedSearch) {
+          currentOffset = ADVANCED_MENU_OFFSET
+        }
+      }
+      this.setState({ offsetHeight: currentOffset })
+    }
+  }
+
   listenScrollEvent () {
-    if (window.pageYOffset > MAGICNUMBER && this.state.positionType === NOTSCROLLED) {
+    if (window.pageYOffset > this.state.offsetHeight && this.state.isScrolled === NOTSCROLLED) {
       this.setState({
-        positionType: SCROLLED,
+        isScrolled: SCROLLED,
       })
     }
-    if (window.pageYOffset <= MAGICNUMBER && this.state.positionType === SCROLLED) {
-      this.setState({ positionType: NOTSCROLLED })
+    if (window.pageYOffset <= this.state.offsetHeight && this.state.isScrolled === SCROLLED) {
+      this.setState({ isScrolled: NOTSCROLLED })
     }
   }
 
   scrolledStyle () {
-    if (this.state.positionType === SCROLLED) {
+    if (this.state.isScrolled === SCROLLED) {
       return {
         position: 'fixed',
         top: '10px',
@@ -44,6 +62,7 @@ class SideNavPresenter extends Component {
   }
 
   render () {
+    console.log(this.props.search)
     let anchors = []
     this.props.columns.map((column) => {
       column.fields.sections.map((section) => {
@@ -72,4 +91,5 @@ class SideNavPresenter extends Component {
 SideNavPresenter.propTypes = {
   columns: PropTypes.array.isRequired,
 }
+
 export default SideNavPresenter
