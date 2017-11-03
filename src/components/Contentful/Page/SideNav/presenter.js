@@ -62,7 +62,6 @@ class SideNavPresenter extends Component {
   }
 
   render () {
-    console.log(this.props.search)
     let anchors = []
     this.props.columns.map((column) => {
       column.fields.sections.map((section) => {
