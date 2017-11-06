@@ -49,7 +49,7 @@ const isSameDay = (start, end) => {
 const startEndDate = (start, end) => {
   let startYear = ', ' + start.getFullYear()
   let endYear = ', ' + end.getFullYear()
-  let options = { weekday: 'short', month: 'short', day: 'numeric' }
+  let options = { weekday: 'long', month: 'long', day: 'numeric' }
 
   let out = start.toLocaleString('en-US', options)
   if (isSameDay(start, end)) {
@@ -65,12 +65,23 @@ const startEndDate = (start, end) => {
 }
 
 const hour12 = (date) => {
-  let options = { hour12: true, hour: 'numeric' }
-  // only show minutes if it's not on the hour
-  if (date.getMinutes() !== 0) {
-    options.minute = '2-digit'
+  let ampm = 'am'
+  let hour = date.getHours()
+  let minute = '' + date.getMinutes()
+
+  minute = minute.padStart(2, '0')
+
+  if (hour === 0) {
+    hour = 12
+  } else if (hour >= 12) {
+    ampm = 'pm'
+    if (hour > 12) {
+      hour = hour % 12
+    }
   }
-  return date.toLocaleString('en-US', options)
+
+  // 8:00am
+  return `${hour}:${minute}${ampm}`
 }
 
 const startEndTime = (start, end) => {
