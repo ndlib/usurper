@@ -629,20 +629,6 @@ body.gold-blue #header h4 a {
   padding:9px 11px !important;
 }
 
-/*#banner .logout {
-  position: absolute;
-  top: 14px;
-  top:  -54px;
-  right: calc((100vw - 1200px) / 2);
-  right: -5px;
-  width: 32px;
-  height: 0;
-  padding-top: 37px;
-  overflow: hidden;
-  background: url('../images/logout.png');
-  z-index: 500;
-}*/
-
 /*BUTTON*/
 
 button, a.button, .p-guides a, div.button {

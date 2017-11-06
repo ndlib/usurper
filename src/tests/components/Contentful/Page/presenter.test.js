@@ -19,6 +19,7 @@ describe('components/Contentful/Page/presenter', () => {
         relatedResources: ['Fake related resources'],
         relatedServices: ['Fake related services'],
         libguides: ['Fake related libguides'],
+        searchPanelOpen: false,
       },
     })
   })
@@ -32,7 +33,8 @@ describe('components/Contentful/Page/presenter', () => {
   })
 
   it('should renders the title of the content', () => {
-    expect(enzymeWrapper.children().someWhere(n => n.node.props.title === 'Fake Title')).toBe(true)
+    let header = '<header><div><h1 class="page-title" id="main-page-title">Fake Title</h1><hr aria-hidden="true"/></div></header>'
+    expect(enzymeWrapper.find('header').html()).toBe(header)
   })
 
   it('should render LibMarkdown for content', () => {

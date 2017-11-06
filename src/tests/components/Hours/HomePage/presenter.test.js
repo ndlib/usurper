@@ -55,7 +55,6 @@ describe('components/Hours/Page/presenter', () => {
   })
 
   it('Adds a Link to the hours page', () => {
-    let test = <Link to='hours' ariaLabel='today-display Click for more hours'><span itemProp='openingHours'>today-display</span></Link>
-    expect(enzymeWrapper.containsMatchingElement(test)).toBe(true)
+    expect(enzymeWrapper.find("span[itemProp='openingHours']").text()).toBe('today-display')
   })
 })
