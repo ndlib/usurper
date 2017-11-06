@@ -33,8 +33,7 @@ describe('components/Contentful/Page/presenter', () => {
   })
 
   it('should renders the title of the content', () => {
-    let header = '<header><div><h1 class="page-title" id="main-page-title">Fake Title</h1><hr aria-hidden="true"/></div></header>'
-    expect(enzymeWrapper.find('header').html()).toBe(header)
+    expect(enzymeWrapper.find('PageTitle').text()).toBe('<PageTitle />')
   })
 
   it('should render LibMarkdown for content', () => {
