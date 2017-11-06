@@ -1,28 +1,41 @@
 # Change Log
-## [v2017.5](https://github.com/ndlib/usurper/tree/v2017.5)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.4...v2017.5)
+
+## [v2017.6](https://github.com/ndlib/usurper/tree/v2017.6)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.5...v2017.6)
 
 ### New features/enhancements:
 - Contrast changes for usability in the footer [#312](https://github.com/ndlib/usurper/pull/312)
 - Update super special button color. [#312](https://github.com/ndlib/usurper/pull/312)
 - Added landing page side nav and have it scroll down the page. [#314](https://github.com/ndlib/usurper/pull/314)
 - three column pathfinder switching to one mobile view [#312](https://github.com/ndlib/usurper/pull/312)
-- changes to filter box on databases and checkout materials. [#302](https://github.com/ndlib/usurper/pull/302)
-- Updated the header tagging of the brand bar for usability. We no longer have h2 and h3 above the first h1. [#302](https://github.com/ndlib/usurper/pull/302)
+- CSS changes to make advanced search easier on mobile [#306](https://github.com/ndlib/usurper/pull/306)
+- Hide chat button from chat page to prevent element overlap on small screens [#307](https://github.com/ndlib/usurper/pull/307)
 - It now says chat with us instead of chat with a librarian. [#316](https://github.com/ndlib/usurper/pull/316)
 - Update the style of the chat box panel. [#317](https://github.com/ndlib/usurper/pull/317)
+- Stop using timezone information from contentful for Events. Use the text exactly as it appears. [#324](https://github.com/ndlib/usurper/pull/324)
+
 
 ### Bug Fixes
+- Fix bug where menu button wasn't showing on small screens [#305](https://github.com/ndlib/usurper/pull/305)
 - Fix for the left margin being lost on less than 960px /writing-center [#308](https://github.com/ndlib/usurper/pull/308)
 - Fix the dates in the advanced search [#318](https://github.com/ndlib/usurper/pull/318)
 - Rearrange order of items on pathfinder pages
  [#320](https://github.com/ndlib/usurper/pull/320)
 - Fix mobile display in header
  [#321](https://github.com/ndlib/usurper/pull/321)
-- Fix issue with the columing on landing pages 
+- Fix issue with the columing on landing pages
  [#323](https://github.com/ndlib/usurper/pull/323)
- 
- 
+- Replace CSS "fixed" position with React-based positioning on side nav of landing pages
+ [#326](https://github.com/ndlib/usurper/pull/326)
+
+## [v2017.5](https://github.com/ndlib/usurper/tree/v2017.5)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.4...v2017.5)
+
+### New features/enhancements:
+- Updated the header tagging of the brand bar for usability. We no longer have h2 and h3 above the first h1. [#302](https://github.com/ndlib/usurper/pull/302)
+- changes to filter box on databases and checkout materials. [#302](https://github.com/ndlib/usurper/pull/302)
+
+
 ## [v2017.4](https://github.com/ndlib/usurper/tree/v2017.4)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.3...v2017.4)
 
