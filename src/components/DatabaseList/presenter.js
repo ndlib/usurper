@@ -7,47 +7,47 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import Link from '../Link'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
+import FilterBox from '../FilterBox'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
     <section className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-
-      <label className='filter' role='search' aria-label='Database Search'>
-        <strong>Search all Databases by Title: </strong>
-        <input
-          type='text'
-          value={filterValue}
-          onChange={onFilterChange}
-          role='search'
-          aria-label='Database Search'
-        />
-      </label>
-
       <div className='row'>
         <div className='col-md-8'>
+          <FilterBox
+            title='Search All Databases by Title: '
+            value={filterValue}
+            onChange={onFilterChange}
+            label='Database Search'
+          />
           <div className='screenReaderText' aria-live='assertive'>
             { assistText }
           </div>
           <section
             aria-label={'List of all "' + letter.toUpperCase() + '" Databases'}
+            className='databaseList'
           >
             {data}
           </section>
         </div>
-        <asside aria-label='Select Databases by First Letter' role='navigation' className='alphabet col-md-4 col-sm-5 col-xs-12 right desktop-only'>
-          <h3>Filter By First Letter</h3>
-          {
-            'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
-              return (
-                <span key={'letter_link_' + item} className='letter'>
-                  <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
-                </span>
-              )
-            })
-          }
-        </asside>
+        <aside aria-label='Select Databases by First Letter' role='navigation' className='col-md-4 col-sm-5 col-xs-12 right desktop-only'>
+          <div className='group'>
+            <h5>Filter By First Letter</h5>
+            <div className='alphabet'>
+              {
+                'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
+                  return (
+                    <span key={'letter_link_' + item} className='letter'>
+                      <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
+                    </span>
+                  )
+                })
+              }
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
   )
