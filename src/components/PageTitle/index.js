@@ -5,9 +5,13 @@ import PropTypes from 'prop-types'
 class PageTitle extends Component {
   componentWillMount () {
     if (this.props.title) {
-      document.title = this.props.title + ' | Hesburgh Library'
+      if (this.props.title === 'Hesburgh Libraries') {
+        document.title = this.props.title
+      } else {
+        document.title = this.props.title + ' | Hesburgh Libraries'
+      }
     } else {
-      document.title = 'Hesburgh Library'
+      document.title = 'Hesburgh Libraries'
     }
   }
 
