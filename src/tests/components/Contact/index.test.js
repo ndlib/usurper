@@ -38,6 +38,6 @@ describe('components/Contact/index.js', () => {
   })
 
   it('should render the address on multiple lines', () => {
-    expect(children.find('address').children().length).toBe(2)
+    expect(enzymeWrapper.find('address').children().length).toBe(4)
   })
 })

@@ -11,13 +11,13 @@ import Link from '../../Link'
 
 const Presenter = (props) => {
   return (
-    <div className='content hours-page'>
+    <section className='content hours-page'>
       <PageTitle title={'Hours'} />
       <SearchProgramaticSet open={false} />
 
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
-          <div className='service-point-list'>
+          <main className='service-point-list'>
             {
               props.hoursPageOrder.map((servicePointOrder) => {
                 let sp = props.servicePoints[servicePointOrder.servicePointSlug]
@@ -33,13 +33,13 @@ const Presenter = (props) => {
                 </div>)
               })
             }
-          </div>
+          </main>
         </div>
         <StaticSidebar slug='hours' preview={props.preview} />
       </div>
 
       <StaticBody slug='hours' preview={props.preview} />
-    </div>
+    </section>
   )
 }
 

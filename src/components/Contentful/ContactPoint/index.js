@@ -7,7 +7,7 @@ import ServicePoint from '../ServicePoint'
 import Related from '../../Related'
 
 const ContactPoint = ({ cfPageEntry, mobile }) => (
-  <section className={mobile ? 'mobile-only' : 'col-md-4 col-sm-5 col-xs-12 right desktop-only'}>
+  <asside className={mobile ? 'mobile-only' : 'col-md-4 col-sm-5 col-xs-12 right desktop-only'}>
     {mobile ? null : <Image cfImage={cfPageEntry.fields.image} className='cover' />}
     <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
     <Librarians netids={cfPageEntry.fields.contactPeople} />
@@ -23,7 +23,7 @@ const ContactPoint = ({ cfPageEntry, mobile }) => (
     >
       { cfPageEntry.fields.relatedPages }
     </Related>
-  </section>
+  </asside>
 )
 
 ContactPoint.propTypes = {

@@ -4,7 +4,6 @@ import { Route } from 'react-router'
 import PreviewBanner from './PreviewBanner'
 import BrandingBanner from './BrandingBanner'
 import HesburghBanner from './HesburghBanner'
-import FeedbackButton from '../FeedbackButton'
 import Navigation from '../Navigation'
 import SearchDrawer from '../SearchDrawer'
 import GlobalAlert from '../Contentful/Alert/Global'
@@ -13,15 +12,16 @@ import '../../static/css/global.css'
 const Header = (props) => {
   return (
     <div className='top'>
-      <Route exact path='/preview/*' component={PreviewBanner} />
-      <Route exact path='/' component={BrandingBanner} />
-      <HesburghBanner />
-      <FeedbackButton />
-      <GlobalAlert />
-      <div className='nav-search'>
-        <Navigation {...props} />
-        <SearchDrawer {...props} />
-      </div>
+      <header id='banner'>
+        <Route exact path='/preview/*' component={PreviewBanner} />
+        <Route exact path='/' component={BrandingBanner} />
+        <HesburghBanner />
+        <GlobalAlert />
+        <hgroup className='nav-search'>
+          <Navigation {...props} />
+          <SearchDrawer {...props} />
+        </hgroup>
+      </header>
     </div>
   )
 }

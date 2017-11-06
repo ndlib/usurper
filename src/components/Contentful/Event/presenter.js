@@ -10,7 +10,7 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const PagePresenter = ({ entry }) => (
-  <div
+  <article
     className='container-fluid content-area'
     itemScope
     itemType='http://schema.org/Event'
@@ -21,17 +21,17 @@ const PagePresenter = ({ entry }) => (
     <PageTitle title={entry.fields.title} itemProp='name' />
     <SearchProgramaticSet open={false} />
     <div className='row'>
-      <div className='col-md-8'>
+      <main className='col-md-8'>
         <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
-      </div>
-      <div className='col-md-4 right'>
+      </main>
+      <asside className='col-md-4 right'>
         <Image cfImage={entry.fields.representationalImage} className='cover' />
         <Librarians netids={entry.fields.contactPeople} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
-      </div>
+      </asside>
     </div>
-  </div>
+  </article>
 )
 
 PagePresenter.propTypes = {

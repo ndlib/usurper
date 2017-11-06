@@ -10,60 +10,58 @@ import ServicePoint from '../ServicePoint'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
 const PagePresenter = ({ cfPageEntry }) => (
-  <div className='container-fluid content-area'>
+  <article aria-describedby="main-page-title" className='container-fluid content-area'>
     <PageTitle title={cfPageEntry.fields.title} />
-
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
-      <section className='col-md-8 col-sm-7'>
+      <main className='col-md-8 col-sm-7'>
         <PageAlert alert={cfPageEntry.fields.alert} />
-        <div className='sp-hidden'><ServicePoint cfServicePoint={cfPageEntry.fields.servicePoint} /></div>
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
         <div className='mobile-only'>
           <ContactPoint cfPageEntry={cfPageEntry} mobile />
         </div>
-        <Related
-          className='p-resources'
-          title={cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources'}
-          showImages={false}
-        >
-          { cfPageEntry.fields.relatedResources }
-        </Related>
-        <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfPageEntry.fields.libguides }</Related>
-        <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
-        {
-          cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry, index) => {
-            let fields = entry.fields
-            let className = 'p-resources'
-            let showImages = false
-            if (fields.type) {
-              switch (fields.type) {
-                case 'Guides':
-                  className = 'p-guides'
-                  break
-                case 'Services':
-                  className = 'p-services'
-                  showImages = true
-                  break
+          <Related
+            className='p-resources'
+            title={cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources'}
+            showImages={false}
+          >
+            { cfPageEntry.fields.relatedResources }
+          </Related>
+          <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfPageEntry.fields.libguides }</Related>
+          <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
+          {
+            cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry, index) => {
+              let fields = entry.fields
+              let className = 'p-resources'
+              let showImages = false
+              if (fields.type) {
+                switch (fields.type) {
+                  case 'Guides':
+                    className = 'p-guides'
+                    break
+                  case 'Services':
+                    className = 'p-services'
+                    showImages = true
+                    break
+                }
               }
-            }
-            return (
-              <Related
-                className={className}
-                title={fields.title}
-                showImages={showImages}
-                key={index + '_related'}
-              >
-                { fields.links }
-              </Related>
-            )
-          })
-        }
-      </section>
+              return (
+                <Related
+                  className={className}
+                  title={fields.title}
+                  showImages={showImages}
+                  key={index + '_related'}
+                >
+                  { fields.links }
+                </Related>
+              )
+            })
+          }
+      </main>
       <ContactPoint cfPageEntry={cfPageEntry} mobile={false} />
 
     </div>
-  </div>
+  </article>
 )
 
 PagePresenter.propTypes = {

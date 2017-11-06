@@ -8,30 +8,33 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
+  const ariaLabel = hoursEntry.name + ', Open ' + todayLabel
 
   let timezoneMessage = ''
   if (hoursEntry.timezone !== 'EST' || hoursEntry.timezone !== 'EDT') {
     timezoneMessage = (<p className='timezoneMessage'> * All times are {hoursEntry.timezone}</p>)
   }
   return (
-    <section className={servicePointClassName} aria-label={title}>
+    <section className={servicePointClassName}>
       <a
         className='collapse'
         tabIndex={0}
         onClick={collapseHandler}
         onKeyDown={collapseHandler}
-        aria-expanded={true}
-        aria-controls={hoursEntry.servicePoint.slug}
       >
-        <h4>
+        <h4 aria-label={ariaLabel}>
           <div className='location' itemProp='name'>{hoursEntry.name}</div>
           <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
-          <div className='arrow'>
+          <div className='arrow'
+            role='tab'
+            aria-expanded={true}
+            aria-controls={hoursEntry.servicePoint.slug}
+            aria-label={'View Hours For ' + hoursEntry.name}>
             <div className='carrow' />
           </div>
         </h4>
       </a>
-      <div className='row hours-listing' id={hoursEntry.servicePoint.slug}>
+      <div className='row hours-listing' role='tabpanel' id={hoursEntry.servicePoint.slug} aria-hidden={false}>
         <div className='col-md-6'>
           <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
           <WeeklyHours hours={hoursEntry.upcomingChangedHours} title='Upcoming Hours' showEffectiveDates />

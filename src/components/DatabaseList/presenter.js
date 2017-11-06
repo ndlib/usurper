@@ -10,10 +10,11 @@ import * as statuses from '../../constants/APIStatuses'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
-    <div className='container-fluid content-area'>
+    <section className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
-      <label className='filter'>
+
+      <label className='filter' role='search' aria-label='Database Search'>
         <strong>Search all Databases by Title: </strong>
         <input
           type='text'
@@ -23,17 +24,6 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
           aria-label='Database Search'
         />
       </label>
-      <section className='alphabet' aria-label='Select Databases by First Letter' role='navigation'>
-      {
-        'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
-          return (
-            <span key={'letter_link_' + item} className='letter'>
-              <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
-            </span>
-          )
-        })
-      }
-      </section>
 
       <div className='row'>
         <div className='col-md-8'>
@@ -46,8 +36,20 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
             {data}
           </section>
         </div>
+        <asside aria-label='Select Databases by First Letter' role='navigation' className='alphabet col-md-4 col-sm-5 col-xs-12 right desktop-only'>
+          <h3>Filter By First Letter</h3>
+          {
+            'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
+              return (
+                <span key={'letter_link_' + item} className='letter'>
+                  <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
+                </span>
+              )
+            })
+          }
+        </asside>
       </div>
-    </div>
+    </section>
   )
 }
 

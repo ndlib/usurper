@@ -19,14 +19,14 @@ const FooterLinks = () => {
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
                 <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
-                <li><Link to='https://library.nd.edu/government-documents' title='Federal Depository Library'><img src={Gov} className='gov' alt='gov' /></Link></li>
+                <li><Link to='https://library.nd.edu/government-documents'><img src={Gov} className='gov' alt='Federal Depository Library' /></Link></li>
               </ul>
             </div>
           </div>
 
           <div className='col-xs-4'>
             <div className='box right'>
-              <ul role='navigation' aria-label='Social Media Links'>
+              <ul>
                 <li><Link to='http://twitter.com/ndlibraries' title='Hesburgh Libraries Twitter' target='_blank' rel='noopener'><img src={Twitter} alt='Twitter' /> NDLibraries</Link></li>
                 <li><Link to='https://www.facebook.com/NDLibraries/' title='Hesburgh Libraries Facebook' target='_blank' rel='noopener'><img src={Facebook} alt='Facebook' /> NDLibraries</Link></li>
               </ul>

@@ -53,7 +53,7 @@ const makeSection = (title, entries) => {
 
   return (
     <section aria-label={title}>
-      <h3>{title}</h3>
+      <h2>{title}</h2>
       {
         entries.map(makeEventEntry)
       }
@@ -63,7 +63,7 @@ const makeSection = (title, entries) => {
 
 const Events = (props) => {
   return (
-    <div className='col-md-8 col-xs-12' >
+    <section className='col-md-8 col-xs-12' >
       <PageTitle title='Events' />
       <SearchProgramaticSet open={false} />
       {
@@ -72,7 +72,7 @@ const Events = (props) => {
       {
         makeSection('Past Events', props.past)
       }
-    </div>
+    </section>
   )
 }
 

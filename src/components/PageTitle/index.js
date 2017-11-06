@@ -21,14 +21,13 @@ class PageTitle extends Component {
     }
 
     return (
-      <div>
-        <a id='top' />
-        <h2 className="page-title" itemProp={this.props.itemProp}>
+      <header>
+        <h1 className="page-title" id="main-page-title" itemProp={this.props.itemProp}>
           {this.props.title}
           { this.props.subtitle && <small>{this.props.subtitle}</small> }
-        </h2>
+        </h1>
         <hr aria-hidden='true' className={this.props.className} />
-      </div>
+      </header>
     )
   }
 }

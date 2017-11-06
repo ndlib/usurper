@@ -10,12 +10,14 @@ import '../../static/css/print.css'
 const PageWrapper = (props) => {
   return (
     <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
-      <a id='skiplink' href='#maincontent'>Skip to main content</a>
+      <a className='skiplink' href='#maincontent'>Skip to main content</a>
 
       <Header {...props} />
-      <section id='maincontent' role='main' aria-label='Main Content' className={'container-fluid content'}>
+      <div id='maincontent' className={'container-fluid content'}>
+        <a id='top' />
+
         {props.children}
-      </section>
+      </div>
       <Footer />
     </div>
   )
