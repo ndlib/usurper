@@ -17,7 +17,7 @@ class Home extends Component {
   render () {
     return (
       <div className='Home main'>
-        <PageTitle title='Hesburgh Library' hideInPage />
+        <PageTitle title='Hesburgh Libraries' hideInPage />
         <SearchProgramaticSet open />
         <HomePageHours />
 
