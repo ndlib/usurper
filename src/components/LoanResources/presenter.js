@@ -10,7 +10,7 @@ const LoanResources = (props) => {
 
   return (
     <div key='LoanResources' className='resources-list'>
-      <h3>Pending</h3>
+      <h3>{ pending.items.length + ' Items Pending' }</h3>
       <ResourceList
         list={pending.items}
         emptyText={pending.emptyText}
@@ -21,7 +21,7 @@ const LoanResources = (props) => {
         listType='Pending'
       />
       <br />
-      <h3>Checked out</h3>
+      <h3>{ have.items.length + ' Items Checked Out'}</h3>
       <ResourceList
         list={have.items}
         emptyText={have.emptyText}
