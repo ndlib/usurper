@@ -6,6 +6,8 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import './style.css'
 
+import SideNav from '../../Contentful/Page/SideNav'
+
 export const makeEventEntry = (entry, index, showDescription = true) => {
   return (
     <div
@@ -23,7 +25,7 @@ export const makeEventEntry = (entry, index, showDescription = true) => {
         <meta itemProp='endDate' content={entry.endDate} />
         <div className='event-card-text'>
 
-          <h3 itemProp='name'>{entry.title}</h3>
+          <h4 itemProp='name'>{entry.title}</h4>
           <div className='date'>
             {
               entry.displayDate
@@ -42,6 +44,7 @@ export const makeEventEntry = (entry, index, showDescription = true) => {
           )
         }
       </Link>
+      <hr />
     </div>
   )
 }
@@ -52,8 +55,9 @@ const makeSection = (title, entries) => {
   }
 
   return (
-    <section aria-label={title}>
-      <h2>{title}</h2>
+    <section aria-label={title} className='group'>
+      <a name={encodeURIComponent(title)} />
+      <h3>{title}</h3>
       {
         entries.map(makeEventEntry)
       }
@@ -62,17 +66,30 @@ const makeSection = (title, entries) => {
 }
 
 const Events = (props) => {
+  const columns = [
+    {
+      fields: { sections: [ { fields: { title: 'Current and Upcoming Events' } } ] },
+    },
+    {
+      fields: { sections: [ { fields: { title: 'Past Events' } } ] },
+    },
+  ]
   return (
-    <section className='col-md-8 col-xs-12' >
+    <div className='content'>
       <PageTitle title='Events' />
       <SearchProgramaticSet open={false} />
-      {
-        makeSection('Current and Upcoming Events', props.present)
-      }
-      {
-        makeSection('Past Events', props.past)
-      }
-    </section>
+      <div className='row landing'>
+        <div className='col-md-12 col-xs-12' >
+          {
+            makeSection('Current and Upcoming Events', props.present)
+          }
+          {
+            makeSection('Past Events', props.past)
+          }
+        </div>
+      </div>
+      <SideNav columns={columns} />
+    </div>
   )
 }
 
