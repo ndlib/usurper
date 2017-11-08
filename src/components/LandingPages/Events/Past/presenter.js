@@ -8,7 +8,7 @@ import Link from '../../../Link'
 const Events = (props) => {
   return (
     <div className='content'>
-      <Link to='/events/current' className='button fright tab'>Current Events</Link>
+      <Link to='/events' className='button fright tab'>Current Events</Link>
       <PageTitle title='Past Events' />
       <SearchProgramaticSet open={false} />
       <div className='row landing'>

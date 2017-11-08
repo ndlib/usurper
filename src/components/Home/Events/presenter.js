@@ -54,7 +54,7 @@ const Events = (entries) => {
           entries.map((entry, index) => makeEventEntry(entry, index, false, false))
         }
       </section>
-      <Link to='/events/current' className='newsEventsLink'>View All Events</Link>
+      <Link to='/events' className='newsEventsLink'>View All Events</Link>
     </div>
   )
 }
