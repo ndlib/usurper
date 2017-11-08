@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { fetchAllEvents } from '../../../actions/contentful/allEvents'
-import Presenter from './presenter.js'
 import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { mapEvents, sortEvents } from '../../Home/Events'
+import Presenter from './presenter'
 
 const mapStateToProps = (state) => {
   let pastEvents = []
@@ -46,7 +46,11 @@ export class AllEventsContainer extends Component {
     return (
       <PresenterFactory
         presenter={Presenter}
-        props={{ past: this.props.pastEvents, present: this.props.currentFutureEvents }}
+        props={{
+          past: this.props.pastEvents,
+          present: this.props.currentFutureEvents,
+          ...this.props,
+        }}
         status={this.props.allEventsStatus} />
     )
   }

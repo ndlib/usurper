@@ -2111,9 +2111,7 @@ address {
 }
 
 .event-card {
-  padding: 0px 11px;
   clear: left;
-  min-height: 110px;
   cursor: pointer;
 }
 
@@ -2125,18 +2123,33 @@ address {
   font-style: normal;
   font-size: 16px;
   padding: 3px 0px;
+  color: #7A8A9F;
 }
 
 .event-card p {
   font-weight: normal;
+  margin-bottom: 0px;
 }
 
 .event-card hr {
-  margin: 11px auto 17px;
+  margin: 17px auto 17px;
+  border-color: #d0d0d0;
 }
 
 .event-card-text {
   display: inline-block;
+}
+
+.event-card img {
+  float: left;
+  border: solid 2px #fff;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  margin-right: 15px;
+  max-width: 275px;
+  /* in case the text doesn't go to the bottom of the image, make sure it has the same margin as <hr/> top */
+  margin-bottom: 17px;
 }
 
 .home .event-card .description {
@@ -2169,6 +2182,7 @@ address {
 .pathfinder .service-point {
   width: 100%;
 }
+
 /*
 .cover {
 

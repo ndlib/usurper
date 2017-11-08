@@ -1,7 +1,49 @@
 import React from 'react'
-import { makeEventEntry } from '../../LandingPages/Events/presenter'
 import './style.css'
 import Link from '../../Link'
+import LibMarkdown from '../../LibMarkdown'
+import Image from '../../Image'
+
+export const makeEventEntry = (entry, index, showDescription = true, showImage = true) => {
+  return (
+    <div
+      className='event-card'
+      itemScope
+      itemType='http://schema.org/Event'
+      key={'events_' + index}
+    >
+      <Link
+        ariaLabel={entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime}
+        to={'/event/' + entry.slug}
+        itemProp='mainEntityOfPage'
+      >
+        <meta itemProp='startDate' content={entry.startDate} />
+        <meta itemProp='endDate' content={entry.endDate} />
+        {
+          showImage && <Image cfImage={entry.representationalImage} className='card-image' />
+        }
+        <h4 itemProp='name'>{entry.title}</h4>
+        <div className='date'>
+          {
+            entry.displayDate
+          }
+        </div>
+        <div className='time'>
+          {
+            entry.displayTime
+          }
+        </div>
+        { showDescription && (
+          <div className='description' itemProp='description'>
+            <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+          </div>
+            )
+        }
+      </Link>
+      <hr />
+    </div>
+  )
+}
 
 const Events = (entries) => {
   return (
@@ -9,10 +51,10 @@ const Events = (entries) => {
       <h2>Events</h2>
       <section aria-label='Events'>
         {
-          entries.map((entry, index) => makeEventEntry(entry, index, false))
+          entries.map((entry, index) => makeEventEntry(entry, index, false, false))
         }
       </section>
-      <Link to='/events' className='newsEventsLink'>View All Events</Link>
+      <Link to='/events/current' className='newsEventsLink'>View All Events</Link>
     </div>
   )
 }
