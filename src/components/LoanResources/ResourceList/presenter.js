@@ -2,22 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Resource from './Resource'
 import Loading from '../../Messages/InlineLoading'
+import FilterBox from '../../FilterBox'
 
 const ResourceList = (props) => {
   return (
     <section aria-label={props.listType}>
-      <div className='filter'>
-        <label>
-          Filter items:
-          <input
-            type='text'
-            value={props.filterValue}
-            onChange={props.filterChange}
-            aria-label={'Filter ' + props.listType + ' items'}
-          />
-        </label>
-        { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
-      </div>
+      { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
+      <FilterBox
+        title='Filter Items:'
+        value={props.filterValue}
+        onChange={props.filterChange}
+        label={'Filter ' + props.listType + ' Items'}
+      />
       <div className='card-item'>
         <a
           className={props.sortClass('title')}
@@ -77,8 +73,8 @@ const ResourceList = (props) => {
             )
           })
         }
-        </section>
-      { props.loadingMore && <Loading message='Loading more items' /> }
+      </section>
+      { props.loadingMore && <Loading message='Loading More Items' /> }
     </section>
   )
 }

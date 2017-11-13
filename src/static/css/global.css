@@ -1416,14 +1416,38 @@ hr {
   margin-left: 3px;
 }
 
-/* Items Page */
-
+/* Filter Component */
 .filter {
-  padding: 10px;
+  width: 100%;
+  background-image: url('../images/jesus.2.png');
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-color: #072242;
+  color: #fff;
+  max-height: 45px;
+}
+.filter p {
+  color: #fff;
+  display: inline-block;
+  background-color: #0C2340;
+  line-height: 15px;
+  padding: 12px 20px 10px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  font-size: 16px;
+}
+.filter label {
+  display: grid;
+  grid-template-columns: auto 2fr 1fr;
+  -ms-grid-columns: auto 2fr 1fr;
 }
 .filter input {
-  margin-left: 5px;
   padding: 5px;
+  width: 100%;
+  font-size: 14px;
+  border: solid 1px #000;
+
+  margin: 5px 0px;
 }
 .filter .renew {
   float: right;
@@ -1433,6 +1457,35 @@ hr {
   width: 1px;
   height: 1px;
   overflow: hidden;
+}
+
+aside .group h5 {
+  padding: 10px 20px 10px;
+  font-size: 16px;
+
+  background-image: url('../images/jesus.2.png');
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-color: #072242;
+  color: #fff;
+  width: 100%;
+  -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+             break-inside: avoid;
+  padding: 12px 20px 12px;
+  line-height: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+aside .group {
+  padding-bottom: 0.5em;
+}
+
+
+.databaseList {
+  padding-top: 17px;
 }
 
 .card-item {
@@ -2193,9 +2246,8 @@ address {
     grid-auto-flow: column;
   }
   .alphabet {
-    margin-bottom: 1em;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     display: -ms-grid;
     -ms-grid-columns: (1em)[13];
     max-width: 75ch;
