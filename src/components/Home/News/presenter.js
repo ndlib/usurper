@@ -5,7 +5,7 @@ import Link from '../../Link'
 
 const News = (entries) => {
   return (
-    <div className='col-md-8 col-xs-12'>
+    <div className='col-md-6 col-xs-12'>
       <h2>News</h2>
       <section aria-label='News'>
         {

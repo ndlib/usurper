@@ -2104,6 +2104,7 @@ address {
   font-size: 22px;
   font-family: GPMed, sans-serif;
   font-weight: normal;
+  margin-bottom: 0;
 }
 
 .news-card a, .event-card a {
@@ -2113,17 +2114,19 @@ address {
 .event-card {
   clear: left;
   cursor: pointer;
+  margin-bottom: 21px;
 }
 
-.event-card h4 {
-  margin-bottom: 0;
+.home .event-card {
+  margin-bottom: 17px;
 }
 
 .event-card .date, .event-card .time {
   font-style: normal;
   font-size: 16px;
   padding: 3px 0px;
-  color: #7A8A9F;
+  color: #5D6A83;
+  font-weight: normal;
 }
 
 .event-card p {
@@ -2132,12 +2135,25 @@ address {
 }
 
 .event-card hr {
-  margin: 17px auto 17px;
-  border-color: #d0d0d0;
+  margin: 31px auto 0px;
+  border-color: #c6cbd6;
+  border-width: 1px;
+}
+
+.home .event-card hr {
+  margin: 17px auto 0px;
+}
+
+.event-card .date {
+  padding-top: 11px;
 }
 
 .event-card-text {
   display: inline-block;
+}
+
+.event-card .description {
+  margin-top: 15px;
 }
 
 .event-card img {
@@ -2147,9 +2163,13 @@ address {
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   margin-right: 15px;
-  max-width: 275px;
+  max-width: 225px;
   /* in case the text doesn't go to the bottom of the image, make sure it has the same margin as <hr/> top */
   margin-bottom: 17px;
+}
+
+.home .event-card img {
+  margin-bottom: 31px;
 }
 
 .home .event-card .description {

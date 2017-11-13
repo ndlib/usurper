@@ -14,7 +14,7 @@ const Current = (props) => {
       <div className='row landing'>
         <div className='col-md-12 col-xs-12' >
           {
-            props.events.map(makeEventEntry)
+            props.events.map((event, index) => makeEventEntry(event, index, index === props.events.length - 1))
           }
         </div>
       </div>

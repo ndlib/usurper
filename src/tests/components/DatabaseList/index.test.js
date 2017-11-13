@@ -3,6 +3,7 @@ import { shallow } from 'enzyme'
 import ListPresenter from '../../../components/DatabaseList/presenter.js'
 import { DatabaseListContainer } from '../../../components/DatabaseList/index.js'
 import PageNotFound from '../../../components/Messages/NotFound'
+import * as statuses from '../../../constants/APIStatuses'
 
 const setup = (props) => {
   return shallow(<DatabaseListContainer {...props} />, { lifecycleExperimental: true })
@@ -30,7 +31,7 @@ describe('components/DatabaseList/index.js', () => {
         },
         fetchLetter: jest.fn(),
         currentLetter: 'a',
-        allLettersStatus: 'test',
+        allLettersStatus: statuses.NOT_FETCHED,
         personal: {
           login: {},
           loggedIn: true,
@@ -55,7 +56,7 @@ describe('components/DatabaseList/index.js', () => {
           <ListPresenter
             list={props.cfDatabaseLetter.a.data}
             letter={props.currentLetter}
-            status={props.allLettersStatus}
+            status={props.cfDatabaseLetter.a.status}
           />
         )
       ).toBe(true)

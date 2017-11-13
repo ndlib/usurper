@@ -14,7 +14,7 @@ const Events = (props) => {
       <div className='row landing'>
         <div className='col-md-12 col-xs-12' >
           {
-            props.events.map(makeEventEntry)
+            props.events.map((entry, index) => makeEventEntry(entry, index, index === props.events.length - 1))
           }
         </div>
       </div>

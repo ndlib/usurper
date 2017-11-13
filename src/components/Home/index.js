@@ -41,6 +41,7 @@ class Home extends Component {
         </section>
         <div className='row news'>
           <News />
+          <span className='col-md-1'/>
           <Events />
         </div>
       </div>

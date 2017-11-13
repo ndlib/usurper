@@ -4,7 +4,7 @@ import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
 
-export const makeEventEntry = (entry, index, showDescription = true, showImage = true) => {
+export const makeEventEntry = (entry, index, isLast = false, showDescription = true, showImage = true) => {
   return (
     <div
       className='event-card'
@@ -28,11 +28,14 @@ export const makeEventEntry = (entry, index, showDescription = true, showImage =
             entry.displayDate
           }
         </div>
-        <div className='time'>
-          {
-            entry.displayTime
-          }
-        </div>
+        { entry.displayTime && (
+          <div className='time'>
+            {
+              entry.displayTime
+            }
+          </div>
+          )
+        }
         { showDescription && (
           <div className='description' itemProp='description'>
             <LibMarkdown>{entry.shortDescription}</LibMarkdown>
@@ -40,18 +43,18 @@ export const makeEventEntry = (entry, index, showDescription = true, showImage =
             )
         }
       </Link>
-      <hr />
+      { !isLast && <hr /> }
     </div>
   )
 }
 
 const Events = (entries) => {
   return (
-    <div className='col-md-4 col-xs-12' >
+    <div className='col-md-5 col-xs-12' >
       <h2>Events</h2>
       <section aria-label='Events'>
         {
-          entries.map((entry, index) => makeEventEntry(entry, index, false, false))
+          entries.map((entry, index) => makeEventEntry(entry, index, index === entries.length - 1, false, false))
         }
       </section>
       <Link to='/events' className='newsEventsLink'>View All Events</Link>
