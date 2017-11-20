@@ -6,16 +6,23 @@ import Librarians from '../../Librarians'
 import ServicePoint from '../ServicePoint'
 import Related from '../../Related'
 
+const servicePoints = (points, shouldRender) => {
+  if (!shouldRender || !points) {
+    return null
+  }
+
+  return points.map((point, index) => {
+    return <ServicePoint cfServicePoint={point} key={index + '_point'} />
+  })
+}
+
 const ContactPoint = ({ cfPageEntry, mobile }) => (
   <asside className={mobile ? 'mobile-only' : 'col-md-4 col-sm-5 col-xs-12 right desktop-only'}>
     {mobile ? null : <Image cfImage={cfPageEntry.fields.image} className='cover' />}
     <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
+    { servicePoints(cfPageEntry.fields.servicePoints, mobile) }
     <Librarians netids={cfPageEntry.fields.contactPeople} />
-    {
-      cfPageEntry.fields.servicePoints && cfPageEntry.fields.servicePoints.map((point, index) => {
-        return <ServicePoint cfServicePoint={point} key={index + '_point'} />
-      })
-    }
+    { servicePoints(cfPageEntry.fields.servicePoints, !mobile) }
     <Related
       className='p-pages'
       title='Related Pages'
