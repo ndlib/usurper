@@ -1419,9 +1419,6 @@ hr {
 /* Filter Component */
 .filter {
   width: 100%;
-  background-image: url('../images/jesus.2.png');
-  background-repeat: no-repeat;
-  background-position-x: right;
   background-color: #072242;
   color: #fff;
   max-height: 45px;
@@ -1463,10 +1460,7 @@ aside .group h5 {
   padding: 10px 20px 10px;
   font-size: 16px;
 
-  background-image: url('../images/jesus.2.png');
-    background-repeat: no-repeat;
-    background-position-x: right;
-    background-color: #072242;
+  background-color: #072242;
   color: #fff;
   width: 100%;
   -webkit-column-break-inside: avoid;
