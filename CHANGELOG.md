@@ -1,5 +1,21 @@
 # Change Log
 
+## [v2017.6](https://github.com/ndlib/usurper/tree/v2017.7)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.6...v2017.7)
+
+### New features/enhancements:
+- A wide variaty of accessability imporovements See list at: [#328](https://github.com/ndlib/usurper/pull/328)
+- Make event date and times more readable [#327](https://github.com/ndlib/usurper/pull/327)
+- Add item count to the items and requests page [#329](https://github.com/ndlib/usurper/pull/329)
+- Update the Filter Component on the databases page to look better and move the location of the letters [#331](https://github.com/ndlib/usurper/pull/331)
+- Remove the jesus picture for the background of filters [#334](https://github.com/ndlib/usurper/pull/334)
+
+### Bug Fixes
+- Fix order of sections on a page on mobile [#335](https://github.com/ndlib/usurper/pull/335)
+- Fix side nav positioning on landing pages [#326](https://github.com/ndlib/usurper/pull/326)
+- Fixed the page title on the home page now just Hesburgh Library instead of Hesburgh Library | Hesburgh Library [#329](https://github.com/ndlib/usurper/pull/329)
+- Fixed html WCAG robust warning [#331](https://github.com/ndlib/usurper/pull/331)
+
 ## [v2017.6](https://github.com/ndlib/usurper/tree/v2017.6)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.5...v2017.6)
 
