@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2017.6](https://github.com/ndlib/usurper/tree/v2017.7)
+## [v2017.7](https://github.com/ndlib/usurper/tree/v2017.7)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.6...v2017.7)
 
 ### New features/enhancements:
