@@ -4,7 +4,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageTitle from '../../PageTitle'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
-import SideNav from './SideNav'
+import SideNav from '../../SideNav'
 
 import './style.css'
 
@@ -50,7 +50,25 @@ const ColumnContainerPresenter = (props) => {
           })
         }
       </div>
-      <SideNav columns={page.columns} />
+      <SideNav className='side-nav-bg'>
+        <ul>
+          {
+            page.columns.map((column) => {
+              return column.fields.sections.map((section) => {
+                const key = encodeURIComponent(section.fields.title)
+                return (
+                  <a
+                    className='side-anchors'
+                    href={'#' + key}
+                    key={key}>
+                    <li>{section.fields.title}</li>
+                  </a>
+                )
+              })
+            })
+          }
+        </ul>
+      </SideNav>
     </div>
   )
 }
