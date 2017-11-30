@@ -33,7 +33,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
           </div>
         </h4>
       </a>
-      <div id={hoursEntry.servicePoint.slug} role='tabpanel' aria-hidden={true} />
+      <div className={hoursEntry.servicePoint.slug} role='tabpanel' aria-hidden={true} />
     </section>
   )
 }
