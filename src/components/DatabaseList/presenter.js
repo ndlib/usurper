@@ -8,6 +8,7 @@ import Link from '../Link'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
 import FilterBox from '../FilterBox'
+import SideNav from '../SideNav'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
@@ -32,22 +33,24 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
             {data}
           </section>
         </div>
-        <aside aria-label='Select Databases by First Letter' role='navigation' className='col-md-4 col-sm-5 col-xs-12 right desktop-only'>
-          <div className='group'>
-            <h5>Filter by First Letter</h5>
-            <div className='alphabet'>
-              {
-                'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
-                  return (
-                    <span key={'letter_link_' + item} className='letter'>
-                      <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
-                    </span>
-                  )
-                })
-              }
+        <SideNav className='col-md-4'>
+          <aside aria-label='Select Databases by First Letter' role='navigation'>
+            <div className='group'>
+              <h5>Filter by First Letter</h5>
+              <div className='alphabet'>
+                {
+                  'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
+                    return (
+                      <span key={'letter_link_' + item} className='letter'>
+                        <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
+                      </span>
+                    )
+                  })
+                }
+              </div>
             </div>
-          </div>
-        </aside>
+          </aside>
+        </SideNav>
       </div>
     </section>
   )

@@ -62,33 +62,18 @@ class SideNavPresenter extends Component {
   }
 
   render () {
-    let anchors = []
-    this.props.columns.map((column) => {
-      column.fields.sections.map((section) => {
-        const key = encodeURIComponent(section.fields.title)
-        anchors.push((
-          <a
-            className='side-anchors'
-            href={'#' + key}
-            key={key}>
-            <li >{section.fields.title}</li>
-          </a>
-        ))
-      })
-    })
-
     return (
       <div
-        className='side-nav'
+        className={'side-nav' + (this.props.className ? ' ' + this.props.className : '')}
         onScroll={this.listenScrollEvent}
         style={this.scrolledStyle()}
-      ><ul>{anchors}</ul></div>
+      >{this.props.children}</div>
     )
   }
 }
 
 SideNavPresenter.propTypes = {
-  columns: PropTypes.array.isRequired,
+  children: PropTypes.any.isRequired,
 }
 
 export default SideNavPresenter
