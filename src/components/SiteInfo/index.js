@@ -36,7 +36,7 @@ class SiteInfo extends Component {
         <ServiceNowLink isWebContent>Website Feedback</ServiceNowLink>
         <dl>
           <dt>Website Version:</dt> <dd>{version}</dd>
-          <dt>Last Modified:</dt> <dd>{this.state.lastModified}</dd>
+          <dt>Cache Last Modified:</dt> <dd>{this.state.lastModified}</dd>
           <dt>IP Address:</dt> <dd>{this.state.ipAddress}</dd>
           <dt>User Agent:</dt> <dd>{navigator.userAgent}</dd>
           <dt>Referal Path:</dt> <dd>{window.location.search.toString().replace('?URL=', '')}</dd>
