@@ -2915,6 +2915,20 @@ body {
 }
 
 
+#site-info dt{
+display: inline-block;
+clear: left;
+float: left;
+font-weight: bold;
+min-width: 160px;
+line-height: 2em;
+}
+
+#site-info dd {
+  float: left;
+  line-height: 2em;
+}
+
 @media screen and (max-width: 620px) {
   label[for="q"]::after, .uSearchBox label::after {
     top: 10px;
