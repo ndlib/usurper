@@ -22,8 +22,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
         {
           showImage && <Image cfImage={entry.representationalImage} className='card-image' />
         }
-        <h4 itemProp='name'>{entry.title}</h4>
-        <div className='date'>
+         <div className='date'>
           {
             entry.displayDate
           }
@@ -36,6 +35,8 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
           </div>
           )
         }
+        <h4 itemProp='name'>{entry.title}</h4>
+       
         { showDescription && (
           <div className='description' itemProp='description'>
             <LibMarkdown>{entry.shortDescription}</LibMarkdown>
@@ -57,7 +58,7 @@ const Events = (entries) => {
           entries.map((entry, index) => makeEventEntry(entry, index, index === entries.length - 1, false, false))
         }
       </section>
-      <Link to='/events' className='newsEventsLink'>View All Events</Link>
+      <Link to='/events' className='newsEventsLink viewAll'>View All Events</Link>
     </div>
   )
 }

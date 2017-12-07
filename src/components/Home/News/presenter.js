@@ -12,7 +12,7 @@ const News = (entries) => {
           entries.map(makeNewsEntry)
         }
       </section>
-      <Link to='/news' className='newsEventsLink'>View All News</Link>
+      <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
     </div>
   )
 }

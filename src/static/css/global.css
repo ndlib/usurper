@@ -2118,15 +2118,31 @@ address {
 }
 
 .home .event-card {
-  margin-bottom: 17px;
+  margin-bottom: 20px;
 }
 
 .event-card .date, .event-card .time {
   font-style: normal;
   font-size: 16px;
-  padding: 3px 0px;
+  font-size: 14px;
+  padding: 6px 0px;
   color: #5D6A83;
   font-weight: normal;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.event-card .time {
+  margin-left: 1em;
+  padding-left: 1em;
+
+}
+
+.event-card .time:before {
+  content: "•";
+  margin-left: -1em;
+  padding-right: 1em;
+  display: inline-block;
 }
 
 .event-card p {
@@ -2140,8 +2156,8 @@ address {
   border-width: 1px;
 }
 
-.home .event-card hr {
-  margin: 17px auto 0px;
+.event-card hr {
+  margin: 20px auto 0px;
 }
 
 .event-card .date {
@@ -2154,6 +2170,7 @@ address {
 
 .event-card .description {
   margin-top: 15px;
+  margin-top: 8px;
 }
 
 .event-card img {
@@ -2163,9 +2180,9 @@ address {
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   margin-right: 15px;
-  max-width: 225px;
+  max-width: 375px;
   /* in case the text doesn't go to the bottom of the image, make sure it has the same margin as <hr/> top */
-  margin-bottom: 17px;
+  margin-bottom: 20px;
 }
 
 .home .event-card img {
@@ -2234,7 +2251,7 @@ address {
   -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
   background: #fff;
-  left: -70px;
+  left: -66px;
   position: relative;
    margin-bottom: -60px;
    top: -100px;
@@ -2953,6 +2970,53 @@ body {
     left: -999em;
     width: 1em;
     overflow: hidden;
+}
+
+.viewAll {
+  position: relative;
+  background: #fff;
+  border: 1px solid #a7a7a7;
+  border-width: 1px 0 2px 1px;
+  color: #001F46;
+  font-size: 16px;
+  font-family: GPBold, sans-serif;
+  text-decoration: none;
+  padding: 3px 5px 6px;
+  width: 45%;
+  display: block;
+
+}
+
+.viewAll:hover {
+  background-color: #d7d7d7;
+}
+
+.viewAll:hover:after {
+  border-left-color: #d7d7d7;
+}
+
+.viewAll:after, .viewAll:before {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.viewAll:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-left-color: #fff;
+  border-width: 15px;
+  margin-top: -15px;
+}
+.viewAll:before {
+  border-color: rgba(125, 125, 125, 0);
+  border-left-color: #a7a7a7;
+  border-width: 17px;
+  margin-top: -16px;
 }
 
 
