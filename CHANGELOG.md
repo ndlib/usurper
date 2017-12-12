@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2017.8](https://github.com/ndlib/usurper/tree/v2017.8)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.7...v2017.8)
+
+### New features/enhancements:
+- A-Z list now scrolls with you on the Database A-Z page [#336](https://github.com/ndlib/usurper/pull/336)
+- Added "About This Site" page [#339](https://github.com/ndlib/usurper/pull/339)
+
+### Bug Fixes
+- Hours colors contrast now meets accessability standards [#338](https://github.com/ndlib/usurper/pull/338)
+
+
 ## [v2017.7](https://github.com/ndlib/usurper/tree/v2017.7)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.6...v2017.7)
 
