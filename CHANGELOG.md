@@ -9,6 +9,7 @@
 
 ### Bug Fixes
 - Hours colors contrast now meets accessability standards [#338](https://github.com/ndlib/usurper/pull/338)
+- Add redirect for the catalog down page [#344](https://github.com/ndlib/usurper/pull/344)
 
 
 ## [v2017.7](https://github.com/ndlib/usurper/tree/v2017.7)
