@@ -36,6 +36,7 @@ const RedirectRoutes = [
   { path: '/help/proxy.shtml', target: '/proxy-bookmarklet' },
   { path: '/srch-find', target: '/research' },
   { path: '/kelloggkroc', target: '/kellogg-kroc' },
+  { path: '/onesearch/onesearch_down.shtml', target: '/catalog-dowm' },
 
   // index.php redirects
   { path: '/index.php', target: '/' },
