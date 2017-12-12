@@ -31,7 +31,7 @@
 	background: #ccc;
 }
 */
-.group h3 {
+.group h2 {
 
   background-image: url('../../../static/images/jesus.2.png');
     background-repeat: no-repeat;
@@ -52,7 +52,7 @@
     margin-bottom: 0;
 }
 
-.group h3 span {
+.group h2 span {
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 

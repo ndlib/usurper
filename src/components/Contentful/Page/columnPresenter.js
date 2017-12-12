@@ -12,22 +12,25 @@ const Sections = (column, showDescriptions) => {
   return column.fields.sections.map((entry) => {
     let s = entry.fields
     return (
-      <div key={entry.sys.id} className='group'>
-        <h3><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h3>
-        <div className='linksgroup'><LibMarkdown>{ s.body }</LibMarkdown>
-          {
-          s.links.map((item) => {
-            let link = item.fields.url ? item.fields.url : '/' + item.fields.slug
-            return (
-              <p key={item.sys.id}>
-                <Link to={link}>{item.fields.title}</Link>
-                { showDescriptions ? (<span>{item.fields.shortDescription}</span>) : null }
-              </p>
-            )
-          })
-        }
+      <section key={entry.sys.id} className='group'>
+        <h2><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h2>
+        <div className='linksgroup'>
+          <LibMarkdown>{ s.body }</LibMarkdown>
+          <div role={s.title + ' navigation'}>
+            {
+            s.links.map((item) => {
+              let link = item.fields.url ? item.fields.url : '/' + item.fields.slug
+              return (
+                <p key={item.sys.id}>
+                  <Link to={link}>{item.fields.title}</Link>
+                  { showDescriptions ? (<span>{item.fields.shortDescription}</span>) : null }
+                </p>
+              )
+            })
+          }
+          </div>
         </div>
-      </div>
+      </section>
     )
   })
 }
