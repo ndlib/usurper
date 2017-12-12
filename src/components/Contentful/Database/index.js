@@ -22,10 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 
 export class ContentfulDatabaseContainer extends Component {
   componentDidMount () {
-    let databaseId = this.props.match.params.id
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
     if (this.props.cfDatabaseEntry.state === statuses.NOT_FETCHED) {
-      this.props.fetchEntry(databaseId, null, preview)
+      this.props.fetchEntry(this.props.databaseId, null, preview)
     }
   }
 
