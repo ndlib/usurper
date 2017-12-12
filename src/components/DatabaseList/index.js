@@ -55,7 +55,7 @@ const sortDbs = (raw) => {
 }
 
 const mapStateToProps = (state, thisProps) => {
-  let allLettersStatus = statuses.FETCHING
+  let allLettersStatus = statuses.NOT_FETCHED
   // get a status for all letters, either error, fetching or success (not found || success = success)
   if (state.cfDatabaseLetter && state.cfDatabaseLetter.a) {
     allLettersStatus = Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status)
@@ -107,9 +107,11 @@ export class DatabaseListContainer extends Component {
   componentDidMount () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
-    alphabet.forEach((letter) => {
-      this.props.fetchLetter(letter, preview)
-    })
+    if (this.props.allLettersStatus === statuses.NOT_FETCHED) {
+      alphabet.forEach((letter) => {
+        this.props.fetchLetter(letter, preview)
+      })
+    }
   }
 
   componentWillReceiveProps (nextProps) {

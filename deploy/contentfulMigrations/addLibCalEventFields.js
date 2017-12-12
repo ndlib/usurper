@@ -9,8 +9,12 @@ const forward = (migration) => {
     ])
 
   event.createField('contactPeople')
-    .type('Symbol')
+    .type('Array')
     .name('Contact People')
+    .items({
+      type: 'Symbol',
+      validations: [],
+    })
 
   event.createField('presenter')
     .type('Symbol')
@@ -22,11 +26,11 @@ const forward = (migration) => {
   event.moveField('libCalId')
     .toTheTop()
 
-  event.createField('hoursDisplay')
-    .type('Symbol')
-    .name('Hours To Display')
-  event.moveField('hoursDisplay')
-    .afterField('endDate')
+  // event.createField('hoursDisplay')
+  //   .type('Symbol')
+  //   .name('Hours To Display')
+  // event.moveField('hoursDisplay')
+  //   .afterField('endDate')
 }
 
 const reverse = (migration) => {
@@ -35,7 +39,7 @@ const reverse = (migration) => {
   event.deleteField('contactPeople')
   event.deleteField('presenter')
   event.deleteField('libCalId')
-  event.deleteField('hoursDisplay')
+  // event.deleteField('hoursDisplay')
 }
 
 module.exports = forward

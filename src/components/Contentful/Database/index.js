@@ -6,20 +6,26 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulDatabasePresenter from './presenter.js'
+import * as statuses from '../../../constants/APIStatuses'
 
-const mapStateToProps = (state) => {
-  return { cfDatabaseEntry: state.cfEntry }
+const mapStateToProps = (state, thisProps) => {
+  const databaseId = thisProps.match.params.id
+  return {
+    databaseId: databaseId,
+    cfDatabaseEntry: state.cfEntry[databaseId] ? state.cfEntry[databaseId] : { state: statuses.NOT_FETCHED },
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchEntry }, dispatch)
 }
 
-export class ContentfulFloorContainer extends Component {
+export class ContentfulDatabaseContainer extends Component {
   componentDidMount () {
-    let databaseId = this.props.match.params.id
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    this.props.fetchEntry(databaseId, null, preview)
+    if (this.props.cfDatabaseEntry.state === statuses.NOT_FETCHED) {
+      this.props.fetchEntry(this.props.databaseId, null, preview)
+    }
   }
 
   render () {
@@ -30,7 +36,7 @@ export class ContentfulFloorContainer extends Component {
   }
 }
 
-ContentfulFloorContainer.propTypes = {
+ContentfulDatabaseContainer.propTypes = {
   fetchEntry: PropTypes.func.isRequired,
   cfDatabaseEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
@@ -39,6 +45,6 @@ ContentfulFloorContainer.propTypes = {
 const ContentfulFloor = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContentfulFloorContainer)
+)(ContentfulDatabaseContainer)
 
 export default ContentfulFloor

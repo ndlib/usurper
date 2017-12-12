@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import CurrentHours from '../../Hours/Current'
 import Contact from '../../Contact/ServicePoint'
 
-const ServicePoint = ({ cfServicePoint }) => {
+const ServicePoint = ({ cfServicePoint, showHours }) => {
   if (!cfServicePoint) {
     return null
   }
@@ -20,7 +20,7 @@ const ServicePoint = ({ cfServicePoint }) => {
       <h3 itemProp='name'>{cfServicePoint.fields.title}</h3>
       <h4 itemProp='streetAddress'>{cfServicePoint.fields.address}</h4>
 
-      <CurrentHours servicePoint={cfServicePoint} />
+      { showHours && <CurrentHours servicePoint={cfServicePoint} /> }
       <Contact servicePoint={cfServicePoint} />
     </section>
   )
@@ -28,6 +28,11 @@ const ServicePoint = ({ cfServicePoint }) => {
 
 ServicePoint.PropTypes = {
   cfServicePoint: PropTypes.object.isRequired,
+  showHours: PropTypes.bool,
+}
+
+ServicePoint.defaultProps = {
+  showHours: true,
 }
 
 export default ServicePoint

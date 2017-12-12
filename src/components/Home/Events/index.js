@@ -164,7 +164,7 @@ const mapStateToProps = (state) => {
         return entry.startDate >= now || entry.endDate >= now
       })
       .sort((a, b) => sortEvents(a, b, true))
-      .slice(0, 3)
+      .slice(0, 5)
       .sort(sortEvents)
   }
   return {

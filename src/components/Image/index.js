@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { fetchEntry } from '../../actions/contentful/entry'
 
 import Presenter from './presenter'
 
@@ -9,10 +11,17 @@ export const mapStateToProps = (state, thisProps) => {
   let alt = thisProps.alt
   let hidden = false
 
-  if (!src && thisProps.cfImage && thisProps.cfImage.fields) {
-    src = thisProps.cfImage.fields.file.url
-  } else if (!src && thisProps.defaultImage) {
-    src = thisProps.defaultImage
+  let cfImage = thisProps.cfImage
+  if (!src) {
+    if (cfImage && !cfImage.fields && state.cfEntry[cfImage.sys.id]) {
+      cfImage = state.cfEntry[cfImage.sys.id].json
+    }
+
+    if (cfImage && cfImage.fields) {
+      src = cfImage.fields.file.url
+    } else if (thisProps.defaultImage) {
+      src = thisProps.defaultImage
+    }
   }
 
   if (!alt) {
@@ -23,10 +32,15 @@ export const mapStateToProps = (state, thisProps) => {
   return {
     src: src,
     alt: alt,
+    cfImage: cfImage,
     className: thisProps.className,
     ariaHidden: hidden,
     itemProp: thisProps.itemProp,
   }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchEntry }, dispatch)
 }
 
 export class ImageContainer extends Component {
@@ -36,6 +50,12 @@ export class ImageContainer extends Component {
       error: false,
     }
     this.onError = this.onError.bind(this)
+  }
+
+  componentDidMount () {
+    if (!this.props.src && this.props.cfImage && this.props.cfImage.sys) {
+      this.props.fetchEntry(this.props.cfImage.sys.id)
+    }
   }
 
   onError () {
@@ -74,4 +94,4 @@ ImageContainer.propTypes = {
   defaultImage: PropTypes.string,
 }
 
-export default connect(mapStateToProps)(ImageContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ImageContainer)

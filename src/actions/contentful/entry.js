@@ -17,6 +17,7 @@ const receiveEntry = (entry, response) => {
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
     receivedAt: Date.now(),
+    entry,
   }
 
   let success = {
@@ -24,6 +25,7 @@ const receiveEntry = (entry, response) => {
     status: statuses.SUCCESS,
     page: response,
     receivedAt: Date.now(),
+    entry,
   }
 
   try {
@@ -39,21 +41,24 @@ const receiveEntry = (entry, response) => {
 
 export const fetchEntry = (id, slug, preview) => {
   let identifierParam
+  let entryIdent
   if (slug) {
     identifierParam = `slug=${encodeURIComponent(slug)}`
+    entryIdent = slug
   }
   if (id) {
     identifierParam = `id=${encodeURIComponent(id)}`
+    entryIdent = id
   }
   let url = `${Config.contentfulAPI}/entry?locale=en-US&${identifierParam}&preview=${preview}`
   return (dispatch, getState) => {
-    dispatch(requestEntry(identifierParam))
+    dispatch(requestEntry(entryIdent))
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
     return fetch(url, { headers })
       .then(response => response.ok ? response.json() : { errorStatus: response.status })
-      .then(json => dispatch(receiveEntry(identifierParam, json)))
-      .catch(response => dispatch(receiveEntry(identifierParam, response)))
+      .then(json => dispatch(receiveEntry(entryIdent, json)))
+      .catch(response => dispatch(receiveEntry(entryIdent, response)))
   }
 }
