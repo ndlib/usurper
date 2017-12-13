@@ -24,7 +24,6 @@ const PagePresenter = ({ entry }) => (
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8'>
-        <h3>Date &amp; Time</h3>
         <p>{entry.fields.hoursDisplay}</p>
         <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
