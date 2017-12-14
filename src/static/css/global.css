@@ -2180,7 +2180,7 @@ address {
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   margin-right: 15px;
-  max-width: 375px;
+  max-width: 300px;
   /* in case the text doesn't go to the bottom of the image, make sure it has the same margin as <hr/> top */
   margin-bottom: 40px;
 }
