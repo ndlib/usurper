@@ -60,7 +60,7 @@ const startEndDate = (start, end) => {
     // only show the year at the end if the start and end are in the same yar
     startYear = ''
   }
-  out += startYear + ' - ' + end.toLocaleString('en-US', options) + endYear
+  out += startYear + ' – ' + end.toLocaleString('en-US', options) + endYear
   return out
 }
 
@@ -89,7 +89,7 @@ const startEndTime = (start, end) => {
   if (isSameDay(start, end)) {
     let out = hour12(start)
     if (start.getTime() !== end.getTime()) {
-      out += ' - ' + hour12(end)
+      out += ' – ' + hour12(end)
     }
     return out
   }
