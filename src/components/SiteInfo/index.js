@@ -36,13 +36,13 @@ class SiteInfo extends Component {
         <ServiceNowLink isWebContent>Website Feedback</ServiceNowLink>
         <dl>
           <dt>Website Version:</dt> <dd>{version}</dd>
+          <dt>React Version:</dt> <dd>{React.version}</dd>
           <dt>Cache Last Modified:</dt> <dd>{this.state.lastModified}</dd>
+          <dt>Referral Path:</dt> <dd>{window.location.search.toString().replace('?URL=', '')}</dd>
           <dt>IP Address:</dt> <dd>{this.state.ipAddress}</dd>
           <dt>User Agent:</dt> <dd>{navigator.userAgent}</dd>
-          <dt>Referal Path:</dt> <dd>{window.location.search.toString().replace('?URL=', '')}</dd>
           <dt>Screen Dimensions:</dt> <dd>{window.screen.width}x{window.screen.height}</dd>
           <dt>Window Dimensions:</dt> <dd>{window.innerWidth}x{window.innerHeight}</dd>
-          <dt>React Version:</dt> <dd>{React.version}</dd>
         </dl>
       </div>
     )
