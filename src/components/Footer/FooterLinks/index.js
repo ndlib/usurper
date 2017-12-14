@@ -4,7 +4,7 @@ import Twitter from '../images/twitter.png'
 import Gov from '../images/fdlp-emblem-color.png'
 import Link from '../../Link'
 import ServiceNowLink from '../../ServiceNowLink'
-import infoIcon from './images/ic_help_outline_white_24px.svg'
+import infoIcon from './images/ic_info_outline_white_24px.svg'
 
 const FooterLinks = () => {
   return (
