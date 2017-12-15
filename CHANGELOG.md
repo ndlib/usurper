@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2017.9](https://github.com/ndlib/usurper/tree/v2017.9)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.8...v2017.9)
+
+### Bug Fixes
+- Clicking the site info link repetedly will no longer append to the url forever [#348](https://github.com/ndlib/usurper/pull/348)
+
+
 ## [v2017.8](https://github.com/ndlib/usurper/tree/v2017.8)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.7...v2017.8)
 
