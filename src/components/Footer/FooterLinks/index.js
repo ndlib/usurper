@@ -4,6 +4,7 @@ import Twitter from '../images/twitter.png'
 import Gov from '../images/fdlp-emblem-color.png'
 import Link from '../../Link'
 import ServiceNowLink from '../../ServiceNowLink'
+import SiteInfoLink from '../../SiteInfoLink'
 import infoIcon from './images/ic_info_outline_white_24px.svg'
 
 const FooterLinks = () => {
@@ -21,13 +22,13 @@ const FooterLinks = () => {
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
                 <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
                 <li>
-                  <Link to={`/site-info?URL=${window.location}`}>
+                  <SiteInfoLink>
                     <img
                       src={infoIcon}
                       alt='website info'
                       title='Hesburgh Library Website Information'
                     />
-                  </Link>
+                  </SiteInfoLink>
                 </li>
                 <li><Link to='https://library.nd.edu/government-documents'>
                   <img src={Gov} className='gov' alt='Federal Depository Library' />
