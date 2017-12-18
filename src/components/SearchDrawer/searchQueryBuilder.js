@@ -91,10 +91,14 @@ const searchQuery = (searchStore, advancedSearch, history) => {
       searchTerm += `&scp.scps=${scopesListAdvanced}`
     }
     searchTerm += `&Submit=Search`
+  } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
+    searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
     // Basic Search
-    searchTerm = advancedSearch['basic-search-field'] || ''
-    searchTerm = '&vl%28freeText0%29=' + searchTerm + '&scp.scps=' + (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
+    searchTerm = '&vl%28freeText0%29=' +
+    searchTerm +
+    '&scp.scps=' +
+    (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
   }
 
   switch (searchStore.searchType) {
