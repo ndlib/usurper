@@ -1,8 +1,13 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
-  const mode = isAdvanced ? 'Advanced' : 'Basic'
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
-  return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=${mode}&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+
+  if (isAdvanced) {
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+  } else {
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&query=any%2Ccontains%2C${queryTerm}&search_scope=malc_blended&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
+  }
+
 }
 const curateBasicURL = (queryTerm) => {
   return `https://curate.nd.edu/catalog?utf8=%E2%9C%93&amp;search_field=all_fields&amp;q=${queryTerm}`
@@ -94,7 +99,6 @@ const searchQuery = (searchStore, advancedSearch, history) => {
   } else {
     // Basic Search
     searchTerm = advancedSearch['basic-search-field'] || ''
-    searchTerm = '&vl%28freeText0%29=' + searchTerm + '&scp.scps=' + (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
   }
 
   switch (searchStore.searchType) {
