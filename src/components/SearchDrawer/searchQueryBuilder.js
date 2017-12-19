@@ -94,24 +94,24 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     // Basic Search
     searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
 
-    switch (searchStore.searchType) {
-      case ONESEARCH:
-        window.location = onesearchUrl(searchTerm, isAdvanced, true)
-        break
-      case NDCATALOG:
-        window.location = onesearchUrl(searchTerm, isAdvanced, false)
-        break
-      case CURATEND:
-        window.location = curateBasicURL(searchTerm)
-        break
-      case LIBRARY:
-        window.location = `https://search.nd.edu/search/?client=lib_site_srch&site=library;q=${searchTerm}`
-        // switch to this when search is implemented locally
-        // history.push(libSearchBasicURL(searchTerm))
-        break
-      default:
-        break
-    }
+  }
+  switch (searchStore.searchType) {
+    case ONESEARCH:
+      window.location = onesearchUrl(searchTerm, isAdvanced, true)
+      break
+    case NDCATALOG:
+      window.location = onesearchUrl(searchTerm, isAdvanced, false)
+      break
+    case CURATEND:
+      window.location = curateBasicURL(searchTerm)
+      break
+    case LIBRARY:
+      window.location = `https://search.nd.edu/search/?client=lib_site_srch&site=library;q=${searchTerm}`
+      // switch to this when search is implemented locally
+      // history.push(libSearchBasicURL(searchTerm))
+      break
+    default:
+      break
   }
 }
 
