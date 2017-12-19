@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import CurrentHours from '../../Hours/Current'
+import CurrentHours from './Current'
 
 const Presenter = ({ availableServicePoints, servicePointID }) => {
   let sp = availableServicePoints[servicePointID]

@@ -62,12 +62,14 @@ export class EmbeddableHoursContainer extends Component {
   }
 }
 
-PropTypes.propTypes = {
+EmbeddableHoursContainer.propTypes = {
   hoursStatus: PropTypes.string.isRequired,
   fetchHours: PropTypes.func.isRequired,
   servicePointsStatus: PropTypes.string.isRequired,
+  servicePointsWithHours: PropTypes.object,
   fetchServicePoints: PropTypes.func.isRequired,
   combinedStatus: PropTypes.string.isRequired,
+  match: PropTypes.object,
 }
 
 const EmbeddableHours = connect(
