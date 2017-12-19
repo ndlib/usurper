@@ -49,7 +49,6 @@ export class EmbeddableHoursContainer extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <PresenterFactory
         presenter={EmbeddableHoursPresenter}
