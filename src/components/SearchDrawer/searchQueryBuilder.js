@@ -5,7 +5,7 @@ const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   if (isAdvanced) {
     return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
   } else {
-    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&query=any%2Ccontains%2C${queryTerm}&search_scope=malc_blended&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
   }
 
 }
@@ -21,9 +21,8 @@ const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
   let isAdvanced = searchStore.advancedSearch
 
-  // %3A=: %28=( %29=) %2C=, %22="
-  const defaultScopes = 'scope%3A%28hathi_pub%29%2Cscope%3A%28ndulawrestricted%29%2Cscope%3A%28dtlrestricted%29%2Cscope%3A%28NDU%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28ndu_digitool%29'
-  const partnerScopes = 'scope%3A%28NDU%29%2Cscope%3A%28BCI%29%2Cscope%3A%28HCC%29%2Cscope%3A%28SMC%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28%22MALC%22%29'
+  const oneSearchScope = 'malc_blended'
+  const ndCatalogScope = 'nd_campus'
 
   if (isAdvanced) {
     // Advanced Search
@@ -46,8 +45,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
-    const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
-
+    debugger
     // Hack to fix weird date insertion on Primo's end of stuff.
     if (drStartYear || drEndYear) {
       if (!freeText1) {
@@ -93,13 +91,21 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     }
 
     if (searchStore.searchType === NDCATALOG) {
-      searchTerm += `&scp.scps=${scopesListAdvanced}`
+      searchTerm += `&search_scope=${ndCatalogScope}`
+    } else {
+      searchTerm += `&search_scope=${oneSearchScope}`
     }
     searchTerm += `&Submit=Search`
+  } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
+    searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
     // Basic Search
-    searchTerm = advancedSearch['basic-search-field'] || ''
-  }
+    searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
+    if (searchStore.searchType === NDCATALOG) {
+      searchTerm += `&search_scope=${ndCatalogScope}`
+    } else {
+      searchTerm += `&search_scope=${oneSearchScope}`
+    }
 
   switch (searchStore.searchType) {
     case ONESEARCH:
