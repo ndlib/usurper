@@ -1,8 +1,14 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
-  const mode = isAdvanced ? 'Advanced' : 'Basic'
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
-  return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=${mode}&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+  const seachScope = isOnesearch ? 'malc_blended' : 'nd_campus'
+
+  if (isAdvanced) {
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}&search_scope=${seachScope}`
+  } else {
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&search_scope=${seachScope}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
+  }
+
 }
 const curateBasicURL = (queryTerm) => {
   return `https://curate.nd.edu/catalog?utf8=%E2%9C%93&amp;search_field=all_fields&amp;q=${queryTerm}`
@@ -15,10 +21,6 @@ const libSearchBasicURL = (queryTerm) => {
 const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
   let isAdvanced = searchStore.advancedSearch
-
-  // %3A=: %28=( %29=) %2C=, %22="
-  const defaultScopes = 'scope%3A%28hathi_pub%29%2Cscope%3A%28ndulawrestricted%29%2Cscope%3A%28dtlrestricted%29%2Cscope%3A%28NDU%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28ndu_digitool%29'
-  const partnerScopes = 'scope%3A%28NDU%29%2Cscope%3A%28BCI%29%2Cscope%3A%28HCC%29%2Cscope%3A%28SMC%29%2Cscope%3A%28NDLAW%29%2Cscope%3A%28%22MALC%22%29'
 
   if (isAdvanced) {
     // Advanced Search
@@ -41,8 +43,6 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
-    const scopesListAdvanced = advancedSearch['scopesListAdvanced'] || (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
-
     // Hack to fix weird date insertion on Primo's end of stuff.
     if (drStartYear || drEndYear) {
       if (!freeText1) {
@@ -87,37 +87,31 @@ const searchQuery = (searchStore, advancedSearch, history) => {
                 `&vl%28drEndYear5%29=${drEndYear}`
     }
 
-    if (searchStore.searchType === NDCATALOG) {
-      searchTerm += `&scp.scps=${scopesListAdvanced}`
-    }
     searchTerm += `&Submit=Search`
   } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
     searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
     // Basic Search
-    searchTerm = '&vl%28freeText0%29=' +
-    searchTerm +
-    '&scp.scps=' +
-    (advancedSearch['searchPartners'] ? partnerScopes : defaultScopes)
-  }
+    searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
 
-  switch (searchStore.searchType) {
-    case ONESEARCH:
-      window.location = onesearchUrl(searchTerm, isAdvanced, true)
-      break
-    case NDCATALOG:
-      window.location = onesearchUrl(searchTerm, isAdvanced, false)
-      break
-    case CURATEND:
-      window.location = curateBasicURL(searchTerm)
-      break
-    case LIBRARY:
-      window.location = `https://search.nd.edu/search/?client=lib_site_srch&site=library;q=${searchTerm}`
-      // switch to this when search is implemented locally
-      // history.push(libSearchBasicURL(searchTerm))
-      break
-    default:
-      break
+    switch (searchStore.searchType) {
+      case ONESEARCH:
+        window.location = onesearchUrl(searchTerm, isAdvanced, true)
+        break
+      case NDCATALOG:
+        window.location = onesearchUrl(searchTerm, isAdvanced, false)
+        break
+      case CURATEND:
+        window.location = curateBasicURL(searchTerm)
+        break
+      case LIBRARY:
+        window.location = `https://search.nd.edu/search/?client=lib_site_srch&site=library;q=${searchTerm}`
+        // switch to this when search is implemented locally
+        // history.push(libSearchBasicURL(searchTerm))
+        break
+      default:
+        break
+    }
   }
 }
 
