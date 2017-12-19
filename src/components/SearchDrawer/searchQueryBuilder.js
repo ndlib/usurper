@@ -1,11 +1,12 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
+  const seachScope = isOnesearch ? 'malc_blended' : 'nd_campus'
 
   if (isAdvanced) {
-    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}`
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}&search_scope=${seachScope}`
   } else {
-    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
+    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&search_scope=${seachScope}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
   }
 
 }
@@ -20,9 +21,6 @@ const libSearchBasicURL = (queryTerm) => {
 const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
   let isAdvanced = searchStore.advancedSearch
-
-  const oneSearchScope = 'malc_blended'
-  const ndCatalogScope = 'nd_campus'
 
   if (isAdvanced) {
     // Advanced Search
@@ -89,22 +87,12 @@ const searchQuery = (searchStore, advancedSearch, history) => {
                 `&vl%28drEndYear5%29=${drEndYear}`
     }
 
-    if (searchStore.searchType === NDCATALOG) {
-      searchTerm += `&search_scope=${ndCatalogScope}`
-    } else {
-      searchTerm += `&search_scope=${oneSearchScope}`
-    }
     searchTerm += `&Submit=Search`
   } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
     searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
     // Basic Search
     searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
-    if (searchStore.searchType === NDCATALOG) {
-      searchTerm += `&search_scope=${ndCatalogScope}`
-    } else {
-      searchTerm += `&search_scope=${oneSearchScope}`
-    }
 
   switch (searchStore.searchType) {
     case ONESEARCH:
