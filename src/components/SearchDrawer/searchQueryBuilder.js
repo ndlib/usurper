@@ -45,7 +45,6 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
-    debugger
     // Hack to fix weird date insertion on Primo's end of stuff.
     if (drStartYear || drEndYear) {
       if (!freeText1) {
