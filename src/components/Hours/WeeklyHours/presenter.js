@@ -17,9 +17,9 @@ const Presenter = ({ hours, title, effectiveDate, showEffectiveDates }) => {
         {
           hours.map((row) => {
             return (
-              <span key={row.title}>
+              <span key={row.title} style={{ float: 'left', clear: 'left', width: '100%' }}>
                 <dt>{ row.title }</dt>
-                <dd>{ row.rendered }</dd>
+                <dd style={{ float: 'right' }}>{ row.rendered }</dd>
               </span>
             )
           })
