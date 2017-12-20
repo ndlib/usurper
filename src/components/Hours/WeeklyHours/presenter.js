@@ -19,7 +19,7 @@ const Presenter = ({ hours, title, effectiveDate, showEffectiveDates }) => {
             return (
               <span key={row.title}>
                 <dt>{ row.title }</dt>
-                <dd style={{ float: 'right' }}>{ row.rendered }</dd>
+                <dd>{ row.rendered }</dd>
               </span>
             )
           })
