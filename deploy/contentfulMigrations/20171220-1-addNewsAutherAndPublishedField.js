@@ -1,3 +1,4 @@
+// this migration should be run before the deployment
 const forward = (migration) => {
   const news = migration.editContentType('news')
   // currently does not add the appearance aspects for the date.

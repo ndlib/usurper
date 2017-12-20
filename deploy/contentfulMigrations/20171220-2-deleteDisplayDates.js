@@ -1,3 +1,4 @@
+// this migration should be run after the deployment
 const forward = (migration) => {
   const news = migration.editContentType('news')
 
