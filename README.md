@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/ndlib/usurper.svg?branch=master)](https://travis-ci.org/ndlib/usurper)
 [![Coverage Status](https://img.shields.io/coveralls/ndlib/usurper.svg)](https://coveralls.io/r/ndlib/usurper?branch=master)
 [![Code Climate](https://codeclimate.com/github/ndlib/usurper/badges/gpa.svg)](https://codeclimate.com/github/ndlib/usurper)
+[![Known Vulnerabilities](https://snyk.io/test/github/ndlib/usurper/badge.svg)](https://snyk.io/test/github/ndlib/usurper)
 
 ## Table of Content
 
@@ -48,6 +49,7 @@
   * `brew install git nvm`
   * `nvm install v8`
   * `npm install -g yarn`
+  * Add `nvm` and `yarn` to bash path.
 
 #### Project Install
   * `git clone git@github.com:ndlib/usurper.git`
