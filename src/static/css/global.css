@@ -459,9 +459,26 @@ body.gold-blue #header div a {
 }
 
 /* Page Title */
-.page-title small {
+header.page-title small {
   display: inline-block;
   font-size: 18px;
+}
+
+header.page-title .tagline {
+  font-style: normal;
+  font-size: 14px;
+  color: #5D6A83;
+  font-weight: normal;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+header.page-title {
+  margin-bottom: 35px;
+}
+
+header.page-title hr {
+  margin: 0 0 15px 0
 }
 
 /* Site title */
@@ -2128,7 +2145,6 @@ width: 100%;
 
 .event-card .date, .event-card .time {
   font-style: normal;
-  font-size: 16px;
   font-size: 14px;
   padding: 6px 0px;
   color: #5D6A83;
