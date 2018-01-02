@@ -18,6 +18,7 @@ const PagePresenter = ({ entry }) => (
     itemType='http://schema.org/Event'
     itemProp='mainEntity'
   >
+    {entry.fields.shortDescription && (<meta name="description" content={entry.fields.shortDescription} />) }
     <meta itemProp='startDate' content={entry.fields.startDate} />
     <meta itemProp='endDate' content={entry.fields.endDate} />
     <PageTitle title={entry.fields.title} itemProp='name' />
