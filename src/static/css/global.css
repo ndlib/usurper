@@ -1965,16 +1965,6 @@ address {
 
 }
 
-.moreinfo {
-  display: inline-block;
-  padding-left: 28px;
-  background-image: url("../images/more.png");
-  background-size: 18px;
-  background-repeat: no-repeat;
-  background-position: 6px 3px;
-  line-height: 1.5em;
-}
-
 .contact address div {
   font-weight: bold;
 }
@@ -3044,10 +3034,10 @@ line-height: 2em;
 .multiline-ellipsis {
   overflow: hidden;
   position: relative;
-  line-height: 1.2em;
+  line-height: 1.5em;
   /* modify the max-height by line-height to determine how many
      lines are displayed before the ellipsis */
-  max-height: 2.4em; /* max-height = line-height * lines max number (2) */
+  max-height: 4.5em; /* max-height = line-height * lines max number (3) */
   text-align: justify;
   margin-right: -1em;
   padding-right: 1em;
@@ -3071,8 +3061,20 @@ line-height: 2em;
 }
 .dbSection {
   margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: thin dashed #061F43;
+}
+
+.dbItem {
+  color: #93601D;
+}
+
+.moreinfo {
+  display: inline-block;
+  padding-left: 28px;
+  background-image: url("../images/more2.svg");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: 6px 3px;
+  line-height: 1.5em;
 }
 
 @media screen and (max-width: 620px) {

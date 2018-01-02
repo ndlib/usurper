@@ -68,7 +68,9 @@ const Loaded = (props) => {
   let data = props.list.map((item) => {
     return (
       <div key={item.fields.alephSystemNumber + item.fields.title} aria-label={item.fields.title} className='dbSection'>
-        <Link to={item.fields.purl} title={'Go to ' + item.fields.title}><h2>{item.fields.title}</h2></Link>
+        <Link to={item.fields.purl} title={'Go to ' + item.fields.title}>
+          <h2 className='dbItem'>{item.fields.title}</h2>
+        </Link>
         <div className='multiline-ellipsis'>
           {item.fields.description}
         </div>

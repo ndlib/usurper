@@ -72,13 +72,18 @@ describe('components/DatabaseList/presenter.js', () => {
       let fields = props.list[0].fields
       let sys = props.list[0].sys
       expect(enzymeWrapper
-        .containsMatchingElement(<div key={fields.alephSystemNumber + fields.title}>
-          <p aria-label={fields.title}>
-            <Link to={fields.purl} title={'Go to ' + fields.title}>{fields.title}</Link><br />
-            {fields.description}
-            <Link to={'/database/' + sys.id} ariaLabel={'More Information about ' + fields.title} className='moreinfo'>More info</Link>
-          </p>
-        </div>))
+        .containsMatchingElement(
+          <div key={fields.alephSystemNumber + fields.title}
+            aria-label={fields.title} className='dbSection'>
+            <Link to={fields.purl} title={'Go to ' + fields.title}>
+              <h2 className='dbItem'>{fields.title}</h2>
+            </Link>
+            <div className='multiline-ellipsis'>
+              {fields.description}
+            </div>
+            <Link to={'/database/' + sys.id} className='moreinfo'
+              ariaLabel={'More Information about ' + fields.title}>More info</Link>
+          </div>))
         .toBe(true)
     })
   })
