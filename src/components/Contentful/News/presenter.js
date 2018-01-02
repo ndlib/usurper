@@ -19,9 +19,7 @@ const PagePresenter = ({ entry }) => (
     itemType='http://schema.org/NewsArticle'
     itemProp='mainEntity'
   >
-    <PageTitle title={entry.fields.title} itemProp='headline' subtitle={formatNewsAuthor(entry.fields.author, entry.fields.publishedDate)}>
-
-    </PageTitle>
+    <PageTitle title={entry.fields.title} itemProp='headline' subtitle={formatNewsAuthor(entry.fields.author, entry.fields.publishedDate)} />
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8 col-sm-8 article'>
