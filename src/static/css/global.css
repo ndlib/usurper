@@ -1995,6 +1995,11 @@ address {
   margin-top: 0;
   margin-bottom: 2em;
 }
+.hours-grid span {
+float: left;
+clear: left;
+width: 100%;
+}
 
 .hours-grid dt {
   float: left;
