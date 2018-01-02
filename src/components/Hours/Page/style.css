@@ -40,8 +40,14 @@
 	border-left-color: #AA272F;
 }
 
-.hours-listing {
+.hours-page .hours-listing {
 	padding: 20px;
+}
+.right .service-point .col-md-6 {
+  padding-left: 0;
+}
+.hours-page .right .service-point .col-md-6 {
+  padding-left: 1rem;
 }
 
 .location {
