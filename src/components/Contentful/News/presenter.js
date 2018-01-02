@@ -19,7 +19,9 @@ const PagePresenter = ({ entry }) => (
     itemType='http://schema.org/NewsArticle'
     itemProp='mainEntity'
   >
-    <PageTitle title={entry.fields.title} itemProp='headline' />
+    <PageTitle title={entry.fields.title} itemProp='headline' subtitle={formatNewsAuthor(entry.fields.author, entry.fields.publishedDate)}>
+
+    </PageTitle>
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8 col-sm-8 article'>
@@ -34,6 +36,22 @@ const PagePresenter = ({ entry }) => (
     </div>
   </article>
 )
+
+const formatNewsAuthor = (author, publishedDate) => {
+  let ret = ''
+  if (author) {
+    ret += 'By ' + author
+  }
+  if (author && publishedDate) {
+    ret += ' - '
+  }
+  if (publishedDate) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }
+    ret += new Date(publishedDate).toLocaleString('en-US', options)
+  }
+
+  return ret
+}
 
 PagePresenter.propTypes = {
   entry: PropTypes.object.isRequired,

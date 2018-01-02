@@ -26,10 +26,11 @@ class PageTitle extends Component {
 
     return (
       <header>
-        <h1 className="page-title" id="main-page-title" itemProp={this.props.itemProp}>
+        <h1 className='page-title' id='main-page-title' itemProp={this.props.itemProp}>
           {this.props.title}
           { this.props.subtitle && <small>{this.props.subtitle}</small> }
         </h1>
+        {this.props.children}
         <hr aria-hidden='true' className={this.props.className} />
       </header>
     )
@@ -42,6 +43,7 @@ PageTitle.propTypes = {
   className: PropTypes.string,
   hideInPage: PropTypes.bool,
   itemProp: PropTypes.string,
+  children: PropTypes.array,
 }
 
 PageTitle.defaultProps = {
