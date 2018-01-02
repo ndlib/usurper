@@ -6,7 +6,7 @@ import Related from '../../../Related'
 
 const Presenter = ({ cfStatic }) => (
   <div key={`ContentfulSidebar_${cfStatic.sys.id}_main`} role='complementary'>
-    {cfStatic.fields.shortDescription && (<meta name="description" content={cfStatic.fields.shortDescription} />) }
+    {cfStatic.fields.shortDescription && (<meta name='description' content={cfStatic.fields.shortDescription} />) }
     <Related className='p-resources' title='Resources' showImages={false}>{ cfStatic.fields.relatedResources }</Related>
     <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfStatic.fields.libguides }</Related>
     <Related className='p-services' title='Services'>{ cfStatic.fields.relatedServices }</Related>
