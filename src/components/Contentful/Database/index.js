@@ -10,9 +10,32 @@ import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state, thisProps) => {
   const databaseId = thisProps.match.params.id
+  const entry = state.cfEntry[databaseId] ? state.cfEntry[databaseId] : { status: statuses.NOT_FETCHED }
+
+  const fieldsAndTitle = {
+    'access': 'Access',
+    'includes': 'Includes',
+    'platform': 'Platform',
+    'publisher': 'Publisher',
+    'provider': 'Provider',
+  }
+
+  let fieldData = {}
+  if (entry.status === statuses.SUCCESS) {
+    for (let field in fieldsAndTitle) {
+      if (entry.json.fields[field]) {
+        fieldData[field] = {
+          title: fieldsAndTitle[field],
+          data: entry.json.fields[field],
+        }
+      }
+    }
+  }
+
   return {
     databaseId: databaseId,
-    cfDatabaseEntry: state.cfEntry[databaseId] ? state.cfEntry[databaseId] : { state: statuses.NOT_FETCHED },
+    cfDatabaseEntry: entry,
+    fieldData: fieldData,
   }
 }
 
@@ -23,7 +46,7 @@ const mapDispatchToProps = (dispatch) => {
 export class ContentfulDatabaseContainer extends Component {
   componentDidMount () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    if (this.props.cfDatabaseEntry.state === statuses.NOT_FETCHED) {
+    if (this.props.cfDatabaseEntry.status === statuses.NOT_FETCHED) {
       this.props.fetchEntry(this.props.databaseId, null, preview)
     }
   }
@@ -32,13 +55,14 @@ export class ContentfulDatabaseContainer extends Component {
     return <PresenterFactory
       presenter={ContentfulDatabasePresenter}
       status={this.props.cfDatabaseEntry.status}
-      props={{ cfDatabaseEntry: this.props.cfDatabaseEntry.json }} />
+      props={{ cfDatabaseEntry: this.props.cfDatabaseEntry.json, fieldData: this.props.fieldData }} />
   }
 }
 
 ContentfulDatabaseContainer.propTypes = {
   fetchEntry: PropTypes.func.isRequired,
   cfDatabaseEntry: PropTypes.object.isRequired,
+  fieldData: PropTypes.object,
   match: PropTypes.object.isRequired,
 }
 

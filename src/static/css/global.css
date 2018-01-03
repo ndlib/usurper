@@ -1475,9 +1475,40 @@ aside .group {
   padding-bottom: 0.5em;
 }
 
-
+/* Databases */
 .databaseList {
   padding-top: 17px;
+}
+
+.databaseInfo {
+  display: grid;
+  -ms-grid-columns:  0.25fr 1fr;
+  grid-template-columns: 0.25fr 1fr;
+  padding-bottom: 12px;
+}
+
+.infoLabel {
+  font-weight: bold;
+  grid-column: 1;
+}
+
+.infoValue {
+  white-space: pre;
+  grid-column: 2;
+}
+
+.infoValue p {
+  margin-bottom: 0;
+}
+
+.databaseLink li {
+  font-weight: bold;
+}
+
+
+.databaseLink p {
+  padding-left: 12px;
+  font-weight: normal;
 }
 
 .card-item {
@@ -2271,7 +2302,7 @@ width: 100%;
 
 
 
-.p-resources {
+.p-resources, .databaseLink {
   list-style: outside none none;
   padding: 0;
 
@@ -2319,7 +2350,7 @@ width: 100%;
   }
 }
 
-.p-resources li {
+.p-resources li, .databaseLink li {
   list-style: none;
   width: auto;
   float: none;
@@ -2327,7 +2358,7 @@ width: 100%;
   position: relative;
 }
 
-.p-resources li::before , .p-pages li::before {
+.p-resources li::before , .p-pages li::before, .databaseLink li::before {
   color: #b3b3b3;
   content: "›";
   left: 3px;
