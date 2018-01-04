@@ -1,5 +1,6 @@
-blueprints/**/files/**
-coverage/**
+build/**
+deploy/**
 node_modules/**
-dist/**
-src/index.html
+public/**
+scripts/**
+src/tests/**
