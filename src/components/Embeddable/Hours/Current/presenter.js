@@ -22,11 +22,6 @@ const Presenter = (hoursEntry, isOpen) => {
               itemProp='openingHours'
               content={hoursEntry.today.schemaOpeningHours}
             >{todayLabel}</div>
-            <div className='arrow'
-              role='tab'
-              aria-expanded
-              aria-controls={hoursEntry.servicePoint.slug}
-              aria-label={'View Hours For ' + hoursEntry.name} />
           </h4>
           <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
           <WeeklyHours hours={hoursEntry.upcomingChangedHours} title='Upcoming Hours' showEffectiveDates />
