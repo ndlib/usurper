@@ -21,17 +21,28 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => (
           <h2>Database Access</h2>
           <ul className='databaseLink'>
             {
-              cfDatabaseEntry.fields.urls.map((data) => {
-                let linkText = cfDatabaseEntry.fields.urls.length > 1 ? data.title : cfDatabaseEntry.fields.title
-                return (
-                  <li key={data.url}>
-                    <Link to={data.url}>{ linkText }</Link>
-                    {
-                      data.notes && <LibMarkdown>{ data.notes }</LibMarkdown>
-                    }
-                  </li>
-                )
-              })
+              // only use this if the field exists
+              cfDatabaseEntry.fields.urls && (
+                cfDatabaseEntry.fields.urls.map((data) => {
+                  let linkText = cfDatabaseEntry.fields.urls.length > 1 ? data.title : cfDatabaseEntry.fields.title
+                  return (
+                    <li key={data.url}>
+                      <Link to={data.url}>{ linkText }</Link>
+                      {
+                        data.notes && <LibMarkdown>{ data.notes }</LibMarkdown>
+                      }
+                    </li>
+                  )
+                })
+              )
+            }
+            {
+              // if that doesn't exist, use legacy information
+              !cfDatabaseEntry.fields.urls && (
+                <li key={cfDatabaseEntry.fields.purl}>
+                  <Link to={cfDatabaseEntry.fields.purl}>{ cfDatabaseEntry.fields.title }</Link>
+                </li>
+              )
             }
           </ul>
         </section>
