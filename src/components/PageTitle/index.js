@@ -44,7 +44,6 @@ PageTitle.propTypes = {
   className: PropTypes.string,
   hideInPage: PropTypes.bool,
   itemProp: PropTypes.string,
-  children: PropTypes.array,
 }
 
 PageTitle.defaultProps = {
