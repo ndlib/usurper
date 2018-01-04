@@ -39,10 +39,10 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
               <h5>Filter by First Letter</h5>
               <div className='alphabet'>
                 {
-                  'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
+                  'abcdefghijklmnopqrstuvwxyz#'.split('').map((item) => {
                     return (
                       <span key={'letter_link_' + item} className='letter'>
-                        <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
+                        <Link to={'/databases/' + encodeURIComponent(item)} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
                       </span>
                     )
                   })

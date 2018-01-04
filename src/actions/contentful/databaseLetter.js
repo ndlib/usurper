@@ -42,7 +42,8 @@ const receiveLetter = (letter, response) => {
 }
 
 export const fetchLetter = (letter, preview) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=databases%2f${letter}&preview=${preview}`
+  let letterEnc = encodeURIComponent(letter)
+  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=databases%2f${letterEnc}&preview=${preview}`
   return dispatch => {
     dispatch(requestLetter(letter))
     return fetch(url)
