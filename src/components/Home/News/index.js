@@ -9,8 +9,8 @@ import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
 export const sortNews = (left, right) => {
-  let a = new Date(left.fields.displayStartDate)
-  let b = new Date(right.fields.displayStartDate)
+  let a = new Date(left.fields.publishedDate)
+  let b = new Date(right.fields.publishedDate)
 
   if (a < b) {
     return 1
