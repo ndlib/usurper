@@ -1,7 +1,7 @@
 # Change Log
 
-## [v2017.10](https://github.com/ndlib/usurper/tree/v2017.10)
-[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.9...v2017.10)
+## [v2018.1](https://github.com/ndlib/usurper/tree/v2018.1)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.9...v2018.1)
 
 ### New features/enhancements
 - Limit the lines of displayed database description [#356](https://github.com/ndlib/usurper/pull/356)
