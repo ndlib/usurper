@@ -7,17 +7,6 @@ const forward = (migration) => {
     .type('Date')
     .name('Published Date')
 
-  // migrate the display start to the published date.
-  migration.transformEntries({
-    contentType: 'news',
-    from: ['displayStartDate'],
-    to: ['publishedDate'],
-    shouldPublish: true,
-    transformEntryForLocale: function (fromFields, currentLocale) {
-      return { publishedDate: fromFields.displayStartDate[currentLocale] }
-    },
-  })
-
   news.createField('author')
     .type('Symbol')
     .name('Author')
