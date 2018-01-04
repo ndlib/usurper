@@ -1,5 +1,21 @@
 # Change Log
 
+## [v2017.10](https://github.com/ndlib/usurper/tree/v2017.10)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2017.9...v2017.10)
+
+### New features/enhancements
+- Limit the lines of displayed database description [#356](https://github.com/ndlib/usurper/pull/356)
+- Add Accessability tags to several page types [#357](https://github.com/ndlib/usurper/pull/357)
+- Display more aleph information on database more info pages [#358](https://github.com/ndlib/usurper/pull/358)
+- Add # section to database list to view those that don't start with A-Z [#359](https://github.com/ndlib/usurper/pull/359)
+
+### Bug Fixes
+- Fix Primo Search Syntax [#349](https://github.com/ndlib/usurper/pull/349)
+- Change to use different Primo search syntax [#350](https://github.com/ndlib/usurper/pull/350)
+- Useful Readme in repo [#354](https://github.com/ndlib/usurper/pull/354)
+- Fix hours wrapping issue of long hours [#352](https://github.com/ndlib/usurper/pull/352)
+
+
 ## [v2017.9](https://github.com/ndlib/usurper/tree/v2017.9)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.8...v2017.9)
 
