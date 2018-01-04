@@ -8,6 +8,7 @@
 - Add Accessability tags to several page types [#357](https://github.com/ndlib/usurper/pull/357)
 - Display more aleph information on database more info pages [#358](https://github.com/ndlib/usurper/pull/358)
 - Add # section to database list to view those that don't start with A-Z [#359](https://github.com/ndlib/usurper/pull/359)
+- Add author and published date to news articles [#355](https://github.com/ndlib/usurper/pull/355)
 
 ### Bug Fixes
 - Fix Primo Search Syntax [#349](https://github.com/ndlib/usurper/pull/349)
