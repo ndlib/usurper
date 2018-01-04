@@ -39,10 +39,10 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
               <h5>Filter by First Letter</h5>
               <div className='alphabet'>
                 {
-                  'abcdefghijklmnopqrstuvwxyz'.split('').map((item) => {
+                  'abcdefghijklmnopqrstuvwxyz#'.split('').map((item) => {
                     return (
                       <span key={'letter_link_' + item} className='letter'>
-                        <Link to={'/databases/' + item} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
+                        <Link to={'/databases/' + encodeURIComponent(item)} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
                       </span>
                     )
                   })
@@ -67,12 +67,15 @@ const Loaded = (props) => {
 
   let data = props.list.map((item) => {
     return (
-      <div key={item.fields.alephSystemNumber + item.fields.title}>
-        <p aria-label={item.fields.title}>
-          <Link to={item.fields.purl} title={'Go to ' + item.fields.title}>{item.fields.title}</Link><br />
+      <div key={item.fields.alephSystemNumber + item.fields.title} aria-label={item.fields.title} className='dbSection'>
+        <Link to={item.fields.purl} title={'Go to ' + item.fields.title}>
+          <h2 className='dbItem'>{item.fields.title}</h2>
+        </Link>
+        <div className='multiline-ellipsis'>
           {item.fields.description}
-          <Link to={'/database/' + item.sys.id} ariaLabel={'More Information about ' + item.fields.title} className='moreinfo'>More info</Link>
-        </p>
+        </div>
+        <Link to={'/database/' + item.sys.id} className='moreinfo'
+          ariaLabel={'More Information about ' + item.fields.title}>More info</Link>
       </div>
     )
   })
