@@ -9,7 +9,7 @@ import ListPresenter from './presenter.js'
 import * as statuses from '../../constants/APIStatuses'
 import PageNotFound from '../Messages/NotFound'
 
-const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 
 // Concat all database letters into one big list for searching
 const concatDbs = (raw, status) => {
@@ -83,7 +83,7 @@ const mapStateToProps = (state, thisProps) => {
     cfDatabaseLetter: letterData,
     allLettersStatus: allLettersStatus,
     allDbs: concatDbs(state.cfDatabaseLetter, allLettersStatus),
-    currentLetter: thisProps.match.params.id,
+    currentLetter: decodeURIComponent(thisProps.match.params.id),
   }
 }
 
@@ -167,7 +167,7 @@ export class DatabaseListContainer extends Component {
     let letter = this.props.currentLetter
 
     // dont allow going to /foo or /1 etc
-    if (letter.length > 1 || letter < 'a' || letter > 'z') {
+    if (letter.length > 1 || ((letter < 'a' || letter > 'z') && letter !== '#')) {
       return <PageNotFound />
     }
 

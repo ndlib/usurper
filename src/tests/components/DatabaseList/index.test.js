@@ -62,8 +62,8 @@ describe('components/DatabaseList/index.js', () => {
       ).toBe(true)
     })
 
-    it('calls the bound fetchLetter action for every letter on load', () => {
-      expect(props.fetchLetter.mock.calls.length).toBe(26)
+    it('calls the bound fetchLetter action for every letter plus # on load', () => {
+      expect(props.fetchLetter.mock.calls.length).toBe(27)
     })
   })
 
