@@ -1,6 +1,9 @@
 import React from 'react'
 import Contact from '../../../components/Contact'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 let enzymeWrapper
 let children
@@ -30,11 +33,11 @@ describe('components/Contact/index.js', () => {
   })
 
   it('should render phone number with the tel: prefix', () => {
-    expect(children.someWhere(n => n.children().node.type === 'a' && n.children().node.props.href === 'tel:555.555.5555')).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<a href="tel:555.555.5555" itemProp="telephone">555.555.5555</a>)).toBe(true)
   })
 
   it('should render email with the mailto: prefix', () => {
-    expect(children.someWhere(n => n.children().node.type === 'a' && n.children().node.props.href === 'mailto:test@nd.edu')).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<a href="mailto:test@nd.edu" itemProp="email">test@nd.edu</a>)).toBe(true)
   })
 
   it('should render the address on multiple lines', () => {

@@ -1,7 +1,10 @@
 import React from 'react'
 import * as statuses from '../../../constants/APIStatuses'
 import Librarians from '../../../components/Librarians/presenter'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 import Contact from '../../../components/Contact'
 import Image from '../../../components/Image'
@@ -90,7 +93,7 @@ describe('components/Librarians/presenter.js', () => {
     })
 
     it('should render nothing', () => {
-      expect(enzymeWrapper.node).toBe(null)
+      expect(enzymeWrapper.instance()).toBe(null)
     })
   })
 })

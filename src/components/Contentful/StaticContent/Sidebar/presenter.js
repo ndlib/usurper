@@ -9,7 +9,7 @@ import Related from '../../../Related'
 import ServicePoint from '../../../Contentful/ServicePoint'
 
 const Presenter = ({ cfStatic }) => (
-  <asside key={`ContentfulSidebar_${cfStatic.sys.id}`} className='col-md-4 col-sm-5 col-xs-12 right'>
+  <aside key={`ContentfulSidebar_${cfStatic.sys.id}`} className='col-md-4 col-sm-5 col-xs-12 right'>
     <PageLink className='button callout' cfPage={cfStatic.fields.callOutLink} />
     <LibMarkdown>{cfStatic.fields.shortDescription}</LibMarkdown>
     <Librarians netids={cfStatic.fields.contactPeople} />
@@ -19,7 +19,7 @@ const Presenter = ({ cfStatic }) => (
       })
     }
     <Related className='p-pages' title='Related Pages' showImages={false}>{ cfStatic.fields.relatedPages }</Related>
-  </asside>
+  </aside>
 )
 
 Presenter.propTypes = {

@@ -1,11 +1,14 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
 import { HoursPageContainer } from '../../../../components/Hours/Page'
 import HoursPagePresenter from '../../../../components/Hours/Page/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
 import configureStore from 'redux-mock-store'
 import * as statuses from '../../../../constants/APIStatuses'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   const store = configureStore()(props)
@@ -35,7 +38,7 @@ describe('components/Hours/Page/Container', () => {
 
   it('only renders APIPresenterFactory with hoursEntry slice and HoursPagePresenter', () => {
     expect(enzymeWrapper.
-      find('APIPresenterFactory').nodes.length).toBe(1)
+      find('APIPresenterFactory').length).toBe(1)
   })
 
   it('calls the bound fetch hours action on load', () => {

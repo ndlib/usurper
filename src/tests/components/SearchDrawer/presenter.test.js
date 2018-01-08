@@ -1,9 +1,12 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 import SearchDrawer from '../../../components/SearchDrawer/presenter'
+import Adapter from 'enzyme-adapter-react-16'
+jest.mock("react-ga")
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   const store = configureStore()(props)

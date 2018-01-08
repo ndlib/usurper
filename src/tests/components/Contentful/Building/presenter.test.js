@@ -1,5 +1,5 @@
 ﻿import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import BuildingPresenter from '../../../../components/Contentful/Building'
 import Image from '../../../../components/Image'
 import Link from '../../../../components/Link'
@@ -8,6 +8,9 @@ import * as statuses from '../../../../constants/APIStatuses'
 import Loading from '../../../../components/Messages/Loading'
 import NotFound from '../../../../components/Messages/NotFound'
 import ErrorMessage from '../../../../components/Messages/Error'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (cfBuildingEntry) => {
   const props = { cfBuildingEntry }

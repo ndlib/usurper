@@ -1,6 +1,9 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import PagePresenter from '../../../../components/Hours/WeeklyHours/presenter'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (hoursEntry, title, effectiveDate) => {
   return shallow(<PagePresenter hours={hoursEntry} title={title} effectiveDate={effectiveDate} showEffectiveDates={true} />)
@@ -25,7 +28,7 @@ describe('components/Hours/WeeklyHours/presenter', () => {
   })
 
   it('adds the title', () => {
-    expect(enzymeWrapper.find('h5').children().node).toBe('this-week-display')
+    expect(enzymeWrapper.containsMatchingElement(<h5>this-week-display</h5>)).toBe(true)
   })
 
   it('shows the effective dates message', () => {

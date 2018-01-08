@@ -2,10 +2,13 @@ import React from 'react'
 import * as statuses from '../../../constants/APIStatuses'
 import { mapStateToProps } from '../../../components/Courses'
 import CoursesPresenter from '../../../components/Courses/presenter'
-import { mount, shallow } from 'enzyme'
+import { mount, shallow, configure } from 'enzyme'
 import { CoursesContainer } from '../../../components/Courses'
 import Link from '../../../components/Link'
 import Loading from '../../../components/Messages/Loading'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<CoursesContainer {...props} />, { lifecycleExperimental: true })

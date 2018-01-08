@@ -1,9 +1,12 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import { mount, configure } from 'enzyme'
 import configureStore from 'redux-mock-store'
 import SearchBox from '../../../../components/SearchDrawer/SearchBox/presenter.js'
 import SearchOptionList from '../../../../components/SearchDrawer/SearchOptionList'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   const store = configureStore()(props)

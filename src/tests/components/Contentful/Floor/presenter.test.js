@@ -1,8 +1,13 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
+import LibMarkdown from '../../../../components/LibMarkdown'
+import PageTitle from '../../../../components/PageTitle'
 import Building from '../../../../components/Contentful/Building'
 import Image from '../../../../components/Image'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (cfFloorEntry) => {
   const props = { cfFloorEntry }
@@ -33,11 +38,11 @@ describe('components/Contentful/Floor/presenter', () => {
   })
 
   it('should renders the title of the content', () => {
-    expect(enzymeWrapper.children().someWhere(n => n.node.props.title === 'Fake Title')).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<PageTitle title="Fake Title" />)).toBe(true)
   })
 
   it('should render LibMarkdown for content', () => {
-    expect(enzymeWrapper.find('LibMarkdown').children().node).toBe('Fake short description')
+    expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>Fake short description</LibMarkdown>)).toBe(true)
   })
 
   it('should render Image for image', () => {
