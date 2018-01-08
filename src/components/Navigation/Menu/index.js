@@ -10,7 +10,7 @@ const Menu = (props) => {
       </div>
       <div className='container-fluid row'>
         <div className='col-md-offset-2 col-md-8'>
-          <Link to={props.landingPage} className='more' hideIfNull>More {props.title} </Link>
+          <Link to={props.landingPage} className='viewAll viewMore' hideIfNull>View More {props.title} </Link>
         </div>
       </div>
     </div>
