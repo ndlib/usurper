@@ -3062,6 +3062,10 @@ body {
   margin-top: -16px;
 }
 
+.viewMore {
+  word-spacing: 4px;
+  letter-spacing: normal;
+}
 
 #site-info dt{
 display: inline-block;
