@@ -1,7 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import PagePresenter from '../../../../components/Hours/Page/presenter'
 import CurrentHours from '../../../../components/Hours/Current'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (hoursEntry) => {
   return shallow(<PagePresenter servicePoints={hoursEntry} hoursPageOrder={[
@@ -56,6 +59,6 @@ describe('components/Hours/Page/presenter', () => {
   // })
 
   it('Adds a title to the page', () => {
-    expect(enzymeWrapper.children().someWhere(n => n.node.props.title === 'Hours')).toBe(true)
+    expect(enzymeWrapper.children().someWhere(n => n.get(0).props.title === 'Hours')).toBe(true)
   })
 })

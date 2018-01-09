@@ -1,9 +1,12 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import ListPresenter from '../../../components/DatabaseList/presenter.js'
 import { DatabaseListContainer } from '../../../components/DatabaseList/index.js'
 import PageNotFound from '../../../components/Messages/NotFound'
 import * as statuses from '../../../constants/APIStatuses'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<DatabaseListContainer {...props} />, { lifecycleExperimental: true })

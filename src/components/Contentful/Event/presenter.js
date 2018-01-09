@@ -29,13 +29,13 @@ const PagePresenter = ({ entry }) => (
         <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </main>
-      <asside className='col-md-4 right'>
+      <aside className='col-md-4 right'>
         <Image cfImage={entry.fields.representationalImage} className='cover' />
         <Link to={entry.fields.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
         <Librarians netids={entry.fields.contactPeople} />
         <ServicePoint cfServicePoint={entry.fields.location} showHours={false} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
-      </asside>
+      </aside>
     </div>
   </article>
 )

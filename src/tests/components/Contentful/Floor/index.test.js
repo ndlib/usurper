@@ -1,10 +1,13 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import { ContentfulFloorContainer } from '../../../../components/Contentful/Floor'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
 import configureStore from 'redux-mock-store'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   const store = configureStore()(props)

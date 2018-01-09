@@ -1,7 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import Alert from '../../../components/Contentful/Alert/presenter'
 import Link from '../../../components/Link'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<Alert {...props} ></Alert>);

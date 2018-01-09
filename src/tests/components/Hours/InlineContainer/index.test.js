@@ -1,7 +1,10 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import InlineContainer from '../../../../components/Hours/InlineContainer'
 import * as statuses from '../../../../constants/APIStatuses'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (hoursEntry, presenter) => {
   return shallow(<InlineContainer hoursEntry={hoursEntry} presenter={presenter} />)

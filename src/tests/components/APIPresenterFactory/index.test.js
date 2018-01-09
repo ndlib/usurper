@@ -1,5 +1,5 @@
 ﻿import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import APIPresenterFactory from '../../../components/APIPresenterFactory'
 import Image from '../../../components/Image'
 import Related from '../../../components/Related'
@@ -7,6 +7,9 @@ import * as statuses from '../../../constants/APIStatuses'
 import Loading from '../../../components/Messages/Loading'
 import NotFound from '../../../components/Messages/NotFound'
 import ErrorMessage from '../../../components/Messages/Error'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (presenter, status, presenterProps) => {
   return shallow(<APIPresenterFactory presenter={ presenter } status={ status } props={ presenterProps } />)

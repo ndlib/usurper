@@ -1,8 +1,11 @@
 import React from 'react'
 import Related from '../../../components/Related'
-import { shallow } from 'enzyme'
+import { shallow, configure } from 'enzyme'
 import Link from '../../../components/Link'
 import Image from '../../../components/Image'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 let enzymeWrapper
 const setup = (props) => {

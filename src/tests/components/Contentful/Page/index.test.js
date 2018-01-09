@@ -1,11 +1,14 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { mount, shallow } from 'enzyme'
+import { configure, mount, shallow } from 'enzyme'
 import { ContentfulPageContainer } from '../../../../components/Contentful/Page'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
 import * as statuses from '../../../../constants/APIStatuses'
 import configureStore from 'redux-mock-store'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<ContentfulPageContainer {...props} />, { lifecycleExperimental: true })
