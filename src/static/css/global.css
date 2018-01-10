@@ -2307,7 +2307,12 @@ width: 100%;
 
 }
 
-
+.clamp {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
 .p-resources, .databaseLink {
   list-style: outside none none;
