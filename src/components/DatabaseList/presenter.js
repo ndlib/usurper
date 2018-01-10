@@ -67,22 +67,23 @@ const Loaded = (props) => {
   }
 
   let data = props.list.map((item) => {
-    let exactlyOneUrl = item.fields.urls.length === 1
+    let exactlyOneUrl = item.fields.urls !== undefined && item.fields.urls.length === 1
+    let twoOrMoreUrls = item.fields.urls !== undefined && item.fields.urls.length >= 2
     return (
       <section key={item.fields.alephSystemNumber + item.fields.title}
         aria-label={item.fields.title} className='dbSection'>
         {
           exactlyOneUrl ? (
-            <Link to={item.fields.purl} title={'Go to ' + item.fields.title}>
+            <Link to={item.fields.urls[0].url} title={'Go to ' + item.fields.title}>
               <h2 className='dbItem'>{item.fields.title}</h2>
             </Link>
           ) : (
             <h2 className='dbItem'>{item.fields.title}</h2>
           )
         }
-        <ul className='databaseLink clamp'>
+        <ul className='clamp databaseLink'>
           {
-            item.fields.urls.length >= 2 && (
+            twoOrMoreUrls && (
               item.fields.urls.map((data) => {
                 return (
                   <li key={data.url}>
