@@ -34,8 +34,11 @@ const forward = (migration) => {
     .type('Symbol')
     .name('Type')
     .validations([
-      { in: ['presenter'] },
+      { in: ['Instructor','Presenter','Speaker','Keynote','Facilitator',
+             'Moderator','Convener','Panelist','Discussant']
+      }
     ])
+
 
   // EVENT field update
   const eventType = migration.editContentType('event')
