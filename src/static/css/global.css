@@ -2205,6 +2205,8 @@ width: 100%;
 
 .event-card .date {
   padding-top: 11px;
+  line-height: 20px;
+  padding-bottom: 2px;
 }
 
 .event-card-text {
@@ -2831,7 +2833,17 @@ width: 100%;
     grid-column: 3;
   }
 
+  .event-card .time:before {
+    content: "";
+    display: inline-block;
+  }
 
+  .event-card .time {
+    display: block;
+    margin: 0;
+    padding-top: 0;
+    padding-left: 0;
+  }
 
   .actions div {
     display: inline-block;
