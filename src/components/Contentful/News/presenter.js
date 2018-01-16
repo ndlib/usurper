@@ -42,7 +42,7 @@ const formatNewsAuthor = (author, publishedDate) => {
     ret += 'By ' + author
   }
   if (author && publishedDate) {
-    ret += ' - '
+    ret += ' • '
   }
   if (publishedDate) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' }
