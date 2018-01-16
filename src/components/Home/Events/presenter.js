@@ -5,12 +5,14 @@ import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
 
 export const makeEventEntry = (entry, index, isLast = false, showDescription = true, showImage = true) => {
+  const lastEventPadding = isLast === true ? { marginBottom: '36px' } : {}
   return (
     <div
       className='event-card'
       itemScope
       itemType='http://schema.org/Event'
       key={'events_' + index}
+      style={lastEventPadding}
     >
       <Link
         ariaLabel={entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime}
@@ -22,7 +24,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
         {
           showImage && <Image cfImage={entry.representationalImage} className='card-image' />
         }
-         <div className='date'>
+        <div className='date'>
           {
             entry.displayDate
           }
@@ -36,7 +38,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
           )
         }
         <h4 itemProp='name'>{entry.title}</h4>
-       
+
         { showDescription && (
           <div className='description' itemProp='description'>
             <LibMarkdown>{entry.shortDescription}</LibMarkdown>
