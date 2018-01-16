@@ -2161,6 +2161,10 @@ width: 100%;
   margin-bottom: 21px;
 }
 
+.home .event-card:last-of-type {
+  margin-bottom: 36px;
+}
+
 .home .event-card {
   margin-bottom: 20px;
 }
