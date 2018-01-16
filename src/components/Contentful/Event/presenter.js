@@ -10,6 +10,7 @@ import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
+import ShareLinks from '../../ShareLinks'
 
 const PagePresenter = ({ entry }) => (
   <article
@@ -28,6 +29,7 @@ const PagePresenter = ({ entry }) => (
         <p>{entry.fields.hoursDisplay}</p>
         <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
+        <ShareLinks title={entry.fields.title} />
       </main>
       <aside className='col-md-4 right'>
         <Image cfImage={entry.fields.representationalImage} className='cover' />
