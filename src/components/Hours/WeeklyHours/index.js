@@ -46,7 +46,7 @@ const determineTitle = (startKey, currentKey) => {
   if (currentKey === startKey) {
     return currentKey
   } else {
-    return startKey + ' - ' + currentKey
+    return startKey + ' – ' + currentKey
   }
 }
 
