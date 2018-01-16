@@ -11,7 +11,6 @@ const forward = (migration) => {
 
 const reverse = (migration) => {
   const event = migration.editContentType('event')
-  event.deleteField('dateOverride')
   event.deleteField('locationOverride')
   event.deleteField('timeOverride')
 }
