@@ -4,12 +4,8 @@ const forward = (migration) => {
     .type('Symbol')
     .name('Location Override')
 
-    event.createField('dateOverride')
-    .type('Symbol')
-    .name('Date Override')
-
     event.createField('timeOverride')
-    .type('Symbol')
+    .type('Text')
     .name('Time Override')
 }
 
