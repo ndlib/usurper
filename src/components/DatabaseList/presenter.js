@@ -9,6 +9,7 @@ import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
 import FilterBox from '../FilterBox'
 import SideNav from '../SideNav'
+import LibMarkdown from '../LibMarkdown'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
@@ -66,17 +67,40 @@ const Loaded = (props) => {
   }
 
   let data = props.list.map((item) => {
+    let exactlyOneUrl = item.fields.urls !== undefined && item.fields.urls.length === 1
+    let twoOrMoreUrls = item.fields.urls !== undefined && item.fields.urls.length >= 2
     return (
-      <div key={item.fields.alephSystemNumber + item.fields.title} aria-label={item.fields.title} className='dbSection'>
-        <Link to={item.fields.purl} title={'Go to ' + item.fields.title}>
-          <h2 className='dbItem'>{item.fields.title}</h2>
-        </Link>
+      <section key={item.fields.alephSystemNumber + item.fields.title}
+        aria-label={item.fields.title} className='dbSection'>
+        {
+          exactlyOneUrl ? (
+            <Link to={item.fields.urls[0].url} title={'Go to ' + item.fields.title}>
+              <h2 className='dbItem'>{item.fields.title}</h2>
+            </Link>
+          ) : (
+            <h2 className='dbItem'>{item.fields.title}</h2>
+          )
+        }
+        <ul className='clamp databaseLink'>
+          {
+            twoOrMoreUrls && (
+              item.fields.urls.map((data) => {
+                return (
+                  <li key={data.url}>
+                    <Link to={data.url}>{data.title}</Link>
+                    { data.notes && <LibMarkdown>{ data.notes }</LibMarkdown> }
+                  </li>
+                )
+              })
+            )
+          }
+        </ul>
         <div className='multiline-ellipsis'>
           {item.fields.description}
         </div>
         <Link to={'/database/' + item.sys.id} className='moreinfo'
           ariaLabel={'More Information about ' + item.fields.title}>More info</Link>
-      </div>
+      </section>
     )
   })
 

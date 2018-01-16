@@ -2307,7 +2307,12 @@ width: 100%;
 
 }
 
-
+.clamp {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
 .p-resources, .databaseLink {
   list-style: outside none none;
@@ -3118,6 +3123,10 @@ line-height: 2em;
   font-family: sans-serif;
   font-size: 22px;
   margin-bottom: 2px;
+  font-weight: bold;
+}
+
+a .dbItem {
   color: #93601D;
 }
 
