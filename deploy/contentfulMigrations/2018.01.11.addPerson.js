@@ -9,10 +9,6 @@ const forward = (migration) => {
     .type('Symbol')
     .name('Name')
 
-  person.createField('title')
-    .type('Symbol')
-    .name('Title')
-
   person.createField('bio')
     .type('Text')
     .name('Bio')
@@ -30,15 +26,33 @@ const forward = (migration) => {
     .name('Picture')
     .linkType('Asset')
 
-  person.createField('type')
+  // PRESENTER type
+  const presenter = migration.createContentType('presenter')
+    .name('Presenter')
+
+  presenter.createField('title')
+    .name('Title')
+    .type('Symbol')
+  
+  presenter.createField('type')
     .type('Symbol')
     .name('Type')
     .validations([
       { in: ['Instructor','Presenter','Speaker','Keynote','Facilitator',
-             'Moderator','Convener','Panelist','Discussant']
+              'Moderator','Convener','Panelist','Discussant']
       }
     ])
 
+  presenter.createField('people')
+    .name('People')
+    .type('Array')
+    .items({
+      type: 'Link',
+      validations: [{
+        linkContentType: ['person'],
+      }],
+      linkType: 'Entry',
+    })
 
   // EVENT field update
   const eventType = migration.editContentType('event')
@@ -48,15 +62,16 @@ const forward = (migration) => {
     .items({
       type: 'Link',
       validations: [{
-        linkContentType: ['person'],
+        linkContentType: ['presenter'],
       }],
       linkType: 'Entry',
     })
 }
 
 const reverse = (migration) => {
-  migration.deleteContentType('person')
   migration.editContentType('event').deleteField('presenters')
+  migration.deleteContentType('presenter')
+  migration.deleteContentType('person')
 }
 
 module.exports = forward
