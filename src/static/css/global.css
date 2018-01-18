@@ -3065,6 +3065,8 @@ body {
 .viewMore {
   word-spacing: 4px;
   letter-spacing: normal;
+  text-transform: none;
+  width: 33%;
 }
 
 #site-info dt{
