@@ -57,6 +57,11 @@ describe('components/DatabaseList/presenter.js', () => {
             alephSystemNumber: '12345',
             purl: 'foo',
             description: 'test',
+            urls: [{
+              url: 'https://eresources.library.nd.edu/databases/artsource',
+              notes: null,
+              title: null,
+            }],
           },
           sys: {
             id: '5678',
@@ -70,22 +75,24 @@ describe('components/DatabaseList/presenter.js', () => {
       enzymeWrapper = undefined
     })
 
-    it('should have list of the databases', () => {
+    it('database with one url', () => {
       let fields = props.list[0].fields
       let sys = props.list[0].sys
       expect(enzymeWrapper
         .containsMatchingElement(
-          <div key={fields.alephSystemNumber + fields.title}
+          <section key={fields.alephSystemNumber + fields.title}
             aria-label={fields.title} className='dbSection'>
-            <Link to={fields.purl} title={'Go to ' + fields.title}>
+            <Link to={fields.urls[0].url} title={'Go to ' + fields.title}>
               <h2 className='dbItem'>{fields.title}</h2>
             </Link>
+            <ul className='clamp databaseLink'>
+            </ul>
             <div className='multiline-ellipsis'>
               {fields.description}
             </div>
             <Link to={'/database/' + sys.id} className='moreinfo'
               ariaLabel={'More Information about ' + fields.title}>More info</Link>
-          </div>))
+          </section>))
         .toBe(true)
     })
   })
