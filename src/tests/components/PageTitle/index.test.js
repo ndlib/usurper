@@ -16,12 +16,12 @@ describe('components/PageTitle/index.js', () => {
     enzymeWrapper = undefined
   })
 
-  describe('with title, tagline, subtitle', () => {
+  describe('with title, children, subtitle', () => {
     beforeEach(() => {
       enzymeWrapper = setup({
         title: 'title',
         subtitle: 'subtitle',
-        tagline: 'tagline',
+        children: <div className='tagline'>tagline</div>,
         itemProp: 'itemProp'
       })
     })
@@ -44,7 +44,7 @@ describe('components/PageTitle/index.js', () => {
       enzymeWrapper = setup({
         title: 'title',
         subtitle: '',
-        tagline: 'tagline',
+        children: <div className='tagline'>tagline</div>,
         itemProp: 'itemProp'
       })
     })
@@ -58,12 +58,11 @@ describe('components/PageTitle/index.js', () => {
     })
   })
 
-    describe('with no tagline', () => {
+    describe('with no children', () => {
       beforeEach(() => {
         enzymeWrapper = setup({
           title: 'title',
           subtitle: '',
-          tagline: '',
           itemProp: 'itemProp'
         })
       })
