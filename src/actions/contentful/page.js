@@ -16,6 +16,7 @@ const receiveError = (page, response) => {
     type: CF_RECEIVE_PAGE,
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
+    slug: page,
     receivedAt: Date.now(),
   }
 }
