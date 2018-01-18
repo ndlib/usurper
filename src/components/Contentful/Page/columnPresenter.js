@@ -14,15 +14,16 @@ const Sections = (column, showDescriptions) => {
     return (
       <section key={entry.sys.id} className='group'>
         <h2><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h2>
+        <LibMarkdown>{ s.body }</LibMarkdown>
         <div className='linksgroup'>
-          <LibMarkdown>{ s.body }</LibMarkdown>
           <div role={s.title + ' navigation'}>
             {
             s.links.map((item) => {
               let link = item.fields.url ? item.fields.url : '/' + item.fields.slug
+              let title = (item.fields.url || item.fields.slug) ? (<Link to={link}>{item.fields.title}</Link>) : (<strong>{item.fields.title}</strong>)
               return (
                 <p key={item.sys.id}>
-                  <Link to={link}>{item.fields.title}</Link>
+                  {title}
                   { showDescriptions ? (<span>{item.fields.shortDescription}</span>) : null }
                 </p>
               )
