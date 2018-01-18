@@ -1,5 +1,24 @@
 # Change Log
 
+## [v2018.2](https://github.com/ndlib/usurper/tree/v2018.2)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.1...v2018.2)
+
+### New features/enhancements
+- Update "View More" buttons to be a consistent design [#363](https://github.com/ndlib/usurper/pull/363)
+- Update React to 16.2.0 [#362](https://github.com/ndlib/usurper/pull/362)
+- Display multiple entry links on database listing page [#364](https://github.com/ndlib/usurper/pull/364)
+- Change News date/author separator to the same dot as events use [#367](https://github.com/ndlib/usurper/pull/367)
+- Change time separator from dash to en dash [#370](https://github.com/ndlib/usurper/pull/370)
+- Add social sharing buttons to events [#369](https://github.com/ndlib/usurper/pull/369)
+- Update navigation cards to allow items with no url [#372](https://github.com/ndlib/usurper/pull/372)
+- Make event page more mobile friendly [#371](https://github.com/ndlib/usurper/pull/371)
+
+### Bug Fixes
+- Fix redirect typo [#361](https://github.com/ndlib/usurper/pull/361)
+- Fix event padding [#368](https://github.com/ndlib/usurper/pull/368)
+- Fix infinite page load when going to non-existant secure pages [#374](https://github.com/ndlib/usurper/pull/374)
+
+
 ## [v2018.1](https://github.com/ndlib/usurper/tree/v2018.1)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2017.9...v2018.1)
 
