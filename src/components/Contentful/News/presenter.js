@@ -12,6 +12,14 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
 
+const formatPublishDate = (publishedDate) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  if (publishedDate) {
+    return new Date(publishedDate).toLocaleString('en-US', options)
+  }
+  return null
+}
+
 const PagePresenter = ({ entry }) => (
   <article
     className='container-fluid content-area'
@@ -20,7 +28,16 @@ const PagePresenter = ({ entry }) => (
     itemProp='mainEntity'
   >
     {entry.fields.shortDescription && (<meta name='description' content={entry.fields.shortDescription} />) }
-    <PageTitle title={entry.fields.title} itemProp='headline' tagline={formatNewsAuthor(entry.fields.author, entry.fields.publishedDate)} />
+    <PageTitle title={entry.fields.title} itemProp='headline'>
+      <div className='tagline news'>
+        { entry.fields.author && <div className='author'>{ 'By ' + entry.fields.author }</div> }
+        { entry.fields.publishedDate && (
+          <div className={'published' + (entry.fields.author ? ' separator' : '')}>
+            { formatPublishDate(entry.fields.publishedDate) }
+          </div>
+        )}
+      </div>
+    </PageTitle>
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8 col-sm-8 article'>
@@ -35,22 +52,6 @@ const PagePresenter = ({ entry }) => (
     </div>
   </article>
 )
-
-const formatNewsAuthor = (author, publishedDate) => {
-  let ret = ''
-  if (author) {
-    ret += 'By ' + author
-  }
-  if (author && publishedDate) {
-    ret += ' • '
-  }
-  if (publishedDate) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' }
-    ret += new Date(publishedDate).toLocaleString('en-US', options)
-  }
-
-  return ret
-}
 
 PagePresenter.propTypes = {
   entry: PropTypes.object.isRequired,

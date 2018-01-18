@@ -31,7 +31,7 @@ class PageTitle extends Component {
           { this.props.subtitle && <small>{this.props.subtitle}</small> }
         </h1>
         <hr aria-hidden='true' className={this.props.className} />
-        { this.props.tagline && <div className='tagline'>{this.props.tagline}</div> }
+        { this.props.children }
       </header>
     )
   }
@@ -40,10 +40,10 @@ class PageTitle extends Component {
 PageTitle.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  tagline: PropTypes.string,
   className: PropTypes.string,
   hideInPage: PropTypes.bool,
   itemProp: PropTypes.string,
+  children: PropTypes.any,
 }
 
 PageTitle.defaultProps = {
