@@ -3,10 +3,7 @@ import * as statuses from '../../../constants/APIStatuses'
 import LoanResources from '../../../components/LoanResources/presenter'
 import ResourceList from '../../../components/LoanResources/ResourceList'
 
-import { shallow, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
+import { shallow } from 'enzyme'
 
 let enzymeWrapper
 let props = {

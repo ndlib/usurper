@@ -1,11 +1,8 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import PageWrapper from '../../../components/PageWrapper/presenter.js'
 import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
-import Adapter from 'enzyme-adapter-react-16'
-jest.mock("react-ga")
-configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(
