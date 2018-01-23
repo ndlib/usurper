@@ -1,6 +1,6 @@
 import React from 'react'
 
-import alertImage from '../../../static/images/alert.png'
+import alertImage from '../../../static/images/alert.svg'
 import infoImage from '../../Footer/FooterLinks/images/ic_info_outline_white_24px.svg'
 
 const alertMap = (alert, isGlobal = false) => {
