@@ -31,13 +31,13 @@ const PagePresenter = ({ entry }) => (
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
         <ShareLinks title={entry.fields.title} />
       </main>
-      <aside className='col-md-4 right'>
+      <asside className='col-md-4 right'>
         <Image cfImage={entry.fields.representationalImage} className='cover' />
         <Link to={entry.fields.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
         <Librarians netids={entry.fields.contactPeople} />
         <ServicePoint cfServicePoint={entry.fields.location} showHours={false} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
-      </aside>
+      </asside>
     </div>
   </article>
 )

@@ -44,11 +44,11 @@ const PagePresenter = ({ entry }) => (
         <LibMarkdown itemProp='articleBody'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
       </main>
-      <aside className='col-md-4 col-sm-4 right news'>
+      <asside className='col-md-4 col-sm-4 right news'>
         <Image cfImage={entry.fields.image} className='cover' itemProp='image' />
         <Librarians netids={entry.fields.contactPeople} />
         <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
-      </aside>
+      </asside>
     </div>
   </article>
 )

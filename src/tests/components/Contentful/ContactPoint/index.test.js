@@ -1,10 +1,7 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import ContactPoint from '../../../../components/Contentful/ContactPoint'
 import Image from '../../../../components/Image'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 const setup = (cfPageEntry) => {
   return shallow(<ContactPoint cfPageEntry={cfPageEntry} />)

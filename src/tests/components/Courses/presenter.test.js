@@ -1,13 +1,10 @@
 import React from 'react'
 import * as statuses from '../../../constants/APIStatuses'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import Courses from '../../../components/Courses/presenter.js'
 import StaticBody from '../../../components/Contentful/StaticContent/Body'
 import Lgicon from '../../../static/images/icons/libguide.png'
 import Link from '../../../components/Link'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<Courses {...props} />)

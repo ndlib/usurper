@@ -17,7 +17,7 @@ const servicePoints = (points, shouldRender) => {
 }
 
 const ContactPoint = ({ cfPageEntry, mobile }) => (
-  <aside className={mobile ? 'mobile-only' : 'col-md-4 col-sm-5 col-xs-12 right desktop-only'}>
+  <asside className={mobile ? 'mobile-only' : 'col-md-4 col-sm-5 col-xs-12 right desktop-only'}>
     {mobile ? null : <Image cfImage={cfPageEntry.fields.image} className='cover' />}
     <PageLink className='button callout' cfPage={cfPageEntry.fields.callOutLink} />
     { servicePoints(cfPageEntry.fields.servicePoints, mobile) }
@@ -30,7 +30,7 @@ const ContactPoint = ({ cfPageEntry, mobile }) => (
     >
       { cfPageEntry.fields.relatedPages }
     </Related>
-  </aside>
+  </asside>
 )
 
 ContactPoint.propTypes = {

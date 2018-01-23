@@ -1,10 +1,7 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import { LibLink } from '../../../components/Link'
 import { Link } from 'react-router-dom'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<LibLink {...props} />)
