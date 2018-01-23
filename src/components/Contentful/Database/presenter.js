@@ -69,9 +69,9 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => (
           }
         </section>
       </main>
-      <asside className='col-md-4 col-sm-5 col-xs-12 right desktop-only'>
+      <aside className='col-md-4 col-sm-5 col-xs-12 right desktop-only'>
         <Image cfImage={cfDatabaseEntry.fields.image} />
-      </asside>
+      </aside>
     </div>
   </div>
 )
