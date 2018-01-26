@@ -2056,6 +2056,46 @@ width: 100%;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  padding: 1em;
+  margin-bottom: 1.5em;
+}
+
+.presenter-card h4 {
+  color: #5D6A83;
+  font-family: GPCMed, sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.presenter-card .n, .presenter-card .org, .presenter-card .email, .presenter-card .tel {
+  color: #001E45;
+  font-family: GPCMed, sans-serif;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+.presenter-card .n {
+  font-size: 18px;
+}
+
+.presenter-card .bio {
+  margin: 1em 0;
+  font-size: 14px;
+  color: #001E45;
+}
+
+.presenter-card img {
+  border: none;
+  max-width: 160px;
+  box-shadow: none;
+  margin-right: 15px;
+  float: left;
+  margin-bottom: 40px;
+}
+
+.shareLinks {
+  clear: both;
 }
 
 .services {
@@ -2233,7 +2273,7 @@ width: 100%;
   margin-top: 8px;
 }
 
-.event-card img, .presenter-card img {
+.event-card img{
   float: left;
   border: solid 2px #fff;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
@@ -2261,15 +2301,16 @@ width: 100%;
   display: grid;
   grid-template-columns: .15fr auto;
   grid-template-rows: auto auto auto;
-  grid-gap: .3em;
+  grid-gap: 0.3em;
   color: #5D6A83;
-  font-size: 1.2em;
+  font-size: 1.3em;
   margin-bottom: 25px;
+  font-family: GPCMed, sans-serif;
 }
 
 .event-detail-header {
   text-align: right;
-  font-weight: bold;
+  font-family: GPCBold, sans-serif;
   margin-right: 15px;
 }
 
@@ -3271,7 +3312,7 @@ a .dbItem {
 .resp-sharing-button__link {
   text-decoration: none;
   color: #fff;
-  margin: 0.5em
+  margin: 0 0.5em 0 0;
 }
 
 .resp-sharing-button {

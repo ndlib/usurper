@@ -31,11 +31,16 @@ const Presenters = ({ presenters }) => {
                     return (
                       <div>
                         <Image cfImage={person.fields.picture} />
-                        <div>{ person.fields.name }</div>
-                        <div>{ entry.fields.title }</div>
-                        <div>{ person.fields.email }</div>
-                        <div>{ person.fields.phone }</div>
-                        <div>{ person.fields.bio }</div>
+                        
+                        <div className="vcard">
+                           <div className="fn n">{ person.fields.name }</div>
+                           <div className="org">{ entry.fields.title }</div>
+                           <div className="email">{ person.fields.email }</div>
+                           <div className="tel">{ person.fields.phone }</div>
+                           <div className="bio">{ person.fields.bio }</div>
+                          
+                        </div>
+                        
                       </div>
                     )
                   })
