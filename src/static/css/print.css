@@ -43,10 +43,25 @@
 		left: 0;
 		top: 0;
 		margin-bottom: 1.2em;
+		height: auto;
 
 	}
 	.frame .cover {
 		display: block;
+	}
+
+	#maincontent:before {
+		content: "Hesburgh Libraries";
+		font-size: 22px;
+		font-weight: bold;
+		margin-bottom: 1em;
+		font-family: GPCMed;
+		display: block;
+		text-transform: uppercase;
+	}
+
+	.news h2 {
+		clear: both;
 	}
 
 }
