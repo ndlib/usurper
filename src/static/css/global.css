@@ -2051,6 +2051,13 @@ width: 100%;
   text-align: right;
 }
 
+.presenter-card {
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+}
+
 .services {
   margin-top: 2em;
   margin-bottom: 2em;
@@ -2151,7 +2158,7 @@ width: 100%;
   margin-bottom: 0;
 }
 
-.news-card a, .event-card a {
+.news-card a {
   text-decoration: none;
 }
 
@@ -2226,7 +2233,7 @@ width: 100%;
   margin-top: 8px;
 }
 
-.event-card img {
+.event-card img, .presenter-card img {
   float: left;
   border: solid 2px #fff;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
@@ -2255,7 +2262,7 @@ width: 100%;
   grid-template-columns: .15fr auto;
   grid-template-rows: auto auto auto;
   grid-gap: .3em;
-  color:#5f6a81;
+  color: #5D6A83;
   font-size: 1.2em;
   margin-bottom: 25px;
 }

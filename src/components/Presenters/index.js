@@ -19,17 +19,18 @@ const retrieveCapacity = (type) => {
 
 const Presenters = ({ presenters }) => {
   return (
-    <div>
+    <div className='presenter-card'>
       {
-        presenters.map((entry, index) => {
+        presenters.map((entry) => {
           return (
             <div>
-              <h2>{retrieveCapacity(entry.fields.type)}</h2>
+              <h4>{retrieveCapacity(entry.fields.type)}</h4>
               <section>
                 {
-                  entry.fields.people.map((person, index) => {
+                  entry.fields.people.map((person) => {
                     return (
                       <div>
+                        <Image cfImage={person.fields.picture} />
                         <div>{ person.fields.name }</div>
                         <div>{ entry.fields.title }</div>
                         <div>{ person.fields.email }</div>
