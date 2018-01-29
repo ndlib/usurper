@@ -20,6 +20,8 @@ const mapStateToProps = (state, ownProps) => {
     alerts.sort(alertSort)
 
     alerts = alertCatagorize(alerts)
+  } else {
+    alerts = {}
   }
   return {
     alerts: alerts,
@@ -33,7 +35,7 @@ class AlertContainer extends Component {
 }
 
 AlertContainer.propTypes = {
-  alerts: PropTypes.array,
+  alerts: PropTypes.object,
 }
 
 export default connect(mapStateToProps)(AlertContainer)
