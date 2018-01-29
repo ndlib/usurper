@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from '../Image'
 import PropTypes from 'prop-types'
+import LibMarkdown from '../LibMarkdown'
 
 const capacityTypes = {
   Instructor: 'Instructed By',
@@ -23,24 +24,21 @@ const Presenters = ({ presenters }) => {
       {
         presenters.map((entry) => {
           return (
-            <div>
+            <div key={`presenter_${entry.sys.id}`}>
               <h4>{retrieveCapacity(entry.fields.type)}</h4>
               <section>
                 {
                   entry.fields.people.map((person) => {
                     return (
-                      <div>
+                      <div key={`person_${person.sys.id}`}>
                         <Image cfImage={person.fields.picture} />
-                        
-                        <div className="vcard">
-                           <div className="fn n">{ person.fields.name }</div>
-                           <div className="org">{ entry.fields.title }</div>
-                           <div className="email">{ person.fields.email }</div>
-                           <div className="tel">{ person.fields.phone }</div>
-                           <div className="bio">{ person.fields.bio }</div>
-                          
+                        <div className='vcard'>
+                          <div className='fn n'>{ person.fields.name }</div>
+                          <div className='org'>{ entry.fields.title }</div>
+                          <div className='email'>{ person.fields.email }</div>
+                          <div className='tel'>{ person.fields.phone }</div>
+                          <LibMarkdown className='bio'>{ person.fields.bio }</LibMarkdown>
                         </div>
-                        
                       </div>
                     )
                   })

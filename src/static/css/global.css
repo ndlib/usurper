@@ -2079,10 +2079,12 @@ width: 100%;
   font-size: 18px;
 }
 
-.presenter-card .bio {
+.presenter-card .bio p {
   margin: 1em 0;
   font-size: 14px;
   color: #001E45;
+  max-width: none;
+  line-height: normal;
 }
 
 .presenter-card img {
