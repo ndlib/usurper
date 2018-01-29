@@ -2310,6 +2310,12 @@ width: 100%;
   font-family: GPCMed, sans-serif;
 }
 
+.event-detail-time p {
+  font-size: 1em;
+  color: #5D6A83;
+  margin-bottom: 0;
+}
+
 .event-detail-header {
   text-align: right;
   font-family: GPCBold, sans-serif;
