@@ -6,14 +6,15 @@ Stacks:
       Template: root.yml
       Parameters:
         Repo: usurper
-        Branch: master
+        Branch: ua
         OAuth: ${OAUTH}
         ServiceName: $SERVICE-$STAGE
         TemplateLoc: https://s3.amazonaws.com/$DEPLOY_BUCKET/$DEPLOY_FOLDER
+        OutBucket: dev-staging.library.nd.edu
       Tags:
         Name: $SERVICE-$STAGE
-        Owner: ${USER}
-        Contact: ${USER}@nd.edu
+        Owner: WSE
+        Contact: WSE
         Description: CI for the Usurper Project
         InceptDate: $TIMESTAMP
 

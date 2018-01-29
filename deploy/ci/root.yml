@@ -14,6 +14,9 @@ Parameters:
   TemplateLoc:
     Type: String
     Description: The bucket url where these templates are stored
+  OutBucket:
+    Type: String
+    Description: Name of the bucket to put the built website into
 
 Resources:
   BucketsStack:
@@ -30,7 +33,7 @@ Resources:
       TemplateURL: !Sub ${TemplateLoc}/roles.yml
       Parameters:
         ServiceName: !Ref ServiceName
-        OutBucket: !GetAtt BucketsStack.Outputs.OutBucket
+        OutBucket: !Ref OutBucket
         ArtifactBucket: !GetAtt BucketsStack.Outputs.ArtifactBucket
 
   ResourcesStack:
@@ -39,7 +42,7 @@ Resources:
     Properties:
       TemplateURL: !Sub ${TemplateLoc}/resources.yml
       Parameters:
-        OutBucket: !GetAtt BucketsStack.Outputs.OutBucket
+        OutBucket: !Ref OutBucket
         ArtifactBucket: !GetAtt BucketsStack.Outputs.ArtifactBucket
         RoleArn: !GetAtt RolesStack.Outputs.RoleArn
         ServiceName: !Ref ServiceName

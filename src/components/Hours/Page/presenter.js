@@ -7,6 +7,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageTitle from '../../PageTitle'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
+import StaticAlert from '../../Contentful/StaticContent/Alert'
 import Link from '../../Link'
 
 const Presenter = (props) => {
@@ -17,6 +18,8 @@ const Presenter = (props) => {
 
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
+          <StaticAlert slug='hours' preview={props.preview} />
+
           <main className='service-point-list'>
             {
               props.hoursPageOrder.map((servicePointOrder) => {

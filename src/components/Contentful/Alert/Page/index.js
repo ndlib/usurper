@@ -33,7 +33,7 @@ class AlertContainer extends Component {
 }
 
 AlertContainer.propTypes = {
-  alerts: PropTypes.object,
+  alerts: PropTypes.array,
 }
 
 export default connect(mapStateToProps)(AlertContainer)
