@@ -15,7 +15,6 @@ import Presenters from '../../Presenters'
 import { formatDate } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => {
-  console.log('HERE: ' + JSON.stringify(entry.fields.presenters[0].fields.people))
   return (
     <article
       className='container-fluid content-area'
