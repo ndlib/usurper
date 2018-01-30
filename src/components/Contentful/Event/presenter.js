@@ -29,7 +29,7 @@ const PagePresenter = ({ entry }) => {
     <div className='row'>
       <main className='col-md-8'>
         {
-            entry.fields.timeOverride && entry.fields.locationOverride && (
+          entry.fields.timeOverride && entry.fields.locationOverride && (
             <div className='event-details'>
               <div className='event-detail-header'>Date</div>
               <div>{ formatDate(entry.fields.startDate) } - { formatDate(entry.fields.endDate) }</div>
@@ -38,7 +38,7 @@ const PagePresenter = ({ entry }) => {
               <div className='event-detail-header'>Location</div>
               <div>{ entry.fields.locationOverride }</div>
             </div>
-            )
+          )
         }
         <p>{entry.fields.hoursDisplay}</p>
         <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
