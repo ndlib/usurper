@@ -303,15 +303,13 @@ height:auto;
 .alert .width {
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 4px;
+  padding-bottom: 5px;
+  padding-left: 34px;
+  padding-top: 4px;
 }
 
 .alert a {
   color: #061F43;
-}
-
-.alert .description {
-  padding-left: 7px;
 }
 
 .alert .prefix {
@@ -331,9 +329,19 @@ height:auto;
   background: #FFB073;
 }
 
+.alert.informational .width {
+  background: url('../images/ic_info_outline_white_24px.svg') no-repeat;
+  background-size: 1.5em;
+}
+
 .alert.warning {
   border: solid 2px #AA272F;
   background: #FC7279;
+}
+
+.alert.warning .width {
+  background: url('../images/alert.svg') no-repeat;
+  background-size: 1.5em;
 }
 
 .alert.page {
