@@ -326,6 +326,11 @@ height:auto;
   margin-bottom: -5px;
 }
 
+.alert.lowPri {
+  border: solid 2px #FFB073;
+  background: #f8e999;
+}
+
 .alert.informational {
   border: solid 2px #AA272F;
   background: #FFB073;

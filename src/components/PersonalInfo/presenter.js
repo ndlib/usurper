@@ -22,7 +22,7 @@ const LoggedIn = (preview, balance) => {
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
           { balance &&
-            <div className='alert page informational'>
+            <div className='alert page lowPri'>
               <div className='width'>
                 Your account balance is { balance }
               </div>
