@@ -15,21 +15,20 @@ import Presenters from '../../Presenters'
 import { formatDate } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => {
-  return (
-    <article
-      className='container-fluid content-area'
-      itemScope
-      itemType='http://schema.org/Event'
-      itemProp='mainEntity'
-    >
-      {entry.fields.shortDescription && (<meta name='description' content={entry.fields.shortDescription} />) }
-      <meta itemProp='startDate' content={entry.fields.startDate} />
-      <meta itemProp='endDate' content={entry.fields.endDate} />
-      <PageTitle title={entry.fields.title} itemProp='name' />
-      <SearchProgramaticSet open={false} />
-      <div className='row'>
-        <main className='col-md-8'>
-          {
+  <article
+    className='container-fluid content-area'
+    itemScope
+    itemType='http://schema.org/Event'
+    itemProp='mainEntity'
+  >
+    {entry.fields.shortDescription && (<meta name='description' content={entry.fields.shortDescription} />) }
+    <meta itemProp='startDate' content={entry.fields.startDate} />
+    <meta itemProp='endDate' content={entry.fields.endDate} />
+    <PageTitle title={entry.fields.title} itemProp='name' />
+    <SearchProgramaticSet open={false} />
+    <div className='row'>
+      <main className='col-md-8'>
+        {
             entry.fields.timeOverride && entry.fields.locationOverride && (
             <div className='event-details'>
               <div className='event-detail-header'>Date</div>
@@ -40,23 +39,22 @@ const PagePresenter = ({ entry }) => {
               <div>{ entry.fields.locationOverride }</div>
             </div>
             )
-          }
-          <p>{entry.fields.hoursDisplay}</p>
-          <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
-          <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
-          { entry.fields.presenters && (<Presenters presenters={entry.fields.presenters} />) }
-          <ShareLinks title={entry.fields.title} />
-        </main>
-        <aside className='col-md-4 right'>
-          <Image cfImage={entry.fields.representationalImage} className='cover' />
-          <Link to={entry.fields.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
-          <Librarians netids={entry.fields.contactPeople} />
-          <ServicePoint cfServicePoint={entry.fields.location} showHours={false} />
-          <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
-        </aside>
-      </div>
-    </article>
-  )
+        }
+        <p>{entry.fields.hoursDisplay}</p>
+        <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
+        <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
+        { entry.fields.presenters && (<Presenters presenters={entry.fields.presenters} />) }
+        <ShareLinks title={entry.fields.title} />
+      </main>
+      <aside className='col-md-4 right'>
+        <Image cfImage={entry.fields.representationalImage} className='cover' />
+        <Link to={entry.fields.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
+        <Librarians netids={entry.fields.contactPeople} />
+        <ServicePoint cfServicePoint={entry.fields.location} showHours={false} />
+        <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
+      </aside>
+    </div>
+  </article>
 }
 
 PagePresenter.propTypes = {
