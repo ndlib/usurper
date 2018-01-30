@@ -11,16 +11,23 @@ import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 
-const LoggedIn = (preview) => {
+const LoggedIn = (preview, balance) => {
   return (
     <div className='content'>
       <LogOut />
       <Courses linkOnly />
-      
+
       <SearchProgramaticSet open={false} />
       <PageTitle title='Items & Requests' />
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
+          { balance &&
+            <div className='alert page informational'>
+              <div className='width'>
+                Your account balance is { balance }
+              </div>
+            </div>
+          }
           <Recommendations />
           <div><LoanResources /></div>
           <StaticBody slug='personal' preview={preview} />
@@ -33,7 +40,7 @@ const LoggedIn = (preview) => {
 
 const Presenter = (props) => {
   if (props.loggedIn) {
-    return LoggedIn(props.preview)
+    return LoggedIn(props.preview, props.balance)
   } else if (props.redirectUrl) {
     window.location = props.redirectUrl
   } else {
@@ -45,6 +52,7 @@ Presenter.propTypes = {
   loggedIn: PropTypes.bool,
   preview: PropTypes.bool,
   redirectUrl: PropTypes.string,
+  balance: PropTypes.string,
 }
 
 export default Presenter
