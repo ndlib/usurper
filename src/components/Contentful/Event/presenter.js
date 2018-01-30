@@ -11,8 +11,10 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
+import Presenters from '../../Presenters'
+import { formatDate } from '../../../shared/DateLibs.js'
 
-const PagePresenter = ({ entry }) => (
+const PagePresenter = ({ entry }) => {
   <article
     className='container-fluid content-area'
     itemScope
@@ -26,9 +28,22 @@ const PagePresenter = ({ entry }) => (
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8'>
+        {
+          entry.fields.timeOverride && entry.fields.locationOverride && (
+            <div className='event-details'>
+              <div className='event-detail-header'>Date</div>
+              <div>{ formatDate(entry.fields.startDate) } - { formatDate(entry.fields.endDate) }</div>
+              <div className='event-detail-header'>Time</div>
+              <div><LibMarkdown className='event-detail-time'>{ entry.fields.timeOverride }</LibMarkdown></div>
+              <div className='event-detail-header'>Location</div>
+              <div>{ entry.fields.locationOverride }</div>
+            </div>
+          )
+        }
         <p>{entry.fields.hoursDisplay}</p>
         <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
+        { entry.fields.presenters && (<Presenters presenters={entry.fields.presenters} />) }
         <ShareLinks title={entry.fields.title} />
       </main>
       <aside className='col-md-4 right'>
@@ -40,7 +55,7 @@ const PagePresenter = ({ entry }) => (
       </aside>
     </div>
   </article>
-)
+}
 
 PagePresenter.propTypes = {
   entry: PropTypes.object.isRequired,
