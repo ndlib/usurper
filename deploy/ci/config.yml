@@ -11,6 +11,8 @@ Stacks:
         ServiceName: $SERVICE-$STAGE
         TemplateLoc: https://s3.amazonaws.com/$DEPLOY_BUCKET/$DEPLOY_FOLDER
         OutBucket: dev-staging.library.nd.edu
+        HoursApiUrl: https://677xoyg276.execute-api.us-east-1.amazonaws.com/prep
+        ContentfulApi: https://77qwzi0dp1.execute-api.us-east-1.amazonaws.com/prep
       Tags:
         Name: $SERVICE-$STAGE
         Owner: WSE

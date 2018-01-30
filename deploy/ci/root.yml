@@ -17,6 +17,10 @@ Parameters:
   OutBucket:
     Type: String
     Description: Name of the bucket to put the built website into
+  HoursApiUrl:
+    Type: String
+  ContentfulApi:
+    Type: String
 
 Resources:
   BucketsStack:
@@ -49,3 +53,5 @@ Resources:
         Repo: !Ref Repo
         Branch: !Ref Branch
         OAuth: !Ref OAuth
+        HoursApiUrl: !Ref HoursApiUrl
+        ContentfulApi: !Ref ContentfulApi
