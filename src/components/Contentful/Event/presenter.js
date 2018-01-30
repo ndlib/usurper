@@ -14,7 +14,7 @@ import ShareLinks from '../../ShareLinks'
 import Presenters from '../../Presenters'
 import { formatDate } from '../../../shared/DateLibs.js'
 
-const PagePresenter = ({ entry }) => {
+const PagePresenter = ({ entry }) => (
   <article
     className='container-fluid content-area'
     itemScope
@@ -29,7 +29,7 @@ const PagePresenter = ({ entry }) => {
     <div className='row'>
       <main className='col-md-8'>
         {
-          entry.fields.timeOverride && entry.fields.locationOverride && (
+          (entry.fields.timeOverride && entry.fields.locationOverride) && (
             <div className='event-details'>
               <div className='event-detail-header'>Date</div>
               <div>{ formatDate(entry.fields.startDate) } - { formatDate(entry.fields.endDate) }</div>
@@ -55,7 +55,7 @@ const PagePresenter = ({ entry }) => {
       </aside>
     </div>
   </article>
-}
+)
 
 PagePresenter.propTypes = {
   entry: PropTypes.object.isRequired,
