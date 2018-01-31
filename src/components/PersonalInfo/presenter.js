@@ -10,6 +10,7 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
+import Link from '../Link'
 
 const LoggedIn = (preview, balance) => {
   return (
@@ -24,7 +25,8 @@ const LoggedIn = (preview, balance) => {
           { balance &&
             <div className='alert page lowPri'>
               <div className='width'>
-                Your account balance is { balance }
+                Your account balance is { balance }.
+                Please contact our <Link to='mailto:circ@nd.edu?subject=Billing'>circulation desk</Link> with questions.
               </div>
             </div>
           }
