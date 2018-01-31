@@ -12,11 +12,15 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
 import Presenters from '../../Presenters'
-import { formatDate, hour12 } from '../../../shared/DateLibs.js'
+import { formatDate, hour12, isSameDay } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => {
+  let eventDate = `${formatDate(entry.fields.startDate)} - ${formatDate(entry.fields.endDate)}`
+  if(isSameDay(new Date(entry.fields.startDate), new Date(entry.fields.endDate))) {
+    eventDate = `${formatDate(entry.fields.startDate)}`
+  }
   const defaultTime = `${hour12(new Date(entry.fields.startDate))} - ${hour12(new Date(entry.fields.endDate))}`
-  const eventTime = entry.fields.timeOverride !== undefined ? entry.fields.timeOverride : defaultTime
+  const eventTime = entry.fields.timeOverride ? entry.fields.timeOverride : defaultTime
   return (
     <article
       className='container-fluid content-area'
@@ -33,7 +37,7 @@ const PagePresenter = ({ entry }) => {
         <main className='col-md-8'>
           <div className='event-details'>
             <div className='event-detail-header'>Date</div>
-            <div>{ formatDate(entry.fields.startDate) } - { formatDate(entry.fields.endDate) }</div>
+            <div>{ eventDate }</div>
             <div className='event-detail-header'>Time</div>
             <div><LibMarkdown className='event-detail-time'>{ eventTime }</LibMarkdown></div>
           </div>
