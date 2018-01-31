@@ -1,12 +1,6 @@
 import React from 'react'
 
-import alertImage from '../../../static/images/alert.svg'
-import infoImage from '../../Footer/FooterLinks/images/ic_info_outline_white_24px.svg'
-
 const alertMap = (alert, isGlobal = false) => {
-  const warnPrefix = (<div><img src={alertImage} alt='Warning' aria-hidden /> </div>)
-  const infoPrefix = (<div><img src={infoImage} alt='Information' aria-hidden /> </div>)
-
   let type = alert.type ? alert.type.toLowerCase() : 'warning'
 
   let className = 'alert '
@@ -17,8 +11,6 @@ const alertMap = (alert, isGlobal = false) => {
     ...alert,
 
     className: className,
-    prefix: type === 'informational' ? infoPrefix : warnPrefix,
-
     startTime: new Date(alert.startTime),
     type: type,
   }
@@ -31,7 +23,9 @@ const alertSort = (left, right) => {
     } else if (right.startTime < left.startTime) {
       return -1
     }
-    return 0
+
+    // alphabetical sort if matching dates
+    return (left.description < right.description) ? -1 : 1
   }
 
   // warnings should always be at the top
