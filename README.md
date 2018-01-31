@@ -69,6 +69,9 @@
 
 * `yarn test`
 
+## Branching Strategy
+We have two main branches, `master` and `UA`. `Master` is "production ready" and is what ends up getting tagged and deployed to production. `UA` is what all branches get merged into for testing and User Aceptance (UA). All development branches should start off of master, interated on and merged into `UA`. After the changes are accepted, that branch may then be merged into `master` and deleted. Remember the **branch** is merged into master, **not UA directly**. This also means **UA should not be merged into your development branch at any time**. We don't want to accidentally get unapproved changes into master.
+
 ## Deployment to AWS
 
 ### Development deployment

@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2018.3](https://github.com/ndlib/usurper/tree/v2018.3)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.2...v2018.3)
+
+### Bug Fixes
+- Revert to react 15 to make sure phantomjs can render pages (for testing and google) [#378](https://github.com/ndlib/usurper/pull/378)
+
+
 ## [v2018.2](https://github.com/ndlib/usurper/tree/v2018.2)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.1...v2018.2)
 

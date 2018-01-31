@@ -5,10 +5,8 @@ import ListPresenter from '../../../components/DatabaseList/presenter'
 import Link from '../../../components/Link'
 import ErrorLoading from '../../../components/Messages/Error'
 import * as statuses from '../../../constants/APIStatuses'
-import { shallow, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import { shallow } from 'enzyme'
 
-configure({ adapter: new Adapter() })
 const setup = (props) => {
   return shallow(
     <ListPresenter {...props} />)

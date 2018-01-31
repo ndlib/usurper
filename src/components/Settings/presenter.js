@@ -6,6 +6,7 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
+import StaticAlert from '../Contentful/StaticContent/Alert'
 import Dropdown from '../Dropdown'
 import UpdateStatus from './settingsUpdateStatus'
 
@@ -18,6 +19,7 @@ const Presenter = (props) => {
       <PageTitle title='Settings' />
       <div className='row'>
         <div className='col-md-8 col-sm-7 settings'>
+          <StaticAlert slug='settings' preview={props.preview} />
           <p>
             Preferred Pickup Location:
           </p>

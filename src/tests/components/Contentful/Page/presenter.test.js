@@ -1,12 +1,7 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import ContactPoint from '../../../../components/Contentful/ContactPoint'
-import LibMarkdown from '../../../../components/LibMarkdown'
-import Related from '../../../../components/Related'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 const setup = (cfPageEntry) => {
   return shallow(<PagePresenter cfPageEntry={cfPageEntry} />)
@@ -42,19 +37,19 @@ describe('components/Contentful/Page/presenter', () => {
   })
 
   it('should render LibMarkdown for content', () => {
-    expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>Fake content</LibMarkdown>)).toBe(true)
+    expect(enzymeWrapper.find('LibMarkdown').children().node).toBe('Fake content')
   })
 
   it('should render Related for related resources', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Related className="p-resources" title="Resources" showImages={false}>Fake related resources</Related>)).toBe(true)
+    expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related resources')).toBe(true)
   })
 
   it('should render Related for related services', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Related className="p-services" title="Services" showImages={true}>Fake related services</Related>)).toBe(true)
+    expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related services')).toBe(true)
   })
 
   it('should render Related for libguides', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Related className="p-guides" title="Guides" showTitle={false} showImages={false}>Fake related libguides</Related>)).toBe(true)
+    expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related libguides')).toBe(true)
   })
 
   it('should render ContactPoint twice', () => {

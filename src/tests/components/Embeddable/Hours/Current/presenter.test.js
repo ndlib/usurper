@@ -1,10 +1,7 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import PagePresenter from '../../../../../components/Embeddable/Hours/Current/presenter'
 import WeeklyHours from '../../../../../components/Hours/WeeklyHours'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 let enzymeWrapper
 const weeklyHours = {

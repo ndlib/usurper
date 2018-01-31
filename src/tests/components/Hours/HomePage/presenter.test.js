@@ -1,10 +1,7 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Hours/HomePage/presenter'
 import Link from '../../../../components/Link'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 const setup = (hoursEntry) => {
   return shallow(PagePresenter(hoursEntry))

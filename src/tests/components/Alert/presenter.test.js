@@ -1,10 +1,7 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import Alert from '../../../components/Contentful/Alert/presenter'
 import Link from '../../../components/Link'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 const setup = (props) => {
   return shallow(<Alert {...props} ></Alert>);
@@ -25,35 +22,37 @@ describe('components/Alert', () => {
   describe('global alert(s)', () => {
     beforeEach(() => {
       props = {
-        globalAlerts: [
-          {
-            fields: {
+        alerts: {
+          test_alert: [
+            {
               startTime: yesterday,
               endTime: tomorrow,
               url:  'google.com',
               title: 'what went wrong',
-              description: 'the sky is falling'
-            }
-          },
-          {
-            fields: {
+              description: 'the sky is falling',
+              className: 'alert',
+              type: 'test_alert',
+            },
+            {
               startTime: yesterday,
               endTime: tomorrow,
               url:  'sample.com',
               title: 'what went right',
-              description: 'the sun is shining'
-            }
-          }
-        ]
+              description: 'the sun is shining',
+              className: 'alert',
+              type: 'test_alert',
+            },
+          ],
+        },
       }
 
       enzymeWrapper = setup(props)
     })
 
     it('renders global alert(s)', () => {
-      props.globalAlerts.forEach((entry) => {
-        const alert = entry.fields;
-        expect(enzymeWrapper.containsMatchingElement(<Link to={alert.url} >{alert.description}</Link>)).toBe(true);
+      const alerts = props.alerts.test_alert
+      alerts.forEach((alert) => {
+        expect(enzymeWrapper.containsMatchingElement(<Link className='description' to={alert.url}>{alert.description}</Link>)).toBe(true)
       })
     })
   })
@@ -61,21 +60,25 @@ describe('components/Alert', () => {
   describe('single alert', () => {
     beforeEach(() => {
       props = {
-        alert: {
-          fields: {
-            startTime: yesterday,
-            endTime: tomorrow,
-            url:  'google.com',
-            title: 'what went wrong',
-            description: 'the sky is falling'
-          }
-        }
+        alerts: {
+          test_alerts: [
+            {
+              startTime: yesterday,
+              url:  'google.com',
+              title: 'what went wrong',
+              description: 'the sky is falling',
+              className: 'alert',
+              type: 'test_alert',
+            },
+          ],
+        },
       }
       enzymeWrapper = setup(props)
     })
 
     it('renders single alert', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Link to={props.alert.fields.url} >{props.alert.fields.description}</Link>)).toBe(true);
+      const alert = props.alerts.test_alerts[0]
+      expect(enzymeWrapper.containsMatchingElement(<Link to={alert.url}>{alert.description}</Link>)).toBe(true);
     })
   })
 })

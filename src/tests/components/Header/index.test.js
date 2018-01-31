@@ -1,15 +1,11 @@
 import React from 'react'
-import { shallow, configure } from 'enzyme'
+import { shallow } from 'enzyme'
 import { Route } from 'react-router'
 import Header from '../../../components/Header'
 import BrandingBanner from '../../../components/Header/BrandingBanner'
 import HesburghBanner from '../../../components/Header/HesburghBanner'
 import Navigation from '../../../components/Navigation'
 import createRouterContext from 'react-router-test-context'
-import Adapter from 'enzyme-adapter-react-16'
-
-jest.mock("react-ga")
-configure({ adapter: new Adapter() })
 
 const setup = (props, path) => {
   const context = createRouterContext({ location: { pathname: path } })
