@@ -9,10 +9,17 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
+import OpenGraph from '../../OpenGraph'
+
 const PagePresenter = ({ cfPageEntry }) => (
-  <article aria-describedby="main-page-title" className='container-fluid content-area'>
+  <article aria-describedby='main-page-title' className='container-fluid content-area'>
     {cfPageEntry.fields.shortDescription && (<meta name='description' content={cfPageEntry.fields.shortDescription} />) }
     <PageTitle title={cfPageEntry.fields.title} />
+    <OpenGraph
+      title={cfPageEntry.fields.title}
+      description={cfPageEntry.fields.shortDescription}
+      image={cfPageEntry.fields.image}
+    />
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
       <main className='col-md-8 col-sm-7'>
