@@ -12,12 +12,11 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
 import Presenters from '../../Presenters'
-import { formatDate } from '../../../shared/DateLibs.js'
-import { hour12 } from '../../../shared/DateLibs.js'
+import { formatDate, hour12 } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => {
-  const defaultTime = `${hour12(new Date(entry.fields.startDate))} - ${hour12(new Date(entry.fields.endDate))}`;
-  const eventTime = entry.fields.timeOverride !== undefined ? entry.fields.timeOverride : defaultTime;
+  const defaultTime = `${hour12(new Date(entry.fields.startDate))} - ${hour12(new Date(entry.fields.endDate))}`
+  const eventTime = entry.fields.timeOverride !== undefined ? entry.fields.timeOverride : defaultTime
   return (
     <article
       className='container-fluid content-area'
@@ -60,7 +59,7 @@ const PagePresenter = ({ entry }) => {
         </aside>
       </div>
     </article>
-  );
+  )
 }
 
 PagePresenter.propTypes = {
