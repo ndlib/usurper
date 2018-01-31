@@ -10,17 +10,19 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
+import StaticAlert from '../Contentful/StaticContent/Alert'
 
 const LoggedIn = (preview) => {
   return (
     <div className='content'>
       <LogOut />
       <Courses linkOnly />
-      
+
       <SearchProgramaticSet open={false} />
       <PageTitle title='Items & Requests' />
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
+          <StaticAlert slug='personal' preview={preview} />
           <Recommendations />
           <div><LoanResources /></div>
           <StaticBody slug='personal' preview={preview} />

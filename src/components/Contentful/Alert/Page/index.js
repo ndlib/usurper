@@ -20,6 +20,8 @@ const mapStateToProps = (state, ownProps) => {
     alerts.sort(alertSort)
 
     alerts = alertCatagorize(alerts)
+  } else {
+    alerts = {}
   }
   return {
     alerts: alerts,
