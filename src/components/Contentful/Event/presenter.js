@@ -16,7 +16,7 @@ import { formatDate, hour12, isSameDay } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => {
   let eventDate = `${formatDate(entry.fields.startDate)} - ${formatDate(entry.fields.endDate)}`
-  if(isSameDay(new Date(entry.fields.startDate), new Date(entry.fields.endDate))) {
+  if (isSameDay(new Date(entry.fields.startDate), new Date(entry.fields.endDate))) {
     eventDate = `${formatDate(entry.fields.startDate)}`
   }
   const defaultTime = `${hour12(new Date(entry.fields.startDate))} - ${hour12(new Date(entry.fields.endDate))}`
