@@ -17,9 +17,6 @@ const Alert = ({ alerts }) => {
                 currentAllerts.map((alert, index) => {
                   return (
                     <div className='width' key={key + '_' + alert.url + '_' + index}>
-                      <span className='prefix'>
-                        { currentAllerts[0].prefix }
-                      </span>
                       <Link className='description' to={alert.url}>
                         { alert.description }
                       </Link>
