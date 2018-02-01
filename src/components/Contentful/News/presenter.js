@@ -11,14 +11,7 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
-
-const formatPublishDate = (publishedDate) => {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' }
-  if (publishedDate) {
-    return new Date(publishedDate).toLocaleString('en-US', options)
-  }
-  return null
-}
+import { formatDate } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => (
   <article
@@ -33,7 +26,7 @@ const PagePresenter = ({ entry }) => (
         { entry.fields.author && <div className='author'>{ 'By ' + entry.fields.author }</div> }
         { entry.fields.publishedDate && (
           <div className={'published' + (entry.fields.author ? ' separator' : '')}>
-            { formatPublishDate(entry.fields.publishedDate) }
+            { formatDate(entry.fields.publishedDate) }
           </div>
         )}
       </div>

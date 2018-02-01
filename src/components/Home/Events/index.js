@@ -7,44 +7,7 @@ import Presenter from './presenter.js'
 import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
-
-const makeLocalTimezone = (stringDate) => {
-  // local timezone offset string (eg -04:00)
-  const givenTz = stringDate.slice(-6)
-
-  // local timezone offset in minutes (eg 240)
-  const localOffset = new Date().getTimezoneOffset()
-  const localNeg = localOffset > 0 ? '-' : '+'
-  // 240 / 60 = 4
-  const hour = '' + Math.floor(Math.abs(localOffset / 60))
-  // if we're in a zone with minute offsets
-  const minute = '' + Math.abs(localOffset % 60)
-  // combine above strings into the same fomrat as "givenTz"
-  let stringLocalTz = `${localNeg}${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`
-
-  // use our local timezone string for this information instead of the given one
-  stringDate = stringDate.replace(givenTz, stringLocalTz)
-
-  let ret = new Date(stringDate)
-  let retOffset = ret.getTimezoneOffset()
-  // if the changed date is in a different timezone than us (daylight savings) offset it back
-  if (retOffset !== localOffset) {
-    // in minutes
-    let offset = localOffset - retOffset
-    // to milliseconds
-    offset = offset * 60 * 1000
-
-    ret = new Date(ret.getTime() - offset)
-  }
-
-  return ret
-}
-
-const isSameDay = (start, end) => {
-  return start.getMonth() === end.getMonth() &&
-         start.getDay() === end.getDay() &&
-         start.getYear() === end.getYear()
-}
+import * as dateLibs from '../../../shared/DateLibs'
 
 const startEndDate = (start, end) => {
   let startYear = ', ' + start.getFullYear()
@@ -52,7 +15,7 @@ const startEndDate = (start, end) => {
   let options = { weekday: 'long', month: 'long', day: 'numeric' }
 
   let out = start.toLocaleString('en-US', options)
-  if (isSameDay(start, end)) {
+  if (dateLibs.isSameDay(start, end)) {
     // only show one day with the year
     return out + startYear
   }
@@ -64,32 +27,12 @@ const startEndDate = (start, end) => {
   return out
 }
 
-const hour12 = (date) => {
-  let ampm = 'am'
-  let hour = date.getHours()
-  let minute = '' + date.getMinutes()
-
-  minute = minute.padStart(2, '0')
-
-  if (hour === 0) {
-    hour = 12
-  } else if (hour >= 12) {
-    ampm = 'pm'
-    if (hour > 12) {
-      hour = hour % 12
-    }
-  }
-
-  // 8:00am
-  return `${hour}:${minute}${ampm}`
-}
-
 const startEndTime = (start, end) => {
   // Only show time if the event is only 1 day
-  if (isSameDay(start, end)) {
-    let out = hour12(start)
+  if (dateLibs.isSameDay(start, end)) {
+    let out = dateLibs.hour12(start)
     if (start.getTime() !== end.getTime()) {
-      out += ' – ' + hour12(end)
+      out += ' – ' + dateLibs.hour12(end)
     }
     return out
   }
@@ -101,8 +44,8 @@ export const mapEvents = (json) => {
     // flatten locales to just 'en-us' and convert strings to datetime type
     flattenLocale(entry.fields, 'en-US')
 
-    let start = makeLocalTimezone(entry.fields.startDate)
-    let end = entry.fields.endDate ? makeLocalTimezone(entry.fields.endDate) : makeLocalTimezone(entry.fields.startDate)
+    let start = dateLibs.makeLocalTimezone(entry.fields.startDate)
+    let end = entry.fields.endDate ? dateLibs.makeLocalTimezone(entry.fields.endDate) : dateLibs.makeLocalTimezone(entry.fields.startDate)
     // if end time is 0:00, add 23:59
     if (end.getHours() === 0 && end.getMinutes() === 0) {
       end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
