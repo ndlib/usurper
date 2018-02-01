@@ -20,6 +20,10 @@ Parameters:
   OutBucket:
     Type: String
     Description: Name of the output bucket
+  HoursApiUrl:
+    Type: String
+  ContentfulApi:
+    Type: String
   ArtifactBucket:
     Type: String
     Description: Name of the artifact bucket
@@ -40,6 +44,10 @@ Resources:
         EnvironmentVariables:
         - Name: REACT_OUTPUT
           Value: !Ref OutBucket
+        - Name: HOURS_API_URL
+          Value: !Ref HoursApiUrl
+        - Name: CONTENTFUL_API
+          Value: !Ref ContentfulApi
       Source:
         Type: CODEPIPELINE
       TimeoutInMinutes: 10

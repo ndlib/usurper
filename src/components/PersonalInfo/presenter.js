@@ -11,6 +11,7 @@ import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 import Link from '../Link'
+import StaticAlert from '../Contentful/StaticContent/Alert'
 
 const LoggedIn = (preview, balance) => {
   return (
@@ -22,6 +23,7 @@ const LoggedIn = (preview, balance) => {
       <PageTitle title='Items & Requests' />
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
+          <StaticAlert slug='personal' preview={preview} />
           { balance &&
             <div className='alert page lowPri'>
               <div className='width'>

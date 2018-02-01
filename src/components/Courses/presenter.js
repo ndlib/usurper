@@ -9,6 +9,7 @@ import Lgicon from '../../static/images/icons/libguide.png'
 import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
+import StaticAlert from '../Contentful/StaticContent/Alert'
 
 class Courses extends Component {
   instructorCard (course) {
@@ -162,7 +163,7 @@ class Courses extends Component {
         <div key='courses' className='content'>
           <LogOut />
           <Link to='/items-requests' className='button fright tab'>My Items</Link>
-          
+
           <PageTitle title='Courses' classaName='hr-cor' />
           <SearchProgramaticSet open={false} />
 
@@ -170,6 +171,7 @@ class Courses extends Component {
 
           <div className='row'>
             <div className='col-md-8 col-sm-7'>
+              <StaticAlert slug='courses' preview={this.props.preview} />
               <div key='courseCards'>
                 { this.courseCards() }
               </div>

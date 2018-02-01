@@ -5,6 +5,7 @@ import PageTitle from '../../PageTitle'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import SideNav from '../../SideNav'
+import PageAlert from '../Alert/Page'
 
 import './style.css'
 
@@ -43,6 +44,7 @@ const ColumnContainerPresenter = (props) => {
     <div className='content'>
       <SearchProgramaticSet open={false} />
       <PageTitle title={page.title} />
+      <PageAlert alert={page.alert} />
       <div className='row landing'>
         {
           page.columns.map((column, index) => {
