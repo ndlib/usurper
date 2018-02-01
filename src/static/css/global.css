@@ -151,7 +151,7 @@ height:auto;
   max-width: 840px;
 }
 
-.landing p a, .landing .child li a {
+.landing p a, .landing .child li a, .landing p strong {
   font-size: 110%;
 }
 
