@@ -1,10 +1,7 @@
 import React from 'react'
 import ResourceList from '../../../components/LoanResources/ResourceList/presenter'
 import Resource from '../../../components/LoanResources/ResourceList/Resource'
-import { shallow, configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
+import { shallow } from 'enzyme'
 
 let enzymeWrapper
 const setup = (props) => {

@@ -303,44 +303,58 @@ height:auto;
 .alert .width {
   max-width: 1200px;
   margin: 0 auto;
+  padding-bottom: 5px;
+  padding-left: 34px;
+  padding-top: 4px;
 }
 
 .alert a {
   color: #061F43;
 }
 
-.alert strong {
-  color: #AA272F;
-  background: url('../images/alert.png') no-repeat;
-  background-size: contain;
-  padding-left: 34px;
-  padding-top: 4px;
+.alert .prefix {
+  color: #FFF;
   font-size: 20px;
   line-height: 1em;
+  display: inline-block;
 }
 
-.alert.global {
+.alert .prefix img {
+  height: 25px;
+  margin-bottom: -5px;
+}
+
+.alert.lowPri {
+  border: solid 2px #FFB073;
+  background: #f8e999;
+}
+
+.alert.informational {
+  border: solid 2px #AA272F;
+  background: #FFB073;
+}
+
+.alert.informational .width {
+  background: url('../images/ic_info_outline_white_24px.svg') no-repeat;
+  background-size: 1.5em;
+}
+
+.alert.warning {
   border: solid 2px #AA272F;
   background: #FC7279;
 }
 
-.alert.global strong {
-  color: #fff;
+.alert.warning .width {
+  background: url('../images/alert.svg') no-repeat;
+  background-size: 1.5em;
 }
 
 .alert.page {
-  border: solid 2px #AA272F;
-  background: #FFB073;
   margin-bottom: 1.5em;
   max-width: 75ch;
 }
 
-.alert div {
-  margin-top: 1em;
-}
-
 .top {
-
   width: 100%;
 }
 

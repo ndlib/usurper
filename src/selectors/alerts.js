@@ -17,17 +17,6 @@ const getAlerts = (state, props) => {
         let end = new Date(entry.fields.endTime)
         return start <= now && end >= now && entry.fields.global
       })
-      .sort((left, right) => {
-        let a = new Date(left.fields.startTime)
-        let b = new Date(right.fields.startTime)
-
-        if (a < b) {
-          return 1
-        } else if (b < a) {
-          return -1
-        }
-        return 0
-      })
   }
   return allAlerts
 }

@@ -11,7 +11,6 @@ ReactGA.initialize(Config.googleAnalyticsId, {
   debug: false,
   titleCase: false,
   gaOptions: {},
-
 })
 
 const mapStateToProps = (state, ownProps) => {

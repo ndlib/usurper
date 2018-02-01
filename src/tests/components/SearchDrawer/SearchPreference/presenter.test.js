@@ -1,11 +1,8 @@
 import React from 'react'
-import { mount, configure } from 'enzyme'
+import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 import SearchPreference from '../../../../components/SearchDrawer/SearchPreference/presenter.js'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
 
 let enzymeWrapper
 function setup (props) {
