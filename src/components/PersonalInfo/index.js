@@ -9,11 +9,13 @@ export const mapStateToProps = (state, ownProps) => {
   const { personal } = state
 
   let loggedIn = (personal.login && personal.login.token) ? true : false
+  let balance = (personal.user && personal.user.balance && personal.user.balance < 0) ? '-$' + Math.abs(personal.user.balance) : null
 
   return {
     preview: (new URLSearchParams(ownProps.location.search)).get('preview') === 'true',
     loggedIn: loggedIn,
     redirectUrl: personal.login.redirectUrl,
+    balance: balance,
   }
 }
 
