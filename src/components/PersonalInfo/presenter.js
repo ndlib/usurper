@@ -10,8 +10,8 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
-import Link from '../Link'
 import StaticAlert from '../Contentful/StaticContent/Alert'
+import Link from '../Link'
 
 const LoggedIn = (preview, balance) => {
   return (
@@ -24,7 +24,8 @@ const LoggedIn = (preview, balance) => {
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
           <StaticAlert slug='personal' preview={preview} />
-          { balance &&
+          {
+            balance &&
             <div className='alert page lowPri'>
               <div className='width'>
                 Your account balance is { balance }.
