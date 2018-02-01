@@ -11,6 +11,7 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
+import OpenGraph from '../../OpenGraph'
 
 const formatPublishDate = (publishedDate) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -38,6 +39,11 @@ const PagePresenter = ({ entry }) => (
         )}
       </div>
     </PageTitle>
+    <OpenGraph
+      title={entry.fields.title}
+      description={entry.fields.shortDescription}
+      image={entry.fields.image}
+    />
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8 col-sm-8 article'>

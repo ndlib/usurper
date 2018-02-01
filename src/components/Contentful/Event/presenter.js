@@ -11,6 +11,7 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
+import OpenGraph from '../../OpenGraph'
 
 const PagePresenter = ({ entry }) => (
   <article
@@ -23,6 +24,11 @@ const PagePresenter = ({ entry }) => (
     <meta itemProp='startDate' content={entry.fields.startDate} />
     <meta itemProp='endDate' content={entry.fields.endDate} />
     <PageTitle title={entry.fields.title} itemProp='name' />
+    <OpenGraph
+      title={entry.fields.title}
+      description={entry.fields.shortDescription}
+      image={entry.fields.image}
+    />
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <main className='col-md-8'>
