@@ -89,10 +89,6 @@
                break-inside: avoid;
 }
 
-.side-nav {
-  z-index: -1;
-}
-
 .side-nav-bg {
   background: #fff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
