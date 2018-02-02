@@ -2214,7 +2214,7 @@ width: 100%;
   margin-bottom: 0;
 }
 
-.news-card a {
+.event-card a, .news-card a {
   text-decoration: none;
 }
 
