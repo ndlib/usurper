@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2018.5](https://github.com/ndlib/usurper/tree/v2018.5)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.4...v2018.5)
+
+### Bug Fixes
+- Ensure event text isn't underlined as a link [#397](https://github.com/ndlib/usurper/pull/397)
+
+
 ## [v2018.4](https://github.com/ndlib/usurper/tree/v2018.4)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.3...v2018.4)
 
