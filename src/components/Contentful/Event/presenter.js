@@ -13,6 +13,7 @@ import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
 import OpenGraph from '../../OpenGraph'
 import Presenters from '../../Presenters'
+import Sponsorships from '../../Sponsorships'
 import { formatDate, hour12, isSameDay } from '../../../shared/DateLibs.js'
 
 const PagePresenter = ({ entry }) => {
@@ -57,8 +58,10 @@ const PagePresenter = ({ entry }) => {
           }
           <LibMarkdown itemProp='description'>{ entry.fields.content }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
+          { entry.fields.sponsors && (<Sponsorships sponsors={entry.fields.sponsors} />) }
           { entry.fields.presenters && (<Presenters presenters={entry.fields.presenters} />) }
           <ShareLinks title={entry.fields.title} />
+          <Link to='/events' className='viewAll viewNewsEvents'>View All Events</Link>
         </main>
         <aside className='col-md-4 right'>
           <Image cfImage={entry.fields.representationalImage} className='cover' />
