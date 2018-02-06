@@ -111,12 +111,8 @@ const Contact = (props) => {
     <div className='point'>
       {accessNote}
       <ul>
-        {phone}
-        {email}
         {building}
         {floor}
-        {webPage}
-        {fax}
       </ul>
     </div>
   )
