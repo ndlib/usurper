@@ -2309,7 +2309,7 @@ width: 100%;
   display: none;
 }
 
-.event-link {
+.event-link, .newsEventHeader {
   text-decoration: none;
 }
 
