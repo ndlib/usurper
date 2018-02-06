@@ -59,6 +59,7 @@ const PagePresenter = ({ entry }) => {
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
           { entry.fields.presenters && (<Presenters presenters={entry.fields.presenters} />) }
           <ShareLinks title={entry.fields.title} />
+          <Link to='/events' className='viewAll viewNewsEvents'>View All Events</Link>
         </main>
         <aside className='col-md-4 right'>
           <Image cfImage={entry.fields.representationalImage} className='cover' />
