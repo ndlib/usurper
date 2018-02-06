@@ -142,11 +142,14 @@ class Courses extends Component {
     let currentTitle = 'Current Courses'
     let upcomingTitle = 'Upcoming Courses'
 
-    let cardCount = this.cardsForArray(out, courses.enrollments.current, 'enrollment-current', currentTitle)
-    this.cardsForArray(out, courses.instructs.current, 'instruct-current', cardCount > 0 ? '' : currentTitle)
+    let enrollments = courses.enrollments ? courses.enrollments : {}
+    let instructs = courses.instructs ? courses.instructs : {}
 
-    cardCount = this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', upcomingTitle)
-    this.cardsForArray(out, courses.instructs.future, 'instruct-future', cardCount > 0 ? '' : upcomingTitle)
+    let cardCount = this.cardsForArray(out, enrollments.current, 'enrollment-current', currentTitle)
+    this.cardsForArray(out, instructs.current, 'instruct-current', cardCount > 0 ? '' : currentTitle)
+
+    cardCount = this.cardsForArray(out, enrollments.future, 'enrollment-future', upcomingTitle)
+    this.cardsForArray(out, instructs.future, 'instruct-future', cardCount > 0 ? '' : upcomingTitle)
 
     if (out.length === 0) {
       return (
