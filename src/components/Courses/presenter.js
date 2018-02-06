@@ -114,14 +114,14 @@ class Courses extends Component {
       outArray.push(
         <div className='course-section' key={key + '-section'}>
           <h3 className='course-title' key={key}>{name}</h3>
-          <div className='course-card header'>
-            <div className='course'>
-              <p className='course-header'>Course</p>
+          <div className='course-card course-header'>
+            <div>
+              Course
             </div>
-            <div className='course-reserves'>
+            <div>
               Course Reserves
             </div>
-            <div className='course-resources'>
+            <div>
               Subject Resources
             </div>
           </div>
@@ -129,6 +129,7 @@ class Courses extends Component {
         </div>
       )
     }
+    return cards.length
   }
 
   courseCards () {
@@ -138,14 +139,14 @@ class Courses extends Component {
       return (<p className='noClasses'>No Classes to display for the current semester</p>)
     }
 
-    if (courses.enrollments) {
-      this.cardsForArray(out, courses.enrollments.current, 'enrollment-current', 'Current Courses')
-      this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', 'Upcoming Courses')
-    }
-    if (courses.instructs) {
-      this.cardsForArray(out, courses.instructs.current, 'instruct-current', 'Current Courses', false)
-      this.cardsForArray(out, courses.instructs.future, 'instruct-future', 'Upcomming Courses', false)
-    }
+    let currentTitle = 'Current Courses'
+    let upcomingTitle = 'Upcoming Courses'
+
+    let cardCount = this.cardsForArray(out, courses.enrollments.current, 'enrollment-current', currentTitle)
+    this.cardsForArray(out, courses.instructs.current, 'instruct-current', cardCount > 0 ? '' : currentTitle)
+
+    cardCount = this.cardsForArray(out, courses.enrollments.future, 'enrollment-future', upcomingTitle)
+    this.cardsForArray(out, courses.instructs.future, 'instruct-future', cardCount > 0 ? '' : upcomingTitle)
 
     if (out.length === 0) {
       return (

@@ -1749,23 +1749,27 @@ button.renew {
 }
 
 .course-card div {
-
   padding: 10px;
 }
 
-.course {
+.course-header {
+  border-width: 0 0 1px 0;
+  line-height: 1em;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
 
+.course-header div {
+  padding: 5px 5px;
+}
+
+.course {
   background: #F1F1F1;
 }
 
 .course-card img {
   vertical-align: middle;
-}
-
-.course-header {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
 }
 
 .course-subtitle {
