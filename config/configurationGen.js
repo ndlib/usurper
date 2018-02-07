@@ -4,7 +4,7 @@ const genConfig = () => {
   let defaultConfig = {
     viceroyAPI: 'https://viceroy-dev.library.nd.edu',
     recommendAPI: 'https://2ufw8jzu3d.execute-api.us-east-1.amazonaws.com/dev',
-    coursesAPI: 'https://unauxwjiml.execute-api.us-east-1.amazonaws.com/dev',
+    coursesAPI: 'https://cmlr2f23qa.execute-api.us-east-1.amazonaws.com/dev',
     resourcesAPI: 'https://p5gotxkf09.execute-api.us-east-1.amazonaws.com/dev',
     illiadBaseURL: 'https://nd.illiad.oclc.org/illiad/IND/testweb/illiad.dll?Action=10&Form=<<form>>&Value=<<value>>',
     hoursAPIURL: 'https://3nmbw29969.execute-api.us-east-1.amazonaws.com/dev',
