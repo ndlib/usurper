@@ -52,7 +52,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
 const Events = (entries) => {
   return (
     <div className='col-md-5 col-xs-12' >
-      <h2>Events</h2>
+      <Link to='/events' className='newsEventHeader'><h2>Events</h2></Link>
       <section aria-label='Events'>
         {
           entries.map((entry, index) => makeEventEntry(entry, index, index === entries.length - 1, false, false))
