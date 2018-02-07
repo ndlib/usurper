@@ -2080,6 +2080,7 @@ width: 100%;
   grid-template-rows: auto;
   grid-gap: 0.15em;
   justify-content: start;
+  margin: 45px 0 30px 0;
 }
 
 .presenter-card h4, .sponsors h4 {
