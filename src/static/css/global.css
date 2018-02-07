@@ -3195,6 +3195,10 @@ body {
   width: 33%;
 }
 
+.viewNewsEvents {
+  margin: 1.5em 0 1.5em 0;
+}
+
 #site-info dt{
 display: inline-block;
 clear: left;
