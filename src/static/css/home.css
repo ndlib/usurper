@@ -73,7 +73,9 @@
 	bottom: 1.2em;
 }
 
-
+.home nav a.search {
+	display: none !important;
+}
 
 
 
