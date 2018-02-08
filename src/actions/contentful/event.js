@@ -30,9 +30,11 @@ const receiveEvent = (event, response) => {
     if (response.sys.contentType.sys.id === 'event') {
       return success
     } else {
+      console.log(response)
       return error
     }
   } catch (e) {
+    console.log(response)
     return error
   }
 }

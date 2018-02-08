@@ -6,9 +6,37 @@ import { fetchEvent } from '../../../actions/contentful/event'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
 import * as statuses from '../../../constants/APIStatuses'
+import { formatDate, hour12, isSameDay, makeLocalTimezone } from '../../../shared/DateLibs.js'
 
 const mapStateToProps = (state) => {
-  return { entry: state.cfEventEntry }
+  let data = state.cfEventEntry.json
+
+  if (data) {
+    let fields = data.fields
+
+    let startDate = new Date(fields.startDate)
+    let endDate = new Date(fields.endDate)
+
+    let displayDate = formatDate(startDate)
+    if (!isSameDay(startDate, endDate)) {
+      displayDate += ' – ' + formatDate(endDate)
+    }
+
+    let start = makeLocalTimezone(fields.startDate)
+    let end = endDate ? makeLocalTimezone(fields.endDate) : makeLocalTimezone(fields.startDate)
+    let displayTime = fields.timeOverride ? fields.timeOverride : `${hour12(start)} - ${hour12(end)}`
+
+    data = {
+      ...data.fields,
+      displayTime: displayTime,
+      displayDate: displayDate,
+    }
+  }
+
+  return {
+    status: state.cfEventEntry.status,
+    data: data,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -33,14 +61,15 @@ export class ContentfulEventContainer extends Component {
   render () {
     return <PresenterFactory
       presenter={ContentfulEventPresenter}
-      status={this.props.entry.status}
-      props={{ entry: this.props.entry.json }} />
+      status={this.props.status}
+      props={{ entry: this.props.data }} />
   }
 }
 
 ContentfulEventContainer.propTypes = {
   fetchEvent: PropTypes.func.isRequired,
-  entry: PropTypes.object.isRequired,
+  data: PropTypes.object,
+  status: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
 }
 
