@@ -107,7 +107,20 @@ const Contact = (props) => {
     )
   }
 
-  return (
+  const fullDisplay = (
+    <div className='point'>
+      {accessNote}
+      <ul>
+        {phone}
+        {email}
+        {building}
+        {floor}
+        {webPage}
+        {fax}
+      </ul>
+    </div>
+  )
+  const limitedDisplay = (
     <div className='point'>
       {accessNote}
       <ul>
@@ -116,10 +129,20 @@ const Contact = (props) => {
       </ul>
     </div>
   )
+  return (
+    <div>
+      { props.showDetails ? fullDisplay : limitedDisplay }
+    </div>
+  )
 }
 
 Contact.propTypes = {
   servicePoint: PropTypes.object,
+  showDetails: PropTypes.bool,
+}
+
+Contact.defaultProps = {
+  showDetails: true,
 }
 
 export default Contact

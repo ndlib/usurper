@@ -64,7 +64,7 @@ const PagePresenter = ({ entry }) => {
           <Image cfImage={entry.fields.representationalImage} className='cover' />
           <Link to={entry.fields.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
           <Librarians netids={entry.fields.contactPeople} />
-          <ServicePoint cfServicePoint={entry.fields.location} showHours={false} />
+          <ServicePoint cfServicePoint={entry.fields.location} showDetails={false} />
           <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.fields.relatedPages }</Related>
         </aside>
       </div>
