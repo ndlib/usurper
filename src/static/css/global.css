@@ -1749,23 +1749,27 @@ button.renew {
 }
 
 .course-card div {
-
   padding: 10px;
 }
 
-.course {
+.course-header {
+  border-width: 0 0 1px 0;
+  line-height: 1em;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
 
+.course-header div {
+  padding: 5px 5px;
+}
+
+.course {
   background: #F1F1F1;
 }
 
 .course-card img {
   vertical-align: middle;
-}
-
-.course-header {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
 }
 
 .course-subtitle {
@@ -2074,7 +2078,16 @@ width: 100%;
   margin-bottom: 1.5em;
 }
 
-.presenter-card h4 {
+.sponsors {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-gap: 0.15em;
+  justify-content: start;
+  margin: 45px 0 30px 0;
+}
+
+.presenter-card h4, .sponsors h4 {
   color: #5D6A83;
   font-family: GPCMed, sans-serif;
   font-weight: normal;
@@ -2082,11 +2095,16 @@ width: 100%;
   margin-bottom: 10px;
 }
 
-.presenter-card .n, .presenter-card .org, .presenter-card .email, .presenter-card .tel {
+.presenter-card .n, .presenter-card .org, .presenter-card .email, .presenter-card .tel, .sponsors .sponsor-detail {
   color: #001E45;
   font-family: GPCMed, sans-serif;
   font-size: 16px;
   line-height: 1.5em;
+}
+
+.sponsors .sponsor-detail p {
+  font-size: 18px;
+  line-height: normal;
 }
 
 .presenter-card .n {
@@ -2309,7 +2327,7 @@ width: 100%;
   display: none;
 }
 
-.event-link {
+.event-link, .newsEventHeader {
   text-decoration: none;
 }
 
@@ -3136,7 +3154,6 @@ body {
   padding: 3px 5px 6px;
   width: 45%;
   display: block;
-
 }
 
 .viewAll:hover {
@@ -3176,6 +3193,10 @@ body {
   letter-spacing: normal;
   text-transform: none;
   width: 33%;
+}
+
+.viewNewsEvents {
+  margin: 1.5em 0 1.5em 0;
 }
 
 #site-info dt{

@@ -6,7 +6,7 @@ import Link from '../../Link'
 const News = (entries) => {
   return (
     <div className='col-md-6 col-xs-12'>
-      <h2>News</h2>
+      <Link to='/news' className='newsEventHeader'><h2>News</h2></Link>
       <section aria-label='News'>
         {
           entries.map(makeNewsEntry)
