@@ -26,7 +26,7 @@ const ServicePoint = ({ cfServicePoint, showDetails }) => {
   )
 }
 
-ServicePoint.PropTypes = {
+ServicePoint.propTypes = {
   cfServicePoint: PropTypes.object.isRequired,
   showDetails: PropTypes.bool,
 }
