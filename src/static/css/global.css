@@ -2332,6 +2332,7 @@ width: 100%;
 }
 
 .event-details {
+  max-width: calc(100% - 35px);
   display: grid;
   grid-template-columns: 80px auto;
   grid-template-rows: auto auto auto;
