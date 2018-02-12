@@ -1015,6 +1015,16 @@ label[for='q']:after, .dropdown label:after {
   }
 }
 
+/* add to calendar */
+.addToCalendar {
+  display: inline-block;
+}
+
+.addToCalendar button {
+  margin-right: 0.5em;
+}
+/* ~add to calendar */
+
 /* Search */
 #drawer {
   top: 123px;
@@ -2129,7 +2139,8 @@ width: 100%;
 }
 
 .shareLinks {
-  clear: both;
+  clear: left;
+  display: inline-block;
 }
 
 .services {
@@ -3361,8 +3372,9 @@ a .dbItem {
 .resp-sharing-button {
   border-radius: 5px;
   transition: 25ms ease-out;
-  padding: 0.5em 0.75em;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif
+  padding: 4px 15px 9px 15px;
+  font-family: GPHeavy, sans-serif !important;
+  font-size: 18px;
 }
 
 .resp-sharing-button__icon svg {
