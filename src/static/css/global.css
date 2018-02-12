@@ -1506,6 +1506,18 @@ aside .group {
   padding-bottom: 0.5em;
 }
 
+aside section {
+  padding-bottom: 1.5em;
+}
+
+aside section h3 {
+  margin-bottom: 8px;
+}
+
+aside section .p-pages {
+  margin-top: 0;
+}
+
 /* Databases */
 .databaseList {
   padding-top: 17px;
@@ -1892,13 +1904,14 @@ address {
 .point ul {
   list-style: none;
   padding-left: 1em;
+  margin-top: 0;
 }
 
 .point .building a, .point .floor a, .point .phone a,
   .point .email a, .point .web a, .point .fax {
   font-family: GPCMed, sans-serif;
   font-size: 20px;
-  margin-bottom: 1em;
+  margin-bottom: 8px;
   display: inline-block;
   padding-left: 30px;
   background-image: url("../images/map.png");
@@ -2222,6 +2235,7 @@ width: 100%;
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   margin-right: 15px;
+
 }
 
 .news-card h3, .event-card h4 {
@@ -3132,6 +3146,10 @@ body {
   background-position: right top;
 }
 
+.home nav a.search {
+  display: none !important;
+}
+
 
 .logout-button-personal {
   margin-left: 15px;
@@ -3483,4 +3501,10 @@ a .dbItem {
 .resp-sharing-button--email:active {
   background-color: #5e5e5e;
   border-color: #5e5e5e;
+}
+
+.sp-address h4[itemprop] {
+  font-family: GPCMed, sans-serif;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
