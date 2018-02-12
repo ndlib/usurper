@@ -956,7 +956,7 @@ div.search {
 .dropdown ul {
   min-width: 170px;
   display: inline-block;
-  height: 34px;
+  height: auto;
   overflow-y: visible;
   background: #5b412d;
   margin: 0;
@@ -971,6 +971,7 @@ div.search {
   padding:10px 20px 7px 20px;
   display: block;
   border-bottom: 1px solid #fff;
+  cursor: pointer;
 }
 .dropdownOptionList {
   /*position: absolute;*/
@@ -1014,14 +1015,29 @@ label[for='q']:after, .dropdown label:after {
     top: 5px;
   }
 }
+/* ~Dropdown */
+
+.hidden {
+  display: none;
+}
 
 /* add to calendar */
 .addToCalendar {
   display: inline-block;
 }
 
-.addToCalendar button {
-  margin-right: 0.5em;
+.addToCalendar .calendar {
+  max-width: 16px;
+}
+
+.addToCalendar .dropdown {
+  position: absolute;
+  z-index: 1;
+}
+
+.addToCalendar .dropdown a {
+  text-decoration: none;
+  color: #fff;
 }
 /* ~add to calendar */
 

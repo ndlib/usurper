@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Link from '../Link'
+import calendarIcon from '../../static/images/calendar.png'
 
 export default class AddToCalendar extends Component {
   constructor (props) {
@@ -10,12 +11,32 @@ export default class AddToCalendar extends Component {
       // 2018-05-31T11:00:00.000Z -> 20180531T110000Z
       start: new Date(this.props.startDate).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
       end: new Date(this.props.endDate).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+      hidden: true,
     }
 
     this.downloadClick = this.downloadClick.bind(this)
+    this.addToGoogle = this.addToGoogle.bind(this)
+    this.toggleDropdown = this.toggleDropdown.bind(this)
+    this.onBlur = this.onBlur.bind(this)
   }
 
-  gmailUrl () {
+  componentDidUpdate (prevProps, prevState) {
+    if (!this.state.hidden) {
+      document.getElementById('calendarOptions').focus()
+    }
+  }
+
+  onBlur () {
+    this.setState({ hidden: true })
+  }
+
+  toggleDropdown () {
+    this.setState({
+      hidden: !this.state.hidden,
+    })
+  }
+
+  addToGoogle () {
     let calendarUrl = ''
 
     const location = encodeURIComponent(this.props.location)
@@ -29,7 +50,9 @@ export default class AddToCalendar extends Component {
     calendarUrl += '&text=' + title
     calendarUrl += '&details=' + desc
 
-    return calendarUrl
+    window.open(calendarUrl)
+
+    this.onBlur()
   }
 
   downloadClick () {
@@ -60,17 +83,26 @@ export default class AddToCalendar extends Component {
 
     // Remove anchor from body
     document.body.removeChild(a)
+
+    this.onBlur()
   }
 
   render () {
     return (
       <div className='addToCalendar'>
-        <Link to={this.gmailUrl()}>
-          <button className='google'>Add to Google Calendar</button>
-        </Link>
-        <a href='#' onClick={this.downloadClick}>
-          <button className='download'>Download Event</button>
-        </a>
+        <button onClick={this.toggleDropdown}>
+          <img className='calendar' src={calendarIcon} alt='calendar' />
+        </button>
+        <div tabIndex='0' id='calendarOptions' onBlur={this.onBlur} className={'dropdown' + (this.state.hidden ? ' hidden' : '')}>
+          <ul>
+            <li onClick={this.addToGoogle}>
+              Add to Google Calendar
+            </li>
+            <li onClick={this.downloadClick}>
+              Download Event
+            </li>
+          </ul>
+        </div>
       </div>
     )
   }
