@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Link from '../Link'
 import calendarIcon from '../../static/images/calendar.png'
 
 export default class AddToCalendar extends Component {
@@ -20,7 +19,7 @@ export default class AddToCalendar extends Component {
     this.onBlur = this.onBlur.bind(this)
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate () {
     if (!this.state.hidden) {
       document.getElementById('calendarOptions').focus()
     }
@@ -93,7 +92,12 @@ export default class AddToCalendar extends Component {
         <button onClick={this.toggleDropdown}>
           <img className='calendar' src={calendarIcon} alt='calendar' />
         </button>
-        <div tabIndex='0' id='calendarOptions' onBlur={this.onBlur} className={'dropdown' + (this.state.hidden ? ' hidden' : '')}>
+        <div
+          tabIndex='0'
+          id='calendarOptions'
+          onBlur={this.onBlur}
+          className={'dropdown' + (this.state.hidden ? ' hidden' : '')}
+        >
           <ul>
             <li onClick={this.addToGoogle}>
               Add to Google Calendar
