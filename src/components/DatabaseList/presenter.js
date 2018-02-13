@@ -10,6 +10,7 @@ import * as statuses from '../../constants/APIStatuses'
 import FilterBox from '../FilterBox'
 import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
+import TextEllipsis  from 'react-text-ellipsis'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
@@ -95,8 +96,8 @@ const Loaded = (props) => {
             )
           }
         </ul>
-        <div className='multiline-ellipsis'>
-          {item.fields.description}
+        <div className='database-list'>
+          <TextEllipsis lines={3}>{item.fields.description}</TextEllipsis>
         </div>
         <Link to={'/database/' + item.sys.id} className='moreinfo'
           ariaLabel={'More Information about ' + item.fields.title}>More info</Link>
