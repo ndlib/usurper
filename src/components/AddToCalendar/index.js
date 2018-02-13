@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import calendarIcon from '../../static/images/calendar.png'
+import Presenter from './presenter'
 
 export default class AddToCalendar extends Component {
   constructor (props) {
@@ -88,26 +89,13 @@ export default class AddToCalendar extends Component {
 
   render () {
     return (
-      <div className='addToCalendar'>
-        <button onClick={this.toggleDropdown}>
-          <img className='calendar' src={calendarIcon} alt='calendar' />
-        </button>
-        <div
-          tabIndex='0'
-          id='calendarOptions'
-          onBlur={this.onBlur}
-          className={'dropdown' + (this.state.hidden ? ' hidden' : '')}
-        >
-          <ul>
-            <li onClick={this.addToGoogle}>
-              Add to Google Calendar
-            </li>
-            <li onClick={this.downloadClick}>
-              Download Event
-            </li>
-          </ul>
-        </div>
-      </div>
+      <Presenter
+        toggleDropdown={this.toggleDropdown}
+        onBlur={this.onBlur}
+        hidden={this.state.hidden}
+        addToGoogle={this.addToGoogle}
+        downloadClick={this.downloadClick}
+      />
     )
   }
 }
