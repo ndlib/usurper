@@ -1,5 +1,27 @@
 # Change Log
 
+## [v2018.5](https://github.com/ndlib/usurper/tree/v2018.5)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.4...v2018.5)
+
+### Bug Fixes
+- Ensure event text isn't underlined as a link [#397](https://github.com/ndlib/usurper/pull/397)
+
+
+## [v2018.4](https://github.com/ndlib/usurper/tree/v2018.4)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.3...v2018.4)
+
+### New features/enhancements
+- Add "Information" and "Warning" alert levels [#377](https://github.com/ndlib/usurper/pull/377)
+- Add information to print style [#379](https://github.com/ndlib/usurper/pull/379)
+- Add new information styling to Events pages [#381](https://github.com/ndlib/usurper/pull/381)
+- Alerts can now be added to dynamic pages [#380](https://github.com/ndlib/usurper/pull/380)
+- Account balance can now be seen on items and requests page [#394](https://github.com/ndlib/usurper/pull/394)
+- Add more information to events/news facebook posts [#395](https://github.com/ndlib/usurper/pull/395)
+
+### Bug Fixes
+- Hide site-info page from google [#393](https://github.com/ndlib/usurper/pull/393)
+
+
 ## [v2018.3](https://github.com/ndlib/usurper/tree/v2018.3)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.2...v2018.3)
 

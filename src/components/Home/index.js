@@ -12,11 +12,15 @@ import Account from '../../static/images/myaccount.jpg'
 import Room from '../../static/images/reserveroom.jpg'
 import Tech from '../../static/images/tech.jpg'
 import Find from '../../static/images/subjects.jpg'
+import OpenGraph from '../OpenGraph'
 
 class Home extends Component {
   render () {
     return (
       <div className='Home main'>
+        <OpenGraph
+          type='website'
+        />
         <PageTitle title='Hesburgh Libraries' hideInPage />
         <SearchProgramaticSet open />
         <HomePageHours />
@@ -41,7 +45,7 @@ class Home extends Component {
         </section>
         <div className='row news'>
           <News />
-          <span className='col-md-1'/>
+          <span className='col-md-1' />
           <Events />
         </div>
       </div>
