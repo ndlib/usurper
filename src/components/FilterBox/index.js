@@ -20,7 +20,6 @@ FilterBox.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  label: PropTypes.string,
 }
 
 FilterBox.defaultProps = {

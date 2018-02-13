@@ -12,7 +12,6 @@ const ResourceList = (props) => {
         title='Filter Items:'
         value={props.filterValue}
         onChange={props.filterChange}
-        label={'Filter ' + props.listType + ' Items'}
       />
       <div className='card-item'>
         <a
