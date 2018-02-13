@@ -43,6 +43,7 @@ export class HomePageHoursContainer extends Component {
   }
 
   render () {
+    console.log(this.props.hoursEntry.status)
     return (
       <InlineContainer
         status={this.props.hoursEntry.status}
