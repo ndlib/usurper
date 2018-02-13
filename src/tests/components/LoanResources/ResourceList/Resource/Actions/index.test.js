@@ -24,6 +24,7 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
             },
           },
         },
+        borrowed: true,
       }
 
       state = {
@@ -68,10 +69,11 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
         renewal: {
           test: {
             data: {
-              renewStatus: 304
+              renewStatus: 304,
             },
           },
         },
+        borrowed: true,
       }
 
       state = {
@@ -102,10 +104,11 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
         renewal: {
           test: {
             data: {
-              renewStatus: 200
+              renewStatus: 200,
             },
           },
         },
+        borrowed: true,
       }
 
       state = {
@@ -133,7 +136,8 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
           transactionNumber: 123456789,
         },
         alephId: 1234,
-        renewal: null
+        renewal: null,
+        borrowed: true,
       }
 
       state = {
@@ -146,10 +150,10 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
       state = undefined
     })
 
-    it('should contain undefined as the alephMessage', () => {
+    it('should contain undefined as the renewMessage', () => {
       let item = props.item
       let renewal = props.renewal
-      expect(mapStateToProps(state, props)).toHaveProperty('alephMessage', undefined)
+      expect(mapStateToProps(state, props)).toHaveProperty('renewMessage', undefined)
     })
   })
 })
