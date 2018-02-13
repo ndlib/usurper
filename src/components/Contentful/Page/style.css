@@ -116,6 +116,7 @@
 
   .side-nav.col-md-4 {
     transform: translateX(calc(1200px - 430px));
+    -ms-transform: translateX(0px) !important;
     width: 389px;
   }
 }
@@ -128,6 +129,7 @@
 
   .side-nav.col-md-4 {
     transform: translateX(calc(80vw - 11em));
+    -ms-transform: translateX(0px) !important;
     width: calc(30vw);
   }
 }
