@@ -68,6 +68,7 @@ const ResourceList = (props) => {
                 renewal={props.renewal}
                 alephId={props.alephId}
                 borrowed={props.borrowed}
+                itemType={props.listType}
                 key={index}
               />
             )

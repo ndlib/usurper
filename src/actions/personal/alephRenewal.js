@@ -11,7 +11,7 @@ const requestRenewal = (barcode) => {
   }
 }
 
-const recieveRenewal = (barcode, state, json) => {
+export const recieveRenewal = (barcode, state, json) => {
   return {
     type: RECEIVE_RENEWAL,
     barcode: barcode,

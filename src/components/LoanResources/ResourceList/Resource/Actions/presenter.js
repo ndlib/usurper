@@ -4,6 +4,12 @@ import PropTypes from 'prop-types'
 import Link from '../../../../Link'
 import * as Statuses from '../../../../../constants/APIStatuses'
 
+const ILLRenew = (item, message) => {
+  if (message && item.transactionNumber) {
+    return <span className='failure'>{message}</span>
+  }
+}
+
 const IllWeb = (item, url) => {
   if (!item.transactionNumber) {
     return null
@@ -31,7 +37,7 @@ const IllView = (item, url) => {
   )
 }
 
-const AlephRenew = (item, renewal, onRenewClick, alephMessage) => {
+const AlephRenew = (item, renewal, onRenewClick, renewMessage) => {
   if (item.status === 'On Loan') {
     if (renewal && renewal[item.barcode]) {
       if (renewal[item.barcode].state === Statuses.FETCHING) {
@@ -45,9 +51,9 @@ const AlephRenew = (item, renewal, onRenewClick, alephMessage) => {
       }
     }
 
-    if (alephMessage) {
+    if (renewMessage) {
       let messageClass = 'status' + renewal[item.barcode].data.renewStatus === 200 ? ' success' : ' failure'
-      return (<span className={messageClass}>{alephMessage}</span>)
+      return (<span className={messageClass}>{renewMessage}</span>)
     } else {
       return (<button onClick={onRenewClick}>Renew</button>)
     }
@@ -67,7 +73,8 @@ export const hasActions = (item) => {
 const Actions = (props) => {
   return (
     <div>
-      { AlephRenew(props.item, props.renewal, props.onRenewClick, props.alephMessage) }
+      { AlephRenew(props.item, props.renewal, props.onRenewClick, props.renewMessage) }
+      { ILLRenew(props.item, props.renewMessage) }
       { IllWeb(props.item, props.illWebUrl) }
       { IllView(props.item, props.illViewUrl) }
     </div>
@@ -78,7 +85,7 @@ Actions.propTypes = {
   item: PropTypes.object.isRequired,
   onRenewClick: PropTypes.func.isRequired,
   renewal: PropTypes.object,
-  alephMessage: PropTypes.string,
+  renewMessage: PropTypes.string,
   illWebUrl: PropTypes.string,
   illViewUrl: PropTypes.string,
 }

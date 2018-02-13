@@ -36,10 +36,10 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
       state = undefined
     })
 
-    it('should contain the statusText as the alephMessage', () => {
+    it('should contain the statusText as the renewMessage', () => {
       let item = props.item
       let renewal = props.renewal
-      expect(mapStateToProps(state, props)).toHaveProperty('alephMessage', renewal[item.barcode].data.statusText)
+      expect(mapStateToProps(state, props)).toHaveProperty('renewMessage', renewal[item.barcode].data.statusText)
     })
 
     it('should have the correct actionResponse', () => {
@@ -84,10 +84,10 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
       state = undefined
     })
 
-    it('should contain the text for renewStatus = 304 as the alephMessage', () => {
+    it('should contain the text for renewStatus = 304 as the renewMessage', () => {
       let item = props.item
       let renewal = props.renewal
-      expect(mapStateToProps(state, props)).toHaveProperty('alephMessage', 'Too early to renew. Try again closer to due date.')
+      expect(mapStateToProps(state, props)).toHaveProperty('renewMessage', 'Too early to renew. Try again closer to due date.')
     })
   })
 
@@ -118,10 +118,10 @@ describe('components/LoanResources/ResourceList/Resource/Actions/index.js', () =
       state = undefined
     })
 
-    it('should contain the alephMessage for renewStatus = 200', () => {
+    it('should contain the renewMessage for renewStatus = 200', () => {
       let item = props.item
       let renewal = props.renewal
-      expect(mapStateToProps(state, props)).toHaveProperty('alephMessage', 'Renew Successful')
+      expect(mapStateToProps(state, props)).toHaveProperty('renewMessage', 'Renew Successful')
     })
   })
 
