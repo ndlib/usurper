@@ -39,7 +39,7 @@ const Resource = (props) => {
 
       { actionsButton(props.item, props.toggleHidden) }
       <div className={'actions' + (props.hidden ? '-hidden' : '')}>
-        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} itemType={props.itemType} />
+        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} borrowed={props.borrowed} />
       </div>
     </div>
   )
@@ -48,6 +48,9 @@ const Resource = (props) => {
 Resource.propTypes = {
   item: PropTypes.object.isRequired,
   renewal: PropTypes.object,
+  toggleHidden: PropTypes.func,
+  alephId: PropTypes.string,
+  borrowed: PropTypes.bool,
 }
 
 export default Resource

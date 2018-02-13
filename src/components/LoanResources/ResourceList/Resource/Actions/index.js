@@ -18,10 +18,10 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 
 export const mapStateToProps = (state, ownProps) => {
   const { itemAction } = state
-  const { renewal, item, itemType } = ownProps
+  const { renewal, item, borrowed } = ownProps
 
   let renewMessage
-  if (renewal && renewal[item.barcode] && itemType !== 'Pending') {
+  if (renewal && renewal[item.barcode] && borrowed) {
     let itemRenew = renewal[item.barcode].data
     if (itemRenew.statusText) {
       renewMessage = itemRenew.statusText
