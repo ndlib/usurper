@@ -4,14 +4,12 @@ import PropTypes from 'prop-types'
 const FilterBox = (props) => {
   return (
     <div className='filter'>
-      <h2 className='skiplink'>Search</h2>
       <label role='search'>
         <span>{props.title}</span>
         <input
           type='text'
           value={props.value}
           onChange={props.onChange}
-
         />
       </label>
     </div>
