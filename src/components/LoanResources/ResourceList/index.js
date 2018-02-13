@@ -1,4 +1,4 @@
-'use strict'
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -70,7 +70,7 @@ class ListContainer extends Component {
     return list.filter((item) => {
       let inFilter = false
       filterFields.forEach((field) => {
-        inFilter = inFilter || (item[field] && item[field].toLowerCase().includes(value))
+        inFilter = inFilter || (item[field] && item[field].toLowerCase().indexOf(value) >= 0)
       })
       return inFilter
     }).sort((a, b) => {

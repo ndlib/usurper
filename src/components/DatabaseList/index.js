@@ -137,7 +137,7 @@ export class DatabaseListContainer extends Component {
     return list.filter((item) => {
       let inFilter = false
       filterFields.forEach((field) => {
-        inFilter = inFilter || (item.fields[field] && item.fields[field].toLowerCase().includes(value))
+        inFilter = inFilter || (item.fields[field] && item.fields[field].toLowerCase().indexOf(value) >= 0)
       })
       return inFilter
     }).slice(0, 50)
@@ -147,7 +147,7 @@ export class DatabaseListContainer extends Component {
     let filtered = this.filter(event.target.value, this.props.allDbs)
     let assistText = filtered.length + ' items beginning with the letter "' + this.props.currentLetter.toUpperCase() + '"'
     if (event.target.value) {
-      assistText = filtered.length + ' results found for "' + event.target.value +'"'
+      assistText = filtered.length + ' results found for "' + event.target.value + '"'
     }
 
     this.setState({
