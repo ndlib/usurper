@@ -1,0 +1,5 @@
+{
+    "version": false,
+    "errorLogFile": "content-error.txt",
+    "contentFile": "content-export.json"
+}
