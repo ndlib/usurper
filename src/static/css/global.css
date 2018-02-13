@@ -1454,7 +1454,7 @@ hr {
   color: #fff;
   max-height: 45px;
 }
-.filter p {
+.filter span {
   color: #fff;
   display: inline-block;
   background-color: #0C2340;
