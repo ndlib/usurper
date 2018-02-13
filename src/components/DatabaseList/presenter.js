@@ -10,7 +10,7 @@ import * as statuses from '../../constants/APIStatuses'
 import FilterBox from '../FilterBox'
 import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
-import TextEllipsis  from 'react-text-ellipsis'
+import TextEllipsis from 'react-text-ellipsis'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
