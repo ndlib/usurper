@@ -78,19 +78,9 @@ describe('components/DatabaseList/presenter.js', () => {
       let sys = props.list[0].sys
       expect(enzymeWrapper
         .containsMatchingElement(
-          <section key={fields.alephSystemNumber + fields.title}
-            aria-label={fields.title} className='dbSection'>
             <Link to={fields.urls[0].url} title={'Go to ' + fields.title}>
               <h2 className='dbItem'>{fields.title}</h2>
-            </Link>
-            <ul className='clamp databaseLink'>
-            </ul>
-            <div className='multiline-ellipsis'>
-              {fields.description}
-            </div>
-            <Link to={'/database/' + sys.id} className='moreinfo'
-              ariaLabel={'More Information about ' + fields.title}>More info</Link>
-          </section>))
+            </Link>))
         .toBe(true)
     })
   })
