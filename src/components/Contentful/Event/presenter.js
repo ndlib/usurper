@@ -13,6 +13,7 @@ import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
 import OpenGraph from '../../OpenGraph'
 import Presenters from '../../Presenters'
+import AddToCalendar from '../../AddToCalendar'
 
 const PagePresenter = ({ entry }) => {
   return (
@@ -52,6 +53,13 @@ const PagePresenter = ({ entry }) => {
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           { entry.presenters && (<Presenters presenters={entry.presenters} />) }
           <ShareLinks title={entry.title} />
+          <AddToCalendar
+            title={entry.title}
+            description={entry.shortDescription}
+            location={entry.locationOverride}
+            startDate={entry.startDate}
+            endDate={entry.endDate}
+          />
           <Link to='/events' className='viewAll viewNewsEvents'>View All Events</Link>
         </main>
         <aside className='col-md-4 right'>

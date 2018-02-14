@@ -195,10 +195,6 @@ height:auto;
   background: rgba(0, 0, 0, .3)
 }
 
-.alphabet {
-  width: 70ch;
-}
-
 .p-resources li {
   line-height: 1.5em;
 
@@ -956,7 +952,7 @@ div.search {
 .dropdown ul {
   min-width: 170px;
   display: inline-block;
-  height: 34px;
+  height: auto;
   overflow-y: visible;
   background: #5b412d;
   margin: 0;
@@ -971,6 +967,7 @@ div.search {
   padding:10px 20px 7px 20px;
   display: block;
   border-bottom: 1px solid #fff;
+  cursor: pointer;
 }
 .dropdownOptionList {
   /*position: absolute;*/
@@ -1014,6 +1011,31 @@ label[for='q']:after, .dropdown label:after {
     top: 5px;
   }
 }
+/* ~Dropdown */
+
+.hidden {
+  display: none;
+}
+
+/* add to calendar */
+.addToCalendar {
+  display: inline-block;
+}
+
+.addToCalendar .calendar {
+  max-width: 16px;
+}
+
+.addToCalendar .dropdown {
+  position: absolute;
+  z-index: 1;
+}
+
+.addToCalendar .dropdown a {
+  text-decoration: none;
+  color: #fff;
+}
+/* ~add to calendar */
 
 /* Search */
 #drawer {
@@ -1450,31 +1472,34 @@ hr {
 /* Filter Component */
 .filter {
   width: 100%;
+  display: block;
   background-color: #072242;
   color: #fff;
-  max-height: 45px;
+  height: 45px;
 }
 .filter p {
   color: #fff;
   display: inline-block;
+  float: left;
   background-color: #0C2340;
-  line-height: 15px;
+  line-height: 20px;
   padding: 12px 20px 10px;
   margin-bottom: 0px;
   font-size: 16px;
 }
 .filter label {
-  display: grid;
-  grid-template-columns: auto 2fr 1fr;
-  -ms-grid-columns: auto 2fr 1fr;
+  display: block;
+  width: 100%;
 }
 .filter input {
+  float: left;
+  line-height: 22px;
   padding: 5px;
   width: 100%;
   font-size: 14px;
   border: solid 1px #000;
-
   margin: 5px 0px;
+  width: calc(100% - 400px);
 }
 .filter .renew {
   float: right;
@@ -1504,6 +1529,18 @@ aside .group h5 {
 
 aside .group {
   padding-bottom: 0.5em;
+}
+
+aside section {
+  padding-bottom: 1.5em;
+}
+
+aside section h3 {
+  margin-bottom: 8px;
+}
+
+aside section .p-pages {
+  margin-top: 0;
 }
 
 /* Databases */
@@ -1892,13 +1929,14 @@ address {
 .point ul {
   list-style: none;
   padding-left: 1em;
+  margin-top: 0;
 }
 
 .point .building a, .point .floor a, .point .phone a,
   .point .email a, .point .web a, .point .fax {
   font-family: GPCMed, sans-serif;
   font-size: 20px;
-  margin-bottom: 1em;
+  margin-bottom: 8px;
   display: inline-block;
   padding-left: 30px;
   background-image: url("../images/map.png");
@@ -2129,7 +2167,8 @@ width: 100%;
 }
 
 .shareLinks {
-  clear: both;
+  clear: left;
+  display: inline-block;
 }
 
 .services {
@@ -2222,6 +2261,7 @@ width: 100%;
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   margin-right: 15px;
+
 }
 
 .news-card h3, .event-card h4 {
@@ -2332,6 +2372,7 @@ width: 100%;
 }
 
 .event-details {
+  max-width: calc(100% - 35px);
   display: grid;
   grid-template-columns: 80px auto;
   grid-template-rows: auto auto auto;
@@ -3131,6 +3172,10 @@ body {
   background-position: right top;
 }
 
+.home nav a.search {
+  display: none !important;
+}
+
 
 .logout-button-personal {
   margin-left: 15px;
@@ -3361,8 +3406,9 @@ a .dbItem {
 .resp-sharing-button {
   border-radius: 5px;
   transition: 25ms ease-out;
-  padding: 0.5em 0.75em;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif
+  padding: 4px 15px 9px 15px;
+  font-family: GPHeavy, sans-serif !important;
+  font-size: 18px;
 }
 
 .resp-sharing-button__icon svg {
@@ -3483,4 +3529,10 @@ a .dbItem {
 .resp-sharing-button--email:active {
   background-color: #5e5e5e;
   border-color: #5e5e5e;
+}
+
+.sp-address h4[itemprop] {
+  font-family: GPCMed, sans-serif;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }

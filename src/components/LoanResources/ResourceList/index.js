@@ -1,11 +1,12 @@
-'use strict'
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { renewAleph } from '../../../actions/personal/alephRenewal'
+import { renewAleph, recieveRenewal } from '../../../actions/personal/alephRenewal'
 import Loading from '../../Messages/InlineLoading'
 import Presenter from './presenter'
+import * as statuses from '../../../constants/APIStatuses'
 
 class ListContainer extends Component {
   constructor (props) {
@@ -70,7 +71,7 @@ class ListContainer extends Component {
     return list.filter((item) => {
       let inFilter = false
       filterFields.forEach((field) => {
-        inFilter = inFilter || (item[field] && item[field].toLowerCase().includes(value))
+        inFilter = inFilter || (item[field] && item[field].toLowerCase().indexOf(value) >= 0)
       })
       return inFilter
     }).sort((a, b) => {
@@ -166,11 +167,14 @@ export const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     renewAll: (e) => {
+      // renew all aleph items
       ownProps.list.forEach((item) => {
         if (item.barcode) {
           dispatch(renewAleph(item.barcode, ownProps.alephId))
         }
       })
+      // set renewal of illiad items
+      dispatch(recieveRenewal(undefined, statuses.SUCCESS, { statusText: 'Please view item in ILL to renew' }))
     },
   }
 }

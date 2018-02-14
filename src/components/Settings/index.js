@@ -75,7 +75,7 @@ const apiStateToInt = (state) => {
 export const mapStateToProps = (state, ownProps) => {
   const { personal, settings } = state
 
-  let loggedIn = (personal.login && personal.login.token) ? true : false
+  let loggedIn = (personal.login && personal.login.token) === true
 
   let currentHomeTitle = personal.user ? personal.user.homeLibrary : null
   let homeIndex = null

@@ -19,7 +19,7 @@ class ResourceContainer extends Component {
     let item = this.props.item
     let renewal = this.props.renewal ? this.props.renewal[item.barcode] : null
     let previousDueDate = item.dueDate
-    if (renewal) {
+    if (renewal && this.props.borrowed) {
       if (renewal.data.renewStatus === 200 && previousDueDate !== renewal.data.dueDate) {
         item.dueDate = renewal.data.dueDate
       }
@@ -41,6 +41,12 @@ class ResourceContainer extends Component {
   render () {
     return <Presenter toggleHidden={this.toggleHidden} hidden={this.state.hidden} {...this.props} />
   }
+}
+
+ResourceContainer.propTypes = {
+  renewal: PropTypes.object,
+  item: PropTypes.object,
+  borrowed: PropTypes.bool,
 }
 
 export const mapStateToProps = (state, ownProps) => {

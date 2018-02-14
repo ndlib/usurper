@@ -18,23 +18,23 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 
 export const mapStateToProps = (state, ownProps) => {
   const { itemAction } = state
-  const { renewal, item } = ownProps
+  const { renewal, item, borrowed } = ownProps
 
-  let alephMessage
-  if (renewal && renewal[item.barcode]) {
+  let renewMessage
+  if (renewal && renewal[item.barcode] && borrowed) {
     let itemRenew = renewal[item.barcode].data
     if (itemRenew.statusText) {
-      alephMessage = itemRenew.statusText
+      renewMessage = itemRenew.statusText
     } else if (itemRenew.renewStatus === 304) {
-      alephMessage = 'Too early to renew. Try again closer to due date.'
+      renewMessage = 'Too early to renew. Try again closer to due date.'
     } else if (itemRenew.renewStatus === 200) {
-      alephMessage = 'Renew Successful'
+      renewMessage = 'Renew Successful'
     }
   }
 
   return {
     actionResponse: itemAction,
-    alephMessage: alephMessage,
+    renewMessage: renewMessage,
     illWebUrl: Config.illiadBaseURL.replace('<<form>>', illWebForm).replace('<<value>>', item.transactionNumber),
     illViewUrl: Config.illiadBaseURL.replace('<<form>>', illViewForm).replace('<<value>>', item.transactionNumber),
     ...ownProps,
