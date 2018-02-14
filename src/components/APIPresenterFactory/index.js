@@ -34,7 +34,7 @@ APIPresenterFactory.propTypes = {
   props: PropTypes.oneOfType([          // The props to pass to the given presenter when status === success
     PropTypes.object,
     PropTypes.array]).isRequired,
-  error: PropTypes.object,  // The error class to show if you don't want the default.
+  error: PropTypes.object, // The error class to show if you don't want the default.
 }
 
 export default APIPresenterFactory

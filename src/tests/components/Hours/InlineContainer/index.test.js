@@ -81,7 +81,7 @@ describe('components/Hours/Page/presenter', () => {
     })
 
     it('sends a empty response', () => {
-      expect(enzymeWrapper.html()).toBe('<div></div>')
+      expect(enzymeWrapper.html()).toBe('<section class=\"hours-display\"><h2>The hours are currently unavailable. <br/>Please call the circulation desk at (574) 631-6679.</h2></section>')
     })
   })
 
