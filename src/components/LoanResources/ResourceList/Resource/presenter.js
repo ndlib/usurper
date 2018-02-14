@@ -20,7 +20,7 @@ const actionsButton = (item, toggleHidden) => {
   }
 }
 
-const ResourceList = (props) => {
+const Resource = (props) => {
   return (
     <div className='card-item' aria-label={props.item.title}>
       <div className='card-header'>
@@ -39,15 +39,18 @@ const ResourceList = (props) => {
 
       { actionsButton(props.item, props.toggleHidden) }
       <div className={'actions' + (props.hidden ? '-hidden' : '')}>
-        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} />
+        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} borrowed={props.borrowed} />
       </div>
     </div>
   )
 }
 
-ResourceList.propTypes = {
+Resource.propTypes = {
   item: PropTypes.object.isRequired,
   renewal: PropTypes.object,
+  toggleHidden: PropTypes.func,
+  alephId: PropTypes.string,
+  borrowed: PropTypes.bool,
 }
 
-export default ResourceList
+export default Resource
