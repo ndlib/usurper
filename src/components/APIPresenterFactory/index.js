@@ -20,6 +20,9 @@ class APIPresenterFactory extends Component {
       case statuses.NOT_FOUND:
         return <NotFound />
       default:
+        if (this.props.error) {
+          return this.props.error(this.props.props)
+        }
         return <Error message={'There was an error loading the page.'} />
     }
   }
@@ -31,6 +34,7 @@ APIPresenterFactory.propTypes = {
   props: PropTypes.oneOfType([          // The props to pass to the given presenter when status === success
     PropTypes.object,
     PropTypes.array]).isRequired,
+  error: PropTypes.object,  // The error class to show if you don't want the default.
 }
 
 export default APIPresenterFactory
