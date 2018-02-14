@@ -13,7 +13,6 @@ import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
 import OpenGraph from '../../OpenGraph'
 import Presenters from '../../Presenters'
-import Sponsorships from '../../Sponsorships'
 import AddToCalendar from '../../AddToCalendar'
 
 const PagePresenter = ({ entry }) => {
@@ -52,7 +51,6 @@ const PagePresenter = ({ entry }) => {
           }
           <LibMarkdown itemProp='description'>{ entry.content }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
-          { entry.sponsors && (<Sponsorships sponsors={entry.sponsors} />) }
           { entry.presenters && (<Presenters presenters={entry.presenters} />) }
           <ShareLinks title={entry.title} />
           <AddToCalendar
