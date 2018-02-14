@@ -1,5 +1,5 @@
 // Container component for a Page content type from Contentful
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import CurrentHours from '../../Hours/Current'
 import Contact from '../../Contact/ServicePoint'
@@ -18,9 +18,13 @@ const ServicePoint = ({ cfServicePoint, showDetails }) => {
       itemType='http://schema.org/Place'
     >
       <h3 itemProp='name'>{cfServicePoint.fields.title}</h3>
-      <h4 itemProp='streetAddress'>{cfServicePoint.fields.address}</h4>
 
-      { showDetails && <CurrentHours servicePoint={cfServicePoint} /> }
+      { showDetails && (
+        <div>
+          <h4 itemProp='streetAddress'>{cfServicePoint.fields.address}</h4>
+          <CurrentHours servicePoint={cfServicePoint} />
+        </div>
+      )}
       <Contact servicePoint={cfServicePoint} showDetails={showDetails} />
     </section>
   )
