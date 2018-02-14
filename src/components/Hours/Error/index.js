@@ -13,7 +13,9 @@ const Error = (props) => {
     phone = props.hoursEntry.servicePoint.phoneNumber
   }
   return (
-    <section className='hours-display'><h2>The hours are currently unavailable. <br />Please call the {title} at {phone}.</h2></section>
+    <section className='hours-display'>
+      <h2>The hours are currently unavailable. <br />Please call the {title} at {phone}.</h2>
+    </section>
   )
 }
 
