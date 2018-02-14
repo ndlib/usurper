@@ -195,10 +195,6 @@ height:auto;
   background: rgba(0, 0, 0, .3)
 }
 
-.alphabet {
-  width: 70ch;
-}
-
 .p-resources li {
   line-height: 1.5em;
 
@@ -1450,31 +1446,34 @@ hr {
 /* Filter Component */
 .filter {
   width: 100%;
+  display: block;
   background-color: #072242;
   color: #fff;
-  max-height: 45px;
+  height: 45px;
 }
 .filter p {
   color: #fff;
   display: inline-block;
+  float: left;
   background-color: #0C2340;
-  line-height: 15px;
+  line-height: 20px;
   padding: 12px 20px 10px;
   margin-bottom: 0px;
   font-size: 16px;
 }
 .filter label {
-  display: grid;
-  grid-template-columns: auto 2fr 1fr;
-  -ms-grid-columns: auto 2fr 1fr;
+  display: block;
+  width: 100%;
 }
 .filter input {
+  float: left;
+  line-height: 22px;
   padding: 5px;
   width: 100%;
   font-size: 14px;
   border: solid 1px #000;
-
   margin: 5px 0px;
+  width: calc(100% - 400px);
 }
 .filter .renew {
   float: right;
