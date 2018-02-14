@@ -7,6 +7,7 @@ import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
 import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
+import HoursError from '../Error'
 
 const hoursPageOrder = [
   { servicePointSlug: 'hesburghlibrary', main: true },
@@ -37,7 +38,6 @@ const mapStateToProps = (state) => {
   } else if (state.cfServicePoints.status === statuses.ERROR || state.hours.status === statuses.ERROR) {
     combinedStatus = statuses.ERROR
   }
-
   let servicePointsWithHours = []
   if (combinedStatus === statuses.SUCCESS) {
     servicePointsWithHours = state.cfServicePoints.json
@@ -73,6 +73,7 @@ export class HoursPageContainer extends Component {
     return (
       <PresenterFactory
         presenter={HoursPagePresenter}
+        error={HoursError}
         props={{
           servicePoints: this.props.servicePointsWithHours,
           preview: this.props.location ? (new URLSearchParams(this.props.location.search)).get('preview') === 'true' : false,
