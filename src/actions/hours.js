@@ -13,7 +13,7 @@ export const requestHours = () => {
 }
 
 const receiveHours = (response) => {
-  if (response == 'TypeError: Failed to fetch') {
+  if (response.stack === 'TypeError: Failed to fetch') {
     return {
       type: HOURS_RECEIVE,
       status: statuses.ERROR,
