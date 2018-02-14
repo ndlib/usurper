@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import calendarIcon from '../../static/images/calendar.png'
 import Presenter from './presenter'
 
 export default class AddToCalendar extends Component {
