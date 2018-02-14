@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as statuses from '../../../constants/APIStatuses'
+import HoursError from '../Error'
 
 class HoursInlineContainer extends Component {
   render () {
@@ -10,7 +11,7 @@ class HoursInlineContainer extends Component {
       case statuses.SUCCESS:
         return this.props.presenter(this.props.hoursEntry, this.props.isOpen, this.props.toggleExpanded, this.props.children)
       case statuses.ERROR:
-        return (<section className='hours-display'><h2>The hours are currently unavailable. <br />Please call the circulation desk at (574) 631-6679.</h2></section>)
+        return (<HoursError hoursEntry={this.props.hoursEntry} />)
       default:
         return (<div />)
     }
