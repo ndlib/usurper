@@ -1,0 +1,8 @@
+{
+    "version": false,
+    "errorLogFile": "content-error.txt",
+    "includeDrafts": true,
+    "saveFile": true,
+    "contentOnly": true,
+    "contentFile": "content-export.json"
+}
