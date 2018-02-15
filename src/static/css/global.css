@@ -1477,7 +1477,7 @@ hr {
   color: #fff;
   height: 45px;
 }
-.filter p {
+.filter span {
   color: #fff;
   display: inline-block;
   float: left;
@@ -3260,34 +3260,17 @@ line-height: 2em;
 }
 
 /* styles for '...' */
-.multiline-ellipsis {
+.database-list {
   overflow: hidden;
   position: relative;
   line-height: 1.5em;
   /* modify the max-height by line-height to determine how many
      lines are displayed before the ellipsis */
   max-height: 4.5em; /* max-height = line-height * lines max number (3) */
-  text-align: justify;
   margin-right: -1em;
   padding-right: 1em;
 }
-/* ellipsis block ... */
-.multiline-ellipsis:before {
-  content: '...';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-/* hide ... if we have text, which is less than or equal to max lines */
-.multiline-ellipsis:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  background: #F6F6F6;
-}
+
 .dbSection {
   margin-bottom: 20px;
 }
