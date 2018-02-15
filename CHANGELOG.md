@@ -1,5 +1,24 @@
 # Change Log
 
+## [v2018.6](https://github.com/ndlib/usurper/tree/v2018.6)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.5...v2018.6)
+
+### New features/enhancements
+- Change courses page to display both courses you're enrolled in and those you're teaching [#398](https://github.com/ndlib/usurper/pull/398)
+- Added "view all events" button to individual event pages [#401](https://github.com/ndlib/usurper/pull/401)
+- It's now possible to add events to your calendar! Go to things! Be reminded of them! [#410](https://github.com/ndlib/usurper/pull/410)
+- Database filter is easier for screen readers [#413](https://github.com/ndlib/usurper/pull/413)
+- ILL items are no longer silent when renew all is clicked, they will ask politely to rewnew them elsewhere. [#411](https://github.com/ndlib/usurper/pull/411)
+
+### Bug Fixes
+- News and Events headers are now links (as expected) [#400](https://github.com/ndlib/usurper/pull/400)
+- Event pages were showing timezone-calculated times, now they just display whats given - stop trying to be smart, website! [#405](https://github.com/ndlib/usurper/pull/405)
+- Event location text was trying to hide behind its image. No more shy locations. [#407](https://github.com/ndlib/usurper/pull/407)
+- No more search toggle on the home page. [#403](https://github.com/ndlib/usurper/pull/403)
+- IE grid display fixes #justIEThings [#412](https://github.com/ndlib/usurper/pull/412)
+- Database Elipses are now out of the awkward adolecent phase and will blend into the space instead of sticking out [#414](https://github.com/ndlib/usurper/pull/414)
+
+
 ## [v2018.5](https://github.com/ndlib/usurper/tree/v2018.5)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.4...v2018.5)
 
