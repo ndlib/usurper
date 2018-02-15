@@ -64,7 +64,10 @@ const Navigation = (props) => {
 
   return (
     <div className='uNavigation'>
-      <nav className='container-fluid' role='navigation' aria-label='Main'>
+      <nav
+        className='container-fluid'
+        role='navigation'
+        aria-label='Main'>
         <ul className='menu-list'>
           <li className='menu-link'><Link to='/'>Home</Link></li>
           {dropDowns}
@@ -102,5 +105,9 @@ Navigation.propTypes = {
   handleDrawer: PropTypes.func.isRequired,
   dropDowns: PropTypes.array.isRequired,
   toggleClass: PropTypes.string.isRequired,
+  handleMobileMenuKeyDown: PropTypes.func.isRequired,
+  handleMobileClick: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
 }
 export default Navigation
