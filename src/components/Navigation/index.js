@@ -67,7 +67,7 @@ const mergeProps = (state, dispatchProps, ownProps) => {
   }
 
   const keyDown = (e) => {
-    // key = esc 
+    // key = esc
     if (e.keyCode === 27) {
       dispatchProps.closeMenus(e)
     }
@@ -102,12 +102,22 @@ const mergeProps = (state, dispatchProps, ownProps) => {
       }
     }
   }
+  const handleMobileMenuKeyDown = (e) => {
+    if (e.type === 'keydown' && e.keyCode === 13) {
+      if (state.menus.menuId === MOBILE_MENU) {
+        dispatchProps.closeMenus(e)
+      } else {
+        dispatchProps.openMobile(e)
+      }
+    }
+  }
   return {
     dropDowns: dropDowns,
     handleDrawer: handleDrawer,
     handleUserClick: state.menus.menuId === USER_MENU ? dispatchProps.closeMenus : dispatchProps.openUser,
     handleUserKeyDown: handleUserKeyDown,
     handleMobileClick: state.menus.menuId === MOBILE_MENU ? dispatchProps.closeMenus : dispatchProps.openMobile,
+    handleMobileMenuKeyDown: handleMobileMenuKeyDown,
     isDrawerOpen: !!state.search.drawerOpen,
     toggleClass: state.search.drawerOpen ? 'open' : 'closed',
     ...state,
