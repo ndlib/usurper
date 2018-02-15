@@ -51,7 +51,6 @@ const PagePresenter = ({ entry }) => {
           }
           <LibMarkdown itemProp='description'>{ entry.content }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
-          { entry.presenters && (<Presenters presenters={entry.presenters} />) }
           <ShareLinks title={entry.title} />
           <AddToCalendar
             title={entry.title}
