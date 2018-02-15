@@ -54,14 +54,20 @@ const Navigation = (props) => {
           open={props.menus.menuId === menu.menuId}
           menuData={menu.menuData}
           id={menu.menuId}
-          />
+        />
       </li>
     )
   })
 
+  const windowWidth = window.innerWidth
+  const mobileWidth = 980
+
   return (
     <div className='uNavigation'>
-      <nav className='container-fluid' role='navigation' aria-label='Main'>
+      <nav
+        className='container-fluid'
+        role='navigation'
+        aria-label='Main'>
         <ul className='menu-list'>
           <li className='menu-link'><Link to='/'>Home</Link></li>
           {dropDowns}
@@ -75,17 +81,20 @@ const Navigation = (props) => {
               id='header-search-button'
               onClick={props.handleDrawer}
               onKeyDown={props.handleDrawer}
-              tabIndex='0'
+              tabIndex={windowWidth > mobileWidth ? '0' : '-1'}
               aria-expanded={props.isDrawerOpen}
               aria-controls='drawer'
               aria-label={props.isDrawerOpen ? 'Close Search Drawer' : 'Open Search Drawer'}
-              >Search</a>
+            >Search</a>
           </li>
         </ul>
-        <div className='menu-icon'>
-          <a onClick={props.handleMobileClick}>☰</a>
-          <MobileMenu open={props.menus.menuId === MOBILE_MENU} loggedIn={props.loggedIn} />
-        </div>
+        <MobileMenu
+          open={props.menus.menuId === MOBILE_MENU}
+          loggedIn={props.loggedIn}
+          visible={windowWidth <= mobileWidth}
+          onClick={props.handleMobileClick}
+          onKeyDown={props.handleMobileMenuKeyDown}
+        />
       </nav>
     </div>
   )
@@ -95,7 +104,10 @@ Navigation.propTypes = {
   menus: PropTypes.object.isRequired,
   handleDrawer: PropTypes.func.isRequired,
   dropDowns: PropTypes.array.isRequired,
-
   toggleClass: PropTypes.string.isRequired,
+  handleMobileMenuKeyDown: PropTypes.func.isRequired,
+  handleMobileClick: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
 }
 export default Navigation
