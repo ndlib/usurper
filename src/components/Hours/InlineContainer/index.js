@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as statuses from '../../../constants/APIStatuses'
+import HoursError from '../Error'
 
 class HoursInlineContainer extends Component {
   render () {
@@ -9,6 +10,8 @@ class HoursInlineContainer extends Component {
         return (<div>Loading</div>)
       case statuses.SUCCESS:
         return this.props.presenter(this.props.hoursEntry, this.props.isOpen, this.props.toggleExpanded, this.props.children)
+      case statuses.ERROR:
+        return (<HoursError hoursEntry={this.props.hoursEntry} />)
       default:
         return (<div />)
     }

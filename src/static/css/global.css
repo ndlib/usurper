@@ -610,10 +610,16 @@ body.gold-blue #header h4 a {
   padding:16px 0 16px !important;
   transition-duration: .5s, .5s;
 }*/
+.sp-address .hours-display {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
 .hours-display h2 {
   text-align: center;
   font-size: 18px;
   color: #333;
+  line-height: 22px;
 }
 
 .hours, #banner .login {
