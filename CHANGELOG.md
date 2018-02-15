@@ -17,6 +17,7 @@
 - No more search toggle on the home page. [#403](https://github.com/ndlib/usurper/pull/403)
 - IE grid display fixes #justIEThings [#412](https://github.com/ndlib/usurper/pull/412)
 - Database Elipses are now out of the awkward adolecent phase and will blend into the space instead of sticking out [#414](https://github.com/ndlib/usurper/pull/414)
+- Main Menu box is now voice accessable! [#419](https://github.com/ndlib/usurper/pull/419)
 
 
 ## [v2018.5](https://github.com/ndlib/usurper/tree/v2018.5)
