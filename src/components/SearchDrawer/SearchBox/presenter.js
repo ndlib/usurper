@@ -52,7 +52,7 @@ SearchBox.propTypes = {
   currentSearch: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
   visible: PropTypes.bool,
 }
