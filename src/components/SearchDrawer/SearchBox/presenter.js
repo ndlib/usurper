@@ -50,8 +50,8 @@ const SearchBox = (props) => {
 
 SearchBox.propTypes = {
   currentSearch: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onKeyDown: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   visible: PropTypes.bool,
