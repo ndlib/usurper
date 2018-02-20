@@ -19,13 +19,13 @@ const SearchOption = (props) => {
 }
 
 SearchOption.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  index: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
+  index: PropTypes.number,
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
-  onKeyDown: PropTypes.func.isRequired,
-  search: PropTypes.object.isRequired,
+  onKeyDown: PropTypes.func,
+  search: PropTypes.object,
 }
 export default SearchOption
