@@ -12,6 +12,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import ShareLinks from '../../ShareLinks'
 import OpenGraph from '../../OpenGraph'
+import Media from '../../Media'
 import Presenters from '../../Presenters'
 import AddToCalendar from '../../AddToCalendar'
 
@@ -64,6 +65,7 @@ const PagePresenter = ({ entry }) => {
         <aside className='col-md-4 right'>
           <Image cfImage={entry.representationalImage} className='cover' />
           <Link to={entry.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
+          <Media data={entry.media} />
           <Librarians netids={entry.contactPeople} />
           <ServicePoint cfServicePoint={entry.location} showDetails={false} />
           <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.relatedPages }</Related>
