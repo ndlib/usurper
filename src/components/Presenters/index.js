@@ -19,6 +19,9 @@ const retrieveCapacity = (type) => {
 }
 
 const Presenters = ({ presenters }) => {
+  if (!presenters) {
+    return null
+  }
   return (
     <div className='presenter-card'>
       {
