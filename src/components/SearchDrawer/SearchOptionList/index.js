@@ -11,9 +11,9 @@ const SearchOptionList = (props) => {
       )
     }
   )
+  const classes = props.search.searchBoxOpen ? 'uSearchOptionList' : 'uSearchOptionList hidden'
   return <span
-    className='uSearchOptionList'
-    style={{ display: props.search.searchBoxOpen ? 'block' : 'none' }}
+    className={classes}
   >{ options }</span>
 }
 

@@ -35,8 +35,8 @@ describe('component/SearchDrawer/SearchOptionList', () => {
     expect(enzymeWrapper.find('li.uSearchOption')).toHaveLength(4)
   })
 
-  it('Renders empty when searchBoxOpen is false', () => {
+  it('Renders hidden when searchBoxOpen is false', () => {
     enzymeWrapper = setup({ search: { searchBoxOpen: false } })
-    expect(enzymeWrapper.find('.uSearchOptionList').exists()).toBe(false)
+    expect(enzymeWrapper.find('.uSearchOptionList.hidden').exists()).toBe(true)
   })
 })
