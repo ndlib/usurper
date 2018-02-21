@@ -54,6 +54,9 @@ SearchBox.propTypes = {
   onKeyDown: PropTypes.func,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
+  search: PropTypes.shape({
+    searchBoxOpen: PropTypes.bool,
+  }),
   visible: PropTypes.bool,
 }
 
