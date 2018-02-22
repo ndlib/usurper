@@ -2240,6 +2240,35 @@ width: 100%;
   -ms-grid-column: 5;
 }
 
+/* Media links */
+.media {
+  font-size: 20px;
+  font-family: GPCMed, sans-serif;
+  margin-bottom: 1.5em;
+  margin-left: 1em;
+}
+
+.media a {
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: left;
+  padding-left: 30px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.media a.image {
+  background-image: url('../images/gallery.png');
+}
+
+.media a.pdf {
+  background-image: url('../images/pdf.png');
+}
+
+.media a.video {
+  background-image: url('../images/video.png');
+}
+/* ~Media links */
 
 .services img, .landing img {
   border: solid 2px #fff;
