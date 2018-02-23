@@ -33,12 +33,12 @@ const contactPoints = [
       'kelloggkroclibrary',
       'omearamathematicslibrary',
       'medievalinstitutelibrary',
+      'musiclibrary',
       'preservation-department',
       'radiationchemistryreadingroom',
       'rarebooksspecialcollections',
       'universityarchives',
       'visualresourcescenter',
-      'music',
     ],
   },
 ]
