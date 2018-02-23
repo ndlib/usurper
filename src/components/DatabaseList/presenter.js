@@ -11,6 +11,8 @@ import FilterBox from '../FilterBox'
 import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
 import TextEllipsis from 'react-text-ellipsis'
+import Alphabet from './Alphabet'
+import './style.css'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
@@ -18,6 +20,9 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
       <SearchProgramaticSet open={false} />
       <div className='row'>
+        <SideNav className='col-md-4'>
+          <Alphabet />
+        </SideNav>
         <div className='col-md-8'>
           <FilterBox
             title='Search All Databases by Title: '
@@ -35,24 +40,7 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
             {data}
           </section>
         </div>
-        <SideNav className='col-md-4'>
-          <aside aria-label='Select Databases by First Letter' role='navigation'>
-            <div className='group'>
-              <h5>Filter by First Letter</h5>
-              <div className='alphabet'>
-                {
-                  'abcdefghijklmnopqrstuvwxyz#'.split('').map((item) => {
-                    return (
-                      <span key={'letter_link_' + item} className='letter'>
-                        <Link to={'/databases/' + encodeURIComponent(item)} ariaLabel={'All "' + item.toUpperCase() + '" Databases'}>{ item.toUpperCase() }</Link>
-                      </span>
-                    )
-                  })
-                }
-              </div>
-            </div>
-          </aside>
-        </SideNav>
+
       </div>
     </section>
   )
