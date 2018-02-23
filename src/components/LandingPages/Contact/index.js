@@ -38,6 +38,7 @@ const contactPoints = [
       'rarebooksspecialcollections',
       'universityarchives',
       'visualresourcescenter',
+      'music',
     ],
   },
 ]
