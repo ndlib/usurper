@@ -1,4 +1,4 @@
-'use strict'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -9,7 +9,7 @@ const SearchOption = (props) => {
       className='uSearchOption'
       onClick={props.onClick}
       onKeyDown={props.onKeyDown}
-      tabIndex='0'
+      tabIndex={props.search.searchBoxOpen ? '0' : '-1'}
       role='option'
       value={props.index}>
       <p>{props.item.title}</p>
@@ -18,11 +18,14 @@ const SearchOption = (props) => {
   )
 }
 
-SearchOption.PropTypes = {
-  onClick: PropTypes.func.isRequired,
+SearchOption.propTypes = {
+  onClick: PropTypes.func,
+  index: PropTypes.number,
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  onKeyDown: PropTypes.func,
+  search: PropTypes.object,
 }
 export default SearchOption

@@ -44,8 +44,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       toggle(e)
     },
     onKeyDown: (e) => {
+      // enter
       if (e.keyCode === 13) {
         dispatch(toggle(e))
+        // down arrow
       } else if (e.keyCode === 40) {
         e.preventDefault()
         dispatch(openSearchBox())

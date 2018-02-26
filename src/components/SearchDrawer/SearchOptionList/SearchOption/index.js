@@ -9,6 +9,17 @@ const mapStateToProps = (state) => {
   }
 }
 
+const move = (event, value) => {
+  event.preventDefault()
+  let current = event.target.value + value
+  if (current < 0) {
+    current = document.querySelectorAll('.uSearchOption').length - 1
+  } else if (current >= document.querySelectorAll('.uSearchOption').length) {
+    current = 0
+  }
+  document.getElementById(`uSearchOption_${current}`).focus()
+  return current
+}
 const mapDispatchToProps = (dispatch, ownProps) => {
   const onSubmit = (e) => {
     dispatch(setSearchType(ownProps.item.uid))
@@ -21,26 +32,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       onSubmit(e)
     },
     onKeyDown: (e) => {
-      let i
       switch (e.keyCode) {
         case 9: // tab key
-          e.preventDefault()
+          if (e.shiftKey) {
+            move(e, -1)
+          } else {
+            move(e, 1)
+          }
           break
         case 38: //  up arrow
-          e.preventDefault()
-          i = e.target.value - 1
-          if (i < 0) {
-            i = document.querySelectorAll('.uSearchOption').length - 1
-          }
-          document.getElementById(`uSearchOption_${i}`).focus()
+          move(e, -1)
           break
         case 40: // down arrow
-          e.preventDefault()
-          i = e.target.value + 1
-          if (i >= document.querySelectorAll('.uSearchOption').length) {
-            i = 0
-          }
-          document.getElementById(`uSearchOption_${i}`).focus()
+          move(e, 1)
           break
         case 13: // enter
           onSubmit(e)
