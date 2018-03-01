@@ -14,7 +14,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
     schemaType = 'Library'
   }
   return (
-    <section className={servicePointClassName} itemScope itemType={schemaType}>
+    <section className={servicePointClassName} itemScope itemType={schemaType} role='tablist'>
       <a
         className='expand'
         tabIndex={0}

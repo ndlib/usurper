@@ -20,7 +20,7 @@ const Presenter = (props) => {
         <div className='col-md-8 col-sm-7'>
           <StaticAlert slug='hours' preview={props.preview} />
 
-          <main className='service-point-list'>
+          <main className='service-point-list' role='tablist'>
             {
               props.hoursPageOrder.map((servicePointOrder) => {
                 let sp = props.servicePoints[servicePointOrder.servicePointSlug]

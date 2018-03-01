@@ -18,6 +18,9 @@ let props = {
     title: 'FAKE TITLE',
     description: 'A fake description',
   },
+  search: {
+    searchBoxOpen: true
+  }
 }
 
 describe('component/SearchDrawer/SearchOptionList/SearchOption', () => {

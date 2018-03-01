@@ -79,7 +79,7 @@ const Contact = (props) => {
       <li className='email'>
         <a
           title={'Email ' + sp.email}
-          href={'mailto:+' + sp.email}
+          href={'mailto:' + sp.email}
           itemProp='email'
         >
           {sp.email}
