@@ -1,0 +1,11 @@
+@media screen and (max-width: 980px) {
+  .side-nav {
+    display: block;
+    position: relative !important;
+    transform: translateX(0) !important;
+    width: 100% !important;
+  }
+  .alphabet {
+    display: inline;
+  }
+}
