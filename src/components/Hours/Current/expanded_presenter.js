@@ -15,7 +15,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
     timezoneMessage = (<p className='timezoneMessage'> * All times are {hoursEntry.timezone}</p>)
   }
   return (
-    <section className={servicePointClassName}>
+    <section className={servicePointClassName} role='tablist'>
       <a
         className='collapse'
         tabIndex={0}
