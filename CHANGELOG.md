@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2018.7](https://github.com/ndlib/usurper/tree/v2018.7)
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.6...v2018.7)
+
+### New Features/enhancements
+- Music Library has a contact point on the contact page! :confetti_ball: [#423](https://github.com/ndlib/usurper/pull/423)
+- Trying out a campus analytics solution so we can rule th**ahem**... make the website better [#425](https://github.com/ndlib/usurper/pull/425)
+- You wanna link to that event pdf handout? Well now you can! Also Videos and Images! [#421](https://github.com/ndlib/usurper/pull/421)
+
+### Bug Fixes
+- Email links should all work - no more secret maths (+) [#426](https://github.com/ndlib/usurper/pull/426)
+- Turns out people want to acutally use the database list letter filter on small screens. So we made it work on small screens. [#424](https://github.com/ndlib/usurper/pull/424)
+- Search appliance. Now with better accessability! [#420](https://github.com/ndlib/usurper/pull/420)
+
+
 ## [v2018.6](https://github.com/ndlib/usurper/tree/v2018.6)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.5...v2018.6)
 
