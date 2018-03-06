@@ -64,33 +64,30 @@ const App = (props) => {
       <Provider store={store}>
         <Switch>
           <Route exact path='/embed/hours/:servicePoint' component={EmbeddableHours} />
-          <div>
-            <meta id='nd-version' content={Config.version} />
-            <PageWrapper>
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/chat' component={ChatPage} />
-                <Route exact path='/courses' component={Courses} />
-                <Route exact path='/settings' component={Settings} />
-                <Route exact path='/hours' component={Hours} />
-                <Route exact path='/events/(past)?' component={Events} />
-                <Route exact path='/news' component={News} />
-                <Route exact path='/contact-us' component={Contact} />
-                <Route exact path='/floor/:id' component={ContentfulFloor} />
-                <Route exact path='/news/:id' component={ContentfulNews} />
-                <Route exact path='/event/:id' component={ContentfulEvent} />
-                <Route exact path='/items-requests' component={PersonalInfo} />
-                <Route exact path='/subjects' component={SubjectList} />
-                <Route exact path='/site-info' component={SiteInfo} />
-                <Route exact path='/database/:id' component={DatabasePage} />
-                <Route exact path='/databases/:id' component={DatabaseList} />
-                <Route exact path='/secure/:id' component={SecureContentfulPage} />
-                <Route exact path='/:id' component={ContentfulPage} />
+          <PageWrapper>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route exact path='/chat' component={ChatPage} />
+              <Route exact path='/courses' component={Courses} />
+              <Route exact path='/settings' component={Settings} />
+              <Route exact path='/hours' component={Hours} />
+              <Route exact path='/events/(past)?' component={Events} />
+              <Route exact path='/news' component={News} />
+              <Route exact path='/contact-us' component={Contact} />
+              <Route exact path='/floor/:id' component={ContentfulFloor} />
+              <Route exact path='/news/:id' component={ContentfulNews} />
+              <Route exact path='/event/:id' component={ContentfulEvent} />
+              <Route exact path='/items-requests' component={PersonalInfo} />
+              <Route exact path='/subjects' component={SubjectList} />
+              <Route exact path='/site-info' component={SiteInfo} />
+              <Route exact path='/database/:id' component={DatabasePage} />
+              <Route exact path='/databases/:id' component={DatabaseList} />
+              <Route exact path='/secure/:id' component={SecureContentfulPage} />
+              <Route exact path='/:id' component={ContentfulPage} />
 
-                <Route path='*' component={NotFound} />
-              </Switch>
-            </PageWrapper>
-          </div>
+              <Route path='*' component={NotFound} />
+            </Switch>
+          </PageWrapper>
         </Switch>
       </Provider>
     </Switch>

@@ -107,7 +107,7 @@ Navigation.propTypes = {
   toggleClass: PropTypes.string.isRequired,
   handleMobileMenuKeyDown: PropTypes.func.isRequired,
   handleMobileClick: PropTypes.func.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
+  loggedIn: PropTypes.bool,
   isDrawerOpen: PropTypes.bool.isRequired,
 }
 export default Navigation
