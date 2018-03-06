@@ -20,23 +20,23 @@ const Sections = (column, showDescriptions) => {
         <div className='linksgroup'>
           <div role={s.title + ' navigation'}>
             {
-            s.links.map((item) => {
-              let linkObject = getLinkObject(item.fields, item.sys.id)
-              return (
-                <p key={item.sys.id}>
-                  <Link to={linkObject.heading.url} className='item-title'>{linkObject.heading.title}</Link>
-                  <ul className='linkGroup'>
-                    {
-                      linkObject.conditionalLinks.map((data) => {
-                        return <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
-                      })
-                    }
-                  </ul>
-                  { showDescriptions ? (<span>{linkObject.heading.description}</span>) : null }
-                </p>
-              )
-            })
-          }
+              s.links.map((item) => {
+                let linkObject = getLinkObject(item.fields, item.sys.id)
+                return (
+                  <p key={item.sys.id}>
+                    <Link to={linkObject.heading.url} className='item-title'>{linkObject.heading.title}</Link>
+                    <ul className='linkGroup'>
+                      {
+                        linkObject.conditionalLinks.map((data) => {
+                          return <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
+                        })
+                      }
+                    </ul>
+                    { showDescriptions ? (<span>{linkObject.heading.description}</span>) : null }
+                  </p>
+                )
+              })
+            }
           </div>
         </div>
       </section>
