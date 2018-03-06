@@ -6,10 +6,11 @@ import '../../static/css/fonts.css'
 import '../../static/css/flexboxgrid.css'
 import '../../static/css/global.css'
 import '../../static/css/print.css'
-
+import Config from '../../shared/Configuration'
 const PageWrapper = (props) => {
   return (
     <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
+      <meta id='nd-version' content={Config.version} />
       <a className='skiplink' href='#maincontent'>Skip to main content</a>
 
       <Header {...props} />
