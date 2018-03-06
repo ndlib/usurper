@@ -23,9 +23,11 @@ export const flattenLocale = (fields, locale) => {
 
 // create an unifrom object to make a single mapping function easy in presenters
 export const getLinkObject = (fields, sysId) => {
+  // determine if heading should be a link
   let shouldHaveMain = !fields.urls || fields.urls.length === 1
   let mainUrl = (shouldHaveMain && fields.urls) ? fields.urls[0].url : ''
 
+  // get correct field for main link
   if (!mainUrl && shouldHaveMain) {
     if (fields.url) {
       mainUrl = fields.url
@@ -36,9 +38,10 @@ export const getLinkObject = (fields, sysId) => {
     }
   }
 
+  // get description field
   let desc = fields.shortDescription ? fields.shortDescription : fields.description
 
-  // make list of links
+  // make list of links, either map all resource "urls" or a single link from the above mainurl
   let links
   if (fields.urls) {
     links = fields.urls.map((data, index) => {
@@ -50,6 +53,9 @@ export const getLinkObject = (fields, sysId) => {
     links = [ { title: fields.title, url: mainUrl, keyId: sysId + 'link' + 0 } ]
   }
 
+  // heading is the item title, url, and description
+  // links are all possible links
+  // conditionalLinks is all links if there is no main link (for instance, resources with more than 1 url)
   return {
     heading: { title: fields.title, url: mainUrl, description: desc },
     links: links,
