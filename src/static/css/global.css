@@ -3169,6 +3169,29 @@ width: 100%;
   }
 }
 
+@media screen and (max-width: 1570px) {
+  .advanaced .appliance, .home .advanaced .appliance {
+    left: 0 !important;
+  }
+
+   .home .advanaced .appliance {
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 24px;
+    max-width: 100%;
+  }
+
+  .advanaced .appliance ul {
+    width: 100%;
+    cursor: pointer;
+  }
+   #drawer.advanaced, .home #drawer.advanaced {
+    height: auto;
+    min-height: auto;
+  }
+}
+
 #save-preference {
   cursor: pointer;
   display: inline-block;
