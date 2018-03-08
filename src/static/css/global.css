@@ -151,8 +151,13 @@ height:auto;
   max-width: 840px;
 }
 
-.landing p a, .landing .child li a, .landing p strong {
+.landing p a, .landing .child li a, .landing p .item-title {
   font-size: 110%;
+}
+
+.landing p .item-title {
+  font-weight: bold;
+  margin-left: 0;
 }
 
 .landing .child li:before {
@@ -1580,7 +1585,7 @@ aside section .p-pages {
 }
 
 
-.databaseLink p {
+.databaseLink p, .linkGroup p {
   padding-left: 12px;
   font-weight: normal;
 }
@@ -2506,11 +2511,20 @@ width: 100%;
   padding-bottom: 0 !important;
 }
 
-.p-resources, .databaseLink {
+.p-resources, .databaseLink, .linkGroup {
   list-style: outside none none;
   padding: 0;
 
   margin-bottom: 3em;
+}
+
+.linkGroup {
+  margin: 0;
+}
+
+.linkGroup li a {
+  font-size: 16px;
+  font-weight: normal;
 }
 
 .p-pages {
@@ -2554,7 +2568,7 @@ width: 100%;
   }
 }
 
-.p-resources li, .databaseLink li {
+.p-resources li, .databaseLink li, .linkGroup li {
   list-style: none;
   width: auto;
   float: none;
@@ -2562,7 +2576,7 @@ width: 100%;
   position: relative;
 }
 
-.p-resources li::before , .p-pages li::before, .databaseLink li::before {
+.p-resources li::before , .p-pages li::before, .databaseLink li::before, .linkGroup li::before {
   color: #b3b3b3;
   content: "›";
   left: 3px;
