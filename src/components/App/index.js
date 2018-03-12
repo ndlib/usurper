@@ -72,6 +72,7 @@ const App = (props) => {
               <Route exact path='/settings' component={Settings} />
               <Route exact path='/hours' component={Hours} />
               <Route exact path='/events/(past)?' component={Events} />
+              <Route exact path='/events/:date' component={Events} />
               <Route exact path='/news' component={News} />
               <Route exact path='/contact-us' component={Contact} />
               <Route exact path='/floor/:id' component={ContentfulFloor} />

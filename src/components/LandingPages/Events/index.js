@@ -7,14 +7,15 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { mapEvents, sortEvents } from '../../Home/Events'
 import Presenter from './presenter'
+import { withRouter } from 'react-router'
 
 const mapStateToProps = (state) => {
+  let allEvents = []
   let pastEvents = []
   let currentFutureEvents = []
   if (state.allEvents && state.allEvents.status === statuses.SUCCESS) {
     let now = new Date()
-
-    let allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
+    allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
     currentFutureEvents = allEvents.filter((entry) => {
       return entry.startDate >= now || entry.endDate >= now
     })
@@ -25,6 +26,7 @@ const mapStateToProps = (state) => {
   }
 
   return {
+    allEvents,
     pastEvents,
     currentFutureEvents,
     allEventsStatus: state.allEvents.status,
@@ -47,6 +49,7 @@ export class AllEventsContainer extends Component {
       <PresenterFactory
         presenter={Presenter}
         props={{
+          all: this.props.allEvents,
           past: this.props.pastEvents,
           present: this.props.currentFutureEvents,
           ...this.props,
@@ -63,9 +66,9 @@ AllEventsContainer.propTypes = {
   currentFutureEvents: PropTypes.array.isRequired,
 }
 
-const HoursPage = connect(
+const EventsPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllEventsContainer)
 
-export default HoursPage
+export default EventsPage
