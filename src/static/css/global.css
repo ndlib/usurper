@@ -2460,6 +2460,11 @@ width: 100%;
   width: 100%;
 }
 
+main h2, main h3, main h4, main h5 {
+  margin-top: 36px;
+  margin-bottom: .5em;
+}
+
 /*
 .cover {
 
@@ -3310,10 +3315,18 @@ body {
 }
 
 .viewMore {
-  word-spacing: 4px;
   letter-spacing: normal;
   text-transform: none;
   width: 33%;
+
+}
+
+.viewMore:after {
+  margin-top: -16px;
+}
+
+.viewMore:before {
+  margin-top: -17px;
 }
 
 .viewNewsEvents {
@@ -3595,3 +3608,19 @@ a .dbItem {
   margin-left: 10px;
   margin-bottom: 10px;
 }
+
+.news-card a {
+  display: grid;
+  grid-template-columns: 236px auto;
+}
+
+.news-card .frame {
+  grid-row-start: 1;
+  grid-row-end: span 3;
+}
+
+.news-card .description {
+  grid-column-start: 2;
+}
+
+
