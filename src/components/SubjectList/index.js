@@ -7,6 +7,7 @@ import SearchProgramaticSet from '../SearchProgramaticSet'
 const SubjectList = () => {
   const links = [
     { name: 'Aerospace and Mechanical Engineering', url: '/aerospace-and-mechanical-engineering' },
+    { name: 'Arabic, Near Eastern, and Islamic Studies', url: 'arabic' },
     { name: 'Architecture', url: '/architecture' },
     { name: 'Africana Studies', url: '/africana-studies' },
     { name: 'American Studies', url: '/american-studies' },
