@@ -14,12 +14,12 @@ const Events = (props) => {
       <PageTitle title='Past Events' />
       <SearchProgramaticSet open={false} />
       <div className='row landing'>
-        <div className='col-md-10 col-xs-10' >
+        <div className='col-md-10 col-xs-12' >
           {
             props.events.map((entry, index) => makeEventEntry(entry, index, index === props.events.length - 1))
           }
         </div>
-        <div className='col-md-2 col-xs-2'>
+        <div className='col-md-2 col-xs-12'>
           <Calendar {...props} />
         </div>
       </div>

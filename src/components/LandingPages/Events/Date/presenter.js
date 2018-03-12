@@ -28,7 +28,7 @@ const EventDate = (props) => {
       <PageTitle title={`Events on ${displayDate}`} />
       <SearchProgramaticSet open={false} />
       <div className='row landing'>
-        <div className='col-md-10 col-xs-10' >
+        <div className='col-md-10 col-xs-12' >
           {
             filteredEvents.length > 0 ? filteredEvents.map(
               (event, index) => makeEventEntry(event, index,
@@ -36,7 +36,7 @@ const EventDate = (props) => {
               : 'There are no events on this date.'
           }
         </div>
-        <div className='col-md-2 col-xs-2'>
+        <div className='col-md-2 col-xs-12'>
           <Calendar date={date} allEvents={props.events} {...props} />
         </div>
       </div>
