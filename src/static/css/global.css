@@ -2497,11 +2497,13 @@ width: 100%;
    top: -100px;
 }
 
+.news.cover {
+  margin-bottom: 36px;
+}
+
 .cover {
   width: 100%;
   height: auto;
-
-
 }
 
 .clamp {
