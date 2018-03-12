@@ -10,6 +10,14 @@ import { withRouter } from 'react-router'
 import moment from 'moment'
 
 const EventDate = (props) => {
+  // Validate this is a real date string
+  const dateRegEx = /\d{8}/
+  const dateString = props.match.params.date
+  if (dateString.length !== 8 || dateString.match(dateRegEx) === null) {
+    props.history.push('/events')
+    return null
+  }
+
   // For PageTitle
   const displayDate = moment(props.match.params.date).format('MMM Do YYYY')
 
@@ -46,6 +54,7 @@ const EventDate = (props) => {
 
 EventDate.propTypes = {
   events: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       date: PropTypes.string.isRequired,
