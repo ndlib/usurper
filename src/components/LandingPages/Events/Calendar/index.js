@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
     // If an event last longer than a month should we highlight all the days?
     // Highlight only the first and last days in this case.
     if (moment(event.endDate).diff(moment(event.startDate), 'days') > 28) {
-      console.warn('This seems too long to be special')
       specialDays.push({ date: moment(event.startDate) })
       specialDays.push({ date: moment(event.endDate) })
     } else {
