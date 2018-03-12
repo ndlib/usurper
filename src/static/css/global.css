@@ -2128,6 +2128,18 @@ width: 100%;
   overflow: hidden;
 }
 
+main blockquote {
+  padding: .5em 1.5em;
+  border-left: solid 5px #ccc;
+  margin-left: 1.5em;
+}
+
+main blockquote p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #757575;
+}
+
 .sponsors {
   display: grid;
   grid-template-columns: auto auto;
@@ -2137,13 +2149,22 @@ width: 100%;
   margin: 45px 0 30px 0;
 }
 
-.presenter-card h4, .sponsors h4 {
+.presenter-card h4 {
   color: #5D6A83;
   font-family: GPCMed, sans-serif;
   font-weight: normal;
   font-size: 18px;
-  margin-top: 0px;
+  margin-top: 0px !important;
   margin-bottom: 10px;
+}
+
+.sponsors h4 {
+  margin: 0 0 0 0;
+  font-family:  sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #5D6A83;
+  color: #000;
 }
 
 .presenter-card .vcard {
@@ -2158,8 +2179,11 @@ width: 100%;
 }
 
 .sponsors .sponsor-detail p {
-  font-size: 18px;
+  font-size: 16px;
   line-height: normal;
+  font-style: italic;
+  font-family:  sans-serif;
+  margin-bottom: 0;
 }
 
 .presenter-card .n {
