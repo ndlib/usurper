@@ -7,7 +7,6 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { mapEvents, sortEvents } from '../../Home/Events'
 import Presenter from './presenter'
-import { withRouter } from 'react-router'
 
 const mapStateToProps = (state) => {
   let allEvents = []
@@ -60,6 +59,7 @@ export class AllEventsContainer extends Component {
 }
 
 AllEventsContainer.propTypes = {
+  allEvents: PropTypes.array.isRequired,
   allEventsStatus: PropTypes.string.isRequired,
   fetchAllEvents: PropTypes.func.isRequired,
   pastEvents: PropTypes.array.isRequired,

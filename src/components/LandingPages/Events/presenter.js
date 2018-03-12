@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Route } from 'react-router'
 import CurrentPresenter from './Current/presenter'
 import PastPresenter from './Past/presenter'
@@ -14,4 +15,9 @@ const Events = (props) => {
   )
 }
 
+Events.propTypes = {
+  all: PropTypes.array,
+  past: PropTypes.array,
+  present: PropTypes.array,
+}
 export default Events

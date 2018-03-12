@@ -30,7 +30,10 @@ const EventDate = (props) => {
       <div className='row landing'>
         <div className='col-md-10 col-xs-10' >
           {
-            filteredEvents.length > 0 ? filteredEvents.map((event, index) => makeEventEntry(event, index, index === filteredEvents.length - 1)) : 'There are no events on this date.'
+            filteredEvents.length > 0 ? filteredEvents.map(
+              (event, index) => makeEventEntry(event, index,
+                index === filteredEvents.length - 1))
+              : 'There are no events on this date.'
           }
         </div>
         <div className='col-md-2 col-xs-2'>

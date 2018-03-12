@@ -4,7 +4,6 @@ import { Calendar } from 'react-date-range'
 import { withRouter } from 'react-router'
 
 const EventCalendar = (props) => {
-  console.log(props)
   return (
     <Calendar
       format='YYYYMMDD'
