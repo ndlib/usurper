@@ -2130,14 +2130,15 @@ width: 100%;
 
 main blockquote {
   padding: .5em 1.5em;
-  border-left: solid 5px #ccc;
+  border-left: solid 8px #ccc;
   margin-left: 1.5em;
 }
 
 main blockquote p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: #757575;
+
 }
 
 .sponsors {
