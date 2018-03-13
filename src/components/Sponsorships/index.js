@@ -4,7 +4,7 @@ import LibMarkdown from '../LibMarkdown'
 
 const Sponsorships = ({ sponsors }) => (
   <div className='sponsors'>
-    <div><h4>Sponsored By</h4></div>
+    <div><h4>Sponsored by</h4></div>
     <div><LibMarkdown className='sponsor-detail'>{ sponsors }</LibMarkdown></div>
   </div>
 )
