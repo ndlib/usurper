@@ -4959,9 +4959,9 @@ rc@^1.0.1, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-date-range@ndlib/react-date-range#a9fb8c95589330e43f28846d75e5de0f4235a407:
+"react-date-range@https://github.com/ndlib/react-date-range.git":
   version "0.9.4"
-  resolved "https://codeload.github.com/ndlib/react-date-range/tar.gz/a9fb8c95589330e43f28846d75e5de0f4235a407"
+  resolved "https://github.com/ndlib/react-date-range.git#9d6d736b09319b8d2b439b738d42394536e2e769"
   dependencies:
     classnames "^2.2.1"
     moment "^2.19.4"

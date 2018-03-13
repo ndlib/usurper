@@ -10,7 +10,7 @@
     "moment": "^2.21.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-date-range": "ndlib/react-date-range#a9fb8c95589330e43f28846d75e5de0f4235a407",
+    "react-date-range": "https://github.com/ndlib/react-date-range.git",
     "react-dom": "^15.5.4",
     "react-ga": "^2.2.0",
     "react-helmet": "^5.2.0",
