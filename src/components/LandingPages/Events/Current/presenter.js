@@ -4,6 +4,8 @@ import SearchProgramaticSet from '../../../SearchProgramaticSet'
 import '../style.css'
 import { makeEventEntry } from '../../../Home/Events/presenter'
 import Link from '../../../Link'
+import Calendar from '../Calendar'
+import { withRouter } from 'react-router'
 
 const Current = (props) => {
   return (
@@ -12,14 +14,17 @@ const Current = (props) => {
       <PageTitle title='Current and Upcoming Events' />
       <SearchProgramaticSet open={false} />
       <div className='row landing'>
-        <div className='col-md-12 col-xs-12' >
+        <div className='col-md-10 col-xs-12' >
           {
             props.events.map((event, index) => makeEventEntry(event, index, index === props.events.length - 1))
           }
+        </div>
+        <div className='col-md-2 col-xs-12'>
+          <Calendar {...props} />
         </div>
       </div>
     </div>
   )
 }
 
-export default Current
+export default withRouter(Current)
