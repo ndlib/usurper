@@ -2551,6 +2551,12 @@ main h2, main h3, main h4, main h5 {
   margin-bottom: 3em;
 }
 
+.p-resources {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .linkGroup {
   margin: 0;
 }
@@ -2576,12 +2582,6 @@ main h2, main h3, main h4, main h5 {
 
 
 @supports (display: grid) and (not (display: -ms-grid)) {
-  .p-resources {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
-    grid-auto-flow: column;
-  }
   .alphabet {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -2609,12 +2609,19 @@ main h2, main h3, main h4, main h5 {
   position: relative;
 }
 
+.p-resources li {
+  padding: 1rem !important;
+}
+
 .p-resources li::before , .p-pages li::before, .databaseLink li::before, .linkGroup li::before {
   color: #b3b3b3;
   content: "›";
   left: 3px;
   position: absolute;
   top: -1px;
+}
+.p-resources li::before {
+  top: 1rem;
 }
 
 .p-services {
@@ -3112,10 +3119,6 @@ main h2, main h3, main h4, main h5 {
   .course-reserves {
     -ms-grid-row: 2;
     -ms-grid-column: 2;
-  }
-  .p-resources {
-    -ms-grid-columns: repeat(1, 1fr);
-    grid-template-columns: repeat(1, 1fr);
   }
 
   .p-services li {
@@ -3650,5 +3653,3 @@ a .dbItem {
 .news-card .description {
   grid-column-start: 2;
 }
-
-
