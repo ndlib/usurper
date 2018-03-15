@@ -9,12 +9,12 @@ import { mapEvents, sortEvents } from '../../Home/Events'
 import Presenter from './presenter'
 
 const mapStateToProps = (state) => {
+  let allEvents = []
   let pastEvents = []
   let currentFutureEvents = []
   if (state.allEvents && state.allEvents.status === statuses.SUCCESS) {
     let now = new Date()
-
-    let allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
+    allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
     currentFutureEvents = allEvents.filter((entry) => {
       return entry.startDate >= now || entry.endDate >= now
     })
@@ -25,6 +25,7 @@ const mapStateToProps = (state) => {
   }
 
   return {
+    allEvents,
     pastEvents,
     currentFutureEvents,
     allEventsStatus: state.allEvents.status,
@@ -47,6 +48,7 @@ export class AllEventsContainer extends Component {
       <PresenterFactory
         presenter={Presenter}
         props={{
+          all: this.props.allEvents,
           past: this.props.pastEvents,
           present: this.props.currentFutureEvents,
           ...this.props,
@@ -57,15 +59,16 @@ export class AllEventsContainer extends Component {
 }
 
 AllEventsContainer.propTypes = {
+  allEvents: PropTypes.array.isRequired,
   allEventsStatus: PropTypes.string.isRequired,
   fetchAllEvents: PropTypes.func.isRequired,
   pastEvents: PropTypes.array.isRequired,
   currentFutureEvents: PropTypes.array.isRequired,
 }
 
-const HoursPage = connect(
+const EventsPage = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllEventsContainer)
 
-export default HoursPage
+export default EventsPage

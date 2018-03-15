@@ -6,6 +6,7 @@ import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import SideNav from '../../SideNav'
 import PageAlert from '../Alert/Page'
+import { getLinkObject } from '../../../shared/ContentfulLibs'
 
 import './style.css'
 
@@ -19,17 +20,23 @@ const Sections = (column, showDescriptions) => {
         <div className='linksgroup'>
           <div role={s.title + ' navigation'}>
             {
-            s.links.map((item) => {
-              let link = item.fields.url ? item.fields.url : '/' + item.fields.slug
-              let title = (item.fields.url || item.fields.slug) ? (<Link to={link}>{item.fields.title}</Link>) : (<strong>{item.fields.title}</strong>)
-              return (
-                <p key={item.sys.id}>
-                  {title}
-                  { showDescriptions ? (<span>{item.fields.shortDescription}</span>) : null }
-                </p>
-              )
-            })
-          }
+              s.links.map((item) => {
+                let linkObject = getLinkObject(item.fields, item.sys.id)
+                return (
+                  <p key={item.sys.id}>
+                    <Link to={linkObject.heading.url} className='item-title'>{linkObject.heading.title}</Link>
+                    <ul className='linkGroup'>
+                      {
+                        linkObject.conditionalLinks.map((data) => {
+                          return <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
+                        })
+                      }
+                    </ul>
+                    { showDescriptions ? (<span>{linkObject.heading.description}</span>) : null }
+                  </p>
+                )
+              })
+            }
           </div>
         </div>
       </section>

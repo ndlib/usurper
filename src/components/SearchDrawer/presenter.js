@@ -1,4 +1,4 @@
-'use strict'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import SearchPreference from './SearchPreference'
@@ -10,8 +10,9 @@ import '../../static/css/global.css'
 import '../../static/css/search.css'
 
 const Drawer = (props) => {
+  const sectionClasses = props.search.advancedSearch ? 'advanaced' : ''
   return (
-    <section id='drawer' role='search' aria-hidden='false'>
+    <section id='drawer' role='search' aria-hidden='false' className={sectionClasses}>
       <div className='appliance'>
         <form id='searchAppliance'>
           <SearchBox

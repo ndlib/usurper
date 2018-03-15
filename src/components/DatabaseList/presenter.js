@@ -12,6 +12,7 @@ import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
 import TextEllipsis from 'react-text-ellipsis'
 import Alphabet from './Alphabet'
+import { getLinkObject } from '../../shared/ContentfulLibs'
 import './style.css'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {
@@ -56,36 +57,28 @@ const Loaded = (props) => {
   }
 
   let data = props.list.map((item) => {
-    let exactlyOneUrl = item.fields.urls !== undefined && item.fields.urls.length === 1
-    let twoOrMoreUrls = item.fields.urls !== undefined && item.fields.urls.length >= 2
+    let linkObject = getLinkObject(item.fields, item.sys.id)
+
     return (
       <section key={item.fields.alephSystemNumber + item.fields.title}
         aria-label={item.fields.title} className='dbSection'>
-        {
-          exactlyOneUrl ? (
-            <Link to={item.fields.urls[0].url} title={'Go to ' + item.fields.title}>
-              <h2 className='dbItem'>{item.fields.title}</h2>
-            </Link>
-          ) : (
-            <h2 className='dbItem'>{item.fields.title}</h2>
-          )
-        }
+        <Link to={linkObject.heading.url} title={'Go to ' + item.fields.title}>
+          <h2 className='dbItem'>{item.fields.title}</h2>
+        </Link>
         <ul className='clamp databaseLink'>
           {
-            twoOrMoreUrls && (
-              item.fields.urls.map((data) => {
-                return (
-                  <li key={data.url}>
-                    <Link to={data.url}>{data.title}</Link>
-                    { data.notes && <LibMarkdown>{ data.notes }</LibMarkdown> }
-                  </li>
-                )
-              })
-            )
+            linkObject.conditionalLinks.map((link) => {
+              return (
+                <li key={link.keyId}>
+                  <Link to={link.url}>{link.title}</Link>
+                  { link.notes && <LibMarkdown>{ link.notes }</LibMarkdown> }
+                </li>
+              )
+            })
           }
         </ul>
         <div className='database-list'>
-          <TextEllipsis lines={3}>{item.fields.description}</TextEllipsis>
+          <TextEllipsis lines={3}>{linkObject.heading.description}</TextEllipsis>
         </div>
         <Link to={'/database/' + item.sys.id} className='moreinfo'
           ariaLabel={'More Information about ' + item.fields.title}>More info</Link>
