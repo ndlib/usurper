@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2018.8](https://github.com/ndlib/usurper/tree/v2018.8) "Communication"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.7...v2018.8)
+
+### New Features/enhancements
+- Move News headline image into text body [#429](https://github.com/ndlib/usurper/pull/429)
+- Resource landing page now understands databases that have multiple links. Way to communicate, Resource landing page. [#430](https://github.com/ndlib/usurper/pull/430)
+- Go say hello to our new subject on the subjects page. Hello, "Arabic, Near Eastern, and Islamic Studies"! [#438](https://github.com/ndlib/usurper/pull/438)
+- Events now have sponsor info! [#437](https://github.com/ndlib/usurper/pull/437)
+- Inline text quotes are now very stylish [#439](https://github.com/ndlib/usurper/pull/439)
+- You wanna see events on a specific date? Pick it! Calendar Picker! Events! [#436](https://github.com/ndlib/usurper/pull/436)
+
+### Bug Fixes
+- Advanced search box should no longer overlap items on narrow windows. [#428](https://github.com/ndlib/usurper/pull/428)
+
+
 ## [v2018.7](https://github.com/ndlib/usurper/tree/v2018.7)
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.6...v2018.7)
 
