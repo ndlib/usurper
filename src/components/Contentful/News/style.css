@@ -1,3 +1,6 @@
 .headline {
 	max-width: 30ch;
 }
+.news-article h1 {
+  max-width: 100%;
+}
