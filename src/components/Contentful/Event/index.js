@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 
     let start = makeLocalTimezone(fields.startDate)
     let end = endDate ? makeLocalTimezone(fields.endDate) : makeLocalTimezone(fields.startDate)
-    let displayTime = fields.timeOverride ? fields.timeOverride : `${hour12(start)} - ${hour12(end)}`
+    let displayTime = fields.timeOverride ? fields.timeOverride : `${hour12(start)} &ndash; ${hour12(end)}`
 
     data = {
       ...data.fields,
