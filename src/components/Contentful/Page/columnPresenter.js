@@ -52,17 +52,6 @@ const ColumnContainerPresenter = (props) => {
       <SearchProgramaticSet open={false} />
       <PageTitle title={page.title} />
       <PageAlert alert={page.alert} />
-      <div className='row landing'>
-        {
-          page.columns.map((column, index) => {
-            return (
-              <div className='col-md-12 col-xs-12' key={'column_' + index}>
-                { Sections(column, page.showDescriptions) }
-              </div>
-            )
-          })
-        }
-      </div>
       <SideNav className='side-nav-bg'>
         <ul>
           {
@@ -82,6 +71,18 @@ const ColumnContainerPresenter = (props) => {
           }
         </ul>
       </SideNav>
+      <div className='row landing'>
+        {
+          page.columns.map((column, index) => {
+            return (
+              <div className='col-md-12 col-xs-12' key={'column_' + index}>
+                { Sections(column, page.showDescriptions) }
+              </div>
+            )
+          })
+        }
+      </div>
+
     </div>
   )
 }
