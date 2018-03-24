@@ -1872,6 +1872,7 @@ button.renew {
   font-size: 24px;
   font-weight: normal;
   margin-bottom: 20px;
+  margin-top: 0;
 }
 .service-point h5 {
   color: #601700;
@@ -2491,6 +2492,10 @@ main h2, main h3, main h4, main h5 {
   margin-bottom: .5em;
 }
 
+h3:first-child {
+	margin-top: 0;
+}
+
 /*
 .cover {
 
@@ -2578,8 +2583,8 @@ main h2, main h3, main h4, main h5 {
 @supports (display: grid) and (not (display: -ms-grid)) {
   .p-resources {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;
     grid-auto-flow: column;
   }
   .alphabet {
