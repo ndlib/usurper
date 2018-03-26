@@ -48,7 +48,6 @@ export const mapStateToProps = (state) => {
   const illHave = personal.illHave
   const illPending = personal.illPending
 
-  const web = get(alephHave, 'web', []).concat(get(illHave, 'web', []))
   const checkedOut = get(alephHave, 'checkedOut', []).concat(get(illHave, 'checkedOut', []))
   const pendingItems = get(alephPending, 'pending', []).concat(get(illPending, 'pending', []))
 
@@ -67,7 +66,7 @@ export const mapStateToProps = (state) => {
       have: {
         exists: get(alephHave, 'state', false) && get(illHave, 'state', false),
         loading: haveFetching,
-        items: web.concat(checkedOut),
+        items: checkedOut,
         emptyText: 'You have no Checked Out Items',
       },
       pending: {
