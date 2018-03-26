@@ -16,7 +16,7 @@ import OpenGraph from '../../OpenGraph'
 
 const PagePresenter = ({ entry }) => (
   <article
-    className='container-fluid content-area'
+    className='container-fluid content-area news-article'
     itemScope
     itemType='http://schema.org/NewsArticle'
     itemProp='mainEntity'
