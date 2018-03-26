@@ -1,4 +1,4 @@
-'use strict'
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -26,7 +26,11 @@ class PageTitle extends Component {
 
     return (
       <header className='page-title'>
-        <h1 id='main-page-title' itemProp={this.props.itemProp}>
+        <h1
+          id='main-page-title'
+          itemProp={this.props.itemProp}
+          className={this.props.classes}
+        >
           {this.props.title}
           { this.props.subtitle && <small>{this.props.subtitle}</small> }
         </h1>
@@ -44,6 +48,7 @@ PageTitle.propTypes = {
   hideInPage: PropTypes.bool,
   itemProp: PropTypes.string,
   children: PropTypes.any,
+  classes: PropTypes.string,
 }
 
 PageTitle.defaultProps = {

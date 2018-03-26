@@ -22,7 +22,7 @@ const PagePresenter = ({ entry }) => (
     itemProp='mainEntity'
   >
     {entry.fields.shortDescription && (<meta name='description' content={entry.fields.shortDescription} />) }
-    <PageTitle title={entry.fields.title} itemProp='headline'>
+    <PageTitle title={entry.fields.title} itemProp='headline' classes='col-md-8 col-sm-8'>
       <div className='tagline news'>
         { entry.fields.author && <div className='author'>{ 'By ' + entry.fields.author }</div> }
         { entry.fields.publishedDate && (
