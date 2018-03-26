@@ -3131,7 +3131,7 @@ li.menu-icon {
   }
 }
 
-@media screen and (max-width:905px) {
+@media screen and (max-width:850px) {
   .menu-list .menu-link {
     display: none;
   }
@@ -3146,7 +3146,7 @@ li.menu-icon {
 
   .topnav {
     position: absolute;
-    right: 0;
+    left: 0;
     background: #fff;
     padding-left: 0;
     list-style: none;
@@ -3167,17 +3167,13 @@ li.menu-icon {
 
   li.menu-icon {
     display: block;
-    float: right;
-    position: absolute;
-    z-index: 4000;
-    right: 10px;
-    top: -7px;
+    position: relative;
     cursor: pointer;
 
   }
 
     li.menu-icon > a {
-      font-size: 24px;
+      font-size: 18px;
       line-height: 1em;
     }
 }

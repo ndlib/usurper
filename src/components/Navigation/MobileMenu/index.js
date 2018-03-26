@@ -7,7 +7,7 @@ const MobileMenu = (props) => {
   const display = props.open ? 'block' : 'none'
 
   return (
-    <li className='menu-icon right'>
+    <li className='menu-icon'>
       <a
         onClick={props.onClick}
         onKeyDown={props.onKeyDown}
@@ -15,6 +15,11 @@ const MobileMenu = (props) => {
         tabIndex={props.visible ? '0' : '-1'}
       >☰</a>
       <ul className='topnav' id='topNav' style={{ display: display }}>
+        <li>
+          <Link
+            to='/'
+            tabIndex={tabIndex}>Home</Link>
+        </li>
         <li>
           <Link
             to='/research/'
