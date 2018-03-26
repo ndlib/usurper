@@ -7,7 +7,7 @@ const MobileMenu = (props) => {
   const display = props.open ? 'block' : 'none'
 
   return (
-    <div className='menu-icon'>
+    <li className='menu-icon right'>
       <a
         onClick={props.onClick}
         onKeyDown={props.onKeyDown}
@@ -47,7 +47,7 @@ const MobileMenu = (props) => {
             tabIndex={tabIndex}>Hours</Link>
         </li>
       </ul>
-    </div>
+    </li>
   )
 }
 

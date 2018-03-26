@@ -87,14 +87,14 @@ const Navigation = (props) => {
               aria-label={props.isDrawerOpen ? 'Close Search Drawer' : 'Open Search Drawer'}
             >Search</a>
           </li>
+          <MobileMenu
+            open={props.menus.menuId === MOBILE_MENU}
+            loggedIn={props.loggedIn}
+            visible={windowWidth <= mobileWidth}
+            onClick={props.handleMobileClick}
+            onKeyDown={props.handleMobileMenuKeyDown}
+          />
         </ul>
-        <MobileMenu
-          open={props.menus.menuId === MOBILE_MENU}
-          loggedIn={props.loggedIn}
-          visible={windowWidth <= mobileWidth}
-          onClick={props.handleMobileClick}
-          onKeyDown={props.handleMobileMenuKeyDown}
-        />
       </nav>
     </div>
   )
