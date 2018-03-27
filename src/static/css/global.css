@@ -2583,8 +2583,8 @@ h3:first-child {
 @supports (display: grid) and (not (display: -ms-grid)) {
   .p-resources {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto;
     grid-auto-flow: column;
   }
   .alphabet {
