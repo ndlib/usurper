@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2018.9](https://github.com/ndlib/usurper/tree/v2018.9) "Heart Attack"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.8...v2018.9)
+
+### New Features/enhancements
+- News headline will no longer wrap short [#443](https://github.com/ndlib/usurper/pull/443)
+
+### Bug Fixes
+- Events should now only have ndashes between times [#443](https://github.com/ndlib/usurper/pull/443)
+- Fix empty space on some pages in ios safari [#442](https://github.com/ndlib/usurper/pull/442)
+- Fix margine error on hours page [#445](https://github.com/ndlib/usurper/pull/445)
+
+
 ## [v2018.8](https://github.com/ndlib/usurper/tree/v2018.8) "Communication"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.7...v2018.8)
 
