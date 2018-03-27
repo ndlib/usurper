@@ -2552,9 +2552,15 @@ main h2, main h3, main h4, main h5 {
 }
 
 .p-resources {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+
+	column-count: 2;
+
+}
+
+.p-resources li {
+	padding: 0 1rem 5px;
+	display: inline-block;
+	width: 100% !important;
 }
 
 .linkGroup {
@@ -2609,9 +2615,7 @@ main h2, main h3, main h4, main h5 {
   position: relative;
 }
 
-.p-resources li {
-  padding: 1rem !important;
-}
+
 
 .p-resources li::before , .p-pages li::before, .databaseLink li::before, .linkGroup li::before {
   color: #b3b3b3;
@@ -2620,9 +2624,7 @@ main h2, main h3, main h4, main h5 {
   position: absolute;
   top: -1px;
 }
-.p-resources li::before {
-  top: 1rem;
-}
+
 
 .p-services {
   margin: 0;
