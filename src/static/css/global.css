@@ -2754,7 +2754,7 @@ h3:first-child {
 
 
 
-.menu-icon {
+li.menu-icon {
   display: none;
 }
 
@@ -3131,7 +3131,7 @@ h3:first-child {
   }
 }
 
-@media screen and (max-width:905px) {
+@media screen and (max-width:850px) {
   .menu-list .menu-link {
     display: none;
   }
@@ -3146,7 +3146,7 @@ h3:first-child {
 
   .topnav {
     position: absolute;
-    right: 0;
+    left: 0;
     background: #fff;
     padding-left: 0;
     list-style: none;
@@ -3165,20 +3165,15 @@ h3:first-child {
     padding: 5px ;
   }
 
-  div.menu-icon {
+  li.menu-icon {
     display: block;
-    float: right;
-    position: absolute;
-    z-index: 4000;
-    right: 10px;
-    top: -67px;
+    position: relative;
     cursor: pointer;
 
   }
 
-    div.menu-icon > a {
-      color: #fff;
-      font-size: 24px;
+    li.menu-icon > a {
+      font-size: 18px;
       line-height: 1em;
     }
 }
@@ -3655,5 +3650,3 @@ a .dbItem {
 .news-card .description {
   grid-column-start: 2;
 }
-
-

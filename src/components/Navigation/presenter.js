@@ -69,6 +69,13 @@ const Navigation = (props) => {
         role='navigation'
         aria-label='Main'>
         <ul className='menu-list'>
+          <MobileMenu
+            open={props.menus.menuId === MOBILE_MENU}
+            loggedIn={props.loggedIn}
+            visible={windowWidth <= mobileWidth}
+            onClick={props.handleMobileClick}
+            onKeyDown={props.handleMobileMenuKeyDown}
+          />
           <li className='menu-link'><Link to='/'>Home</Link></li>
           {dropDowns}
           <li className='menu-link hours-m right'>
@@ -87,14 +94,8 @@ const Navigation = (props) => {
               aria-label={props.isDrawerOpen ? 'Close Search Drawer' : 'Open Search Drawer'}
             >Search</a>
           </li>
+
         </ul>
-        <MobileMenu
-          open={props.menus.menuId === MOBILE_MENU}
-          loggedIn={props.loggedIn}
-          visible={windowWidth <= mobileWidth}
-          onClick={props.handleMobileClick}
-          onKeyDown={props.handleMobileMenuKeyDown}
-        />
       </nav>
     </div>
   )
