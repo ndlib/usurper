@@ -10,6 +10,7 @@ describe('components/LoanResources/index.js', () => {
         },
         alephHave: {
           state: statuses.SUCCESS,
+          web: ['web'],
           checkedOut: ['alephCheckedOut'],
         },
         alephPending: {
@@ -49,7 +50,7 @@ describe('components/LoanResources/index.js', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.have).toBeTruthy()
-      expect(resources.have.items).toEqual(['alephCheckedOut', 'illCheckedOut'])
+      expect(resources.have.items).toEqual(['web', 'alephCheckedOut', 'illCheckedOut'])
     })
 
     it('should contain pending items', () => {

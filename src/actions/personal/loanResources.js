@@ -7,27 +7,32 @@ export const handleUser = (dispatch, data) => {
     states.recievePersonal(
       'user',
       statuses.SUCCESS,
-      { user: data },
+      data.user,
     )
   )
 }
 
-export const handleResources = (service, type) => {
+export const handleResources = (type) => {
   return (dispatch, data) => {
-    if (type === 'borrowed') {
+    if (data.checkedOut) {
       dispatch(
         states.recievePersonal(
-          service + 'Have',
+          type + 'Have',
           statuses.SUCCESS,
-          { checkedOut: data }
+          {
+            checkedOut: data.checkedOut,
+            web: data.web,
+          }
         )
       )
     } else {
       dispatch(
         states.recievePersonal(
-          service + 'Pending',
+          type + 'Pending',
           statuses.SUCCESS,
-          { pending: data }
+          {
+            pending: data.pending,
+          }
         )
       )
     }
@@ -37,7 +42,7 @@ export const handleResources = (service, type) => {
 const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0) => {
   dispatch(states.requestPersonal(stateKey))
   states.startRequest(
-    Config.resourcesAPI + '/' + service + '/' + type,
+    Config.resourcesAPI + '/' + service + '?type=' + type,
     dispatch,
     func,
     token,
@@ -64,8 +69,8 @@ export const getPending = () => {
   return (dispatch, getState) => {
     let state = getState().personal
     let token = state.login.token
-    doQuery(dispatch, 'aleph', 'pending', handleResources('aleph', 'pending'), token, 'alephPending')
-    doQuery(dispatch, 'illiad', 'pending', handleResources('ill', 'pending'), token, 'illPending')
+    doQuery(dispatch, 'aleph', 'pending', handleResources('aleph'), token, 'alephPending')
+    doQuery(dispatch, 'illiad', 'pending', handleResources('ill'), token, 'illPending')
   }
 }
 
@@ -74,8 +79,8 @@ export const getBorrowed = () => {
     let state = getState().personal
     let token = state.login.token
 
-    doQuery(dispatch, 'aleph', 'borrowed', handleResources('aleph', 'borrowed'), token, 'alephHave')
-    doQuery(dispatch, 'illiad', 'borrowed', handleResources('ill', 'borrowed'), token, 'illHave')
+    doQuery(dispatch, 'aleph', 'borrowed', handleResources('aleph'), token, 'alephHave')
+    doQuery(dispatch, 'illiad', 'borrowed', handleResources('ill'), token, 'illHave')
   }
 }
 

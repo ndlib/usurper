@@ -73,26 +73,29 @@ describe('resources fetch async action creator', () => {
     const store = mockStore(state)
     store.dispatch(getResources())
 
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/user', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/borrowed', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/pending', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/illiad/borrowed', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/illiad/pending', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/aleph?type=user', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/aleph?type=borrowed', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/aleph?type=pending', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/illiad?type=borrowed', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/illiad?type=pending', any(), any(), any(), any())
   })
 })
 
 describe('handleResources', () => {
   describe('on checked out items', () => {
-    const data = [ 'book' ]
+    const data = {
+      checkedOut: [ 'book' ],
+      web: [ 'web book' ],
+    }
 
     it('should create a recievePersonal action with checked out items', () => {
       const store = mockStore({})
-      handleResources('aleph', 'borrowed')(store.dispatch, data)
+      handleResources('aleph')(store.dispatch, data)
 
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
         requestType: 'alephHave',
-        payload: { checkedOut: data },
+        payload: data,
         state: statuses.SUCCESS,
       }
 
@@ -101,16 +104,18 @@ describe('handleResources', () => {
   })
 
   describe('on pending items', () => {
-    const data = [ 'book' ]
+    const data = {
+      pending: [ 'book' ],
+    }
 
     it('should create a recievePersonal action with pending items', () => {
       const store = mockStore({})
-      handleResources('aleph', 'pending')(store.dispatch, data)
+      handleResources('aleph')(store.dispatch, data)
 
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
         requestType: 'alephPending',
-        payload: { pending: data },
+        payload: data,
         state: statuses.SUCCESS,
       }
 
