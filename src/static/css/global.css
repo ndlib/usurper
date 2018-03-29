@@ -2556,6 +2556,18 @@ h3:first-child {
   margin-bottom: 3em;
 }
 
+.p-resources {
+
+	column-count: 2;
+
+}
+
+.p-resources li {
+	padding: 0 1rem 5px;
+	display: inline-block;
+	width: 100% !important;
+}
+
 .linkGroup {
   margin: 0;
 }
@@ -2581,12 +2593,6 @@ h3:first-child {
 
 
 @supports (display: grid) and (not (display: -ms-grid)) {
-  .p-resources {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto auto;
-    grid-auto-flow: column;
-  }
   .alphabet {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -2614,6 +2620,8 @@ h3:first-child {
   position: relative;
 }
 
+
+
 .p-resources li::before , .p-pages li::before, .databaseLink li::before, .linkGroup li::before {
   color: #b3b3b3;
   content: "›";
@@ -2621,6 +2629,7 @@ h3:first-child {
   position: absolute;
   top: -1px;
 }
+
 
 .p-services {
   margin: 0;
@@ -3117,10 +3126,6 @@ li.menu-icon {
   .course-reserves {
     -ms-grid-row: 2;
     -ms-grid-column: 2;
-  }
-  .p-resources {
-    -ms-grid-columns: repeat(1, 1fr);
-    grid-template-columns: repeat(1, 1fr);
   }
 
   .p-services li {

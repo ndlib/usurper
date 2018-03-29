@@ -19,6 +19,9 @@ describe('components/Related/index.js', () => {
       enzymeWrapper = setup({
         children: [
           {
+            sys: {
+              id: "id",
+            },
             fields: {
               slug: 'foo',
               image: 'fooImage',
@@ -26,6 +29,9 @@ describe('components/Related/index.js', () => {
             },
           },
           {
+            sys: {
+              id: "id",
+            },
             fields: {
               url: 'bar',
               image: 'barImage',
@@ -41,7 +47,7 @@ describe('components/Related/index.js', () => {
     })
 
     it('should render all childrens links', () => {
-      expect(enzymeWrapper.findWhere(n => n.type() === Link && n.props().to === 'foo').exists()).toBe(true)
+      expect(enzymeWrapper.findWhere(n => n.type() === Link && n.props().to === '/foo').exists()).toBe(true)
       expect(enzymeWrapper.findWhere(n => n.type() === Link && n.props().to === 'bar').exists()).toBe(true)
     })
 
@@ -51,7 +57,8 @@ describe('components/Related/index.js', () => {
     })
 
     it('should render all childrens titles', () => {
-      expect(enzymeWrapper.findWhere(n => n.type() === 'span' && n.text() === 'fooTitle').exists()).toBe(true)
+
+      expect(enzymeWrapper.findWhere(n => n.type() === 'span' && n.props().children === 'fooTitle').exists()).toBe(true)
       expect(enzymeWrapper.findWhere(n => n.type() === 'span' && n.text() === 'barTitle').exists()).toBe(true)
     })
   })
