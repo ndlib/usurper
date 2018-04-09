@@ -2453,7 +2453,7 @@ main blockquote p {
   font-family: GPCMed, sans-serif;
 }
 
-.event-detail-time p {
+.event-detail-time p, .event-detail-location p {
   font-size: 1em;
   color: #5D6A83;
   margin-bottom: 0;

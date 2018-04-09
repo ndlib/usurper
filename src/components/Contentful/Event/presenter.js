@@ -44,10 +44,10 @@ const PagePresenter = ({ entry }) => {
             <div><LibMarkdown className='event-detail-time'>{ entry.displayTime }</LibMarkdown></div>
           </div>
           {
-            entry.locationOverride && (
+            entry.locationText && (
               <div className='event-details'>
                 <div className='event-detail-header'>Location</div>
-                <div>{ entry.locationOverride }</div>
+                <LibMarkdown className='event-detail-location'>{ entry.locationText }</LibMarkdown>
               </div>
             )
           }
@@ -59,7 +59,7 @@ const PagePresenter = ({ entry }) => {
           <AddToCalendar
             title={entry.title}
             description={entry.shortDescription}
-            location={entry.locationOverride}
+            location={entry.locationText}
             startDate={entry.startDate}
             endDate={entry.endDate}
           />
