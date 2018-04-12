@@ -1,5 +1,14 @@
 # Change Log
 
+## [v2018.11](https://github.com/ndlib/usurper/tree/v2018.11) "Spring is Coming"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.10...v2018.11)
+
+### UI Changes
+- The "resources" section on pages got dressed for a night on the town [#448](https://github.com/ndlib/usurper/pull/448)
+- Behind the Curtain: Contentful Edition. Event location text is now a long text field instead of short text. [#449](https://github.com/ndlib/usurper/pull/449)
+- The four elder room pages are passing the torch to the one reservation page to rule them all [#450](https://github.com/ndlib/usurper/pull/450)
+
+
 ## [v2018.9](https://github.com/ndlib/usurper/tree/v2018.9) "Heart Attack"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.8...v2018.9)
 
