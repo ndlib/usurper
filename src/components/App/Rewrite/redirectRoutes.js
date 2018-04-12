@@ -37,6 +37,10 @@ const RedirectRoutes = [
   { path: '/srch-find', target: '/research' },
   { path: '/kelloggkroc', target: '/kellogg-kroc' },
   { path: '/onesearch/onesearch_down.shtml', target: '/catalog-down' },
+  { path: '/room-248', target: '/room-reservations' },
+  { path: '/room-247', target: '/room-reservations' },
+  { path: '/room-222', target: '/room-reservations' },
+  { path: '/room-222a', target: '/room-reservations' },
 
   // index.php redirects
   { path: '/index.php', target: '/' },
