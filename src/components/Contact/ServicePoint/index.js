@@ -15,7 +15,7 @@ const Contact = (props) => {
   let building
   if (sp.floor) {
     let rawFloor = sp.floor.fields
-    if (rawFloor.image) {
+    if (rawFloor.image && !sp.hideFloorMap) {
       let floorLink = 'floor/' + rawFloor.slug
       floor = (
         <li className='floor'><Link
