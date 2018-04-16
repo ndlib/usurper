@@ -8,9 +8,20 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 
-export const sortNews = (left, right) => {
+export const sortNews = (left, right, withPreferred = false) => {
   let a = new Date(left.fields.publishedDate)
   let b = new Date(right.fields.publishedDate)
+
+  if (withPreferred) {
+    let aPreferred = left.fields.preferOnHomepage
+    let bPreferred = right.fields.preferOnHomepage
+
+    if (aPreferred && !bPreferred) {
+      return -1
+    } else if (bPreferred && !aPreferred) {
+      return 1
+    }
+  }
 
   if (a < b) {
     return 1
@@ -28,7 +39,7 @@ const mapStateToProps = (state) => {
         flattenLocale(entry.fields, 'en-US')
         return entry
       })
-      .sort(sortNews)
+      .sort((a, b) => sortNews(a, b, true))
       .slice(0, 3)
   }
   return {
