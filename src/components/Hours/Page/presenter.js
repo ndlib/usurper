@@ -18,7 +18,7 @@ const Presenter = (props) => {
       <OpenGraph
         title={'Hours'}
         description={'Hours of all the libraries and service points'}
-        image={ false }
+        image={false}
       />
       <SearchProgramaticSet open={false} />
 

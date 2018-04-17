@@ -23,7 +23,7 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
       <OpenGraph
         title={'Databases: ' + letter.toUpperCase()}
         description={'Databases with the letter ' + letter.toUpperCase()}
-        image={ false }
+        image={false}
       />
       <SearchProgramaticSet open={false} />
       <div className='row'>
