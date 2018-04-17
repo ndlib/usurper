@@ -1,7 +1,6 @@
 import React from 'react'
 import Facebook from '../images/facebook.png'
 import Twitter from '../images/twitter.png'
-import Gov from '../images/fdlp-emblem-color.png'
 import Link from '../../Link'
 import ServiceNowLink from '../../ServiceNowLink'
 import SiteInfoLink from '../../SiteInfoLink'
@@ -30,8 +29,8 @@ const FooterLinks = () => {
                     />
                   </SiteInfoLink>
                 </li>
-                <li><Link to='https://library.nd.edu/government-documents'>
-                  <img src={Gov} className='gov' alt='Federal Depository Library' />
+                <li><Link to='https://library.nd.edu/government-documents' label='Federal Depository Library'>
+                  <img src='/icons/fdlp-emblem-color.png' className='gov' alt='' />
                 </Link></li>
               </ul>
             </div>

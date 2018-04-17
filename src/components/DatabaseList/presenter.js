@@ -8,6 +8,7 @@ import Link from '../Link'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
 import FilterBox from '../FilterBox'
+import OpenGraph from '../OpenGraph'
 import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
 import TextEllipsis from 'react-text-ellipsis'
@@ -19,6 +20,11 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   return (
     <section className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + letter.toUpperCase()} />
+      <OpenGraph
+        title={'Databases: ' + letter.toUpperCase()}
+        description={'Databases with the letter ' + letter.toUpperCase()}
+        image={false}
+      />
       <SearchProgramaticSet open={false} />
       <div className='row'>
         <SideNav className='col-md-4'>

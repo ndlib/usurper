@@ -8,12 +8,18 @@ import PageTitle from '../../PageTitle'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
 import StaticAlert from '../../Contentful/StaticContent/Alert'
+import OpenGraph from '../../OpenGraph'
 import Link from '../../Link'
 
 const Presenter = (props) => {
   return (
     <section className='content hours-page'>
       <PageTitle title={'Hours'} />
+      <OpenGraph
+        title={'Hours'}
+        description={'Hours of all the libraries and service points'}
+        image={false}
+      />
       <SearchProgramaticSet open={false} />
 
       <div className='row'>

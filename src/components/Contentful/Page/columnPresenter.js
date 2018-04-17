@@ -6,6 +6,7 @@ import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import SideNav from '../../SideNav'
 import PageAlert from '../Alert/Page'
+import OpenGraph from '../../OpenGraph'
 import { getLinkObject } from '../../../shared/ContentfulLibs'
 
 import './style.css'
@@ -51,6 +52,11 @@ const ColumnContainerPresenter = (props) => {
     <div className='content'>
       <SearchProgramaticSet open={false} />
       <PageTitle title={page.title} />
+      <OpenGraph
+        title={page.title}
+        description={page.shortDescription}
+        image={false}
+      />
       <PageAlert alert={page.alert} />
       <SideNav className='side-nav-bg'>
         <ul>

@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /site-info
+Disallow: /icons/fdlp-emblem-color.png
