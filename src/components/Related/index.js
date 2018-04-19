@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Image from '../Image'
 import Link from '../Link'
+import LibMarkdown from '../LibMarkdown'
 import { getLinkObject } from '../../shared/ContentfulLibs'
 
 const Related = ({ title, className, showImages, children }) => {
@@ -26,36 +27,27 @@ const Related = ({ title, className, showImages, children }) => {
             if (showImages) {
               image = (<Image cfImage={currentItem.fields.image} />)
             }
-            // span will mess with the layout and should be replaced with
-            // React.Fragment when upgrading to 16+ then we can drop the
-            // if/else statement
-            if (linkObject.links.length > 1) {
-              return (
-                <span style={{ display:'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+
+            return (
+              <li key={currentItem.fields.title}>
+                <Link to={linkObject.heading.url} className={className + '-mainLink'}>
+                  {image}
+                  <span>{currentItem.fields.title}</span>
+                </Link>
+                <ul className={className + '-sublinks'}>
                   {
-                    linkObject.links.map((l) => {
+                    linkObject.conditionalLinks.map((link) => {
                       return (
-                        <li key={l.keyId}>
-                          <Link to={l.url} key={l.keyId}>
-                            {image}
-                            <span>{l.title}</span>
-                          </Link>
+                        <li key={link.keyId}>
+                          <Link to={link.url}>{link.title}</Link>
+                          { link.notes && <LibMarkdown>{ link.notes }</LibMarkdown> }
                         </li>
                       )
                     })
                   }
-                </span>
-              )
-            } else {
-              return (
-                <li key={currentItem.fields.title}>
-                  <Link to={linkObject.links[0].url}>
-                    {image}
-                    <span>{currentItem.fields.title}</span>
-                  </Link>
-                </li>
-              )
-            }
+                </ul>
+              </li>
+            )
           })
         }
       </ul>
