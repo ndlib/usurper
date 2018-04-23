@@ -21,6 +21,7 @@ const FloorPresenter = ({ cfFloorEntry, extraData }) => (
               <h2>{extraData.title}</h2>
               <p className='author'>{extraData.author}</p>
               <p className='callNumber'>{extraData.call_number}</p>
+              <p className='collection'>{extraData.collection_display}</p>
             </div>
           )
         }

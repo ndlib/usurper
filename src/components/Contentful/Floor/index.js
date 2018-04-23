@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   const searchParams = new URLSearchParams(ownProps.location.search)
   let extraData = {}
 
-  const extraFields = [ 'title', 'author', 'call_number' ]
+  const extraFields = [ 'title', 'author', 'call_number', 'collection_display' ]
   for (let fieldIndex in extraFields) {
     let field = extraFields[fieldIndex]
     if (searchParams.get(field)) {
