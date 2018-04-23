@@ -2557,15 +2557,21 @@ h3:first-child {
 }
 
 .p-resources {
-
 	column-count: 2;
-
 }
 
 .p-resources li {
 	padding: 0 1rem 5px;
 	display: inline-block;
 	width: 100% !important;
+}
+
+.p-resources-mainLink span {
+  font-weight: bold;
+}
+
+.p-resources-sublinks {
+  padding-left: 5px;
 }
 
 .linkGroup {
