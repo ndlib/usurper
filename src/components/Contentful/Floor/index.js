@@ -50,6 +50,7 @@ ContentfulFloorContainer.propTypes = {
   cfFloorEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
+  extraData: PropTypes.object,
 }
 
 const ContentfulFloor = connect(

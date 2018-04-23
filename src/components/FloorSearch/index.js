@@ -27,7 +27,7 @@ class FloorSearch extends Component {
     // if we found a floor, redirect to that floor, otherwise error
     if (status === statuses.SUCCESS && slug) {
       this.props.history.push(slug + this.props.searchString)
-    } else if (status === statuses.ERROR ||(status === statuses.SUCCESS && !slug)) {
+    } else if (status === statuses.ERROR || (status === statuses.SUCCESS && !slug)) {
       this.setState({ error: true })
     }
   }
