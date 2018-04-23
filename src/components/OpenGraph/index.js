@@ -12,6 +12,7 @@ const OpenGraph = (props) => {
   if (props.image && props.image.fields && props.image.fields.file) {
     image = props.image.fields.file.url
   }
+
   return (
     <Helmet>
       <meta property='og:url' content={url} />
@@ -28,6 +29,6 @@ OpenGraph.propTypes = {
   type: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.oneOfType([ PropTypes.string, PropTypes.object ]),
+  image: PropTypes.oneOfType([ PropTypes.string, PropTypes.object, PropTypes.bool ]),
 }
 export default OpenGraph
