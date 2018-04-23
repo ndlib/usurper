@@ -163,12 +163,33 @@ export class DatabaseListContainer extends Component {
     }, 1500)
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    if (this.props.currentLetter !== nextProps.currentLetter) {
+      // letter changed
+      return true
+    } else if (this.props.cfDatabaseLetter[this.props.currentLetter]) {
+      // cfDatabaseLetter is defined
+      if (this.props.cfDatabaseLetter[this.props.currentLetter].status !== nextProps.cfDatabaseLetter[nextProps.currentLetter].status) {
+        // status changed
+        return true
+      }
+      if (this.state.filterValue !== nextState.filterValue) {
+        // filter has changed
+        return true
+      }
+    }
+    return false
+  }
+
   render () {
     let letter = this.props.currentLetter
 
-    // dont allow going to /foo or /1 etc
-    if (letter.length > 1 || ((letter < 'a' || letter > 'z') && letter !== '#')) {
-      return <PageNotFound />
+    // ensure letter exists
+    if (letter) {
+      // dont allow going to /foo or /1 etc
+      if (letter.length > 1 || ((letter < 'a' || letter > 'z') && letter !== '#')) {
+        return <PageNotFound />
+      }
     }
 
     let status = statuses.FETCHING

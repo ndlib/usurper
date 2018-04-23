@@ -1,5 +1,5 @@
 // Presenter component for a Page content type from Contentful
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import '../../static/css/global.css'
 import PageTitle from '../PageTitle'
@@ -13,6 +13,7 @@ import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
 import TextEllipsis from 'react-text-ellipsis'
 import Alphabet from './Alphabet'
+import Loading from '../Messages/Loading'
 import { getLinkObject } from '../../shared/ContentfulLibs'
 import './style.css'
 
@@ -54,7 +55,8 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
 }
 
 const DBLoading = (letter) => {
-  return Content(letter, 'Loading Databases')
+  return (<Loading />)
+  // return Content(letter, 'Loading Databases')
 }
 
 const Loaded = (props) => {
