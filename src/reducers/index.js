@@ -19,6 +19,7 @@ import librarianInfo from './librarians'
 import menuReducer, { hasNavigation } from './menu'
 import chatReducer from './chat'
 import advancedSearch from './advancedSearch'
+import floorSearch from './floorSearch'
 
 import { combineReducers } from 'redux'
 
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   menus: menuReducer,
   chat: chatReducer,
   advancedSearch: advancedSearch,
+  floorSearch: floorSearch,
   renderComponents: hasNavigation,
 })
 

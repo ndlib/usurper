@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     ...state,
     search: state.search,
     menus: state.menus,
-    loggedIn: (personal && personal.login && personal.login.token),
+    loggedIn: Boolean(personal && personal.login && personal.login.token),
     loginUrl: (personal && personal.login && personal.login.redirectUrl),
   }
 }
