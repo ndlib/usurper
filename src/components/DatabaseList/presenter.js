@@ -1,5 +1,5 @@
 // Presenter component for a Page content type from Contentful
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import '../../static/css/global.css'
 import PageTitle from '../PageTitle'
