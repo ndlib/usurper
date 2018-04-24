@@ -14,8 +14,14 @@ const mapStateToProps = (state, ownProps) => {
   const extraFields = [ 'title', 'author', 'call_number', 'collection_display' ]
   for (let fieldIndex in extraFields) {
     let field = extraFields[fieldIndex]
-    if (searchParams.get(field)) {
-      extraData[field] = searchParams.get(field)
+    let value = searchParams.get(field)
+    if (value) {
+      if (field === 'title') {
+        // strip out whitespace and [,.] from the start/end of the title
+        value = value.replace(/^[\s,.]+|[\s,.]+$/gm, '')
+      }
+
+      extraData[field] = value
     }
   }
 
@@ -37,11 +43,27 @@ export class ContentfulFloorContainer extends Component {
     this.props.fetchFloor(pageSlug, preview)
   }
 
+  componentWillReceiveProps (nextProps) {
+    const slug = this.props.match.params.id
+    const nextSlug = nextProps.match.params.id
+    const preview = nextProps.searchParams.get('preview') === 'true'
+    if (slug !== nextSlug) {
+      this.props.fetchFloor(nextSlug, preview)
+    }
+  }
+
   render () {
+    const floor = this.props.cfFloorEntry.json ? this.props.cfFloorEntry.json : null
+    const sp = floor && floor.fields.building ? floor.fields.building.fields.primaryServicePoint : null
+
     return <PresenterFactory
       presenter={ContentfulFloorPresenter}
       status={this.props.cfFloorEntry.status}
-      props={{ cfFloorEntry: this.props.cfFloorEntry.json, extraData: this.props.extraData }} />
+      props={{
+        cfFloorEntry: floor,
+        extraData: this.props.extraData,
+        cfServicePoint: sp,
+      }} />
   }
 }
 

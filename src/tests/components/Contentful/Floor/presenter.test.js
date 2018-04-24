@@ -1,11 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
-import Building from '../../../../components/Contentful/Building'
+import ServicePoint from '../../../../components/Contentful/ServicePoint'
 import Image from '../../../../components/Image'
 
-const setup = (cfFloorEntry, extraData) => {
-  const props = { cfFloorEntry, extraData }
+const setup = (props) => {
   return shallow(<FloorPresenter {...props} />)
 }
 
@@ -13,19 +12,23 @@ let enzymeWrapper
 describe('components/Contentful/Floor/presenter', () => {
   beforeEach(() => {
     enzymeWrapper = setup({
-      fields: {
-        title: 'Fake Title',
-        shortDescription: 'Fake short description',
-        content: 'Fake content',
-        image: 'Fake image',
-        building: {},
+      cfFloorEntry: {
+        fields: {
+          title: 'Fake Title',
+          shortDescription: 'Fake short description',
+          content: 'Fake content',
+          image: 'Fake image',
+          building: {},
+        },
+        sys: { id: 'FakeId' },
       },
-      sys: { id: 'FakeId' },
-    }, {
-      title: 'itemTitle',
-      call_number: 'call no',
-      author: 'author',
-      collection_display: 'collection'
+      extraData: {
+        title: 'itemTitle',
+        call_number: 'call no',
+        author: 'author',
+        collection_display: 'collection',
+      },
+      cfServicePoint: {},
     })
   })
 
@@ -49,15 +52,15 @@ describe('components/Contentful/Floor/presenter', () => {
     expect(enzymeWrapper.containsMatchingElement(<Image cfImage={'Fake image'} />)).toBe(true)
   })
 
-  it('should render a Building', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Building cfBuildingEntry={{}} />)).toBe(true)
-  })
-
-  it('should render the item title', () => {
-    expect(enzymeWrapper.containsMatchingElement(<h2>itemTitle</h2>)).toBe(true)
+  it('should render a ServicePoint', () => {
+    expect(enzymeWrapper.containsMatchingElement(<ServicePoint cfServicePoint={{}} />)).toBe(true)
   })
 
   it('should render the item call number', () => {
-    expect(enzymeWrapper.containsMatchingElement(<p>call no</p>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<h2>call no</h2>)).toBe(true)
+  })
+
+  it('should render the item title', () => {
+    expect(enzymeWrapper.containsMatchingElement(<p>itemTitle</p>)).toBe(true)
   })
 })

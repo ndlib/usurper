@@ -2682,14 +2682,15 @@ h3:first-child {
 
 .item-data {
   margin-bottom: 18px;
+  line-height: 2em;
 }
 
 .item-data p {
   margin-bottom: 0;
 }
 
-.item-data h2 {
-  font-size: 25px;
+.item-data strong {
+  font-size: 20px;
   margin-bottom: 8px;
 }
 
