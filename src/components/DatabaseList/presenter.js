@@ -53,9 +53,8 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   )
 }
 
-const DBLoading = (letter) => {
+const DBLoading = () => {
   return (<Loading />)
-  // return Content(letter, 'Loading Databases')
 }
 
 const Loaded = (props) => {
