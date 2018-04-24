@@ -12,6 +12,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import CurrentHours from '../../Hours/Current'
 import PageLink from '../PageLink'
 import { formatDate } from '../../../shared/DateLibs.js'
+import ShareLinks from '../../ShareLinks'
 import OpenGraph from '../../OpenGraph'
 
 const PagePresenter = ({ entry }) => (
@@ -30,6 +31,7 @@ const PagePresenter = ({ entry }) => (
             { formatDate(entry.fields.publishedDate) }
           </div>
         )}
+        <ShareLinks className='separator' title={entry.fields.title} />
       </div>
     </PageTitle>
     <OpenGraph

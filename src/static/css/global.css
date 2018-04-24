@@ -2319,6 +2319,10 @@ main blockquote p {
   font-size: 28px;
 }
 
+.news .shareLinks .resp-sharing-button {
+  padding: 0px 8px 6px 8px;
+}
+
 .news-card {
   margin-bottom: 20px;
   clear: both;

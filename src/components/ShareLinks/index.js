@@ -22,11 +22,17 @@ let shareLocations = {
 }
 
 // much of this is modified from https://sharingbuttons.io/
-const ShareLinks = ({ title }) => {
+const ShareLinks = ({ title, className }) => {
   const currentUrl = window.location
 
+  if (className) {
+    className += ' shareLinks'
+  } else {
+    className = 'shareLinks'
+  }
+
   return (
-    <div className='shareLinks'>
+    <div className={className}>
       {
         Object.keys(shareLocations).map((key) => {
           let location = shareLocations[key]
@@ -60,6 +66,7 @@ const ShareLinks = ({ title }) => {
 
 ShareLinks.propTypes = {
   title: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default ShareLinks
