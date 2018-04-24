@@ -1,23 +1,25 @@
 Service: usurper-ci
 
+PreDeploy: preDeploy.py
+
 Stacks:
   Single:
     - Name: $SERVICE-$STAGE
       Template: root.yml
       Parameters:
         Repo: usurper
-        Branch: ua
+        Branch: ${BRANCH}
         OAuth: ${OAUTH}
         ServiceName: $SERVICE-$STAGE
         TemplateLoc: https://s3.amazonaws.com/$DEPLOY_BUCKET/$DEPLOY_FOLDER
-        OutBucket: dev-staging.library.nd.edu
+        OutBucket: ${BUCKET}
         HoursApiUrl: https://677xoyg276.execute-api.us-east-1.amazonaws.com/prep
         ContentfulApi: https://77qwzi0dp1.execute-api.us-east-1.amazonaws.com/prep
       Tags:
         Name: $SERVICE-$STAGE
         Owner: WSE
         Contact: WSE
-        Description: CI for the Usurper Project
+        Description: CI for the usurper-$STAGE Project
         InceptDate: $TIMESTAMP
 
 Artifacts:
