@@ -32,6 +32,8 @@ describe('components/Contentful/Floor/Container', () => {
       },
       menus: {},
       location: { search: null },
+      searchParams: new URLSearchParams(),
+      extraData: {},
     }
     enzymeWrapper = setup(props)
   })
@@ -43,7 +45,7 @@ describe('components/Contentful/Floor/Container', () => {
   it('only renders APIPresenterFactory with cfFloorEntry slice and FloorPresenter', () => {
     expect(enzymeWrapper.containsMatchingElement(<APIPresenterFactory
       status={props.cfFloorEntry.status}
-      props={{ cfFloorEntry: props.cfFloorEntry.json }}
+      props={{ cfFloorEntry: props.cfFloorEntry.json, extraData: {} }}
       presenter={FloorPresenter} />))
       .toBe(true)
   })

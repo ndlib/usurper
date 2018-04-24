@@ -22,6 +22,7 @@ import Contact from '../LandingPages/Contact'
 import DatabaseList from '../../components/DatabaseList'
 import SubjectList from '../../components/SubjectList'
 import SiteInfo from '../../components/SiteInfo'
+import FloorSearch from '../../components/FloorSearch'
 import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
 import Rewrite from './Rewrite'
@@ -75,6 +76,7 @@ const App = (props) => {
               <Route exact path='/events/:date' component={Events} />
               <Route exact path='/news' component={News} />
               <Route exact path='/contact-us' component={Contact} />
+              <Route exact path='/floor/search' component={FloorSearch} />
               <Route exact path='/floor/:id' component={ContentfulFloor} />
               <Route exact path='/news/:id' component={ContentfulNews} />
               <Route exact path='/event/:id' component={ContentfulEvent} />

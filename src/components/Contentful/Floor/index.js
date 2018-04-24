@@ -7,8 +7,23 @@ import PropTypes from 'prop-types'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulFloorPresenter from './presenter.js'
 
-const mapStateToProps = (state) => {
-  return { cfFloorEntry: state.cfFloorEntry }
+const mapStateToProps = (state, ownProps) => {
+  const searchParams = new URLSearchParams(ownProps.location.search)
+  let extraData = {}
+
+  const extraFields = [ 'title', 'author', 'call_number', 'collection_display' ]
+  for (let fieldIndex in extraFields) {
+    let field = extraFields[fieldIndex]
+    if (searchParams.get(field)) {
+      extraData[field] = searchParams.get(field)
+    }
+  }
+
+  return {
+    cfFloorEntry: state.cfFloorEntry,
+    searchParams: searchParams,
+    extraData: extraData,
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 export class ContentfulFloorContainer extends Component {
   componentDidMount () {
     let pageSlug = this.props.match.params.id
-    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+    const preview = this.props.searchParams.get('preview') === 'true'
     this.props.fetchFloor(pageSlug, preview)
   }
 
@@ -26,7 +41,7 @@ export class ContentfulFloorContainer extends Component {
     return <PresenterFactory
       presenter={ContentfulFloorPresenter}
       status={this.props.cfFloorEntry.status}
-      props={{ cfFloorEntry: this.props.cfFloorEntry.json }} />
+      props={{ cfFloorEntry: this.props.cfFloorEntry.json, extraData: this.props.extraData }} />
   }
 }
 
@@ -34,6 +49,8 @@ ContentfulFloorContainer.propTypes = {
   fetchFloor: PropTypes.func.isRequired,
   cfFloorEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  searchParams: PropTypes.object.isRequired,
+  extraData: PropTypes.object,
 }
 
 const ContentfulFloor = connect(

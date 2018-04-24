@@ -2680,6 +2680,19 @@ h3:first-child {
   display: block;
 }
 
+.item-data {
+  margin-bottom: 18px;
+}
+
+.item-data p {
+  margin-bottom: 0;
+}
+
+.item-data h2 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
 /* Footer */
 #footer-links {
   background: #595959;

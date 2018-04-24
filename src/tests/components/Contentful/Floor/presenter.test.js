@@ -4,8 +4,8 @@ import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import Building from '../../../../components/Contentful/Building'
 import Image from '../../../../components/Image'
 
-const setup = (cfFloorEntry) => {
-  const props = { cfFloorEntry }
+const setup = (cfFloorEntry, extraData) => {
+  const props = { cfFloorEntry, extraData }
   return shallow(<FloorPresenter {...props} />)
 }
 
@@ -21,6 +21,11 @@ describe('components/Contentful/Floor/presenter', () => {
         building: {},
       },
       sys: { id: 'FakeId' },
+    }, {
+      title: 'itemTitle',
+      call_number: 'call no',
+      author: 'author',
+      collection_display: 'collection'
     })
   })
 
@@ -46,5 +51,13 @@ describe('components/Contentful/Floor/presenter', () => {
 
   it('should render a Building', () => {
     expect(enzymeWrapper.containsMatchingElement(<Building cfBuildingEntry={{}} />)).toBe(true)
+  })
+
+  it('should render the item title', () => {
+    expect(enzymeWrapper.containsMatchingElement(<h2>itemTitle</h2>)).toBe(true)
+  })
+
+  it('should render the item call number', () => {
+    expect(enzymeWrapper.containsMatchingElement(<p>call no</p>)).toBe(true)
   })
 })
