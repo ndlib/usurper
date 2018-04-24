@@ -169,11 +169,11 @@ export class DatabaseListContainer extends Component {
       return true
     } else if (this.props.cfDatabaseLetter[this.props.currentLetter]) {
       // cfDatabaseLetter is defined
-      if (this.props.cfDatabaseLetter[this.props.currentLetter].status !== nextProps.cfDatabaseLetter[nextProps.currentLetter].status) {
+      if (this.props.cfDatabaseLetter[this.props.currentLetter].status !==
+         nextProps.cfDatabaseLetter[nextProps.currentLetter].status) {
         // status changed
         return true
-      }
-      if (this.state.filterValue !== nextState.filterValue) {
+      } else if (this.state.filterValue !== nextState.filterValue) {
         // filter has changed
         return true
       }
