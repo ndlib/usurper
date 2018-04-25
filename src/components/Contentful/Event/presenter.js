@@ -38,19 +38,16 @@ const PagePresenter = ({ entry }) => {
       <div className='row'>
         <main className='col-md-8'>
           <div className='event-details'>
-            <div className='event-detail-header'>Date</div>
-            <div>{ entry.displayDate }</div>
-            <div className='event-detail-header'>Time</div>
-            <div><LibMarkdown className='event-detail-time'>{ entry.displayTime }</LibMarkdown></div>
+            <div className='event-detail-date'>{ entry.displayDate }</div>
+            <div className='event-detail-time'><LibMarkdown>{ entry.displayTime }</LibMarkdown></div>
+            {
+              entry.locationText && (
+                <div className='event-detail-location'>
+                  <LibMarkdown>{ entry.locationText }</LibMarkdown>
+                </div>
+              )
+            }
           </div>
-          {
-            entry.locationText && (
-              <div className='event-details'>
-                <div className='event-detail-header'>Location</div>
-                <LibMarkdown className='event-detail-location'>{ entry.locationText }</LibMarkdown>
-              </div>
-            )
-          }
           <LibMarkdown itemProp='description'>{ entry.content }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           <Sponsorships sponsors={entry.sponsors} />

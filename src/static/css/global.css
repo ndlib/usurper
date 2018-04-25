@@ -2445,7 +2445,7 @@ main blockquote p {
 .event-details {
   max-width: calc(100% - 35px);
   display: grid;
-  grid-template-columns: 80px auto;
+  grid-template-columns: auto;
   grid-template-rows: auto auto auto;
   grid-gap: 0.3em;
   color: #5D6A83;
@@ -2453,16 +2453,31 @@ main blockquote p {
   font-family: GPCMed, sans-serif;
 }
 
-.event-detail-time p, .event-detail-location p {
+.event-details p {
   font-size: 1em;
   color: #5D6A83;
   margin-bottom: 0;
 }
 
-.event-detail-header {
-  text-align: right;
-  font-family: GPCBold, sans-serif;
-  margin-right: 15px;
+.event-detail-time, .event-detail-date, .event-detail-location {
+  background-size: 24px;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+}
+
+.event-detail-time {
+  background-position: left 3px;
+  background-image: url('../images/time.png');
+}
+
+.event-detail-date {
+  background-position: left top;
+  background-image: url('../images/date.png');
+}
+
+.event-detail-location {
+  background-position: left 2px;
+  background-image: url('../images/location.png');
 }
 
 .description {
