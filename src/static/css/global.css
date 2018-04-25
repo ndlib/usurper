@@ -2143,10 +2143,6 @@ main blockquote p {
 }
 
 .sponsors {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  grid-gap: 0.15em;
   justify-content: start;
   margin: 45px 0 30px 0;
 }
@@ -2167,6 +2163,7 @@ main blockquote p {
   font-size: 16px;
   color: #5D6A83;
   color: #000;
+  display: block;
 }
 
 .presenter-card .vcard {
