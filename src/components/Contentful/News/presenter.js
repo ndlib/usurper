@@ -5,6 +5,7 @@ import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
+import Link from '../../Link'
 import Contact from '../../Contact/ServicePoint'
 import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
@@ -45,6 +46,7 @@ const PagePresenter = ({ entry }) => (
         <Image cfImage={entry.fields.image} className='news cover' itemProp='image' />
         <LibMarkdown itemProp='articleBody'>{ entry.fields.content }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
+        <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
       </main>
       <aside className='col-md-4 col-sm-4 right news'>
         <Librarians netids={entry.fields.contactPeople} />
