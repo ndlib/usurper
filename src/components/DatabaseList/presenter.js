@@ -11,8 +11,8 @@ import FilterBox from '../FilterBox'
 import OpenGraph from '../OpenGraph'
 import SideNav from '../SideNav'
 import LibMarkdown from '../LibMarkdown'
-import TextEllipsis from 'react-text-ellipsis'
 import Alphabet from './Alphabet'
+import Loading from '../Messages/Loading'
 import { getLinkObject } from '../../shared/ContentfulLibs'
 import './style.css'
 
@@ -53,8 +53,8 @@ const Content = (letter, data, filterValue, onFilterChange, assistText) => {
   )
 }
 
-const DBLoading = (letter) => {
-  return Content(letter, 'Loading Databases')
+const DBLoading = () => {
+  return (<Loading />)
 }
 
 const Loaded = (props) => {
@@ -84,7 +84,7 @@ const Loaded = (props) => {
           }
         </ul>
         <div className='database-list'>
-          <TextEllipsis lines={3}>{linkObject.heading.description}</TextEllipsis>
+          {linkObject.heading.description}
         </div>
         <Link to={'/database/' + item.sys.id} className='moreinfo'
           ariaLabel={'More Information about ' + item.fields.title}>More info</Link>

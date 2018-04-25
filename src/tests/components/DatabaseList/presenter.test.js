@@ -4,6 +4,7 @@ import '../../../static/css/global.css'
 import ListPresenter from '../../../components/DatabaseList/presenter'
 import Link from '../../../components/Link'
 import ErrorLoading from '../../../components/Messages/Error'
+import Loading from '../../../components/Messages/Loading'
 import * as statuses from '../../../constants/APIStatuses'
 import { shallow } from 'enzyme'
 
@@ -28,18 +29,9 @@ describe('components/DatabaseList/presenter.js', () => {
     afterEach(() => {
       enzymeWrapper = undefined
     })
-
-    it('should have proper page title', () => {
+    it('should show the Loading component', () => {
       expect(enzymeWrapper
-        .containsMatchingElement(<PageTitle title={'Databases: ' + props.letter.toUpperCase()} />))
-        .toBe(true)
-    })
-
-    it('should have proper database list {data}', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<section aria-label={'List of all "' + props.letter.toUpperCase() + '" Databases'}>
-          Loading Databases
-        </section>))
+        .containsMatchingElement(<Loading />))
         .toBe(true)
     })
   })

@@ -5062,15 +5062,7 @@ react-test-renderer@^15.5.4:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
-react-text-ellipsis@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/react-text-ellipsis/-/react-text-ellipsis-1.2.2.tgz#dda7d4ed22ae7a50b6b6a9eeea2e400cb553cc77"
-  dependencies:
-    lodash "^4.17.4"
-    prop-types "^15.5.10"
-    react "^15.6.1"
-
-react@^15.5.4, react@^15.6.1:
+react@^15.5.4:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:
