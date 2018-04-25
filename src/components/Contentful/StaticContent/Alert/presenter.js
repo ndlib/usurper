@@ -5,7 +5,7 @@ import '../../../../static/css/global.css'
 import PageAlert from '../../Alert/Page'
 
 const Presenter = ({ cfStatic }) => (
-  <PageAlert alert={cfStatic.fields.alert} />
+  <PageAlert alerts={cfStatic.fields.alerts} />
 )
 
 Presenter.propTypes = {

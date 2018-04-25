@@ -7,15 +7,18 @@ import { alertMap, alertSort, alertCatagorize } from '../alertHelpers.js'
 const mapStateToProps = (state, ownProps) => {
   let alerts = []
 
-  if (ownProps.alert) {
-    let alert = ownProps.alert.fields
-
+  if (ownProps.alerts) {
     let now = new Date()
-    let start = new Date(alert.startTime)
-    let end = new Date(alert.endTime)
-    if (start <= now && end >= now) {
-      alerts.push(alertMap(alert))
-    }
+
+    ownProps.alerts.forEach((entry) => {
+      let alert = entry.fields
+
+      let start = new Date(alert.startTime)
+      let end = new Date(alert.endTime)
+      if (start <= now && end >= now) {
+        alerts.push(alertMap(alert))
+      }
+    })
 
     alerts.sort(alertSort)
 

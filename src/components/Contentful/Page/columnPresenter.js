@@ -57,7 +57,11 @@ const ColumnContainerPresenter = (props) => {
         description={page.shortDescription}
         image={false}
       />
-      <PageAlert alert={page.alert} />
+      <div className='columnAlertContainer'>
+        <div className='col-md-12 col-xs-12'>
+          <PageAlert alerts={page.alerts} />
+        </div>
+      </div>
       <SideNav className='side-nav-bg'>
         <ul>
           {
