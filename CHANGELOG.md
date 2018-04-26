@@ -1,5 +1,25 @@
 # Change Log
 
+## [v2018.12](https://github.com/ndlib/usurper/tree/v2018.12) "Finally Finals"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.11...v2018.12)
+
+We did a bunch of stuff that's not visible or noticable that I'm not going to list. Promise we worked hard tho and got lots done.
+
+### UI Changes
+- Databases with multiple links are now displayed in a sane manner on pathfinder(TM) pages [#455](https://github.com/ndlib/usurper/pull/455)
+- Find a news story that you like? Like, Share, Comment and Subscribe (only share though, that's all we added) [#461](https://github.com/ndlib/usurper/pull/461)
+- Find a news story and want to see more news stories? Go ahead and click one button to do so! [#457](https://github.com/ndlib/usurper/pull/457)
+- Event details info now feature fancy icons instead of boring text [#463](https://github.com/ndlib/usurper/pull/463)
+
+### Features
+- Primo (onesearch) NUI (New User Interface) can now redirect (push you from there to here) to a new page here (the library website) to find maps (maps) of item (book/journal) locations (shelves) [#458](https://github.com/ndlib/usurper/pull/458)
+
+### Bug Fixes
+- Google search will stop making some pages look like they're serious government business. No serious business here. We're a library. [#452](https://github.com/ndlib/usurper/pull/452)
+- IE and Firefox REALLY didn't like to display the database listing page. That's now fixed. So go ahead and continue not switching to chrome I guess. [#459](https://github.com/ndlib/usurper/pull/459)
+- Super sponsored events with lots of sponsors made the sponsor line look wierd, now sponsors should look great no matter how many sponsors there are. [#462](https://github.com/ndlib/usurper/pull/462)
+
+
 ## [v2018.11](https://github.com/ndlib/usurper/tree/v2018.11) "Spring is Coming"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.10...v2018.11)
 
