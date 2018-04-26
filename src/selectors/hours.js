@@ -55,7 +55,7 @@ const getTodaysHours = (hours) => {
   }
   let today = hours.weeks[0][new Date().toLocaleString('en-US', { weekday: 'long' })]
   today['schemaOpeningHours'] = days[new Date().getDay()] + ' ' + today.rendered
-  
+
   return today
 }
 

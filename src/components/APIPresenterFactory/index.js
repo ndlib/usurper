@@ -30,11 +30,11 @@ class APIPresenterFactory extends Component {
 
 APIPresenterFactory.propTypes = {
   presenter: PropTypes.func.isRequired, // The presenter to render when status === success
-  status: PropTypes.string.isRequired,  // The current API status code
-  props: PropTypes.oneOfType([          // The props to pass to the given presenter when status === success
+  status: PropTypes.string.isRequired, // The current API status code
+  props: PropTypes.oneOfType([ // The props to pass to the given presenter when status === success
     PropTypes.object,
     PropTypes.array]).isRequired,
-  error: PropTypes.object, // The error class to show if you don't want the default.
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.func]), // The error class to show if you don't want the default.
 }
 
 export default APIPresenterFactory
