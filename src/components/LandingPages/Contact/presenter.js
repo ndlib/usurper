@@ -9,7 +9,7 @@ const ContactPresenter = (props) => {
     <div className='contact-page'>
       <PageTitle title='Contact Us' />
       <SearchProgramaticSet open={false} />
-     <div className='point point-card general'>
+      <div className='point point-card general'>
         <h3>General Contact</h3>
 
         <ul>
@@ -18,30 +18,30 @@ const ContactPresenter = (props) => {
       </div>
 
       <div className='row'>
-      {
-        props.sections.map((section, index) => {
-          return (
-            <section className='col-md-6 col-xs-12' key={"section_" + index}>
-              <h2>{section.title}</h2>
-              {
-                section.points.map((slug) => {
-                  if (!props.points[slug]) {
-                    console.log('point ' + slug + ' not found')
-                    return null
-                  }
+        {
+          props.sections.map((section, index) => {
+            return (
+              <section className='col-md-6 col-xs-12' key={'section_' + index}>
+                <h2>{section.title}</h2>
+                {
+                  section.points.map((slug) => {
+                    if (!props.points[slug]) {
+                      console.log('point ' + slug + ' not found')
+                      return null
+                    }
 
-                  return <span key={slug}>
-                    <div className='point-card'>
-                    <h3>{props.points[slug].fields.title}</h3>
-                    <Contact servicePoint={props.points[slug]} />
-                    </div>
-                  </span>
-                })
-              }
-            </section>
-          )
-        })
-      }
+                    return <span key={slug}>
+                      <div className='point-card'>
+                        <h3>{props.points[slug].fields.title}</h3>
+                        <Contact servicePoint={props.points[slug]} />
+                      </div>
+                    </span>
+                  })
+                }
+              </section>
+            )
+          })
+        }
       </div>
     </div>
   )
