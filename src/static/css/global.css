@@ -2451,6 +2451,7 @@ main blockquote p {
   color: #5D6A83;
   font-size: 1.3em;
   font-family: GPCMed, sans-serif;
+  margin-bottom: 35px;
 }
 
 .event-details p {
