@@ -26,6 +26,8 @@ describe('components/LoanResources/resourceList.js', () => {
         sortClass: jest.fn(),
         sortClick: jest.fn(),
         assistSortDirection: jest.fn(),
+        listType: 'listType',
+        assistText: 'assistText'
       }
       setup(props)
     })
@@ -63,6 +65,8 @@ describe('components/LoanResources/resourceList.js', () => {
         sortClass: jest.fn(),
         sortClick: jest.fn(),
         assistSortDirection: jest.fn(),
+        listType: 'listType',
+        assistText: 'assistText'
       }
       setup(props)
     })
