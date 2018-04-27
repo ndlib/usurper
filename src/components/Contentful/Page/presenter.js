@@ -23,7 +23,9 @@ const PagePresenter = ({ cfPageEntry }) => (
     <SearchProgramaticSet open={cfPageEntry.fields.searchPanelOpen} />
     <div className='row'>
       <main className='col-md-8 col-sm-7'>
-        <PageAlert alert={cfPageEntry.fields.alert} />
+        <div className='pageAlertContainer'>
+          <PageAlert alerts={cfPageEntry.fields.alerts} />
+        </div>
         <div className='mobile-only'>
           <ContactPoint cfPageEntry={cfPageEntry} mobile />
         </div>
