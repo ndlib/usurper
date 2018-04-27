@@ -57,10 +57,10 @@ describe('components/Contentful/Floor/presenter', () => {
   })
 
   it('should render the item call number', () => {
-    expect(enzymeWrapper.containsMatchingElement(<h2>call no</h2>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<strong>call no</strong>)).toBe(true)
   })
 
   it('should render the item title', () => {
-    expect(enzymeWrapper.containsMatchingElement(<p>itemTitle</p>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<i>itemTitle</i>)).toBe(true)
   })
 })
