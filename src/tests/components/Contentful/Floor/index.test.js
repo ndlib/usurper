@@ -16,7 +16,7 @@ let props
 describe('components/Contentful/Floor/Container', () => {
   beforeEach(() => {
     props = {
-      cfFloorEntry: { status: 'test' },
+      cfFloorEntry: { status: 'test', json: null },
       fetchFloor: jest.fn(),
       match: { params: { id: 'fake page slug' } },
       personal: {
@@ -45,7 +45,11 @@ describe('components/Contentful/Floor/Container', () => {
   it('only renders APIPresenterFactory with cfFloorEntry slice and FloorPresenter', () => {
     expect(enzymeWrapper.containsMatchingElement(<APIPresenterFactory
       status={props.cfFloorEntry.status}
-      props={{ cfFloorEntry: props.cfFloorEntry.json, extraData: {} }}
+      props={{
+        cfFloorEntry: props.cfFloorEntry.json,
+        extraData: {},
+        cfServicePoint: null,
+      }}
       presenter={FloorPresenter} />))
       .toBe(true)
   })
