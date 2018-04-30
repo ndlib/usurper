@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "hoist-non-react-statics": "^2.5.0",
     "ie-array-find-polyfill": "^1.1.0",
     "lodash": "^4.17.4",
     "markdown-to-jsx": "^5.3.3",
