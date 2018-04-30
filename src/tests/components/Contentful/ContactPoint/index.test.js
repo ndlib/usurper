@@ -4,7 +4,8 @@ import ContactPoint from '../../../../components/Contentful/ContactPoint'
 import Image from '../../../../components/Image'
 
 const setup = (cfPageEntry) => {
-  return shallow(<ContactPoint cfPageEntry={cfPageEntry} />)
+
+  return shallow(<ContactPoint cfPageEntry={cfPageEntry} />).dive(1)
 }
 
 let enzymeWrapper

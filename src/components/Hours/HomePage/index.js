@@ -7,6 +7,7 @@ import HoursHomePagePresenter from './presenter.js'
 import makeGetHoursForServicePoint from '../../../selectors/hours'
 import * as statuses from '../../../constants/APIStatuses'
 import InlineContainer from '../InlineContainer'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const HESBURGH_LIBRARY = '426'
 
@@ -61,4 +62,4 @@ const HomePageHours = connect(
   mapDispatchToProps
 )(HomePageHoursContainer)
 
-export default HomePageHours
+export default withErrorBoundary(HomePageHours)
