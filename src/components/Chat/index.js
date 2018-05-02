@@ -4,11 +4,11 @@ const Chat = () => {
   return (
     <section className='chat' aria-label='Chat with Us'>
       <div className='skiplink'>
-        Phone Number: <a href="tel:5746316679" aria-label="Call (574) 631-6679">(574) 631-6679</a>
+        Phone Number: <a href='tel:5746316679' aria-label='Call (574) 631-6679'>(574) 631-6679</a>
       </div>
       <div className='libraryh3lp' aria-hidden='true'>
         <iframe
-          title="Chat with Us"
+          title='Chat with Us'
           src='https://libraryh3lp.com/chat/nd-ask-a-lib@chat.libraryh3lp.com?skin=10273'
           frameBorder={0}
           style={{
