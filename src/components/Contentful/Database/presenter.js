@@ -11,7 +11,11 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 
 const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => (
   <div key={`ContentfulDatabase_${cfDatabaseEntry.sys.id}`} className='container-fluid'>
-    <PageTitle title={cfDatabaseEntry.fields.title} />
+    <PageTitle title={cfDatabaseEntry.fields.title} subtitle={
+      cfDatabaseEntry.fields.alternateTitles && cfDatabaseEntry.fields.alternateTitles.map((title, index) => {
+        return <div key={'aka_' + index}>{title}</div>
+      })
+    } />
     <SearchProgramaticSet open={false} />
 
     <div className='row'>
