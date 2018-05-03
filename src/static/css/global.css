@@ -1463,6 +1463,7 @@ label[for='q']:after, .uSearchBox label:after {
   left: 3px;
   position: absolute;
   top: -1px;
+  speak: none;
 }
 
 .menu-drawer a {
