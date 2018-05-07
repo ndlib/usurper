@@ -488,7 +488,7 @@ body.gold-blue #header div a {
 
 /* Page Title */
 header.page-title small {
-  display: inline-block;
+  display: block;
   font-size: 18px;
 }
 
