@@ -68,7 +68,8 @@ export class ImageContainer extends Component {
     }
 
     if (this.state.error) {
-      return null
+      // return null
+      console.log('Image load error')
     }
 
     return <Presenter
