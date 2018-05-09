@@ -2544,6 +2544,26 @@ h3:first-child {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
 }
 
+.article img + em {
+  float: right;
+  display: block;
+  max-width: 350px;
+  font-style: normal;
+  font-weight: bold;
+  padding:0px 15px 1em;
+  color: #666;
+}
+
+.article p:has(>img) {
+  float: right;
+}
+
+p < img {
+  float: right;
+  background: green;
+  border: solid 3px #000;
+}
+
 .col-md-4.right {
   position: relative;
 
