@@ -15,6 +15,7 @@ import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
 import ContentfulNews from '../../components/Contentful/News'
 import DatabasePage from '../../components/Contentful/Database'
+import SearchPage from '../../components/SearchPage'
 import ContentfulEvent from '../../components/Contentful/Event'
 import News from '../../components/LandingPages/News'
 import Events from '../../components/LandingPages/Events'
@@ -86,6 +87,7 @@ const App = (props) => {
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
+              <Route exact path='/search' component={SearchPage} />
               <Route exact path='/:id' component={ContentfulPage} />
 
               <Route path='*' component={NotFound} />

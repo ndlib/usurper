@@ -1,0 +1,17 @@
+.search-results a {
+  text-decoration: none;
+}
+a .search-result-title {
+
+}
+
+a .search-result-display-link {
+  color: gray;
+  font-size: .7rem;
+  margin-bottom: .5rem;
+}
+
+a .search-result-snippet {
+  color: black;
+  margin-bottom: 2rem;
+}

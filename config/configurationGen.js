@@ -12,6 +12,8 @@ const genConfig = () => {
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
+    gcseKey: 'AIzaSyDxN0OmGofQqHr7d6CrT6DzJ-4-498_BaE',
+    gcseCx: '014724449652618811936:oztyn9vo9f8'
   }
 
   let config = {
@@ -25,6 +27,8 @@ const genConfig = () => {
     serviceNowBaseURL: process.env.SERVICE_NOW_BASE_URL ? process.env.SERVICE_NOW_BASE_URL : defaultConfig.serviceNowBaseURL,
     version: process.env.VERSION ? process.env.VERSION : defaultConfig.version,
     googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID ? process.env.GOOGLE_ANALYTICS_ID : defaultConfig.googleAnalyticsId,
+    gcseKey:  process.env.GCSE_KEY ? process.env.GCSE_KEY : defaultConfig.gcseKey,
+    gcseCx:  process.env.GCSE_CX ? process.env.GCSE_CX : defaultConfig.gcseCx,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }

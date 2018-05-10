@@ -19,7 +19,6 @@ const Drawer = (props) => {
             visible={!props.search.advancedSearch}
             {...props}
             currentSearch={props.currentSearch}
-
           />
           <AdvancedSearch visible={props.search.advancedSearch} />
           <SearchPreference

@@ -40,6 +40,7 @@ const SearchBox = (props) => {
           id='basic-search-field'
           role='searchbox'
           name='q'
+          defaultValue={props.defaultSearch}
           onChange={props.onChange}
           aria-labelledby='label-for-basic-search-field' />
       </div>
