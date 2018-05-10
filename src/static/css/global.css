@@ -2541,17 +2541,20 @@ h3:first-child {
   border: solid 2px #fff;
   float: right;
   margin:  0 0 15px 15px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  width: 50%;
+  clear: left;
 }
 
 .article img + em {
   float: right;
   display: block;
-  max-width: 350px;
-  font-style: normal;
-  font-weight: bold;
+  width: 50%;
+  
+  font-weight: normal;
   padding:0px 15px 1em;
-  color: #666;
+  color: #696969;
+  clear: left;
 }
 
 .article p:has(>img) {
