@@ -2542,15 +2542,18 @@ h3:first-child {
   float: right;
   margin:  0 0 15px 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  width: 50%;
   clear: left;
+}
+
+.article span[itemProp="articleBody"] img {
+  margin-top: 15px;
+  width: 50%;
 }
 
 .article img + em {
   float: right;
   display: block;
   width: 50%;
-  
   font-weight: normal;
   padding:0px 15px 1em;
   color: #696969;

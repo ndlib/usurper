@@ -36,7 +36,7 @@ const PagePresenter = ({ entry }) => {
       />
       <SearchProgramaticSet open={false} />
       <div className='row'>
-        <main className='col-md-8'>
+        <main className='col-md-8 article'>
           <div className='event-details'>
             <div className='event-detail-date'>{ entry.displayDate }</div>
             <div className='event-detail-time'><LibMarkdown>{ entry.displayTime }</LibMarkdown></div>
@@ -48,7 +48,7 @@ const PagePresenter = ({ entry }) => {
               )
             }
           </div>
-          <LibMarkdown itemProp='description'>{ entry.content }</LibMarkdown>
+          <LibMarkdown itemProp='articleBody'>{ entry.content }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           <Sponsorships sponsors={entry.sponsors} />
           <Presenters presenters={entry.presenters} />
