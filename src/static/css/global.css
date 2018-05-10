@@ -488,7 +488,7 @@ body.gold-blue #header div a {
 
 /* Page Title */
 header.page-title small {
-  display: inline-block;
+  display: block;
   font-size: 18px;
 }
 
@@ -1463,6 +1463,7 @@ label[for='q']:after, .uSearchBox label:after {
   left: 3px;
   position: absolute;
   top: -1px;
+  speak: none;
 }
 
 .menu-drawer a {
@@ -2541,6 +2542,26 @@ h3:first-child {
   float: right;
   margin:  0 0 15px 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
+}
+
+.article img + em {
+  float: right;
+  display: block;
+  max-width: 350px;
+  font-style: normal;
+  font-weight: bold;
+  padding:0px 15px 1em;
+  color: #666;
+}
+
+.article p:has(>img) {
+  float: right;
+}
+
+p < img {
+  float: right;
+  background: green;
+  border: solid 3px #000;
 }
 
 .col-md-4.right {

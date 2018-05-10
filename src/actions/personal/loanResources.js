@@ -7,7 +7,7 @@ export const handleUser = (dispatch, data) => {
     states.recievePersonal(
       'user',
       statuses.SUCCESS,
-      { user: data },
+      data,
     )
   )
 }
