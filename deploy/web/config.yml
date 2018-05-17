@@ -11,7 +11,7 @@ Stacks:
       Contact: web-and-software-engineering-group@nd.edu
   Single:
     - Name: $SERVICE-$STAGE
-      Template: webTemplate.yml
+      Template: root.yml
       Tags:
         Description: $SERVICE Website Stack
       Parameters:
@@ -20,4 +20,4 @@ Stacks:
 
 Artifacts:
   Templates:
-    - webTemplate.yml
+    - root.yml
