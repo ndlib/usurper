@@ -7,18 +7,26 @@ const mapStateToProps = (state, ownProps) => {
 
   let specialDays = []
 
-  ownProps.allEvents.forEach((event) => {
+  const now = new Date()
+
+  ownProps.events.forEach((event) => {
     // If an event last longer than a month should we highlight all the days?
     // Highlight only the first and last days in this case.
     if (moment(event.endDate).diff(moment(event.startDate), 'days') > 28) {
-      specialDays.push({ date: moment(event.startDate) })
-      specialDays.push({ date: moment(event.endDate) })
+      if (event.startDate > now) {
+        specialDays.push({ date: moment(event.startDate) })
+      }
+      if (event.endDate > now) {
+        specialDays.push({ date: moment(event.endDate) })
+      }
     } else {
       const start = moment(event.startDate).format('YYYYMMDD')
       const end = moment(event.endDate).format('YYYYMMDD')
       let current = start
       while (current <= end) {
-        specialDays.push({ date: moment(current, 'YYYYMMDD') })
+        if (current > now) {
+          specialDays.push({ date: moment(current, 'YYYYMMDD') })
+        }
         current = moment(current, 'YYYYMMDD').add(1, 'day').format('YYYYMMDD')
       }
     }

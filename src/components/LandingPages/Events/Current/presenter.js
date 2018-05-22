@@ -13,13 +13,13 @@ const Current = (props) => {
       <Link to='/events/past' className='button fright tab'>Past Events</Link>
       <PageTitle title='Current and Upcoming Events' />
       <SearchProgramaticSet open={false} />
-      <div className='row landing'>
-        <div className='col-md-10 col-xs-12' >
+      <div className='row'>
+        <div className='col-md-9 col-xs-12' >
           {
             props.events.map((event, index) => makeEventEntry(event, index, index === props.events.length - 1))
           }
         </div>
-        <div className='col-md-2 col-xs-12'>
+        <div className='col-md-3 col-xs-12'>
           <Calendar {...props} />
         </div>
       </div>
