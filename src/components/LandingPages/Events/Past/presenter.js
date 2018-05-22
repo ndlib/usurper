@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import PageTitle from '../../../PageTitle'
 import SearchProgramaticSet from '../../../SearchProgramaticSet'
 import '../style.css'
@@ -25,6 +26,13 @@ const Events = (props) => {
       </div>
     </div>
   )
+}
+
+Events.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  events: PropTypes.array,
+  eventDates: PropTypes.object.isRequired,
+  filterCallback: PropTypes.func.isRequired,
 }
 
 export default Events

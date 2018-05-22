@@ -11,7 +11,14 @@ const Events = (props) => {
       <Switch>
         <Route exact path='/events' render={() => <CurrentPresenter events={props.present} allEvents={props.all} />} />
         <Route exact path='/events/past' render={() => <PastPresenter events={props.past} allEvents={props.all} />} />
-        <Route exact path='/events/past/:date' render={() => <PastPresenter events={props.past} allEvents={props.all} />} />
+        <Route exact path='/events/past/:date' render={
+          () =>
+            <PastPresenter
+              events={props.past}
+              allEvents={props.all}
+            />
+          }
+        />
         <Route exact path='/events/:date' render={() => <DatePresenter events={props.all} />} />
       </Switch>
     </div>
