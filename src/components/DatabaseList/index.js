@@ -173,6 +173,9 @@ export class DatabaseListContainer extends Component {
     if (this.props.currentLetter !== nextProps.currentLetter) {
       // letter changed
       return true
+    } else if (this.props.allLettersStatus !== nextProps.allLettersStatus) {
+      // status of all letters has chnaged
+      return true
     } else if (this.props.cfDatabaseLetter[this.props.currentLetter]) {
       // cfDatabaseLetter is defined
       if (this.props.cfDatabaseLetter[this.props.currentLetter].status !==
