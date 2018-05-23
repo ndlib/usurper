@@ -9,7 +9,6 @@
   clear: both;
 }
 
-
 * { Box-sizing: Border-box }
 
 body {
@@ -2493,6 +2492,60 @@ main blockquote p {
 .event-detail-location {
   background-position: left 2px;
   background-image: url('../images/location.png');
+}
+
+.dateFilter ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.dateFilter li {
+  list-style: none;
+  padding-left: 10px;
+  position: relative;
+  font-weight: bold;
+}
+
+.dateFilter .archive {
+  margin-top: 8px;
+}
+
+.dateFilter .collapsed::before {
+  color: #b3b3b3;
+  content: "›";
+  font-size: 25px;
+  left: 0;
+  position: absolute;
+  top: -2px;
+  speak: none;
+}
+
+.dateFilter .expanded::before {
+  color: #b3b3b3;
+  content: "›";
+  left: 0px;
+  position: absolute;
+  font-size: 25px;
+  top: -2px;
+  speak: none;
+
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.yearFilter {
+  cursor: pointer;
+}
+
+.monthFilter {
+  padding-left: 15px;
+}
+
+.monthFilter span {
+  font-weight: bold;
 }
 
 .description {

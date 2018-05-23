@@ -52,9 +52,23 @@ export class ImageContainer extends Component {
     this.onError = this.onError.bind(this)
   }
 
-  componentDidMount () {
+  fetchImage () {
     if (!this.props.src && this.props.cfImage && this.props.cfImage.sys) {
-      this.props.fetchEntry(this.props.cfImage.sys.id)
+      const imageID = this.props.cfImage.sys.id
+      this.props.fetchEntry(imageID)
+    }
+  }
+
+  componentDidMount () {
+    this.fetchImage()
+  }
+
+  componentDidUpdate (prevProps) {
+    const currentHasImage = this.props.cfImage && this.props.cfImage.sys
+    const prevHasImage = prevProps.cfImage && prevProps.cfImage.sys
+    // if this component was updated with a new image, fetch the new image
+    if (currentHasImage && prevHasImage && this.props.cfImage.sys.id !== prevProps.cfImage.sys.id) {
+      this.fetchImage()
     }
   }
 
@@ -89,6 +103,8 @@ ImageContainer.propTypes = {
   alt: PropTypes.string,
   ariaHidden: PropTypes.bool,
   itemProp: PropTypes.string,
+
+  fetchEntry: PropTypes.func.isRequired,
 
   // removed in mapping
   cfImage: PropTypes.object,
