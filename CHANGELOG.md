@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2018.14](https://github.com/ndlib/usurper/tree/v2018.15) "Heat Arrives"
+## [v2018.15](https://github.com/ndlib/usurper/tree/v2018.15) "Heat Arrives"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.14...v2018.15)
 
 ### Features
