@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2018.14](https://github.com/ndlib/usurper/tree/v2018.15) "Heat Arrives"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.14...v2018.15)
+
+### Features
+- We are such big party people that we needed an archive of all our parties. *disclamer, events are not actually parties* [#478](https://github.com/ndlib/usurper/pull/478)
+
+### Bug Fixes
+- The Datatabse listing page was sometimes too bashful to show your search. It will now show results every time. [#479](https://github.com/ndlib/usurper/pull/479)
+
+
 ## [v2018.14](https://github.com/ndlib/usurper/tree/v2018.14) "Schools Out"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.12...v2018.14)
 
