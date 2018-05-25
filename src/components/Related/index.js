@@ -59,7 +59,7 @@ Related.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   showImages: PropTypes.bool,
-  children: PropTypes.array,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 }
 
 Related.defaultProps = {

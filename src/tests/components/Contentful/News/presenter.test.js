@@ -3,6 +3,8 @@ import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Contentful/News/presenter'
 import ContactPoint from '../../../../components/Contentful/ContactPoint'
 import PageTitle from '../../../../components/PageTitle'
+import LibMarkdown from '../../../../components/LibMarkdown'
+import Related from '../../../../components/Related'
 
 const setup = (cfPageEntry) => {
   return shallow(<PagePresenter entry={cfPageEntry} />)
@@ -40,10 +42,10 @@ describe('components/Contentful/News/presenter', () => {
   })
 
   it('should render LibMarkdown for content', () => {
-    expect(enzymeWrapper.find('LibMarkdown').children().node).toBe('Fake content')
+    expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>Fake content</LibMarkdown>)).toBe(true)
   })
 
   it('should render Related for related resources', () => {
-    expect(enzymeWrapper.find('Related').someWhere(n => n.children().node === 'Fake related resources')).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Related className="p-resources" title="Resources" showImages={false}>Fake related resources</Related>)).toBe(true)
   })
 })

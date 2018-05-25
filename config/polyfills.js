@@ -1,4 +1,3 @@
-'use strict'
 
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an
@@ -15,7 +14,7 @@ if (!String.prototype.startsWith) {
 }
 
 if (!Array.prototype.equals) {
-  Array.prototype.equals = function(compare) {
+  Array.prototype.equals = function (compare) {
     if (!compare || !(compare instanceof Array)) {
       return false
     }
@@ -50,6 +49,9 @@ require('whatwg-fetch')
 require('url-search-params-polyfill')
 // find
 require('ie-array-find-polyfill')
+
+// React now requires Array.prototype.map and other things filled out by babel-polyfill
+require('babel-polyfill')
 
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.

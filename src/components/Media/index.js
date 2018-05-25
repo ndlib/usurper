@@ -13,6 +13,7 @@ const Media = ({ data }) => {
         data.map((entry) => {
           return (
             <Link
+              key={entry.fields.title}
               to={entry.fields.url}
               className={entry.fields.type}
             >
