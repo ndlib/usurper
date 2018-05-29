@@ -29,7 +29,7 @@ const Sections = (column, showDescriptions) => {
                     <ul className='linkGroup'>
                       {
                         linkObject.conditionalLinks.map((data) => {
-                          return <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
+                          return data.url && <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
                         })
                       }
                     </ul>
