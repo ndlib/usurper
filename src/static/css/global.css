@@ -1985,6 +1985,10 @@ address {
   padding-bottom: 18px;
 }
 
+.floor-map {
+  max-width: 100%;
+}
+
 .contact-page .point .fax {
   background-image: url("../images/fax.png");
   padding-top: 15px !important;
