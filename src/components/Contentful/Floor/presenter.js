@@ -23,7 +23,7 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, extraData }) => (
             </div>
           )
         }
-        <Image cfImage={cfFloorEntry.fields.image} />
+        <Image cfImage={cfFloorEntry.fields.image} className='floor-map' />
       </div>
       <div className='col-md-4 col-sm-5 col-xs-12 right'>
         <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
