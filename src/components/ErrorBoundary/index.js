@@ -11,7 +11,7 @@ import hoistNonReactStatic from 'hoist-non-react-statics'
 This is the simplest usage of ErrorBoundary. This is most likely not the
 component you are looking for. Look at withErrorBoundary instead.
 
-You may want to use this if you are trying to insert an ErrorBoudary within the
+You may want to use this if you are trying to insert an ErrorBoundary within the
 render method of complex PresenterFactory where you are not necessarily
 returning a React component.
 
@@ -52,6 +52,9 @@ error boundary without internal changes to the code. In complex components you
 will likely import it in the index.js file and usage is similar to other
 higher-order wrapping components such as withRouter().
 
+Optionally, you also pass an alternative component to render in the event that
+you do actually hit an ErrorBoundary.
+
 Example Usage (basic):
 
     ...
@@ -81,6 +84,7 @@ function withErrorBoundary (WrappedComponent, AlternateComponent) {
   }
 
   // We need to make some changes to render for a higher order component to work
+  // because we are passing around actual components instead of just props.
   class ErrorBoundaryWrapper extends ErrorBoundary {
     render () {
       if (this.state.hasCatastrophicError) {
