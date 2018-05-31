@@ -1,6 +1,7 @@
 import React from 'react'
 import RedirectRoutes from './redirectRoutes.js'
 import { Route, Redirect } from 'react-router'
+import { Helmet } from 'react-helmet'
 
 const Rewrite = (props) => {
   return RedirectRoutes.map((route, index) => {
@@ -24,7 +25,12 @@ const Rewrite = (props) => {
           render={
               () => {
                 window.location = target
-                return null
+                return (
+                  <Helmet>
+                    <meta name='prerender-header' content={'Location: ' + target} />
+                    <meta name='prerender-status-code' content='301' />
+                  </Helmet>
+                )
               }
             }
         />
