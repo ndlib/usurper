@@ -23,16 +23,16 @@ const Rewrite = (props) => {
           key={index}
           exact path={route.path}
           render={
-              () => {
-                window.location = target
-                return (
-                  <Helmet>
-                    <meta name='prerender-header' content={'Location: ' + target} />
-                    <meta name='prerender-status-code' content='301' />
-                  </Helmet>
-                )
-              }
+            () => {
+              window.location = target
+              return (
+                <Helmet>
+                  <meta name='prerender-header' content={'Location: ' + target} />
+                  <meta name='prerender-status-code' content='301' />
+                </Helmet>
+              )
             }
+          }
         />
       )
     // index.php redirect
