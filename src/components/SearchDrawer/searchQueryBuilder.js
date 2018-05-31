@@ -2,13 +2,13 @@ import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
   const seachScope = isOnesearch ? 'malc_blended' : 'nd_campus'
+  const environment = window.location.hostname === 'library.nd.edu' ? '' : 'pprd'
 
   if (isAdvanced) {
-    return `http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}&search_scope=${seachScope}`
+    return `http://onesearch${environment}.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}&search_scope=${seachScope}`
   } else {
-    return `http://onesearch.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&search_scope=${seachScope}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
+    return `http://onesearch${environment}.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&search_scope=${seachScope}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
   }
-
 }
 const curateBasicURL = (queryTerm) => {
   return `https://curate.nd.edu/catalog?utf8=%E2%9C%93&amp;search_field=all_fields&amp;q=${queryTerm}`
@@ -93,7 +93,6 @@ const searchQuery = (searchStore, advancedSearch, history) => {
   } else {
     // Basic Search
     searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
-
   }
   switch (searchStore.searchType) {
     case ONESEARCH:
