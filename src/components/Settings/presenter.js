@@ -19,6 +19,8 @@ const Presenter = (props) => {
       <PageTitle title='Settings' />
       <div className='row'>
         <div className='col-md-8 col-sm-7 settings'>
+          <p>opt-in/out here.</p>
+          <input type='checkbox' onChange={props.setCircStatus} defaultChecked={props.circHistory} />
           <StaticAlert slug='settings' preview={props.preview} />
           <p>
             Preferred Pickup Location:
@@ -47,6 +49,8 @@ Presenter.propTypes = {
   setHomeLibrary: PropTypes.func.isRequired,
   homeIndex: PropTypes.number,
   libraryStatus: PropTypes.number,
+  setCircStatus: PropTypes.func.isRequired,
+  circHistory: PropTypes.bool,
 }
 
 export default Presenter

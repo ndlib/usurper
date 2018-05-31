@@ -7,6 +7,7 @@ export const REQUEST_SETTINGS = 'REQUEST_SETTINGS'
 
 export const KIND = {
   homeLibrary: 'HOME_LIBRARY',
+  circStatus: 'CIRC_STATUS',
 }
 
 const requestSettings = (kind, data) => {
@@ -49,5 +50,28 @@ export const setHomeLibrary = (library) => {
       console.log(e)
       dispatch(recieveSettings(KIND.homeLibrary, library, statuses.ERROR, e))
     })
+  }
+}
+
+export const setCircStatus = () => {
+  return (dispatch, getState) => {
+    var state = getState().personal
+    //dispatch(requestSettings(KIND.circStatus, checked))
+    //let url = Config.userPrefsAPI + '/the/endpoint'
+    // return fetch(url, {
+    //   method: 'post',
+    //   headers: {
+    //     'params': checked,
+    //     'Authorization': state.login.token,
+    //   },
+    // })
+    // .then(response => { console.log('get over here', response.json()); return response.json() })
+    // .then(json => dispatch(
+    //   recieveSettings(KIND.circStatus, checked, statuses.SUCCESS, json)
+    // ))
+    // .catch((e) => {
+    //   console.log(e)
+    //   dispatch(recieveSettings(KIND.circStatus, checked, statuses.ERROR, e))
+    // })
   }
 }
