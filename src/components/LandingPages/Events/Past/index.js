@@ -58,6 +58,7 @@ const mapStateToProps = (state, ownProps) => {
   let pageTitle = 'Past Events'
   let filterMonth = null
   let filterYear = null
+  // if filtered to a month, get the numeric values of month and year
   if (dateString && dateString.length === 6 && dateString.match(dateRegEx) !== null) {
     const date = moment(dateString, 'YYYYMM')
     pageTitle = date.format('MMMM YYYY')
@@ -82,28 +83,93 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    allEvents: ownProps.events,
     events: events,
     eventDates: eventDates,
     pageTitle: pageTitle,
+    pageDate: dateString,
   }
 }
 
 export class PastEventsContainer extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      events: props.events,
+      pageTitle: props.pageTitle,
+      pageDate: props.pageDate,
+      filterValue: '',
+    }
+
+    this.onFilterChange = this.onFilterChange.bind(this)
+  }
+
+  static getDerivedStateFromProps (nextProps, currentState) {
+    // if we clicked on a date filter, make sure the page updates
+    //   removes any search filter
+    if (nextProps.pageDate !== currentState.pageDate) {
+      return {
+        events: nextProps.events,
+        pageDate: nextProps.pageDate,
+        pageTitle: nextProps.pageTitle,
+        filterValue: '',
+      }
+    }
+    return null
+  }
+
+  onFilterChange (e) {
+    const value = e.target.value
+
+    if (!value) {
+      this.setState({
+        events: this.props.events,
+        filterValue: '',
+        pageTitle: this.props.pageTitle,
+      })
+      return
+    }
+
+    const searchFields = ['title', 'content', 'presenter', 'shortDescription']
+    // filter to events that have the search value in any of the specified fields
+    const events = this.props.allEvents.filter(event => {
+      let inFilter = false
+      for (let index in searchFields) {
+        if (event[searchFields[index]]) {
+          inFilter |= event[searchFields[index]].toLowerCase().includes(value.toLowerCase())
+        }
+      }
+      return inFilter
+      // limit results so we don't kill the render time (eg. if someone types 'a' all events would show)
+    }).slice(0, 50)
+
+    this.setState({
+      events: events,
+      filterValue: value,
+      pageTitle: 'Search for "' + value + '"',
+    })
+  }
+
   render () {
     return (
       <Presenter
-        pageTitle={this.props.pageTitle}
-        events={this.props.events}
+        pageTitle={this.state.pageTitle}
+        events={this.state.events}
         eventDates={this.props.eventDates}
+        onFilterChange={this.onFilterChange}
+        filterValue={this.state.filterValue}
       />
     )
   }
 }
 
 PastEventsContainer.propTypes = {
+  allEvents: PropTypes.array.isRequired,
   events: PropTypes.array.isRequired,
   eventDates: PropTypes.object.isRequired,
   pageTitle: PropTypes.string.isRequired,
+  pageDate: PropTypes.string,
 }
 
 const PastEvents = withRouter(connect(
