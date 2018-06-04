@@ -66,27 +66,26 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     let drEndYear = advancedSearch['drEndYear5']
 
     // Build advanced search query
-    searchTerm = `query=${scope0},${precision0},${freeText0}`
+    searchTerm = `query=${scope0},${precision0},${freeText0},${bool0}`
     if (freeText1 !== '') {
-      searchTerm += `,${bool0}&query=${scope1},${precision1},${freeText1}`
+      searchTerm += `&query=${scope1},${precision1},${freeText1},${bool1}`
     }
     if (freeText2 !== '') {
-      searchTerm += `,${bool1}&query=${scope2},${precision2},${freeText2}`
+      searchTerm += `&query=${scope2},${precision2},${freeText2},AND`
     }
 
     if (materialType !== 'all_items') {
-      searchTerm += `,AND&pfilter=pfilter,exact,${materialType}`
+      searchTerm += `&pfilter=pfilter,exact,${materialType},AND`
     }
     if (language !== 'all_items') {
-      searchTerm += `,AND&pfilter=lang,exact,${language}`
+      searchTerm += `&pfilter=lang,exact,${language},AND`
     }
     if (drStartYear) {
-      searchTerm += `,AND&pfilter=dr_s,exact,${drStartYear}${padLeftZero(drStartMonth)}${padLeftZero(drStartDay)}`
+      searchTerm += `&pfilter=dr_s,exact,${drStartYear}${padLeftZero(drStartMonth)}${padLeftZero(drStartDay)},AND`
     }
     if (drEndYear) {
-      searchTerm += `,AND&pfilter=dr_e,exact,${drEndYear}${padLeftZero(drEndMonth)}${padLeftZero(drEndDay)}`
+      searchTerm += `&pfilter=dr_e,exact,${drEndYear}${padLeftZero(drEndMonth)}${padLeftZero(drEndDay)},AND`
     }
-    searchTerm += ',AND'
   } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
     searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
