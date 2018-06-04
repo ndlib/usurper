@@ -1,18 +1,39 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
+
+const padLeftZero = (num) => {
+  if (num.length < 2) {
+    return `0${num}`
+  }
+  return num
+}
+
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
   const seachScope = isOnesearch ? 'malc_blended' : 'nd_campus'
-  const environment = window.location.hostname === 'library.nd.edu' ? '' : 'pprd'
-
-  if (isAdvanced) {
-    return `http://onesearch${environment}.library.nd.edu/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Advanced&tab=${tab}&indx=1&dum=true&srt=rank&vid=NDU&frbg=&tb=t${queryTerm}&search_scope=${seachScope}`
-  } else {
-    return `http://onesearch${environment}.library.nd.edu/primo_library/libweb/action/dlSearch.do?bulkSize=10&dym=true&highlight=true&indx=1&institution=NDU&mode=Basic&onCampus=false&pcAvailabiltyMode=true&${queryTerm}&search_scope=${seachScope}&tab=${tab}&vid=NDU&displayField=title&displayField=creator`
-  }
+  const isProduction = window.location.hostname === 'library.nd.edu'
+  const env = isProduction ? '' : 'pprd'
+  const vid = isProduction ? 'NDU' : 'NDUA'
+  const mode = isAdvanced ? 'advanced' : 'basic'
+  return `http://onesearch${env}.library.nd.edu/primo-explore/search` +
+    `?${queryTerm}` +
+    `&institution=NDU` +
+    `&vid=${vid}` +
+    `&tab=${tab}` +
+    `&search_scope=${seachScope}` +
+    `&mode=${mode}` +
+    `&displayMode=full` +
+    `&bulkSize=10` +
+    `&highlight=true` +
+    `&dum=true` +
+    `&displayField=all` +
+    `&pcAvailabiltyMode=true`
+    // `&onCampus=false`
 }
+
 const curateBasicURL = (queryTerm) => {
   return `https://curate.nd.edu/catalog?utf8=%E2%9C%93&amp;search_field=all_fields&amp;q=${queryTerm}`
 }
+
 const libSearchBasicURL = (queryTerm) => {
   return `/search?q=${queryTerm}`
 }
@@ -43,51 +64,29 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
-    // Hack to fix weird date insertion on Primo's end of stuff.
-    if (drStartYear || drEndYear) {
-      if (!freeText1) {
-        freeText1 = '\''
-      } else if (!freeText2) {
-        freeText2 = '\''
-      }
+
+    // Build advanced search query
+    searchTerm = `query=${scope0},${precision0},${freeText0}`
+    if (freeText1 !== '') {
+      searchTerm += `,${bool0}&query=${scope1},${precision1},${freeText1}`
+    }
+    if (freeText2 !== '') {
+      searchTerm += `,${bool1}&query=${scope2},${precision2},${freeText2}`
     }
 
-    searchTerm = `&vl%2816833817UI0%29=${scope0}` +
-    `&vl%28UIStartWith0%29=${precision0}` +
-    `&vl%28freeText0%29=${freeText0}` +
-    `&vl%28boolOperator0%29=${bool0}` +
-    `&vl%2816833818UI1%29=${scope1}` +
-    `&vl%281UIStartWith1%29=${precision1}` +
-    `&vl%28freeText1%29=${freeText1}` +
-    `&vl%28boolOperator1%29=${bool1}` +
-    `&vl%2816833819UI2%29=${scope2}` +
-    `&vl%281UIStartWith2%29=${precision2}` +
-    `&vl%28freeText2%29=${freeText2}` +
-    `&vl%2816772486UI3%29=${materialType}` +
-    `&vl%2824400451UI4%29=${language}`
-
-    // Check if we have a valid date range, otherwise Primo returns an error
+    if (materialType !== 'all_items') {
+      searchTerm += `,AND&pfilter=pfilter,exact,${materialType}`
+    }
+    if (language !== 'all_items') {
+      searchTerm += `,AND&pfilter=lang,exact,${language}`
+    }
     if (drStartYear) {
-      // If no end year then use this year
-      drEndYear = drEndYear || '9999'
-      searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
-                `&vl%28drStartMonth5%29=${drStartMonth}` +
-                `&vl%28drStartYear5%29=${drStartYear}` +
-                `&vl%28drEndDay5%29=${drEndDay}` +
-                `&vl%28drEndMonth5%29=${drEndMonth}` +
-                `&vl%28drEndYear5%29=${drEndYear}`
-    } else if (drEndYear) {
-      // If no start year then start 100 years before end year.
-      drStartYear = drStartYear || '0000'
-      searchTerm += `&vl%28drStartDay5%29=${drStartDay}` +
-                `&vl%28drStartMonth5%29=${drStartMonth}` +
-                `&vl%28drStartYear5%29=${drStartYear}` +
-                `&vl%28drEndDay5%29=${drEndDay}` +
-                `&vl%28drEndMonth5%29=${drEndMonth}` +
-                `&vl%28drEndYear5%29=${drEndYear}`
+      searchTerm += `,AND&pfilter=dr_s,exact,${drStartYear}${padLeftZero(drStartMonth)}${padLeftZero(drStartDay)}`
     }
-
-    searchTerm += `&Submit=Search`
+    if (drEndYear) {
+      searchTerm += `,AND&pfilter=dr_e,exact,${drEndYear}${padLeftZero(drEndMonth)}${padLeftZero(drEndDay)}`
+    }
+    searchTerm += ',AND'
   } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
     searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
