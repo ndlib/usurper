@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import searchFloorMaps from '../../actions/floorSearch'
 import * as statuses from '../../constants/APIStatuses'
 import Loading from '../Messages/Loading'
-import NotFound from '../Messages/NotFound'
+import Empty from './Empty'
 
 class FloorSearch extends Component {
   constructor (props) {
@@ -34,7 +34,7 @@ class FloorSearch extends Component {
 
   render () {
     if (this.state.error) {
-      return <NotFound />
+      return <Empty location={this.props.location} />
     }
     return <Loading />
   }
@@ -57,6 +57,7 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 FloorSearch.propTypes = {
+  location: PropTypes.object,
   searchString: PropTypes.string,
   redirect: PropTypes.object,
   searchFloorMaps: PropTypes.func.isRequired,
