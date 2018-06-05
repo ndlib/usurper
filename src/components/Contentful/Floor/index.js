@@ -9,26 +9,11 @@ import ContentfulFloorPresenter from './presenter.js'
 
 const mapStateToProps = (state, ownProps) => {
   const searchParams = new URLSearchParams(ownProps.location.search)
-  let extraData = {}
-
-  const extraFields = [ 'title', 'author', 'call_number', 'collection_display' ]
-  for (let fieldIndex in extraFields) {
-    let field = extraFields[fieldIndex]
-    let value = searchParams.get(field)
-    if (value) {
-      if (field === 'title') {
-        // strip out whitespace and [,.] from the start/end of the title
-        value = value.replace(/^[\s,.]+|[\s,.]+$/gm, '')
-      }
-
-      extraData[field] = value
-    }
-  }
 
   return {
     cfFloorEntry: state.cfFloorEntry,
     searchParams: searchParams,
-    extraData: extraData,
+    location: ownProps.location,
   }
 }
 
@@ -61,7 +46,7 @@ export class ContentfulFloorContainer extends Component {
       status={this.props.cfFloorEntry.status}
       props={{
         cfFloorEntry: floor,
-        extraData: this.props.extraData,
+        location: this.props.location,
         cfServicePoint: sp,
       }} />
   }
@@ -72,7 +57,7 @@ ContentfulFloorContainer.propTypes = {
   cfFloorEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   searchParams: PropTypes.object.isRequired,
-  extraData: PropTypes.object,
+  location: PropTypes.object,
 }
 
 const ContentfulFloor = connect(
