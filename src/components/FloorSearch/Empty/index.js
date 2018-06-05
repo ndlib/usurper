@@ -21,7 +21,6 @@ const mapStateToProps = (state) => {
   let points = {}
 
   if (state.cfServicePoints.status === statuses.SUCCESS) {
-    console.log(state.cfServicePoints)
     state.cfServicePoints.json.map((entry) => {
       let point = entry.fields
 
@@ -30,6 +29,7 @@ const mapStateToProps = (state) => {
           points[point.slug] = entry
         }
       })
+      return contactPoints
     })
   }
 
@@ -58,6 +58,11 @@ class ContactContainer extends Component {
       props={this.props}
     />
   }
+}
+
+ContactContainer.propTypes = {
+  fetchServicePoints: PropTypes.func,
+  servicePointsStatus: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactContainer)

@@ -5,7 +5,6 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import SearchCallout from '../../Contentful/Floor/SearchCallout/index'
 import Contact from '../../Contact/ServicePoint'
 
-
 const Empty = (props) => {
   return (
     <div className='contact-page'>
@@ -28,6 +27,7 @@ const Empty = (props) => {
 
 Empty.propTypes = {
   location: PropTypes.object,
+  points: PropTypes.object,
 }
 
 export default Empty
