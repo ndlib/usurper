@@ -59,11 +59,4 @@ describe('components/Contentful/Floor/presenter', () => {
     expect(enzymeWrapper.containsMatchingElement(<ServicePoint cfServicePoint={{}} />)).toBe(true)
   })
 
-  it('should render the item call number', () => {
-    expect(enzymeWrapper.containsMatchingElement(<strong>call no</strong>)).toBe(true)
-  })
-
-  it('should render the item title', () => {
-    expect(enzymeWrapper.containsMatchingElement(<i>itemTitle</i>)).toBe(true)
-  })
 })
