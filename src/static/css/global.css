@@ -2230,6 +2230,16 @@ main blockquote p {
   display: inline-block;
 }
 
+.shareLinks, .addToCalendar {
+  vertical-align: top;
+}
+
+.addToCalendar button {
+  box-shadow: none;
+  height: 19px;
+  box-sizing:content-box  ;
+}
+
 .services {
   margin-top: 2em;
   margin-bottom: 2em;
@@ -2605,6 +2615,12 @@ h3:first-child {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   clear: left;
 }
+
+.article button img {
+  margin: 0;
+}
+
+
 
 .article span[itemProp="articleBody"] img {
   margin-top: 15px;
@@ -3660,6 +3676,7 @@ a .dbItem {
   border-radius: 5px;
   transition: 25ms ease-out;
   padding: 4px 15px 9px 15px;
+  padding: 10px 15px;
   font-family: GPHeavy, sans-serif !important;
   font-size: 18px;
 }
