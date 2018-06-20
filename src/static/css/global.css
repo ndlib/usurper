@@ -2236,8 +2236,13 @@ main blockquote p {
 
 .addToCalendar button {
   box-shadow: none;
-  height: 19px;
+  height: 18px;
   box-sizing:content-box  ;
+}
+
+.addToCalendar button img {
+  border: none;
+  box-shadow: none;
 }
 
 .services {
@@ -3677,8 +3682,8 @@ a .dbItem {
   transition: 25ms ease-out;
   padding: 4px 15px 9px 15px;
   padding: 10px 15px;
-  font-family: GPHeavy, sans-serif !important;
-  font-size: 18px;
+  /*font-family: GPHeavy, sans-serif !important;
+  font-size: 18px;*/
 }
 
 .resp-sharing-button__icon svg {
