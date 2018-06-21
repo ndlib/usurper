@@ -1,0 +1,28 @@
+.tool-tip {
+  margin: 0 !important;
+}
+.tool-tip .tool-tip-icon {
+  background-image:  url('../../static/images/help.svg');
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 24px;
+  margin: 0 !important;
+  transform: scale(.75);
+  width: 24px;
+}
+.tool-tip .tool-tip-text {
+  display: none;
+  margin: 0 !important;
+}
+.tool-tip:hover .tool-tip-text {
+  background-color: white;
+  border: 1px solid #bbb;
+  box-shadow: 0px 0px 10px 1px #4a4a4a63;
+  display: inline-block;
+  font-size: .7em;
+  padding: .5em;
+  position: absolute;
+  right: -310px;
+  top: 18px;
+  width: 320px
+}

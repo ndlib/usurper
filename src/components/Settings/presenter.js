@@ -1,4 +1,3 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
@@ -7,8 +6,8 @@ import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 import StaticAlert from '../Contentful/StaticContent/Alert'
-import Dropdown from '../Dropdown'
-import UpdateStatus from './settingsUpdateStatus'
+import CircOptIn from './CircOptIn'
+import PickUp from './PickUp'
 
 const Presenter = (props) => {
   return (
@@ -19,22 +18,17 @@ const Presenter = (props) => {
       <PageTitle title='Settings' />
       <div className='row'>
         <div className='col-md-8 col-sm-7 settings'>
-          <p>opt-in/out here.</p>
-          <input type='checkbox' onChange={props.setCircStatus} defaultChecked={props.circHistory} />
           <StaticAlert slug='settings' preview={props.preview} />
-          <p>
-            Preferred Pickup Location:
-          </p>
-          <small>
-            Used for ILL and DocDel
-          </small>
-          <Dropdown
+          <PickUp
             entries={props.homeLibraries}
-            submit={(value, title) => props.setHomeLibrary(value)}
+            setHomeLibrary={props.setHomeLibrary}
             defaultIndex={props.homeIndex}
-            useButton={true}
+            libraryStatus={props.libraryStatus}
           />
-          <UpdateStatus status={props.libraryStatus} />
+          <CircOptIn
+            setCircStatus={props.setCircStatus}
+            circHistory={props.circHistory}
+          />
           <StaticBody slug='settings' preview={props.preview} />
         </div>
         <StaticSidebar slug='settings' preview={props.preview} />

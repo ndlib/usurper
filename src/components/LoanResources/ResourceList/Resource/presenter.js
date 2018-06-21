@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Actions from './Actions'
+import DeleteButton from './DeleteButton'
 import { hasActions } from './Actions/presenter'
 
 const Card = (className, prefix, data, label) => {
@@ -10,10 +11,11 @@ const Card = (className, prefix, data, label) => {
   return <div className={className} />
 }
 
-const actionsButton = (item, toggleHidden) => {
+const actionsButton = (item, toggleHidden, includeDelete) => {
   if (hasActions(item)) {
     return (
-      <div className={'actions-button'}>
+      <div className={includeDelete ? 'actions-button wide' : 'actions-button'}>
+        {includeDelete ? <DeleteButton action={(e) => { console.log(e) }} /> : null}
         <span onClick={toggleHidden} title='More Actions'>⁝</span>
       </div>
     )
@@ -36,10 +38,15 @@ const Resource = (props) => {
       { !props.borrowed && Card('card-status', '', props.item.status, 'Status: ' + props.item.status) }
       { props.borrowed && Card('card-due', '', props.item.dueDate, 'Due: ' + props.item.dueDate) }
       { Card('card-pickup', 'Pickup Location: ', props.item.pickupLocation) }
-
-      { actionsButton(props.item, props.toggleHidden) }
+      { actionsButton(props.item, props.toggleHidden, props.deleteFromHistory) }
       <div className={'actions' + (props.hidden ? '-hidden' : '')}>
-        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} borrowed={props.borrowed} />
+        <Actions
+          item={props.item}
+          alephId={props.alephId}
+          renewal={props.renewal}
+          borrowed={props.borrowed}
+          historical={props.historical}
+        />
       </div>
     </div>
   )
@@ -51,6 +58,8 @@ Resource.propTypes = {
   toggleHidden: PropTypes.func,
   alephId: PropTypes.string,
   borrowed: PropTypes.bool,
+  deleteFromHistory: PropTypes.bool,
+  historical: PropTypes.bool,
 }
 
 export default Resource

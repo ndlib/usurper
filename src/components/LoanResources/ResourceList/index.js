@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -154,6 +153,8 @@ class ListContainer extends Component {
       loadingMore={this.props.loading}
       listType={this.props.listType}
       assistText={this.state.assistText}
+      deleteFromHistory={this.props.deleteFromHistory}
+      historical={this.props.historical}
     />
   }
 }

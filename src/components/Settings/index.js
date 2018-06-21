@@ -12,12 +12,13 @@ import * as states from '../../constants/APIStatuses'
 const homeLibraries = [
   { value: 'HESB', title: 'Hesburgh Library' },
   { value: 'ARCHT', title: 'Architecture Library' },
-  { value: 'CHEMP', title: 'Chem/Physics Library' },
-  { value: 'ENGIN', title: 'Engineering Library' },
   { value: 'BIC', title: 'Business Library' },
+  { value: 'CHEMP', title: 'Chemistry ‐ Physics Library' },
+  { value: 'ENGIN', title: 'Engineering Library' },
   { value: 'MATH', title: 'Mathematics Library' },
   { value: 'MUSIC', title: 'Music Library' },
-  { value: 'NDCAM', title: 'Notre Dame Campus Delivery' },
+  { value: 'RADLAB', title: 'Radiation Lab Reading Room' },
+  { value: 'NDCAM', title: 'I would prefer departmental delivery' },
 ]
 
 const updateStatus = {
@@ -42,7 +43,7 @@ class SettingsContainer extends Component {
   }
 
   render () {
-    if (this.props.loggedIn && this.props.homeIndex !== null) {
+    if (this.props.loggedIn) {
       return <Presenter
         preview={this.props.preview}
         homeLibraries={homeLibraries}
