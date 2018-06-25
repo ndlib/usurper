@@ -13,7 +13,7 @@ const CircOptIn = (props) => {
             onChange={props.setCircStatus}
             defaultChecked={props.circHistory} />
           <label htmlFor='circ-opt-in'>Save my Circulation History.<HoverToolTip>Here is some helpful text.</HoverToolTip></label>
-
+          <span style={{ float: 'right' }}><button>Save</button></span>
         </p>
       </section>
     </div>
