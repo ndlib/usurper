@@ -42,18 +42,6 @@ describe('components/Contentful/Floor/Container', () => {
     enzymeWrapper = undefined
   })
 
-  it('only renders APIPresenterFactory with cfFloorEntry slice and FloorPresenter', () => {
-    expect(enzymeWrapper.containsMatchingElement(<APIPresenterFactory
-      status={props.cfFloorEntry.status}
-      props={{
-        cfFloorEntry: props.cfFloorEntry.json,
-        extraData: {},
-        cfServicePoint: null,
-      }}
-      presenter={FloorPresenter} />))
-      .toBe(true)
-  })
-
   it('calls the bound fetch page action on load', () => {
     expect(props.fetchFloor.mock.calls.length).toBe(1)
   })

@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CurrentHours from '../../Hours/Current'
 import Contact from '../../Contact/ServicePoint'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const ServicePoint = ({ cfServicePoint, showDetails }) => {
   if (!cfServicePoint) {
@@ -39,4 +40,4 @@ ServicePoint.defaultProps = {
   showDetails: true,
 }
 
-export default ServicePoint
+export default withErrorBoundary(ServicePoint)

@@ -13,7 +13,7 @@ def run(stage, outputs):
     return {}
 
   heslog.info("Building Source")
-  scriptutil.executeCommand("yarn build")
+  scriptutil.executeCommand("cd ../.. && yarn build")
 
   heslog.info("Deploying code to bucket %s" % bucket)
 

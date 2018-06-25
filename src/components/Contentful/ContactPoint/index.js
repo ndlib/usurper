@@ -5,6 +5,7 @@ import PageLink from '../PageLink'
 import Librarians from '../../Librarians'
 import ServicePoint from '../ServicePoint'
 import Related from '../../Related'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const servicePoints = (points, shouldRender) => {
   if (!shouldRender || !points) {
@@ -38,4 +39,4 @@ ContactPoint.propTypes = {
   mobile: PropTypes.bool,
 }
 
-export default ContactPoint
+export default withErrorBoundary(ContactPoint)

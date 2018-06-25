@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Calendar } from 'react-date-range'
 import { withRouter } from 'react-router'
+import moment from 'moment'
 
 const EventCalendar = (props) => {
   return (
@@ -11,6 +12,7 @@ const EventCalendar = (props) => {
       date={props.date}
       theme={props.theme}
       specialDays={props.specialDays}
+      minDate={moment(new Date())}
     />
   )
 }

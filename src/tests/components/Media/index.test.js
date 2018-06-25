@@ -33,7 +33,7 @@ describe('components/Media/index.js', () => {
     })
 
     it('returns null', () => {
-      expect(enzymeWrapper.getNode()).toBe(null)
+      expect(enzymeWrapper.instance()).toBe(null)
     })
   })
 })

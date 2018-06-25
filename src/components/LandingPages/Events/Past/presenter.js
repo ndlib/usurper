@@ -1,30 +1,49 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import PageTitle from '../../../PageTitle'
 import SearchProgramaticSet from '../../../SearchProgramaticSet'
 import '../style.css'
 import { makeEventEntry } from '../../../Home/Events/presenter'
 import Link from '../../../Link'
-import Calendar from '../Calendar'
-import { withRouter } from 'react-router'
+import DateFilter from './DateFilter'
+import SideNav from '../../../SideNav'
+import FilterBox from '../../../FilterBox'
 
 const Events = (props) => {
   return (
     <div className='content'>
       <Link to='/events' className='button fright tab'>Current Events</Link>
-      <PageTitle title='Past Events' />
+      <PageTitle title={props.pageTitle} />
       <SearchProgramaticSet open={false} />
-      <div className='row landing'>
-        <div className='col-md-10 col-xs-12' >
+      <div className='row'>
+        <div className='col-md-9 col-xs-12' >
+          <FilterBox value={props.filterValue} title='Search Past Events' onChange={props.onFilterChange} />
+          <br />
           {
             props.events.map((entry, index) => makeEventEntry(entry, index, index === props.events.length - 1))
           }
+          {
+            props.filterValue && props.events.length === 50 && (
+              <div className='searchClipped'>
+                <p>Search is limited to first 50 results. Add more words to your search to see fewer results.</p>
+              </div>
+            )
+          }
         </div>
-        <div className='col-md-2 col-xs-12'>
-          <Calendar {...props} />
-        </div>
+        <SideNav className='col-md-3 col-xs-12'>
+          <DateFilter eventDates={props.eventDates} />
+        </SideNav>
       </div>
     </div>
   )
 }
 
-export default withRouter(Events)
+Events.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  events: PropTypes.array,
+  eventDates: PropTypes.object.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  filterValue: PropTypes.string,
+}
+
+export default Events

@@ -9,7 +9,6 @@
   clear: both;
 }
 
-
 * { Box-sizing: Border-box }
 
 body {
@@ -1536,6 +1535,10 @@ hr {
   overflow: hidden;
 }
 
+.searchClipped {
+  clear: both;
+}
+
 aside .group h5 {
   padding: 10px 20px 10px;
   font-size: 16px;
@@ -1986,6 +1989,10 @@ address {
   padding-bottom: 18px;
 }
 
+.floor-map {
+  max-width: 100%;
+}
+
 .contact-page .point .fax {
   background-image: url("../images/fax.png");
   padding-top: 15px !important;
@@ -2221,6 +2228,21 @@ main blockquote p {
 .shareLinks {
   clear: left;
   display: inline-block;
+}
+
+.shareLinks, .addToCalendar {
+  vertical-align: top;
+}
+
+.addToCalendar button {
+  box-shadow: none;
+  height: 18px;
+  box-sizing:content-box  ;
+}
+
+.addToCalendar button img {
+  border: none;
+  box-shadow: none;
 }
 
 .services {
@@ -2495,6 +2517,60 @@ main blockquote p {
   background-image: url('../images/location.png');
 }
 
+.dateFilter ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.dateFilter li {
+  list-style: none;
+  padding-left: 10px;
+  position: relative;
+  font-weight: bold;
+}
+
+.dateFilter .archive {
+  margin-top: 8px;
+}
+
+.dateFilter .collapsed::before {
+  color: #b3b3b3;
+  content: "›";
+  font-size: 25px;
+  left: 0;
+  position: absolute;
+  top: -2px;
+  speak: none;
+}
+
+.dateFilter .expanded::before {
+  color: #b3b3b3;
+  content: "›";
+  left: 0px;
+  position: absolute;
+  font-size: 25px;
+  top: -2px;
+  speak: none;
+
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.yearFilter {
+  cursor: pointer;
+}
+
+.monthFilter {
+  padding-left: 15px;
+}
+
+.monthFilter span {
+  font-weight: bold;
+}
+
 .description {
   overflow: hidden;
 }
@@ -2541,17 +2617,29 @@ h3:first-child {
   border: solid 2px #fff;
   float: right;
   margin:  0 0 15px 15px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  clear: left;
+}
+
+.article button img {
+  margin: 0;
+}
+
+
+
+.article span[itemProp="articleBody"] img {
+  margin-top: 15px;
+  width: 50%;
 }
 
 .article img + em {
   float: right;
   display: block;
-  max-width: 350px;
-  font-style: normal;
-  font-weight: bold;
+  width: 50%;
+  font-weight: normal;
   padding:0px 15px 1em;
-  color: #666;
+  color: #696969;
+  clear: left;
 }
 
 .article p:has(>img) {
@@ -2733,6 +2821,11 @@ p < img {
 .item-data {
   margin-bottom: 18px;
   line-height: 2em;
+  background-color: white;
+  padding: 11px;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
 }
 
 .item-data p {
@@ -3588,8 +3681,9 @@ a .dbItem {
   border-radius: 5px;
   transition: 25ms ease-out;
   padding: 4px 15px 9px 15px;
-  font-family: GPHeavy, sans-serif !important;
-  font-size: 18px;
+  padding: 10px 15px;
+  /*font-family: GPHeavy, sans-serif !important;
+  font-size: 18px;*/
 }
 
 .resp-sharing-button__icon svg {

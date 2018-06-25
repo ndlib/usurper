@@ -90,7 +90,7 @@ describe('components/Librarians/presenter.js', () => {
     })
 
     it('should render nothing', () => {
-      expect(enzymeWrapper.node).toBe(null)
+      expect(enzymeWrapper.instance()).toBe(null)
     })
   })
 })

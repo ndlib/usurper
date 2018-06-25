@@ -1,5 +1,33 @@
 # Change Log
 
+## [v2018.15](https://github.com/ndlib/usurper/tree/v2018.15) "Heat Arrives"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.14...v2018.15)
+
+### Features
+- We are such big party people that we needed an archive of all our parties. *disclamer, events are not actually parties* [#478](https://github.com/ndlib/usurper/pull/478)
+
+### Bug Fixes
+- The Datatabse listing page was sometimes too bashful to show your search. It will now show results every time. [#479](https://github.com/ndlib/usurper/pull/479)
+
+
+## [v2018.14](https://github.com/ndlib/usurper/tree/v2018.14) "Schools Out"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.12...v2018.14)
+
+v2018.13 was a bugfix, just skipping over that :)
+
+### UI Changes
+- Images were promoted to rank of Captain. What? Oh, sorry, Images can now have captions. There is no Captain here. [#474](https://github.com/ndlib/usurper/pull/474)
+- We can now overload people with information on every page. SO MANY ALERTS [#464](https://github.com/ndlib/usurper/pull/464)
+- Did you know that Grove Music is now Oxford Music Online? Well now the Database listing page does too! [#469](https://github.com/ndlib/usurper/pull/469)
+
+### Accessability
+- Screen readers read a phone number instead of a useless chat window [#470](https://github.com/ndlib/usurper/pull/470)
+- Changed css to make screen readers not read the ">" at the beginning of lists. This will not work. Browsers do not support this. But we did it anyway in case they do at some point. [#471](https://github.com/ndlib/usurper/pull/471)
+
+### Features
+- Maps show primary service point information [#465](https://github.com/ndlib/usurper/pull/465)
+
+
 ## [v2018.12](https://github.com/ndlib/usurper/tree/v2018.12) "Finally Finals"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.11...v2018.12)
 

@@ -120,8 +120,8 @@ const ListPresenter = (props) => {
 }
 
 ListPresenter.propTypes = {
-  list: PropTypes.array.isRequired,
-  status: PropTypes.string.isRequired,
+  list: PropTypes.array,
+  status: PropTypes.string,
   letter: PropTypes.string.isRequired,
 
   filterValue: PropTypes.string,
