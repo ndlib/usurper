@@ -11,4 +11,8 @@ const SearchResultInfo = (props) => {
   return null
 }
 
+SearchResultInfo.propTypes = {
+  searchInformation: PropTypes.object.isRequired,
+}
+
 export default SearchResultInfo

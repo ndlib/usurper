@@ -1,11 +1,10 @@
-'use strict'
 import { connect } from 'react-redux'
 import SearchPage from './presenter.js'
 
 import { fetchResults } from '../../actions/search.js'
 import { setSearchType } from '../../actions/search.js'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     query: state.search.query,
     items: state.search.items,
@@ -14,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchResults: (query) => {
       dispatch(fetchResults(query))

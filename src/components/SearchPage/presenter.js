@@ -1,13 +1,10 @@
 
-'use strict'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import fetch from 'isomorphic-fetch'
 import SearchResultInfo from './SearchResultInfo'
 import SearchResults from './SearchResults'
 import SearchPager from './SearchPager'
 import PageTitle from '../PageTitle'
-
 
 class SearchPage extends Component {
   componentWillMount () {
@@ -43,6 +40,16 @@ class SearchPage extends Component {
       </div>
     )
   }
+}
+
+SearchPage.propTypes = {
+  fetchResults: PropTypes.func.isRequired,
+  setSearchType: PropTypes.func.isRequired,
+  items: PropTypes.object.isRequired,
+  searchInformation: PropTypes.object.isRequired,
+  query: PropTypes.object.isRequired,
+  queries: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 export default SearchPage

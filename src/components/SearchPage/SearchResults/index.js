@@ -12,4 +12,8 @@ const SearchResults = (props) => {
   return (<div>No Results Found</div>)
 }
 
+SearchResults.propTypes = {
+  items: PropTypes.object.isRequired,
+}
+
 export default SearchResults
