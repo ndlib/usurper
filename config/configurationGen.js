@@ -13,7 +13,7 @@ const genConfig = () => {
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
     gcseKey: 'AIzaSyBv-JE6AJ1fuDuZJcBBSeZSCpq_MRCd7hc',
-    gcseCx: '015265266414554728410:5wnhv2ianq0'
+    gcseCx: '015265266414554728410:5wnhv2ianq0',
   }
 
   let config = {

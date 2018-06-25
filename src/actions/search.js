@@ -92,7 +92,7 @@ export const fetchResults = (queryString) => {
       '&cx=' + Config.gcseCx +
       '&q=' + qs.q +
       '&start=' + (qs.start ? qs.start : '1')
-      )
+    )
     .then(response => response.json())
     .then(json => dispatch(siteSearchResponse(json)))
   }
