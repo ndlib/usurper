@@ -92,6 +92,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     // Basic Search
     searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
   }
+
   switch (searchStore.searchType) {
     case ONESEARCH:
       window.location = onesearchUrl(searchTerm, isAdvanced, true)
@@ -103,9 +104,9 @@ const searchQuery = (searchStore, advancedSearch, history) => {
       window.location = curateBasicURL(searchTerm)
       break
     case LIBRARY:
-      window.location = `https://search.nd.edu/search/?client=lib_site_srch&site=library&q=${searchTerm}`
+      // window.location = `/search/?q=${searchTerm}`
       // switch to this when search is implemented locally
-      // history.push(libSearchBasicURL(searchTerm))
+      history.push(libSearchBasicURL(searchTerm))
       break
     default:
       break

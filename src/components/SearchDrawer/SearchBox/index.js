@@ -7,6 +7,8 @@ import searchQuery from '../searchQueryBuilder'
 import SearchBox from './presenter'
 import ReactGA from 'react-ga'
 import Config from '../../../shared/Configuration'
+import QueryString from 'querystring'
+
 ReactGA.initialize(Config.googleAnalyticsId, {
   debug: false,
   titleCase: false,
@@ -22,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
         action: `${state.search.searchType}`,
         label: `${state.advancedSearch['basic-search-field']}`,
       })
-      searchQuery(state.search, state.advancedSearch)
+      searchQuery(state.search, state.advancedSearch, ownProps.history)
     },
     ...state,
   }
@@ -38,8 +40,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     e.stopPropagation()
     e.nativeEvent.stopImmediatePropagation()
   }
+  const qs = QueryString.parse(ownProps.location.search.replace('?', ''))
 
   return {
+    defaultSearch: qs.q,
     onClick:(e) => {
       toggle(e)
     },

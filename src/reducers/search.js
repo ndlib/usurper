@@ -8,6 +8,8 @@ import {
   CLEAR_SEARCH_PREFERENCE,
   OPEN_SEARCHDRAWER,
   CLOSE_SEARCHDRAWER,
+  SITE_SEARCH_REQUEST,
+  SITE_SEARCH_RESPONSE,
 } from '../actions/search.js'
 import { CF_RECEIVE_PAGE } from '../actions/contentful/page'
 import * as statuses from '../constants/APIStatuses'
@@ -97,6 +99,14 @@ export default (
       return Object.assign({}, state, { drawerOpen: true })
     case CLOSE_SEARCHDRAWER:
       return Object.assign({}, state, { drawerOpen: false })
+    case SITE_SEARCH_REQUEST:
+      return Object.assign({}, state, { query: action.query })
+    case SITE_SEARCH_RESPONSE:
+      return Object.assign({}, state, {
+        items: action.items,
+        searchInformation: action.searchInformation,
+        queries: action.queries,
+      })
     case CF_RECEIVE_PAGE:
       {
         if (action.status === statuses.SUCCESS) {
