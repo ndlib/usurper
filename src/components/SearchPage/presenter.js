@@ -29,7 +29,6 @@ class SearchPage extends Component {
     }
     return (
       <div className='search-results'>
-        <a href='#search-top' />
         <PageTitle title={`Website Search: ${displayQuery}`} />
         <SearchResultInfo searchInformation={this.props.searchInformation} />
         <SearchResults items={this.props.items} />

@@ -64,7 +64,6 @@ const SearchPager = (props) => {
 SearchPager.propTypes = {
   queries: PropTypes.object,
   pagerQuery: PropTypes.string,
-  displayQuery: PropTypes.string,
 }
 
 export default SearchPager
