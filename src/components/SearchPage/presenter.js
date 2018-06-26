@@ -44,10 +44,10 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   fetchResults: PropTypes.func.isRequired,
   setSearchType: PropTypes.func.isRequired,
-  items: PropTypes.object.isRequired,
-  searchInformation: PropTypes.object.isRequired,
-  query: PropTypes.object.isRequired,
-  queries: PropTypes.object.isRequired,
+  items: PropTypes.array,
+  searchInformation: PropTypes.object,
+  query: PropTypes.string,
+  queries: PropTypes.object,
   location: PropTypes.object.isRequired,
 }
 

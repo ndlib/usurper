@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import SearchPage from './presenter.js'
 
-import Search from '../../actions/search.js'
+import { fetchResults } from '../../actions/search.js'
+import { setSearchType } from '../../actions/search.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,10 +16,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchResults: (query) => {
-      dispatch(Search.fetchResults(query))
+      dispatch(fetchResults(query))
     },
     setSearchType: (type) => {
-      dispatch(Search.setSearchType(type))
+      dispatch(setSearchType(type))
     },
   }
 }

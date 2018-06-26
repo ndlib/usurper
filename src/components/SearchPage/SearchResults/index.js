@@ -13,7 +13,7 @@ const SearchResults = (props) => {
 }
 
 SearchResults.propTypes = {
-  items: PropTypes.object.isRequired,
+  items: PropTypes.array,
 }
 
 export default SearchResults
