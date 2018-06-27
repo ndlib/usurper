@@ -29,7 +29,7 @@ class SearchPage extends Component {
     }
     return (
       <div className='search-results'>
-        <PageTitle title={`Website Search: ${displayQuery}`} />
+        <PageTitle title={`Website Search: ${unescape(displayQuery)}`} />
         <SearchResultInfo searchInformation={this.props.searchInformation} />
         <SearchResults items={this.props.items} />
         <SearchPager
