@@ -2,7 +2,7 @@
 	* {
 		font-family: sans-serif !important;
 	}
-	.top, #footer-links, #footer-info {
+	.top, #footer-links, #footer-info, .floor-info {
 		display: none;
 	}
 
@@ -50,7 +50,7 @@
 		display: block;
 	}
 
-	#maincontent:before {
+	#maincontent .container-fluid:before {
 		content: "Hesburgh Libraries";
 		font-size: 22px;
 		font-weight: bold;
@@ -60,9 +60,16 @@
 		text-transform: uppercase;
 	}
 
+	#maincontent .floorplan.container-fluid:before {
+		
+		content: "";
+	}
+
 	.news h2 {
 		clear: both;
 	}
+
+
 
 }
 
