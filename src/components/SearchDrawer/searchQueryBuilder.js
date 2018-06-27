@@ -12,7 +12,7 @@ const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   const seachScope = isOnesearch ? 'malc_blended' : 'nd_campus'
   const isProduction = window.location.hostname === 'library.nd.edu'
   const env = isProduction ? '' : 'pprd'
-  const vid = isProduction ? 'NDU' : 'NDU'
+  const vid = 'NDU'
   const mode = isAdvanced ? 'advanced' : 'basic'
   return `http://onesearch${env}.library.nd.edu/primo-explore/search` +
     `?${queryTerm}` +
