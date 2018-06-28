@@ -10,7 +10,7 @@ import ServicePoint from '../ServicePoint'
 import SearchCallout from './SearchCallout'
 
 const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
-  <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid'>
+  <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid floorplan'>
     <PageTitle title={cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
     <div className='row'>
@@ -19,7 +19,7 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
 
         <Image cfImage={cfFloorEntry.fields.image} className='floor-map' />
       </div>
-      <div className='col-md-4 col-sm-5 col-xs-12 right'>
+      <div className='col-md-4 col-sm-5 col-xs-12 right floor-info'>
         <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
         { cfFloorEntry.fields.callNumberRange && (<p>Call Number Ranges: {cfFloorEntry.fields.callNumberRange}</p>) }
         <ServicePoint cfServicePoint={cfServicePoint} />
