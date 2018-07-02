@@ -10,11 +10,16 @@ const OpenGraph = (props) => {
   const description = props.description || 'Hesburgh Library - University of Notre Dame'
   let image = DefaultImage
   if (props.image && props.image.fields && props.image.fields.file) {
-    image = props.image.fields.file.url
+    image = 'https:' + props.image.fields.file.url
   }
 
   return (
     <Helmet>
+      <meta name='twitter:card' content='summary_large_image' />
+      <meta name='twitter:site' content='@NDLibraries' />
+      <meta name='twitter:title' content={title} />
+      <meta name='twitter:description' content={description} />
+      <meta name='twitter:image' content={image} />
       <meta property='og:url' content={url} />
       <meta property='og:type' content={type} />
       <meta property='og:title' content={title} />
