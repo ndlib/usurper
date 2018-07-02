@@ -32,7 +32,7 @@ const PagePresenter = ({ entry }) => {
       <OpenGraph
         title={entry.title}
         description={entry.shortDescription}
-        image={entry.image}
+        image={entry.representationalImage}
       />
       <SearchProgramaticSet open={false} />
       <div className='row'>
