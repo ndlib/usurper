@@ -4,8 +4,8 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.15...v2018.18)
 
 ### Features
-- We actually do care about maintenance, believe it or not, so we upgraded to React 16! [#466] (https://github.com/ndlib/usurper/pull/466)
-- Added search filter to events page [#482] (https://github.com/ndlib/usurper/pull/482)
+- We actually do care about maintenance, believe it or not, so we upgraded to React 16! [#466](https://github.com/ndlib/usurper/pull/466)
+- Added search filter to events page [#482](https://github.com/ndlib/usurper/pull/482)
 - Since we launched the NUI for Primo, it seemed like good sportsmanship to clean up the OneSearch advanced search UI for the website search appliance so that it actually works [#487](https://github.com/ndlib/usurper/pull/487)
 - Sometimes people do want accurate results for "search this site" so we decided it would be nice to fix that as well [#493](https://github.com/ndlib/usurper/pull/493)
 
