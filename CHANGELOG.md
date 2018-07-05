@@ -1,5 +1,22 @@
 # Change Log
 
+## [v2018.18](https://github.com/ndlib/usurper/tree/v2018.18) "Productivity Freefall"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.15...v2018.18)
+
+### Features
+- We actually do care about maintenance, believe it or not, so we upgraded to React 16! [#466] (https://github.com/ndlib/usurper/pull/466)
+- Added search filter to events page [#482] (https://github.com/ndlib/usurper/pull/482)
+- Since we launched the NUI for Primo, it seemed like good sportsmanship to clean up the OneSearch advanced search UI for the website search appliance so that it actually works [#487](https://github.com/ndlib/usurper/pull/487)
+- Sometimes people do want accurate results for "search this site" so we decided it would be nice to fix that as well [#493](https://github.com/ndlib/usurper/pull/493)
+
+### Bug Fixes
+- Added better error handling within the React application. [#467](https://github.com/ndlib/usurper/pull/467)
+- Floor maps will now behave and stay in the lines. [#480](https://github.com/ndlib/usurper/pull/480)
+- Bumped over bylines for news / events. [#483](https://github.com/ndlib/usurper/pull/483)
+- Fixed "add to calendar" for events. [#489](https://github.com/ndlib/usurper/pull/489)
+- Fixed print style sheets for maps. [#494](https://github.com/ndlib/usurper/pull/494)
+- We heard the cry for more social media, which is critical to our civilization, so we fixed the Twitter card and Facebook representational image issues. [#496](https://github.com/ndlib/usurper/pull/496)
+
 ## [v2018.15](https://github.com/ndlib/usurper/tree/v2018.15) "Heat Arrives"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.14...v2018.15)
 
