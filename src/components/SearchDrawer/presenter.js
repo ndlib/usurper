@@ -5,7 +5,6 @@ import SearchPreference from './SearchPreference'
 import SearchBox from './SearchBox'
 import AdvancedSearch from './AdvancedSearch'
 import AdditionalLinks from './AdditionalLinks'
-import PartnerSearchToggle from './PartnerSearchToggle'
 import '../../static/css/global.css'
 import '../../static/css/search.css'
 
@@ -26,7 +25,6 @@ const Drawer = (props) => {
             currentSearch={props.currentSearch}
           />
           <AdditionalLinks {...props} />
-          <PartnerSearchToggle currentSearch={props.currentSearch} />
         </form>
       </div>
     </section>
