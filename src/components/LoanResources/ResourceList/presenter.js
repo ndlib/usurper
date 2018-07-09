@@ -53,17 +53,15 @@ const ResourceList = (props) => {
         )}
 
         { props.historical && (
-          <React.Fragment>
-            <a
-              className={props.sortClass('checkedOut')}
-              onClick={(e) => props.sortClick(e, 'checkedOut')}
-              aria-label={'Sort By Checked Out Date ' + props.assistSortDirection('checkedOut')}
-              aria-controls={props.listType}
-            >
+          <a
+            className={props.sortClass('checkedOut')}
+            onClick={(e) => props.sortClick(e, 'checkedOut')}
+            aria-label={'Sort By Checked Out Date ' + props.assistSortDirection('checkedOut')}
+            aria-controls={props.listType}
+          >
             Checked Out
-            </a>
-            <span style={{ minWidth: '130px' }}><button className='delete danger' onClick={() => { console.log('delete') }} aria-label='Delete Circulation History'>Delete All</button></span>
-          </React.Fragment>
+          </a>
+
         )}
       </div>
       <div className='screenReaderText' aria-live='assertive'>
@@ -92,6 +90,7 @@ const ResourceList = (props) => {
       { props.loadingMore && <Loading message='Loading More Items' /> }
       { props.historical && <div className='pull-right-bottom'>
         <ExportButton />
+        <button className='delete danger' onClick={() => { console.log('delete') }} aria-label='Delete Circulation History'>Delete All</button>
       </div>}
     </section>
   )

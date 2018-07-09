@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Actions from './Actions'
-import DeleteButton from './DeleteButton'
+import DeleteButton from '../DeleteButton'
 import { hasActions } from './Actions/presenter'
 
 const Card = (className, prefix, data, label) => {
@@ -12,10 +12,9 @@ const Card = (className, prefix, data, label) => {
 }
 
 const actionsButton = (item, toggleHidden, includeDelete) => {
-  if (hasActions(item)) {
+  if (hasActions(item, includeDelete)) {
     return (
-      <div className={includeDelete ? 'actions-button wide' : 'actions-button'}>
-        {includeDelete ? <DeleteButton action={(e) => { console.log(e) }} /> : null}
+      <div className='actions-button'>
         <span onClick={toggleHidden} title='More Actions'>⁝</span>
       </div>
     )
@@ -46,6 +45,7 @@ const Resource = (props) => {
           renewal={props.renewal}
           borrowed={props.borrowed}
           historical={props.historical}
+          includeDelete={props.deleteFromHistory}
         />
       </div>
     </div>
