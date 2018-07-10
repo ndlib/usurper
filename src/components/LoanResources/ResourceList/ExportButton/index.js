@@ -21,6 +21,7 @@ class ExportButton extends Component {
   }
 
   onButtonClick () {
+    console.log(this.props.items)
     this.setState({ hidden: !this.state.hidden })
   }
 
@@ -68,7 +69,7 @@ class ExportButton extends Component {
 }
 
 ExportButton.propTypes = {
-  data: PropTypes.object,
+  items: PropTypes.array.isRequired,
 }
 
 export default ExportButton

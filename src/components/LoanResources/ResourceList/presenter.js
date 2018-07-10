@@ -94,7 +94,9 @@ const ResourceList = (props) => {
           action={() => { console.log('delete') }}
           items={props.list}
         />
-        <ExportButton />
+        <ExportButton
+          items={props.list}
+        />
       </div>}
     </section>
   )

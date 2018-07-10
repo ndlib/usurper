@@ -67,7 +67,7 @@ const ExportItem = (item, historical) => {
   if (!historical) {
     return null
   } else {
-    return (<ExportButton />)
+    return (<ExportButton items={[item]} />)
   }
 }
 

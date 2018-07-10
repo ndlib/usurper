@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Actions from './Actions'
-import DeleteButton from '../DeleteButton'
 import { hasActions } from './Actions/presenter'
 
 const Card = (className, prefix, data, label) => {
