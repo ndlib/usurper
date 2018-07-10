@@ -31,7 +31,7 @@ class DeleteButton extends Component {
   itemList (items) {
     let itemList = []
     items.forEach((item) => {
-      itemList.push(<li key={item}>{item.title}</li>)
+      itemList.push(<li key={item.transactionNumber || item.barcode}>{item.title}</li>)
     })
     return itemList
   }
@@ -46,13 +46,23 @@ class DeleteButton extends Component {
   render () {
     return (
       <React.Fragment>
-        <button className='danger' onClick={this.onClick}>Delete</button>
+        <button className='danger' onClick={this.onClick}>{this.props.items.length > 1 ? 'Delete All' : 'Delete'}</button>
         <ReactModal
           isOpen={this.state.modalOpen}
           shouldCloseOnEsc
           onRequestClose={this.dismiss}
           contentLabel='Delete Circulation History Item Confirmation'
-          style={{ overlay: { backgroundColor: '#041F44aa' } }}
+          style={{
+            overlay: {
+              backgroundColor: '#041F44aa',
+              zIndex: '1000',
+            },
+            content: {
+              top: '50%',
+              bottom: 'auto',
+              transform: 'translate(0, -50%)',
+            },
+          }}
           ariaHideApp
           shouldFocusAfterRender
           shouldReturnFocusAfterClose

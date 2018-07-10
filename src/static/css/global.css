@@ -3911,7 +3911,3 @@ main .mobile-only h5 {
 .export {
   position: relative;
 }
-
-.ReactModal__Overlay.ReactModal__Overlay--after-open {
-  z-index: 1000;
-}

@@ -46,7 +46,7 @@ class ExportButton extends Component {
           className='export'
           onClick={this.onButtonClick}
           aria-label='Export Circulation History'
-        >Export</button>
+        >{this.props.items.length > 1 ? 'Export All' : 'Export'}</button>
         <div
           ref={this.exportButtonDropDownRef}
           tabIndex='0'
