@@ -4,6 +4,7 @@ import Resource from './Resource'
 import Loading from '../../Messages/InlineLoading'
 import FilterBox from '../../FilterBox'
 import ExportButton from './ExportButton'
+import DeleteButton from './DeleteButton'
 
 const ResourceList = (props) => {
   return (
@@ -89,8 +90,11 @@ const ResourceList = (props) => {
       </section>
       { props.loadingMore && <Loading message='Loading More Items' /> }
       { props.historical && <div className='pull-right-bottom'>
+        <DeleteButton
+          action={() => { console.log('delete') }}
+          items={props.list}
+        />
         <ExportButton />
-        <button className='delete danger' onClick={() => { console.log('delete') }} aria-label='Delete Circulation History'>Delete All</button>
       </div>}
     </section>
   )

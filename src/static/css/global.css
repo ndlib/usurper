@@ -3888,6 +3888,12 @@ main .mobile-only h5 {
   margin-left: 10px;
 }
 
+.modal-force-bottom {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
 .exportOptions.dropdown {
   margin-top: 2px;
   position: absolute;
@@ -3904,4 +3910,8 @@ main .mobile-only h5 {
 }
 .export {
   position: relative;
+}
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  z-index: 1000;
 }

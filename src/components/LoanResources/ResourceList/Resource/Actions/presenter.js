@@ -83,7 +83,10 @@ export const hasActions = (item, includeDelete) => {
 
 const DeleteItem = (item, includeDelete) => {
   if (includeDelete) {
-    return (<DeleteButton action={() => { console.log('delete', item) }} />)
+    return (<DeleteButton
+      action={() => { console.log('delete', item) }}
+      items={[item]}
+    />)
   }
   return null
 }
