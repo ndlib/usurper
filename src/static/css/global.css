@@ -3175,11 +3175,6 @@ li.menu-icon {
     float: none !important;
     display: block !important;
   }
-  #header.gtype div a {
-    background-position: 50%;
-    background-size: 100%;
-    width: 100% !important;
-  }
 
   .hlhome {
     font-size: 22px;
