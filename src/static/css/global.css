@@ -3833,3 +3833,8 @@ main {
 p img {
   max-width: 100%;
 }
+
+main .mobile-only h4,
+main .mobile-only h5 {
+  margin-top: 0;
+}
