@@ -3825,3 +3825,11 @@ a .dbItem {
 .news-card .description {
   grid-column-start: 2;
 }
+
+main {
+  width: 100%
+}
+
+p img {
+  max-width: 100%;
+}
