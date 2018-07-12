@@ -12,8 +12,13 @@ def run(stage, outputs):
     heslog.error("no bucket found to deploy to")
     return {}
 
+  heslog.info("Build URLS")
+  scriptutil.executeCommand("cd ../../scripts/build-links && yarn install --production")
+  scriptutil.executeCommand("cd ../../scripts/build-links && node buildApiUrls.js stage=" + stage)
+
   heslog.info("Building Source")
-  scriptutil.executeCommand("cd ../.. && yarn build")
+  scriptutil.executeCommand("cd ../.. && yarn install --production")
+  scriptutil.executeCommand("cd ../.. && yarn build --production")
 
   heslog.info("Deploying code to bucket %s" % bucket)
 

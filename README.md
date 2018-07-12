@@ -60,6 +60,11 @@
   * [React Developer Tools (Chrome plug-in)](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
   * [Redux Developer Tools (Chrome plug-in)](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
+### Building the urls from the exports
+  To build the apis call this.
+  * `node buildApiUrls.js stage=devJon`
+  This must be done before you start the application.
+
 ### Running Locally
 
 * `yarn start`
