@@ -3173,7 +3173,9 @@ li.menu-icon {
   #header.gtype .nddotedu {
     margin: 0 auto !important;
     float: none !important;
+    display: block !important;
   }
+
   .hlhome {
     font-size: 22px;
     margin-left: 10px;
@@ -3824,4 +3826,17 @@ a .dbItem {
 
 .news-card .description {
   grid-column-start: 2;
+}
+
+main {
+  width: 100%
+}
+
+p img {
+  max-width: 100%;
+}
+
+main .mobile-only h4,
+main .mobile-only h5 {
+  margin-top: 0;
 }
