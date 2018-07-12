@@ -2,7 +2,7 @@
 	* {
 		font-family: sans-serif !important;
 	}
-	.top, #footer-links, #footer-info, .floor-info {
+	.top, #footer-links, #footer-info, .floor-info, .mapkey {
 		display: none;
 	}
 

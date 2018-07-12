@@ -8,6 +8,7 @@ import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import SearchCallout from './SearchCallout'
+import mapkey from '../../../static/images/key.svg'
 
 const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid floorplan'>
@@ -23,6 +24,13 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
         <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
         { cfFloorEntry.fields.callNumberRange && (<p>Call Number Ranges: {cfFloorEntry.fields.callNumberRange}</p>) }
         <ServicePoint cfServicePoint={cfServicePoint} />
+        <p>&nbsp;</p>
+        <h3 className='mapkey'>Map Key</h3>
+        <img
+                      src={mapkey}
+                      alt='map key'
+                      className='mapkey'
+                    />
       </div>
     </div>
   </div>
