@@ -3,7 +3,7 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
 
-let apiList = ['classesAPI']
+let apiList = ['classesAPI','monarchLibguides']
 
 let handler = async () => {
   try {
