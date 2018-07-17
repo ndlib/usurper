@@ -3,7 +3,7 @@ let apiUrls = require('./apiUrls.js')
 const genConfig = () => {
   let defaultConfig = {
     viceroyAPI: 'https://viceroy-dev.library.nd.edu',
-    recommendAPI: 'https://2ufw8jzu3d.execute-api.us-east-1.amazonaws.com/dev',
+    recommendAPI: apiUrls.recommendationEngine,
     coursesAPI: apiUrls.classesAPI,
     resourcesAPI: 'https://p5gotxkf09.execute-api.us-east-1.amazonaws.com/dev',
     illiadBaseURL: 'https://nd.illiad.oclc.org/illiad/IND/testweb/illiad.dll?Action=10&Form=<<form>>&Value=<<value>>',
