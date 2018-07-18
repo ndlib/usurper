@@ -3853,6 +3853,7 @@ p img {
 main .mobile-only h4,
 main .mobile-only h5 {
   margin-top: 0;
+}
 
 .col-2-list li {
   line-height: 1.5em;
@@ -3910,4 +3911,17 @@ main .mobile-only h5 {
 }
 .export {
   position: relative;
+}
+
+main {
+  width: 100%
+}
+
+p img {
+  max-width: 100%;
+}
+
+main .mobile-only h4,
+main .mobile-only h5 {
+  margin-top: 0;
 }
