@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2018.19](https://github.com/ndlib/usurper/tree/v2018.19) "Baton Twirling"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.18...v2018.19)
+
+### Features
+- To reduce temptation, we removed the MALC checkbox from the ND Catalog search [#498] (https://github.com/ndlib/usurper/pull/498)
+
+### Bug Fixes
+- Since people still use their smart phones a lot, we fixed the mobile view [#499] (https://github.com/ndlib/usurper/pull/499)
+
+### Other
+This sprint was used to work on the deployment strategy for the website stacks - within a sprint we should be able to deploy changes to independent components without the need to deploy all stacks simultaneously - moving us closer to DevOps
+
+
 ## [v2018.18](https://github.com/ndlib/usurper/tree/v2018.18) "Productivity Freefall"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.15...v2018.18)
 
