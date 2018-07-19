@@ -1993,6 +1993,8 @@ address {
   max-width: 100%;
 }
 
+
+
 .contact-page .point .fax {
   background-image: url("../images/fax.png");
   padding-top: 15px !important;
@@ -3828,8 +3830,9 @@ a .dbItem {
   grid-column-start: 2;
 }
 
-main {
-  width: 100%
+
+.mapkey {
+  width: 100%;
 }
 
 p img {
