@@ -22,7 +22,7 @@ const Presenter = (props) => {
                       type='radio'
                       name={entry.title}
                       value={index}
-                      checked={entry.title === props.selectedTitle}
+                      defaultChecked={entry.title === props.selectedTitle}
                     />
                     {entry.title}
                   </li>

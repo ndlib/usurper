@@ -10,7 +10,7 @@ const genConfig = () => {
     hoursAPIURL: apiUrls.monarchLibguides,
     contentfulAPI: 'https://bj5rh8poa7.execute-api.us-east-1.amazonaws.com/dev',
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
-    userPrefsAPI: 'https://ejdiw3vxx6.execute-api.us-east-1.amazonaws.com/dev/',
+    userPrefsAPI: apiUrls.userPreferences,
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
     gcseKey: 'AIzaSyBv-JE6AJ1fuDuZJcBBSeZSCpq_MRCd7hc',
