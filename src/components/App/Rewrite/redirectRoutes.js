@@ -22,6 +22,7 @@ const RedirectRoutes = [
   { path: '/guide-on-the-side/*', target: 'https://guide-on-the-side.library.nd.edu', forwardPath: /\/guide-on-the-side(.*)/ },
   { path: '/documents/*', target: 'https://documents.library.nd.edu', forwardPath: /(.*)/ },
   { path: '/eresources/*', target: 'https://eresources.library.nd.edu', forwardPath: /\/eresources(.*)/ },
+  { path: '/instruction-request', target: 'https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLScI5b_i5N8ZL1ReOeIDmN1WyzIgQHwQ3FKnrncJdkOvw1Zf6g/viewform' },
   { path: '/fys', target: 'http://libguides.library.nd.edu/first-year-studies' },
 
   // internal redirects
