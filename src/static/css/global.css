@@ -1006,7 +1006,7 @@ div.search {
 .dropdown ul li:hover {
   background-color: #63B788;
   background-color: #847161;
-  background-color: #425166;
+  background-color: #334051;
 }
 
 .dropdown button {
@@ -1070,7 +1070,7 @@ label[for='q']:after, .dropdown label:after {
 }
 
 .appliance {
-  background: rgba(10, 34, 65, 0.5);
+  background: rgba(10, 34, 65, 0.4);
   padding: 24px;
   display: inline-block;
   position: relative;
@@ -1270,17 +1270,22 @@ label[for='q']:after, .uSearchBox label:after {
 .appliance .additional-links {
   padding-top: 8px;
   text-align: right;
-  color: #fff;
+  color: #000;
 }
 
 .appliance .additional-links a {
-  color: #fff;
+  color: #000;
   text-decoration: none;
+
+}
+
+.appliance .additional-links a:hover {
+  text-decoration: underline;
 }
 
 .appliance .additional-links {
-  margin-top: 1.5em;
-  padding-top: 3px;
+  margin-top: 20px;
+  padding-top: 0px;
   display: inline;
   float: right;
 }
@@ -1296,14 +1301,15 @@ label[for='q']:after, .uSearchBox label:after {
 
 .set-default-search, .additional-links, .has-default-search {
   font-size: 14px !important;
-  color: #fff;
+  color: #000;
   padding-left: 5px;
   padding-top: 5px;
 }
 
 .has-default-search a, .set-default-search a {
-  color: #fff;
+  color: #000;
   text-decoration: underline;
+  font-weight: bold;
 }
 
 .set-default-search, .additional-links, .has-default-search {
