@@ -55,6 +55,32 @@ export const setHomeLibrary = (library) => {
       })
   }
 }
+export const getCircStatus = () => {
+  return (dispatch, getState) => {
+    let state = getState().personal
+    dispatch(requestSettings(KIND.circStatus, null))
+    let url = Config.userPrefsAPI + 'circHistory'
+    // REMOVE TOKEN DEBUG
+    console.log('token', state.login.token)
+    return fetch(url, {
+      method: 'get',
+      headers: {
+        'Authorization': state.login.token,
+      },
+    })
+      .then(response => {
+        const jsonResponse = response.json()
+        return jsonResponse
+      })
+      .then(json => dispatch(
+        recieveSettings(KIND.circStatus, null, statuses.SUCCESS, json)
+      ))
+      .catch((e) => {
+        console.log(e)
+        dispatch(recieveSettings(KIND.circStatus, null, statuses.ERROR, e))
+      })
+  }
+}
 
 export const setCircStatus = (checked) => {
   return (dispatch, getState) => {
@@ -65,10 +91,7 @@ export const setCircStatus = (checked) => {
     console.log('token', state.login.token)
     return fetch(url, {
       method: 'post',
-      mode: 'cors',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
         'Authorization': state.login.token,
       },
       body: JSON.stringify({ 'saveHistory': checked }),

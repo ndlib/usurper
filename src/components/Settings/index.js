@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Presenter from './presenter'
-import { setHomeLibrary, setCircStatus, KIND } from '../../actions/personal/settings'
+import {
+  setHomeLibrary,
+  getCircStatus,
+  setCircStatus,
+  KIND,
+} from '../../actions/personal/settings'
 import { getUser } from '../../actions/personal/loanResources'
 import Loading from '../Messages/Loading'
 
@@ -51,7 +56,7 @@ class SettingsContainer extends Component {
         homeIndex={this.props.homeIndex}
         libraryStatus={this.props.libraryStatus}
         setCircStatus={this.props.setCircStatus}
-        circHistory={this.props.circHistory}
+        getCircStatus={this.props.getCircStatus}
       />
     } else if (this.props.redirectUrl) {
       window.location = this.props.redirectUrl
@@ -101,12 +106,16 @@ export const mapStateToProps = (state, ownProps) => {
     loggedIn: loggedIn,
     redirectUrl: personal.login.redirectUrl,
     libraryStatus: apiStateToInt(libraryState),
-    circHistory: false,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ setHomeLibrary, getUser, setCircStatus }, dispatch)
+  return bindActionCreators({
+    setHomeLibrary,
+    getUser,
+    getCircStatus,
+    setCircStatus,
+  }, dispatch)
 }
 
 SettingsContainer.propTypes = {
@@ -116,7 +125,7 @@ SettingsContainer.propTypes = {
   setHomeLibrary: PropTypes.func,
   homeIndex: PropTypes.number,
   setCircStatus: PropTypes.func,
-  circHistory: PropTypes.bool,
+  getCircStatus: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

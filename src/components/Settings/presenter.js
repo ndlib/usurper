@@ -27,7 +27,7 @@ const Presenter = (props) => {
           />
           <CircOptIn
             setCircStatus={props.setCircStatus}
-            circHistory={props.circHistory}
+            getCircStatus={props.getCircStatus}
           />
           <StaticBody slug='settings' preview={props.preview} />
         </div>
@@ -44,7 +44,7 @@ Presenter.propTypes = {
   homeIndex: PropTypes.number,
   libraryStatus: PropTypes.number,
   setCircStatus: PropTypes.func.isRequired,
-  circHistory: PropTypes.bool,
+  getCircStatus: PropTypes.func.isRequired,
 }
 
 export default Presenter

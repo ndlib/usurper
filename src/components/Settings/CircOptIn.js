@@ -6,8 +6,23 @@ class CircOptIn extends Component {
   constructor (props) {
     super(props)
     this.setStatus = this.setStatus.bind(this)
+    this.state = {
+      checkingStatus: true,
+      statusShouldBeSaved: false,
+    }
   }
 
+  async componentWillMount () {
+    const status = await this.props.getCircStatus()
+    if (status && status.json) {
+      console.log('saveHistory', status.json.saveHistory)
+      this.setState({
+        checkingStatus: false,
+        statusShouldBeSaved: status.json.saveHistory })
+    } else {
+      this.setState({ checkingStatus: false })
+    }
+  }
   setStatus () {
     const targetCheckbox = document.getElementById('circ-opt-in')
     this.props.setCircStatus(targetCheckbox.checked)
@@ -15,6 +30,9 @@ class CircOptIn extends Component {
   }
 
   render () {
+    if (this.state.checkingStatus) {
+      return null
+    }
     return (
       <div className='col-md-12 col-xs-12'>
         <section className='group'>
@@ -23,7 +41,7 @@ class CircOptIn extends Component {
             <input
               id='circ-opt-in'
               type='checkbox'
-              defaultChecked={this.props.circHistory} />
+              defaultChecked={this.state.statusShouldBeSaved} />
             <label htmlFor='circ-opt-in'>Save my Circulation History.<HoverToolTip>Here is some helpful text.</HoverToolTip></label>
             <span style={{ float: 'right' }}><button
               onClick={this.setStatus}>Save</button></span>
@@ -35,6 +53,6 @@ class CircOptIn extends Component {
 }
 CircOptIn.propTypes = {
   setCircStatus: PropTypes.func.isRequired,
-  circHistory: PropTypes.bool,
+  getCircStatus: PropTypes.func.isRequired,
 }
 export default CircOptIn
