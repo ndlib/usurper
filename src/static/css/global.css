@@ -101,20 +101,32 @@ table td, table th {
   text-align: left;
 }
 table tr {
-  display: grid;
-  display: -ms-grid;
+  /*display: grid;
+  display: -ms-grid;*/
 
   border-bottom: solid #dcdcdc;
   border-width: 1px 0;
   grid-gap: 7px;
 
-  grid-auto-columns: .7fr 1fr 1.5fr;
+  /*grid-auto-columns: .7fr 1fr 1.5fr;
   grid-auto-flow: column;
-  -ms-grid-columns: .7fr 1fr 1.5fr;
+  -ms-grid-columns: .7fr 1fr 1.5fr;*/
   justify-content: left;
   font-size: 16px;
 
-  padding: 5px 0;
+  
+}
+
+table td {
+  padding: 5px ;
+}
+
+table td:first-child {
+  width: 20%;
+}
+
+table td:nth-child(2) {
+  width: 35%;
 }
 
 
@@ -130,6 +142,15 @@ a {
   width:1px;
   height:1px;
   overflow:hidden;
+}
+
+.skip {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0;
+  height: 0;
+  width: 0;
 }
 
 .skiplink:focus
