@@ -4,7 +4,7 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.19...v2018.22)
 
 ### Features
-- We’re all in for opt-in circ and have added the workflow as an dark feature that can be tested in the staging environment [#491](https://github.com/ndlib/usurper/pull/491)
+- We’re all in for opt-in circ and have added the workflow as an dark feature that can be tested in the staging environment [#491](https://github.com/ndlib/usurper/pull/491) 🥂
 
 ### Accessibility
 - Accessibility contrast issues worked on [#504](https://github.com/ndlib/usurper/pull/504)
