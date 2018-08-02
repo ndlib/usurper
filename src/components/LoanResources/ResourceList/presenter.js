@@ -3,13 +3,11 @@ import PropTypes from 'prop-types'
 import Resource from './Resource'
 import Loading from '../../Messages/InlineLoading'
 import FilterBox from '../../FilterBox'
-import ExportButton from './ExportButton'
-import DeleteButton from './DeleteButton'
 
 const ResourceList = (props) => {
   return (
     <section aria-label={props.listType}>
-      { props.borrowed && !props.historical && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
+      { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
       <FilterBox
         title='Filter Items:'
         value={props.filterValue}
@@ -42,7 +40,7 @@ const ResourceList = (props) => {
             Status
           </a>
         )}
-        { props.borrowed && !props.historical && (
+        { props.borrowed && (
           <a
             className={props.sortClass('dueDate')}
             onClick={(e) => props.sortClick(e, 'dueDate')}
@@ -53,17 +51,6 @@ const ResourceList = (props) => {
           </a>
         )}
 
-        { props.historical && (
-          <a
-            className={props.sortClass('checkedOut')}
-            onClick={(e) => props.sortClick(e, 'checkedOut')}
-            aria-label={'Sort By Checked Out Date ' + props.assistSortDirection('checkedOut')}
-            aria-controls={props.listType}
-          >
-            Checked Out
-          </a>
-
-        )}
       </div>
       <div className='screenReaderText' aria-live='assertive'>
         { props.assistText }
@@ -80,8 +67,6 @@ const ResourceList = (props) => {
                 renewal={props.renewal}
                 alephId={props.alephId}
                 borrowed={props.borrowed}
-                deleteFromHistory={props.deleteFromHistory}
-                historical={props.historical}
                 key={index}
               />
             )
@@ -89,15 +74,6 @@ const ResourceList = (props) => {
         }
       </section>
       { props.loadingMore && <Loading message='Loading More Items' /> }
-      { props.historical && <div className='pull-right-bottom'>
-        <DeleteButton
-          action={() => { console.log('delete') }}
-          items={props.list}
-        />
-        <ExportButton
-          items={props.list}
-        />
-      </div>}
     </section>
   )
 }
@@ -113,8 +89,6 @@ ResourceList.propTypes = {
   loadingMore: PropTypes.bool,
   listType: PropTypes.string.isRequired,
   assistText: PropTypes.string.isRequired,
-  deleteFromHistory: PropTypes.bool,
-  historical: PropTypes.bool,
 }
 
 export default ResourceList

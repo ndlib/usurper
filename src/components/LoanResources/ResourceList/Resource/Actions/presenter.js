@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ExportButton from '../../ExportButton'
-import DeleteButton from '../../DeleteButton'
+
 import Link from '../../../../Link'
 import * as Statuses from '../../../../../constants/APIStatuses'
 
@@ -63,33 +62,14 @@ const AlephRenew = (item, renewal, onRenewClick, renewMessage) => {
   }
 }
 
-const ExportItem = (item, historical) => {
-  if (!historical) {
-    return null
-  } else {
-    return (<ExportButton items={[item]} />)
-  }
-}
-
-export const hasActions = (item, includeDelete) => {
+export const hasActions = (item) => {
   return (
     (AlephRenew(item, null, (e) => {}, null) !== null) ||
     (IllWeb(item, null) !== null) ||
-    (IllView(item, null) !== null) ||
-    (ExportItem(item) !== null) ||
-    (DeleteItem(item, includeDelete) !== null)
+    (IllView(item, null) !== null)
   )
 }
 
-const DeleteItem = (item, includeDelete) => {
-  if (includeDelete) {
-    return (<DeleteButton
-      action={() => { console.log('delete', item) }}
-      items={[item]}
-    />)
-  }
-  return null
-}
 const Actions = (props) => {
   return (
     <div>
@@ -97,8 +77,6 @@ const Actions = (props) => {
       { ILLRenew(props.item, props.renewMessage) }
       { IllWeb(props.item, props.illWebUrl) }
       { IllView(props.item, props.illViewUrl) }
-      { ExportItem(props.item, props.historical)}
-      { DeleteItem(props.item, props.includeDelete)}
     </div>
   )
 }
@@ -110,8 +88,6 @@ Actions.propTypes = {
   renewMessage: PropTypes.string,
   illWebUrl: PropTypes.string,
   illViewUrl: PropTypes.string,
-  historical: PropTypes.bool,
-  includeDelete: PropTypes.bool,
 }
 
 export default Actions

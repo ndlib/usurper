@@ -6,8 +6,7 @@ const fs = require('fs');
 let apiList = [
   'classesAPI',
   'monarchLibguides',
-  'recommendEngine',
-  'userPreferences'
+  'recommendEngine'
 ]
 
 let handler = async () => {
