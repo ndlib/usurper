@@ -61,7 +61,7 @@ export const getCircStatus = () => {
     dispatch(requestSettings(KIND.circStatus, null))
     let url = Config.userPrefsAPI + 'circHistory'
     // REMOVE TOKEN DEBUG
-    console.log('token', state.login.token)
+    // console.log('token', state.login)
     return fetch(url, {
       method: 'get',
       headers: {
@@ -87,8 +87,6 @@ export const setCircStatus = (checked) => {
     let state = getState().personal
     dispatch(requestSettings(KIND.circStatus, checked))
     let url = Config.userPrefsAPI + 'circHistory'
-    // REMOVE TOKEN DEBUG
-    console.log('token', state.login.token)
     return fetch(url, {
       method: 'post',
       headers: {
