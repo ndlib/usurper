@@ -3,12 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Presenter from './presenter'
-import {
-  setHomeLibrary,
-  getCircStatus,
-  setCircStatus,
-  KIND,
-} from '../../actions/personal/settings'
+import { setHomeLibrary, KIND } from '../../actions/personal/settings'
 import { getUser } from '../../actions/personal/loanResources'
 import Loading from '../Messages/Loading'
 
@@ -17,13 +12,12 @@ import * as states from '../../constants/APIStatuses'
 const homeLibraries = [
   { value: 'HESB', title: 'Hesburgh Library' },
   { value: 'ARCHT', title: 'Architecture Library' },
-  { value: 'BIC', title: 'Business Library' },
-  { value: 'CHEMP', title: 'Chemistry ‐ Physics Library' },
+  { value: 'CHEMP', title: 'Chem/Physics Library' },
   { value: 'ENGIN', title: 'Engineering Library' },
+  { value: 'BIC', title: 'Business Library' },
   { value: 'MATH', title: 'Mathematics Library' },
   { value: 'MUSIC', title: 'Music Library' },
-  { value: 'RADLAB', title: 'Radiation Lab Reading Room' },
-  { value: 'NDCAM', title: 'I would prefer departmental delivery' },
+  { value: 'NDCAM', title: 'Notre Dame Campus Delivery' },
 ]
 
 const updateStatus = {
@@ -48,15 +42,13 @@ class SettingsContainer extends Component {
   }
 
   render () {
-    if (this.props.loggedIn) {
+    if (this.props.loggedIn && this.props.homeIndex !== null) {
       return <Presenter
         preview={this.props.preview}
         homeLibraries={homeLibraries}
         setHomeLibrary={this.props.setHomeLibrary}
         homeIndex={this.props.homeIndex}
         libraryStatus={this.props.libraryStatus}
-        setCircStatus={this.props.setCircStatus}
-        getCircStatus={this.props.getCircStatus}
       />
     } else if (this.props.redirectUrl) {
       window.location = this.props.redirectUrl
@@ -83,7 +75,7 @@ const apiStateToInt = (state) => {
 export const mapStateToProps = (state, ownProps) => {
   const { personal, settings } = state
 
-  let loggedIn = Boolean(state.personal.login && personal.login.token) === true
+  let loggedIn = (personal.login && personal.login.token) === true
 
   let currentHomeTitle = personal.user ? personal.user.homeLibrary : null
   let homeIndex = null
@@ -110,12 +102,7 @@ export const mapStateToProps = (state, ownProps) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    setHomeLibrary,
-    getUser,
-    getCircStatus,
-    setCircStatus,
-  }, dispatch)
+  return bindActionCreators({ setHomeLibrary, getUser }, dispatch)
 }
 
 SettingsContainer.propTypes = {
@@ -124,8 +111,6 @@ SettingsContainer.propTypes = {
   redirectUrl: PropTypes.string,
   setHomeLibrary: PropTypes.func,
   homeIndex: PropTypes.number,
-  setCircStatus: PropTypes.func,
-  getCircStatus: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

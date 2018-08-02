@@ -722,9 +722,6 @@ button a {
   color: #fff;
   text-decoration: none;
 }
-button.danger {
-  background-color: #ac262b;
-}
 
 .button.callout {
   background-color: #435265;
@@ -830,11 +827,7 @@ nav a.search.closed:hover {
   background-size: 21px, 12px;
 }
 
-.sort-title,
-.sort-author,
-.sort-status,
-.sort-dueDate,
-.sort-checkedOut {
+.sort-title, .sort-author, .sort-status, .sort-dueDate {
   font-weight: bold;
   padding-left: 20px !important;
   line-height: 1.4em;
@@ -983,11 +976,9 @@ div.search {
 }
 
 .settings .updateStatus div {
+  margin-top: 12px;
   width: auto;
   display: inline-block;
-  clear: both;
-  width: calc(100% - 4em);
-  margin: 2em 2em 0;
 }
 
 
@@ -1762,12 +1753,7 @@ button.renew {
   grid-row: 1;
   text-align: right;
 }
-.actions-button.wide {
-  min-width: 130px;
-}
-.actions-button button.danger {
-  margin-right: 10px;
-}
+
 .actions-button span {
   cursor: pointer;
   font-size: 26px;
@@ -3874,77 +3860,6 @@ a .dbItem {
 
 .mapkey {
   width: 100%;
-}
-
-p img {
-  max-width: 100%;
-}
-
-main .mobile-only h4,
-main .mobile-only h5 {
-  margin-top: 0;
-}
-
-.col-2-list li {
-  line-height: 1.5em;
-  float: left;
-  display: inline;
-  width: 50%;
-}
-.radio-list-button {
-  clear: both;
-  float: right;
-  margin: 1em 2em 0;
-}
-
-.group input[type="checkbox"],
-.group input[type='radio'] {
-  zoom: 1.5;
-}
-
-.pull-right-top {
-  text-align: right;
-  width: 100%;
-  margin-bottom: 10px;
-  display: block;
-}
-.pull-right-bottom {
-  text-align: right;
-  width: 100%;
-  margin-top: 10px;
-  display: inline-flex;
-  flex-direction: row-reverse;
-}
-.pull-right-bottom button {
-  margin-left: 10px;
-}
-
-.modal-force-bottom {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
-
-.exportOptions.dropdown {
-  margin-top: 2px;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  z-index: 1;
-}
-.exportOptions.dropdown.hidden{
-  display: none;
-}
-.exportOptions.dropdown ul {
-  background-color: transparent !important;
-  width: auto !important;
-}
-.export {
-  position: relative;
-}
-
-main {
-  width: 100%
 }
 
 p img {

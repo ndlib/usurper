@@ -18,7 +18,6 @@ const LoggedIn = (preview, balance) => {
     <div className='content'>
       <LogOut />
       <Courses linkOnly />
-      <Link to='/settings' className='button fright tab logout-button-personal'>Settings</Link>
 
       <SearchProgramaticSet open={false} />
       <PageTitle title='Items & Requests' />

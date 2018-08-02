@@ -1,3 +1,4 @@
+'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -17,7 +18,6 @@ const LoanResources = (props) => {
         alephId={props.alephId}
         renewal={props.renewal}
         borrowed={false}
-        historical={false}
         listType='Pending'
       />
       <br />
@@ -28,8 +28,7 @@ const LoanResources = (props) => {
         loading={have.loading}
         alephId={props.alephId}
         renewal={props.renewal}
-        borrowed
-        historical={false}
+        borrowed={true}
         listType='Checked Out'
       />
     </div>
