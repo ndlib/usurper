@@ -10,10 +10,10 @@ const Card = (className, prefix, data, label) => {
   return <div className={className} />
 }
 
-const actionsButton = (item, toggleHidden) => {
-  if (hasActions(item)) {
+const actionsButton = (item, toggleHidden, includeDelete) => {
+  if (hasActions(item, includeDelete)) {
     return (
-      <div className={'actions-button'}>
+      <div className='actions-button'>
         <span onClick={toggleHidden} title='More Actions'>⁝</span>
       </div>
     )
@@ -36,10 +36,16 @@ const Resource = (props) => {
       { !props.borrowed && Card('card-status', '', props.item.status, 'Status: ' + props.item.status) }
       { props.borrowed && Card('card-due', '', props.item.dueDate, 'Due: ' + props.item.dueDate) }
       { Card('card-pickup', 'Pickup Location: ', props.item.pickupLocation) }
-
-      { actionsButton(props.item, props.toggleHidden) }
+      { actionsButton(props.item, props.toggleHidden, props.deleteFromHistory) }
       <div className={'actions' + (props.hidden ? '-hidden' : '')}>
-        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} borrowed={props.borrowed} />
+        <Actions
+          item={props.item}
+          alephId={props.alephId}
+          renewal={props.renewal}
+          borrowed={props.borrowed}
+          historical={props.historical}
+          includeDelete={props.deleteFromHistory}
+        />
       </div>
     </div>
   )
@@ -51,6 +57,8 @@ Resource.propTypes = {
   toggleHidden: PropTypes.func,
   alephId: PropTypes.string,
   borrowed: PropTypes.bool,
+  deleteFromHistory: PropTypes.bool,
+  historical: PropTypes.bool,
 }
 
 export default Resource
