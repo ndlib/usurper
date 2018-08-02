@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2018.23](https://github.com/ndlib/usurper/tree/v2018.22) “Psych"
+## [v2018.24](https://github.com/ndlib/usurper/tree/v2018.22) “Psych"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.19...v2018.23)
 
 ### Accessibility
