@@ -14,6 +14,7 @@ const contactPoints = [
     'points': [
       'circulationservicedesk',
       'askusdesk',
+      'oitoutpost',
       'reservesmicrotextandmediadesk',
       'admin',
       'ill-office',
