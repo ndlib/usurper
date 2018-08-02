@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2018.22](https://github.com/ndlib/usurper/tree/v2018.22) “Secretly Opting-in"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.19...v2018.22)
+
+### Features
+- We’re all in for opt-in circ and have added the workflow as an dark feature that can be tested in the staging environment [#491](https://github.com/ndlib/usurper/pull/491)
+
+### Accessibility
+- Accessibility contrast issues worked on [#504](https://github.com/ndlib/usurper/pull/504)
+- Fixed link related accessibility issues [#506](https://github.com/ndlib/usurper/pull/506)
+
+### Other
+- Added a redirect for instruction requests [#505](https://github.com/ndlib/usurper/pull/505)
+- Added OIT Outpost on Contact Us page [#508](https://github.com/ndlib/usurper/pull/508)
+
 ## [v2018.19](https://github.com/ndlib/usurper/tree/v2018.19) "Baton Twirling"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.18...v2018.19)
 
