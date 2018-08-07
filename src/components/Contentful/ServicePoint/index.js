@@ -18,7 +18,8 @@ const ServicePoint = ({ cfServicePoint, showDetails }) => {
       itemScope
       itemType='http://schema.org/Place'
     >
-      <h3 itemProp='name'>{cfServicePoint.fields.title}</h3>
+      <h2 itemProp='name'>{cfServicePoint.fields.title}</h2>
+
 
       { showDetails && (
         <div>

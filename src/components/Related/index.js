@@ -17,7 +17,7 @@ const Related = ({ title, className, showImages, children }) => {
 
   return (
     <section aria-label={title}>
-      { title && <h3>{title}</h3> }
+      { title && <h2>{title}</h2> }
       <ul className={className}>
         {
           childrenWithFields.map((currentItem) => {

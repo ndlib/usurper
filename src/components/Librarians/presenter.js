@@ -10,7 +10,7 @@ import PrivateLibrarianImage from '../../static/images/librarian.gif'
 const Loaded = (info, className) => {
   return (
     <section className={className} aria-label='Contact Information' role='complementary'>
-      <h3>Contact Info </h3>
+      <h2>Contact Info </h2>
       {
 
         info.librarians.map((librarian) => {
