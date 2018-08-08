@@ -31,6 +31,9 @@ const receiveSuccess = (page, response) => {
 }
 
 const receivePage = (page, response) => {
+  if (Array.isArray(response)) {
+    response = response[0]
+  }
   if (response.sys &&
       response.sys.contentType &&
       response.sys.contentType.sys &&
@@ -51,10 +54,16 @@ export function clearPage () {
   }
 }
 
-export const fetchPage = (page, preview, secure) => {
-  const resource = secure ? 'securedentry' : 'entry'
-  const pageEnc = encodeURIComponent(page)
-  let url = `${Config.contentfulAPI}/${resource}?locale=en-US&slug=${pageEnc}&preview=${preview}`
+export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
+  let url
+  if (secure) {
+    const pageEnc = encodeURIComponent(page)
+    url = `${Config.contentfulAPI}securedentry?locale=en-US&slug=${pageEnc}&preview=${preview}`
+  } else {
+    const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=4`)
+    url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
+  }
+
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 

@@ -37,7 +37,9 @@ const receiveAllEvents = (response) => {
 }
 
 export const fetchAllEvents = (status) => {
-  let url = `${Config.contentfulAPI}/contentType/event?status=${status}`
+  const query = encodeURIComponent('content_type=event&include=4')
+  const preview = status === 'preview'
+  let url = `${Config.contentfulAPI}query?locale=en-US&preview=${preview}&query=${query}`
   return dispatch => {
     dispatch(requestAllEvents())
     return fetch(url)

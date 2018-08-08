@@ -6,6 +6,7 @@ const fs = require('fs');
 let apiList = [
   'classesAPI',
   'monarchLibguides',
+  'contentfuldirect',
   'recommendEngine'
 ]
 

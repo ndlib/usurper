@@ -37,7 +37,9 @@ const receiveAllAlerts = (response) => {
 }
 
 export const fetchAllAlerts = (status) => {
-  let url = `${Config.contentfulAPI}/contentType/alert?status=${status}`
+  const query = encodeURIComponent('content_type=alert&include=2')
+  const preview = status === 'preview'
+  let url = `${Config.contentfulAPI}query?locale=en-US&preview=${preview}&query=${query}`
   return dispatch => {
     dispatch(requestAllAlerts())
     return fetch(url)

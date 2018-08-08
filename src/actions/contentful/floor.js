@@ -22,12 +22,12 @@ const receiveFloor = (floor, response) => {
   let success = {
     type: CF_RECEIVE_FLOOR,
     status: statuses.SUCCESS,
-    floor: response,
+    floor: response[0],
     receivedAt: Date.now(),
   }
 
   try {
-    if (response.sys.contentType.sys.id === 'floor') {
+    if (response[0].sys.contentType.sys.id === 'floor') {
       return success
     } else {
       return error
@@ -38,7 +38,8 @@ const receiveFloor = (floor, response) => {
 }
 
 export const fetchFloor = (floor, preview) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${floor}&preview=${preview}`
+  const query = encodeURIComponent(`content_type=floor&fields.slug=${floor}&include=4`)
+  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
   return dispatch => {
     dispatch(requestFloor(floor))
     return fetch(url)

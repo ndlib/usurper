@@ -1,4 +1,4 @@
-//let apiUrls = require('./apiUrls.js')
+let apiUrls = require('./apiUrls.js')
 
 const genConfig = () => {
   let defaultConfig = {
@@ -8,7 +8,7 @@ const genConfig = () => {
     resourcesAPI: 'https://p5gotxkf09.execute-api.us-east-1.amazonaws.com/dev',
     illiadBaseURL: 'https://nd.illiad.oclc.org/illiad/IND/testweb/illiad.dll?Action=10&Form=<<form>>&Value=<<value>>',
     hoursAPIURL: 'https://3nmbw29969.execute-api.us-east-1.amazonaws.com/dev',
-    contentfulAPI: 'https://bj5rh8poa7.execute-api.us-east-1.amazonaws.com/dev',
+    contentfulAPI: apiUrls.contentfuldirect,
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
