@@ -51,7 +51,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const precision0 = advancedSearch['precisionOperator_0'] || 'contains'
     const precision1 = advancedSearch['precisionOperator_1'] || 'contains'
     const precision2 = advancedSearch['precisionOperator_2'] || 'contains'
-    const freeText0 = advancedSearch['freeText_0'] || ''
+    const freeText0 = advancedSearch['freeText_0'] || 'alldocuments'
     let freeText1 = advancedSearch['freeText_1'] || ''
     let freeText2 = advancedSearch['freeText_2'] || ''
     const bool0 = advancedSearch['bool_0'] || 'AND'
@@ -90,7 +90,11 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     searchTerm = advancedSearch['basic-search-field'] || ''
   } else {
     // Basic Search
-    searchTerm = `query=any%2Ccontains%2C${advancedSearch['basic-search-field']}`
+    let searchQuery = advancedSearch['basic-search-field']
+    if (!searchQuery) {
+      searchQuery = 'alldocuments'
+    }
+    searchTerm = `query=any%2Ccontains%2C${searchQuery}`
   }
 
   switch (searchStore.searchType) {
