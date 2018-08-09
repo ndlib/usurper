@@ -55,14 +55,12 @@ export function clearPage () {
 }
 
 export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
-  let url
+  let endpoint = 'query'
   if (secure) {
-    const pageEnc = encodeURIComponent(page)
-    url = `${Config.contentfulAPI}securequery?locale=en-US&slug=${pageEnc}&preview=${preview}`
-  } else {
-    const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=4`)
-    url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
+    endpoint = 'secureQuery'
   }
+  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=4`)
+  const url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}&preview=${preview}`
 
   return (dispatch, getState) => {
     dispatch(requestPage(page))
