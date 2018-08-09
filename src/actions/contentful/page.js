@@ -59,7 +59,7 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
   if (secure) {
     endpoint = 'secureQuery'
   }
-  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=4`)
+  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}`)
   const url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}&preview=${preview}`
 
   return (dispatch, getState) => {

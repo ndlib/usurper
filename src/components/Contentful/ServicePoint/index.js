@@ -6,7 +6,7 @@ import Contact from '../../Contact/ServicePoint'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 const ServicePoint = ({ cfServicePoint, showDetails }) => {
-  if (!cfServicePoint) {
+  if (!cfServicePoint || !cfServicePoint.fields) {
     return null
   }
 
