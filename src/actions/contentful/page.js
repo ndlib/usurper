@@ -58,7 +58,7 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
   let url
   if (secure) {
     const pageEnc = encodeURIComponent(page)
-    url = `${Config.contentfulAPI}securedentry?locale=en-US&slug=${pageEnc}&preview=${preview}`
+    url = `${Config.contentfulAPI}securequery?locale=en-US&slug=${pageEnc}&preview=${preview}`
   } else {
     const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=4`)
     url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
@@ -69,9 +69,20 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
+    console.log('headers', headers)
     return fetch(url, { headers })
-      .then(response => response.ok ? response.json() : { errorStatus: response.status })
+      .then(response => {
+        console.log('response', response)
+        if (response.ok) {
+          return response.json()
+        } else {
+          return response.status
+        }
+      })
       .then(json => dispatch(receivePage(page, json)))
-      .catch(response => dispatch(receiveError(page, response)))
+      .catch(response => {
+        console.log('catch response', response)
+        dispatch(receiveError(page, response))
+      })
   }
 }
