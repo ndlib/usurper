@@ -279,7 +279,7 @@ height:auto;
   -ms-grid-column-span: 2;
 }
 
-.librarian h4 {
+.librarian h4, .librarian .name {
   font-size: 16px;
   font-weight: bold;
   color: #333;
@@ -288,7 +288,7 @@ height:auto;
 
 }
 
-.librarian h5 {
+.librarian h5, .librarian .title {
   margin-bottom: 5px;
   font-size: 13px;
 }
@@ -1590,8 +1590,14 @@ aside section {
   padding-bottom: 1.5em;
 }
 
-aside section h3 {
+aside section h3, aside section h2 {
   margin-bottom: 8px;
+}
+
+aside section h2 {
+  font-size: 24px;
+  font-family: GPCMed, sans-serif;
+  color: #001E45;
 }
 
 aside section .p-pages {
