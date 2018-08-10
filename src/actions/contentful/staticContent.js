@@ -40,7 +40,7 @@ const receiveSidebar = (slug, response) => {
 }
 
 export const fetchSidebar = (slug, preview) => {
-  const query = encodeURIComponent(`content_type=dynamicPage&fields.slug=${slug}&include=4`)
+  const query = encodeURIComponent(`content_type=dynamicPage&fields.slug=${slug}`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
   return (dispatch, getState) => {
     let state = getState()
