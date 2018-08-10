@@ -62,6 +62,8 @@
 
 ### Building the urls from the exports
   To build the apis call this.
+  * cd scrips/build-links
+  * yarn install
   * `node buildApiUrls.js stage=devJon`
   This must be done before you start the application.
 
