@@ -27,7 +27,7 @@ const Contact = (props) => {
       )
     }
 
-    if (rawFloor.building) {
+    if (rawFloor.building && rawFloor.building.fields) {
       let rawBuilding = rawFloor.building.fields
       building = (
         <li
