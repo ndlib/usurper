@@ -8,7 +8,8 @@ let apiList = [
   'monarchLibguides',
   'contentfuldirect',
   'recommendEngine',
-  'gatekeeper'
+  'gatekeeper',
+  'contentfulmaps',
 ]
 
 let handler = async () => {
