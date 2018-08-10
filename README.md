@@ -49,7 +49,8 @@
   * `brew install git nvm`
   * `nvm install v8`
   * `npm install -g yarn`
-  * Add `nvm` and `yarn` to bash path.
+  *  Add `nvm` and `yarn` to bash path.
+  *  Node Version > 8 
 
 #### Project Install
   * `git clone git@github.com:ndlib/usurper.git`
@@ -64,6 +65,7 @@
   To build the apis call this.
   * cd scrips/build-links
   * yarn install
+  * assume a role that can access the exports
   * `node buildApiUrls.js stage=devJon`
   This must be done before you start the application.
 
