@@ -41,33 +41,38 @@ const startEndTime = (start, end) => {
 
 export const mapEvents = (json) => {
   return json.map((entry) => {
-    // flatten locales to just 'en-us' and convert strings to datetime type
-    flattenLocale(entry.fields, 'en-US')
+    if (entry && entry.fields && entry.fields.startDate && entry.fields.endDate) {
+      // flatten locales to just 'en-us' and convert strings to datetime type
+      flattenLocale(entry.fields, 'en-US')
 
-    let start = dateLibs.makeLocalTimezone(entry.fields.startDate)
-    let end = entry.fields.endDate ? dateLibs.makeLocalTimezone(entry.fields.endDate) : dateLibs.makeLocalTimezone(entry.fields.startDate)
-    // if end time is 0:00, add 23:59
-    if (end.getHours() === 0 && end.getMinutes() === 0) {
-      end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
-    }
+      let start = dateLibs.makeLocalTimezone(entry.fields.startDate)
+      let end = entry.fields.endDate ? dateLibs.makeLocalTimezone(entry.fields.endDate) : dateLibs.makeLocalTimezone(entry.fields.startDate)
+      // if end time is 0:00, add 23:59
+      if (end.getHours() === 0 && end.getMinutes() === 0) {
+        end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
+      }
 
-    return {
-      ...entry.fields,
-      startDate: start,
-      endDate: end,
+      return {
+        ...entry.fields,
+        startDate: start,
+        endDate: end,
+      }
     }
+    return null
   })
-  .map((entry) => {
-    // Map datetime to displayable text
-    let start = entry.startDate
-    let end = entry.endDate
+    .map((entry) => {
+      if (entry && entry.startDate && entry.endDate) {
+        // Map datetime to displayable text
+        let start = entry.startDate
+        let end = entry.endDate
 
-    return {
-      displayDate: startEndDate(start, end),
-      displayTime: startEndTime(start, end),
-      ...entry,
-    }
-  })
+        return {
+          displayDate: startEndDate(start, end),
+          displayTime: startEndTime(start, end),
+          ...entry,
+        }
+      }
+    })
 }
 
 // We need to sort twice, first to get preferred items at the top,
@@ -103,8 +108,10 @@ const mapStateToProps = (state) => {
 
     allEvents = mapEvents(state.allEvents.json)
       .filter((entry) => {
-        // Only use entries which are in the future or ongoing
-        return entry.startDate >= now || entry.endDate >= now
+        if (entry && entry.startDate && entry.endDate) {
+          // Only use entries which are in the future or ongoing
+          return entry.startDate >= now || entry.endDate >= now
+        }
       })
       .sort((a, b) => sortEvents(a, b, true))
       .slice(0, 5)
