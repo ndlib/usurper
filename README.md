@@ -50,7 +50,7 @@
   * `nvm install v8`
   * `npm install -g yarn`
   *  Add `nvm` and `yarn` to bash path.
-  *  Node Version > 8 
+  *  Node Version > 8
 
 #### Project Install
   * `git clone git@github.com:ndlib/usurper.git`
@@ -70,7 +70,6 @@
   This must be done before you start the application.
 
 ### Running Locally
-
 * `yarn start`
 * Open browser to http://localhost:3000
 
@@ -82,8 +81,14 @@
 We have two main branches, `master` and `UA`. `Master` is "production ready" and is what ends up getting tagged and deployed to production. `UA` is what all branches get merged into for testing and User Aceptance (UA). All development branches should start off of master, interated on and merged into `UA`. After the changes are accepted, that branch may then be merged into `master` and deleted. Remember the **branch** is merged into master, **not UA directly**. This also means **UA should not be merged into your development branch at any time**. We don't want to accidentally get unapproved changes into master.
 
 ## Deployment to AWS
+ * hesdeploy -s {stage} --create/update
+ * note: if this is a create it will create a cloud front and can take 30 minutes.
 
 ### Development deployment
+ * dev-staging.library.nd.edu
+ * Build monarch_libguides / dev
+ * Build classes_api / dev
+
 
 ### Alpha and Beta deployment
 
