@@ -9,11 +9,11 @@ phases:
     commands:
       - npm install -g yarn
       - yarn install --production
-      - cd scripts/build-links && yarn install --production
+      - cd scripts/build-links && yarn install --production && cd ../..
 
   build:
     commands:
-      - cd scripts/build-links && node buildApiUrls.js stage=dev
+      - cd scripts/build-links && node buildApiUrls.js stage=dev && cd ../..
       - yarn build --production
 
   post_build:
