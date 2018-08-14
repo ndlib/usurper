@@ -42,23 +42,37 @@ const receiveEntry = (entry, response) => {
 export const fetchEntry = (id, slug, preview) => {
   let identifierParam
   let entryIdent
+  /*
+  // I think this is unused. If it is used, this query wouldn't work anyway.
   if (slug) {
-    identifierParam = `slug=${encodeURIComponent(slug)}`
+
+    identifierParam = encodeURIComponent(`slug=${slug}`)
     entryIdent = slug
   }
+  */
   if (id) {
-    identifierParam = `id=${encodeURIComponent(id)}`
+    identifierParam = encodeURIComponent(`sys.id=${id}`)
     entryIdent = id
   }
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&${identifierParam}&preview=${preview}`
+  let url = `${Config.contentfulAPI}query?locale=en-US&query=${identifierParam}&preview=${preview}`
+
   return (dispatch, getState) => {
     dispatch(requestEntry(entryIdent))
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
     return fetch(url, { headers })
-      .then(response => response.ok ? response.json() : { errorStatus: response.status })
-      .then(json => dispatch(receiveEntry(entryIdent, json)))
-      .catch(response => dispatch(receiveEntry(entryIdent, response)))
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          return response.status
+        }
+      })
+      .then(json => {
+        dispatch(receiveEntry(entryIdent, json[0]))
+      })
+      .catch(response => dispatch(
+        receiveEntry(entryIdent, response)))
   }
 }
