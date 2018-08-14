@@ -47,14 +47,15 @@ const receiveNavigation = (response) => {
     return {
       type: NAV_RECEIVE,
       status: statuses.SUCCESS,
-      data: response,
+      data: response[0],
       receivedAt: Date.now(),
     }
   }
 }
 
 export const fetchNavigation = (preview) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=navigation%2froot&resolveLinks=false&preview=${preview}`
+  const query = encodeURIComponent('content_type=columnContainer&fields.slug=navigation&include=5')
+  let url = `${Config.contentfulAPI}query?locale=en-US&preview=false&query=${query}`
   return (dispatch) => {
     dispatch(requestNavigation())
     return fetch(url)

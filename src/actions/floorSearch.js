@@ -33,7 +33,7 @@ const receiveFloorSearch = (response) => {
 const searchFloorMaps = (searchQuery) => {
   return dispatch => {
     dispatch(requestFloorSearch())
-    let url = Config.contentfulAPI + '/map' + searchQuery
+    let url = Config.mapsAPI + '/map' + searchQuery
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveFloorSearch(json)))

@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux'
 import { fetchPage, clearPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
-import ColumnPagePresenter from './columnPresenter.js'
 import * as statuses from '../../../constants/APIStatuses'
 
 const mapStateToProps = (state) => {
@@ -38,13 +37,8 @@ export class ContentfulPageContainer extends Component {
   }
 
   render () {
-    let presenter = ContentfulPagePresenter
-    if (this.props.cfPageEntry.json && this.props.cfPageEntry.json.sys.contentType.sys.id === 'columnContainer') {
-      presenter = ColumnPagePresenter
-    }
-
     return <PresenterFactory
-      presenter={presenter}
+      presenter={ContentfulPagePresenter}
       status={this.props.cfPageEntry.status}
       props={{ cfPageEntry: this.props.cfPageEntry.json }} />
   }

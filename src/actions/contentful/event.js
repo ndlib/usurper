@@ -22,12 +22,12 @@ const receiveEvent = (event, response) => {
   let success = {
     type: CF_RECEIVE_EVENT,
     status: statuses.SUCCESS,
-    event: response,
+    event: response[0],
     receivedAt: Date.now(),
   }
 
   try {
-    if (response.sys.contentType.sys.id === 'event') {
+    if (response[0].sys.contentType.sys.id === 'event') {
       return success
     } else {
       console.log(response)
@@ -40,8 +40,9 @@ const receiveEvent = (event, response) => {
 }
 
 export const fetchEvent = (event, preview) => {
-  const eventEnc = encodeURIComponent(event)
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${eventEnc}&preview=${preview}`
+  const query = encodeURIComponent(`content_type=event&fields.slug=${event}`)
+  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
+
   return (dispatch) => {
     dispatch(requestEvent(event))
 

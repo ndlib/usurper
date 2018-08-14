@@ -11,6 +11,7 @@ import Settings from '../../components/Settings'
 import Hours from '../../components/Hours/Page'
 import ChatPage from '../../components/ChatPage'
 import ContentfulPage from '../../components/Contentful/Page'
+import ContentfulColumnPage from '../../components/Contentful/ColumnPage'
 import SecureContentfulPage from '../../components/Contentful/SecurePage'
 import ContentfulFloor from '../../components/Contentful/Floor'
 import ContentfulNews from '../../components/Contentful/News'
@@ -89,6 +90,7 @@ const App = (props) => {
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
+              <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
               <Route exact path='/search' component={SearchPage} />
               <Route exact path='/:id' component={ContentfulPage} />
 

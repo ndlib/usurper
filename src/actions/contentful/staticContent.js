@@ -23,13 +23,13 @@ const receiveSidebar = (slug, response) => {
   let success = {
     type: CF_RECEIVE_SIDEBAR,
     status: statuses.SUCCESS,
-    data: response,
+    data: response[0],
     slug: slug,
     receivedAt: Date.now(),
   }
 
   try {
-    if (response.sys.contentType.sys.id === 'dynamicPage') {
+    if (response[0].sys.contentType.sys.id === 'dynamicPage') {
       return success
     } else {
       return error
@@ -40,7 +40,8 @@ const receiveSidebar = (slug, response) => {
 }
 
 export const fetchSidebar = (slug, preview) => {
-  let url = `${Config.contentfulAPI}/entry?locale=en-US&slug=${slug}&preview=${preview}`
+  const query = encodeURIComponent(`content_type=dynamicPage&fields.slug=${slug}`)
+  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
   return (dispatch, getState) => {
     let state = getState()
     if (state.cfStatic.slug === slug && state.cfStatic.status === statuses.FETCHING) {

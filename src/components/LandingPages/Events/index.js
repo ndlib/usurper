@@ -16,11 +16,15 @@ const mapStateToProps = (state) => {
     let now = new Date()
     allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
     currentFutureEvents = allEvents.filter((entry) => {
-      return entry.startDate >= now || entry.endDate >= now
+      if (entry && entry.startDate && entry.endDate) {
+        return entry.startDate >= now || entry.endDate >= now
+      }
     })
 
     pastEvents = allEvents.filter((entry) => {
-      return entry.startDate < now && entry.endDate < now
+      if (entry && entry.startDate && entry.endDate) {
+        return entry.startDate < now && entry.endDate < now
+      }
     })
   }
 
