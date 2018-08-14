@@ -18,4 +18,5 @@ phases:
 
   post_build:
     commands:
+      - echo $REACT_OUTPUT
       - aws s3 sync ./build/public s3://$REACT_OUTPUT --delete
