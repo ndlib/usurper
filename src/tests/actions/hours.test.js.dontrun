@@ -49,6 +49,7 @@ describe('hours fetchHours async action creator', () => {
 
   describe('Data Requests', () => {
     beforeEach(() => {
+      console.log(Config)
       nock(Config.hoursAPIURL)
         .get('/hours')
         .reply(200, mockPageResponse)

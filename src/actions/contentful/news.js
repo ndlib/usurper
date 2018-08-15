@@ -22,12 +22,12 @@ const receiveNews = (news, response) => {
   let success = {
     type: CF_RECEIVE_NEWS,
     status: statuses.SUCCESS,
-    news: response,
+    news: response[0],
     receivedAt: Date.now(),
   }
 
   try {
-    if (response.sys.contentType.sys.id === 'news') {
+    if (response[0].sys.contentType.sys.id === 'news') {
       return success
     } else {
       return error
@@ -37,16 +37,13 @@ const receiveNews = (news, response) => {
   }
 }
 
-export const fetchNews = (news, preview, secure) => {
-  const resource = secure ? 'securedentry' : 'entry'
-  const newsEnc = encodeURIComponent(news)
-  let url = `${Config.contentfulAPI}/${resource}?locale=en-US&slug=${newsEnc}&preview=${preview}`
+export const fetchNews = (news, preview) => {
+  const query = encodeURIComponent(`content_type=news&fields.slug=${news}`)
+  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
   return (dispatch, getState) => {
     dispatch(requestNews(news))
 
-    let login = getState().personal.login
-    let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
-    return fetch(url, { headers })
+    return fetch(url)
       .then(response => response.ok ? response.json() : { errorStatus: response.status })
       .then(json => dispatch(receiveNews(news, json)))
       .catch(response => dispatch(receiveNews(news, response)))

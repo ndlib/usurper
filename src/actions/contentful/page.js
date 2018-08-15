@@ -31,6 +31,9 @@ const receiveSuccess = (page, response) => {
 }
 
 const receivePage = (page, response) => {
+  if (Array.isArray(response)) {
+    response = response[0]
+  }
   if (response.sys &&
       response.sys.contentType &&
       response.sys.contentType.sys &&
@@ -51,18 +54,33 @@ export function clearPage () {
   }
 }
 
-export const fetchPage = (page, preview, secure) => {
-  const resource = secure ? 'securedentry' : 'entry'
-  const pageEnc = encodeURIComponent(page)
-  let url = `${Config.contentfulAPI}/${resource}?locale=en-US&slug=${pageEnc}&preview=${preview}`
+export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
+  let endpoint = 'query'
+  if (secure) {
+    endpoint = 'secureQuery'
+  }
+  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}`)
+  const url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}&preview=${preview}`
+
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
+    console.log('headers', headers)
     return fetch(url, { headers })
-      .then(response => response.ok ? response.json() : { errorStatus: response.status })
+      .then(response => {
+        console.log('response', response)
+        if (response.ok) {
+          return response.json()
+        } else {
+          return response.status
+        }
+      })
       .then(json => dispatch(receivePage(page, json)))
-      .catch(response => dispatch(receiveError(page, response)))
+      .catch(response => {
+        console.log('catch response', response)
+        dispatch(receiveError(page, response))
+      })
   }
 }
