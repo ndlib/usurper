@@ -67,10 +67,9 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
 
     let login = getState().personal.login
     let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
-    console.log('headers', headers)
+
     return fetch(url, { headers })
       .then(response => {
-        console.log('response', response)
         if (response.ok) {
           return response.json()
         } else {

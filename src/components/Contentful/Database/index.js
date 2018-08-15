@@ -1,4 +1,3 @@
-// Container component for a Floor content type from Contentful
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchEntry } from '../../../actions/contentful/entry'
