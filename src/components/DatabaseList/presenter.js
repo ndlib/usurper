@@ -61,7 +61,9 @@ const Loaded = (props) => {
   if (!props.list) {
     return null
   }
-
+  if (props.list.length < 1) {
+    return LetterNotFound(props.letter, props.filterValue, props.onFilterChange)
+  }
   let data = props.list.map((item) => {
     let linkObject = getLinkObject(item.fields, item.sys.id)
 

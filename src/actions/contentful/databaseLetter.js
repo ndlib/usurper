@@ -14,7 +14,8 @@ export const CF_RECEIVE_DATABASE_LETTER = 'CF_RECEIVE_DATABASE_LETTER'
 const receiveLetter = (letter, response) => {
   let error = {
     type: CF_RECEIVE_DATABASE_LETTER,
-    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
+    // We won't get a 404, but we will get a 200 and an empty list
+    status: response.status === 200 ? statuses.NOT_FOUND : statuses.ERROR,
     letter: letter,
     receivedAt: Date.now(),
   }
@@ -30,8 +31,8 @@ const receiveLetter = (letter, response) => {
   }
 
   try {
-    if (response.fields && response.fields[letter]) {
-      return success(response.fields[letter])
+    if (response) {
+      return success(response)
     } else {
       return error
     }
@@ -42,14 +43,17 @@ const receiveLetter = (letter, response) => {
 }
 
 export const fetchLetter = (letter, preview) => {
-  let letterEnc = encodeURIComponent(letter)
   const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}`)
   const url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
   return dispatch => {
     dispatch(requestLetter(letter))
     return fetch(url)
-      .then(response => response.ok ? response.json() : { status: response.status })
-      .then(json => dispatch(receiveLetter(letter, json)))
+      .then(response => {
+        return response.ok ? response.json() : { status: response.status }
+      })
+      .then(json => {
+        dispatch(receiveLetter(letter, json))
+      })
       .catch(error => console.log(error))
   }
 }
