@@ -21,7 +21,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
         onClick={expandHandler}
         onKeyDown={expandHandler}
       >
-        <div aria-label={ariaLabel} class="sp">
+        <div aria-label={ariaLabel} className="sp">
           <div className='location' itemProp='name'><h2>{hoursEntry.name}</h2></div>
           <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
           <div className='arrow'
