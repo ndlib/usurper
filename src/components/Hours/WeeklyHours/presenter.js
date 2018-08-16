@@ -11,7 +11,7 @@ const Presenter = ({ hours, title, effectiveDate, showEffectiveDates }) => {
   }
   return (
     <div className='week'>
-      <h5>{ title }</h5>
+      <h3>{ title }</h3>
       { effectiveMessage }
       <dl className='hours-grid'>
         {

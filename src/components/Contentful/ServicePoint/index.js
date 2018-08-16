@@ -23,7 +23,7 @@ const ServicePoint = ({ cfServicePoint, showDetails }) => {
 
       { showDetails && (
         <div>
-          <h4 itemProp='streetAddress'>{cfServicePoint.fields.address}</h4>
+          <h4 itemProp='streetAddress'><address>{cfServicePoint.fields.address}</address></h4>
           <CurrentHours servicePoint={cfServicePoint} />
         </div>
       )}

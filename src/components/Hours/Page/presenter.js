@@ -36,7 +36,7 @@ const Presenter = (props) => {
 
                 return (<div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
                   <CurrentHours servicePoint={sp} >
-                    <h4>{sp.fields.address}</h4>
+                    <address>{sp.fields.address}</address>
                     <Contact servicePoint={sp} />
                   </CurrentHours>
                 </div>)

@@ -21,8 +21,8 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
         onClick={expandHandler}
         onKeyDown={expandHandler}
       >
-        <h4 aria-label={ariaLabel}>
-          <div className='location' itemProp='name'>{hoursEntry.name}</div>
+        <div aria-label={ariaLabel} class="sp">
+          <div className='location' itemProp='name'><h2>{hoursEntry.name}</h2></div>
           <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
           <div className='arrow'
             role='tab'
@@ -31,7 +31,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
             aria-label={'View Hours For ' + hoursEntry.name}>
             <div className='earrow' />
           </div>
-        </h4>
+        </div>
       </a>
       <div className={hoursEntry.servicePoint.slug} role='tabpanel' aria-hidden />
     </section>

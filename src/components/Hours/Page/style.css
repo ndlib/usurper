@@ -8,12 +8,23 @@
 
 }
 
-.service-point h4 {
+.service-point address {
+	text-align: left;
+	margin-top: 36px;
+	margin-bottom: .5em;
+	font-weight: 400;
+}
+
+.sp-address address {
+	text-align: left;
+}
+
+.service-point h4, .service-point .sp, .service-point address {
 	font-size: 22px;
 	font-family: GPCBold, sans-serif;
 }
 
-.service-point a h4 {
+.service-point a h4, .service-point a .sp {
 	font-size: 22px;
 	font-family: GPCBold, sans-serif;
 	background: #fff;
@@ -36,7 +47,7 @@
 	width: calc(100% - 1.5em);
 }
 
-.service-point.closed h4 {
+.service-point.closed h4, .service-point.closed .sp {
 	border-left-color: #AA272F;
 }
 
@@ -102,7 +113,7 @@
 	line-height: 1.4em;
 }
 
-.service-point h5 {
+.service-point h5, .service-point h3 {
 	font-size: 18px;
 }
 

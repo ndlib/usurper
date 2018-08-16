@@ -1102,6 +1102,10 @@ label[for='q']:after, .dropdown label:after {
   margin-top: -2px;
 }
 
+.home .appliance {
+	background: rgba(10, 34, 65, 0.65);
+}
+
 /* sub-page Search */
 #drawer {
 
@@ -1292,6 +1296,12 @@ label[for='q']:after, .uSearchBox label:after {
   padding-top: 8px;
   text-align: right;
   color: #000;
+}
+
+.home .appliance .additional-links, .home .appliance .additional-links a, 
+.home .set-default-search, .home .additional-links, .home .has-default-search,
+.home .has-default-search a, .home .set-default-search a {
+  color: #fff;
 }
 
 .appliance .additional-links a {
@@ -1917,14 +1927,20 @@ button.renew {
   display: inline-block;
 }
 
-.service-point a h4 {
+.service-point a h4, .service-point a .sp {
   font-family: GPCMed, sans-serif;
   font-size: 24px;
   font-weight: normal;
   margin-bottom: 20px;
   margin-top: 0;
 }
-.service-point h5 {
+
+.service-point a .sp h2 {
+	margin: 0;
+	font-size: 22px;
+}
+
+.service-point h5, .service-point h3 {
   color: #601700;
   font-size: 16px;
   font-family: GPBold, sans-serif;
@@ -1947,7 +1963,7 @@ button.renew {
   border-bottom: 3px solid rgba(0, 0, 0, .3);
 }
 
-.right .service-point h4, .sp-hidden .service-point h4 {
+.right .service-point h4, .sp-hidden .service-point h4, .sp-hidden .service-point .sp, .right .service-point .sp {
   background: none;
   font-size: 24px;
   padding: 0;
