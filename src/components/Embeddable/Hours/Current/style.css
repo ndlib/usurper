@@ -1,9 +1,9 @@
-.right .service-point h4 {
+.right .service-point h4, .right .service-point .sp {
 	font-family: GPCMed, sans-serif;
 
 }
 
-.right .service-point h4, .sp-hidden .service-point h4 {
+.right .service-point h4, .right .service-point .sp, .sp-hidden .service-point h4, .sp-hidden .service-point .sp {
 	grid-template-columns: 5fr 1fr;
 	background: #fff;
 }
@@ -54,7 +54,7 @@
     max-width: 100%;
 }
 
-.right .point h4 {
+.right .point h4, .right .point .sp {
 	font-size: 22px;
 	font-family: GPCBold, sans-serif;
 }
