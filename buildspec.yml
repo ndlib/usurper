@@ -8,6 +8,9 @@ phases:
   install:
     commands:
       - pip install hesburgh-utilities
+      - python -c "import site; print(site.getsitepackages())"
+      - python -m site --user-site
+      - pip list --user
       - npm install -g yarn
 
   build:
@@ -16,4 +19,3 @@ phases:
 
   post_build:
     commands:
-            
