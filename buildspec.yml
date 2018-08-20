@@ -8,15 +8,11 @@ phases:
   install:
     commands:
       - pip install hesdeploy
-      - ls /usr/local/lib/python2.7/dist-packages
-      - ls /usr/lib/python2.7/dist-packages
-      - ls /usr/local/bin
-      - echo $PATH
       - npm install -g yarn
 
   build:
     commands:
-      - hesdeploy -s prep --update
+      - cd deploy && hesdeploy -s prep --update && cd ..
 
   post_build:
     commands:
