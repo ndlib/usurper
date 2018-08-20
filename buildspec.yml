@@ -7,7 +7,7 @@ env:
 phases:
   install:
     commands:
-      - pip install hesburgh-utilities
+      - pip install hesdeploy
       - python -c "import site; print(site.getsitepackages())"
       - python -m site --user-site
       - pip list --user
