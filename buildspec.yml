@@ -10,8 +10,8 @@ phases:
       - pip install hesdeploy
       - ls /usr/local/lib/python2.7/dist-packages
       - ls /usr/lib/python2.7/dist-packages
-      - ls /root/.local/lib/python2.7/site-packages
       - ls /usr/local/bin
+      - echo $PATH
       - npm install -g yarn
 
   build:
