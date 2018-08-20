@@ -7,18 +7,13 @@ env:
 phases:
   install:
     commands:
+      - pip install hesburgh-utilities
       - npm install -g yarn
-      - yarn install
-      - cd scripts/build-links && yarn install --production && cd ../..
 
   build:
     commands:
-      - python --version 
-      - cd scripts/build-links && node buildApiUrls.js stage=dev && cd ../..
-      - tail -n 1000 config/apiUrls.js
-      - yarn build --production
+      - hesdeploy -s prep --update
 
   post_build:
     commands:
-      - echo $REACT_OUTPUT
-      - aws s3 sync ./build/public s3://$REACT_OUTPUT --delete
+            
