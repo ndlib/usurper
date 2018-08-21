@@ -30,7 +30,7 @@ const FooterLinks = () => {
                   </SiteInfoLink>
                 </li>
                 <li><Link to='https://library.nd.edu/government-documents' label='Federal Depository Library'>
-                  <img src='/icons/fdlp-emblem-color.png' className='gov' alt='' />
+                  <img src='/icons/fdlp-emblem-color.png' className='gov' alt='Logo of Federal Depository Library Project' />
                 </Link></li>
               </ul>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Chat from '../../../Chat'
-import ChatImage from '../../images/chat.png'
+import ChatImage from '../../images/ask.svg'
 
 const ChatModal = (props) => {
   let buttonMessage = (<span><img src={ChatImage} alt='' aria-hidden='true' /> Chat with us</span>)
