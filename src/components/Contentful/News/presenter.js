@@ -34,7 +34,8 @@ const PagePresenter = ({ entry }) => (
         )}
         <ShareLinks className='separator' title={entry.fields.title} />
         { entry.fields.prevPublishedUrl && (
-          <div className='prevPubDate'>Previously Published&nbsp;
+          <div className='prevPubDate'>
+            Previously Published&nbsp;
             <Link to={entry.fields.prevPublishedUrl}>
               { entry.fields.prevPublishedUrl }
             </Link>
