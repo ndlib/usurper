@@ -33,6 +33,13 @@ const PagePresenter = ({ entry }) => (
           </div>
         )}
         <ShareLinks className='separator' title={entry.fields.title} />
+        { entry.fields.prevPublishedUrl && (
+          <div className='prevPubDate'>Previously Published&nbsp;
+            <Link to={entry.fields.prevPublishedUrl}>
+              { entry.fields.prevPublishedUrl }
+            </Link>
+          </div>
+        )}
       </div>
     </PageTitle>
     <OpenGraph
@@ -45,6 +52,7 @@ const PagePresenter = ({ entry }) => (
       <main className='col-md-8 col-sm-8 article'>
         <Image cfImage={entry.fields.image} className='news cover' itemProp='image' />
         <LibMarkdown itemProp='articleBody'>{ entry.fields.content }</LibMarkdown>
+        <LibMarkdown >{ entry.fields.articleContacts }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
         <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
       </main>
