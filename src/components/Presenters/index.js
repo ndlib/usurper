@@ -28,7 +28,7 @@ const Presenters = ({ presenters }) => {
         presenters.map((entry) => {
           return (
             <div key={`presenter_${entry.sys.id}`}>
-              <h4>{retrieveCapacity(entry.fields.type)}</h4>
+              <h3>{retrieveCapacity(entry.fields.type)}</h3>
               <section>
                 {
                   entry.fields.people.map((person) => {

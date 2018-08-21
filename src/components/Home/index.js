@@ -28,19 +28,19 @@ class Home extends Component {
         <h2 className='skiplink'>Quicklinks</h2>
         <section className=' services hservices' aria-label='Quicklinks' role='navigation'>
           <div className='-col-sm-3 -col-xs-6 one'>
-            <Link to='/items-requests' title='My Account'><img src={Account} alt='My Account. ' aria-hidden /></Link>
+            <Link to='/items-requests' title='My Account'><img src={Account} alt='' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 two'>
-            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='Course Reserves' aria-hidden /></Link>
+            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 three'>
-            <Link to='/subjects' title='Subjects A-Z' noTarget><img src={Find} alt='Find Your Librarian ' aria-hidden /></Link>
+            <Link to='/subjects' title='Subjects A-Z' noTarget><img src={Find} alt='' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 four'>
-            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='Reserve a Room. ' aria-hidden /></Link>
+            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 five'>
-            <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='Technology Lending.' aria-hidden /></Link>
+            <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='' aria-hidden /></Link>
           </div>
         </section>
         <div className='row news'>
