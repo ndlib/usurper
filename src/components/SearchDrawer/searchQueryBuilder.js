@@ -7,19 +7,19 @@ const padLeftZero = (num) => {
   return num
 }
 
-const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
+const onesearchUrl = (queryTerm, isAdvanced, isOnesearch, searchScope) => {
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
-  const seachScope = isOnesearch ? 'malc_blended' : 'nd_campus'
   const isProduction = window.location.hostname === 'library.nd.edu'
   const env = isProduction ? '' : 'pprd'
   const vid = 'NDU'
   const mode = isAdvanced ? 'advanced' : 'basic'
+
   return `http://onesearch${env}.library.nd.edu/primo-explore/search` +
     `?${queryTerm}` +
     `&institution=NDU` +
     `&vid=${vid}` +
     `&tab=${tab}` +
-    `&search_scope=${seachScope}` +
+    `&search_scope=${searchScope}` +
     `&mode=${mode}` +
     `&displayMode=full` +
     `&bulkSize=10` +
@@ -42,6 +42,7 @@ const libSearchBasicURL = (queryTerm) => {
 const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
   let isAdvanced = searchStore.advancedSearch
+  let searchScope = 'nd_campus'
 
   if (isAdvanced) {
     // Advanced Search
@@ -64,6 +65,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     let drEndYear = advancedSearch['drEndYear5']
+    searchScope = advancedSearch['scopesListAdvanced'] ? advancedSearch['scopesListAdvanced'] : searchScope
 
     // Build advanced search query
     searchTerm = `query=${scope0},${precision0},${freeText0},${bool0}`
@@ -99,10 +101,10 @@ const searchQuery = (searchStore, advancedSearch, history) => {
 
   switch (searchStore.searchType) {
     case ONESEARCH:
-      window.location = onesearchUrl(searchTerm, isAdvanced, true)
+      window.location = onesearchUrl(searchTerm, isAdvanced, true, searchScope)
       break
     case NDCATALOG:
-      window.location = onesearchUrl(searchTerm, isAdvanced, false)
+      window.location = onesearchUrl(searchTerm, isAdvanced, false, searchScope)
       break
     case CURATEND:
       window.location = curateBasicURL(searchTerm)
