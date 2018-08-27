@@ -15,7 +15,7 @@ phases:
     commands:
       - cd scripts/build-links
       - node buildApiUrls.js stage=prep
-      - export $REACT_OUTPUT=$(node getStageBucket.js stage=prep)
+      - REACT_OUTPUT=$(node getStageBucket.js stage=prep)
       - cd ../..
       - yarn build --production
 
