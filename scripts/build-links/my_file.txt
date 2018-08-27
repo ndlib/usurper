@@ -1,3 +1,0 @@
-module.exports = {
-  classesAPI: https://i9a1u7jo54.execute-api.us-east-1.amazonaws.com
-}

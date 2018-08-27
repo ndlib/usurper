@@ -7,12 +7,19 @@ env:
 phases:
   install:
     commands:
-      - pip install hesdeploy
       - npm install -g yarn
+      - yarn install
+      - cd scripts/build-links && yarn install --production && cd ../..
 
   build:
     commands:
-      - cd deploy/web && hesdeploy -s prep --update && cd ..
+      - cd scripts/build-links
+      - node buildApiUrls.js stage=prep
+      - export $REACT_OUTPUT=$(node getStageBucket.js stage=prep)
+      - cd ../..
+      - yarn build --production
 
   post_build:
     commands:
+      - echo $REACT_OUTPUT
+      - aws s3 sync ./build/public s3://$REACT_OUTPUT --delete

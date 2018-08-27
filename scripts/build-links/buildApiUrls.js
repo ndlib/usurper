@@ -2,6 +2,8 @@ const AWS = require('aws-sdk')
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
+const findExport = require('./lib/findExport');
+const getStage = require('./lib/getStage');
 
 let apiList = [
   'classesAPI',
@@ -20,7 +22,7 @@ let handler = async () => {
     let stage = getStage()
 
     for(let i = 0; i < apiList.length; i++) {
-      outputs[apiList[i]] = findApi(apiList[i], stage, data['Exports'])
+      outputs[apiList[i]] = findExport(apiList[i], stage, 'api-url', data['Exports'])
     }
 
     var stream = fs.createWriteStream("../../config/apiUrls.js");
@@ -39,22 +41,3 @@ let handler = async () => {
 }
 
 handler()
-
-let findApi = (api, stage, data) => {
-  for(let i = 0; i < data.length; i++) {
-    if (data[i].Name == api + '-' + stage + '-api-url') {
-      return data[i].Value
-    }
-  }
-
-  throw api + " is not found in the cloudformation exports for stage, " + stage;
-}
-
-let getStage = () => {
-  let data = process.argv[2].split('=')
-  if (data[0] != 'stage') {
-    throw "stage variable not set add stage=StageName  Example: node buildApiUrls.js stage=devJon."
-  }
-
-  return data[1]
-}
