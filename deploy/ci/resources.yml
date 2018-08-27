@@ -44,10 +44,10 @@ Resources:
         EnvironmentVariables:
         - Name: REACT_OUTPUT
           Value: !Ref OutBucket
-        - Name: HOURS_API_URL
-          Value: !Ref HoursApiUrl
-        - Name: CONTENTFUL_API
-          Value: !Ref ContentfulApi
+        - Name: STAGE
+          Value: prep
+        - Name: GIT_BRANCH
+          Value: master
       Source:
         Type: CODEPIPELINE
       TimeoutInMinutes: 10
@@ -95,4 +95,3 @@ Resources:
       ArtifactStore:
         Type: S3
         Location: !Ref ArtifactBucket
-
