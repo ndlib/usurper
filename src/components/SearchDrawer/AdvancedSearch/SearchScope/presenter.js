@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const SearchScope = (props) => {
   if (props.searchType === 'NDCATALOG') {
@@ -29,6 +30,11 @@ const SearchScope = (props) => {
     )
   }
   return null
+}
+
+SearchScope.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  searchType: PropTypes.string,
 }
 
 export default SearchScope
