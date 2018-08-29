@@ -25,7 +25,7 @@ describe('components/Contentful/Floor/presenter', () => {
         },
         sys: { id: 'FakeId' },
       },
-      extraData: {
+      location: {
         title: 'itemTitle',
         call_number: 'call no',
         author: 'author',
