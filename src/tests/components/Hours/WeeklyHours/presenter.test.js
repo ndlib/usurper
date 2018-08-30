@@ -25,7 +25,7 @@ describe('components/Hours/WeeklyHours/presenter', () => {
   })
 
   it('adds the title', () => {
-    expect(enzymeWrapper.containsMatchingElement(<h5>this-week-display</h5>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<h3>this-week-display</h3>)).toBe(true)
   })
 
   it('shows the effective dates message', () => {
