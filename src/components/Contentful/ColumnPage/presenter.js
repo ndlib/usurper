@@ -81,6 +81,7 @@ const ColumnContainerPresenter = (props) => {
                       </a>
                     )
                   }
+                  return null
                 })
               })
             }
