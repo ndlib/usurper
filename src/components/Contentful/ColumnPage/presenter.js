@@ -14,6 +14,9 @@ import './style.css'
 const Sections = (column, showDescriptions) => {
   return column.fields.sections.map((entry) => {
     let s = entry.fields
+    if (!entry || !entry.fields || !entry.fields.title) {
+      return null
+    }
     return (
       <section key={entry.sys.id} className='group'>
         <h2><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h2>
@@ -47,54 +50,58 @@ const Sections = (column, showDescriptions) => {
 
 const ColumnContainerPresenter = (props) => {
   let page = props.cfPageEntry.fields
-
-  return (
-    <div className='content'>
-      <SearchProgramaticSet open={false} />
-      <PageTitle title={page.title} />
-      <OpenGraph
-        title={page.title}
-        description={page.shortDescription}
-        image={false}
-      />
-      <div className='columnAlertContainer'>
-        <div className='col-md-12 col-xs-12'>
-          <PageAlert alerts={page.alerts} />
+  if (page && page.title) {
+    return (
+      <div className='content'>
+        <SearchProgramaticSet open={false} />
+        <PageTitle title={page.title} />
+        <OpenGraph
+          title={page.title}
+          description={page.shortDescription}
+          image={false}
+        />
+        <div className='columnAlertContainer'>
+          <div className='col-md-12 col-xs-12'>
+            <PageAlert alerts={page.alerts} />
+          </div>
         </div>
-      </div>
-      <SideNav className='side-nav-bg'>
-        <ul>
-          {
-            page.columns.map((column) => {
-              return column.fields.sections.map((section) => {
-                const key = encodeURIComponent(section.fields.title)
-                return (
-                  <a
-                    className='side-anchors'
-                    href={'#' + key}
-                    key={key}>
-                    <li>{section.fields.title}</li>
-                  </a>
-                )
+        <SideNav className='side-nav-bg'>
+          <ul>
+            {
+              page.columns.map((column) => {
+                return column.fields.sections.map((section) => {
+                  if (section && section.fields) {
+                    const key = encodeURIComponent(section.fields.title)
+                    return (
+                      <a
+                        className='side-anchors'
+                        href={'#' + key}
+                        key={key}>
+                        <li>{section.fields.title}</li>
+                      </a>
+                    )
+                  }
+                })
               })
+            }
+          </ul>
+        </SideNav>
+        <div className='row landing'>
+          {
+            page.columns.map((column, index) => {
+              return (
+                <div className='col-md-12 col-xs-12' key={'column_' + index}>
+                  { Sections(column, page.showDescriptions) }
+                </div>
+              )
             })
           }
-        </ul>
-      </SideNav>
-      <div className='row landing'>
-        {
-          page.columns.map((column, index) => {
-            return (
-              <div className='col-md-12 col-xs-12' key={'column_' + index}>
-                { Sections(column, page.showDescriptions) }
-              </div>
-            )
-          })
-        }
-      </div>
+        </div>
 
-    </div>
-  )
+      </div>
+    )
+  }
+  return null
 }
 
 ColumnContainerPresenter.propTypes = {

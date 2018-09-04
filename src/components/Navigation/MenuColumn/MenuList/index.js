@@ -8,19 +8,31 @@ const MenuList = (props) => {
   if (props.items) {
     const menuList = props.items.map(
       (item, index) => {
-        let url = item.fields.url ? item.fields.url : item.fields.slug
-        url = url ? url : item.fields.purl
+        if (item && item.fields) {
+          let url = item.fields.url ? item.fields.url : item.fields.slug
+          url = url || item.fields.purl
 
-        if (item.image) {
-          isImageList = true
+          if (item.image) {
+            isImageList = true
+            return (
+              <MenuImage
+                title={item.title}
+                url={item.url}
+                image={item.image}
+                key={index}
+                tabIndexable={props.tabIndexable} />
+            )
+          }
           return (
-            <MenuImage title={item.title} url={item.url} image={item.image} key={index} tabIndexable={props.tabIndexable} />
+            <MenuListItem
+              title={item.fields.title}
+              url={url}
+              key={index}
+              tabIndexable={props.tabIndexable} />
           )
         }
-        return (
-          <MenuListItem title={item.fields.title} url={url} key={index} tabIndexable={props.tabIndexable} />
-        )
       }
+
     )
     if (isImageList) {
       return (
