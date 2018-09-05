@@ -51,10 +51,10 @@ export const fetchEntry = (id, slug, preview) => {
   }
   */
   if (id) {
-    identifierParam = encodeURIComponent(`sys.id=${id}`)
+    identifierParam = encodeURIComponent(`sys.id=${id}&include=5`)
     entryIdent = id
   }
-  let url = `${Config.contentfulAPI}query?locale=en-US&query=${identifierParam}&preview=${preview}`
+  let url = `${Config.contentfulAPI}query?locale=en-US&query=${identifierParam}`
 
   return (dispatch, getState) => {
     dispatch(requestEntry(entryIdent))

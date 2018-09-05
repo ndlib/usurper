@@ -32,18 +32,20 @@ const Presenters = ({ presenters }) => {
               <section>
                 {
                   entry.fields.people.map((person) => {
-                    return (
-                      <div key={`person_${person.sys.id}`}>
-                        <Image cfImage={person.fields.picture} />
-                        <div className='vcard'>
-                          <div className='fn n'>{ person.fields.name }</div>
-                          <div className='org'>{ entry.fields.title }</div>
-                          <div className='email'>{ person.fields.email }</div>
-                          <div className='tel'>{ person.fields.phone }</div>
-                          <LibMarkdown className='bio'>{ person.fields.bio }</LibMarkdown>
+                    if (person && person.fields && person.sys) {
+                      return (
+                        <div key={`person_${person.sys.id}`}>
+                          <Image cfImage={person.fields.picture} />
+                          <div className='vcard'>
+                            <div className='fn n'>{ person.fields.name }</div>
+                            <div className='org'>{ entry.fields.title }</div>
+                            <div className='email'>{ person.fields.email }</div>
+                            <div className='tel'>{ person.fields.phone }</div>
+                            <LibMarkdown className='bio'>{ person.fields.bio }</LibMarkdown>
+                          </div>
                         </div>
-                      </div>
-                    )
+                      )
+                    }
                   })
                 }
               </section>
