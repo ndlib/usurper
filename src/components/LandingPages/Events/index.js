@@ -7,6 +7,7 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { mapEvents, sortEvents } from '../../Home/Events'
 import Presenter from './presenter'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {
   let allEvents = []
@@ -75,4 +76,4 @@ const EventsPage = connect(
   mapDispatchToProps
 )(AllEventsContainer)
 
-export default EventsPage
+export default withErrorBoundary(EventsPage)
