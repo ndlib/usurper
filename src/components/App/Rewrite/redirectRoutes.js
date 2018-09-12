@@ -24,7 +24,6 @@ const RedirectRoutes = [
   { path: '/eresources/*', target: 'https://eresources.library.nd.edu', forwardPath: /\/eresources(.*)/ },
   { path: '/instruction-request', target: 'https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLScI5b_i5N8ZL1ReOeIDmN1WyzIgQHwQ3FKnrncJdkOvw1Zf6g/viewform' },
   { path: '/fys', target: 'http://libguides.library.nd.edu/first-year-studies' },
-
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
   { path: '/about/employment', target: '/employment' },
@@ -42,6 +41,7 @@ const RedirectRoutes = [
   { path: '/room-247', target: '/room-reservations' },
   { path: '/room-222', target: '/room-reservations' },
   { path: '/room-222a', target: '/room-reservations' },
+  { path: '/medieval/*', target: '/medieval' },
 
   // index.php redirects
   { path: '/index.php', target: '/' },
