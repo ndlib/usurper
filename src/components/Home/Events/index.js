@@ -8,6 +8,7 @@ import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
 import * as dateLibs from '../../../shared/DateLibs'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const startEndDate = (start, end) => {
   let startYear = ', ' + start.getFullYear()
@@ -150,9 +151,9 @@ AllEventsContainer.propTypes = {
   allEvents: PropTypes.array.isRequired,
 }
 
-const HoursPage = connect(
+const AllEvents = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllEventsContainer)
 
-export default HoursPage
+export default withErrorBoundary(AllEvents)
