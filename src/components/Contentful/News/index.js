@@ -7,6 +7,7 @@ import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulNewsPresenter from './presenter.js'
 import './style.css'
 import * as statuses from '../../../constants/APIStatuses'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return { entry: state.cfNewsEntry }
@@ -50,4 +51,4 @@ const ContentfulNews = connect(
   mapDispatchToProps
 )(ContentfulNewsContainer)
 
-export default ContentfulNews
+export default withErrorBoundary(ContentfulNews)

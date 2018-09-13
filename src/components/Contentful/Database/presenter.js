@@ -6,6 +6,7 @@ import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
   return (
@@ -85,4 +86,4 @@ DatabasePresenter.propTypes = {
   fieldData: PropTypes.object,
 }
 
-export default DatabasePresenter
+export default withErrorBoundary(DatabasePresenter)

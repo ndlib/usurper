@@ -6,6 +6,7 @@ import searchFloorMaps from '../../actions/floorSearch'
 import * as statuses from '../../constants/APIStatuses'
 import Loading from '../Messages/Loading'
 import Empty from './Empty'
+import { withErrorBoundary } from '../ErrorBoundary'
 
 class FloorSearch extends Component {
   constructor (props) {
@@ -64,4 +65,6 @@ FloorSearch.propTypes = {
   history: PropTypes.object,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FloorSearch)
+const FloorSearchComponent = connect(mapStateToProps, mapDispatchToProps)(FloorSearch)
+
+export default withErrorBoundary(FloorSearchComponent)

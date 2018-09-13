@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { withErrorBoundary } from '../ErrorBoundary'
 import Recommendations from './presenter'
 
 const mapStateToProps = (state) => {
@@ -8,4 +8,5 @@ const mapStateToProps = (state) => {
   return { recommend: personal.recommend }
 }
 
-export default connect(mapStateToProps)(Recommendations)
+const RecommendationComponent = connect(mapStateToProps)(Recommendations)
+export default withErrorBoundary(RecommendationComponent)

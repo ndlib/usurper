@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { fetchEntry } from '../../actions/contentful/entry'
-
+import { withErrorBoundary } from '../ErrorBoundary'
 import Presenter from './presenter'
 
 export const mapStateToProps = (state, thisProps) => {
@@ -111,4 +111,6 @@ ImageContainer.propTypes = {
   defaultImage: PropTypes.string,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageContainer)
+const ImageComponent = connect(mapStateToProps, mapDispatchToProps)(ImageContainer)
+
+export default withErrorBoundary(ImageComponent)

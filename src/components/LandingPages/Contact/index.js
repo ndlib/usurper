@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
 import PresenterFactory from '../../APIPresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 import Presenter from './presenter'
 
@@ -86,4 +87,5 @@ class ContactContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactContainer)
+const ContactComponent = connect(mapStateToProps, mapDispatchToProps)(ContactContainer)
+export default withErrorBoundary(ContactComponent)

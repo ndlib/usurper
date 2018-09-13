@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux'
 import getToken from '../../actions/personal/token'
 import Presenter from './presenter'
 import * as states from '../../constants/APIStatuses'
+import { withErrorBoundary } from '../ErrorBoundary'
 
 export const mapStateToProps = (state, ownProps) => {
   const { personal } = state
 
-  let loggedIn = (personal.login && personal.login.token) ? true : false
+  let loggedIn = !!((personal.login && personal.login.token))
   let balance = (personal.user && personal.user.balance && personal.user.balance < 0) ? '-$' + Math.abs(personal.user.balance) : null
 
   return {
@@ -23,4 +24,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getToken }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Presenter)
+const PersonalInfoComponent = connect(mapStateToProps, mapDispatchToProps)(Presenter)
+
+export default withErrorBoundary(PersonalInfoComponent)

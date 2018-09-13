@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Presenter from './presenter'
+import { withErrorBoundary } from '../ErrorBoundary'
 
 class DropdownContainer extends Component {
   constructor (props) {
@@ -58,10 +59,10 @@ class DropdownContainer extends Component {
   }
 
   onSelectedKeyDown (e) {
-    if (e.keyCode === 13) { //enter
+    if (e.keyCode === 13) { // enter
       this.toggle()
       e.preventDefault()
-    } else if (e.keyCode === 40) { //down arrow
+    } else if (e.keyCode === 40) { // down arrow
       this.toggle(open)
       this.setIndex(0)
       e.preventDefault()
@@ -145,7 +146,8 @@ DropdownContainer.defaultProps = {
   useButton: false,
   buttonText: 'Submit',
 }
-
-export default connect(
+const DropdownComponent = connect(
   mapStateToProps
 )(DropdownContainer)
+
+export default withErrorBoundary(DropdownComponent)
