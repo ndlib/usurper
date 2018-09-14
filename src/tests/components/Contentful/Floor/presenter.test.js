@@ -4,7 +4,6 @@ import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import LibMarkdown from '../../../../components/LibMarkdown'
 import ServicePoint from '../../../../components/Contentful/ServicePoint'
 import PageTitle from '../../../../components/PageTitle'
-import Building from '../../../../components/Contentful/Building'
 import Image from '../../../../components/Image'
 
 const setup = (props) => {

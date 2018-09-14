@@ -2,7 +2,7 @@ import React from 'react'
 import Image from '../Image'
 import PropTypes from 'prop-types'
 import LibMarkdown from '../LibMarkdown'
-
+import { withErrorBoundary } from '../ErrorBoundary'
 const capacityTypes = {
   Instructor: 'Instructed By',
   Facilitator: 'Facilitated By',
@@ -61,4 +61,4 @@ Presenters.propTypes = {
   presenters: PropTypes.array.isRequired,
 }
 
-export default Presenters
+export default withErrorBoundary(Presenters)

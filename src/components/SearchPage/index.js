@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import SearchPage from './presenter.js'
-
+import { withErrorBoundary } from '../ErrorBoundary'
 import { fetchResults } from '../../actions/search.js'
 import { setSearchType } from '../../actions/search.js'
 
@@ -24,7 +24,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
+const SearchPageComponent = connect(
   mapStateToProps,
   mapDispatchToProps
 )(SearchPage)
+
+export default withErrorBoundary(SearchPageComponent)

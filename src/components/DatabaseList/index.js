@@ -8,6 +8,7 @@ import PresenterFactory from '../APIPresenterFactory'
 import ListPresenter from './presenter.js'
 import * as statuses from '../../constants/APIStatuses'
 import PageNotFound from '../Messages/NotFound'
+import { withErrorBoundary } from '../ErrorBoundary'
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 
@@ -238,4 +239,4 @@ const DatabaseList = connect(
   mapDispatchToProps
 )(DatabaseListContainer)
 
-export default DatabaseList
+export default withErrorBoundary(DatabaseList)

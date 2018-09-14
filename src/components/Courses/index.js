@@ -1,4 +1,3 @@
-'use strict'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -6,6 +5,7 @@ import getCourses from '../../actions/personal/courses'
 import * as statuses from '../../constants/APIStatuses'
 import Loading from '../Messages/Loading'
 import Link from '../Link'
+import { withErrorBoundary } from '../ErrorBoundary'
 
 import CoursesPresenter from './presenter'
 
@@ -66,5 +66,5 @@ export const mapStateToProps = (state, ownProps) => {
 CoursesContainer.propTypes = {
   linkOnly: PropTypes.bool,
 }
-
-export default connect(mapStateToProps)(CoursesContainer)
+const CoursesComponent = connect(mapStateToProps)(CoursesContainer)
+export default withErrorBoundary(CoursesComponent)

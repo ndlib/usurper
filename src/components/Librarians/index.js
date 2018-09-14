@@ -4,11 +4,11 @@ import { fetchLibrarians } from '../../actions/librarians'
 import React, { Component } from 'react'
 import LibrarianPresenter from './presenter.js'
 import * as statuses from '../../constants/APIStatuses'
-
+import { withErrorBoundary } from '../ErrorBoundary'
 const mapStateToProps = (state, ownProps) => {
   return {
     // only those librarians for this page will affect this page
-    librarianInfo: ownProps.netids && ownProps.netids.equals(state.librarianInfo.netids) ? state.librarianInfo : {status: statuses.NOT_FOUND},
+    librarianInfo: ownProps.netids && ownProps.netids.equals(state.librarianInfo.netids) ? state.librarianInfo : { status: statuses.NOT_FOUND },
     ...ownProps,
   }
 }
@@ -32,4 +32,4 @@ const Librarians = connect(
   mapDispatchToProps
 )(LibrariansContainer)
 
-export default Librarians
+export default withErrorBoundary(Librarians)

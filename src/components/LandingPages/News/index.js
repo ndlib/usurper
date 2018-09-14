@@ -7,6 +7,7 @@ import Presenter from './presenter.js'
 import PresenterFactory from '../../APIInlinePresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import { flattenLocale } from '../../../shared/ContentfulLibs'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 import { sortNews } from '../../Home/News'
 
@@ -60,4 +61,4 @@ const HoursPage = connect(
   mapDispatchToProps
 )(AllNewsContainer)
 
-export default HoursPage
+export default withErrorBoundary(HoursPage)

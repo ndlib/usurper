@@ -7,6 +7,7 @@ import { fetchPage, clearPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
 import * as statuses from '../../../constants/APIStatuses'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return { cfPageEntry: state.cfPageEntry }
@@ -55,4 +56,4 @@ const ContentfulPage = connect(
   mapDispatchToProps
 )(ContentfulPageContainer)
 
-export default ContentfulPage
+export default withErrorBoundary(ContentfulPage)

@@ -7,6 +7,7 @@ import { fetchPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
 import ColumnPagePresenter from './presenter.js'
 import { NOT_FETCHED } from '../../../constants/APIStatuses'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state, thisProps) => {
   const slug = thisProps.match.params[0]
@@ -57,4 +58,4 @@ const ContentfulPage = connect(
   mapDispatchToProps
 )(ContentfulColumnPageContainer)
 
-export default ContentfulPage
+export default withErrorBoundary(ContentfulPage)

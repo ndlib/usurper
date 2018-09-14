@@ -7,6 +7,7 @@ import { alertMap, alertSort, alertCatagorize } from '../alertHelpers.js'
 import Presenter from '../presenter.js'
 import * as statuses from '../../../../constants/APIStatuses'
 import makeAlertSelector from '../../../../selectors/alerts'
+import { withErrorBoundary } from '../../../ErrorBoundary'
 
 const makeMapStateToProps = () => {
   const selector = makeAlertSelector()
@@ -62,4 +63,4 @@ const Alerts = connect(
   mapDispatchToProps
 )(AllAlertsContainer)
 
-export default Alerts
+export default withErrorBoundary(Alerts)

@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PresenterFactory from '../../../APIInlinePresenterFactory'
 import Presenter from './presenter.js'
-
+import { withErrorBoundary } from '../../../ErrorBoundary'
 const mapStateToProps = (state) => {
   return { cfStatic: state.cfStatic }
 }
@@ -39,9 +39,9 @@ AlertContainer.propTypes = {
   slug: PropTypes.string.isRequired,
 }
 
-const Sidebar = connect(
+const AlertComponent = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AlertContainer)
 
-export default Sidebar
+export default withErrorBoundary(AlertComponent)

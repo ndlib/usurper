@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Navigation from './presenter'
+import { withErrorBoundary } from '../ErrorBoundary'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../actions/search'
 import * as statuses from '../../constants/APIStatuses'
 import {
@@ -137,8 +138,10 @@ class NavigationContainer extends Component {
   }
 }
 
-export default withRouter(connect(
+const NavigationComponent = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
   mergeProps
 )(NavigationContainer))
+
+export default withErrorBoundary(NavigationComponent)

@@ -1,5 +1,3 @@
-'use strict'
-
 import React, { Component } from 'react'
 import Link from '../Link'
 import PropTypes from 'prop-types'
@@ -58,15 +56,15 @@ class Courses extends Component {
   }
 
   enrollmentCard (course) {
-// courseNumber:'27800',
-// department:'PSY',
-// endDate:1493769600,
-// id:'201620-24315',
-// instructor_name:
-// sectionNumber:'48',
-// startDate:1484611200,
-// term:'201620',
-// title:'Research Lab',
+    // courseNumber:'27800',
+    // department:'PSY',
+    // endDate:1493769600,
+    // id:'201620-24315',
+    // instructor_name:
+    // sectionNumber:'48',
+    // startDate:1484611200,
+    // term:'201620',
+    // title:'Research Lab',
     let courseReserves = ''
     if (course.courseReserveLink) {
       courseReserves = <a href={course.courseReserveLink}>Course Reserves</a>

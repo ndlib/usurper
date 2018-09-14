@@ -1,10 +1,20 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import Alert from '../../../components/Contentful/Alert/presenter'
 import Link from '../../../components/Link'
+import { Provider } from 'react-redux'
+import { MemoryRouter } from 'react-router-dom'
+import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
-  return shallow(<Alert {...props} ></Alert>);
+  const store = configureStore()(props)
+  return mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Alert {...props} ></Alert>
+      </MemoryRouter>
+    </Provider>
+  );
 }
 
 let enzymeWrapper

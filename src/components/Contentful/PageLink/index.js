@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from '../../Link'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const PageLink = (props) => {
   if (props.cfPage) {
@@ -19,4 +20,4 @@ PageLink.propTypes = {
   className: PropTypes.string,
 }
 
-export default PageLink
+export default withErrorBoundary(PageLink)

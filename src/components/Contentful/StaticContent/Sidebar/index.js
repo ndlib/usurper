@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PresenterFactory from '../../../APIInlinePresenterFactory'
 import Presenter from './presenter.js'
+import { withErrorBoundary } from '../../../ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return { cfStatic: state.cfStatic }
@@ -44,4 +45,4 @@ const Sidebar = connect(
   mapDispatchToProps
 )(SidebarContainer)
 
-export default Sidebar
+export default withErrorBoundary(Sidebar)

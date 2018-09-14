@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulFloorPresenter from './presenter.js'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state, ownProps) => {
   const searchParams = new URLSearchParams(ownProps.location.search)
@@ -65,4 +66,4 @@ const ContentfulFloor = connect(
   mapDispatchToProps
 )(ContentfulFloorContainer)
 
-export default ContentfulFloor
+export default withErrorBoundary(ContentfulFloor)

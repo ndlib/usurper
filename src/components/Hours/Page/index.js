@@ -8,6 +8,7 @@ import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
 import * as statuses from '../../../constants/APIStatuses'
 import HoursError from '../Error'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const hoursPageOrder = [
   { servicePointSlug: 'hesburghlibrary', main: true },
@@ -97,4 +98,4 @@ const HoursPage = connect(
   mapDispatchToProps
 )(HoursPageContainer)
 
-export default HoursPage
+export default withErrorBoundary(HoursPage)

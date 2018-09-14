@@ -7,6 +7,7 @@ import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
 import * as statuses from '../../../constants/APIStatuses'
 import { formatDate, hour12, isSameDay, makeLocalTimezone } from '../../../shared/DateLibs.js'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {
   let data = state.cfEventEntry.json
@@ -78,4 +79,4 @@ const ContentfulEvent = connect(
   mapDispatchToProps
 )(ContentfulEventContainer)
 
-export default ContentfulEvent
+export default withErrorBoundary(ContentfulEvent)

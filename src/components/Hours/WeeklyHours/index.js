@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import WeeklyHoursListPresenter from './presenter'
-
+import { withErrorBoundary } from '../../ErrorBoundary'
 const dayOrder = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
 
@@ -58,5 +58,6 @@ const getDate = (dateString) => {
   let date = new Date(dateString + 'T23:59:59')
   return dayOrder[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate()
 }
+const WeeklyHoursListComponent = connect(mapStateToProps)(WeeklyHoursListPresenter)
 
-export default connect(mapStateToProps)(WeeklyHoursListPresenter)
+export default withErrorBoundary(WeeklyHoursListComponent)

@@ -3,7 +3,7 @@ import './style.css'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
-
+import ErrorBoundary from '../../ErrorBoundary'
 export const makeEventEntry = (entry, index, isLast = false, showDescription = true, showImage = true) => {
   return (
     <div
@@ -33,7 +33,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
               entry.displayTime
             }
           </div>
-          )
+        )
         }
         <h4 itemProp='name'>{entry.title}</h4>
 
@@ -41,7 +41,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
           <div className='description' itemProp='description'>
             <LibMarkdown>{entry.shortDescription}</LibMarkdown>
           </div>
-            )
+        )
         }
       </Link>
       { !isLast && <hr /> }
@@ -53,11 +53,13 @@ const Events = (entries) => {
   return (
     <div className='col-md-5 col-xs-12' >
       <Link to='/events' className='newsEventHeader'><h2>Events</h2></Link>
-      <section aria-label='Events'>
-        {
-          entries.map((entry, index) => makeEventEntry(entry, index, index === entries.length - 1, false, false))
-        }
-      </section>
+      <ErrorBoundary>
+        <section aria-label='Events'>
+          {
+            entries.map((entry, index) => makeEventEntry(entry, index, index === entries.length - 1, false, false))
+          }
+        </section>
+      </ErrorBoundary>
       <Link to='/events' className='newsEventsLink viewAll'>View All Events</Link>
     </div>
   )

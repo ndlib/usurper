@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from '../../Link'
-
+import { withErrorBoundary } from '../../ErrorBoundary'
 const Alert = ({ alerts }) => {
   return (
     <div className='alerts'>
@@ -36,4 +36,4 @@ Alert.propTypes = {
   alerts: PropTypes.object,
 }
 
-export default Alert
+export default withErrorBoundary(Alert)
