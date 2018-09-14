@@ -30,9 +30,9 @@ class ErrorBoundary extends Component {
 
   componentDidCatch (error, info) {
     this.setState({ hasCatastrophicError: true })
-    /***
-      This is where a call to error logging service should go.
-    ***/
+    if (process.env.NODE_ENV === 'production') {
+      window.Raven.captureException(error, { extra: info })
+    }
     console.log('Hit an error boundary: ', error, info)
   }
 
