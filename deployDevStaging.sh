@@ -1,6 +1,16 @@
 #!/bin/bash
 # this is the prebuilt bucket we will target
-export bucketStage="prod"
+export bucketStage="beta"
+
+git checkout master
+git pull 
+
+if [$1 == "--branch"]
+then
+  git checkout $2
+else
+  git checkout $(cat VERSION)
+fi
 
 echo "install build-links modules"
 pushd .
