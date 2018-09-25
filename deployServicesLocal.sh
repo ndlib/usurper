@@ -49,3 +49,9 @@ cd ../gatekeeper/deploy/
 source /Volumes/vars/WSE/secret_$secretSet/gatekeeper/deploy-env
 hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
 popd
+
+pushd .
+cd ../classes_api/deploy/
+source /Volumes/vars/WSE/secret_$secretSet/classes_api/deploy-env
+hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
+popd

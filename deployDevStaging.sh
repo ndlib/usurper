@@ -1,6 +1,6 @@
 #!/bin/bash
 # this is the prebuilt bucket we will target
-export bucketStage="beta"
+export bucketStage="prod"
 
 git checkout master
 git pull
@@ -16,7 +16,7 @@ echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$bucketStage)
 popd
 
-if [$1 == "--branch"]
+if [ $1 = "--branch" ]
 then
   git checkout $2
 else
@@ -33,3 +33,5 @@ yarn build --production
 
 echo "Push to bucket, $BUCKET"
 aws s3 sync --delete build/public s3://$BUCKET
+
+git checkout master
