@@ -3,14 +3,7 @@
 export bucketStage="beta"
 
 git checkout master
-git pull 
-
-if [$1 == "--branch"]
-then
-  git checkout $2
-else
-  git checkout $(cat VERSION)
-fi
+git pull
 
 echo "install build-links modules"
 pushd .
@@ -22,6 +15,14 @@ node buildApiUrls.js stage=$bucketStage
 echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$bucketStage)
 popd
+
+if [$1 == "--branch"]
+then
+  git checkout $2
+else
+  git checkout $(cat VERSION)
+fi
+
 
 echo "install npm modules"
 yarn
