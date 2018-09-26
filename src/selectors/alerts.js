@@ -15,7 +15,7 @@ const getAlerts = (state, props) => {
       .filter((entry) => {
         let start = new Date(entry.fields.startTime)
         let end = new Date(entry.fields.endTime)
-        return start <= now && end >= now
+        return start <= now && end >= now && entry.fields.global
       })
   }
   return allAlerts
