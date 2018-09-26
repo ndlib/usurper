@@ -1,6 +1,7 @@
 #!/bin/bash
 # this is the prebuilt bucket we will target
-export bucketStage="prod"
+
+export bucketStage=$1
 
 git checkout master
 git pull
@@ -16,9 +17,9 @@ echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$bucketStage)
 popd
 
-if [ $1 = "--branch" ]
+if [ $2 = "--branch" ]
 then
-  git checkout $2
+  git checkout $3
 else
   git checkout $(cat VERSION)
 fi
