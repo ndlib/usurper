@@ -1,5 +1,6 @@
 #!/bin/bash
 # this is the prebuilt bucket we will target
+# Usage: ./deployDevStaging.sh stage [ --branch branch ]
 
 if [ -z "$1" ]
 then
@@ -22,6 +23,7 @@ node buildApiUrls.js stage=$bucketStage
 echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$bucketStage)
 popd
+BUCKET="usurper-prep-333680067100"
 
 if [ $2 = "--branch" ]
 then

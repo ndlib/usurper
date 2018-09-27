@@ -1,11 +1,20 @@
 #!/bin/bash
-# this is the stage that will appear in aws.
-export stage="prod"
-# this is the set of keys we get from secrets the easy way to think about it
-# is that this separates which version of contentful you want.
-export secretSet="prod"
-# are we updating, creating or deleting
-export deployType="create"
+
+if [ -z "$1" ]
+then
+  echo "Enter a stage "
+  exit
+fi
+
+stage=$1
+deployType=$2
+
+if [ $stage = "alpha" ] || [ $stage = "beta" ]
+then
+  secretSet="prod"
+else
+  secretSet=$stage
+fi
 
 if [ $stage = "prod" ] || [ $stage = "beta" ]
 then
@@ -16,7 +25,7 @@ fi
 pushd .
 cd ../lambda_auth/deploy/
 source /Volumes/vars/WSE/secret_$secretSet/lambda_auth/deploy-env
-hesdeploy -s $stage --update --yes $hesdeploy_extra
+hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
 popd
 
 pushd .
