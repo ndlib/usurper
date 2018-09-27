@@ -1,8 +1,17 @@
 #!/bin/bash
+#usage ./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]
 
 if [ -z "$1" ]
 then
-  echo "Enter a stage "
+  echo "Enter a stage prod|beta|alpha|prep|dev "
+  echo "usage ./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]"
+  exit
+fi
+
+if [ -z "$2" ]
+then
+  echo "Enter a deploy type create|update "
+  echo "usage ./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]"
   exit
 fi
 
@@ -21,46 +30,41 @@ then
   export hesdeploy_extra="--useServiceRole --deployBucket libnd-cf"
 fi
 
-# lambda auth has to run first
-pushd .
-cd ../lambda_auth/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/lambda_auth/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
+if [ $3 = "--branch" ]
+then
+  branch=$4
+fi
 
-pushd .
-cd ../contentful_direct/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/contentful_direct/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
+deploy_project () {
+  echo "DEPLOYING: $1 ------------"
+  pushd .
+  cd ../$1
+  git checkout master;
+  git pull;
+  if [ -z "$branch" ]
+  then
+    echo "BRANCH: $(cat VERSION)"
+    git checkout $(cat VERSION)
+  else
+    echo "BRANCH: $branch -----------"
+    git checkout $branch
+  fi
 
-# contentful maps has to run after contentful direct
-pushd .
-cd ../contentful_maps/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/contentful_maps/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
+  cd deploy
+  echo "/Volumes/vars/WSE/secret_$secretSet/$1/deploy-env"
+  source /Volumes/vars/WSE/secret_$secretSet/$1/deploy-env
+  #hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
+  cd ..
+  git checkout master
+  popd
+}
 
-pushd .
-cd ../recommendation_engine/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/recommend/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
+deploy_project "lambda_auth"
+deploy_project "contentful_direct"
+deploy_project "contentful_maps"
+deploy_project "recommendation_engine"
+deploy_project "monarch_libguides"
+deploy_project "gatekeeper"
+deploy_project "classes_api"
 
-pushd .
-cd ../monarch_libguides/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/monarch_libguides/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
-
-pushd .
-cd ../gatekeeper/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/gatekeeper/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
-
-pushd .
-cd ../classes_api/deploy/
-source /Volumes/vars/WSE/secret_$secretSet/classes_api/deploy-env
-hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
-popd
+exit

@@ -23,7 +23,6 @@ node buildApiUrls.js stage=$bucketStage
 echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$bucketStage)
 popd
-BUCKET="usurper-prep-333680067100"
 
 if [ $2 = "--branch" ]
 then
