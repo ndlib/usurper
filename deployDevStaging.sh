@@ -1,7 +1,13 @@
 #!/bin/bash
 # this is the prebuilt bucket we will target
 
-export bucketStage=$1
+if [ -z "$1" ]
+then
+  echo "Enter a stage "
+  exit
+fi
+
+bucketStage=$1
 
 git checkout master
 git pull
