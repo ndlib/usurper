@@ -1,17 +1,28 @@
 #!/bin/bash
-#usage ./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]
+usage="./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]"
 
-if [ -z "$1" ]
+if [ -z "$1" ] || [[ ! $1 =~ ^prod$|^beta$|^alpha$|^prep$|^dev$ ]]
 then
   echo "Enter a stage prod|beta|alpha|prep|dev "
-  echo "usage ./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]"
+  echo $usage
   exit
 fi
 
-if [ -z "$2" ]
+if [ -z "$2" ] || [[ ! $2 =~ ^create$|^update$ ]]
 then
   echo "Enter a deploy type create|update "
-  echo "usage ./deployServiceLocal.sh prod|beta|alpha|prep|dev create|update [ --branch branchName ]"
+  echo $usage
+  exit
+fi
+
+if [ -d "/Volumes/vars/WSE/" ]
+then
+  base_directory="/Volumes/vars/WSE"
+elif [ -d "/Volumes/vars/WSE/" ]
+then
+  base_directory="/Volumes/WSE"
+else
+  echo "Make sure you have corpfs mounted"
   exit
 fi
 
@@ -35,6 +46,18 @@ then
   branch=$4
 fi
 
+if [ $stage = "prod" ] || [ $stage = "beta" ] && [ ! $AWS_VAULT = "libnd" ]
+then
+  echo "For production deploys you must assume the libnd role"
+  exit
+fi
+
+if [ $stage = "dev" ] || [ $stage = "alpha" ] || [ $stage = "prep" ] && [ ! $AWS_VAULT = "testlib" ]
+then
+  echo "For production deploys you must assume the libnd role"
+  exit
+fi
+
 deploy_project () {
   echo "DEPLOYING: $1 ------------"
   pushd .
@@ -51,9 +74,10 @@ deploy_project () {
   fi
 
   cd deploy
-  echo "/Volumes/vars/WSE/secret_$secretSet/$1/deploy-env"
-  source /Volumes/vars/WSE/secret_$secretSet/$1/deploy-env
-  #hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
+  echo "$base_directorysecret_$secretSet/$1/deploy-env"
+  source $base_directory/secret_$secretSet/$1/deploy-env
+  echo "hesdeploy -s $stage --$deployType --yes $hesdeploy_extra"
+  hesdeploy -s $stage --$deployType --yes $hesdeploy_extra
   cd ..
   git checkout master
   popd
