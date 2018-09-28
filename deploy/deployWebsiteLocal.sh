@@ -2,9 +2,22 @@
 # this is the prebuilt bucket we will target
 # Usage: ./deployDevStaging.sh stage [ --branch branch ]
 
-if [ -z "$1" ]
+if [ -z "$1" ] || [[ ! $1 =~ ^prod$|^beta$|^alpha$|^prep$|^dev$ ]]
 then
-  echo "Enter a stage "
+  echo "Enter a stage prod|beta|alpha|prep|dev "
+  echo usage
+  exit
+fi
+
+if [ $stage = "prod" ] || [ $stage = "beta" ] && [ ! $AWS_VAULT = "libnd" ]
+then
+  echo "For production deploys you must assume the libnd role"
+  exit
+fi
+
+if [ $stage = "dev" ] || [ $stage = "alpha" ] || [ $stage = "prep" ] && [ ! $AWS_VAULT = "testlib" ]
+then
+  echo "For production deploys you must assume the libnd role"
   exit
 fi
 
@@ -12,6 +25,8 @@ bucketStage=$1
 
 git checkout master
 git pull
+
+cd ..
 
 echo "install build-links modules"
 pushd .
