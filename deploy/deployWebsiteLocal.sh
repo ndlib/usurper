@@ -9,6 +9,9 @@ then
   exit
 fi
 
+stage=$1
+
+
 if [ $stage = "prod" ] || [ $stage = "beta" ] && [ ! $AWS_VAULT = "libnd" ]
 then
   echo "For production deploys you must assume the libnd role"
@@ -34,9 +37,9 @@ cd ./scripts/build-links
 yarn install --production
 
 echo "get the apiurls"
-node buildApiUrls.js stage=$bucketStage
+node buildApiUrls.js stage=$stage
 echo "determine bucket"
-BUCKET=$(node getStageBucket.js stage=$bucketStage)
+BUCKET=$(node getStageBucket.js stage=$stage)
 popd
 
 if [ $2 = "--branch" ]
