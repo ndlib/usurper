@@ -60,8 +60,8 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
     endpoint = 'secureQuery'
   }
   const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=5`)
-  const url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}`
-  // if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
+  let url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}`
+  if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
 
   return (dispatch, getState) => {
     dispatch(requestPage(page))

@@ -40,6 +40,8 @@ export const fetchAllEvents = (status) => {
   const query = encodeURIComponent('content_type=event&include=5')
   const preview = status === 'preview'
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
+  if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
+
   return dispatch => {
     dispatch(requestAllEvents())
     return fetch(url)

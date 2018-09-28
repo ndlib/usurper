@@ -42,6 +42,7 @@ const receiveEvent = (event, response) => {
 export const fetchEvent = (event, preview) => {
   const query = encodeURIComponent(`content_type=event&fields.slug=${event}&include=5`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
+  if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
 
   return (dispatch) => {
     dispatch(requestEvent(event))

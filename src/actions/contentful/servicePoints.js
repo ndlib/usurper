@@ -39,6 +39,8 @@ const receiveServicePoints = (response) => {
 export const fetchServicePoints = (preview) => {
   const query = encodeURIComponent(`content_type=servicePoint&include=5`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
+  if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
+
   return dispatch => {
     dispatch(requestServicePoints())
     return fetch(url)
