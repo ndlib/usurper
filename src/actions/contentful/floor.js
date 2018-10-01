@@ -40,6 +40,8 @@ const receiveFloor = (floor, response) => {
 export const fetchFloor = (floor, preview) => {
   const query = encodeURIComponent(`content_type=floor&fields.slug=${floor}`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
+  if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
+
   return dispatch => {
     dispatch(requestFloor(floor))
     return fetch(url)
