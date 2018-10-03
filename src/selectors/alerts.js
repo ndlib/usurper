@@ -4,7 +4,7 @@ import { flattenLocale } from '../shared/ContentfulLibs'
 
 const getAlerts = (state, props) => {
   let allAlerts = []
-  if (state.allAlerts && state.allAlerts.status === statuses.SUCCESS) {
+  if (state.allAlerts && state.allAlerts.status === statuses.SUCCESS && state.allAlerts.json) {
     let now = new Date()
 
     allAlerts = state.allAlerts.json
