@@ -102,7 +102,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
 
   switch (searchStore.searchType) {
     case ONESEARCH:
-      window.location = onesearchUrl(searchTerm, isAdvanced, true,)
+      window.location = onesearchUrl(searchTerm, isAdvanced, true)
       break
     case NDCATALOG:
       window.location = onesearchUrl(searchTerm, isAdvanced, false)
