@@ -131,6 +131,8 @@ deploy_project () {
     fi
 
     cd deploy
+
+    echo $base_directory/secret_$secretSet/$current_project/deploy-env
     source $base_directory/secret_$secretSet/$current_project/deploy-env
 
     echo "CMD: hesdeploy -s $stage --$deployType --yes $hesdeploy_extra" >> $LOG_DIR_BASE/logs/$current_project.log
@@ -141,7 +143,7 @@ deploy_project () {
       printf "${RED} Failed: $current_project ${NC} \n"
       echo "See deploy/logs/$current_project.log"
     fi
-     echo "" >> $LOG_DIR_BASE/deploy/logs/$current_project.log
+     echo "" >> $LOG_DIR_BASE/logs/$current_project.log
 
     cd ..
     git checkout master > /dev/null
