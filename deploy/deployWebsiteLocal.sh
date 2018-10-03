@@ -49,9 +49,10 @@ else
   git checkout $(cat VERSION)
 fi
 
-sed -i 's/ENVIRONMENT/'$stage'/g' ../public/index.html
+# set sentry values
+sed -i '' 's/ENVIRONMENT/'$stage'/g' ../public/index.html
 version=$(cat ../VERSION)
-sed -i 's/SHA/'$version'/g' ../public/index.html
+sed -i '' 's/SHA/'$version'/g' ../public/index.html
 
 echo "install npm modules"
 yarn
@@ -59,6 +60,8 @@ yarn
 echo "build production"
 yarn build --production
 
+# reset sentry changes
+git checkout ../public/index.html
 
 echo "Push to bucket, $BUCKET"
 aws s3 sync --delete build/public s3://$BUCKET
