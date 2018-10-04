@@ -66,4 +66,4 @@ git checkout ../public/index.html
 echo "Push to bucket, $BUCKET"
 aws s3 sync --delete build/public s3://$BUCKET
 
-git checkout master
+git checkout ../
