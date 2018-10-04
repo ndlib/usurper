@@ -10,7 +10,11 @@ const Related = ({ title, className, showImages, children }) => {
   if (!children) {
     return null
   }
-  const childrenWithFields = children.filter(child => child.fields !== undefined)
+  const childrenWithFields = children.filter(
+    child => {
+      return child && child.fields !== undefined
+    }
+  )
   if (childrenWithFields.length === 0) {
     return null
   }
