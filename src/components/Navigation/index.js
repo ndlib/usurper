@@ -75,18 +75,20 @@ const mergeProps = (state, dispatchProps, ownProps) => {
   }
 
   let dropDowns = []
-  state.menus.data.fields.columns.forEach(menu => {
-    let current = menu.fields
-    dropDowns.push({
-      title: current.title,
-      landingPage: current.landingPage ? current.landingPage.fields.slug : null,
-      menuId: current.slug,
-      menuData: current.columns,
-      onClick: state.menus.menuId === current.slug ? dispatchProps.closeMenus : dispatchProps.openMenu.bind(null, current.slug),
-      keyDown: keyDown,
-      onBlur: dispatchProps.closeMenus,
+  if (state.menus && state.menus.data && state.menus.data.fields) {
+    state.menus.data.fields.columns.forEach(menu => {
+      let current = menu.fields
+      dropDowns.push({
+        title: current.title,
+        landingPage: current.landingPage ? current.landingPage.fields.slug : null,
+        menuId: current.slug,
+        menuData: current.columns,
+        onClick: state.menus.menuId === current.slug ? dispatchProps.closeMenus : dispatchProps.openMenu.bind(null, current.slug),
+        keyDown: keyDown,
+        onBlur: dispatchProps.closeMenus,
+      })
     })
-  })
+  }
 
   const handleUserKeyDown = (e) => {
     if (e.keyCode === 13) {

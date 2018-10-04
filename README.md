@@ -89,9 +89,14 @@ We have two main branches, `master` and `UA`. `Master` is "production ready" and
  * Build monarch_libguides / dev
  * Build classes_api / dev
 
-
 ### Alpha and Beta deployment
 
 ### Production Deployment
+
+## Cloud Front Invalidation
+First, assume this role: arn:aws:iam::230391840102:role/wse/StackSet-iam-developer-ro-InvalidateCloudFrontRole-1IKWK6RIAXND6
+
+Then, this command needs to be issued via the CLI:
+`aws cloudfront create-invalidation --distribution-id {CloudFrontID} --paths /*`
 
 ## Quality and User Acceptance Testing
