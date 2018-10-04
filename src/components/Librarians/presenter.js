@@ -23,7 +23,7 @@ const Loaded = (info, className) => {
                 email={librarian.email}
                 addr1={librarian.mail_addr}
               />
-              <Image src={librarian.photo} defaultImage={PrivateLibrarianImage} alt='Librarian photo not available' />
+              <Image src={librarian.photo} defaultImage={PrivateLibrarianImage} alt='' aria-hidden='true' />
             </div>
           )
         })
