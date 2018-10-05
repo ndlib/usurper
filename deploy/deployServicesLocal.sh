@@ -167,4 +167,4 @@ deploy_project "gatekeeper"
 
 deploy_project "classes_api"
 
-exit
+printf "${GREEN}Success${NC} \n"
