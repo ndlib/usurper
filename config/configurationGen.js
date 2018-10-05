@@ -2,7 +2,7 @@ let apiUrls = require('./apiUrls.js')
 
 const genConfig = () => {
   let defaultConfig = {
-    viceroyAPI: 'https://viceroy-dev.library.nd.edu',
+    viceroyAPI: 'https://viceroy.library.nd.edu',
     recommendAPI: apiUrls.recommendEngine,
     coursesAPI: apiUrls.classesAPI,
     resourcesAPI: apiUrls.gatekeeper,
