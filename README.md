@@ -95,10 +95,6 @@ We have two main branches, `master` and `UA`. `Master` is "production ready" and
  7. run invalidateCloudFront.sh stage
 
 
-### Alpha and Beta deployment
-
-### Production Deployment
-
 ## Cloud Front Invalidation
 First, assume this role: /wse/StackSet-iam-developer-ro-InvalidateCloudFrontRole-1IKWK6RIAXND6
 
