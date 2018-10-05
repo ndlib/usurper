@@ -8,6 +8,7 @@ import NotFound from '../Messages/NotFound'
 import Loading from '../Messages/Loading'
 import Error from '../Messages/Error'
 import * as statuses from '../../constants/APIStatuses'
+import { withErrorBoundary } from '../ErrorBoundary'
 
 class APIPresenterFactory extends Component {
   render () {
@@ -37,4 +38,4 @@ APIPresenterFactory.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.func]), // The error class to show if you don't want the default.
 }
 
-export default APIPresenterFactory
+export default withErrorBoundary(APIPresenterFactory)
