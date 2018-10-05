@@ -81,13 +81,19 @@
 We have two main branches, `master` and `UA`. `Master` is "production ready" and is what ends up getting tagged and deployed to production. `UA` is what all branches get merged into for testing and User Aceptance (UA). All development branches should start off of master, interated on and merged into `UA`. After the changes are accepted, that branch may then be merged into `master` and deleted. Remember the **branch** is merged into master, **not UA directly**. This also means **UA should not be merged into your development branch at any time**. We don't want to accidentally get unapproved changes into master.
 
 ## Deployment to AWS
- * hesdeploy -s {stage} --create/update
- * note: if this is a create it will create a cloud front and can take 30 minutes.
+ There are three scripts that need to be run to do a full deployment of the stack to one of the 5 environments
+ prod|beta|alpha|prep|dev
 
-### Development deployment
- * dev-staging.library.nd.edu
- * Build monarch_libguides / dev
- * Build classes_api / dev
+ Each of these require the assumption of the correct role.  testlib for all dev paths alpha|deb|prep.  
+
+ 1. go to the deploy directory
+ 2. assume either testlib of prod-dev
+ 3. run deployServicesLocal.sh stage create|update [--branch]  [--[project]]
+ 4. assume either testlib or libnd
+ 5. run deployWebsiteLocal stage [--branch]
+ 6. assum either testlib or prod-invaludator
+ 7. run invalidateCloudFront.sh stage
+
 
 ### Alpha and Beta deployment
 
