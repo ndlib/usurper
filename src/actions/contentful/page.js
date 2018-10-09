@@ -14,7 +14,7 @@ export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 const receiveError = (page, response) => {
   return {
     type: CF_RECEIVE_PAGE,
-    status: statuses.fromHttpStatusCode(response.errorStatus),
+    status: statuses.fromHttpStatusCode(response),
     error: response,
     slug: page,
     receivedAt: Date.now(),
