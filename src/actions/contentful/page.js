@@ -12,6 +12,8 @@ export const requestPage = (page) => {
 
 export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 const receiveError = (page, response) => {
+  console.log(page)
+  console.log(response)
   return {
     type: CF_RECEIVE_PAGE,
     status: statuses.fromHttpStatusCode(response.status),
