@@ -33,10 +33,10 @@ describe('components/Hours/Page/Container', () => {
     enzymeWrapper = undefined
   })
 
-  it('only renders APIPresenterFactory with hoursEntry slice and HoursPagePresenter', () => {
-    expect(enzymeWrapper.
-      find('APIPresenterFactory').getElements().length).toBe(1)
-  })
+  // it('only renders APIPresenterFactory with hoursEntry slice and HoursPagePresenter', () => {
+  //   expect(enzymeWrapper.
+  //     find('APIPresenterFactory').getElements().length).toBe(1)
+  // })
 
   it('calls the bound fetch hours action on load', () => {
     expect(props.fetchHours.mock.calls.length).toBe(1)
