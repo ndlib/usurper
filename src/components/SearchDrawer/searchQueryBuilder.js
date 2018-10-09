@@ -9,7 +9,7 @@ const padLeftZero = (num) => {
 
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
-  const isProduction = window.location.hostname === 'library.nd.edu'
+  const isProduction = window.location.hostname === 'library.nd.edu' || window.location.hostname === 'm.library.nd.edu'
   const env = isProduction ? '' : 'pprd'
   const vid = 'NDU'
   const mode = isAdvanced ? 'advanced' : 'basic'
