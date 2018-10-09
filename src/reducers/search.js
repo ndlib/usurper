@@ -14,7 +14,14 @@ import {
 import { CF_RECEIVE_PAGE } from '../actions/contentful/page'
 import * as statuses from '../constants/APIStatuses'
 
-const localSearchPref = localStorage.getItem('searchPreference')
+let localSearchPref
+let localStorageIsAvailable = false
+try {
+  localSearchPref = localStorage.getItem('searchPreference')
+  localStorageIsAvailable = true
+} catch (e) {
+  console.log('Local storage is not available.')
+}
 
 // Sets search type based on a priority sequence. Note: This modifies the
 // newState passed in, so assumes you've already created a copy of the state
@@ -61,13 +68,13 @@ export default (
 ) => {
   switch (action.type) {
     case SET_SEARCH:
-      {
-        let newState = Object.assign({}, state, {
-          sessionPref: action.searchType,
-        })
-        setSearchType(newState)
-        return newState
-      }
+    {
+      let newState = Object.assign({}, state, {
+        sessionPref: action.searchType,
+      })
+      setSearchType(newState)
+      return newState
+    }
     case OPEN_SEARCHBOX:
       return Object.assign({}, state, { searchBoxOpen: true })
     case CLOSE_SEARCHBOX:
@@ -78,7 +85,10 @@ export default (
     case CLOSE_ADVANCED_SEARCH:
       return Object.assign({}, state, { advancedSearch: false })
     case SAVE_SEARCH_PREFERENCE:
-      localStorage.setItem('searchPreference', JSON.stringify(action.pref))
+      if (localStorageIsAvailable) {
+        localStorage.setItem('searchPreference', JSON.stringify(action.pref))
+      }
+
       return Object.assign(
         {},
         state,
@@ -89,7 +99,11 @@ export default (
         }
       )
     case CLEAR_SEARCH_PREFERENCE:
-      localStorage.removeItem('searchPreference')
+
+      if (localStorageIsAvailable) {
+        localStorage.removeItem('searchPreference')
+      }
+
       return Object.assign(
         {},
         state,
@@ -108,16 +122,16 @@ export default (
         queries: action.queries,
       })
     case CF_RECEIVE_PAGE:
-      {
-        if (action.status === statuses.SUCCESS) {
-          let newState = Object.assign({}, state, {
-            pageSearchPref: action.page.fields.defaultSearchScope,
-          })
-          setSearchType(newState)
-          return newState
-        }
-        return state
+    {
+      if (action.status === statuses.SUCCESS) {
+        let newState = Object.assign({}, state, {
+          pageSearchPref: action.page.fields.defaultSearchScope,
+        })
+        setSearchType(newState)
+        return newState
       }
+      return state
+    }
     default:
       return state
   }
