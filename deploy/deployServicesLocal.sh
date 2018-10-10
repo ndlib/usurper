@@ -81,7 +81,7 @@ fi
 if [ -d "/Volumes/vars/WSE/" ]
 then
   base_directory="/Volumes/vars/WSE"
-elif [ -d "/Volumes/vars/WSE/" ]
+elif [ -d "/Volumes/WSE/" ]
 then
   base_directory="/Volumes/WSE"
 else
