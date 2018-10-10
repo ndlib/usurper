@@ -60,6 +60,10 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
+stage=$1
+deployType=$2
+
+
 if [ -z "$1" ] || [[ ! $1 =~ ^prod$|^beta$|^alpha$|^prep$|^dev$ ]]
 then
   echo "Enter a stage prod|beta|alpha|prep|dev "
@@ -84,9 +88,6 @@ else
   echo "Make sure you have corpfs mounted"
   exit
 fi
-
-stage=$1
-deployType=$2
 
 if [ $stage = "alpha" ] || [ $stage = "beta" ]
 then
