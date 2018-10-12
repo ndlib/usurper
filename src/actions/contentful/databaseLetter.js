@@ -61,9 +61,7 @@ export const fetchLetter = (letter, preview) => {
               row['searchBlob'] += ' ' + title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '')
             })
           }
-          console.log(row)
         })
-        console.log(json)
         dispatch(receiveLetter(letter, json))
       })
       .catch(error => console.log(error))
