@@ -138,14 +138,9 @@ export class DatabaseListContainer extends Component {
     ]
     return list.filter((item) => {
       let inFilter = false
-      filterFields.forEach((field) => {
-        inFilter = inFilter || (item.fields[field] && item.fields[field].toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~'()]/g, '').indexOf(value) >= 0)
-      })
       // also search all the alternate titles
-      if (item.fields.alternateTitles) {
-        item.fields.alternateTitles.forEach((title) => {
-          inFilter = inFilter || (title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '').indexOf(value) >= 0)
-        })
+      if (item.searchBlob) {
+        inFilter = inFilter || item.searchBlob.indexOf(value) >= 0
       }
       return inFilter
     }).slice(0, 50)
