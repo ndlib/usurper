@@ -45,7 +45,7 @@ const receiveLetter = (letter, response) => {
 export const fetchLetter = (letter, preview) => {
   const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
-  if (preview) { url += encodeURIComponent(`&preview=${preview}`) }
+  if (preview) { url += `&preview=${preview}` }
 
   return dispatch => {
     dispatch(requestLetter(letter))
