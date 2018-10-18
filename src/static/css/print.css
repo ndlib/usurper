@@ -2,8 +2,13 @@
 	* {
 		font-family: sans-serif !important;
 	}
-	.top, #footer-links, #footer-info, .floor-info, .mapkey {
+	.top, #footer-links, #footer-info, .floor-info p, .floor-info h3 {
 		display: none;
+	}
+
+	.mapkey {
+		width: 40% !important;
+		margin-top: 1em;
 	}
 
 	#maincontent {
