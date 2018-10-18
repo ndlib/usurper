@@ -768,7 +768,6 @@ nav div > a, .menu div > a, .menu-list > li > a {
   color: #555555;
   font-size: 14px;
   font-family: GPHeavy, sans-serif;
-  font-weight: 900;
   letter-spacing: 1.5px;
   padding: 15px 19px 15px;
   display: inline-flex;
@@ -1509,6 +1508,11 @@ label[for='q']:after, .uSearchBox label:after {
   text-decoration: none;
   font-weight: bold;
   text-decoration: none;
+}
+
+.menu-drawer a.viewMore  {
+  font-weight: normal !important;
+
 }
 
 .menu-drawer h4 a {
