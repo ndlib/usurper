@@ -467,10 +467,11 @@ body.gold-blue #header div a {
   height: 50px;
   text-indent: -9999px;
   overflow: hidden;
-  background-image: url(https://www.nd.edu/brandbar/images/dept-prov@2x.png);
+  background-image: url(../images/dept-prov-white@2x.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 
 #header.gtype div a {
   float: left;
@@ -488,7 +489,7 @@ body.gold-blue #header div a {
 }
 
 .blue .nddotedu a {
-  background-image: url(https://www.nd.edu/assets/images/brandbar/dept-nd-white@2x.png) !important;
+  background-image: url(../images/dept-nd-white@2x.png) !important;
   background-size: cover;
 }
 
@@ -765,8 +766,9 @@ nav div > a, .menu div > a, .menu-list > li > a {
   text-decoration: none;
   text-transform: uppercase;
   color: #555555;
-  font-size: 13px;
+  font-size: 14px;
   font-family: GPHeavy, sans-serif;
+  font-weight: 900;
   letter-spacing: 1.5px;
   padding: 15px 19px 15px;
   display: inline-flex;
@@ -2041,7 +2043,7 @@ address {
 }
 
 .floor-map {
-  max-width: 100%;
+  width: 100%;
 }
 
 
