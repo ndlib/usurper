@@ -1510,6 +1510,11 @@ label[for='q']:after, .uSearchBox label:after {
   text-decoration: none;
 }
 
+.menu-drawer a.viewMore  {
+  font-weight: normal !important;
+
+}
+
 .menu-drawer h4 a {
   font-weight: normal;
 }
