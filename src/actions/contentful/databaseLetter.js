@@ -54,6 +54,14 @@ export const fetchLetter = (letter, preview) => {
         return response.ok ? response.json() : { status: response.status }
       })
       .then(json => {
+        json.forEach((row) => {
+          row['searchBlob'] = (row.fields.title ? row.fields.title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '') : '')
+          if (row.fields.alternateTitles) {
+            row.fields.alternateTitles.forEach((title) => {
+              row['searchBlob'] += ' ' + title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '')
+            })
+          }
+        })
         dispatch(receiveLetter(letter, json))
       })
       .catch(error => console.log(error))

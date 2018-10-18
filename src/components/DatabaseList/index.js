@@ -131,20 +131,16 @@ export class DatabaseListContainer extends Component {
 
   // only filter by title for now, may want description in the future
   filter (filterValue, list) {
-    const value = filterValue.toLowerCase()
+    const value = filterValue.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '')
+
     const filterFields = [
       'title',
     ]
     return list.filter((item) => {
       let inFilter = false
-      filterFields.forEach((field) => {
-        inFilter = inFilter || (item.fields[field] && item.fields[field].toLowerCase().indexOf(value) >= 0)
-      })
       // also search all the alternate titles
-      if (item.fields.alternateTitles) {
-        item.fields.alternateTitles.forEach((title) => {
-          inFilter = inFilter || (title.toLowerCase().indexOf(value) >= 0)
-        })
+      if (item.searchBlob) {
+        inFilter = inFilter || item.searchBlob.indexOf(value) >= 0
       }
       return inFilter
     }).slice(0, 50)
