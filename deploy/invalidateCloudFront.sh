@@ -49,7 +49,7 @@ then
   cloudfrontid="E874ZZB7ZEYT3"
 elif [ $stage = "prep" ]
 then
-  cloudfrontid="E874ZZB7ZEYT3"
+  cloudfrontid="EI0D29BBO8NTJ"
 elif [ $stage = "dev" ]
 then
   cloudfrontid="E874ZZB7ZEYT3"
