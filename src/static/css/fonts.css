@@ -94,14 +94,14 @@
   src:url("https://static.nd.edu/fonts/gp-min/gp-bold.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gp-bold.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gp-bold.ttf") format("truetype")
 }
 
-@font-face {
+/*@font-face {
   font-family: GPHeavy;
   src: url('https://www.nd.edu/assets/fonts/GalaxiePolaris-Heavy.eot');
   src: url('https://www.nd.edu/assets/fonts/GalaxiePolaris-Heavy.eot?iefix') format('embedded-opentype'), url('https://www.nd.edu/assets/fonts/GalaxiePolaris-Heavy.woff') format('woff'), url('https://www.nd.edu/assets/fonts/GalaxiePolaris-Heavy.ttf') format('truetype'), url('https://www.nd.edu/assets/fonts/GalaxiePolaris-Heavy.svg#svgGPCHeavy') format('svg');
-}
+}*/
 
 @font-face {
-  font-family: GPBook;
+  font-family: GPHeavy;
   src: url('../fonts/gp-heavy.woff');
   src:url("../fonts/gp-heavy.woff") format("woff2"),url("../fonts/gp-heavy.woff") format("woff"),url("../fonts/gp-heavy.ttf") format("truetype")
 }
