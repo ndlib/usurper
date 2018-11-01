@@ -14,7 +14,7 @@ export class ServicePointContainer extends Component {
     super(props)
     this.state = {
       fetchStatus: statuses.NOT_FETCHED,
-      sp: props.cfServicePoint
+      sp: props.cfServicePoint,
     }
   }
 
@@ -22,20 +22,21 @@ export class ServicePointContainer extends Component {
     const self = this
     if (this.state.fetchStatus === statuses.NOT_FETCHED && this.state.sp && !this.state.sp.fields) {
       this.props.fetchServicePoints(false, this.state.sp.sys.id)
-      .then(function(response) {
-        self.setState({ fetchStatus: response.status })
-        if (response.servicePoints && response.servicePoints.length) {
-          self.setState({ sp: response.servicePoints[0] })
-        }
-      })
-      .catch(function(error) {
-        console.log('Error fetching service points')
-        self.setState({ fetchStatus: statuses.ERROR })
-      })
+        .then(function (response) {
+          self.setState({ fetchStatus: response.status })
+          if (response.servicePoints && response.servicePoints.length) {
+            self.setState({ sp: response.servicePoints[0] })
+          }
+        })
+        .catch(function (error) {
+          console.warn('Error fetching service points')
+          console.error(error)
+          self.setState({ fetchStatus: statuses.ERROR })
+        })
     }
   }
 
-  render() {
+  render () {
     if (!this.state.sp || !this.state.sp.fields) {
       return null
     }
@@ -49,8 +50,6 @@ export class ServicePointContainer extends Component {
         itemType='http://schema.org/Place'
       >
         <h2 itemProp='name'>{this.state.sp.fields.title}</h2>
-
-
         { this.props.showDetails && (
           <div>
             <h4 itemProp='streetAddress'><address>{this.state.sp.fields.address}</address></h4>
