@@ -38,11 +38,11 @@ const PagePresenter = ({ entry }) => {
       <div className='row'>
         <main className='col-md-8 article'>
           <div className='event-details'>
-            <div className='event-detail-date'>{ entry.displayDate }</div>
-            <div className='event-detail-time'><LibMarkdown>{ entry.displayTime }</LibMarkdown></div>
+            <div className='event-detail-date' aria-label={"Date"}>{entry.displayDate }</div>
+            <div className='event-detail-time' aria-label={"Time"}><LibMarkdown>{ entry.displayTime }</LibMarkdown></div>
             {
               entry.locationText && (
-                <div className='event-detail-location'>
+                <div className='event-detail-location' aria-label="Location">
                   <LibMarkdown>{ entry.locationText }</LibMarkdown>
                 </div>
               )
