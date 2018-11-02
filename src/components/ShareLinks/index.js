@@ -42,6 +42,7 @@ const ShareLinks = ({ title, className }) => {
               to={location.func(title, currentUrl)}
               ariaLabel={'Share on ' + key}
               key={'share_' + key}
+              title={'Share on ' + key}
             >
               <div className={'resp-sharing-button resp-sharing-button--' + key + ' resp-sharing-button--small'}>
                 <div
