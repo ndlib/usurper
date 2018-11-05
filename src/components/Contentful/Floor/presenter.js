@@ -25,7 +25,7 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
         { cfFloorEntry.fields.callNumberRange && (<p>Call Number Ranges: {cfFloorEntry.fields.callNumberRange}</p>) }
         <ServicePoint cfServicePoint={cfServicePoint} />
         <p>&nbsp;</p>
-        <h3 className='mapkey'>Map Key</h3>
+        <h2 className='mapkey'>Map Key</h2>
         <img
                       src={mapkey}
                       alt='map key'

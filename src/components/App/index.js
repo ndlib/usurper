@@ -23,7 +23,6 @@ import Events from '../../components/LandingPages/Events'
 import Contact from '../LandingPages/Contact'
 import DatabaseList from '../../components/DatabaseList'
 import SubjectList from '../../components/SubjectList'
-import SiteInfo from '../../components/SiteInfo'
 import FloorSearch from '../../components/FloorSearch'
 import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
@@ -86,7 +85,6 @@ const App = (props) => {
               <Route exact path='/event/:id' component={ContentfulEvent} />
               <Route exact path='/items-requests' component={PersonalInfo} />
               <Route exact path='/subjects' component={SubjectList} />
-              <Route exact path='/site-info' component={SiteInfo} />
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
