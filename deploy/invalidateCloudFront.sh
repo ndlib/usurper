@@ -33,7 +33,7 @@ fi
 
 if [ $stage = "dev" ] || [ $stage = "alpha" ] || [ $stage = "prep" ] && [ ! $AWS_VAULT = "testlib" ]
 then
-  printf "${RED}For production deploys you must assume the testlibnd role ${NC} \n"
+  printf "${RED}For testlib deploys you must assume the testlibnd role ${NC} \n"
   usage
   exit
 fi
