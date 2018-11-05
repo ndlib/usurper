@@ -85,7 +85,6 @@ const App = (props) => {
               <Route exact path='/event/:id' component={ContentfulEvent} />
               <Route exact path='/items-requests' component={PersonalInfo} />
               <Route exact path='/subjects' component={SubjectList} />
-              <Route exact path='/site-info' component={SiteInfo} />
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
