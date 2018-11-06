@@ -1,6 +1,39 @@
 # Change Log
 
-## [v2018.24](https://github.com/ndlib/usurper/tree/v2018.22) “Psych"
+## [v2018.31](https://github.com/ndlib/usurper/tree/v2018.31) “Falling Forward"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.24...v2018.31)
+
+### Note
+The change log for this update includes changes that were deployed previously as fixes
+
+### Accessibility
+- Changing sidebar header designations. [View Changes](http://github.com/ndlib/usurper/commit/2806fb8d7d011c9904686c9073a0a234e6e3413d)
+- Fixed contrast on links and text below the search appliance on the home page. Refactored headers in the service point boxes on both the hours and locations pages [View Changes](http://github.com/ndlib/usurper/commit/85f5b83f5cc7cf97a02339658491e18979c57c3b)
+- Various accessibility updates Swapped out png icons for svgs. [View Changes](http://github.com/ndlib/usurper/commit/4987cfd97e043b69f2b5fadd967054a987283e21)
+- Hiding librarian photo from screen readers and removing alt text [View Changes](http://github.com/ndlib/usurper/commit/cced7b880c8e1cf3b6b8d22bfb539a36badeca90)
+- Font fixes [View Changes](http://github.com/ndlib/usurper/commit/eb6413b562dbf502a6d787522418f81d74dfb91b)
+
+### Bug Fixes
+- Updated the search to send all documents when there is no search [View Changes](http://github.com/ndlib/usurper/commit/35af55e41301dc579de3260371ab2dba8a2a28c2)
+- Fix for secure pages [View Changes](http://github.com/ndlib/usurper/commit/48616df89b522328d2f1030b06c9c8d64612dca5)
+- Fix for no current or future events [View Changes](http://github.com/ndlib/usurper/commit/670bcc0b4ed60e99f7c9b96c57281f8cb4976fdd)
+- Individual database pages work [View Changes](http://github.com/ndlib/usurper/commit/ab662dfbdddc6673f16b0fc8d96e85569802a8a7)
+- Fixes for databases a-z pages [View Changes](http://github.com/ndlib/usurper/commit/ae8d5d29758f62ba3b848fde01cc04bb59c84653)
+- Search scope fix [View Changes](http://github.com/ndlib/usurper/commit/dc50cbd1b625c6de819a9a3b4fead2c233f5cc47)
+- Fix for preview links [View Changes](http://github.com/ndlib/usurper/commit/eb6e6e76140d42a53bc8f472d12a84c2b94e8167)
+- Removed Punctuation from search [View Changes](http://github.com/ndlib/usurper/commit/2118054f19d0c0316848798fa450d6a158673945)
+
+### Other
+- Added previously published and seperated out contacts from content [View Changes](http://github.com/ndlib/usurper/commit/95e54b3d356f79b5fc9b19744c2d69743b5d066b)
+- Added dropdown arrow in search scope dropdown [View Changes](http://github.com/ndlib/usurper/commit/f4ef0eaf322c69378466763d1d8c7fde9fbb8deb)
+- Redirect old subpages on /medieval [View Changes](http://github.com/ndlib/usurper/commit/9329d8b3f3c5c3c9af8996b1a0a9def013e4ee01)
+- Combined previously published and contact us into single markdown box [View Changes](http://github.com/ndlib/usurper/commit/96d03b844462d2b3710ebfd912bf1fc3e2743696)
+- Added title to share links [View Changes](http://github.com/ndlib/usurper/commit/0c2134fe6e4b002156895a786c9e37c0b0f93c8d)
+- Removed site info link [View Changes](http://github.com/ndlib/usurper/commit/07efdfd46996a3a8316e1b3fef0eb9655bda05ea)
+- Updated version display [View Changes](http://github.com/ndlib/usurper/commit/2d1c7ba8c4b199d87ac6065134cbe2d7362262b5)
+
+
+## [v2018.24](https://github.com/ndlib/usurper/tree/v2018.24) “Psych"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.19...v2018.23)
 
 ### Accessibility
