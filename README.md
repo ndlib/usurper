@@ -102,3 +102,11 @@ Then, this command needs to be issued via the CLI:
 `aws cloudfront create-invalidation --distribution-id {CloudFrontID} --paths /*`
 
 ## Quality and User Acceptance Testing
+
+### Big Thanks
+
+Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs][homepage]
+
+[![](src/static/images/SauceLabs.svg)][homepage]
+
+[homepage]: https://saucelabs.com
