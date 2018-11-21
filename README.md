@@ -17,9 +17,6 @@
   * [Running Locally](#running-locally)
   * [Running Tests](#running-tests)
  * [Deployment to AWS](#deployment-to-aws)
-  * [Development Deployment](#development-deployment)
-  * [Alpha and Beta Deployment](#alpha-and-beta-deployment)
-  * [Production Deployment](#production-deployment)
  * [Quality and User Acceptance Testing](#quality-and-user-acceptance-testing)
 
 
@@ -84,14 +81,14 @@ We have two main branches, `master` and `UA`. `Master` is "production ready" and
  There are three scripts that need to be run to do a full deployment of the stack to one of the 5 environments
  prod|beta|alpha|prep|dev
 
- Each of these require the assumption of the correct role.  testlib for all dev paths alpha|deb|prep.  
+ Each of these require the assumption of the correct role.  testlib for all dev paths alpha|dev|prep.  
 
  1. go to the deploy directory
  2. assume either testlib of prod-dev
  3. run deployServicesLocal.sh stage create|update [--branch]  [--[project]]
  4. assume either testlib or libnd
  5. run deployWebsiteLocal stage [--branch]
- 6. assum either testlib or prod-invaludator
+ 6. assume either testlib or prod-invalidator
  7. run invalidateCloudFront.sh stage
 
 

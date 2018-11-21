@@ -46,13 +46,13 @@ then
   cloudfrontid="E874ZZB7ZEYT3"
 elif [ $stage = "alpha" ]
 then
-  cloudfrontid="E874ZZB7ZEYT3"
+  cloudfrontid="ENDJH151YD7D8"
 elif [ $stage = "prep" ]
 then
   cloudfrontid="EI0D29BBO8NTJ"
 elif [ $stage = "dev" ]
 then
-  cloudfrontid="E874ZZB7ZEYT3"
+  cloudfrontid="E3CNC06AC96X4N"
 fi
 
 aws cloudfront create-invalidation --distribution-id $cloudfrontid --paths "/*"
