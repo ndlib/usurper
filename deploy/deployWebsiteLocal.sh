@@ -1,6 +1,6 @@
 #!/bin/bash
 # this is the prebuilt bucket we will target
-# Usage: ./deployDevStaging.sh stage [ --branch branch ]
+# Usage: ./deployDevStaging.sh stage [ -b|--branch branch ]
 PROGNAME=$0
 
 RED='\033[0;31m'
@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 
 usage() {
   cat << EOF >&2
-Usage: $PROGNAME prod|beta|alpha|prep|dev create|update [-b <branch>] [-p <project>]
+Usage: $PROGNAME prod|beta|alpha|prep|dev [-b <branch>]
 
 deployes website to the appropriate bucket
 
@@ -58,7 +58,7 @@ echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$stage)
 popd
 
-if [ $2 = "--branch" ]
+if [ $2 = "-b" ] || [ $2 = "--branch" ]
 then
   git checkout $3
 else
