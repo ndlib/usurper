@@ -7,7 +7,7 @@ import FilterBox from '../../FilterBox'
 const ResourceList = (props) => {
   return (
     <section aria-label={props.listType}>
-      { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items'>Renew All</button> }
+      { props.borrowed && <button className='renew' onClick={props.renewAll} aria-label='Renew all renewable items' disabled={!props.canRenew}>Renew All</button> }
       <FilterBox
         title='Filter Items:'
         value={props.filterValue}
@@ -83,9 +83,13 @@ ResourceList.propTypes = {
   borrowed: PropTypes.bool,
   filterValue: PropTypes.string.isRequired,
   filterChange: PropTypes.func.isRequired,
+  alephId: PropTypes.string,
+  renewal: PropTypes.object,
   renewAll: PropTypes.func,
+  canRenew: PropTypes.bool,
   sortClass: PropTypes.func.isRequired,
   sortClick: PropTypes.func.isRequired,
+  assistSortDirection: PropTypes.func.isRequired,
   loadingMore: PropTypes.bool,
   listType: PropTypes.string.isRequired,
   assistText: PropTypes.string.isRequired,

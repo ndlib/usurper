@@ -45,8 +45,10 @@ class ResourceContainer extends Component {
 
 ResourceContainer.propTypes = {
   renewal: PropTypes.object,
+  canRenew: PropTypes.bool,
   item: PropTypes.object,
   borrowed: PropTypes.bool,
+  alephId: PropTypes.string,
 }
 
 export const mapStateToProps = (state, ownProps) => {
