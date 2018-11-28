@@ -65,6 +65,7 @@ const ResourceList = (props) => {
               <Resource
                 item={item}
                 renewal={props.renewal}
+                canRenew={props.canRenew}
                 alephId={props.alephId}
                 borrowed={props.borrowed}
                 key={index}

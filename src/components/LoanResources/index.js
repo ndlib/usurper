@@ -56,13 +56,13 @@ export const mapStateToProps = (state) => {
 
   const pendingFetching = (get(alephPending, 'state', false) === statuses.FETCHING
                         || get(illPending, 'state', false) === statuses.FETCHING)
-  const userDetailsFetching = get(personal.userDetails, 'state', '') === statuses.FETCHING
+  const userDetailsFetching = get(personal.userDetails, 'state', false) === statuses.FETCHING
 
   let canRenew = false
   if (personal.userDetails && get(personal.userDetails, 'state', '') === statuses.SUCCESS) {
      const dateString = String(personal.userDetails.expiry_date)
      const date = new Date(dateString.substring(0, 4), dateString.substring(4, 6), dateString.substring(6, 8))
-     canRenew = date > new Date()
+     canRenew = date > new Date() && !window.location.search.includes("expire") // TODO: REMOVE AFTER TESTING
   }
 
   return {

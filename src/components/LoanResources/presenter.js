@@ -8,7 +8,7 @@ const LoanResources = (props) => {
   let have = props.resources.have
   let pending = props.resources.pending
   const expiredMessage = (props.canRenew || props.userLoading) ? null : (
-    <div class='alert status failure' style={{ marginBottom: '1.5em' }}>
+    <div className='alert status failure' style={{ marginBottom: '1.5em' }}>
       Your <a href='https://irish1card.nd.edu/'>Irish1card</a> account has expired.
       Please contact campus Card Services for more information.
     </div>
