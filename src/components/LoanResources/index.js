@@ -62,7 +62,7 @@ export const mapStateToProps = (state) => {
   let canRenew = false
   if (user && get(user, 'state', false) === statuses.SUCCESS) {
     const dateString = String(user.expiryDate)
-    const date = new Date(dateString.substring(0, 4), dateString.substring(4, 6), dateString.substring(6, 8))
+    const date = new Date(dateString.substring(0, 4), dateString.substring(4, 6) - 1, dateString.substring(6, 8))
     canRenew = date > new Date() && !window.location.search.includes("expire") // TODO: REMOVE AFTER TESTING
   }
 
