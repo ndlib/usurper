@@ -12,16 +12,6 @@ export const handleUser = (dispatch, data) => {
   )
 }
 
-export const handleUserDetails = (dispatch, data) => {
-  dispatch(
-    states.recievePersonal(
-      'userDetails',
-      statuses.SUCCESS,
-      data,
-    )
-  )
-}
-
 export const handleResources = (service, type) => {
   return (dispatch, data) => {
     if (type === 'borrowed') {
@@ -70,13 +60,6 @@ export const getUser = () => {
   }
 }
 
-export const getUserDetails = () => {
-  return (dispatch, getState) => {
-    var state = getState().personal
-    doQuery(dispatch, 'aleph', 'userDetails', handleUserDetails, state.login.token, 'userDetails')
-  }
-}
-
 export const getPending = () => {
   return (dispatch, getState) => {
     let state = getState().personal
@@ -99,7 +82,6 @@ export const getBorrowed = () => {
 const getResources = () => {
   return (dispatch, getState) => {
     getUser()(dispatch, getState)
-    getUserDetails()(dispatch, getState)
     getPending()(dispatch, getState)
     getBorrowed()(dispatch, getState)
   }
