@@ -48,7 +48,6 @@ ResourceContainer.propTypes = {
   canRenew: PropTypes.bool,
   item: PropTypes.object,
   borrowed: PropTypes.bool,
-  alephId: PropTypes.string,
 }
 
 export const mapStateToProps = (state, ownProps) => {
