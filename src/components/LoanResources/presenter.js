@@ -45,8 +45,6 @@ const LoanResources = (props) => {
 }
 
 LoanResources.propTypes = {
-  loggedIn: PropTypes.bool,
-  login: PropTypes.object,
   alephId: PropTypes.string,
   renewal: PropTypes.object,
   canRenew: PropTypes.bool,
