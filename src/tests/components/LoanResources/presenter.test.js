@@ -20,7 +20,7 @@ let props = {
 }
 describe('components/LoanResources/presenter.js', () => {
   beforeEach(() => {
-    enzymeWrapper = shallow(<LoanResources resources={props} />)
+    enzymeWrapper = shallow(<LoanResources resources={props} userLoading={false} />)
   })
 
   afterEach(() => {
