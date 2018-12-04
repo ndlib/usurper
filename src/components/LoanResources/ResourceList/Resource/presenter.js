@@ -39,7 +39,13 @@ const Resource = (props) => {
 
       { actionsButton(props.item, props.toggleHidden) }
       <div className={'actions' + (props.hidden ? '-hidden' : '')}>
-        <Actions item={props.item} alephId={props.alephId} renewal={props.renewal} borrowed={props.borrowed} />
+        <Actions
+          item={props.item}
+          alephId={props.alephId}
+          renewal={props.renewal}
+          borrowed={props.borrowed}
+          canRenew={props.canRenew}
+        />
       </div>
     </div>
   )
@@ -48,6 +54,7 @@ const Resource = (props) => {
 Resource.propTypes = {
   item: PropTypes.object.isRequired,
   renewal: PropTypes.object,
+  canRenew: PropTypes.bool,
   toggleHidden: PropTypes.func,
   alephId: PropTypes.string,
   borrowed: PropTypes.bool,

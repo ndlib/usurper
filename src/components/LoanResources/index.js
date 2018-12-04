@@ -47,6 +47,7 @@ export const mapStateToProps = (state) => {
   const alephPending = personal.alephPending
   const illHave = personal.illHave
   const illPending = personal.illPending
+  const user = personal.user
 
   const checkedOut = get(alephHave, 'checkedOut', []).concat(get(illHave, 'checkedOut', []))
   const pendingItems = get(alephPending, 'pending', []).concat(get(illPending, 'pending', []))
@@ -56,12 +57,22 @@ export const mapStateToProps = (state) => {
 
   const pendingFetching = (get(alephPending, 'state', false) === statuses.FETCHING
                         || get(illPending, 'state', false) === statuses.FETCHING)
+  const userFetching = get(user, 'state', false) === statuses.FETCHING
+
+  let canRenew = false
+  if (user && get(user, 'state', false) === statuses.SUCCESS) {
+    const dateString = String(user.expiryDate)
+    const date = new Date(dateString.substring(0, 4), dateString.substring(4, 6) - 1, dateString.substring(6, 8))
+    canRenew = date > new Date()
+  }
 
   return {
     loggedIn: loggedIn,
     login: personal.login,
     alephId: personal.user ? personal.user.alephId : null,
     renewal: renewal,
+    canRenew: canRenew,
+    userLoading: userFetching,
     resources: {
       have: {
         exists: get(alephHave, 'state', false) && get(illHave, 'state', false),

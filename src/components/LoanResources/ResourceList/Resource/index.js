@@ -45,6 +45,7 @@ class ResourceContainer extends Component {
 
 ResourceContainer.propTypes = {
   renewal: PropTypes.object,
+  canRenew: PropTypes.bool,
   item: PropTypes.object,
   borrowed: PropTypes.bool,
 }

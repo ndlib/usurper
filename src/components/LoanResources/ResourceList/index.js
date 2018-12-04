@@ -148,6 +148,7 @@ class ListContainer extends Component {
       alephId={this.props.alephId}
       renewal={this.props.renewal}
       renewAll={this.props.renewAll}
+      canRenew={this.props.canRenew}
       sortClick={this.sortChange}
       sortClass={this.sortClass}
       assistSortDirection={this.getSortDirAfterClick}
@@ -185,6 +186,7 @@ ListContainer.propTypes = {
   emptyText: PropTypes.string.isRequired,
   alephId: PropTypes.string,
   renewal: PropTypes.object,
+  canRenew: PropTypes.bool,
   borrowed: PropTypes.bool,
   listType: PropTypes.string.isRequired,
 
