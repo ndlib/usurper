@@ -3,16 +3,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import ResourceList from './ResourceList'
+import AccountExpired from '../Messages/AccountExpired'
 
 const LoanResources = (props) => {
   let have = props.resources.have
   let pending = props.resources.pending
-  const expiredMessage = (props.canRenew || props.userLoading) ? null : (
-    <div className='alert status failure' style={{ marginBottom: '1.5em' }}>
-      Your <a href='https://irish1card.nd.edu/'>Irish1card</a> account has expired.
-      Please contact campus Card Services for more information.
-    </div>
-  )
+  const expiredMessage = (props.canRenew || props.userLoading) ? null : <AccountExpired />
 
   return (
     <div key='LoanResources' className='resources-list'>
