@@ -7,4 +7,8 @@ const AccountExpired = ({ message = 'Please contact campus Card Services for mor
   </div>
 )
 
+AccountExpired.propTypes = {
+  message: PropTypes.string,
+}
+
 export default AccountExpired
