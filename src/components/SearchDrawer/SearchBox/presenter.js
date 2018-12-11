@@ -42,6 +42,7 @@ const SearchBox = (props) => {
           name='q'
           defaultValue={props.defaultSearch}
           onChange={props.onChange}
+          onBlur={props.onBlur}
           aria-labelledby='label-for-basic-search-field' />
       </div>
       <button onClick={props.onSubmit}>Search</button>
@@ -54,7 +55,7 @@ SearchBox.propTypes = {
   defaultSearch: PropTypes.string,
   onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
-  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
   search: PropTypes.shape({
     searchBoxOpen: PropTypes.bool,
