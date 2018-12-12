@@ -59,6 +59,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     inputOnKeyDown: (e) => {
+      // Enter
       if (e.keyCode === 13) {
         dispatch(setSearchOption(e.target.id, e.target.value))
       }
