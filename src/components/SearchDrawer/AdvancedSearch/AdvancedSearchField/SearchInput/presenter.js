@@ -5,4 +5,10 @@ const SearchInput = (props) => {
   return (<input id={props.id} onBlur={props.onBlur} onKeyDown={props.onKeyDown} />)
 }
 
+SearchInput.propTypes = {
+  id: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
+  onKeyDown: PropTypes.func,
+}
+
 export default SearchInput

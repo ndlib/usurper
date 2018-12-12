@@ -39,4 +39,10 @@ const DateField = (props) => {
   )
 }
 
+DateField.propTypes = {
+  id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
+}
+
 export default DateField
