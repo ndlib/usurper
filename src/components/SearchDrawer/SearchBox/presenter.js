@@ -17,7 +17,7 @@ const SearchBox = (props) => {
           <li
             id='selected-search'
             onClick={props.onClick}
-            onKeyDown={props.onKeyDown}
+            onKeyDown={props.dropdownOnKeyDown}
             tabIndex='0'>
             <span
               className='screen-reader-only'
@@ -34,16 +34,16 @@ const SearchBox = (props) => {
       <div className='input'>
         <span
           className='screen-reader-only'
-          id='label-for-basic-search-field'
+          id={`label-for-${props.id}`}
         >Search in { props.currentSearch.title }</span>
         <input
-          id='basic-search-field'
+          id={props.id}
           role='searchbox'
           name='q'
           defaultValue={props.defaultSearch}
-          onChange={props.onChange}
           onBlur={props.onBlur}
-          aria-labelledby='label-for-basic-search-field' />
+          onKeyDown={props.inputOnKeyDown}
+          aria-labelledby={`label-for-${props.id}`} />
       </div>
       <button onClick={props.onSubmit}>Search</button>
     </span>
@@ -54,13 +54,15 @@ SearchBox.propTypes = {
   currentSearch: PropTypes.object.isRequired,
   defaultSearch: PropTypes.string,
   onClick: PropTypes.func,
-  onKeyDown: PropTypes.func,
+  dropdownOnKeyDown: PropTypes.func,
+  inputOnKeyDown: PropTypes.func,
   onBlur: PropTypes.func,
   onSubmit: PropTypes.func.isRequired,
   search: PropTypes.shape({
     searchBoxOpen: PropTypes.bool,
   }),
   visible: PropTypes.bool,
+  id: PropTypes.string.isRequired,
 }
 
 export default SearchBox

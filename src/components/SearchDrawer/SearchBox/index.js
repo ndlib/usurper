@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 import { openSearchBox, closeSearchBox } from '../../../actions/search.js'
 import { setSearchOption } from '../../../actions/advancedSearch.js'
 import searchQuery from '../searchQueryBuilder'
-import Presenter from './presenter'
+import SearchBox from './presenter'
 import ReactGA from 'react-ga'
 import Config from '../../../shared/Configuration'
 import QueryString from 'querystring'
@@ -15,60 +15,17 @@ ReactGA.initialize(Config.googleAnalyticsId, {
   gaOptions: {},
 })
 
-class SearchBox extends React.Component {
-  constructor (props) {
-    super(props)
-    this.onSubmit = this.onSubmit.bind(this)
-    this.onChange = this.onChange.bind(this)
-  }
-
-  componentDidMount () {
-    this.setState({
-      searchId: 'basic-search-field',
-      searchValue: this.props.defaultSearch,
-      submitSearch: false,
-    })
-  }
-
-  componentDidUpdate (prevProps, prevState) {
-    if (this.state.submitSearch && !prevState.submitSearch) {
-      ReactGA.event({
-        category: `LIBRARY WEBSITE SEARCH SUBMISSION`,
-        action: `${this.props.search.searchType}`,
-        label: `${this.props.advancedSearch['basic-search-field']}`,
-      })
-      searchQuery(this.props.search, this.props.advancedSearch, this.props.history)
-
-      this.setState({
-        submitSearch: false,
-      })
-    }
-  }
-
-  onSubmit (e) {
-    e.preventDefault()
-    this.props.dispatch(setSearchOption(this.state.searchId, this.state.searchValue))
-    this.setState({
-      submitSearch: true,
-    })
-  }
-
-  onChange (e) {
-    this.setState({
-      searchId: e.target.id,
-      searchValue: e.target.value,
-    })
-  }
-
-  render () {
-    return (
-      <Presenter onSubmit={this.onSubmit} onChange={this.onChange} {...this.props} />
-    )
-  }
-}
-
 const mapStateToProps = (state, ownProps) => {
   return {
+    onSubmit: (e) => {
+      e.preventDefault()
+      ReactGA.event({
+        category: `LIBRARY WEBSITE SEARCH SUBMISSION`,
+        action: `${state.search.searchType}`,
+        label: `${state.advancedSearch[ownProps.id]}`,
+      })
+      searchQuery(state.search, state.advancedSearch, ownProps.history)
+    },
     ...state,
   }
 }
@@ -86,12 +43,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const qs = QueryString.parse(ownProps.location.search.replace('?', ''))
 
   return {
-    dispatch: dispatch,
     defaultSearch: qs.q,
     onClick:(e) => {
       toggle(e)
     },
-    onKeyDown: (e) => {
+    dropdownOnKeyDown: (e) => {
       // enter
       if (e.keyCode === 13) {
         dispatch(toggle(e))
@@ -100,6 +56,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         e.preventDefault()
         dispatch(openSearchBox())
         setTimeout(() => { document.getElementById('uSearchOption_0').focus() }, 50)
+      }
+    },
+    inputOnKeyDown: (e) => {
+      if (e.keyCode === 13) {
+        dispatch(setSearchOption(e.target.id, e.target.value))
       }
     },
     onBlur: (e) => {
