@@ -26,7 +26,7 @@ const receiveAllEvents = (response) => {
   }
 
   try {
-    if (response[0] && response[0].sys.id) {
+    if (Array.isArray(response)) {
       return success
     } else {
       return error
