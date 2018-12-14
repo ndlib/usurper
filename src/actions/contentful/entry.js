@@ -23,13 +23,13 @@ const receiveEntry = (entry, response) => {
   let success = {
     type: CF_RECEIVE_ENTRY,
     status: statuses.SUCCESS,
-    page: response,
+    page: response[0],
     receivedAt: Date.now(),
     entry,
   }
 
   try {
-    if (response.sys.id) {
+    if (response[0] && response[0].sys.id) {
       return success
     } else {
       return error
@@ -71,7 +71,7 @@ export const fetchEntry = (id, slug, preview) => {
         }
       })
       .then(json => {
-        dispatch(receiveEntry(entryIdent, json[0]))
+        dispatch(receiveEntry(entryIdent, json))
       })
       .catch(response => dispatch(
         receiveEntry(entryIdent, response)))

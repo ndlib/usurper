@@ -27,7 +27,7 @@ const receiveFloor = (floor, response) => {
   }
 
   try {
-    if (response[0].sys.contentType.sys.id === 'floor') {
+    if (response[0] && response[0].sys.contentType.sys.id === 'floor') {
       return success
     } else {
       return error

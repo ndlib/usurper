@@ -27,7 +27,7 @@ const receiveNews = (news, response) => {
   }
 
   try {
-    if (response[0].sys.contentType.sys.id === 'news') {
+    if (response[0] && response[0].sys.contentType.sys.id === 'news') {
       return success
     } else {
       return error

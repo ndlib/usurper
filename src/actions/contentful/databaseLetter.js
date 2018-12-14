@@ -31,7 +31,7 @@ const receiveLetter = (letter, response) => {
   }
 
   try {
-    if (response) {
+    if (response[0] && response[0].sys.id) {
       return success(response)
     } else {
       return error
