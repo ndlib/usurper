@@ -11,8 +11,14 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onChange: (e) => {
+    onBlur: (e) => {
       dispatch(setSearchOption(e.target.id, e.target.value))
+    },
+    onKeyDown: (e) => {
+      // Enter
+      if (e.keyCode === 13) {
+        dispatch(setSearchOption(e.target.id, e.target.value))
+      }
     },
   }
 }

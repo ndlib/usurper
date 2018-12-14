@@ -18,6 +18,7 @@ const Drawer = (props) => {
             visible={!props.search.advancedSearch}
             {...props}
             currentSearch={props.currentSearch}
+            id='basic-search-field'
           />
           <AdvancedSearch visible={props.search.advancedSearch} />
           <SearchPreference

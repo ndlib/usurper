@@ -21,6 +21,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onChange: (e) => {
       dispatch(setSearchOption(e.target.id, e.target.value))
     },
+    onKeyDown: (e) => {
+      // Enter
+      if (e.keyCode === 13) {
+        dispatch(setSearchOption(e.target.id, e.target.value))
+      }
+    },
     formatID: (n, p) => {
       return `${p}_${padZero(n)}`
     },

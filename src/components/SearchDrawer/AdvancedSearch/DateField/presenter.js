@@ -27,10 +27,22 @@ const DateField = (props) => {
         <span className='selector'><select id={`${props.id}Month`} onChange={props.onChange}>
           {months}
         </select></span>
-        <input type='text' id={`${props.id}Year5`} placeholder='year' onChange={props.onChange} />
+        <input
+          type='text'
+          id={`${props.id}Year5`}
+          placeholder='year'
+          onBlur={props.onChange}
+          onKeyDown={props.onKeyDown}
+        />
       </div>
     </div>
   )
+}
+
+DateField.propTypes = {
+  id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  onKeyDown: PropTypes.func,
 }
 
 export default DateField
