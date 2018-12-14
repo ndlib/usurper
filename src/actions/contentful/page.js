@@ -14,7 +14,7 @@ export const CF_RECEIVE_PAGE = 'CF_RECEIVE_PAGE'
 const receiveError = (page, response) => {
   return {
     type: CF_RECEIVE_PAGE,
-    status: statuses.fromHttpStatusCode(response.status),
+    status: statuses.fromHttpStatusCode(response ? response.status : null),
     error: response,
     slug: page,
     receivedAt: Date.now(),
@@ -34,7 +34,8 @@ const receivePage = (page, response) => {
   if (Array.isArray(response)) {
     response = response[0]
   }
-  if (response.sys &&
+  if (response &&
+      response.sys &&
       response.sys.contentType &&
       response.sys.contentType.sys &&
       (response.sys.contentType.sys.id === 'page' || response.sys.contentType.sys.id === 'columnContainer')) {
