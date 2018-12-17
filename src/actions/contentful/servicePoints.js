@@ -26,7 +26,7 @@ const receiveServicePoints = (response) => {
   }
 
   try {
-    if (response) {
+    if (Array.isArray(response)) {
       return success
     } else {
       return error

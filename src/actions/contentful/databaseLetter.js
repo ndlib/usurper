@@ -31,7 +31,7 @@ const receiveLetter = (letter, response) => {
   }
 
   try {
-    if (response) {
+    if (Array.isArray(response)) {
       return success(response)
     } else {
       return error

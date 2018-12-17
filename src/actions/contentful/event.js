@@ -27,7 +27,7 @@ const receiveEvent = (event, response) => {
   }
 
   try {
-    if (response[0].sys.contentType.sys.id === 'event') {
+    if (response[0] && response[0].sys.contentType.sys.id === 'event') {
       return success
     } else {
       console.log(response)

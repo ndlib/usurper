@@ -29,7 +29,7 @@ const receiveSidebar = (slug, response) => {
   }
 
   try {
-    if (response[0].sys.contentType.sys.id === 'dynamicPage') {
+    if (response[0] && response[0].sys.contentType.sys.id === 'dynamicPage') {
       return success
     } else {
       return error
