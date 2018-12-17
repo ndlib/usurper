@@ -1,82 +1,81 @@
-import EventCalendar from './presenter'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+
+class EventCalendar extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      date: this.props.match.params.date ? moment(this.props.match.params.date, 'YYYYMMDD').toDate() : null,
+    }
+  }
+
+  render () {
+    const onChange = (selectedDate) => {
+      const date = moment(selectedDate).format('YYYYMMDD')
+      this.props.history.push(`/events/${date}`)
+      this.setState({
+        date: selectedDate,
+      })
+    }
+
+    return (
+      <DatePicker
+        inline
+        selected={this.state.date}
+        onChange={onChange}
+        highlightDates={this.props.specialDays}
+        minDate={new Date()}
+        color='#ffd102'
+      />
+    )
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
-  const date = ownProps.match.params.date ? moment(ownProps.match.params.date, 'YYYYMMDD').format() : moment().format()
-
   let specialDays = []
 
-  const now = new Date()
+  const today = new Date(new Date().setHours(0, 0, 0, 0))
 
   ownProps.events.forEach((event) => {
     // If an event last longer than a month should we highlight all the days?
     // Highlight only the first and last days in this case.
     if (moment(event.endDate).diff(moment(event.startDate), 'days') > 28) {
-      if (event.startDate > now) {
-        specialDays.push({ date: moment(event.startDate) })
+      if (event.startDate >= today) {
+        specialDays.push(event.startDate)
       }
-      if (event.endDate > now) {
-        specialDays.push({ date: moment(event.endDate) })
+      if (event.endDate >= today) {
+        specialDays.push(event.endDate)
       }
     } else {
-      const start = moment(event.startDate).format('YYYYMMDD')
-      const end = moment(event.endDate).format('YYYYMMDD')
-      let current = start
-      while (current <= end) {
-        if (current > now) {
-          specialDays.push({ date: moment(current, 'YYYYMMDD') })
+      let current = event.startDate
+      while (current <= event.endDate) {
+        if (current >= today) {
+          specialDays.push(current)
         }
-        current = moment(current, 'YYYYMMDD').add(1, 'day').format('YYYYMMDD')
+        current = moment(current, 'YYYYMMDD').add(1, 'day').toDate()
       }
     }
   })
 
-  const theme = {
-    Day            : {
-      background   : '#f3f5f6',
-      transition   : 'transform .1s ease, box-shadow .1s ease, background .1s ease',
-    },
-    DaySelected    : {
-      background   : '#ffd102',
-      border       : 'none',
-      color        :  '#072242',
-    },
-    DayActive    : {
-      background   : '#072242',
-      border       : 'none',
-      boxShadow    : 'none',
-    },
-    DayInRange     : {
-      background   : '#072242',
-      border       : 'none',
-      color        : '#fff',
-    },
-    DaySpecialDay  : {
-      background   : '#072242',
-      color        : '#fff',
-    },
-  }
-
   return {
-    date,
     specialDays,
-    theme,
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const onChange = (selectedDate) => {
-    const date = moment(selectedDate).format('YYYYMMDD')
-    ownProps.history.push(`/events/${date}`)
-  }
-
-  return {
-    onChange,
-  }
+EventCalendar.propTypes = {
+  specialDays: PropTypes.array,
+  history: PropTypes.object.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      date: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
 )(EventCalendar)

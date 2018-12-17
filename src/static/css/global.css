@@ -3921,3 +3921,7 @@ main .mobile-only h5 {
 .advanced-basic-toggle {
   cursor: pointer;
 }
+
+div.react-datepicker button {
+  box-shadow: 0 0;
+}
