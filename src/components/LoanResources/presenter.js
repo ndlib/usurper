@@ -8,7 +8,9 @@ import AccountExpired from '../Messages/AccountExpired'
 const LoanResources = (props) => {
   let have = props.resources.have
   let pending = props.resources.pending
-  const expiredMessage = (props.canRenew || props.userLoading) ? null : <AccountExpired />
+  // Removed temporarily due to false-positives.
+  const expiredMessage = null
+  // const expiredMessage = (props.canRenew || props.userLoading) ? null : <AccountExpired />
 
   return (
     <div key='LoanResources' className='resources-list'>
