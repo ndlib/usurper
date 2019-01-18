@@ -13,6 +13,7 @@ const mapStateToProps = (state, thisProps) => {
 
   const fieldsAndTitle = {
     'access': 'Access',
+    'accessNotes': 'Access Notes',
     'includes': 'Includes',
     'platform': 'Platform',
     'publisher': 'Publisher',

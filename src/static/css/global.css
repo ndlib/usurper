@@ -1645,6 +1645,7 @@ aside section .p-pages {
 
 .infoValue p {
   margin-bottom: 0;
+  white-space: normal;
 }
 
 .databaseLink li {
