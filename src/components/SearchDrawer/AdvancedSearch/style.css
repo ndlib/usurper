@@ -74,7 +74,7 @@ fieldset {
 
 }
 
-.asleft fieldset {
+.asleft fieldset .fgrid {
 	display: grid;
 	grid-template-columns: 150px 100px auto;
 	padding-right: 6px;
@@ -83,11 +83,17 @@ fieldset {
 
 }
 
+.asleft fieldset .fgrid select, .asleft select{
+	width: 98%;
+
+}
+
 #advanced-search .asleft fieldset input {
 	margin: 0;
 	padding: 0 6px;
 	height: auto;
 	height: 3em;
+	width: 100%;
 }
 
 #advanced-search .asleft  .selector::after { 
