@@ -385,9 +385,6 @@ height:auto;
 .alert.page {
   margin-bottom: 1.5em;
 }
-.alert.page.bottom {
-  margin-bottom: 0;
-}
 
 .top {
   width: 100%;
