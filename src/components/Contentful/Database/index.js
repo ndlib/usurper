@@ -13,7 +13,6 @@ const mapStateToProps = (state, thisProps) => {
 
   const fieldsAndTitle = {
     'access': 'Access',
-    'accessNotes': 'Access Notes',
     'includes': 'Includes',
     'platform': 'Platform',
     'publisher': 'Publisher',
@@ -27,6 +26,10 @@ const mapStateToProps = (state, thisProps) => {
         fieldData[field] = {
           title: fieldsAndTitle[field],
           data: entry.json.fields[field],
+        }
+        // Also include accessNotes from contentful in the access field on the site
+        if (field === 'access' && entry.json.fields['accessNotes']) {
+          fieldData[field].data += '<br />' + entry.json.fields['accessNotes']
         }
       }
     }

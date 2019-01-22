@@ -57,18 +57,6 @@ const DBLoading = () => {
   return (<Loading />)
 }
 
-const AccessInfo = (item) => {
-  if (!item.fields.access && !item.fields.accessNotes) {
-    return null
-  }
-
-  return (
-    <div className='database-list' style={{ marginTop: '10px', fontStyle: 'italic' }}>
-      Access: {item.fields.access || item.fields.accessNotes}
-    </div>
-  )
-}
-
 const Loaded = (props) => {
   if (!props.list) {
     return null
@@ -78,7 +66,6 @@ const Loaded = (props) => {
   }
   let data = props.list.map((item) => {
     let linkObject = getLinkObject(item.fields, item.sys.id)
-    let access = AccessInfo(item)
 
     return (
       <section key={item.fields.alephSystemNumber + item.fields.title}
@@ -101,7 +88,6 @@ const Loaded = (props) => {
         <div className='database-list'>
           {linkObject.heading.description}
         </div>
-        {access}
         <Link to={'/database/' + item.sys.id} className='moreinfo'
           ariaLabel={'More Information about ' + item.fields.title}>More info</Link>
       </section>
