@@ -8,6 +8,7 @@ import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 import StaticAlert from '../Contentful/StaticContent/Alert'
+import PageAlert from '../Messages/PageAlert'
 
 class Courses extends Component {
   instructorCard (course) {
@@ -134,7 +135,7 @@ class Courses extends Component {
     var courses = this.props.courses.courses
     var out = []
     if (!courses) {
-      return (<p className='noClasses'>No Classes to display for the current semester</p>)
+      return (<p className='noClasses'>No classes to display for the current semester</p>)
     }
 
     let currentTitle = 'Current Courses'
@@ -152,7 +153,7 @@ class Courses extends Component {
     if (out.length === 0) {
       return (
         <p className='noClasses'>
-          No Classes to display for the current semester.
+          No classes to display for the current semester.
         </p>)
     }
 
@@ -172,11 +173,17 @@ class Courses extends Component {
           <StaticBody slug='courses' preview={this.props.preview} />
 
           <div className='row'>
-            <div className='col-md-8 col-sm-7'>
+            <div className='col-md-8 col-sm-7' style={{ position: 'relative' }}>
               <StaticAlert slug='courses' preview={this.props.preview} />
               <div key='courseCards'>
                 { this.courseCards() }
               </div>
+              <PageAlert type='informational' className='bottom'>
+                If your courses are not showing, check them in the&nbsp;
+                <a href='https://reserves.library.nd.edu' target='_blank' rel='noopener'>course reserves system</a> or
+                contact the circulation desk at <a href='mailto:circ@nd.edu'>circ@nd.edu</a> or&nbsp;
+                <a href='tel:+15746316679'>(574) 631-6679</a>.
+              </PageAlert>
             </div>
             <StaticSidebar slug='courses' preview={this.props.preview} />
           </div>

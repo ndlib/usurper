@@ -387,6 +387,9 @@ height:auto;
 .alert.page {
   margin-bottom: 1.5em;
 }
+.alert.page.bottom {
+  margin-bottom: 0;
+}
 
 .top {
   width: 100%;
@@ -1300,7 +1303,7 @@ label[for='q']:after, .uSearchBox label:after {
   color: #000;
 }
 
-.home .appliance .additional-links, .home .appliance .additional-links a, 
+.home .appliance .additional-links, .home .appliance .additional-links a,
 .home .set-default-search, .home .additional-links, .home .has-default-search,
 .home .has-default-search a, .home .set-default-search a {
   color: #fff;
@@ -3924,4 +3927,9 @@ main .mobile-only h5 {
 
 div.react-datepicker button {
   box-shadow: 0 0;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
 }
