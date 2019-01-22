@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SearchOption from './SearchOption'
-import { searchOptions } from '../searchOptions.js'
+import { searchOptions } from '../../../constants/searchOptions.js'
 
 const SearchOptionList = (props) => {
   const classes = props.search.searchBoxOpen ? 'uSearchOptionList' : 'uSearchOptionList hidden'

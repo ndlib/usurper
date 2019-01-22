@@ -1,4 +1,4 @@
-import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from './searchOptions'
+import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from '../../constants/searchOptions'
 
 const padLeftZero = (num) => {
   if (num.length < 2) {

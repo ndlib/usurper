@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import AdvancedSearch from './presenter'
 import searchQuery from '../searchQueryBuilder'
+import { setSearchType } from '../../../actions/search.js'
 import './style.css'
+
 const mapStateToProps = (state, ownProps) => {
   return {
     ...state,
@@ -11,7 +13,11 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    dropdownOnChange: (e) => {
+      dispatch(setSearchType(e.target.value))
+    },
+  }
 }
 
 const mergeProps = (state, dispatch, ownProps) => {
