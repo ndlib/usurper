@@ -180,8 +180,8 @@ class Courses extends Component {
               </div>
               <PageAlert type='informational' className='bottom'>
                 If your courses are not showing, check them in the&nbsp;
-                <a href='https://reserves.library.nd.edu' target='_blank' rel='noopener'>course reserves system</a> or
-                contact the circulation desk at <a href='mailto:circ@nd.edu'>circ@nd.edu</a> or&nbsp;
+                <a href='https://reserves.library.nd.edu' target='_blank' rel='noopener noreferrer'>course reserves
+                system</a> or contact the circulation desk at <a href='mailto:circ@nd.edu'>circ@nd.edu</a> or&nbsp;
                 <a href='tel:+15746316679'>(574) 631-6679</a>.
               </PageAlert>
             </div>
