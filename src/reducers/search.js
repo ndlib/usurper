@@ -13,6 +13,7 @@ import {
 } from '../actions/search.js'
 import { CF_RECEIVE_PAGE } from '../actions/contentful/page'
 import * as statuses from '../constants/APIStatuses'
+import { searchOptions } from '../constants/searchOptions'
 
 let localSearchPref
 let localStorageIsAvailable = false
@@ -67,10 +68,11 @@ export default (
   action
 ) => {
   switch (action.type) {
-    case SET_SEARCH:
-    {
+    case SET_SEARCH: {
+      const newOption = searchOptions.find((el) => { return el.uid === action.searchType })
       let newState = Object.assign({}, state, {
         sessionPref: action.searchType,
+        advancedSearch: (newOption && newOption.enableAdvancedSearch) ? state.advancedSearch : false,
       })
       setSearchType(newState)
       return newState

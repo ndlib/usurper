@@ -69,7 +69,7 @@ fieldset {
 	display: grid;
 	grid-template-columns: 1fr 64px;
 	padding-right: 3em;
-	grid-template-rows: 40px 40px;
+	grid-template-rows: 40px 40px 40px 40px;
 	height: auto;
 
 }
@@ -96,7 +96,7 @@ fieldset {
 	width: 100%;
 }
 
-#advanced-search .asleft  .selector::after { 
+#advanced-search .asleft  .selector::after {
 	top: 10px !important;
 	right: 10px;
 }
