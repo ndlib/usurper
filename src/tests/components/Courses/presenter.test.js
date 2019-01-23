@@ -215,7 +215,7 @@ describe('components/Courses/presenter.js', () => {
 
     it('should not have classes to display', () => {
       expect(enzymeWrapper
-        .containsMatchingElement(<p>No Classes to display for the current semester</p>))
+        .containsMatchingElement(<p>No classes to display for the current semester</p>))
         .toBe(true)
     })
   })
@@ -239,7 +239,7 @@ describe('components/Courses/presenter.js', () => {
     it('should not have classes to display', () => {
       expect(enzymeWrapper
         .containsMatchingElement(<p className='noClasses'>
-          No Classes to display for the current semester.
+          No classes to display for the current semester.
         </p>))
         .toBe(true)
     })

@@ -113,8 +113,6 @@ table tr {
   -ms-grid-columns: .7fr 1fr 1.5fr;*/
   justify-content: left;
   font-size: 16px;
-
-  
 }
 
 table td {
@@ -1300,7 +1298,7 @@ label[for='q']:after, .uSearchBox label:after {
   color: #000;
 }
 
-.home .appliance .additional-links, .home .appliance .additional-links a, 
+.home .appliance .additional-links, .home .appliance .additional-links a,
 .home .set-default-search, .home .additional-links, .home .has-default-search,
 .home .has-default-search a, .home .set-default-search a {
   color: #fff;
