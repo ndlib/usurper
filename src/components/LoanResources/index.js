@@ -60,10 +60,12 @@ export const mapStateToProps = (state) => {
   const userFetching = get(user, 'state', false) === statuses.FETCHING
 
   let canRenew = false
+  let expired = false
   if (user && get(user, 'state', false) === statuses.SUCCESS) {
     const dateString = String(user.expiryDate)
     const date = new Date(dateString.substring(0, 4), dateString.substring(4, 6) - 1, dateString.substring(6, 8))
-    canRenew = date > new Date()
+    expired = date <= new Date()
+    canRenew = !expired
   }
 
   return {
@@ -72,6 +74,7 @@ export const mapStateToProps = (state) => {
     alephId: personal.user ? personal.user.alephId : null,
     renewal: renewal,
     canRenew: canRenew,
+    expired: expired,
     userLoading: userFetching,
     resources: {
       have: {

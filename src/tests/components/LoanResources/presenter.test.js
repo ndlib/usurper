@@ -1,7 +1,7 @@
 import React from 'react'
 import * as statuses from '../../../constants/APIStatuses'
 import LoanResources from '../../../components/LoanResources/presenter'
-import AccountExpired from '../../../components/Messages/AccountExpired'
+import PageAlert from '../../../components/Messages/PageAlert'
 import ResourceList from '../../../components/LoanResources/ResourceList'
 
 import { shallow } from 'enzyme'
@@ -19,6 +19,7 @@ let props = {
     loading: false,
   },
   canRenew: true,
+  expired: false,
 }
 describe('components/LoanResources/presenter.js', () => {
   describe('after load', () => {
@@ -59,44 +60,43 @@ describe('components/LoanResources/presenter.js', () => {
       let pending = <ResourceList list={ props.pending.items } emptyText={props.pending.emptyText} loading={true} />
       expect(enzymeWrapper.containsMatchingElement(pending)).toBe(true)
     })
+
+    it('should not render page alert messages', () => {
+      expect(enzymeWrapper.find('PageAlert').length).toBe(0)
+    })
   })
 
   describe('account expired', () => {
-    let canRenew = false
+    let expired = true
 
     afterEach(() => {
       enzymeWrapper = undefined
     })
 
     it('should not render message while loading', () => {
-      enzymeWrapper = shallow(<LoanResources resources={props} canRenew={canRenew} userLoading={true} />)
+      enzymeWrapper = shallow(<LoanResources resources={props} expired={expired} userLoading={true} />)
 
-      let have = <AccountExpired />
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(false)
+      expect(enzymeWrapper.find('PageAlert[id="accountExpired"]').exists()).toBe(false)
     })
 
-    // TEMPORARILY DISABLED
-    // it('should render message after loading', () => {
-    //   enzymeWrapper = shallow(<LoanResources resources={props} canRenew={canRenew} userLoading={false} />)
-    //
-    //   let have = <AccountExpired />
-    //   expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-    // })
+    it('should render message after loading', () => {
+      enzymeWrapper = shallow(<LoanResources resources={props} expired={expired} userLoading={false} />)
+
+      expect(enzymeWrapper.find('PageAlert[id="accountExpired"]').exists()).toBe(true)
+    })
   })
 
   describe('account not expired', () => {
-    let canRenew = true
+    let expired = false
 
     afterEach(() => {
       enzymeWrapper = undefined
     })
 
-    // TEMPORARILY DISABLED
     it('should not render expiration message', () => {
-      enzymeWrapper = shallow(<LoanResources resources={props} canRenew={canRenew} userLoading={false} />)
+      enzymeWrapper = shallow(<LoanResources resources={props} expired={expired} userLoading={false} />)
 
-      let have = <AccountExpired />
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(false)
+      expect(enzymeWrapper.find('PageAlert[id="accountExpired"]').exists()).toBe(false)
     })
   })
 })
