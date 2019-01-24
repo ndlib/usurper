@@ -7,8 +7,8 @@ const SearchResults = (props) => {
   if (props.items && props.items.length > 0) {
     let items = props.items.map((item, index) => {
       return (
-        <ErrorBoundary>
-          <SearchResult key={index} item={item} />
+        <ErrorBoundary key={index}>
+          <SearchResult item={item} />
         </ErrorBoundary>
       )
     })

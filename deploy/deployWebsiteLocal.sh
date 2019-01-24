@@ -11,7 +11,7 @@ usage() {
   cat << EOF >&2
 Usage: $PROGNAME prod|beta|alpha|prep|dev [-b <branch>]
 
-deployes website to the appropriate bucket
+deploys website to the appropriate bucket
 
 -b <branch>: The branch to deploy otherwise uses the current VERSION file
 EOF
