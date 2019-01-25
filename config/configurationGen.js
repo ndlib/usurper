@@ -15,6 +15,7 @@ const genConfig = () => {
     googleAnalyticsId: 'UA-2118378-47',
     gcseKey: 'AIzaSyBMOVOdVLHD6lUqQK5mdKg8tQlMLX8QtgY',
     gcseCx: '015265266414554728410:5wnhv2ianq0',
+
   }
 
   let config = {
