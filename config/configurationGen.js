@@ -13,7 +13,7 @@ const genConfig = () => {
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
-    gcseKey: 'AIzaSyB_6LUEVAh1vpBYJf2Vgek400yED_5JoFs',
+    gcseKey: 'AIzaSyBMOVOdVLHD6lUqQK5mdKg8tQlMLX8QtgY',
     gcseCx: '001452912042603251148:ennfqj6miti',
   }
 
