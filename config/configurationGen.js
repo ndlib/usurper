@@ -13,8 +13,8 @@ const genConfig = () => {
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
-    gcseKey: 'AIzaSyB_6LUEVAh1vpBYJf2Vgek400yED_5JoFs',
-    gcseCx: '001452912042603251148:ennfqj6miti',
+    gcseKey: 'AIzaSyBv-JE6AJ1fuDuZJcBBSeZSCpq_MRCd7hc',
+    gcseCx: '015265266414554728410:5wnhv2ianq0',
   }
 
   let config = {
