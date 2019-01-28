@@ -1,5 +1,25 @@
 # Change Log
 
+## [v2019.3](https://github.com/ndlib/usurper/tree/v2019.3) “Big Freeze"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2018.31...v2019.3)
+
+### Note
+The change log for this update includes changes that were deployed previously as fixes
+
+### Bug Fixes
+- Fixed off by 1 month issue for renewals [View Changes](https://github.com/ndlib/usurper/commit/85712c7f025ac49691d1ade19a4c74b982fc1c56)
+- Move elements on map page for a better fit [View Changes](https://github.com/ndlib/usurper/commit/d8f531e4521bc11ae242e083fd48f45255cd18ed)
+- Page not found should now return (surprise!) a 404 instead of a 500 [View Changes](https://github.com/ndlib/usurper/commit/50084fb84495d4b81fee75057eada0d48ceeed85)
+- Addressed 50 character limitation for subject line in the advanced search [View Changes] (https://github.com/ndlib/usurper/commit/8e6d38d12aaa5511c35c3f375982deccc1ca6592)
+
+### Other
+- Add warning message if patron's account is expired [View Changes](https://github.com/ndlib/usurper/commit/16ee5c046fc8d232b7390554ca2a3a8896995b7f)
+- Add Media Corps to hours and contact pages [View Changes](https://github.com/ndlib/usurper/commit/94eb2be346326b46e98e8f0c5ea3040b79cf2bf4)
+- *Dark Feature*: Added access note functionality to databases A-Z list however this will not display the access notes until we update the Contentful data [View Changes](https://github.com/ndlib/usurper/commit/1ce85346179c814ac8c5306378c7050962576221)
+- Added a message to the course page that will appear if the user does not have any course data [View Changes](https://github.com/ndlib/usurper/commit/e1a9376fb46f1340571ce927dd6c8ab641913f31)
+- Added ability to easily toggle between advanced and simple search views [View Changes](https://github.com/ndlib/usurper/commit/9d888fc45c1f84f343aed7066776497fe996d552)
+- Added new keys for Google Custom Search API in order to make account change
+
 ## [v2018.31](https://github.com/ndlib/usurper/tree/v2018.31) “Falling Forward"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.24...v2018.31)
 
