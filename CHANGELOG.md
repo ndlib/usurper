@@ -10,7 +10,7 @@ The change log for this update includes changes that were deployed previously as
 - Fixed off by 1 month issue for renewals [View Changes](https://github.com/ndlib/usurper/commit/85712c7f025ac49691d1ade19a4c74b982fc1c56)
 - Move elements on map page for a better fit [View Changes](https://github.com/ndlib/usurper/commit/d8f531e4521bc11ae242e083fd48f45255cd18ed)
 - Page not found should now return (surprise!) a 404 instead of a 500 [View Changes](https://github.com/ndlib/usurper/commit/50084fb84495d4b81fee75057eada0d48ceeed85)
-- Addressed 50 character limitation for subject line in the advanced search [View Changes] (https://github.com/ndlib/usurper/commit/8e6d38d12aaa5511c35c3f375982deccc1ca6592)
+- Addressed 50 character limitation for subject line in the advanced search [View Changes](https://github.com/ndlib/usurper/commit/8e6d38d12aaa5511c35c3f375982deccc1ca6592)
 
 ### Other
 - Add warning message if patron's account is expired [View Changes](https://github.com/ndlib/usurper/commit/16ee5c046fc8d232b7390554ca2a3a8896995b7f)
