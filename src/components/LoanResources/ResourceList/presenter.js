@@ -3,61 +3,104 @@ import PropTypes from 'prop-types'
 import Resource from './Resource'
 import Loading from '../../Messages/InlineLoading'
 import FilterBox from '../../FilterBox'
+import ExportButton from './ExportButton'
+import DeleteButton from './DeleteButton'
 
 const ResourceList = (props) => {
   return (
     <section aria-label={props.listType}>
-      { props.borrowed && (
-        <button
-          className='renew'
-          onClick={props.renewAll}
-          aria-label='Renew all renewable items'
-          disabled={!props.canRenew}
-        >Renew All</button>
-      )}
+      <div className='item-list-global-actions'>
+        { props.borrowed && !props.historical && (
+          <button
+            className='renew'
+            onClick={props.renewAll}
+            aria-label='Renew all renewable items'
+            disabled={!props.canRenew}
+          >Renew All</button>
+        )}
+        { props.historical && (
+          <React.Fragment>
+            <ExportButton
+              items={props.list}
+              key='globalExport'
+            />
+            <DeleteButton
+              items={props.list}
+              key='globalDelete'
+            />
+          </React.Fragment>
+        )}
+      </div>
       <FilterBox
         title='Filter Items:'
         value={props.filterValue}
         onChange={props.filterChange}
       />
-      <div className='card-item'>
-        <a
+      <div className={`card-item${props.historical ? ' circ-hist' : ''}`}>
+        <button
           className={props.sortClass('title')}
           onClick={(e) => props.sortClick(e, 'title')}
           aria-label={'Sort By Title ' + props.assistSortDirection('title')}
           aria-controls={props.listType}
         >
           Title
-        </a>
-        <a
+        </button>
+        <button
           className={props.sortClass('author')}
           onClick={(e) => props.sortClick(e, 'author')}
           aria-label={'Sort By Author ' + props.assistSortDirection('author')}
           aria-controls={props.listType}
         >
           Author
-        </a>
+        </button>
         { !props.borrowed && (
-          <a
+          <button
             className={props.sortClass('status')}
             onClick={(e) => props.sortClick(e, 'status')}
             aria-label={'Sort By Status ' + props.assistSortDirection('status')}
             aria-controls={props.listType}
           >
             Status
-          </a>
+          </button>
+        )}
+        { props.historical && (
+          <button
+            className={props.sortClass('loanDate')}
+            onClick={(e) => props.sortClick(e, 'loanDate')}
+            aria-label={'Sort By Checked Out Date ' + props.assistSortDirection('loanDate')}
+            aria-controls={props.listType}
+          >
+            Checked Out
+          </button>
         )}
         { props.borrowed && (
-          <a
+          <button
             className={props.sortClass('dueDate')}
             onClick={(e) => props.sortClick(e, 'dueDate')}
             aria-label={'Sort By Due Date ' + props.assistSortDirection('dueDate')}
             aria-controls={props.listType}
           >
             Due Date
-          </a>
+          </button>
         )}
-
+        { props.historical && (
+          <button
+            className={props.sortClass('returnDate')}
+            onClick={(e) => props.sortClick(e, 'returnDate')}
+            aria-label={'Sort By Return Date ' + props.assistSortDirection('returnDate')}
+            aria-controls={props.listType}
+          >
+            Returned
+          </button>
+        )}
+        <button
+          className={props.sortClass('from')}
+          onClick={(e) => props.sortClick(e, 'from')}
+          aria-label={'Sort By From ' + props.assistSortDirection('from')}
+          aria-controls={props.listType}
+        >
+          From
+        </button>
       </div>
       <div className='screenReaderText' aria-live='assertive'>
         { props.assistText }
@@ -75,6 +118,8 @@ const ResourceList = (props) => {
                 canRenew={props.canRenew}
                 alephId={props.alephId}
                 borrowed={props.borrowed}
+                deleteFromHistory={props.deleteFromHistory}
+                historical={props.historical}
                 key={index}
               />
             )
@@ -101,6 +146,8 @@ ResourceList.propTypes = {
   loadingMore: PropTypes.bool,
   listType: PropTypes.string.isRequired,
   assistText: PropTypes.string.isRequired,
+  deleteFromHistory: PropTypes.bool,
+  historical: PropTypes.bool,
 }
 
 export default ResourceList

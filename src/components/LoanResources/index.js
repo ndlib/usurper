@@ -1,6 +1,6 @@
-'use strict'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import getResources from '../../actions/personal/loanResources'
 import * as statuses from '../../constants/APIStatuses'
 
@@ -43,20 +43,29 @@ export const mapStateToProps = (state) => {
   const { personal, renewal } = state
   const loggedIn = get(personal.login, 'state', '') === statuses.SUCCESS
 
-  const alephHave = personal.alephHave
-  const alephPending = personal.alephPending
+  const alephHaveNdu = personal.alephHaveNdu
+  const alephHaveHcc = personal.alephHaveHcc
+  const alephPendingNdu = personal.alephPendingNdu
+  const alephPendingHcc = personal.alephPendingHcc
   const illHave = personal.illHave
   const illPending = personal.illPending
   const user = personal.user
 
-  const checkedOut = get(alephHave, 'checkedOut', []).concat(get(illHave, 'checkedOut', []))
-  const pendingItems = get(alephPending, 'pending', []).concat(get(illPending, 'pending', []))
+  const checkedOut = get(alephHaveNdu, 'checkedOut', [])
+    .concat(get(alephHaveHcc, 'checkedOut', []))
+    .concat(get(illHave, 'checkedOut', []))
+  const pendingItems = get(alephPendingNdu, 'pending', [])
+    .concat(get(alephPendingHcc, 'pending', []))
+    .concat(get(illPending, 'pending', []))
 
-  const haveFetching = (get(alephHave, 'state', false) === statuses.FETCHING
-                        || get(illHave, 'state', false) === statuses.FETCHING)
+  const haveFetching = (get(alephHaveNdu, 'state', false) === statuses.FETCHING ||
+                        get(alephHaveHcc, 'state', false) === statuses.FETCHING ||
+                        get(illHave, 'state', false) === statuses.FETCHING)
 
-  const pendingFetching = (get(alephPending, 'state', false) === statuses.FETCHING
-                        || get(illPending, 'state', false) === statuses.FETCHING)
+  const pendingFetching = (get(alephPendingNdu, 'state', false) === statuses.FETCHING ||
+                          get(alephPendingHcc, 'state', false) === statuses.FETCHING ||
+                          get(illPending, 'state', false) === statuses.FETCHING)
+
   const userFetching = get(user, 'state', false) === statuses.FETCHING
 
   let canRenew = false
@@ -78,19 +87,30 @@ export const mapStateToProps = (state) => {
     userLoading: userFetching,
     resources: {
       have: {
-        exists: get(alephHave, 'state', false) && get(illHave, 'state', false),
+        exists: get(alephHaveNdu, 'state', false) &&
+          get(alephHaveHcc, 'state', false) &&
+          get(illHave, 'state', false),
         loading: haveFetching,
         items: checkedOut,
         emptyText: 'You have no Checked Out Items',
       },
       pending: {
-        exists: get(alephPending, 'state', false) && get(illPending, 'state', false),
+        exists: get(alephPendingNdu, 'state', false) &&
+          get(alephPendingHcc, 'state', false) &&
+          get(illPending, 'state', false),
         loading: pendingFetching,
         items: pendingItems,
         emptyText: 'You have no Pending Items',
       },
     },
   }
+}
+
+ResourceContainer.propTypes = {
+  resources: PropTypes.shape({
+    have: PropTypes.object,
+    pending: PropTypes.object,
+  }),
 }
 
 export default connect(mapStateToProps)(ResourceContainer)

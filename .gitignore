@@ -28,5 +28,4 @@ yarn-error.log*
 *.pyc
 
 deployEnv
-
 deploy/logs

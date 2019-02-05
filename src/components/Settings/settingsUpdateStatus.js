@@ -1,39 +1,37 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
+import InlineLoading from '../Messages/InlineLoading'
 
 const SettingsUpdateStatus = (props) => {
-  return (
-    <div className='updateStatus'>
-      {
-        props.status === 0 && (
-          <div className='sk-three-bounce'>
-            <div className='sk-child sk-bounce1' />
-            <div className='sk-child sk-bounce2' />
-            <div className='sk-child sk-bounce3' />
-          </div>
-        )
-      }
-      {
-        props.status > 0 && (
-          <div className='success'>
-            Pickup Location is Synced
-          </div>
-        )
-      }
-      {
-        props.status < 0 && (
-          <div className='failure'>
-            Pickup Location Failed to Update
-          </div>
-        )
-      }
-    </div>
-  )
+  if (props.status === 0) {
+    return <InlineLoading title='' style={{ margin: '10px auto' }} />
+  } else if (props.show || typeof props.show === 'undefined') { // Default to true
+    return (
+      <div className='updateStatus'>
+        {
+          props.status > 0 && (
+            <div className='success'>
+              Pickup Location Saved
+            </div>
+          )
+        }
+        {
+          props.status === -1 && (
+            <div className='failure'>
+              Pickup Location Failed to Update
+            </div>
+          )
+        }
+      </div>
+    )
+  } else {
+    return (null)
+  }
 }
 
 SettingsUpdateStatus.propTypes = {
   status: PropTypes.number,
+  show: PropTypes.bool,
 }
 
 export default SettingsUpdateStatus

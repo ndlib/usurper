@@ -73,7 +73,7 @@ describe('components/Courses/index.js -- CoursesContainer', () => {
 
     it('only renders a link', () => {
       expect(enzymeWrapper
-        .containsMatchingElement(<Link to='/courses'>My Courses</Link>))
+        .containsMatchingElement(<Link to='/courses'>Courses</Link>))
         .toBe(true)
     })
   })

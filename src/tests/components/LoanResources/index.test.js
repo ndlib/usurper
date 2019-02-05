@@ -8,13 +8,21 @@ describe('components/LoanResources/index.js', () => {
         login: {
           state: statuses.SUCCESS,
         },
-        alephHave: {
+        alephHaveNdu: {
           state: statuses.SUCCESS,
-          checkedOut: ['alephCheckedOut'],
+          checkedOut: ['alephCheckedOutNdu'],
         },
-        alephPending: {
+        alephHaveHcc: {
           state: statuses.SUCCESS,
-          pending: ['alephPending'],
+          checkedOut: ['alephCheckedOutHcc'],
+        },
+        alephPendingNdu: {
+          state: statuses.SUCCESS,
+          pending: ['alephPendingNdu'],
+        },
+        alephPendingHcc: {
+          state: statuses.SUCCESS,
+          pending: ['alephPendingHcc'],
         },
         illHave: {
           state: statuses.SUCCESS,
@@ -49,14 +57,14 @@ describe('components/LoanResources/index.js', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.have).toBeTruthy()
-      expect(resources.have.items).toEqual(['alephCheckedOut', 'illCheckedOut'])
+      expect(resources.have.items).toEqual(['alephCheckedOutNdu', 'alephCheckedOutHcc', 'illCheckedOut'])
     })
 
     it('should contain pending items', () => {
       let resources = mapStateToProps(state).resources
       expect(resources).toBeTruthy()
       expect(resources.pending).toBeTruthy()
-      expect(resources.pending.items).toEqual(['alephPending', 'illPending'])
+      expect(resources.pending.items).toEqual(['alephPendingNdu', 'alephPendingHcc', 'illPending'])
     })
   })
 })

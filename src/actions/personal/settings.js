@@ -7,6 +7,7 @@ export const REQUEST_SETTINGS = 'REQUEST_SETTINGS'
 
 export const KIND = {
   homeLibrary: 'HOME_LIBRARY',
+  circStatus: 'CIRC_STATUS',
 }
 
 const requestSettings = (kind, data) => {
@@ -27,7 +28,7 @@ const recieveSettings = (kind, data, state, json) => {
   }
 }
 
-export const setHomeLibrary = (library) => {
+export const setHomeLibrary = (library, title) => {
   return (dispatch, getState) => {
     var state = getState().personal
 
@@ -36,18 +37,70 @@ export const setHomeLibrary = (library) => {
     return fetch(url, {
       method: 'post',
       headers: {
+        'Authorization': state.login.token,
         'library': library,
         'aleph-id': state.user.alephId,
+      },
+    })
+      .then(response => { return response.json() })
+      .then(json => {
+        state.user.homeLibrary = title
+        dispatch(recieveSettings(KIND.homeLibrary, library, statuses.SUCCESS, json))
+      })
+      .catch((e) => {
+        console.error(e)
+        dispatch(recieveSettings(KIND.homeLibrary, library, statuses.ERROR, e))
+      })
+  }
+}
+export const getCircStatus = () => {
+  return (dispatch, getState) => {
+    let state = getState().personal
+    dispatch(requestSettings(KIND.circStatus, null))
+    let url = Config.userPrefsAPI + 'circHistory'
+    return fetch(url, {
+      method: 'get',
+      headers: {
         'Authorization': state.login.token,
       },
     })
-    .then(response => { return response.json() })
-    .then(json => dispatch(
-      recieveSettings(KIND.homeLibrary, library, statuses.SUCCESS, json)
-    ))
-    .catch((e) => {
-      console.log(e)
-      dispatch(recieveSettings(KIND.homeLibrary, library, statuses.ERROR, e))
+      .then(response => {
+        const jsonResponse = response.json()
+        return jsonResponse
+      })
+      .then(json => dispatch(
+        recieveSettings(KIND.circStatus, null, statuses.SUCCESS, json)
+      ))
+      .catch((e) => {
+        console.log(e)
+        dispatch(recieveSettings(KIND.circStatus, null, statuses.ERROR, e))
+      })
+  }
+}
+
+export const setCircStatus = (enabled) => {
+  return (dispatch, getState) => {
+    let state = getState().personal
+    dispatch(requestSettings(KIND.circStatus, enabled))
+    let url = Config.userPrefsAPI + 'circHistory'
+    return fetch(url, {
+      method: 'post',
+      headers: {
+        'Authorization': state.login.token,
+      },
+      body: JSON.stringify({ 'saveHistory': enabled }),
     })
+      .then(response => {
+        const jsonResponse = response.json()
+        return jsonResponse
+      })
+      .then(json => {
+        dispatch(recieveSettings(KIND.circStatus, enabled, statuses.SUCCESS, json))
+        dispatch(states.recievePersonal('historical', statuses.SUCCESS, json))
+      })
+      .catch((e) => {
+        console.log(e)
+        dispatch(recieveSettings(KIND.circStatus, enabled, statuses.ERROR, e))
+      })
   }
 }

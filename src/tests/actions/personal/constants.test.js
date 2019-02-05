@@ -65,7 +65,7 @@ describe('personal async fetch', () => {
       const success = jest.fn()
       const error = jest.fn()
 
-      constants.startRequest(url, null, success, 'token', error)
+      constants.startRequest(url, 'GET', null, success, 'token', error)
         .then(() => {
           expect(success.mock.calls.length).toBe(1)
           expect(error.mock.calls.length).toBe(0)
@@ -95,7 +95,7 @@ describe('personal async fetch', () => {
       const success = jest.fn()
       const error = jest.fn()
 
-      constants.startRequest(url, null, success, 'token', error)
+      constants.startRequest(url, 'GET', null, success, 'token', error)
         .then(() => {
           expect(success.mock.calls.length).toBe(0)
           expect(error.mock.calls.length).toBe(1)

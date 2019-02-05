@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import PropTypes from 'prop-types'
 import getToken from '../../../actions/personal/token'
 import Presenter from './presenter'
-import * as states from '../../../constants/APIStatuses'
 
 import Config from '../../../shared/Configuration'
 import { USER_MENU } from '../../../actions/menu'
@@ -16,19 +16,31 @@ class Login extends Component {
   }
 
   render () {
-    return <Presenter {...this.props} />
+    const links = [
+      { key: 'Items & Requests', route: '/items-requests' },
+      { key: 'Courses', route: '/courses' },
+      { key: 'Checkout History', route: '/checkout-history' },
+      { key: 'Settings', route: '/settings' },
+    ]
+
+    return <Presenter links={links} {...this.props} />
   }
 }
 
-export const mapStateToProps = (state, ownProps) => {
+Login.propTypes = {
+  login: PropTypes.object,
+  getToken: PropTypes.func,
+}
+
+export const mapStateToProps = (state) => {
   const { personal } = state
-  let loggedIn = (personal.login && personal.login.token) ? true : false
+  let loggedIn = !!(personal.login && personal.login.token)
 
   return {
     login: personal.login,
     open: state.menus.menuId === USER_MENU,
     logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
-    location: window.location.origin,
+    location: window.location,
   }
 }
 

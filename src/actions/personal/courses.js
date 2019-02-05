@@ -22,6 +22,7 @@ const getCourses = () => {
     dispatch(states.requestPersonal('courses'))
     states.startRequest(
       coursesURL,
+      'GET',
       dispatch,
       handleCourses,
       state.login.token,

@@ -37,7 +37,7 @@ export class CoursesContainer extends Component {
   render () {
     if (this.props.linkOnly) {
       return (
-        <Link to='/courses' className='button fright tab'>My Courses</Link>
+        <Link to='/courses' className='button tab margin-right-15'>Courses</Link>
       )
     }
 

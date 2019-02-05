@@ -26,8 +26,9 @@ export const requestPersonal = (requestType = '') => {
   }
 }
 
-export const startRequest = (url, dispatch, success, token, err) => {
+export const startRequest = (url, method, dispatch, success, token, err) => {
   return fetch(url, {
+    method: method,
     headers: {
       'Authorization': token,
     },

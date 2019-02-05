@@ -1,4 +1,3 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -34,6 +33,7 @@ const LoanResources = (props) => {
         renewal={props.renewal}
         canRenew={props.canRenew}
         borrowed={false}
+        historical={false}
         listType='Pending'
       />
       <br />
@@ -46,6 +46,7 @@ const LoanResources = (props) => {
         renewal={props.renewal}
         canRenew={props.canRenew}
         borrowed
+        historical={false}
         listType='Checked Out'
       />
     </div>

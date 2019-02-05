@@ -12,6 +12,7 @@ let apiList = [
   'recommendEngine',
   'gatekeeper',
   'contentfulmaps',
+  'userPreferences'
 ]
 
 let handler = async () => {

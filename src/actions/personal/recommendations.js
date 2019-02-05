@@ -23,6 +23,7 @@ const getRecommendations = () => {
     dispatch(states.requestPersonal('recommend'))
     states.startRequest(
       recommendURL,
+      'GET',
       dispatch,
       handleRecommendations,
       state.login.token,

@@ -10,6 +10,7 @@ const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
 const url = Config.resourcesAPI
+const userPrefsUrl = Config.userPrefsAPI
 
 const any = () => {
   return expect.anything()
@@ -32,6 +33,11 @@ describe('resources fetch async action creator', () => {
       .get(/[borrowed|pending]/)
       .reply(200, {})
 
+    nock(userPrefsUrl)
+      .persist()
+      .get(/[circHistory]/)
+      .reply(200, {})
+
     spy = jest.spyOn(constants, 'startRequest')
   })
 
@@ -51,21 +57,27 @@ describe('resources fetch async action creator', () => {
       requestType: 'user',
     }
     expect(store.getActions()).toContainEqual(expectedAction)
-    expectedAction.requestType = 'alephPending'
+    expectedAction.requestType = 'alephPendingNdu'
     expect(store.getActions()).toContainEqual(expectedAction)
-    expectedAction.requestType = 'alephHave'
+    expectedAction.requestType = 'alephPendingHcc'
+    expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'alephHaveNdu'
+    expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'alephHaveHcc'
     expect(store.getActions()).toContainEqual(expectedAction)
     expectedAction.requestType = 'illHave'
     expect(store.getActions()).toContainEqual(expectedAction)
     expectedAction.requestType = 'illPending'
     expect(store.getActions()).toContainEqual(expectedAction)
+    expectedAction.requestType = 'historical'
+    expect(store.getActions()).toContainEqual(expectedAction)
   })
 
-  it('should call startRequest five times', () => {
+  it('should call startRequest eight times', () => {
     const store = mockStore(state)
     store.dispatch(getResources())
 
-    expect(spy.mock.calls.length).toBe(5)
+    expect(spy.mock.calls.length).toBe(8)
   })
 
   it('should call startRequest with different params', () => {
@@ -73,48 +85,60 @@ describe('resources fetch async action creator', () => {
     const store = mockStore(state)
     store.dispatch(getResources())
 
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/user', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/borrowed', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/pending', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/illiad/borrowed', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/illiad/pending', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/aleph/user', 'GET', any(), any(), any(), any())
+
+    const libs = ['ndu50', 'hcc50']
+    for (let i = 0; i < libs.length; i++) {
+      expect(spy).toHaveBeenCalledWith(url + '/aleph/borrowed?library=' + libs[i], 'GET', any(), any(), any(), any())
+      expect(spy).toHaveBeenCalledWith(url + '/aleph/pending?library=' + libs[i], 'GET', any(), any(), any(), any())
+    }
+
+    expect(spy).toHaveBeenCalledWith(url + '/illiad/borrowed', 'GET', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(url + '/illiad/pending', 'GET', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(userPrefsUrl + '/circHistory', 'GET', any(), any(), any(), any())
   })
 })
 
 describe('handleResources', () => {
   describe('on checked out items', () => {
-    const data = [ 'book' ]
+    const data = [ { key: 'book' } ]
 
     it('should create a recievePersonal action with checked out items', () => {
       const store = mockStore({})
-      handleResources('aleph', 'borrowed')(store.dispatch, data)
+      handleResources('aleph', 'borrowed', 'Ndu')(store.dispatch, data)
+      handleResources('aleph', 'borrowed', 'Hcc')(store.dispatch, data)
 
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
-        requestType: 'alephHave',
+        requestType: 'alephHaveNdu',
         payload: { checkedOut: data },
         state: statuses.SUCCESS,
       }
 
       expect(store.getActions()).toContainEqual(expectedAction)
+      expectedAction.requestType = 'alephHaveHcc'
+      expect(store.getActions()).toContainEqual(expectedAction)
     })
   })
 
   describe('on pending items', () => {
-    const data = [ 'book' ]
+    const data = [ { key: 'book' } ]
 
     it('should create a recievePersonal action with pending items', () => {
       const store = mockStore({})
-      handleResources('aleph', 'pending')(store.dispatch, data)
+      handleResources('aleph', 'pending', 'Ndu')(store.dispatch, data)
+      handleResources('aleph', 'pending', 'Hcc')(store.dispatch, data)
 
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
-        requestType: 'alephPending',
+        requestType: 'alephPendingNdu',
         payload: { pending: data },
         state: statuses.SUCCESS,
       }
 
-      expect(store.getActions()[0]).toMatchObject(expectedAction)
+      expect(store.getActions()).toContainEqual(expectedAction)
+      expectedAction.requestType = 'alephPendingHcc'
+      expect(store.getActions()).toContainEqual(expectedAction)
     })
   })
 })

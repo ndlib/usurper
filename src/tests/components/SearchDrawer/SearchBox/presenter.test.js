@@ -15,6 +15,7 @@ const setup = (props) => {
 }
 let enzymeWrapper
 let props = {
+  id: 'arbitrary-search-field',
   search: {
     drawerOpen: true,
     hasPref: false,

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import Lgicon from '../../static/images/icons/libguide.png'
-import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 import StaticAlert from '../Contentful/StaticContent/Alert'
+import UserMenu from '../Navigation/UserMenu'
 
 class Courses extends Component {
   instructorCard (course) {
@@ -163,11 +163,9 @@ class Courses extends Component {
     return (
       <div className='container-fluid content-area'>
         <div key='courses' className='content'>
-          <LogOut />
-          <Link to='/items-requests' className='button fright tab'>My Items</Link>
-
-          <PageTitle title='Courses' classaName='hr-cor' />
           <SearchProgramaticSet open={false} />
+          <PageTitle title='My Account' children={<UserMenu format='buttons' subheading='Courses' />} />
+          <PageTitle title='Courses' hideInPage />
 
           <StaticBody slug='courses' preview={this.props.preview} />
 

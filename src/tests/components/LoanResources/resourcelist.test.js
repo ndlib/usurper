@@ -33,19 +33,19 @@ describe('components/LoanResources/resourceList.js', () => {
     })
 
     it('should render column title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Title'}</a>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Title'}</button>)).toBe(true)
     })
 
     it('should render column author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Author'}</a>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Author'}</button>)).toBe(true)
     })
 
     it('should render column status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Status'}</a>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Status'}</button>)).toBe(true)
     })
 
     it('should not render column due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Due Date'}</a>)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Due Date'}</button>)).toBe(false)
     })
 
     it('should render item', () => {
@@ -72,19 +72,19 @@ describe('components/LoanResources/resourceList.js', () => {
     })
 
     it('should render column title', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Title'}</a>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Title'}</button>)).toBe(true)
     })
 
     it('should render column author', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Author'}</a>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Author'}</button>)).toBe(true)
     })
 
     it('should not render column status', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Status'}</a>)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Status'}</button>)).toBe(false)
     })
 
     it('should render column due date', () => {
-      expect(enzymeWrapper.containsMatchingElement(<a>{'Due Date'}</a>)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<button>{'Due Date'}</button>)).toBe(true)
     })
 
     it('should render item', () => {

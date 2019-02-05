@@ -1,9 +1,9 @@
-import { connect } from 'react-redux'
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const InlineLoading = ({ message = '' }) => (
+const InlineLoading = ({ message = '', title = 'Loading' }) => (
   <div className={'Loading inline'}>
-    <div>Loading</div>
+    <div>{ title }</div>
     <div className='sk-three-bounce'>
       <div className='sk-child sk-bounce1' />
       <div className='sk-child sk-bounce2' />
@@ -12,5 +12,9 @@ const InlineLoading = ({ message = '' }) => (
     <div>{ message }</div>
   </div>
 )
+InlineLoading.propTypes = {
+  message: PropTypes.string,
+  title: PropTypes.string,
+}
 
 export default InlineLoading

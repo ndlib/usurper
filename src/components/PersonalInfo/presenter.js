@@ -7,20 +7,19 @@ import Courses from '../Courses'
 import PageTitle from '../PageTitle'
 import Loading from '../Messages/Loading'
 import SearchProgramaticSet from '../SearchProgramaticSet'
-import LogOut from '../LogOut'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 import StaticAlert from '../Contentful/StaticContent/Alert'
 import Link from '../Link'
+import UserMenu from '../Navigation/UserMenu'
 
 const LoggedIn = (preview, balance) => {
   return (
     <div className='content'>
-      <LogOut />
-      <Courses linkOnly />
-
       <SearchProgramaticSet open={false} />
-      <PageTitle title='Items & Requests' />
+      <PageTitle title='My Account' children={<UserMenu format='buttons' subheading='Items &amp; Requests' />} />
+      <PageTitle title='Items &amp; Requests' hideInPage />
+
       <div className='row'>
         <div className='col-md-8 col-sm-7'>
           <StaticAlert slug='personal' preview={preview} />

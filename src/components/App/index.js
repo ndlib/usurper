@@ -28,6 +28,7 @@ import rootReducers from '../../reducers'
 import thunkMiddleware from 'redux-thunk'
 import Rewrite from './Rewrite'
 import EmbeddableHours from '../Embeddable/Hours'
+import CirculationHistory from '../LoanResources/CirculationHistory'
 
 import NotFound from '../../components/Messages/NotFound'
 
@@ -84,6 +85,7 @@ const App = (props) => {
               <Route exact path='/news/:id' component={ContentfulNews} />
               <Route exact path='/event/:id' component={ContentfulEvent} />
               <Route exact path='/items-requests' component={PersonalInfo} />
+              <Route exact path='/checkout-history' component={CirculationHistory} />
               <Route exact path='/subjects' component={SubjectList} />
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />

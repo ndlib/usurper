@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -7,6 +6,16 @@ import { renewAleph, recieveRenewal } from '../../../actions/personal/alephRenew
 import Loading from '../../Messages/InlineLoading'
 import Presenter from './presenter'
 import * as statuses from '../../../constants/APIStatuses'
+import * as helper from '../../../constants/HelperFunctions'
+
+const filterFields = [
+  'title',
+  'published',
+  'author',
+  'dueDate',
+  'returnDate',
+  'loanDate',
+]
 
 class ListContainer extends Component {
   constructor (props) {
@@ -15,7 +24,7 @@ class ListContainer extends Component {
       this.state = {
         filterValue: '',
         itemList: this.props.list,
-        filteredList: this.filter('', 'title', 'desc', this.props.list),
+        filteredList: helper.filterAndSort(this.props.list, filterFields, '', 'title', 'desc'),
         sortValue: 'title',
         sortDir: 'desc',
         assistText: '',
@@ -34,56 +43,10 @@ class ListContainer extends Component {
     if (!this.state.itemList || (nextProps.list && this.state.itemList.length !== nextProps.list.length)) {
       this.setState({
         itemList: nextProps.list,
-        filteredList: this.filter(this.state.filterValue, this.state.sortValue, this.state.sortDir, nextProps.list),
+        filteredList: helper.filterAndSort(nextProps.list, filterFields, this.state.filterValue,
+          this.state.sortValue, this.state.sortDir),
       })
     }
-  }
-
-  filter (filterValue, sortValue, sortDir, list) {
-    const value = filterValue.toLowerCase()
-    const filterFields = [
-      'title',
-      'published',
-      'author',
-      'pickupLocation',
-      'dueDate',
-    ]
-
-    const sortOps = {
-      asc: (a, b) => {
-        if (!a && b) {
-          return -1
-        } else if (!b && a) {
-          return 1
-        }
-        return -a.localeCompare(b, undefined, { sensitivity: 'accent', ignorePunctuation: true })
-      },
-      desc: (a, b) => {
-        if (!a && b) {
-          return 1
-        } else if (!b && a) {
-          return -1
-        }
-        return a.localeCompare(b, undefined, { sensitivity: 'accent', ignorePunctuation: true })
-      },
-    }
-
-    return list.filter((item) => {
-      let inFilter = false
-      filterFields.forEach((field) => {
-        inFilter = inFilter || (item[field] && item[field].toLowerCase().indexOf(value) >= 0)
-      })
-      return inFilter
-    }).sort((a, b) => {
-      let aValue = a[sortValue]
-      let bValue = b[sortValue]
-
-      if (aValue === bValue) {
-        return sortOps['desc'](a['title'], b['title'])
-      }
-
-      return sortOps[sortDir](aValue, bValue)
-    })
   }
 
   filterChange (event) {
@@ -94,7 +57,8 @@ class ListContainer extends Component {
 
     this.setState({
       filterValue: event.target.value,
-      filteredList: this.filter(event.target.value, this.state.sortValue, this.state.sortDir, this.state.itemList),
+      filteredList: helper.filterAndSort(this.state.itemList, filterFields, event.target.value,
+        this.state.sortValue, this.state.sortDir),
       assistText: assistText,
     })
 
@@ -118,7 +82,7 @@ class ListContainer extends Component {
     this.setState({
       sortDir: sortDir,
       sortValue: sortValue,
-      filteredList: this.filter(this.state.filterValue, sortValue, sortDir, this.state.itemList),
+      filteredList: helper.filterAndSort(this.state.itemList, filterFields, this.state.filterValue, sortValue, sortDir),
     })
   }
 
@@ -155,6 +119,8 @@ class ListContainer extends Component {
       loadingMore={this.props.loading}
       listType={this.props.listType}
       assistText={this.state.assistText}
+      deleteFromHistory={this.props.deleteFromHistory}
+      historical={this.props.historical}
     />
   }
 }
@@ -167,7 +133,7 @@ export const mapStateToProps = (state, ownProps) => {
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    renewAll: (e) => {
+    renewAll: () => {
       // renew all aleph items
       ownProps.list.forEach((item) => {
         if (item.barcode) {
@@ -189,6 +155,8 @@ ListContainer.propTypes = {
   canRenew: PropTypes.bool,
   borrowed: PropTypes.bool,
   listType: PropTypes.string.isRequired,
+  deleteFromHistory: PropTypes.bool,
+  historical: PropTypes.bool,
 
   // from mappers
   renewAll: PropTypes.func,

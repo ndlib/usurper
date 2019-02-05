@@ -168,4 +168,6 @@ deploy_project "gatekeeper"
 
 deploy_project "classes_api"
 
+deploy_project "user_preferences"
+
 printf "${GREEN}Success${NC} \n"
