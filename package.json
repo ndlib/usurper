@@ -6,7 +6,7 @@
     "classnames": "^2.2.5",
     "hoist-non-react-statics": "^2.5.0",
     "ie-array-find-polyfill": "^1.1.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "markdown-to-jsx": "^5.4.2",
     "moment": "^2.21.0",
     "prop-types": "^15.6.1",
