@@ -69,12 +69,12 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     // searchScope = advancedSearch['scopesListAdvanced'] ? advancedSearch['scopesListAdvanced'] : searchScope
 
     // Build advanced search query
-    searchTerm = `query=${scope0},${precision0},${freeText0},${bool0}`
+    searchTerm = `query=${scope0},${precision0},${encodeURIComponent(freeText0)},${bool0}`
     if (freeText1 !== '') {
-      searchTerm += `&query=${scope1},${precision1},${freeText1},${bool1}`
+      searchTerm += `&query=${scope1},${precision1},${encodeURIComponent(freeText1)},${bool1}`
     }
     if (freeText2 !== '') {
-      searchTerm += `&query=${scope2},${precision2},${freeText2},AND`
+      searchTerm += `&query=${scope2},${precision2},${encodeURIComponent(freeText2)},AND`
     }
 
     if (materialType !== 'all_items') {
@@ -90,10 +90,10 @@ const searchQuery = (searchStore, advancedSearch, history) => {
       searchTerm += `&pfilter=dr_e,exact,${drEndYear}${padLeftZero(drEndMonth)}${padLeftZero(drEndDay)},AND`
     }
   } else if (searchStore.searchType === LIBRARY || searchStore.searchType === CURATEND) {
-    searchTerm = advancedSearch['basic-search-field'] || ''
+    searchTerm = encodeURIComponent(advancedSearch['basic-search-field'] || '')
   } else {
     // Basic Search
-    let searchQuery = advancedSearch['basic-search-field']
+    let searchQuery = encodeURIComponent(advancedSearch['basic-search-field'])
     if (!searchQuery) {
       searchQuery = 'alldocuments'
     }
