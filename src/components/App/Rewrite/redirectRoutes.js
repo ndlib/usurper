@@ -42,6 +42,7 @@ const RedirectRoutes = [
   { path: '/room-222', target: '/room-reservations' },
   { path: '/room-222a', target: '/room-reservations' },
   { path: '/medieval/*', target: '/medieval' },
+  { path: '/contact-us', target: '/hours' },
 
   // index.php redirects
   { path: '/index.php', target: '/' },
