@@ -25,9 +25,10 @@ const PagePresenter = ({ entry }) => {
       itemType='http://schema.org/Event'
       itemProp='mainEntity'
     >
-      {entry.shortDescription && (<meta name='description' content={entry.shortDescription} />) }
+      {entry.shortDescription && (<meta itemProp='description' content={entry.shortDescription} />) }
       <meta itemProp='startDate' content={entry.startDate} />
       <meta itemProp='endDate' content={entry.endDate} />
+      <meta itemProp='location' content={entry.locationText} />
       <PageTitle title={entry.title} itemProp='name' />
       <OpenGraph
         title={entry.title}
@@ -38,11 +39,13 @@ const PagePresenter = ({ entry }) => {
       <div className='row'>
         <main className='col-md-8 article'>
           <div className='event-details'>
-            <div className='event-detail-date' aria-label={"Date"}>{entry.displayDate }</div>
-            <div className='event-detail-time' aria-label={"Time"}><LibMarkdown>{ entry.displayTime }</LibMarkdown></div>
+            <div className='event-detail-date' aria-label={'Date'}>{entry.displayDate }</div>
+            <div className='event-detail-time' aria-label={'Time'}>
+              <LibMarkdown>{ entry.displayTime }</LibMarkdown>
+            </div>
             {
               entry.locationText && (
-                <div className='event-detail-location' aria-label="Location">
+                <div className='event-detail-location' aria-label='Location'>
                   <LibMarkdown>{ entry.locationText }</LibMarkdown>
                 </div>
               )
@@ -63,7 +66,7 @@ const PagePresenter = ({ entry }) => {
           <Link to='/events' className='viewAll viewNewsEvents'>View All Events</Link>
         </main>
         <aside className='col-md-4 right'>
-          <Image cfImage={entry.representationalImage} className='cover' />
+          <Image cfImage={entry.representationalImage} className='cover' itemProp='image' />
           <Link to={entry.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
           <Media data={entry.media} />
           <Librarians netids={entry.contactPeople} />
