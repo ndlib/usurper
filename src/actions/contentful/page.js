@@ -55,12 +55,12 @@ export function clearPage () {
   }
 }
 
-export const fetchPage = (page, preview, secure = false, cfType = 'page') => {
+export const fetchPage = (page, preview, secure = false, cfType = 'page', include = 3) => {
   let endpoint = 'query'
   if (secure) {
     endpoint = 'secureQuery'
   }
-  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=5`)
+  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=${include}`)
   let url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}`
   if (preview) { url += `&preview=${preview}` }
 
