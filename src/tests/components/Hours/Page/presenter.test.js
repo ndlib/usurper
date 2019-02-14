@@ -56,6 +56,6 @@ describe('components/Hours/Page/presenter', () => {
   // })
 
   it('Adds a title to the page', () => {
-    expect(enzymeWrapper.children().someWhere(n => n.get(0).props.title === 'Hours')).toBe(true)
+    expect(enzymeWrapper.find('PageTitle').exists()).toBe(true)
   })
 })
