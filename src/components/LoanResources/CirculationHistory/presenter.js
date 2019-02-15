@@ -6,6 +6,27 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import UserMenu from '../../Navigation/UserMenu'
 import Link from '../../Link'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
+import Config from '../../../shared/Configuration'
+
+const OptedOutMessage = () => {
+  const illiadUrl = Config.illiadBaseURL.replace('<<form>>', 60).replace('<<value>>', '')
+  const primoUrl = 'https://onesearch.library.nd.edu/primo-explore/account?vid=NDU&section=loans'
+
+  return (
+    <div>
+      <span>You must <Link to='/settings'>opt-in to save full checkout history</Link>.</span>
+      <br /><br />
+      <span><em>
+        Please note that the Libraries always retain a limited history up to 30 days after return date.
+        You can view your saved history in OneSearch, <Link to={primoUrl}>here</Link>. Go to the Loans tab in your
+        account and change the dropdown to "30 Day Loan History".
+        <br /><br />
+        Interlibrary Loan records cannot be purged.
+        You can view your ILL history in ILLiad, <Link to={illiadUrl}>here</Link>.
+      </em></span>
+    </div>
+  )
+}
 
 const CirculationHistory = (props) => {
   let history = props.resources.have
@@ -34,11 +55,7 @@ const CirculationHistory = (props) => {
                   historical
                 />
               )
-              : (
-                <div>
-                  You must <Link to='/settings'>opt-in to save checkout history</Link> first.
-                </div>
-              )
+              : OptedOutMessage()
             }
           </div>
         </div>

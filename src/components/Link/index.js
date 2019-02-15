@@ -21,7 +21,7 @@ const Internal = (to, onClick, ariaLabel, props) => {
 
 const External = (to, noTarget, onClick, ariaLabel, props) => {
   let target = noTarget ? '_self' : '_blank'
-  let rel = noTarget ? '' : 'noopener'
+  let rel = noTarget ? '' : 'noopener noreferrer'
   return (
     <a href={to}
       target={target}
