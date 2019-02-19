@@ -1,4 +1,5 @@
 import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from '../../constants/searchOptions'
+import Config from '../../shared/Configuration'
 
 const padLeftZero = (num) => {
   if (num.length < 2) {
@@ -9,13 +10,11 @@ const padLeftZero = (num) => {
 
 const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
   const tab = isOnesearch ? 'onesearch' : 'nd_campus'
-  const isProduction = window.location.hostname === 'library.nd.edu' || window.location.hostname === 'm.library.nd.edu'
-  const env = isProduction ? '' : 'pprd'
   const vid = 'NDU'
   const mode = isAdvanced ? 'advanced' : 'basic'
   const searchScope = isOnesearch ? 'malc_blended' : 'nd_campus'
 
-  return `https://onesearch${env}.library.nd.edu/primo-explore/search` +
+  return `${Config.onesearchBaseURL}/primo-explore/search` +
     `?${queryTerm}` +
     `&institution=NDU` +
     `&vid=${vid}` +

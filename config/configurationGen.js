@@ -14,9 +14,9 @@ const genConfig = () => {
     userPrefsAPI: apiUrls.userPreferences,
     version: 'dev',
     googleAnalyticsId: 'UA-2118378-47',
-    gcseKey: 'AIzaSyBMOVOdVLHD6lUqQK5mdKg8tQlMLX8QtgY',
-    gcseCx: '015265266414554728410:5wnhv2ianq0',
-
+    gcseKey: '',
+    gcseCx: '',
+    onesearchBaseURL: 'https://ndu-primo-stage.hosted.exlibrisgroup.com',
   }
 
   let config = {
@@ -34,6 +34,7 @@ const genConfig = () => {
     googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID ? process.env.GOOGLE_ANALYTICS_ID : defaultConfig.googleAnalyticsId,
     gcseKey:  process.env.GCSE_KEY ? process.env.GCSE_KEY : defaultConfig.gcseKey,
     gcseCx:  process.env.GCSE_CX ? process.env.GCSE_CX : defaultConfig.gcseCx,
+    onesearchBaseURL: process.env.ONESEARCH_BASE_URL ? process.env.ONESEARCH_BASE_URL : defaultConfig.onesearchBaseURL,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }

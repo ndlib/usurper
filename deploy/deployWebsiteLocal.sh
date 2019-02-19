@@ -5,6 +5,7 @@ PROGNAME=$0
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 usage() {
@@ -40,6 +41,17 @@ then
   exit
 fi
 
+if [ -d "/Volumes/vars/WSE/" ]
+then
+  base_directory="/Volumes/vars/WSE"
+elif [ -d "/Volumes/WSE/" ]
+then
+  base_directory="/Volumes/WSE"
+else
+  echo "Make sure you have corpfs mounted"
+  exit
+fi
+
 bucketStage=$1
 
 git checkout master
@@ -58,6 +70,16 @@ echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$stage)
 popd
 
+if [ $stage = "alpha" ] || [ $stage = "beta" ]
+then
+  secretSet="prod"
+else
+  secretSet=$stage
+fi
+
+echo source $base_directory/secret_$secretSet/usurper/deploy-env
+source $base_directory/secret_$secretSet/usurper/deploy-env
+
 if [ $2 = "-b" ] || [ $2 = "--branch" ]
 then
   git checkout $3
@@ -65,9 +87,27 @@ else
   git checkout $(cat VERSION)
 fi
 
+version=$(cat ./VERSION)
+
+replace_config_value () {
+  if [ $2 ]
+  then
+    printf -v safeString "%q" "$2"
+    sed -i "" "s|\($1:\).*|\1 '$safeString',|" ./config/configurationGen.js
+  else
+    printf "${YELLOW}WARNING${NC} No environment value for '$1'. Leaving unmodified.\n"
+  fi
+}
+
+# set environment-specific config values that are not apiUrls
+replace_config_value "illiadBaseURL" $ILLIAD_BASE_URL
+replace_config_value "serviceNowBaseURL" $SERVICE_NOW_BASE_URL
+replace_config_value "onesearchBaseURL" $ONESEARCH_BASE_URL
+replace_config_value "gcseKey" $GCSE_KEY
+replace_config_value "gcseCx" $GCSE_CX
+
 # set sentry values
 sed -i '' 's/ENVIRONMENT/'$stage'/g' ./public/index.html
-version=$(cat ./VERSION)
 sed -i '' 's/SHA/'$version'/g' ./public/index.html
 
 echo "install npm modules"
