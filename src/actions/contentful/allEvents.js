@@ -37,7 +37,7 @@ const receiveAllEvents = (response) => {
 }
 
 export const fetchAllEvents = (status) => {
-  const query = encodeURIComponent('content_type=event&include=5')
+  const query = encodeURIComponent('content_type=event&include=3')
   const preview = status === 'preview'
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
   if (preview) { url += `&preview=${preview}` }

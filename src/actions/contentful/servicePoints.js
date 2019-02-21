@@ -37,7 +37,7 @@ const receiveServicePoints = (response) => {
 }
 
 export const fetchServicePoints = (preview, id) => {
-  let query = encodeURIComponent(`content_type=servicePoint&include=5`)
+  let query = encodeURIComponent(`content_type=servicePoint&include=3`)
   if (id) {
     query += encodeURIComponent(`&sys.id=${id}`)
   }
