@@ -2,6 +2,7 @@
 
 /config/secrets.js
 /config/apiUrls.js
+/config/configParameters.js
 
 .serverless/
 

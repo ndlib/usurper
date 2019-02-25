@@ -1,22 +1,22 @@
-let apiUrls = require('./apiUrls.js')
+const parameters = require('./configParameters.js')
 
 const genConfig = () => {
   let defaultConfig = {
-    viceroyAPI: 'https://viceroy.library.nd.edu',
-    recommendAPI: apiUrls.recommendEngine,
-    coursesAPI: apiUrls.classesAPI,
-    resourcesAPI: apiUrls.gatekeeper,
-    illiadBaseURL: 'https://nd.illiad.oclc.org/illiad/IND/testweb/illiad.dll?Action=10&Form=<<form>>&Value=<<value>>',
-    hoursAPIURL: apiUrls.monarchLibguides,
-    contentfulAPI: apiUrls.contentfuldirect,
-    mapsAPI: apiUrls.contentfulmaps,
+    viceroyAPI: parameters.viceroy,
+    recommendAPI: parameters.recommendEngine,
+    coursesAPI: parameters.classesAPI,
+    resourcesAPI: parameters.gatekeeper,
+    illiadBaseURL: parameters.illiad + '?Action=10&Form=<<form>>&Value=<<value>>',
+    hoursAPIURL: parameters.monarchLibguides,
+    contentfulAPI: parameters.contentfuldirect,
+    mapsAPI: parameters.contentfulmaps,
     serviceNowBaseURL: 'https://nd.service-now.com/nd_portal?id=sc_cat_item&sys_id=1198d67ddb4a7240de73f5161d961936',
-    userPrefsAPI: apiUrls.userPreferences,
-    version: 'dev',
-    googleAnalyticsId: 'UA-2118378-47',
-    gcseKey: '',
-    gcseCx: '',
-    onesearchBaseURL: 'https://ndu-primo-stage.hosted.exlibrisgroup.com',
+    userPrefsAPI: parameters.userPreferences,
+    version: parameters.version,
+    googleAnalyticsId: parameters.googleAnalyticsId,
+    gcseKey: parameters.gcseKey,
+    gcseCx: parameters.gcseCx,
+    onesearchBaseURL: parameters.onesearch,
   }
 
   let config = {

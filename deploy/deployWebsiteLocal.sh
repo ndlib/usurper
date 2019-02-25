@@ -5,7 +5,6 @@ PROGNAME=$0
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 usage() {
@@ -41,44 +40,17 @@ then
   exit
 fi
 
-if [ -d "/Volumes/vars/WSE/" ]
-then
-  base_directory="/Volumes/vars/WSE"
-elif [ -d "/Volumes/WSE/" ]
-then
-  base_directory="/Volumes/WSE"
-else
-  echo "Make sure you have corpfs mounted"
-  exit
-fi
-
 bucketStage=$1
+
+# find the current git branch name https://stackoverflow.com/questions/1593051/how-to-programmatically-determine-the-current-checked-out-git-branch
+CURRENT_BRANCH_NAME=$(git symbolic-ref -q HEAD)
+CURRENT_BRANCH_NAME=${CURRENT_BRANCH_NAME##refs/heads/}
+CURRENT_BRANCH_NAME=${CURRENT_BRANCH_NAME:-HEAD}
 
 git checkout master
 git pull
 
 cd ..
-
-echo "install build-links modules"
-pushd .
-cd ./scripts/build-links
-yarn install --production
-
-echo "get the apiurls"
-node buildApiUrls.js stage=$stage
-echo "determine bucket"
-BUCKET=$(node getStageBucket.js stage=$stage)
-popd
-
-if [ $stage = "alpha" ] || [ $stage = "beta" ]
-then
-  secretSet="prod"
-else
-  secretSet=$stage
-fi
-
-echo source $base_directory/secret_$secretSet/usurper/deploy-env
-source $base_directory/secret_$secretSet/usurper/deploy-env
 
 if [ $2 = "-b" ] || [ $2 = "--branch" ]
 then
@@ -87,27 +59,20 @@ else
   git checkout $(cat VERSION)
 fi
 
-version=$(cat ./VERSION)
+echo "install build-links modules"
+pushd .
+cd ./scripts/build-links
+yarn install --production
 
-replace_config_value () {
-  if [ $2 ]
-  then
-    printf -v safeString "%q" "$2"
-    sed -i "" "s|\($1:\).*|\1 '$safeString',|" ./config/configurationGen.js
-  else
-    printf "${YELLOW}WARNING${NC} No environment value for '$1'. Leaving unmodified.\n"
-  fi
-}
-
-# set environment-specific config values that are not apiUrls
-replace_config_value "illiadBaseURL" $ILLIAD_BASE_URL
-replace_config_value "serviceNowBaseURL" $SERVICE_NOW_BASE_URL
-replace_config_value "onesearchBaseURL" $ONESEARCH_BASE_URL
-replace_config_value "gcseKey" $GCSE_KEY
-replace_config_value "gcseCx" $GCSE_CX
+echo "get the apiurls and other config parameters"
+node buildConfig.js stage=$stage
+echo "determine bucket"
+BUCKET=$(node getStageBucket.js stage=$stage)
+popd
 
 # set sentry values
 sed -i '' 's/ENVIRONMENT/'$stage'/g' ./public/index.html
+version=$(cat ./VERSION)
 sed -i '' 's/SHA/'$version'/g' ./public/index.html
 
 echo "install npm modules"
@@ -120,7 +85,17 @@ echo "Push to bucket, $BUCKET"
 aws s3 sync --delete build/public s3://$BUCKET
 
 # reset sentry changes
-git checkout .
-git checkout master
+if ! git checkout .
+then
+  printf "${RED}Failed to reset sentry additions please check your branch${NC} \n"
+  exit 1
+fi
+
+# return to the branch you were previously on
+if ! git checkout $CURRENT_BRANCH_NAME
+then
+  printf "${RED}Unable to return you to branch, ${CURRENT_BRANCH_NAME}. ${NC} \n"
+  exit 1
+fi
 
 printf "${GREEN}Success${NC} \n"
