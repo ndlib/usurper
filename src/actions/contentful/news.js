@@ -38,7 +38,7 @@ const receiveNews = (news, response) => {
 }
 
 export const fetchNews = (news, preview) => {
-  const query = encodeURIComponent(`content_type=news&fields.slug=${news}&include=5`)
+  const query = encodeURIComponent(`content_type=news&fields.slug=${news}&include=3`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
   if (preview) { url += `&preview=${preview}` }
 
