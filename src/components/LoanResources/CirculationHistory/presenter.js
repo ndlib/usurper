@@ -10,7 +10,7 @@ import Config from '../../../shared/Configuration'
 
 const OptedOutMessage = () => {
   const illiadUrl = Config.illiadBaseURL.replace('<<form>>', 60).replace('<<value>>', '')
-  const primoUrl = 'https://onesearch.library.nd.edu/primo-explore/account?vid=NDU&section=loans'
+  const primoUrl = `${Config.onesearchBaseURL}/primo-explore/account?vid=NDU&section=loans`
 
   return (
     <div>

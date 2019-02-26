@@ -63,7 +63,7 @@
   * cd scrips/build-links
   * yarn install
   * assume a role that can access the exports
-  * `node buildApiUrls.js stage=devJon`
+  * `node buildConfig.js stage=devJon`
   This must be done before you start the application.
 
 ### Running Locally

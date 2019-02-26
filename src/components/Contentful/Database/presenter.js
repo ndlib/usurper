@@ -7,6 +7,7 @@ import Image from '../../Image'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ErrorBoundary from '../../ErrorBoundary'
+import Config from '../../../shared/Configuration'
 
 const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
   return (
@@ -66,7 +67,7 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
               { cfDatabaseEntry.fields.alephSystemNumber && (
                 <div className='databaseInfo'>
                   <div className='infoLabel'>Catalog Number: </div>
-                  <Link className='infoValue' to={'http://onesearch.library.nd.edu/NDU:malc_blended:ndu_aleph' + cfDatabaseEntry.fields.alephSystemNumber}>
+                  <Link className='infoValue' to={`${Config.onesearchBaseURL}/NDU:malc_blended:ndu_aleph${cfDatabaseEntry.fields.alephSystemNumber}`}>
                     { cfDatabaseEntry.fields.alephSystemNumber }
                   </Link>
                 </div>

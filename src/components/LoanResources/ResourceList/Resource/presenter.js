@@ -57,7 +57,7 @@ const getTitle = (record) => {
   if (record.from === 'ILL') {
     link = Config.illiadBaseURL.replace('<<form>>', 67).replace('<<value>>', record.id)
   } else if (docNumber) {
-    link = `http://onesearch.library.nd.edu/NDU:malc_blended:ndu_aleph${docNumber}`
+    link = `${Config.onesearchBaseURL}/NDU:malc_blended:ndu_aleph${docNumber}`
   } else {
     return <div className='card-title'>{record.title}</div>
   }
