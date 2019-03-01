@@ -19,8 +19,9 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
       >
         <meta itemProp='startDate' content={entry.startDate} />
         <meta itemProp='endDate' content={entry.endDate} />
+        <meta itemProp='location' content={entry.locationText} />
         {
-          showImage && <Image cfImage={entry.representationalImage} className='card-image' />
+          showImage && <Image cfImage={entry.representationalImage} className='card-image' itemProp='image' />
         }
         <div className='date'>
           {
