@@ -14,6 +14,8 @@ const hoursPageOrder = [
   { servicePointSlug: 'hesburghlibrary', main: true },
   { servicePointSlug: 'askusdesk', main: false },
   { servicePointSlug: 'circulationservicedesk', main: false },
+  { servicePointSlug: 'course-reserves-office', main: false },
+  { servicePointSlug: 'ill-office', main: false },
   { servicePointSlug: 'mediacorps', main: false },
   { servicePointSlug: 'oitoutpost', main: false },
   { servicePointSlug: 'reservesmicrotextandmediadesk', main: false },

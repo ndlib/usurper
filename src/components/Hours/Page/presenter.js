@@ -14,10 +14,10 @@ import Link from '../../Link'
 const Presenter = (props) => {
   return (
     <section className='content hours-page'>
-      <PageTitle title={'Hours'} />
+      <PageTitle title={'Hours and Contact Information'} />
       <OpenGraph
-        title={'Hours'}
-        description={'Hours of all the libraries and service points'}
+        title={'Hours and Contact Information'}
+        description={'Hours and contact info of all the libraries and service points'}
         image={false}
       />
       <SearchProgramaticSet open={false} />
