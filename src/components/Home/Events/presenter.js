@@ -19,7 +19,9 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
       >
         <meta itemProp='startDate' content={entry.startDate} />
         <meta itemProp='endDate' content={entry.endDate} />
-        <meta itemProp='location' content={entry.locationText} />
+        <div itemProp='location' itemScope itemType='http://schema.org/Place' hidden>
+          <meta itemProp='address' content={entry.locationText} />
+        </div>
         {
           showImage && <Image cfImage={entry.representationalImage} className='card-image' itemProp='image' />
         }

@@ -28,7 +28,6 @@ const PagePresenter = ({ entry }) => {
       {entry.shortDescription && (<meta itemProp='description' content={entry.shortDescription} />) }
       <meta itemProp='startDate' content={entry.startDate} />
       <meta itemProp='endDate' content={entry.endDate} />
-      <meta itemProp='location' content={entry.locationText} />
       <PageTitle title={entry.title} itemProp='name' />
       <OpenGraph
         title={entry.title}
@@ -45,8 +44,14 @@ const PagePresenter = ({ entry }) => {
             </div>
             {
               entry.locationText && (
-                <div className='event-detail-location' aria-label='Location'>
-                  <LibMarkdown>{ entry.locationText }</LibMarkdown>
+                <div
+                  className='event-detail-location'
+                  aria-label='Location'
+                  itemScope
+                  itemType='http://schema.org/Place'
+                  itemProp='location'
+                >
+                  <LibMarkdown itemProp='address'>{ entry.locationText }</LibMarkdown>
                 </div>
               )
             }
