@@ -66,9 +66,13 @@ yarn install --production
 
 echo "get the apiurls and other config parameters"
 node buildConfig.js stage=$stage
+
 echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$stage)
 popd
+
+echo "generate updated sitemap"
+python ./scripts/makeSitemap.py
 
 # set sentry values
 sed -i '' 's/ENVIRONMENT/'$stage'/g' ./public/index.html

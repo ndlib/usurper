@@ -1,12 +1,18 @@
 import urllib2
 import json
+import subprocess
+import os
 from hesburgh import heslog, hesutil
 from datetime import datetime
 
-if not hesutil.getEnv("TOKEN"):
-  heslog.info("To run this you must source the deploy-env secrets")
+scriptDir = os.path.dirname(__file__)
+configParams = os.path.join(scriptDir, '../config/configParameters.js')
+contentfulToken = subprocess.check_output(
+  'node -e "const p = require(\'' + configParams + '\'); process.stdout.write(p.contentfulCdnToken)"',
+  shell=True
+)
 
-token = "&access_token=%s" % (hesutil.getEnv("TOKEN", throw=True))
+token = "&access_token=%s" % contentfulToken
 base = "https://cdn.contentful.com/spaces/%s" % hesutil.getEnv("SPACE", throw=True)
 entryQuery = "/entries?select=%s&limit=200&content_type=%s"
 
@@ -49,11 +55,16 @@ staticRoutes = [
   '/about',
   '/chat',
   '/hours',
+  '/events',
+  '/news',
   '/libraries',
   '/subjects',
   '/research',
   '/services',
 ]
+
+for char in "abcdefghijklmnopqrstuvwxyz#":
+  staticRoutes.append('/databases/' + urllib2.quote(char))
 
 routeCount = 0
 skipped = 0
@@ -108,7 +119,7 @@ def writeRoute(file, route):
   routeCount += 1
 
 
-with open('public/sitemap.xml', 'w') as f:
+with open(os.path.join(scriptDir, '../public/sitemap.xml'), 'w') as f:
   f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
   for info in routeInfo:
     fieldIds = info.get("field")
