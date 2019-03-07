@@ -21,6 +21,7 @@ const psList = [
   'gcseCx',
   'gcseKey',
   'onesearch',
+  'contentfulCdnToken',
 ]
 
 let handler = async () => {
