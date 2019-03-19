@@ -4,6 +4,7 @@ import PagePresenter from '../../../../components/Contentful/Page/presenter'
 import ContactPoint from '../../../../components/Contentful/ContactPoint'
 import LibMarkdown from '../../../../components/LibMarkdown'
 import Related from '../../../../components/Related'
+import Link from '../../../../components/Link'
 
 const setup = (cfPageEntry) => {
   return shallow(<PagePresenter cfPageEntry={cfPageEntry} />)
@@ -22,6 +23,12 @@ describe('components/Contentful/Page/presenter', () => {
         relatedServices: ['Fake related services'],
         libguides: ['Fake related libguides'],
         searchPanelOpen: false,
+        parentPage: {
+          fields: {
+            slug: 'fake-slug',
+            title: 'Fake breadcrumb'
+          }
+        },
       },
     })
   })
@@ -56,5 +63,9 @@ describe('components/Contentful/Page/presenter', () => {
 
   it('should render ContactPoint twice', () => {
     expect(enzymeWrapper.find('ContactPoint').length).toBe(2)
+  })
+
+  it('should render a breadcrumb link', () => {
+    expect(enzymeWrapper.containsMatchingElement(<Link to='fake-slug' className='breadcrumb'>Back to Fake breadcrumb</Link>)).toBe(true)
   })
 })
