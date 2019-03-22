@@ -2,7 +2,7 @@ import urllib2
 import json
 import subprocess
 import os
-from hesburgh import heslog, hesutil
+from hesburgh import heslog
 from datetime import datetime
 
 scriptDir = os.path.dirname(__file__)
@@ -11,9 +11,13 @@ contentfulToken = subprocess.check_output(
   'node -e "const p = require(\'' + configParams + '\'); process.stdout.write(p.contentfulCdnToken)"',
   shell=True
 )
+contentfulSpace = subprocess.check_output(
+  'node -e "const p = require(\'' + configParams + '\'); process.stdout.write(p.contentfulSpace)"',
+  shell=True
+)
 
 token = "&access_token=%s" % contentfulToken
-base = "https://cdn.contentful.com/spaces/%s" % hesutil.getEnv("SPACE", throw=True)
+base = "https://cdn.contentful.com/spaces/%s" % contentfulSpace
 entryQuery = "/entries?select=%s&limit=200&content_type=%s"
 
 now = datetime.now().strftime("%Y-%m-%d")
