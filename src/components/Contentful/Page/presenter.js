@@ -10,9 +10,15 @@ import ServicePoint from '../ServicePoint'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
 import OpenGraph from '../../OpenGraph'
+import Link from '../../Link'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <article aria-describedby='main-page-title' className='container-fluid content-area'>
+    {cfPageEntry.fields.parentPage && (
+      <Link to={cfPageEntry.fields.parentPage.fields.slug} className='breadcrumb'>
+        Back to {cfPageEntry.fields.parentPage.fields.alternateTitle || cfPageEntry.fields.parentPage.fields.title}
+      </Link>
+    )}
     {cfPageEntry.fields.shortDescription && (<meta name='description' content={cfPageEntry.fields.shortDescription} />) }
     <PageTitle title={cfPageEntry.fields.title} />
     <OpenGraph
