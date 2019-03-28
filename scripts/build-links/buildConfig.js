@@ -23,6 +23,7 @@ const psList = [
   'onesearch',
   'contentfulCdnToken',
   'contentfulSpace',
+  'contentfulEnvironment',
 ]
 
 let handler = async () => {

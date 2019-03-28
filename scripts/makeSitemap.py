@@ -15,9 +15,13 @@ contentfulSpace = subprocess.check_output(
   'node -e "const p = require(\'' + configParams + '\'); process.stdout.write(p.contentfulSpace)"',
   shell=True
 )
+contentfulEnvironment = subprocess.check_output(
+  'node -e "const p = require(\'' + configParams + '\'); process.stdout.write(p.contentfulEnvironment)"',
+  shell=True
+)
 
 token = "&access_token=%s" % contentfulToken
-base = "https://cdn.contentful.com/spaces/%s" % contentfulSpace
+base = "https://cdn.contentful.com/spaces/%s/environments/%s" % (contentfulSpace, contentfulEnvironment)
 entryQuery = "/entries?select=%s&limit=200&content_type=%s"
 
 now = datetime.now().strftime("%Y-%m-%d")
