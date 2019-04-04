@@ -6,6 +6,7 @@ export default(state = { status: statuses.FETCHING }, action) => {
     case REQUEST_LIBRARIANS:
       return Object.assign({}, state, {
         status: statuses.FETCHING,
+        netids: action.netids,
       })
     case RECEIVE_LIBRARIANS:
       return Object.assign({}, state, {

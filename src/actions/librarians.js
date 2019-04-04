@@ -3,10 +3,12 @@ import fetch from 'isomorphic-fetch'
 import * as statuses from '../constants/APIStatuses'
 
 export const REQUEST_LIBRARIANS = 'REQUEST_LIBRARIANS'
+export const RECEIVE_LIBRARIANS = 'RECEIVE_LIBRARIANS'
+
 export const requestLibrarians = (netids) => {
   return {
     type: REQUEST_LIBRARIANS,
-    netids,
+    netids: netids,
   }
 }
 
@@ -20,7 +22,6 @@ const genResponse = (status, data, netids) => {
   }
 }
 
-export const RECEIVE_LIBRARIANS = 'RECEIVE_LIBRARIANS'
 const receivePage = (netids, response) => {
   try {
     if (response.librarians) {
