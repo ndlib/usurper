@@ -66,7 +66,7 @@
     "fs-extra": "0.30.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
-    "jest": "^22.0.4",
+    "jest": "^24.7.1",
     "json-loader": "0.5.4",
     "mock-local-storage": "^1.0.2",
     "nock": "^9.0.13",
