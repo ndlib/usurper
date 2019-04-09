@@ -90,7 +90,10 @@ class CircOptIn extends Component {
                   }
                 </label>
                 <span style={{ float: 'right' }}>
-                  <button onClick={this.toggleStatus}>
+                  <button
+                    onClick={this.toggleStatus}
+                    className={this.state.statusShouldBeSaved ? '' : 'checkout-history-opt-in'}
+                  >
                     {this.state.statusShouldBeSaved
                       ? 'Opt-out and delete history'
                       : 'Opt-in to save history'
@@ -180,7 +183,11 @@ class CircOptIn extends Component {
             <InlineLoading title='' />
           )}
           <div className='pull-right-bottom modal-force-bottom'>
-            <button className='danger' onClick={this.confirmToggleStatus} disabled={this.props.updating}>
+            <button
+              className={'danger' + (this.state.statusShouldBeSaved ? ' checkout-history-opt-out' : '')}
+              onClick={this.confirmToggleStatus}
+              disabled={this.props.updating}
+            >
               Confirm
             </button>
             <button onClick={this.dismiss} disabled={this.props.updating}>Cancel</button>
