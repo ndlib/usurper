@@ -74,6 +74,23 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
               )
               }
             </section>
+            {
+              (cfDatabaseEntry.fields.relatedResources && cfDatabaseEntry.fields.relatedResources.length) ? (
+                <section>
+                  <h2>Related Resources</h2>
+                  <ul className='databaseLink'>
+                    { cfDatabaseEntry.fields.relatedResources.map((data) => (
+                      <li key={data.url}>
+                        <Link to={data.url}>{ data.title ? data.title : data.url }</Link>
+                        {
+                          data.notes && <LibMarkdown>{ data.notes }</LibMarkdown>
+                        }
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null
+            }
           </main>
           <aside className='col-md-4 col-sm-5 col-xs-12 right desktop-only'>
             <Image cfImage={cfDatabaseEntry.fields.image} />
