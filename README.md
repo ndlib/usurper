@@ -2,8 +2,8 @@
 [Hesburgh Library](https://library.nd.edu) website frontend written in [React](https://reactjs.org/) and [Redux](https://redux.js.org). It relies primarly on [Contentful](https://www.contentful.com/) as a headless CMS for content as well as multiple custom microservices.
 
 [![Build Status](https://travis-ci.org/ndlib/usurper.svg?branch=master)](https://travis-ci.org/ndlib/usurper)
-[![Coverage Status](https://img.shields.io/coveralls/ndlib/usurper.svg)](https://coveralls.io/r/ndlib/usurper?branch=master)
-[![Code Climate](https://codeclimate.com/github/ndlib/usurper/badges/gpa.svg)](https://codeclimate.com/github/ndlib/usurper)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5548f01befa9e0e610fb/test_coverage)](https://codeclimate.com/github/ndlib/usurper/test_coverage)
+[![Code Climate](https://api.codeclimate.com/v1/badges/5548f01befa9e0e610fb/maintainability)](https://codeclimate.com/github/ndlib/usurper)
 [![Known Vulnerabilities](https://snyk.io/test/github/ndlib/usurper/badge.svg)](https://snyk.io/test/github/ndlib/usurper)
 
 ## Table of Content
