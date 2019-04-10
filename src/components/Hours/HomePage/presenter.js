@@ -18,7 +18,12 @@ const Presenter = (props) => {
 }
 
 Presenter.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    today: PropTypes.shape({
+      rendered: PropTypes.string,
+      schemaOpeningHours: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 }
 
 export default Presenter

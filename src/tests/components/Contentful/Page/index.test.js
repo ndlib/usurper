@@ -19,6 +19,7 @@ describe('components/Contentful/Page/Container', () => {
       props = {
         cfPageEntry: { status: 'test', json: { sys: { contentType: { sys: { id: 'page' } } } } },
         fetchPage: jest.fn(),
+        clearPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         history: {
           replace: jest.fn(),

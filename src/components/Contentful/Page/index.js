@@ -53,7 +53,9 @@ ContentfulPageContainer.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string,
   }),
-  history: PropTypes.string,
+  history: PropTypes.shape({
+    replace: PropTypes.func.isRequired,
+  }),
 }
 
 const ContentfulPage = connect(
