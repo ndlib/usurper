@@ -3,7 +3,7 @@ import { CF_REQUEST_SERVICEPOINTS, CF_RECEIVE_SERVICEPOINTS, CF_NO_SUCH_SERVICEP
 import * as statuses from '../../constants/APIStatuses'
 import { flattenLocale } from '../../shared/ContentfulLibs'
 
-export default(state = { status: statuses.NOT_FETCHED }, action) => {
+export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {
     case CF_REQUEST_SERVICEPOINTS:
       return Object.assign({}, state, {

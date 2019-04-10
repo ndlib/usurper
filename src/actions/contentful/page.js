@@ -34,10 +34,7 @@ const receivePage = (page, response) => {
   if (Array.isArray(response)) {
     response = response[0]
   }
-  if (response &&
-      response.sys &&
-      response.sys.contentType &&
-      response.sys.contentType.sys &&
+  if (response && response.sys &&
       (response.sys.contentType.sys.id === 'page' || response.sys.contentType.sys.id === 'columnContainer')) {
     return receiveSuccess(page, response)
   }

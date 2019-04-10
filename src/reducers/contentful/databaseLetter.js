@@ -1,7 +1,7 @@
 import { CF_REQUEST_DATABASE_LETTER, CF_RECEIVE_DATABASE_LETTER } from '../../actions/contentful/databaseLetter'
 import * as statuses from '../../constants/APIStatuses'
 
-export default(state = {}, action) => {
+export default (state = {}, action) => {
   const letterData = {}
 
   switch (action.type) {

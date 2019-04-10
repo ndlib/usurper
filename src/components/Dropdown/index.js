@@ -63,7 +63,7 @@ class DropdownContainer extends Component {
       this.toggle()
       e.preventDefault()
     } else if (e.keyCode === 40) { // down arrow
-      this.toggle(open)
+      this.toggle(this.state.open)
       this.setIndex(0)
       e.preventDefault()
     }

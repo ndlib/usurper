@@ -39,7 +39,7 @@ export const startRequest = (url, method, dispatch, success, token, err) => {
       throw new Error(response.statusText)
     }
   }).then(json => success(dispatch, json))
-  .catch(e => {
-    err(e)
-  })
+    .catch(e => {
+      err(e)
+    })
 }

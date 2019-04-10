@@ -1,7 +1,7 @@
 import { CF_REQUEST_SIDEBAR, CF_RECEIVE_SIDEBAR, CF_NO_SUCH_SIDEBAR } from '../../actions/contentful/staticContent'
 import * as statuses from '../../constants/APIStatuses'
 
-export default(state = { status: statuses.NOT_FETCHED }, action) => {
+export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {
     case CF_REQUEST_SIDEBAR:
       return Object.assign({}, state, {

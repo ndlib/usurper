@@ -10,9 +10,10 @@ const SearchPreference = (props) => {
         id='save-preference'
         tabIndex='0'
         onKeyDown={props.forgetClick}
-        onClick={props.forgetClick}>{
-        props.search.pref.title
-      } is your default search. <a >CLEAR</a></div>
+        onClick={props.forgetClick}
+      >
+        {props.search.pref.title} is your default search. <a>CLEAR</a>
+      </div>
     )
   }
   return (

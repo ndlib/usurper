@@ -44,8 +44,8 @@ const Rewrite = (props) => {
           path={route.path}
           render={() => (
             <Redirect to={target} />
-        )}
-      />)
+          )}
+        />)
     // wildcard redirects
     } else if (route.path.indexOf('*') >= 0) {
       return (
@@ -55,7 +55,7 @@ const Rewrite = (props) => {
           render={() => (
             <Redirect to={target} />
           )}
-      />)
+        />)
     // internal redirect
     } else {
       return (
@@ -65,7 +65,7 @@ const Rewrite = (props) => {
           render={() => (
             <Redirect to={target} />
           )}
-      />)
+        />)
     }
   })
 }

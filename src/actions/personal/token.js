@@ -41,10 +41,10 @@ const getToken = () => {
         throw new Error(response.statusText)
       }
     })
-    .then(json => handleToken(dispatch, json))
-    .catch(e => {
-      dispatch(states.recievePersonal('login', statuses.ERROR, e.message))
-    })
+      .then(json => handleToken(dispatch, json))
+      .catch(e => {
+        dispatch(states.recievePersonal('login', statuses.ERROR, e.message))
+      })
   }
 }
 

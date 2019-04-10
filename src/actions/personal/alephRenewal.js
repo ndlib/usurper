@@ -33,15 +33,15 @@ export const renewAleph = (barcode, alephId) => {
         'Authorization': state.login.token,
       },
     })
-    .then(response => {
-      return response.json()
-    })
-    .then(json => dispatch(
-      recieveRenewal(barcode, statuses.SUCCESS, json)
-    ))
-    .catch((e) => {
-      console.log(e)
-      dispatch(recieveRenewal(barcode, statuses.ERROR, e))
-    })
+      .then(response => {
+        return response.json()
+      })
+      .then(json => dispatch(
+        recieveRenewal(barcode, statuses.SUCCESS, json)
+      ))
+      .catch((e) => {
+        console.log(e)
+        dispatch(recieveRenewal(barcode, statuses.ERROR, e))
+      })
   }
 }

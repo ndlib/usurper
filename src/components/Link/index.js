@@ -73,7 +73,7 @@ export const LibLink = (props) => {
     return Invalid(propsToPass)
   }
 
-    // Urls to remove so links are local
+  // Urls to remove so links are local
   const replaceUrls = [
     'https://alpha.library.nd.edu',
     'http://alpha.library.nd.edu',

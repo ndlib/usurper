@@ -16,7 +16,7 @@ const AdditionalLinks = (props) => {
         tabIndex='0'
         key={key++}
         className='advanced-basic-toggle'
-        >{props.advancedButtonLabel}</a>
+      >{props.advancedButtonLabel}</a>
     )
   }
   if (props.currentSearch.additionalLinks) {
