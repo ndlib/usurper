@@ -70,6 +70,10 @@ class LibMarkdown extends Component {
   }
 }
 
+LibLink.propTypes = {
+  id: PropTypes.string,
+}
+
 LibMarkdown.propTypes = {
   children: PropTypes.string,
   className: PropTypes.string,

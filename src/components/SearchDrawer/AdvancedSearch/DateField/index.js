@@ -1,15 +1,14 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import DateField from './presenter'
 import { setSearchOption } from '../../../../actions/advancedSearch'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     ...state,
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   const padZero = (n) => {
     if (n < 10) {
       n = '0' + n

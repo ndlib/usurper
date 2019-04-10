@@ -47,7 +47,9 @@ export const mapEvents = (json) => {
       flattenLocale(entry.fields, 'en-US')
 
       let start = dateLibs.makeLocalTimezone(entry.fields.startDate)
-      let end = entry.fields.endDate ? dateLibs.makeLocalTimezone(entry.fields.endDate) : dateLibs.makeLocalTimezone(entry.fields.startDate)
+      let end = entry.fields.endDate
+        ? dateLibs.makeLocalTimezone(entry.fields.endDate)
+        : dateLibs.makeLocalTimezone(entry.fields.startDate)
       // if end time is 0:00, add 23:59
       if (end.getHours() === 0 && end.getMinutes() === 0) {
         end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
@@ -73,6 +75,7 @@ export const mapEvents = (json) => {
           ...entry,
         }
       }
+      return null
     })
 }
 
@@ -113,6 +116,7 @@ const mapStateToProps = (state) => {
           // Only use entries which are in the future or ongoing
           return entry.startDate >= now || entry.endDate >= now
         }
+        return false
       })
       .sort((a, b) => sortEvents(a, b, true))
       .slice(0, 5)

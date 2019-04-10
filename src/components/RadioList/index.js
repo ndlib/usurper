@@ -109,6 +109,7 @@ RadioList.propTypes = {
   submit: PropTypes.func,
   useButton: PropTypes.bool,
   buttonText: PropTypes.string,
+  onChangeCallback: PropTypes.func,
 }
 
 RadioList.defaultProps = {

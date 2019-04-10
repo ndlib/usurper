@@ -26,7 +26,7 @@ const getCourses = () => {
       dispatch,
       handleCourses,
       state.login.token,
-      (e) => {
+      () => {
         dispatch(states.recievePersonal('courses', statuses.ERROR))
       }
     )

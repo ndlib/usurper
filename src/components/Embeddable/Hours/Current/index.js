@@ -69,9 +69,7 @@ export class CurrentHoursContainer extends Component {
         let closes = new Date(hoursBlock.toLocalDate)
 
         let now = new Date()
-        if (opens <= now && now <= closes) {
-          return true
-        }
+        return (opens <= now && now <= closes)
       })
       return (currentOpenBlocks.length > 0)
     } catch (e) {
@@ -98,9 +96,8 @@ export class CurrentHoursContainer extends Component {
 
 CurrentHoursContainer.propTypes = {
   hoursEntry: PropTypes.object.isRequired,
-  jsonHoursApiKey: PropTypes.string,
-  servicePoint: PropTypes.object,
   fetchHours: PropTypes.func.isRequired,
+  children: PropTypes.any,
 }
 
 const CurrentHours = connect(

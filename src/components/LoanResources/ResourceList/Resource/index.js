@@ -1,4 +1,3 @@
-'use strict'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -32,7 +31,7 @@ class ResourceContainer extends Component {
     }
   }
 
-  toggleHidden (event) {
+  toggleHidden () {
     this.setState({
       hidden: !this.state.hidden,
     })
@@ -45,7 +44,6 @@ class ResourceContainer extends Component {
 
 ResourceContainer.propTypes = {
   renewal: PropTypes.object,
-  canRenew: PropTypes.bool,
   item: PropTypes.object,
   borrowed: PropTypes.bool,
 }

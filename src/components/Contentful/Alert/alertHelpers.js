@@ -1,5 +1,3 @@
-import React from 'react'
-
 const alertMap = (alert, isGlobal = false) => {
   let type = alert.type ? alert.type.toLowerCase() : 'warning'
 

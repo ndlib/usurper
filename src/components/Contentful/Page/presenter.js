@@ -6,7 +6,6 @@ import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import ServicePoint from '../ServicePoint'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
 import OpenGraph from '../../OpenGraph'
@@ -19,7 +18,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         Back to {cfPageEntry.fields.parentPage.fields.alternateTitle || cfPageEntry.fields.parentPage.fields.title}
       </Link>
     )}
-    {cfPageEntry.fields.shortDescription && (<meta name='description' content={cfPageEntry.fields.shortDescription} />) }
+    {cfPageEntry.fields.shortDescription && (<meta name='description' content={cfPageEntry.fields.shortDescription} />)}
     <PageTitle title={cfPageEntry.fields.title} />
     <OpenGraph
       title={cfPageEntry.fields.title}
@@ -38,12 +37,16 @@ const PagePresenter = ({ cfPageEntry }) => (
         <LibMarkdown>{ cfPageEntry.fields.body }</LibMarkdown>
         <Related
           className='p-resources'
-          title={cfPageEntry.fields.relatedResourcesTitleOverride ? cfPageEntry.fields.relatedResourcesTitleOverride : 'Resources'}
+          title={cfPageEntry.fields.relatedResourcesTitleOverride
+            ? cfPageEntry.fields.relatedResourcesTitleOverride
+            : 'Resources'}
           showImages={false}
         >
           { cfPageEntry.fields.relatedResources }
         </Related>
-        <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>{ cfPageEntry.fields.libguides }</Related>
+        <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>
+          { cfPageEntry.fields.libguides }
+        </Related>
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
         {
           cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry, index) => {
@@ -59,6 +62,8 @@ const PagePresenter = ({ cfPageEntry }) => (
                   className = 'p-services'
                   showImages = true
                   break
+                default:
+                  className = 'p-resources'
               }
             }
             return (

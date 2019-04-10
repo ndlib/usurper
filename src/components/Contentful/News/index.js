@@ -6,7 +6,6 @@ import { fetchNews } from '../../../actions/contentful/news'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulNewsPresenter from './presenter.js'
 import './style.css'
-import * as statuses from '../../../constants/APIStatuses'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {
@@ -44,6 +43,9 @@ ContentfulNewsContainer.propTypes = {
   fetchNews: PropTypes.func.isRequired,
   entry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 const ContentfulNews = connect(

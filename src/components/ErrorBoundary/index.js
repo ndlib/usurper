@@ -4,6 +4,7 @@
   https://github.com/ndlib/usurper/pull/467
 ***/
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import hoistNonReactStatic from 'hoist-non-react-statics'
 
 /***
@@ -43,6 +44,10 @@ class ErrorBoundary extends Component {
     }
     return this.props.children
   }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.any,
 }
 
 /***

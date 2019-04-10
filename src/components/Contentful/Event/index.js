@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import { fetchEvent } from '../../../actions/contentful/event'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
-import * as statuses from '../../../constants/APIStatuses'
 import { formatDate, hour12, isSameDay, makeLocalTimezone } from '../../../shared/DateLibs.js'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
@@ -72,6 +71,9 @@ ContentfulEventContainer.propTypes = {
   data: PropTypes.object,
   status: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 const ContentfulEvent = connect(

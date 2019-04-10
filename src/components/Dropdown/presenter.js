@@ -1,4 +1,3 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -54,10 +53,10 @@ Presenter.propTypes = {
   buttonText: PropTypes.string,
   onButtonClick: PropTypes.func,
 
-  focus: PropTypes.func,
+  focus: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   onSelectedClick: PropTypes.func.isRequired,
   onSelectedKeyDown: PropTypes.func.isRequired,
-  onOptionClick: PropTypes.func.isRequired,
+  onOptionClick: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   onOptionKeyDown: PropTypes.func.isRequired,
 }
 

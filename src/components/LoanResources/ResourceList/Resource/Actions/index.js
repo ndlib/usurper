@@ -1,5 +1,3 @@
-'use strict'
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Presenter from './presenter'
 import Config from '../../../../../shared/Configuration'
@@ -10,7 +8,7 @@ const illWebForm = '75'
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onRenewClick: (e) => {
+    onRenewClick: () => {
       dispatch(renewAleph(ownProps.item.barcode, ownProps.alephId))
     },
   }

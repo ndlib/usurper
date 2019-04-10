@@ -12,7 +12,9 @@ const PageWrapper = (props) => {
   return (
     <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
       <meta id='nd-version' content={Config.version} />
-      <a href='#maincontent' className="skip"><img src={spacer} className="skip" width="0" height="0" border="0" alt="skip to content" /></a>
+      <a href='#maincontent' className='skip'>
+        <img src={spacer} className='skip' width='0' height='0' border='0' alt='skip to content' />
+      </a>
 
       <Header {...props} />
       <div id='maincontent' className={'container-fluid content'}>

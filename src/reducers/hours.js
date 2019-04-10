@@ -5,16 +5,16 @@ export default(state = { status: statuses.NOT_FETCHED, json: {} }, action) => {
   switch (action.type) {
     case HOURS_REQUEST:
       return Object.assign({}, state, {
-        status: statuses.FETCHING
+        status: statuses.FETCHING,
       })
     case HOURS_RECEIVE:
       return Object.assign({}, state, {
         status: action.status,
-        json: action.hours
+        json: action.hours,
       })
     case HOURS_NO_SUCH:
       return Object.assign({}, state, {
-        status: action.status
+        status: action.status,
       })
     default:
       return state

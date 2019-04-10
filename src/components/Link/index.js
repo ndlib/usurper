@@ -101,7 +101,7 @@ export const LibLink = (props) => {
     return true
   }
 
-  to = to + query
+  to += query
 
   if (to.startsWith('http')) {
     return External(to, props.noTarget, onClick, props.ariaLabel, propsToPass)
@@ -141,6 +141,19 @@ const nonTagProps = {
   dispatch: PropTypes.func,
   staticContext: PropTypes.any,
   history: PropTypes.object,
+}
+
+Internal.propTypes = {
+  children: PropTypes.any,
+}
+
+External.propTypes = {
+  children: PropTypes.any,
+}
+
+Invalid.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.string,
 }
 
 LibLink.propTypes = Object.assign({}, nonTagProps, {

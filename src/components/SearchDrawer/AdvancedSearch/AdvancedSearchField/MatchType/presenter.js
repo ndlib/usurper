@@ -12,4 +12,9 @@ const MatchType = (props) => {
   )
 }
 
+MatchType.propTypes = {
+  id: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+}
+
 export default MatchType

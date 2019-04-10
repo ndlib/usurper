@@ -65,7 +65,7 @@ AdvancedSearch.propTypes = {
   search: PropTypes.shape({
     searchType: PropTypes.string.isRequired,
   }),
-  dropdownOnChange: PropTypes.func,
+  dropdownOnChange: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   onSubmit: PropTypes.func,
   visible: PropTypes.bool,
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import PageWrapper from './presenter.js'
 import { closeSearchBox } from '../../actions/search.js'
 import { closeMenus, fetchNavigation } from '../../actions/menu.js'
@@ -19,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(closeSearchBox())
       dispatch(closeMenus())
     },
-    fetchNavigation: (e) => {
+    fetchNavigation: () => {
       dispatch(fetchNavigation())
     },
   }
@@ -33,6 +34,10 @@ class PageWrapperContainer extends Component {
   render () {
     return <PageWrapper {...this.props} />
   }
+}
+
+PageWrapperContainer.propTypes = {
+  fetchNavigation: PropTypes.func.isRequired,
 }
 
 export default connect(

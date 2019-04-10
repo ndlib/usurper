@@ -124,7 +124,6 @@ export default (
         queries: action.queries,
       })
     case CF_RECEIVE_PAGE:
-    {
       if (action.status === statuses.SUCCESS) {
         let newState = Object.assign({}, state, {
           pageSearchPref: action.page.fields.defaultSearchScope,
@@ -133,7 +132,6 @@ export default (
         return newState
       }
       return state
-    }
     default:
       return state
   }

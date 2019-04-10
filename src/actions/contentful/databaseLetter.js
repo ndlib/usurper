@@ -55,10 +55,12 @@ export const fetchLetter = (letter, preview) => {
       })
       .then(json => {
         json.forEach((row) => {
-          row['searchBlob'] = (row.fields.title ? row.fields.title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '') : '')
+          row['searchBlob'] = (row.fields.title
+            ? row.fields.title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
+            : '')
           if (row.fields.alternateTitles) {
             row.fields.alternateTitles.forEach((title) => {
-              row['searchBlob'] += ' ' + title.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '')
+              row['searchBlob'] += ' ' + title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
             })
           }
         })

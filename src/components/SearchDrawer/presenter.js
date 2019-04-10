@@ -40,14 +40,16 @@ const SearchDrawer = (props) => {
   }
 }
 
-SearchDrawer.propTypes = {
+Drawer.propTypes = {
   currentSearch: PropTypes.object.isRequired,
   search: PropTypes.shape({
+    advancedSearch: PropTypes.bool.isRequired,
+  }),
+}
+
+SearchDrawer.propTypes = {
+  search: PropTypes.shape({
     drawerOpen: PropTypes.bool.isRequired,
-    hasPref: PropTypes.bool.isRequired,
-    usePref: PropTypes.bool.isRequired,
-    pref: PropTypes.object,
-    searchType: PropTypes.string.isRequired,
   }),
 }
 

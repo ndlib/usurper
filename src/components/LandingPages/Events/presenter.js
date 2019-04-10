@@ -30,7 +30,7 @@ const Events = (props) => {
 
 Events.propTypes = {
   all: PropTypes.array,
-  past: PropTypes.array,
-  present: PropTypes.array,
+  past: PropTypes.array, // eslint-disable-line react/no-unused-prop-types
+  present: PropTypes.array, // eslint-disable-line react/no-unused-prop-types
 }
 export default Events

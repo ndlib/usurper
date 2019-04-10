@@ -1,14 +1,13 @@
-import { connect } from 'react-redux'
 import React from 'react'
+import PropTypes from 'prop-types'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import Link from '../../Link'
 import ServiceNowLink from '../../ServiceNowLink'
 import { Helmet } from 'react-helmet'
 
 const Error = ({ message = 'An error has occured' }) => (
   <div className={'Error'}>
-    <SearchProgramaticSet open={true} />
+    <SearchProgramaticSet open />
     <PageTitle title='Server Error' />
     <Helmet>
       <meta name='prerender-status-code' content='500' />
@@ -23,5 +22,9 @@ const Error = ({ message = 'An error has occured' }) => (
     </div>
   </div>
 )
+
+Error.propTypes = {
+  message: PropTypes.string,
+}
 
 export default Error

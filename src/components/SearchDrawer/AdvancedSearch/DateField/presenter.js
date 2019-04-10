@@ -43,6 +43,8 @@ DateField.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onKeyDown: PropTypes.func,
+  label: PropTypes.string.isRequired,
+  formatID: PropTypes.func.isRequired,
 }
 
 export default DateField

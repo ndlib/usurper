@@ -46,8 +46,8 @@ const DateFilter = (props) => {
 
 DateFilter.propTypes = {
   eventDates: PropTypes.object.isRequired,
-  yearCallback: PropTypes.func.isRequired,
-  expanded: PropTypes.array.isRequired,
+  yearCallback: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
+  expanded: PropTypes.array.isRequired, // eslint-disable-line react/no-unused-prop-types
 }
 
 export default DateFilter

@@ -42,7 +42,7 @@ export const fetchNews = (news, preview) => {
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
   if (preview) { url += `&preview=${preview}` }
 
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestNews(news))
 
     return fetch(url)

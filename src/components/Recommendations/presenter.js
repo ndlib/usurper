@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// TODO: Fix, update, or remove this. Maybe should be lambda purl path?
 const redirectPrefix = 'https://7w0g1d1dah.execute-api.us-east-1.amazonaws.com/dev/databases/'
 
 const Recommendations = (props) => {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import AdvancedSearch from './presenter'
@@ -6,13 +5,13 @@ import searchQuery from '../searchQueryBuilder'
 import { setSearchType } from '../../../actions/search.js'
 import './style.css'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     ...state,
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     dropdownOnChange: (e) => {
       dispatch(setSearchType(e.target.value))

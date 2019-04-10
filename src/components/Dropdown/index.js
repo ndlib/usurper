@@ -54,7 +54,7 @@ class DropdownContainer extends Component {
     this.setState({ index: index })
   }
 
-  onSelectedClick (e) {
+  onSelectedClick () {
     this.toggle()
   }
 
@@ -104,7 +104,7 @@ class DropdownContainer extends Component {
     }
   }
 
-  onButtonClick (e) {
+  onButtonClick () {
     this.onSubmit(this.state.index, true)
   }
 

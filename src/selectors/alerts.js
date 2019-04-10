@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 import { flattenLocale } from '../shared/ContentfulLibs'
 
-const getAlerts = (state, props) => {
+const getAlerts = (state) => {
   let allAlerts = []
   if (state.allAlerts && state.allAlerts.status === statuses.SUCCESS && state.allAlerts.json) {
     let now = new Date()

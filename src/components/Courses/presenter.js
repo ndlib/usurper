@@ -3,7 +3,6 @@ import Link from '../Link'
 import PropTypes from 'prop-types'
 import PageTitle from '../PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
-import Lgicon from '../../static/images/icons/libguide.png'
 import StaticSidebar from '../Contentful/StaticContent/Sidebar'
 import StaticBody from '../Contentful/StaticContent/Body'
 import StaticAlert from '../Contentful/StaticContent/Alert'
@@ -14,16 +13,6 @@ class Courses extends Component {
     let courseReserves = ''
     if (course.courseReserveLink) {
       courseReserves = <a href={course.courseReserveLink}>Course Reserves</a>
-    }
-    let courseGuides = ''
-    if (course.courseGuides.length > 0) {
-      courseGuides = (
-        <ul>
-          {course.courseGuides.map((courseGuide, index) =>
-            <li key={index}><a href={courseGuide}><img src={Lgicon} /> Course Guide</a></li>
-          )}
-        </ul>
-      )
     }
     let subtitle = ''
     if (course.codes) {
@@ -70,11 +59,6 @@ class Courses extends Component {
       courseReserves = <a href={course.courseReserveLink}>Course Reserves</a>
     }
 
-    let courseGuide = ''
-    if (course.courseGuide) {
-      courseGuide = <a href={course.courseGuide}><img src={Lgicon} /> Course Guide</a>
-    }
-
     let subtitle = course.instructor_name
     if (course.codes) {
       subtitle = course.codes.join(', ') + ' - ' + course.sectionNumbers.join(', ')
@@ -108,6 +92,7 @@ class Courses extends Component {
         } else if (row.type === 'instructor') {
           return this.instructorCard(row)
         }
+        return null
       })
       outArray.push(
         <div className='course-section' key={key + '-section'}>

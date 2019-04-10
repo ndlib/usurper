@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
-
 const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
-  const title = 'Hours for ' + hoursEntry.name
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
   const ariaLabel = hoursEntry.name + ', Open ' + todayLabel
@@ -22,12 +20,14 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
         onClick={collapseHandler}
         onKeyDown={collapseHandler}
       >
-        <h4 aria-label={ariaLabel} className="sp">
+        <h4 aria-label={ariaLabel} className='sp'>
           <div className='location' itemProp='name'><h2>{hoursEntry.name}</h2></div>
-          <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
+          <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>
+            {todayLabel}
+          </div>
           <div className='arrow'
             role='tab'
-            aria-expanded={true}
+            aria-expanded
             aria-controls={hoursEntry.servicePoint.slug}
             aria-label={'View Hours For ' + hoursEntry.name}>
             <div className='carrow' />

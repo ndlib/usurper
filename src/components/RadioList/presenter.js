@@ -2,6 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Presenter = (props) => {
+  const radioName = props.radioName
+  const optClick = props.onOptionClick
+  const optKeyDown = props.onOptionKeyDown
+  const focus = props.focus
   return (
     <div className='radio-list'>
       <form>
@@ -12,17 +16,17 @@ const Presenter = (props) => {
                 <li
                   key={'option_' + index}
                   className='listOption'
-                  onClick={props.onOptionClick}
-                  onKeyDown={props.onOptionKeyDown}
+                  onClick={optClick}
+                  onKeyDown={optKeyDown}
                   value={index}
-                  ref={item => props.focus(index, item)}
+                  ref={item => focus(index, item)}
                 >
                   <label>
                     <input
                       type='radio'
                       title={entry.title}
                       value={index}
-                      name={props.radioName}
+                      name={radioName}
                       defaultChecked={entry.title === props.selectedTitle}
                     />
                     {entry.title}

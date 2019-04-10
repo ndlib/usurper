@@ -14,8 +14,6 @@ import { sortNews } from '../../Home/News'
 const mapStateToProps = (state) => {
   let allNews = []
   if (state.allNews && state.allNews.status === statuses.SUCCESS) {
-    let now = new Date()
-
     allNews = state.allNews.json
       .map((entry) => {
         flattenLocale(entry.fields, 'en-US')

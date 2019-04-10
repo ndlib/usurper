@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchLetter } from '../../actions/contentful/databaseLetter'
-import PresenterFactory from '../APIPresenterFactory'
 import ListPresenter from './presenter.js'
 import * as statuses from '../../constants/APIStatuses'
 import PageNotFound from '../Messages/NotFound'
@@ -75,6 +74,7 @@ const mapStateToProps = (state, thisProps) => {
         } else if (valid(a) && valid(b)) {
           return statuses.SUCCESS
         }
+        return statuses.ERROR
       })
   }
 
@@ -129,16 +129,11 @@ export class DatabaseListContainer extends Component {
     }
   }
 
-  // only filter by title for now, may want description in the future
   filter (filterValue, list) {
-    const value = filterValue.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '')
+    const value = filterValue.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
 
-    const filterFields = [
-      'title',
-    ]
     return list.filter((item) => {
       let inFilter = false
-      // also search all the alternate titles
       if (item.searchBlob) {
         inFilter = inFilter || item.searchBlob.indexOf(value) >= 0
       }
@@ -148,9 +143,9 @@ export class DatabaseListContainer extends Component {
 
   onFilterChange (event) {
     let filtered = this.filter(event.target.value, this.props.allDbs)
-    let assistText = filtered.length + ' items beginning with the letter "' + this.props.currentLetter.toUpperCase() + '"'
+    let assistText = `${filtered.length} items beginning with the letter "${this.props.currentLetter.toUpperCase()}"`
     if (event.target.value) {
-      assistText = filtered.length + ' results found for "' + event.target.value + '"'
+      assistText = `${filtered.length} results found for "${event.target.value}"`
     }
 
     this.setState({
@@ -225,9 +220,15 @@ export class DatabaseListContainer extends Component {
 DatabaseListContainer.propTypes = {
   fetchLetter: PropTypes.func.isRequired,
   currentLetter: PropTypes.string.isRequired,
-
   cfDatabaseLetter: PropTypes.object.isRequired,
   allLettersStatus: PropTypes.string.isRequired,
+  allDbs: PropTypes.array.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.object,
+  }),
 }
 
 const DatabaseList = connect(

@@ -6,7 +6,8 @@ const moment = require('moment')
 
 const getHoursStatus = (state, props) => {
   const key = props.servicePoint.fields.hoursCode
-  if (state.hours.status === statuses.SUCCESS && !(state.hours.json['locations'] && state.hours.json['locations'][key])) {
+  if (state.hours.status === statuses.SUCCESS &&
+    !(state.hours.json['locations'] && state.hours.json['locations'][key])) {
     return statuses.NOT_FOUND
   }
   return state.hours.status
@@ -31,23 +32,6 @@ const getHoursName = (state, props) => {
 
 const getServicePoint = (state, props) => {
   return props.servicePoint.fields
-}
-
-const makeGetHoursForServicePoint = () => {
-  return createSelector(
-    [getHoursStatus, getHours, getHoursName, getServicePoint],
-    (status, hours, name, servicePoint) => {
-      if (!hours) {
-        hours = { }
-      }
-      hours.today = getTodaysHours(hours)
-      hours.name = name
-      hours.status = status
-      hours.servicePoint = servicePoint
-      hours.upcomingChangedHours = getUpcomingChangedHours(hours)
-      return hours
-    }
-  )
 }
 
 const getTodaysHours = (hours) => {
@@ -76,6 +60,23 @@ const getUpcomingChangedHours = (hours) => {
   }
 
   return {}
+}
+
+const makeGetHoursForServicePoint = () => {
+  return createSelector(
+    [getHoursStatus, getHours, getHoursName, getServicePoint],
+    (status, hours, name, servicePoint) => {
+      if (!hours) {
+        hours = { }
+      }
+      hours.today = getTodaysHours(hours)
+      hours.name = name
+      hours.status = status
+      hours.servicePoint = servicePoint
+      hours.upcomingChangedHours = getUpcomingChangedHours(hours)
+      return hours
+    }
+  )
 }
 
 export default makeGetHoursForServicePoint

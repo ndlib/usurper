@@ -1,4 +1,4 @@
-import { CF_REQUEST_PAGE, CF_RECEIVE_PAGE, CF_NO_SUCH_PAGE, CF_CLEAR_PAGE } from '../../actions/contentful/page'
+import { CF_REQUEST_PAGE, CF_RECEIVE_PAGE, CF_CLEAR_PAGE } from '../../actions/contentful/page'
 import * as statuses from '../../constants/APIStatuses'
 
 export default(state = { status: statuses.NOT_FETCHED }, action) => {

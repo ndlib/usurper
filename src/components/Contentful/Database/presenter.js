@@ -67,7 +67,12 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
               { cfDatabaseEntry.fields.alephSystemNumber && (
                 <div className='databaseInfo'>
                   <div className='infoLabel'>Catalog Number: </div>
-                  <Link className='infoValue' to={`${Config.onesearchBaseURL}/NDU:malc_blended:ndu_aleph${cfDatabaseEntry.fields.alephSystemNumber}`}>
+                  <Link
+                    className='infoValue'
+                    to={
+                      `${Config.onesearchBaseURL}/NDU:malc_blended:ndu_aleph${cfDatabaseEntry.fields.alephSystemNumber}`
+                    }
+                  >
                     { cfDatabaseEntry.fields.alephSystemNumber }
                   </Link>
                 </div>

@@ -38,7 +38,7 @@ class AlertContainer extends Component {
 }
 
 AlertContainer.propTypes = {
-  alerts: PropTypes.object,
+  alerts: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
 }
 
 export default connect(mapStateToProps)(AlertContainer)

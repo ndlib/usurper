@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Navigation from './presenter'
@@ -12,7 +13,7 @@ import {
   MOBILE_MENU,
 } from '../../actions/menu'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   const { personal } = state
   return {
     ...state,
@@ -23,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   const preventDefault = (e) => {
     dispatch(closeSearchBox())
     e.stopPropagation()
@@ -83,7 +84,9 @@ const mergeProps = (state, dispatchProps, ownProps) => {
         landingPage: current.landingPage ? current.landingPage.fields.slug : null,
         menuId: current.slug,
         menuData: current.columns,
-        onClick: state.menus.menuId === current.slug ? dispatchProps.closeMenus : dispatchProps.openMenu.bind(null, current.slug),
+        onClick: state.menus.menuId === current.slug
+          ? dispatchProps.closeMenus
+          : dispatchProps.openMenu.bind(null, current.slug),
         keyDown: keyDown,
         onBlur: dispatchProps.closeMenus,
       })
@@ -138,6 +141,10 @@ class NavigationContainer extends Component {
       <Navigation {...this.props} />
     )
   }
+}
+
+NavigationContainer.propTypes = {
+  dropDowns: PropTypes.array,
 }
 
 const NavigationComponent = withRouter(connect(

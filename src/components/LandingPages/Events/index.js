@@ -20,12 +20,14 @@ const mapStateToProps = (state) => {
       if (entry && entry.startDate && entry.endDate) {
         return entry.startDate >= now || entry.endDate >= now
       }
+      return false
     })
 
     pastEvents = allEvents.filter((entry) => {
       if (entry && entry.startDate && entry.endDate) {
         return entry.startDate < now && entry.endDate < now
       }
+      return false
     })
   }
 

@@ -27,7 +27,7 @@ const getRecommendations = () => {
       dispatch,
       handleRecommendations,
       state.login.token,
-      (e) => {
+      () => {
         dispatch(states.recievePersonal('recommend', statuses.ERROR))
       }
     )

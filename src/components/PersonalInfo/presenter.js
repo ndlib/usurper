@@ -1,9 +1,7 @@
-'use strict'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Recommendations from '../Recommendations'
 import LoanResources from '../LoanResources'
-import Courses from '../Courses'
 import PageTitle from '../PageTitle'
 import Loading from '../Messages/Loading'
 import SearchProgramaticSet from '../SearchProgramaticSet'
@@ -33,7 +31,7 @@ const LoggedIn = (preview, balance) => {
             </div>
           }
           <Recommendations />
-          <div><LoanResources /></div>
+          <LoanResources />
           <StaticBody slug='personal' preview={preview} />
         </div>
         <StaticSidebar slug='personal' preview={preview} />

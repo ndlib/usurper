@@ -1,12 +1,8 @@
 import { connect } from 'react-redux'
 import SearchProgramaticSet from './presenter.js'
-import { openSearchDrawer, closeSearchDrawer, setSearchType } from '../../actions/search.js'
+import { openSearchDrawer, closeSearchDrawer } from '../../actions/search.js'
 
-const mapStateToProps = (state, ownProps) => {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onGetProps: (open) => {
       if (open) {
@@ -19,6 +15,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(SearchProgramaticSet)
