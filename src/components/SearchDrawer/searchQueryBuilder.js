@@ -41,7 +41,7 @@ const libSearchBasicURL = (queryTerm) => {
 // Actual searchQuery function
 const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm
-  let isAdvanced = searchStore.advancedSearch
+  const isAdvanced = searchStore.advancedSearch
   // let searchScope = 'nd_campus'
 
   if (isAdvanced) {
@@ -53,18 +53,18 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const precision1 = advancedSearch['precisionOperator_1'] || 'contains'
     const precision2 = advancedSearch['precisionOperator_2'] || 'contains'
     const freeText0 = advancedSearch['freeText_0'] || 'alldocuments'
-    let freeText1 = advancedSearch['freeText_1'] || ''
-    let freeText2 = advancedSearch['freeText_2'] || ''
+    const freeText1 = advancedSearch['freeText_1'] || ''
+    const freeText2 = advancedSearch['freeText_2'] || ''
     const bool0 = advancedSearch['bool_0'] || 'AND'
     const bool1 = advancedSearch['bool_1'] || 'AND'
     const materialType = advancedSearch['materialType'] || 'all_items'
     const language = advancedSearch['language'] || 'all_items'
     const drStartDay = advancedSearch['drStartDay'] || '01'
     const drStartMonth = advancedSearch['drStartMonth'] || '01'
-    let drStartYear = advancedSearch['drStartYear5']
+    const drStartYear = advancedSearch['drStartYear5']
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
-    let drEndYear = advancedSearch['drEndYear5']
+    const drEndYear = advancedSearch['drEndYear5']
     // searchScope = advancedSearch['scopesListAdvanced'] ? advancedSearch['scopesListAdvanced'] : searchScope
 
     // Build advanced search query

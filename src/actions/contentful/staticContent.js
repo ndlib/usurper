@@ -12,7 +12,7 @@ export const requestSidebar = (slug) => {
 
 export const CF_RECEIVE_SIDEBAR = 'CF_RECEIVE_SIDEBAR'
 const receiveSidebar = (slug, response) => {
-  let error = {
+  const error = {
     type: CF_RECEIVE_SIDEBAR,
     status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
@@ -20,7 +20,7 @@ const receiveSidebar = (slug, response) => {
     receivedAt: Date.now(),
   }
 
-  let success = {
+  const success = {
     type: CF_RECEIVE_SIDEBAR,
     status: statuses.SUCCESS,
     data: response[0],
@@ -42,10 +42,12 @@ const receiveSidebar = (slug, response) => {
 export const fetchSidebar = (slug, preview) => {
   const query = encodeURIComponent(`content_type=dynamicPage&fields.slug=${slug}&include=3`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return (dispatch, getState) => {
-    let state = getState()
+    const state = getState()
     if (state.cfStatic.slug === slug && state.cfStatic.status === statuses.FETCHING) {
       return
     }

@@ -3,7 +3,7 @@ import Link from '../Link'
 import PropTypes from 'prop-types'
 
 /* eslint-disable max-len */
-let shareLocations = {
+const shareLocations = {
   facebook: {
     func: (title, location) => `https://facebook.com/sharer/sharer.php?u=${location}`,
     svgPath: 'M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z',
@@ -37,7 +37,7 @@ const ShareLinks = ({ title, className }) => {
     <div className={className}>
       {
         Object.keys(shareLocations).map((key) => {
-          let location = shareLocations[key]
+          const location = shareLocations[key]
           return (
             <Link
               className='resp-sharing-button__link'

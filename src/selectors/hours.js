@@ -38,7 +38,7 @@ const getTodaysHours = (hours) => {
   if (Object.keys(hours).length === 0) {
     return {}
   }
-  let today = hours.weeks[0][moment().format('dddd')]
+  const today = hours.weeks[0][moment().format('dddd')]
   today['schemaOpeningHours'] = days[new Date().getDay()] + ' ' + today.rendered
 
   return today
@@ -51,9 +51,13 @@ const getUpcomingChangedHours = (hours) => {
   // get all the keys to loop through the days
   const weekdays = Object.keys(hours.weeks[0])
 
-  const test = weekdays.map((day) => { return hours.weeks[0][day].rendered })
+  const test = weekdays.map((day) => {
+    return hours.weeks[0][day].rendered
+  })
   for (let step = 1; step < hours.weeks.length; step++) {
-    let test2 = weekdays.map((day) => { return hours.weeks[step][day].rendered })
+    const test2 = weekdays.map((day) => {
+      return hours.weeks[step][day].rendered
+    })
     if (!_.isEqual(test, test2)) {
       return hours.weeks[step]
     }

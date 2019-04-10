@@ -29,8 +29,8 @@ class DropdownContainer extends Component {
       return
     }
 
-    let title = this.props.entries[index].title
-    let value = this.props.entries[index].value
+    const title = this.props.entries[index].title
+    const value = this.props.entries[index].value
     this.props.submit(value, title)
   }
 
@@ -75,7 +75,7 @@ class DropdownContainer extends Component {
 
   onOptionKeyDown (e) {
     let i
-    let numOptions = this.props.entries.length
+    const numOptions = this.props.entries.length
     switch (e.keyCode) {
       case 9: // tab key
         e.preventDefault()

@@ -31,15 +31,15 @@ const sortDbs = (raw) => {
     return raw
   }
 
-  let out = {}
+  const out = {}
   Object.keys(raw).forEach((letter) => {
     out[letter] = []
     out[letter]['status'] = raw[letter].status
     if (raw[letter].data) {
       out[letter]['data'] = raw[letter].data.sort(
         (left, right) => {
-          let a = left.fields.title.toLowerCase()
-          let b = right.fields.title.toLowerCase()
+          const a = left.fields.title.toLowerCase()
+          const b = right.fields.title.toLowerCase()
 
           if (a < b) {
             return -1
@@ -60,12 +60,12 @@ const mapStateToProps = (state, thisProps) => {
   if (state.cfDatabaseLetter && state.cfDatabaseLetter.a) {
     allLettersStatus = Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status)
       .reduce((a, b) => {
-        let success = (status) => status === statuses.SUCCESS
-        let notFound = (status) => status === statuses.NOT_FOUND
-        let valid = (status) => success(status) || notFound(status)
+        const success = (status) => status === statuses.SUCCESS
+        const notFound = (status) => status === statuses.NOT_FOUND
+        const valid = (status) => success(status) || notFound(status)
 
-        let error = (status) => status === statuses.ERROR
-        let fetching = (status) => status === statuses.FETCHING
+        const error = (status) => status === statuses.ERROR
+        const fetching = (status) => status === statuses.FETCHING
 
         if (error(a) || error(b)) {
           return statuses.ERROR
@@ -78,7 +78,7 @@ const mapStateToProps = (state, thisProps) => {
       })
   }
 
-  let letterData = sortDbs(state.cfDatabaseLetter)
+  const letterData = sortDbs(state.cfDatabaseLetter)
 
   return {
     cfDatabaseLetter: letterData,
@@ -142,7 +142,7 @@ export class DatabaseListContainer extends Component {
   }
 
   onFilterChange (event) {
-    let filtered = this.filter(event.target.value, this.props.allDbs)
+    const filtered = this.filter(event.target.value, this.props.allDbs)
     let assistText = `${filtered.length} items beginning with the letter "${this.props.currentLetter.toUpperCase()}"`
     if (event.target.value) {
       assistText = `${filtered.length} results found for "${event.target.value}"`

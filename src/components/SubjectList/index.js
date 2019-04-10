@@ -55,8 +55,8 @@ const SubjectList = () => {
 
   // alphabetical sort
   links.sort((a, b) => {
-    let left = a.name
-    let right = b.name
+    const left = a.name
+    const right = b.name
     if (left < right) {
       return -1
     } else if (right < left) {

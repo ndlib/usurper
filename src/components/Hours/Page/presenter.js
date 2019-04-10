@@ -28,7 +28,7 @@ const Presenter = (props) => {
           <main className='service-point-list' role='tablist'>
             {
               props.hoursPageOrder.map((servicePointOrder) => {
-                let sp = props.servicePoints[servicePointOrder.servicePointSlug]
+                const sp = props.servicePoints[servicePointOrder.servicePointSlug]
                 if (!sp) {
                   return null
                 }

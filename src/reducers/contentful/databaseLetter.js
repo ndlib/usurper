@@ -2,7 +2,7 @@ import { CF_REQUEST_DATABASE_LETTER, CF_RECEIVE_DATABASE_LETTER } from '../../ac
 import * as statuses from '../../constants/APIStatuses'
 
 export default(state = {}, action) => {
-  let letterData = {}
+  const letterData = {}
 
   switch (action.type) {
     case CF_REQUEST_DATABASE_LETTER:

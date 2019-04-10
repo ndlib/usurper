@@ -68,8 +68,8 @@ const Loaded = (props) => {
   if (props.list.length < 1) {
     return LetterNotFound(props.letter, props.filterValue, props.onFilterChange)
   }
-  let data = props.list.map((item) => {
-    let linkObject = getLinkObject(item.fields, item.sys.id)
+  const data = props.list.map((item) => {
+    const linkObject = getLinkObject(item.fields, item.sys.id)
 
     return (
       <section key={item.fields.alephSystemNumber + item.fields.title}

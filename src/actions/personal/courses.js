@@ -18,7 +18,7 @@ const handleCourses = (dispatch, data) => {
 
 const getCourses = () => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
     dispatch(states.requestPersonal('courses'))
     states.startRequest(
       coursesURL,

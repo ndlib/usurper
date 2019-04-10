@@ -9,14 +9,14 @@ const Contact = (props) => {
     return null
   }
 
-  let sp = props.servicePoint.fields
+  const sp = props.servicePoint.fields
 
   let floor
   let building
   if (sp.floor && sp.floor.fields) {
-    let rawFloor = sp.floor.fields
+    const rawFloor = sp.floor.fields
     if (rawFloor.image && !sp.hideFloorMap) {
-      let floorLink = 'floor/' + rawFloor.slug
+      const floorLink = 'floor/' + rawFloor.slug
       floor = (
         <li className='floor'><Link
           to={floorLink}
@@ -28,7 +28,7 @@ const Contact = (props) => {
     }
 
     if (rawFloor.building && rawFloor.building.fields) {
-      let rawBuilding = rawFloor.building.fields
+      const rawBuilding = rawFloor.building.fields
       building = (
         <li
           className='building'>

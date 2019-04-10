@@ -54,7 +54,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       } else if (e.keyCode === 40) {
         e.preventDefault()
         dispatch(openSearchBox())
-        setTimeout(() => { document.getElementById('uSearchOption_0').focus() }, 50)
+        setTimeout(() => {
+          document.getElementById('uSearchOption_0').focus()
+        }, 50)
       }
     },
     inputOnKeyDown: (e) => {

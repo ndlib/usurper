@@ -3,7 +3,7 @@ import * as statuses from '../constants/APIStatuses'
 
 const initialState = {}
 const renewalReducer = (state = initialState, action) => {
-  let data = {}
+  const data = {}
   switch (action.type) {
     case RECEIVE_RENEWAL:
       data[action.barcode] = { state: action.state, data: action.json }

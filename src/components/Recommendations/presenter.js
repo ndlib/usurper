@@ -14,7 +14,7 @@ const Recommendations = (props) => {
 
         {
           props.recommend.map((item) => {
-            var url = redirectPrefix + item.token
+            const url = redirectPrefix + item.token
 
             return (
               <li key={url}>

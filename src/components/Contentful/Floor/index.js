@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export class ContentfulFloorContainer extends Component {
   componentDidMount () {
-    let pageSlug = this.props.match.params.id
+    const pageSlug = this.props.match.params.id
     const preview = this.props.searchParams.get('preview') === 'true'
     this.props.fetchFloor(pageSlug, preview)
   }

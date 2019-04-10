@@ -16,7 +16,7 @@ const makeMapStateToProps = () => {
   const getHoursForServicePoint = makeGetHoursForServicePoint()
   const mapStateToProps = (state, props) => {
     // these props are required for the inline container.
-    let ret = {
+    const ret = {
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
     return ret
@@ -75,10 +75,10 @@ export class CurrentHoursContainer extends Component {
           return false
         }
 
-        let opens = new Date(hoursBlock.fromLocalDate)
-        let closes = new Date(hoursBlock.toLocalDate)
+        const opens = new Date(hoursBlock.fromLocalDate)
+        const closes = new Date(hoursBlock.toLocalDate)
 
-        let now = new Date()
+        const now = new Date()
         return (opens <= now && now <= closes)
       })
       return (currentOpenBlocks.length > 0)

@@ -84,7 +84,7 @@ class Courses extends Component {
   }
 
   cardsForArray (outArray, array, key, name) {
-    var cards = []
+    let cards = []
     if (array && array.length > 0) {
       cards = array.map((row) => {
         if (row.type === 'section') {
@@ -116,17 +116,17 @@ class Courses extends Component {
   }
 
   courseCards () {
-    var courses = this.props.courses.courses
-    var out = []
+    const courses = this.props.courses.courses
+    const out = []
     if (!courses) {
       return (<p className='noClasses'>No classes to display for the current semester</p>)
     }
 
-    let currentTitle = 'Current Courses'
-    let upcomingTitle = 'Upcoming Courses'
+    const currentTitle = 'Current Courses'
+    const upcomingTitle = 'Upcoming Courses'
 
-    let enrollments = courses.enrollments ? courses.enrollments : {}
-    let instructs = courses.instructs ? courses.instructs : {}
+    const enrollments = courses.enrollments ? courses.enrollments : {}
+    const instructs = courses.instructs ? courses.instructs : {}
 
     let cardCount = this.cardsForArray(out, enrollments.current, 'enrollment-current', currentTitle)
     this.cardsForArray(out, instructs.current, 'instruct-current', cardCount > 0 ? '' : currentTitle)

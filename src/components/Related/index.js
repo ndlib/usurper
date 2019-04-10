@@ -25,7 +25,7 @@ const Related = ({ title, className, showImages, children }) => {
       <ul className={className}>
         {
           childrenWithFields.map((currentItem) => {
-            let linkObject = getLinkObject(currentItem.fields, currentItem.sys.id)
+            const linkObject = getLinkObject(currentItem.fields, currentItem.sys.id)
 
             let image = ''
             if (showImages) {

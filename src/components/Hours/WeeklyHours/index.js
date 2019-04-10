@@ -13,7 +13,7 @@ const determineTitle = (startKey, currentKey) => {
 }
 
 const groupedByKeys = (hours) => {
-  let rows = []
+  const rows = []
   let startKey = dayOrder[0]
   let currentKey
   let nextKey
@@ -33,7 +33,7 @@ const groupedByKeys = (hours) => {
 }
 
 const getDate = (dateString) => {
-  let date = new Date(dateString + 'T23:59:59')
+  const date = new Date(dateString + 'T23:59:59')
   return dayOrder[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate()
 }
 

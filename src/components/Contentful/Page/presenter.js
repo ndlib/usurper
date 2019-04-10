@@ -50,7 +50,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
         {
           cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry, index) => {
-            let fields = entry.fields
+            const fields = entry.fields
             let className = 'p-resources'
             let showImages = false
             if (fields.type) {

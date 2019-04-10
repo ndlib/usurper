@@ -75,10 +75,10 @@ const mergeProps = (state, dispatchProps, ownProps) => {
     }
   }
 
-  let dropDowns = []
+  const dropDowns = []
   if (state.menus && state.menus.data && state.menus.data.fields) {
     state.menus.data.fields.columns.forEach(menu => {
-      let current = menu.fields
+      const current = menu.fields
       dropDowns.push({
         title: current.title,
         landingPage: current.landingPage ? current.landingPage.fields.slug : null,

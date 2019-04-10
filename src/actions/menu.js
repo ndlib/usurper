@@ -56,7 +56,9 @@ const receiveNavigation = (response) => {
 export const fetchNavigation = (preview) => {
   const query = encodeURIComponent('content_type=columnContainer&fields.slug=navigation&include=4')
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return (dispatch) => {
     dispatch(requestNavigation())

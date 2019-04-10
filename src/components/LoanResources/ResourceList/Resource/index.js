@@ -15,9 +15,9 @@ class ResourceContainer extends Component {
   }
 
   componentWillReceiveProps () {
-    let item = this.props.item
-    let renewal = this.props.renewal ? this.props.renewal[item.barcode] : null
-    let previousDueDate = item.dueDate
+    const item = this.props.item
+    const renewal = this.props.renewal ? this.props.renewal[item.barcode] : null
+    const previousDueDate = item.dueDate
     if (renewal && this.props.borrowed) {
       if (renewal.data.renewStatus === 200 && previousDueDate !== renewal.data.dueDate) {
         item.dueDate = renewal.data.dueDate

@@ -34,7 +34,7 @@ Login.propTypes = {
 
 export const mapStateToProps = (state) => {
   const { personal } = state
-  let loggedIn = !!(personal.login && personal.login.token)
+  const loggedIn = !!(personal.login && personal.login.token)
 
   return {
     login: personal.login,

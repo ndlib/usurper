@@ -48,7 +48,7 @@ class DeleteButton extends Component {
     const today = new Date(new Date().setUTCHours(0, 0, 0, 0))
     const dateThreshold = new Date(today).setDate(today.getDate() - 31)
 
-    let itemList = []
+    const itemList = []
     items.forEach((item) => {
       const d = item.returnDate ? new Date(item.returnDate) : today
       if (item.status === 'returned' && d.getTime() <= dateThreshold) {

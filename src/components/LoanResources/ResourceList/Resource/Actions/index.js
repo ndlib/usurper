@@ -20,7 +20,7 @@ export const mapStateToProps = (state, ownProps) => {
 
   let renewMessage
   if (renewal && renewal[item.barcode] && borrowed) {
-    let itemRenew = renewal[item.barcode].data
+    const itemRenew = renewal[item.barcode].data
     if (itemRenew.statusText) {
       renewMessage = itemRenew.statusText
     } else if (itemRenew.renewStatus === 304) {

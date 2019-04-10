@@ -36,10 +36,12 @@ const receivePage = (netids, response) => {
 
 export const fetchLibrarians = (netids) => {
   if (!netids || netids.length <= 0) {
-    return dispatch => { dispatch(genResponse(statuses.NOT_FOUND, '')) }
+    return dispatch => {
+      dispatch(genResponse(statuses.NOT_FOUND, ''))
+    }
   }
 
-  let url = Config.recommendAPI + '/librarianInfo?netids=' + netids.join()
+  const url = Config.recommendAPI + '/librarianInfo?netids=' + netids.join()
 
   return dispatch => {
     dispatch(requestLibrarians(netids))

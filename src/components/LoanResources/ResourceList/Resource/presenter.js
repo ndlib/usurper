@@ -53,7 +53,7 @@ const icon = (type) => {
 
 const getTitle = (record) => {
   let link = ''
-  let docNumber = (record.itemNumber || record.docNumber)
+  const docNumber = (record.itemNumber || record.docNumber)
   if (record.from === 'ILL') {
     link = Config.illiadBaseURL.replace('<<form>>', 67).replace('<<value>>', record.id)
   } else if (docNumber) {
@@ -70,9 +70,9 @@ const getTitle = (record) => {
 }
 
 const coinsObject = (record) => {
-  let isBook = record.documentType === 'BOOK'
-  let docNumber = (record.itemNumber || record.docNumber)
-  let parts = [
+  const isBook = record.documentType === 'BOOK'
+  const docNumber = (record.itemNumber || record.docNumber)
+  const parts = [
     { key: 'url_ver', value: 'Z39.88-2004' },
     { key: 'url_ctx_fmt', value: 'info:ofi/fmt:kev:mtx:ctx' },
     { key: 'ctx_ver', value: 'Z39.88-2004' },
@@ -94,7 +94,7 @@ const coinsObject = (record) => {
     { key: 'rft.volume', value: !isBook ? record.volume : null },
   ]
   // Format a big string of key=value&key2=value2... etc. Excludes any part with a falsy value.
-  let title = parts.filter(e => e.value).map(e => e.value ? e.key + '=' + encodeURIComponent(e.value) : null).join('&')
+  const title = parts.filter(e => e.value).map(e => e.value ? e.key + '=' + encodeURIComponent(e.value) : null).join('&')
 
   return (
     <span className='Z3988' title={title} />

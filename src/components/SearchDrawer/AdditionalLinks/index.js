@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { searchOptions } from '../../../constants/searchOptions'
 
 const AdditionalLinks = (props) => {
-  let links = []
+  const links = []
   let key = 0
-  let opt = searchOptions.find((el) => { return el.uid === props.currentSearch.uid })
+  const opt = searchOptions.find((el) => {
+    return el.uid === props.currentSearch.uid
+  })
   if (opt && opt.enableAdvancedSearch) {
     links.push(
       <a

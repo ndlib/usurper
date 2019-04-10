@@ -70,7 +70,7 @@ export default class AddToCalendar extends Component {
     ].join('\n')
 
     // Download file, create fantom a tag
-    let a = document.createElement('a')
+    const a = document.createElement('a')
 
     // set blob to download
     a.href = window.URL.createObjectURL(new Blob([data], { type: 'text/calendar' }))

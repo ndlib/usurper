@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import CurrentHours from './Current'
 
 const Presenter = ({ availableServicePoints, servicePointID }) => {
-  let sp = availableServicePoints[servicePointID]
+  const sp = availableServicePoints[servicePointID]
   if (!sp) {
     console.log(`${servicePointID} is not a valid service point.`)
     return null

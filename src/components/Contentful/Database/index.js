@@ -19,9 +19,9 @@ const mapStateToProps = (state, thisProps) => {
     'provider': 'Provider',
   }
 
-  let fieldData = {}
+  const fieldData = {}
   if (entry.status === statuses.SUCCESS) {
-    for (let field in fieldsAndTitle) {
+    for (const field in fieldsAndTitle) {
       if (entry.json.fields[field]) {
         fieldData[field] = {
           title: fieldsAndTitle[field],

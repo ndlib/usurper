@@ -20,8 +20,8 @@ const Internal = (to, onClick, ariaLabel, props) => {
 }
 
 const External = (to, noTarget, onClick, ariaLabel, props) => {
-  let target = noTarget ? '_self' : '_blank'
-  let rel = noTarget ? '' : 'noopener noreferrer'
+  const target = noTarget ? '_self' : '_blank'
+  const rel = noTarget ? '' : 'noopener noreferrer'
   return (
     <a href={to}
       target={target}
@@ -49,7 +49,7 @@ const Hidden = (
 
 export const LibLink = (props) => {
   let query = ''
-  for (let k in props.query) {
+  for (const k in props.query) {
     if (props.query.hasOwnProperty(k)) {
       if (query.length > 0) {
         query += '&'
@@ -60,8 +60,8 @@ export const LibLink = (props) => {
     }
   }
 
-  let propsToPass = Object.assign({}, props)
-  for (let k in nonTagProps) {
+  const propsToPass = Object.assign({}, props)
+  for (const k in nonTagProps) {
     delete propsToPass[k]
   }
 
@@ -74,7 +74,7 @@ export const LibLink = (props) => {
   }
 
     // Urls to remove so links are local
-  let replaceUrls = [
+  const replaceUrls = [
     'https://alpha.library.nd.edu',
     'http://alpha.library.nd.edu',
     'https://beta.library.nd.edu',
@@ -83,7 +83,7 @@ export const LibLink = (props) => {
     'http://library.nd.edu',
   ]
 
-  for (let index in replaceUrls) {
+  for (const index in replaceUrls) {
     if (to.startsWith(replaceUrls[index])) {
       to = to.substr(replaceUrls[index].length)
       break

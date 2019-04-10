@@ -21,11 +21,11 @@ const mapDispatchToProps = (dispatch) => {
 
 export class ContentfulPageContainer extends Component {
   checkLoggedIn (props) {
-    let pageSlug = props.match.params.id
+    const pageSlug = props.match.params.id
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
-    let personal = props.personal
-    let isLoggedIn = (personal && personal.login && personal.login.token)
+    const personal = props.personal
+    const isLoggedIn = (personal && personal.login && personal.login.token)
 
     if (isLoggedIn && props.cfPageEntry.slug !== pageSlug) {
       props.fetchPage(pageSlug, preview, true)

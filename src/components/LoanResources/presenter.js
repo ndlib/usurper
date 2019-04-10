@@ -6,8 +6,8 @@ import PageAlert from '../Messages/PageAlert'
 import ServiceNowLink from '../ServiceNowLink'
 
 const LoanResources = (props) => {
-  let have = props.resources.have
-  let pending = props.resources.pending
+  const have = props.resources.have
+  const pending = props.resources.pending
   const expiredMessage = (
     <PageAlert type='warning' id='accountExpired'>
       Your library account has expired. Please <ServiceNowLink>contact us</ServiceNowLink> for more information.

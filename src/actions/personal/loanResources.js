@@ -65,15 +65,15 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, libr
 
 export const getUser = () => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
     doQuery(dispatch, 'aleph', 'user', handleUser, state.login.token, 'user')
   }
 }
 
 export const getPending = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
-    let token = state.login.token
+    const state = getState().personal
+    const token = state.login.token
     doQuery(dispatch, 'aleph', 'pending',
       handleResources('aleph', 'pending', 'Ndu'),
       token, 'alephPendingNdu', 0, 'ndu50')
@@ -88,8 +88,8 @@ export const getPending = () => {
 
 export const getBorrowed = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
-    let token = state.login.token
+    const state = getState().personal
+    const token = state.login.token
 
     doQuery(dispatch, 'aleph', 'borrowed',
       handleResources('aleph', 'borrowed', 'Ndu'),
@@ -105,8 +105,8 @@ export const getBorrowed = () => {
 
 export const getHistorical = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
-    let token = state.login.token
+    const state = getState().personal
+    const token = state.login.token
     doQuery(dispatch, 'userPrefs', 'circHistory', handleResources('userPrefs', 'circHistory'), token, 'historical')
   }
 }

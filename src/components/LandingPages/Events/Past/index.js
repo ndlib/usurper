@@ -13,7 +13,7 @@ const addDate = (dict, year, month) => {
     dict[year] = {}
   }
   if (!dict[year][month]) {
-    let date = moment()
+    const date = moment()
     date.month(month)
     date.year(year)
 
@@ -40,11 +40,11 @@ const monthFilter = (events, year, month) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let eventDates = {}
+  const eventDates = {}
   // count number of events present in each month
   //  if an event starts in jan and ends in feb, it counts for both months
   ownProps.events.forEach((event) => {
-    let date = new Date(event.startDate)
+    const date = new Date(event.startDate)
     while (date < event.endDate) {
       addDate(eventDates, date.getFullYear(), date.getMonth())
       date.setMonth(date.getMonth() + 1, 1) // increment the month by 1
@@ -53,7 +53,7 @@ const mapStateToProps = (state, ownProps) => {
 
   // check if we're filtered to a month
   const dateRegEx = /\d{6}/
-  let dateString = ownProps.match.params.date
+  const dateString = ownProps.match.params.date
 
   let pageTitle = 'Past Events'
   let filterMonth = null
@@ -73,7 +73,7 @@ const mapStateToProps = (state, ownProps) => {
     events = monthFilter(ownProps.events, filterYear, filterMonth)
     eventDates[filterYear][filterMonth].url = null
   } else {
-    let daysAgo30 = new Date()
+    const daysAgo30 = new Date()
     // subtract 30 days from now
     daysAgo30.setTime(daysAgo30.getTime() - (30 * 24 * 60 * 60 * 1000))
 
@@ -135,7 +135,7 @@ export class PastEventsContainer extends Component {
     // filter to events that have the search value in any of the specified fields
     const events = this.props.allEvents.filter(event => {
       let inFilter = false
-      for (let index in searchFields) {
+      for (const index in searchFields) {
         if (event[searchFields[index]]) {
           inFilter |= event[searchFields[index]].toLowerCase().includes(value.toLowerCase())
         }

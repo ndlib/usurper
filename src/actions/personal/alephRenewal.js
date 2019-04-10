@@ -22,9 +22,9 @@ export const recieveRenewal = (barcode, state, json) => {
 
 export const renewAleph = (barcode, alephId) => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
     dispatch(requestRenewal(barcode))
-    let url = Config.resourcesAPI + '/aleph/renew'
+    const url = Config.resourcesAPI + '/aleph/renew'
     return fetch(url, {
       method: 'post',
       headers: {
@@ -33,7 +33,9 @@ export const renewAleph = (barcode, alephId) => {
         'Authorization': state.login.token,
       },
     })
-    .then(response => { return response.json() })
+    .then(response => {
+      return response.json()
+    })
     .then(json => dispatch(
       recieveRenewal(barcode, statuses.SUCCESS, json)
     ))

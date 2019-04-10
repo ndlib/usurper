@@ -30,7 +30,7 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
                 // only use this if the field exists
                   cfDatabaseEntry.fields.urls && (
                     cfDatabaseEntry.fields.urls.map((data) => {
-                      let linkText = cfDatabaseEntry.fields.urls.length > 1 ? data.title : cfDatabaseEntry.fields.title
+                      const linkText = cfDatabaseEntry.fields.urls.length > 1 ? data.title : cfDatabaseEntry.fields.title
                       return (
                         <li key={data.url}>
                           <Link to={data.url}>{ linkText }</Link>

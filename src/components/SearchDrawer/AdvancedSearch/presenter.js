@@ -14,9 +14,9 @@ const AdvancedSearch = (props) => {
   }
 
   const searchTypeDropdown = () => {
-    let optArray = []
+    const optArray = []
     for (let i = 0; i < searchOptions.length; i++) {
-      let opt = searchOptions[i]
+      const opt = searchOptions[i]
       optArray.push(<option key={opt.uid} value={opt.uid}>{opt.title}</option>)
     }
     return (
