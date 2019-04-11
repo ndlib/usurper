@@ -1,10 +1,9 @@
-'use strict'
 import { connect } from 'react-redux'
 import SearchDrawer from './presenter.js'
 import { searchOptions } from '../../constants/searchOptions.js'
 import { openAdvancedSearch, closeAdvancedSearch } from '../../actions/search'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   const selectedOption = searchOptions.find(op => op.uid === state.search.searchType)
   const currentSearch = selectedOption || searchOptions[0]
   return {

@@ -33,8 +33,8 @@ const DOC_TYPE = {
 
 const getHeader = (format) => {
   if (format === 'CSV') {
-    let headerLabels = []
-    for (let key in FIELDS) {
+    const headerLabels = []
+    for (const key in FIELDS) {
       if (FIELDS[key].label) {
         headerLabels.push(FIELDS[key].label)
       }
@@ -109,8 +109,8 @@ const exportHelper = (format, items) => {
   }
 
   // Create a file blob, write data to it, and trigger a download
-  let element = document.createElement('a')
-  let file = new Blob([formattedOutput], { type: 'text/plain' })
+  const element = document.createElement('a')
+  const file = new Blob([formattedOutput], { type: 'text/plain' })
   element.href = URL.createObjectURL(file)
   element.download = `Checkout History ${moment().format('YYYY-MM-DD')}.${format.toLowerCase()}`
   element.click()

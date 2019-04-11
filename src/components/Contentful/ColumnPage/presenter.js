@@ -13,7 +13,7 @@ import './style.css'
 
 const Sections = (column, showDescriptions) => {
   return column.fields.sections.map((entry) => {
-    let s = entry.fields
+    const s = entry.fields
     if (!entry || !entry.fields || !entry.fields.title) {
       return null
     }
@@ -25,17 +25,17 @@ const Sections = (column, showDescriptions) => {
           <div role={s.title + ' navigation'}>
             {
               s.links.map((item) => {
-                let linkObject = getLinkObject(item.fields, item.sys.id)
+                const linkObject = getLinkObject(item.fields, item.sys.id)
                 return (
                   <p key={item.sys.id}>
                     <Link to={linkObject.heading.url} className='item-title'>{linkObject.heading.title}</Link>
-                    <ul className='linkGroup'>
+                    <span className='linkGroup'>
                       {
                         linkObject.conditionalLinks.map((data) => {
                           return data.url && <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
                         })
                       }
-                    </ul>
+                    </span>
                     { showDescriptions ? (<span>{linkObject.heading.description}</span>) : null }
                   </p>
                 )
@@ -49,7 +49,7 @@ const Sections = (column, showDescriptions) => {
 }
 
 const ColumnContainerPresenter = (props) => {
-  let page = props.cfPageEntry.fields
+  const page = props.cfPageEntry.fields
   if (page && page.title) {
     return (
       <div className='content'>

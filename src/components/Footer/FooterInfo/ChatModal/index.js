@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import ChatModal from './presenter.js'
@@ -62,6 +63,12 @@ export class ChatModalContainer extends Component {
     }
     return <ChatModal {...this.props} />
   }
+}
+
+ChatModalContainer.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
 }
 
 export default withRouter(connect(

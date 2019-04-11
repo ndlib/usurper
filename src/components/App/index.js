@@ -20,7 +20,6 @@ import SearchPage from '../../components/SearchPage'
 import ContentfulEvent from '../../components/Contentful/Event'
 import News from '../../components/LandingPages/News'
 import Events from '../../components/LandingPages/Events'
-import Contact from '../LandingPages/Contact'
 import DatabaseList from '../../components/DatabaseList'
 import SubjectList from '../../components/SubjectList'
 import FloorSearch from '../../components/FloorSearch'
@@ -31,8 +30,6 @@ import EmbeddableHours from '../Embeddable/Hours'
 import CirculationHistory from '../LoanResources/CirculationHistory'
 
 import NotFound from '../../components/Messages/NotFound'
-
-import Config from '../../shared/Configuration'
 
 import { LINK_CLICK } from '../Link'
 import { SET_SEARCH, SAVE_SEARCH_PREFERENCE } from '../../actions/search.js'
@@ -79,7 +76,6 @@ const App = (props) => {
               <Route exact path='/events/past/:date' component={Events} />
               <Route exact path='/events/:date' component={Events} />
               <Route exact path='/news' component={News} />
-              <Route exact path='/contact-us' component={Contact} />
               <Route exact path='/floor/search' component={FloorSearch} />
               <Route exact path='/floor/:id' component={ContentfulFloor} />
               <Route exact path='/news/:id' component={ContentfulNews} />

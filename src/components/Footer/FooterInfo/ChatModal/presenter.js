@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Chat from '../../../Chat'
 import ChatImage from '../../images/ask.svg'
 
@@ -26,6 +27,12 @@ const ChatModal = (props) => {
       <div id='chat-modal' role='tabpanel' className={props.chatOpen ? 'chat-open' : 'hidden'}><Chat /></div>
     </div>
   )
+}
+
+ChatModal.propTypes = {
+  chatOpen: PropTypes.bool,
+  onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
 }
 
 export default ChatModal

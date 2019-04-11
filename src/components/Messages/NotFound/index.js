@@ -1,8 +1,7 @@
-import { connect } from 'react-redux'
 import React from 'react'
+import PropTypes from 'prop-types'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import Link from '../../Link'
 import ServiceNowLink from '../../ServiceNowLink'
 import { Helmet } from 'react-helmet'
 
@@ -17,10 +16,15 @@ const NotFound = ({ message = 'The requested page could not be found' }) => (
       <h1>404</h1>
       <h2>Page Not Found</h2>
       <div>{ message }<br />
-        If you think you've reached this page in error, please <ServiceNowLink isWebContent>report your problem</ServiceNowLink>.
+        If you think you've reached this page in error,
+        please <ServiceNowLink isWebContent>report your problem</ServiceNowLink>.
       </div>
     </div>
   </div>
 )
+
+NotFound.propTypes = {
+  message: PropTypes.string,
+}
 
 export default NotFound

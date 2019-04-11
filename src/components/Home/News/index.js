@@ -10,12 +10,12 @@ import { flattenLocale } from '../../../shared/ContentfulLibs'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 export const sortNews = (left, right, withPreferred = false) => {
-  let a = new Date(left.fields.publishedDate)
-  let b = new Date(right.fields.publishedDate)
+  const a = new Date(left.fields.publishedDate)
+  const b = new Date(right.fields.publishedDate)
 
   if (withPreferred) {
-    let aPreferred = left.fields.preferOnHomepage
-    let bPreferred = right.fields.preferOnHomepage
+    const aPreferred = left.fields.preferOnHomepage
+    const bPreferred = right.fields.preferOnHomepage
 
     if (aPreferred && !bPreferred) {
       return -1

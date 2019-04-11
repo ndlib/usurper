@@ -12,8 +12,8 @@ import { withErrorBoundary } from '../../ErrorBoundary'
 
 const startEndDate = (start, end) => {
   let startYear = ', ' + start.getFullYear()
-  let endYear = ', ' + end.getFullYear()
-  let options = { weekday: 'long', month: 'long', day: 'numeric' }
+  const endYear = ', ' + end.getFullYear()
+  const options = { weekday: 'long', month: 'long', day: 'numeric' }
 
   let out = start.toLocaleString('en-US', options)
   if (dateLibs.isSameDay(start, end)) {
@@ -46,8 +46,10 @@ export const mapEvents = (json) => {
       // flatten locales to just 'en-us' and convert strings to datetime type
       flattenLocale(entry.fields, 'en-US')
 
-      let start = dateLibs.makeLocalTimezone(entry.fields.startDate)
-      let end = entry.fields.endDate ? dateLibs.makeLocalTimezone(entry.fields.endDate) : dateLibs.makeLocalTimezone(entry.fields.startDate)
+      const start = dateLibs.makeLocalTimezone(entry.fields.startDate)
+      const end = entry.fields.endDate
+        ? dateLibs.makeLocalTimezone(entry.fields.endDate)
+        : dateLibs.makeLocalTimezone(entry.fields.startDate)
       // if end time is 0:00, add 23:59
       if (end.getHours() === 0 && end.getMinutes() === 0) {
         end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
@@ -64,8 +66,8 @@ export const mapEvents = (json) => {
     .map((entry) => {
       if (entry && entry.startDate && entry.endDate) {
         // Map datetime to displayable text
-        let start = entry.startDate
-        let end = entry.endDate
+        const start = entry.startDate
+        const end = entry.endDate
 
         return {
           displayDate: startEndDate(start, end),
@@ -73,6 +75,7 @@ export const mapEvents = (json) => {
           ...entry,
         }
       }
+      return null
     })
 }
 
@@ -80,12 +83,12 @@ export const mapEvents = (json) => {
 //   then slice to the number we want, then sort to make sure dates are in order
 export const sortEvents = (left, right, withPreferred = false) => {
   // sort so events starting soonest are at the top
-  let a = left.startDate
-  let b = right.startDate
+  const a = left.startDate
+  const b = right.startDate
 
   if (withPreferred) {
-    let aPreferred = left.preferOnHomepage
-    let bPreferred = right.preferOnHomepage
+    const aPreferred = left.preferOnHomepage
+    const bPreferred = right.preferOnHomepage
 
     if (aPreferred && !bPreferred) {
       return -1
@@ -105,7 +108,7 @@ export const sortEvents = (left, right, withPreferred = false) => {
 const mapStateToProps = (state) => {
   let allEvents = []
   if (state.allEvents && state.allEvents.status === statuses.SUCCESS) {
-    let now = new Date()
+    const now = new Date()
 
     allEvents = mapEvents(state.allEvents.json)
       .filter((entry) => {
@@ -113,6 +116,7 @@ const mapStateToProps = (state) => {
           // Only use entries which are in the future or ongoing
           return entry.startDate >= now || entry.endDate >= now
         }
+        return false
       })
       .sort((a, b) => sortEvents(a, b, true))
       .slice(0, 5)

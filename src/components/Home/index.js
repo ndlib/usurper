@@ -37,7 +37,9 @@ class Home extends Component {
             <Link to='/subjects' title='Subjects A-Z' noTarget><img src={Find} alt='' aria-hidden /></Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 four'>
-            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'><img src={Room} alt='' aria-hidden /></Link>
+            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'>
+              <img src={Room} alt='' aria-hidden />
+            </Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 five'>
             <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='' aria-hidden /></Link>

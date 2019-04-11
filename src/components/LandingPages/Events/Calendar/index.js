@@ -36,7 +36,7 @@ class EventCalendar extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let specialDays = []
+  const specialDays = []
 
   const today = new Date(new Date().setHours(0, 0, 0, 0))
 

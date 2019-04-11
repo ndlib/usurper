@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchLetter } from '../../actions/contentful/databaseLetter'
-import PresenterFactory from '../APIPresenterFactory'
 import ListPresenter from './presenter.js'
 import * as statuses from '../../constants/APIStatuses'
 import PageNotFound from '../Messages/NotFound'
@@ -32,15 +31,15 @@ const sortDbs = (raw) => {
     return raw
   }
 
-  let out = {}
+  const out = {}
   Object.keys(raw).forEach((letter) => {
     out[letter] = []
     out[letter]['status'] = raw[letter].status
     if (raw[letter].data) {
       out[letter]['data'] = raw[letter].data.sort(
         (left, right) => {
-          let a = left.fields.title.toLowerCase()
-          let b = right.fields.title.toLowerCase()
+          const a = left.fields.title.toLowerCase()
+          const b = right.fields.title.toLowerCase()
 
           if (a < b) {
             return -1
@@ -61,12 +60,12 @@ const mapStateToProps = (state, thisProps) => {
   if (state.cfDatabaseLetter && state.cfDatabaseLetter.a) {
     allLettersStatus = Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status)
       .reduce((a, b) => {
-        let success = (status) => status === statuses.SUCCESS
-        let notFound = (status) => status === statuses.NOT_FOUND
-        let valid = (status) => success(status) || notFound(status)
+        const success = (status) => status === statuses.SUCCESS
+        const notFound = (status) => status === statuses.NOT_FOUND
+        const valid = (status) => success(status) || notFound(status)
 
-        let error = (status) => status === statuses.ERROR
-        let fetching = (status) => status === statuses.FETCHING
+        const error = (status) => status === statuses.ERROR
+        const fetching = (status) => status === statuses.FETCHING
 
         if (error(a) || error(b)) {
           return statuses.ERROR
@@ -75,10 +74,11 @@ const mapStateToProps = (state, thisProps) => {
         } else if (valid(a) && valid(b)) {
           return statuses.SUCCESS
         }
+        return statuses.ERROR
       })
   }
 
-  let letterData = sortDbs(state.cfDatabaseLetter)
+  const letterData = sortDbs(state.cfDatabaseLetter)
 
   return {
     cfDatabaseLetter: letterData,
@@ -129,16 +129,11 @@ export class DatabaseListContainer extends Component {
     }
   }
 
-  // only filter by title for now, may want description in the future
   filter (filterValue, list) {
-    const value = filterValue.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`'~()]/g, '')
+    const value = filterValue.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
 
-    const filterFields = [
-      'title',
-    ]
     return list.filter((item) => {
       let inFilter = false
-      // also search all the alternate titles
       if (item.searchBlob) {
         inFilter = inFilter || item.searchBlob.indexOf(value) >= 0
       }
@@ -147,10 +142,10 @@ export class DatabaseListContainer extends Component {
   }
 
   onFilterChange (event) {
-    let filtered = this.filter(event.target.value, this.props.allDbs)
-    let assistText = filtered.length + ' items beginning with the letter "' + this.props.currentLetter.toUpperCase() + '"'
+    const filtered = this.filter(event.target.value, this.props.allDbs)
+    let assistText = `${filtered.length} items beginning with the letter "${this.props.currentLetter.toUpperCase()}"`
     if (event.target.value) {
-      assistText = filtered.length + ' results found for "' + event.target.value + '"'
+      assistText = `${filtered.length} results found for "${event.target.value}"`
     }
 
     this.setState({
@@ -225,9 +220,18 @@ export class DatabaseListContainer extends Component {
 DatabaseListContainer.propTypes = {
   fetchLetter: PropTypes.func.isRequired,
   currentLetter: PropTypes.string.isRequired,
-
   cfDatabaseLetter: PropTypes.object.isRequired,
   allLettersStatus: PropTypes.string.isRequired,
+  allDbs: PropTypes.array.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
+  }),
+  match: PropTypes.shape({
+    params: PropTypes.object,
+  }),
 }
 
 const DatabaseList = connect(

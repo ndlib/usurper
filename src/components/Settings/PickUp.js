@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 import RadioList from '../RadioList'
 import UpdateStatus from './settingsUpdateStatus'
 
+let showStatus = false
+const setShowStatus = (bool) => {
+  showStatus = bool
+}
+
 const PickUp = (props) => {
   return (
     <div className='col-md-12 col-xs-12'>
@@ -29,14 +34,9 @@ const PickUp = (props) => {
   )
 }
 
-let showStatus = false
-const setShowStatus = (bool) => {
-  showStatus = bool
-}
-
 PickUp.propTypes = {
   entries: PropTypes.array.isRequired,
-  setHomeLibrary: PropTypes.func.isRequired,
+  setHomeLibrary: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
   defaultIndex: PropTypes.number,
   libraryStatus: PropTypes.number,
 }

@@ -1,8 +1,8 @@
 import Config from '../../shared/Configuration'
 import * as statuses from '../../constants/APIStatuses'
 
-export const RECEIVE_RENEWAL = "RECEIVE_RENEWAL"
-export const REQUEST_RENEWAL = "REQUEST_RENEWAL"
+export const RECEIVE_RENEWAL = 'RECEIVE_RENEWAL'
+export const REQUEST_RENEWAL = 'REQUEST_RENEWAL'
 
 const requestRenewal = (barcode) => {
   return {
@@ -22,9 +22,9 @@ export const recieveRenewal = (barcode, state, json) => {
 
 export const renewAleph = (barcode, alephId) => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
     dispatch(requestRenewal(barcode))
-    let url = Config.resourcesAPI + '/aleph/renew'
+    const url = Config.resourcesAPI + '/aleph/renew'
     return fetch(url, {
       method: 'post',
       headers: {
@@ -33,13 +33,15 @@ export const renewAleph = (barcode, alephId) => {
         'Authorization': state.login.token,
       },
     })
-    .then(response => { return response.json() })
-    .then(json => dispatch(
-      recieveRenewal(barcode, statuses.SUCCESS, json)
-    ))
-    .catch((e) => {
-      console.log(e)
-      dispatch(recieveRenewal(barcode, statuses.ERROR, e))
-    })
+      .then(response => {
+        return response.json()
+      })
+      .then(json => dispatch(
+        recieveRenewal(barcode, statuses.SUCCESS, json)
+      ))
+      .catch((e) => {
+        console.log(e)
+        dispatch(recieveRenewal(barcode, statuses.ERROR, e))
+      })
   }
 }

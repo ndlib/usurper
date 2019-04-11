@@ -9,7 +9,7 @@ const DropDown = (props) => {
     (column, index) => {
       return column.fields.sections.map(
         (section) => {
-          let classes = index === 0 ? 'col-md-offset-2 col-md-3' : 'col-md-3'
+          const classes = index === 0 ? 'col-md-offset-2 col-md-3' : 'col-md-3'
           return (
             <MenuColumn
               classes={classes}
@@ -29,7 +29,7 @@ const DropDown = (props) => {
         landingPage={props.landingPage}
         menuData={props.menuData}
         id={props.id}
-        >
+      >
         {columns}
       </Menu>
     )

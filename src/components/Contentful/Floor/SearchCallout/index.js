@@ -6,11 +6,11 @@ import { withErrorBoundary } from '../../../ErrorBoundary'
 export class SearchCallout extends Component {
   getDataFromURI (search) {
     const searchParams = new URLSearchParams(search)
-    let extraData = {}
+    const extraData = {}
 
     const extraFields = [ 'title', 'author', 'call_number', 'collection_display' ]
-    for (let fieldIndex in extraFields) {
-      let field = extraFields[fieldIndex]
+    for (const fieldIndex in extraFields) {
+      const field = extraFields[fieldIndex]
       let value = searchParams.get(field)
       if (value) {
         if (field === 'title') {

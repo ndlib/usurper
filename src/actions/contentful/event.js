@@ -12,14 +12,14 @@ export const requestEvent = (event) => {
 
 export const CF_RECEIVE_EVENT = 'CF_RECEIVE_EVENT'
 const receiveEvent = (event, response) => {
-  let error = {
+  const error = {
     type: CF_RECEIVE_EVENT,
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
     receivedAt: Date.now(),
   }
 
-  let success = {
+  const success = {
     type: CF_RECEIVE_EVENT,
     status: statuses.SUCCESS,
     event: response[0],
@@ -42,7 +42,9 @@ const receiveEvent = (event, response) => {
 export const fetchEvent = (event, preview) => {
   const query = encodeURIComponent(`content_type=event&fields.slug=${event}&include=3`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return (dispatch) => {
     dispatch(requestEvent(event))

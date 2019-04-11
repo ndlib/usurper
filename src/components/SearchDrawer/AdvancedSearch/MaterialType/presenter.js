@@ -53,4 +53,9 @@ const MaterialType = (props) => {
   )
 }
 
+MaterialType.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  searchType: PropTypes.string,
+}
+
 export default MaterialType

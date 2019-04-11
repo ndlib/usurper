@@ -34,10 +34,7 @@ const receivePage = (page, response) => {
   if (Array.isArray(response)) {
     response = response[0]
   }
-  if (response &&
-      response.sys &&
-      response.sys.contentType &&
-      response.sys.contentType.sys &&
+  if (response && response.sys &&
       (response.sys.contentType.sys.id === 'page' || response.sys.contentType.sys.id === 'columnContainer')) {
     return receiveSuccess(page, response)
   }
@@ -62,13 +59,15 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page', includ
   }
   const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=${include}`)
   let url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return (dispatch, getState) => {
     dispatch(requestPage(page))
 
-    let login = getState().personal.login
-    let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
+    const login = getState().personal.login
+    const headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
 
     return fetch(url, { headers })
       .then(response => {

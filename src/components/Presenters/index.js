@@ -46,6 +46,7 @@ const Presenters = ({ presenters }) => {
                         </div>
                       )
                     }
+                    return null
                   })
                 }
               </section>

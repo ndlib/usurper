@@ -72,7 +72,7 @@ class ListContainer extends Component {
 
   sortChange (event, sortField) {
     let sortDir = this.state.sortDir
-    let sortValue = sortField
+    const sortValue = sortField
     if (sortField === this.state.sortValue) {
       sortDir = this.state.sortDir === 'desc' ? 'asc' : 'desc'
     } else {
@@ -91,7 +91,7 @@ class ListContainer extends Component {
   }
 
   getSortDirAfterClick (type) {
-    let stateDir = this.state.sortDir === 'desc' ? 'ascending' : 'descending'
+    const stateDir = this.state.sortDir === 'desc' ? 'ascending' : 'descending'
     return this.state.sortValue === type ? stateDir : 'descending'
   }
 

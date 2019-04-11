@@ -11,7 +11,7 @@ export const flattenLocale = (fields, locale) => {
     if (!fields[fieldKey]) {
       return
     }
-    let localizedField = fields[fieldKey][locale]
+    const localizedField = fields[fieldKey][locale]
     if (localizedField !== null && localizedField !== undefined) {
       fields[fieldKey] = localizedField
     }
@@ -26,7 +26,7 @@ export const getLinkObject = (fields, sysId) => {
   // We need to determine if the main heading (entry title) should be a link
   //  The resource type has links in the "urls" json field. If there is only one, make it the heading link
   //  If we're not handling a resource type the heading should be linked with its appropriate url field (below)
-  let shouldHaveMain = !fields.urls || fields.urls.length === 1
+  const shouldHaveMain = !fields.urls || fields.urls.length === 1
   let mainUrl = (shouldHaveMain && fields.urls) ? fields.urls[0].url : ''
 
   // If we're not handling a resoruce type, get the link to use for the heading
@@ -41,7 +41,7 @@ export const getLinkObject = (fields, sysId) => {
   }
 
   // get appropriate description field for this content type
-  let desc = fields.shortDescription ? fields.shortDescription : fields.description
+  const desc = fields.shortDescription ? fields.shortDescription : fields.description
 
   // Make a list of all links for this object, for the resource type it's the entire "urls" field
   //  otherwise, we've already got the only link for the object in the mainUrl var

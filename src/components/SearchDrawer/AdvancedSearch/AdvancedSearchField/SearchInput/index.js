@@ -1,15 +1,14 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import SearchInput from './presenter'
 import { setSearchOption } from '../../../../../actions/advancedSearch'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     ...state,
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onBlur: (e) => {
       dispatch(setSearchOption(e.target.id, e.target.value))

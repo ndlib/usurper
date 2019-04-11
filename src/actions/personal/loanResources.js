@@ -65,36 +65,48 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, libr
 
 export const getUser = () => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
     doQuery(dispatch, 'aleph', 'user', handleUser, state.login.token, 'user')
   }
 }
 
 export const getPending = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
-    let token = state.login.token
-    doQuery(dispatch, 'aleph', 'pending', handleResources('aleph', 'pending', 'Ndu'), token, 'alephPendingNdu', 0, 'ndu50')
-    doQuery(dispatch, 'aleph', 'pending', handleResources('aleph', 'pending', 'Hcc'), token, 'alephPendingHcc', 0, 'hcc50')
-    doQuery(dispatch, 'illiad', 'pending', handleResources('ill', 'pending'), token, 'illPending')
+    const state = getState().personal
+    const token = state.login.token
+    doQuery(dispatch, 'aleph', 'pending',
+      handleResources('aleph', 'pending', 'Ndu'),
+      token, 'alephPendingNdu', 0, 'ndu50')
+    doQuery(dispatch, 'aleph', 'pending',
+      handleResources('aleph', 'pending', 'Hcc'),
+      token, 'alephPendingHcc', 0, 'hcc50')
+    doQuery(dispatch, 'illiad', 'pending',
+      handleResources('ill', 'pending'),
+      token, 'illPending')
   }
 }
 
 export const getBorrowed = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
-    let token = state.login.token
+    const state = getState().personal
+    const token = state.login.token
 
-    doQuery(dispatch, 'aleph', 'borrowed', handleResources('aleph', 'borrowed', 'Ndu'), token, 'alephHaveNdu', 0, 'ndu50')
-    doQuery(dispatch, 'aleph', 'borrowed', handleResources('aleph', 'borrowed', 'Hcc'), token, 'alephHaveHcc', 0, 'hcc50')
-    doQuery(dispatch, 'illiad', 'borrowed', handleResources('ill', 'borrowed'), token, 'illHave')
+    doQuery(dispatch, 'aleph', 'borrowed',
+      handleResources('aleph', 'borrowed', 'Ndu'),
+      token, 'alephHaveNdu', 0, 'ndu50')
+    doQuery(dispatch, 'aleph', 'borrowed',
+      handleResources('aleph', 'borrowed', 'Hcc'),
+      token, 'alephHaveHcc', 0, 'hcc50')
+    doQuery(dispatch, 'illiad', 'borrowed',
+      handleResources('ill', 'borrowed'),
+      token, 'illHave')
   }
 }
 
 export const getHistorical = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
-    let token = state.login.token
+    const state = getState().personal
+    const token = state.login.token
     doQuery(dispatch, 'userPrefs', 'circHistory', handleResources('userPrefs', 'circHistory'), token, 'historical')
   }
 }

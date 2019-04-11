@@ -47,13 +47,13 @@ export const makeLocalTimezone = (stringDate) => {
   // if we're in a zone with minute offsets
   const minute = '' + Math.abs(localOffset % 60)
   // combine above strings into the same fomrat as "givenTz"
-  let stringLocalTz = `${localNeg}${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`
+  const stringLocalTz = `${localNeg}${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`
 
   // use our local timezone string for this information instead of the given one
   stringDate = stringDate.replace(givenTz, stringLocalTz)
 
   let ret = new Date(stringDate)
-  let retOffset = ret.getTimezoneOffset()
+  const retOffset = ret.getTimezoneOffset()
   // if the changed date is in a different timezone than us (daylight savings) offset it back
   if (retOffset !== localOffset) {
     // in minutes

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Link from '../Link'
 
 const LibLink = (props) => {
-  var url = props.href
+  let url = props.href
 
   // I'm not entirely sure if there aren't other cases that might fall here, but this
   // is to fix an issue when someone puts [text] in markdown, which is not a valid link.
@@ -19,7 +19,7 @@ const LibLink = (props) => {
   }
 
   // Urls to remove so links are local
-  let replaceUrls = [
+  const replaceUrls = [
     'https://alpha.library.nd.edu',
     'http://alpha.library.nd.edu',
     'https://beta.library.nd.edu',
@@ -31,7 +31,7 @@ const LibLink = (props) => {
     'http://localhost:3000',
   ]
 
-  for (var index in replaceUrls) {
+  for (const index in replaceUrls) {
     if (url.startsWith(replaceUrls[index])) {
       url = url.substr(replaceUrls[index].length)
       break
@@ -52,7 +52,7 @@ class LibMarkdown extends Component {
       return null
     }
 
-    let overrides = {
+    const overrides = {
       overrides: {
         a: {
           component: LibLink,
@@ -68,6 +68,10 @@ class LibMarkdown extends Component {
       </span>
     )
   }
+}
+
+LibLink.propTypes = {
+  id: PropTypes.string,
 }
 
 LibMarkdown.propTypes = {

@@ -42,7 +42,7 @@ const mapStateToProps = (state) => {
   } else if (state.cfServicePoints.status === statuses.ERROR || state.hours.status === statuses.ERROR) {
     combinedStatus = statuses.ERROR
   }
-  let servicePointsWithHours = []
+  let servicePointsWithHours = {}
   if (combinedStatus === statuses.SUCCESS) {
     servicePointsWithHours = state.cfServicePoints.json
       .filter((servicePoint) => servicePoint.fields.hoursCode)
@@ -80,7 +80,9 @@ export class HoursPageContainer extends Component {
         error={HoursError}
         props={{
           servicePoints: this.props.servicePointsWithHours,
-          preview: this.props.location ? (new URLSearchParams(this.props.location.search)).get('preview') === 'true' : false,
+          preview: this.props.location
+            ? (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+            : false,
           hoursPageOrder: hoursPageOrder,
         }}
         status={this.props.combinedStatus} />
@@ -88,12 +90,16 @@ export class HoursPageContainer extends Component {
   }
 }
 
-PropTypes.propTypes = {
+HoursPageContainer.propTypes = {
   hoursStatus: PropTypes.string.isRequired,
   fetchHours: PropTypes.func.isRequired,
   servicePointsStatus: PropTypes.string.isRequired,
+  servicePointsWithHours: PropTypes.object.isRequired,
   fetchServicePoints: PropTypes.func.isRequired,
   combinedStatus: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 const HoursPage = connect(

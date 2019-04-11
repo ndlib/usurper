@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
-import WeeklyHours from '../WeeklyHours'
 
-const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
-  const title = 'Hours for ' + hoursEntry.name
+const Presenter = (hoursEntry, isOpen, expandHandler) => {
   const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
   const ariaLabel = hoursEntry.name + ', Open ' + todayLabel
@@ -21,9 +19,11 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
         onClick={expandHandler}
         onKeyDown={expandHandler}
       >
-        <div aria-label={ariaLabel} className="sp">
+        <div aria-label={ariaLabel} className='sp'>
           <div className='location' itemProp='name'><h2>{hoursEntry.name}</h2></div>
-          <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>{todayLabel}</div>
+          <div className='today' itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>
+            {todayLabel}
+          </div>
           <div className='arrow'
             role='tab'
             aria-expanded={false}
@@ -39,7 +39,19 @@ const Presenter = (hoursEntry, isOpen, expandHandler, children) => {
 }
 
 Presenter.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    name: PropTypes.string,
+    today: PropTypes.shape({
+      rendered: PropTypes.string,
+      schemaOpeningHours: PropTypes.string,
+    }),
+    servicePoint: PropTypes.shape({
+      slug: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  }).isRequired,
+  isOpen: PropTypes.bool,
+  expandHandler: PropTypes.func,
 }
 
 export default Presenter

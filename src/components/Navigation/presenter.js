@@ -101,6 +101,14 @@ const Navigation = (props) => {
   )
 }
 
+myAccountButton.propTypes = {
+  menus: PropTypes.object.isRequired,
+  loggedIn: PropTypes.bool,
+  handleUserClick: PropTypes.func,
+  handleUserKeyDown: PropTypes.func,
+  loginUrl: PropTypes.string,
+}
+
 Navigation.propTypes = {
   menus: PropTypes.object.isRequired,
   handleDrawer: PropTypes.func.isRequired,

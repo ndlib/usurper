@@ -1,9 +1,8 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import { saveSearchPreference, clearSearchPreference } from '../../../actions/search.js'
 import SearchPreference from './presenter'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     ...state,
   }

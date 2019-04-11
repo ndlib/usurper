@@ -43,10 +43,10 @@ const Presenter = (props) => {
 
 Presenter.propTypes = {
   preview: PropTypes.bool,
-  homeLibraries: PropTypes.array.isRequired,
-  setHomeLibrary: PropTypes.func.isRequired,
-  homeIndex: PropTypes.number,
-  libraryStatus: PropTypes.number,
+  // homeLibraries: PropTypes.array.isRequired,
+  // setHomeLibrary: PropTypes.func.isRequired,
+  // homeIndex: PropTypes.number,
+  // libraryStatus: PropTypes.number,
   setCircStatus: PropTypes.func.isRequired,
   getCircStatus: PropTypes.func.isRequired,
 }

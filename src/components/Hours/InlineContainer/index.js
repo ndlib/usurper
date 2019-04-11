@@ -9,7 +9,10 @@ class HoursInlineContainer extends Component {
       case statuses.FETCHING:
         return (<div>Loading</div>)
       case statuses.SUCCESS:
-        return this.props.presenter(this.props.hoursEntry, this.props.isOpen, this.props.toggleExpanded, this.props.children)
+        return this.props.presenter(this.props.hoursEntry,
+          this.props.isOpen,
+          this.props.toggleExpanded,
+          this.props.children)
       case statuses.ERROR:
         return (<HoursError hoursEntry={this.props.hoursEntry} />)
       default:
@@ -19,10 +22,13 @@ class HoursInlineContainer extends Component {
 }
 
 HoursInlineContainer.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    status: PropTypes.string,
+  }).isRequired,
   presenter: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
   toggleExpanded: PropTypes.func,
+  children: PropTypes.any,
 }
 
 export default HoursInlineContainer

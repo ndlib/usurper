@@ -7,6 +7,7 @@ import ExportButton from './ExportButton'
 import DeleteButton from './DeleteButton'
 
 const ResourceList = (props) => {
+  const { renewal, alephId, deleteFromHistory, sortClick, sortClass, listType, assistSortDirection } = props
   return (
     <section aria-label={props.listType}>
       <div className='item-list-global-actions'>
@@ -38,66 +39,66 @@ const ResourceList = (props) => {
       />
       <div className={`card-item${props.historical ? ' circ-hist' : ''}`}>
         <button
-          className={props.sortClass('title')}
-          onClick={(e) => props.sortClick(e, 'title')}
-          aria-label={'Sort By Title ' + props.assistSortDirection('title')}
-          aria-controls={props.listType}
+          className={sortClass('title')}
+          onClick={(e) => sortClick(e, 'title')}
+          aria-label={'Sort By Title ' + assistSortDirection('title')}
+          aria-controls={listType}
         >
           Title
         </button>
         <button
-          className={props.sortClass('author')}
-          onClick={(e) => props.sortClick(e, 'author')}
-          aria-label={'Sort By Author ' + props.assistSortDirection('author')}
-          aria-controls={props.listType}
+          className={sortClass('author')}
+          onClick={(e) => sortClick(e, 'author')}
+          aria-label={'Sort By Author ' + assistSortDirection('author')}
+          aria-controls={listType}
         >
           Author
         </button>
         { !props.borrowed && (
           <button
-            className={props.sortClass('status')}
-            onClick={(e) => props.sortClick(e, 'status')}
-            aria-label={'Sort By Status ' + props.assistSortDirection('status')}
-            aria-controls={props.listType}
+            className={sortClass('status')}
+            onClick={(e) => sortClick(e, 'status')}
+            aria-label={'Sort By Status ' + assistSortDirection('status')}
+            aria-controls={listType}
           >
             Status
           </button>
         )}
         { props.historical && (
           <button
-            className={props.sortClass('loanDate')}
-            onClick={(e) => props.sortClick(e, 'loanDate')}
-            aria-label={'Sort By Checked Out Date ' + props.assistSortDirection('loanDate')}
-            aria-controls={props.listType}
+            className={sortClass('loanDate')}
+            onClick={(e) => sortClick(e, 'loanDate')}
+            aria-label={'Sort By Checked Out Date ' + assistSortDirection('loanDate')}
+            aria-controls={listType}
           >
             Checked Out
           </button>
         )}
         { props.borrowed && (
           <button
-            className={props.sortClass('dueDate')}
-            onClick={(e) => props.sortClick(e, 'dueDate')}
-            aria-label={'Sort By Due Date ' + props.assistSortDirection('dueDate')}
-            aria-controls={props.listType}
+            className={sortClass('dueDate')}
+            onClick={(e) => sortClick(e, 'dueDate')}
+            aria-label={'Sort By Due Date ' + assistSortDirection('dueDate')}
+            aria-controls={listType}
           >
             Due Date
           </button>
         )}
         { props.historical && (
           <button
-            className={props.sortClass('returnDate')}
-            onClick={(e) => props.sortClick(e, 'returnDate')}
-            aria-label={'Sort By Return Date ' + props.assistSortDirection('returnDate')}
-            aria-controls={props.listType}
+            className={sortClass('returnDate')}
+            onClick={(e) => sortClick(e, 'returnDate')}
+            aria-label={'Sort By Return Date ' + assistSortDirection('returnDate')}
+            aria-controls={listType}
           >
             Returned
           </button>
         )}
         <button
-          className={props.sortClass('from')}
-          onClick={(e) => props.sortClick(e, 'from')}
-          aria-label={'Sort By From ' + props.assistSortDirection('from')}
-          aria-controls={props.listType}
+          className={sortClass('from')}
+          onClick={(e) => sortClick(e, 'from')}
+          aria-label={'Sort By From ' + assistSortDirection('from')}
+          aria-controls={listType}
         >
           From
         </button>
@@ -106,19 +107,19 @@ const ResourceList = (props) => {
         { props.assistText }
       </div>
       <section
-        aria-label={props.listType + ' item list'}
-        id={props.listType}
+        aria-label={listType + ' item list'}
+        id={listType}
       >
         {
           props.list.map((item, index) => {
             return (
               <Resource
                 item={item}
-                renewal={props.renewal}
+                renewal={renewal}
                 canRenew={props.canRenew}
-                alephId={props.alephId}
+                alephId={alephId}
                 borrowed={props.borrowed}
-                deleteFromHistory={props.deleteFromHistory}
+                deleteFromHistory={deleteFromHistory}
                 historical={props.historical}
                 key={index}
               />

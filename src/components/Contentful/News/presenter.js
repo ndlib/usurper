@@ -6,12 +6,9 @@ import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
 import Link from '../../Link'
-import Contact from '../../Contact/ServicePoint'
 import Librarians from '../../Librarians'
 import PageTitle from '../../PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import CurrentHours from '../../Hours/Current'
-import PageLink from '../PageLink'
 import { formatDate } from '../../../shared/DateLibs.js'
 import ShareLinks from '../../ShareLinks'
 import OpenGraph from '../../OpenGraph'
@@ -46,7 +43,9 @@ const PagePresenter = ({ entry }) => (
         <Image cfImage={entry.fields.image} className='news cover' itemProp='image' />
         <LibMarkdown itemProp='articleBody'>{ entry.fields.content }</LibMarkdown>
         <LibMarkdown >{ entry.fields.contactUsPubInfo }</LibMarkdown>
-        <Related className='p-resources' title='Resources' showImages={false}>{ entry.fields.relatedResources }</Related>
+        <Related className='p-resources' title='Resources' showImages={false}>
+          { entry.fields.relatedResources }
+        </Related>
         <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
       </main>
       <aside className='col-md-4 col-sm-4 right news'>

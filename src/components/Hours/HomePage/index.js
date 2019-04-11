@@ -17,14 +17,14 @@ const makeMapStateToProps = () => {
   const getHoursForServicePoint = makeGetHoursForServicePoint()
   const mapStateToProps = (state) => {
     // these props are required for the inline container.
-    let props = {
+    const props = {
       servicePoint: {
         fields: {
           hoursCode: HESBURGH_LIBRARY,
         },
       },
     }
-    let ret = {
+    const ret = {
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
     return ret
@@ -53,7 +53,9 @@ export class HomePageHoursContainer extends Component {
 }
 
 HomePageHoursContainer.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    status: PropTypes.string,
+  }).isRequired,
   fetchHours: PropTypes.func.isRequired,
 }
 

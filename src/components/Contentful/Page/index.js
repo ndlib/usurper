@@ -47,8 +47,15 @@ export class ContentfulPageContainer extends Component {
 
 ContentfulPageContainer.propTypes = {
   fetchPage: PropTypes.func.isRequired,
+  clearPage: PropTypes.func.isRequired,
   cfPageEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
+  history: PropTypes.shape({
+    replace: PropTypes.func.isRequired,
+  }),
 }
 
 const ContentfulPage = connect(

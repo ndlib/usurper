@@ -88,12 +88,12 @@ const apiStateToInt = (state) => {
 export const mapStateToProps = (state, ownProps) => {
   const { personal, settings } = state
 
-  let loggedIn = Boolean(state.personal.login && personal.login.token) === true
+  const loggedIn = Boolean(state.personal.login && personal.login.token) === true
 
-  let currentHomeTitle = personal.user ? personal.user.homeLibrary : null
+  const currentHomeTitle = personal.user ? personal.user.homeLibrary : null
   let homeIndex = null
   if (currentHomeTitle) {
-    let libraryName = currentHomeTitle.split(' ')[0]
+    const libraryName = currentHomeTitle.split(' ')[0]
     for (let i = 0; i < homeLibraries.length; ++i) {
       if (homeLibraries[i].title.includes(libraryName)) {
         homeIndex = i
@@ -102,7 +102,7 @@ export const mapStateToProps = (state, ownProps) => {
     }
   }
 
-  let libraryState = (settings && settings[KIND.homeLibrary]) ? settings[KIND.homeLibrary].state : null
+  const libraryState = (settings && settings[KIND.homeLibrary]) ? settings[KIND.homeLibrary].state : null
 
   return {
     homeIndex: homeIndex,

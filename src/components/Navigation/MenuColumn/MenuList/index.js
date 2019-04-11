@@ -31,8 +31,8 @@ const MenuList = (props) => {
               tabIndexable={props.tabIndexable} />
           )
         }
+        return null
       }
-
     )
     if (isImageList) {
       return (
@@ -40,7 +40,7 @@ const MenuList = (props) => {
       )
     }
     return (
-      <ul className='child' >{menuList}</ul>
+      <ul className='child'>{menuList}</ul>
     )
   }
   return null

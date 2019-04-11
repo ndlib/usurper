@@ -30,10 +30,10 @@ const recieveSettings = (kind, data, state, json) => {
 
 export const setHomeLibrary = (library, title) => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
 
     dispatch(requestSettings(KIND.homeLibrary, library))
-    let url = Config.resourcesAPI + '/aleph/update'
+    const url = Config.resourcesAPI + '/aleph/update'
     return fetch(url, {
       method: 'post',
       headers: {
@@ -42,7 +42,9 @@ export const setHomeLibrary = (library, title) => {
         'aleph-id': state.user.alephId,
       },
     })
-      .then(response => { return response.json() })
+      .then(response => {
+        return response.json()
+      })
       .then(json => {
         state.user.homeLibrary = title
         dispatch(recieveSettings(KIND.homeLibrary, library, statuses.SUCCESS, json))
@@ -55,9 +57,9 @@ export const setHomeLibrary = (library, title) => {
 }
 export const getCircStatus = () => {
   return (dispatch, getState) => {
-    let state = getState().personal
+    const state = getState().personal
     dispatch(requestSettings(KIND.circStatus, null))
-    let url = Config.userPrefsAPI + 'circHistory'
+    const url = Config.userPrefsAPI + 'circHistory'
     return fetch(url, {
       method: 'get',
       headers: {
@@ -80,9 +82,9 @@ export const getCircStatus = () => {
 
 export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
-    let state = getState().personal
+    const state = getState().personal
     dispatch(requestSettings(KIND.circStatus, enabled))
-    let url = Config.userPrefsAPI + 'circHistory'
+    const url = Config.userPrefsAPI + 'circHistory'
     return fetch(url, {
       method: 'post',
       headers: {

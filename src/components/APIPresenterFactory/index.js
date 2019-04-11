@@ -35,7 +35,8 @@ APIPresenterFactory.propTypes = {
   props: PropTypes.oneOfType([ // The props to pass to the given presenter when status === success
     PropTypes.object,
     PropTypes.array]).isRequired,
-  error: PropTypes.oneOfType([PropTypes.object, PropTypes.func]), // The error class to show if you don't want the default.
+  // The error class to show if you don't want the default.
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
 }
 
 export default withErrorBoundary(APIPresenterFactory)

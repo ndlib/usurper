@@ -55,8 +55,8 @@ const SubjectList = () => {
 
   // alphabetical sort
   links.sort((a, b) => {
-    let left = a.name
-    let right = b.name
+    const left = a.name
+    const right = b.name
     if (left < right) {
       return -1
     } else if (right < left) {
@@ -68,7 +68,10 @@ const SubjectList = () => {
   return (
     <div className='container-fluid content-area'>
       <SearchProgramaticSet open={false} />
-      <PageTitle title='Subjects' subtitle='Resources, guides, and services selected by librarians for each of the following subject areas.' />
+      <PageTitle
+        title='Subjects'
+        subtitle='Resources, guides, and services selected by librarians for each of the following subject areas.'
+      />
       <div className='row'>
         <div className='col-md-6'>
           {

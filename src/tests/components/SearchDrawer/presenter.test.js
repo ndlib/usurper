@@ -22,6 +22,7 @@ describe('components/SearchDrawer/presenter', () => {
   it('should render the open SearchDrawer component', () => {
     props = {
       search: {
+        advancedSearch: false,
         drawerOpen: true,
         hasPref: false,
         usePref: false,
@@ -37,6 +38,7 @@ describe('components/SearchDrawer/presenter', () => {
   it('should render the closed SearchDrawer component', () => {
     props = {
       search: {
+        advancedSearch: false,
         drawerOpen: false,
         hasPref: false,
         usePref: false,

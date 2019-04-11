@@ -18,11 +18,11 @@ const contactPoints = [
 ]
 
 const mapStateToProps = (state) => {
-  let points = {}
+  const points = {}
 
   if (state.cfServicePoints.status === statuses.SUCCESS) {
     state.cfServicePoints.json.map((entry) => {
-      let point = entry.fields
+      const point = entry.fields
 
       contactPoints.forEach((section) => {
         if (section.points.indexOf(point.slug) > -1) {

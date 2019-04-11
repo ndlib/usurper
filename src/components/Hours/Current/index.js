@@ -16,7 +16,7 @@ const makeMapStateToProps = () => {
   const getHoursForServicePoint = makeGetHoursForServicePoint()
   const mapStateToProps = (state, props) => {
     // these props are required for the inline container.
-    let ret = {
+    const ret = {
       hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
     }
     return ret
@@ -75,13 +75,11 @@ export class CurrentHoursContainer extends Component {
           return false
         }
 
-        let opens = new Date(hoursBlock.fromLocalDate)
-        let closes = new Date(hoursBlock.toLocalDate)
+        const opens = new Date(hoursBlock.fromLocalDate)
+        const closes = new Date(hoursBlock.toLocalDate)
 
-        let now = new Date()
-        if (opens <= now && now <= closes) {
-          return true
-        }
+        const now = new Date()
+        return (opens <= now && now <= closes)
       })
       return (currentOpenBlocks.length > 0)
     } catch (e) {
@@ -111,10 +109,22 @@ export class CurrentHoursContainer extends Component {
 }
 
 CurrentHoursContainer.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
-  jsonHoursApiKey: PropTypes.string,
-  servicePoint: PropTypes.object,
+  hoursEntry: PropTypes.shape({
+    status: PropTypes.string,
+    today: PropTypes.shape({
+      times: PropTypes.shape({
+        status: PropTypes.string,
+        hours: PropTypes.arrayOf(PropTypes.shape({ // eslint-disable-line react/no-unused-prop-types
+          from: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+          to: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+          fromLocalDate: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+          toLocalDate: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+        })),
+      }),
+    }),
+  }).isRequired,
   fetchHours: PropTypes.func.isRequired,
+  children: PropTypes.any,
 }
 
 const CurrentHours = connect(

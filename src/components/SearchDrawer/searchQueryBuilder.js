@@ -40,42 +40,32 @@ const libSearchBasicURL = (queryTerm) => {
 
 // Actual searchQuery function
 const searchQuery = (searchStore, advancedSearch, history) => {
-  let searchTerm
-  let isAdvanced = searchStore.advancedSearch
+  let searchTerm = ''
+  const isAdvanced = searchStore.advancedSearch
   // let searchScope = 'nd_campus'
 
   if (isAdvanced) {
     // Advanced Search
-    const scope0 = advancedSearch['scope_0'] || 'any'
-    const scope1 = advancedSearch['scope_1'] || 'any'
-    const scope2 = advancedSearch['scope_2'] || 'any'
-    const precision0 = advancedSearch['precisionOperator_0'] || 'contains'
-    const precision1 = advancedSearch['precisionOperator_1'] || 'contains'
-    const precision2 = advancedSearch['precisionOperator_2'] || 'contains'
-    const freeText0 = advancedSearch['freeText_0'] || 'alldocuments'
-    let freeText1 = advancedSearch['freeText_1'] || ''
-    let freeText2 = advancedSearch['freeText_2'] || ''
-    const bool0 = advancedSearch['bool_0'] || 'AND'
-    const bool1 = advancedSearch['bool_1'] || 'AND'
+    for (let i = 0; i < 3; i++) {
+      const scope = advancedSearch['scope_' + i] || 'any'
+      const precision = advancedSearch['precisionOperator_' + i] || 'contains'
+      const freeText = advancedSearch['freeText_' + i] || (i === 0 ? 'alldocuments' : '')
+      const bool = i < 3 ? (advancedSearch['bool_' + i] || 'AND') : 'AND'
+      searchTerm += i === 0 ? '' : '&'
+      searchTerm += `query=${scope},${precision},${encodeURIComponent(freeText)},${bool}`
+    }
+
     const materialType = advancedSearch['materialType'] || 'all_items'
     const language = advancedSearch['language'] || 'all_items'
     const drStartDay = advancedSearch['drStartDay'] || '01'
     const drStartMonth = advancedSearch['drStartMonth'] || '01'
-    let drStartYear = advancedSearch['drStartYear5']
+    const drStartYear = advancedSearch['drStartYear5']
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
-    let drEndYear = advancedSearch['drEndYear5']
+    const drEndYear = advancedSearch['drEndYear5']
     // searchScope = advancedSearch['scopesListAdvanced'] ? advancedSearch['scopesListAdvanced'] : searchScope
 
     // Build advanced search query
-    searchTerm = `query=${scope0},${precision0},${encodeURIComponent(freeText0)},${bool0}`
-    if (freeText1 !== '') {
-      searchTerm += `&query=${scope1},${precision1},${encodeURIComponent(freeText1)},${bool1}`
-    }
-    if (freeText2 !== '') {
-      searchTerm += `&query=${scope2},${precision2},${encodeURIComponent(freeText2)},AND`
-    }
-
     if (materialType !== 'all_items') {
       searchTerm += `&pfilter=pfilter,exact,${materialType},AND`
     }

@@ -34,7 +34,7 @@ const receiveHours = (response) => {
 export const fetchHours = () => {
   return dispatch => {
     dispatch(requestHours())
-    let url = Config.hoursAPIURL + 'hours'
+    const url = Config.hoursAPIURL + 'hours'
     return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveHours(json)))

@@ -30,7 +30,7 @@ const SearchPager = (props) => {
       loopEnd = resultCount
     }
 
-    let pager = []
+    const pager = []
     if (queries.previousPage) {
       pager.push(
         <span key='0'>

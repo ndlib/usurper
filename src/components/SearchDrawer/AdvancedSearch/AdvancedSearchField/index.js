@@ -14,4 +14,11 @@ const AdvancedSearchField = (props) => {
   )
 }
 
+AdvancedSearchField.propTypes = {
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+}
+
 export default AdvancedSearchField

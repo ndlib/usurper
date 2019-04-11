@@ -1,4 +1,3 @@
-'use strict'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -16,9 +15,9 @@ class ResourceContainer extends Component {
   }
 
   componentWillReceiveProps () {
-    let item = this.props.item
-    let renewal = this.props.renewal ? this.props.renewal[item.barcode] : null
-    let previousDueDate = item.dueDate
+    const item = this.props.item
+    const renewal = this.props.renewal ? this.props.renewal[item.barcode] : null
+    const previousDueDate = item.dueDate
     if (renewal && this.props.borrowed) {
       if (renewal.data.renewStatus === 200 && previousDueDate !== renewal.data.dueDate) {
         item.dueDate = renewal.data.dueDate
@@ -32,7 +31,7 @@ class ResourceContainer extends Component {
     }
   }
 
-  toggleHidden (event) {
+  toggleHidden () {
     this.setState({
       hidden: !this.state.hidden,
     })
@@ -45,7 +44,6 @@ class ResourceContainer extends Component {
 
 ResourceContainer.propTypes = {
   renewal: PropTypes.object,
-  canRenew: PropTypes.bool,
   item: PropTypes.object,
   borrowed: PropTypes.bool,
 }

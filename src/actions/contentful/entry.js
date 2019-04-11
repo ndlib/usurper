@@ -12,7 +12,7 @@ export const requestEntry = (entry) => {
 
 export const CF_RECEIVE_ENTRY = 'CF_RECEIVE_ENTRY'
 const receiveEntry = (entry, response) => {
-  let error = {
+  const error = {
     type: CF_RECEIVE_ENTRY,
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
@@ -20,7 +20,7 @@ const receiveEntry = (entry, response) => {
     entry,
   }
 
-  let success = {
+  const success = {
     type: CF_RECEIVE_ENTRY,
     status: statuses.SUCCESS,
     page: response[0],
@@ -55,13 +55,15 @@ export const fetchEntry = (id, slug, preview) => {
     entryIdent = id
   }
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${identifierParam}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return (dispatch, getState) => {
     dispatch(requestEntry(entryIdent))
 
-    let login = getState().personal.login
-    let headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
+    const login = getState().personal.login
+    const headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
     return fetch(url, { headers })
       .then(response => {
         if (response.ok) {

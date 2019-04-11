@@ -19,9 +19,9 @@ const mapStateToProps = (state, thisProps) => {
     'provider': 'Provider',
   }
 
-  let fieldData = {}
+  const fieldData = {}
   if (entry.status === statuses.SUCCESS) {
-    for (let field in fieldsAndTitle) {
+    for (const field in fieldsAndTitle) {
       if (entry.json.fields[field]) {
         fieldData[field] = {
           title: fieldsAndTitle[field],
@@ -72,7 +72,11 @@ ContentfulDatabaseContainer.propTypes = {
   fetchEntry: PropTypes.func.isRequired,
   cfDatabaseEntry: PropTypes.object.isRequired,
   fieldData: PropTypes.object,
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
+  databaseId: PropTypes.string.isRequired,
 }
 
 const ContentfulFloor = connect(

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const RedirectRoutes = [
   // external redirects
   { path: '/cds', target: 'http://cds.library.nd.edu' },
@@ -52,6 +53,7 @@ const RedirectRoutes = [
   { path: '/srch-find/*', target: '/research' },
   { path: '/circulation/*', target: '/services' },
   { path: '/about/hours/*', target: '/hours' },
-
 ]
+/* eslint-enable max-len */
+
 export default RedirectRoutes

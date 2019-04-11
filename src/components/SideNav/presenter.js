@@ -74,6 +74,8 @@ class SideNavPresenter extends Component {
 
 SideNavPresenter.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
+  search: PropTypes.object,
 }
 
 export default SideNavPresenter

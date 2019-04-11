@@ -9,7 +9,6 @@ import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
 import StaticAlert from '../../Contentful/StaticContent/Alert'
 import OpenGraph from '../../OpenGraph'
-import Link from '../../Link'
 
 const Presenter = (props) => {
   return (
@@ -29,17 +28,19 @@ const Presenter = (props) => {
           <main className='service-point-list' role='tablist'>
             {
               props.hoursPageOrder.map((servicePointOrder) => {
-                let sp = props.servicePoints[servicePointOrder.servicePointSlug]
+                const sp = props.servicePoints[servicePointOrder.servicePointSlug]
                 if (!sp) {
                   return null
                 }
 
-                return (<div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
-                  <CurrentHours servicePoint={sp} >
-                    <address>{sp.fields.address}</address>
-                    <Contact servicePoint={sp} />
-                  </CurrentHours>
-                </div>)
+                return (
+                  <div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
+                    <CurrentHours servicePoint={sp} >
+                      <address>{sp.fields.address}</address>
+                      <Contact servicePoint={sp} />
+                    </CurrentHours>
+                  </div>
+                )
               })
             }
           </main>
@@ -55,6 +56,7 @@ const Presenter = (props) => {
 Presenter.propTypes = {
   servicePoints: PropTypes.array.isRequired,
   preview: PropTypes.bool,
+  hoursPageOrder: PropTypes.array.isRequired,
 }
 
 export default Presenter

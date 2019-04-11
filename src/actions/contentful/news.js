@@ -12,14 +12,14 @@ export const requestNews = (news) => {
 
 export const CF_RECEIVE_NEWS = 'CF_RECEIVE_NEWS'
 const receiveNews = (news, response) => {
-  let error = {
+  const error = {
     type: CF_RECEIVE_NEWS,
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
     receivedAt: Date.now(),
   }
 
-  let success = {
+  const success = {
     type: CF_RECEIVE_NEWS,
     status: statuses.SUCCESS,
     news: response[0],
@@ -40,9 +40,11 @@ const receiveNews = (news, response) => {
 export const fetchNews = (news, preview) => {
   const query = encodeURIComponent(`content_type=news&fields.slug=${news}&include=3`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestNews(news))
 
     return fetch(url)

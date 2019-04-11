@@ -41,7 +41,7 @@ export class CoursesContainer extends Component {
       )
     }
 
-    let courses = get(this.props, 'courses', { state: statuses.NOT_FETCHED })
+    const courses = get(this.props, 'courses', { state: statuses.NOT_FETCHED })
     if (courses.state === statuses.FETCHING || courses.state === statuses.NOT_FETCHED) {
       return <Loading />
     }

@@ -12,14 +12,14 @@ export const requestFloor = (floor) => {
 
 export const CF_RECEIVE_FLOOR = 'CF_RECEIVE_FLOOR'
 const receiveFloor = (floor, response) => {
-  let error = {
+  const error = {
     type: CF_RECEIVE_FLOOR,
     status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
     receivedAt: Date.now(),
   }
 
-  let success = {
+  const success = {
     type: CF_RECEIVE_FLOOR,
     status: statuses.SUCCESS,
     floor: response[0],
@@ -40,7 +40,9 @@ const receiveFloor = (floor, response) => {
 export const fetchFloor = (floor, preview) => {
   const query = encodeURIComponent(`content_type=floor&fields.slug=${floor}`)
   let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}&preview=${preview}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return dispatch => {
     dispatch(requestFloor(floor))

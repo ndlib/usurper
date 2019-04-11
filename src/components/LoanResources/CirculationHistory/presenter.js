@@ -29,7 +29,7 @@ const OptedOutMessage = () => {
 }
 
 const CirculationHistory = (props) => {
-  let history = props.resources.have
+  const history = props.resources.have
 
   return (
     <div className='content'>

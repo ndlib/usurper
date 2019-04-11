@@ -50,7 +50,7 @@ const setSearchType = (newState) => {
 }
 
 const defaultState = () => {
-  let state = {
+  const state = {
     drawerOpen: true,
     searchType: null,
     searchBoxOpen: false,
@@ -69,8 +69,10 @@ export default (
 ) => {
   switch (action.type) {
     case SET_SEARCH: {
-      const newOption = searchOptions.find((el) => { return el.uid === action.searchType })
-      let newState = Object.assign({}, state, {
+      const newOption = searchOptions.find((el) => {
+        return el.uid === action.searchType
+      })
+      const newState = Object.assign({}, state, {
         sessionPref: action.searchType,
         advancedSearch: (newOption && newOption.enableAdvancedSearch) ? state.advancedSearch : false,
       })
@@ -124,16 +126,14 @@ export default (
         queries: action.queries,
       })
     case CF_RECEIVE_PAGE:
-    {
       if (action.status === statuses.SUCCESS) {
-        let newState = Object.assign({}, state, {
+        const newState = Object.assign({}, state, {
           pageSearchPref: action.page.fields.defaultSearchScope,
         })
         setSearchType(newState)
         return newState
       }
       return state
-    }
     default:
       return state
   }

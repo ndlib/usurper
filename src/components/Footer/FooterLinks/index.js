@@ -18,9 +18,15 @@ const FooterLinks = () => {
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><Link to='https://wiki.nd.edu/display/libintranet/Home'>Hesnet</Link></li>
                 <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
-                <li><Link to='https://library.nd.edu/government-documents' label='Federal Depository Library'>
-                  <img src='/icons/fdlp-emblem-color.png' className='gov' alt='Logo of Federal Depository Library Project' />
-                </Link></li>
+                <li>
+                  <Link to='https://library.nd.edu/government-documents' label='Federal Depository Library'>
+                    <img
+                      src='/icons/fdlp-emblem-color.png'
+                      className='gov'
+                      alt='Logo of Federal Depository Library Project'
+                    />
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

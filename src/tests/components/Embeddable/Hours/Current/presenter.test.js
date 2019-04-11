@@ -27,22 +27,16 @@ const hoursEntry = {
   servicePoint: {
     slug: 'SLUG',
   },
+  weeks: [ weeklyHours ],
+  upcomingChangedHours: upComingWeeklyHours,
 }
 const isOpen = true
 
 const setup = (hoursEntry, isOpen) => {
-  return shallow(<PagePresenter
-    name={hoursEntry.name}
-    today={hoursEntry.today}
-    timeZone={hoursEntry.timeZone}
-    servicePoint={hoursEntry.servicePoint}
-    weeks={[ weeklyHours ]}
-    upcomingChangedHours={upComingWeeklyHours}
-    isOpen={isOpen}
-  />)
+  return shallow(PagePresenter(hoursEntry, isOpen))
 }
 
-describe('components/Embeddable/Hours/presenter.js', () => {
+describe('components/Embeddable/Hours/Current/presenter.js', () => {
   beforeEach(() => {
     enzymeWrapper = setup(hoursEntry, isOpen)
   })

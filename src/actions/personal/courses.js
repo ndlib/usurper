@@ -18,7 +18,7 @@ const handleCourses = (dispatch, data) => {
 
 const getCourses = () => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
     dispatch(states.requestPersonal('courses'))
     states.startRequest(
       coursesURL,
@@ -26,7 +26,7 @@ const getCourses = () => {
       dispatch,
       handleCourses,
       state.login.token,
-      (e) => {
+      () => {
         dispatch(states.recievePersonal('courses', statuses.ERROR))
       }
     )

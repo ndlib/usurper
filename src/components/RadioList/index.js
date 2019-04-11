@@ -26,8 +26,8 @@ class RadioList extends Component {
       return
     }
 
-    let title = this.props.entries[index].title
-    let value = this.props.entries[index].value
+    const title = this.props.entries[index].title
+    const value = this.props.entries[index].value
     this.props.submit(value, title)
   }
 
@@ -109,6 +109,7 @@ RadioList.propTypes = {
   submit: PropTypes.func,
   useButton: PropTypes.bool,
   buttonText: PropTypes.string,
+  onChangeCallback: PropTypes.func,
 }
 
 RadioList.defaultProps = {

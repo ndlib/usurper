@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux'
 import { fetchEvent } from '../../../actions/contentful/event'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
-import * as statuses from '../../../constants/APIStatuses'
 import { formatDate, hour12, isSameDay, makeLocalTimezone } from '../../../shared/DateLibs.js'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
@@ -13,19 +12,19 @@ const mapStateToProps = (state) => {
   let data = state.cfEventEntry.json
 
   if (data) {
-    let fields = data.fields
+    const fields = data.fields
 
-    let startDate = new Date(fields.startDate)
-    let endDate = new Date(fields.endDate)
+    const startDate = new Date(fields.startDate)
+    const endDate = new Date(fields.endDate)
 
     let displayDate = formatDate(startDate)
     if (!isSameDay(startDate, endDate)) {
       displayDate += ' – ' + formatDate(endDate)
     }
 
-    let start = makeLocalTimezone(fields.startDate)
-    let end = endDate ? makeLocalTimezone(fields.endDate) : makeLocalTimezone(fields.startDate)
-    let displayTime = fields.timeOverride ? fields.timeOverride : `${hour12(start)} &ndash; ${hour12(end)}`
+    const start = makeLocalTimezone(fields.startDate)
+    const end = endDate ? makeLocalTimezone(fields.endDate) : makeLocalTimezone(fields.startDate)
+    const displayTime = fields.timeOverride ? fields.timeOverride : `${hour12(start)} &ndash; ${hour12(end)}`
 
     data = {
       ...data.fields,
@@ -72,6 +71,9 @@ ContentfulEventContainer.propTypes = {
   data: PropTypes.object,
   status: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 const ContentfulEvent = connect(

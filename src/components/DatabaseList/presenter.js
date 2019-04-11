@@ -57,6 +57,10 @@ const DBLoading = () => {
   return (<Loading />)
 }
 
+const LetterNotFound = (letter, filterValue, onFilterChange) => {
+  return Content(letter, 'Nothing found for this letter', filterValue, onFilterChange)
+}
+
 const Loaded = (props) => {
   if (!props.list) {
     return null
@@ -64,8 +68,8 @@ const Loaded = (props) => {
   if (props.list.length < 1) {
     return LetterNotFound(props.letter, props.filterValue, props.onFilterChange)
   }
-  let data = props.list.map((item) => {
-    let linkObject = getLinkObject(item.fields, item.sys.id)
+  const data = props.list.map((item) => {
+    const linkObject = getLinkObject(item.fields, item.sys.id)
 
     return (
       <section key={item.fields.alephSystemNumber + item.fields.title}
@@ -104,10 +108,6 @@ const Loaded = (props) => {
   return Content(props.letter, data, props.filterValue, props.onFilterChange, props.assistText)
 }
 
-const LetterNotFound = (letter, filterValue, onFilterChange) => {
-  return Content(letter, 'Nothing found for this letter', filterValue, onFilterChange)
-}
-
 const ListPresenter = (props) => {
   switch (props.status) {
     case statuses.FETCHING:
@@ -121,8 +121,11 @@ const ListPresenter = (props) => {
   }
 }
 
-ListPresenter.propTypes = {
+Loaded.propTypes = {
   list: PropTypes.array,
+}
+
+ListPresenter.propTypes = {
   status: PropTypes.string,
   letter: PropTypes.string.isRequired,
 

@@ -18,7 +18,7 @@ const handleRecommendations = (dispatch, data) => {
 
 const getRecommendations = () => {
   return (dispatch, getState) => {
-    var state = getState().personal
+    const state = getState().personal
 
     dispatch(states.requestPersonal('recommend'))
     states.startRequest(
@@ -27,7 +27,7 @@ const getRecommendations = () => {
       dispatch,
       handleRecommendations,
       state.login.token,
-      (e) => {
+      () => {
         dispatch(states.recievePersonal('recommend', statuses.ERROR))
       }
     )

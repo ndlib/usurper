@@ -14,18 +14,20 @@ const mapStateToProps = (state) => {
   let pastEvents = []
   let currentFutureEvents = []
   if (state.allEvents && state.allEvents.status === statuses.SUCCESS) {
-    let now = new Date()
+    const now = new Date()
     allEvents = mapEvents(state.allEvents.json).sort(sortEvents)
     currentFutureEvents = allEvents.filter((entry) => {
       if (entry && entry.startDate && entry.endDate) {
         return entry.startDate >= now || entry.endDate >= now
       }
+      return false
     })
 
     pastEvents = allEvents.filter((entry) => {
       if (entry && entry.startDate && entry.endDate) {
         return entry.startDate < now && entry.endDate < now
       }
+      return false
     })
   }
 

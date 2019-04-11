@@ -1,7 +1,7 @@
-import { CF_REQUEST_PAGE, CF_RECEIVE_PAGE, CF_NO_SUCH_PAGE, CF_CLEAR_PAGE } from '../../actions/contentful/page'
+import { CF_REQUEST_PAGE, CF_RECEIVE_PAGE, CF_CLEAR_PAGE } from '../../actions/contentful/page'
 import * as statuses from '../../constants/APIStatuses'
 
-export default(state = { status: statuses.NOT_FETCHED }, action) => {
+export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {
     case CF_REQUEST_PAGE:
       return Object.assign({}, state, {

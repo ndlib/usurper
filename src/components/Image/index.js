@@ -108,7 +108,7 @@ ImageContainer.propTypes = {
 
   // removed in mapping
   cfImage: PropTypes.object,
-  defaultImage: PropTypes.string,
+  defaultImage: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 }
 
 const ImageComponent = connect(mapStateToProps, mapDispatchToProps)(ImageContainer)

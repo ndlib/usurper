@@ -38,8 +38,8 @@ export const filterAndSort = (list, filterFields, filterValue, sortValue, sortDi
     }
     return inFilter
   }).sort((a, b) => {
-    let aValue = a[sortValue]
-    let bValue = b[sortValue]
+    const aValue = a[sortValue]
+    const bValue = b[sortValue]
 
     if (aValue === bValue) {
       return sortOps['desc'](a['title'], b['title'])

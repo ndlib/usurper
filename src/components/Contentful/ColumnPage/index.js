@@ -33,7 +33,6 @@ export class ContentfulColumnPageContainer extends Component {
   componentWillReceiveProps (nextProps) {
     const slug = this.props.match.params[0]
     const nextSlug = nextProps.match.params[0]
-    console.log(slug, nextSlug)
     if (!slug || slug !== nextSlug) {
       this.props.fetchPage(nextSlug, false, false, 'columnContainer')
     }
@@ -51,6 +50,9 @@ ContentfulColumnPageContainer.propTypes = {
   fetchPage: PropTypes.func.isRequired,
   cfPageEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 const ContentfulPage = connect(

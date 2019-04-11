@@ -15,7 +15,7 @@ const Sponsorships = ({ sponsors }) => {
 }
 
 Sponsorships.propTypes = {
-  sponsors: PropTypes.string.isRequired,
+  sponsors: PropTypes.string,
 }
 
 export default Sponsorships

@@ -32,6 +32,7 @@ describe('components/DatabaseList/index.js', () => {
         fetchLetter: jest.fn(),
         currentLetter: 'a',
         allLettersStatus: statuses.NOT_FETCHED,
+        allDbs: [],
         personal: {
           login: {},
           loggedIn: true,
@@ -87,6 +88,7 @@ describe('components/DatabaseList/index.js', () => {
         fetchLetter: jest.fn(),
         currentLetter: 'ab',
         allLettersStatus: 'test',
+        allDbs: [],
         personal: {
           login: {},
           loggedIn: true,

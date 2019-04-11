@@ -11,14 +11,14 @@ export const requestAllAlerts = () => {
 
 export const CF_RECEIVE_ALLALERTS = 'CF_RECEIVE_ALLALERTS'
 const receiveAllAlerts = (response) => {
-  let error = {
+  const error = {
     type: CF_RECEIVE_ALLALERTS,
     status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
     receivedAt: Date.now(),
   }
 
-  let success = {
+  const success = {
     type: CF_RECEIVE_ALLALERTS,
     status: statuses.SUCCESS,
     allAlerts: response,
@@ -40,7 +40,9 @@ export const fetchAllAlerts = (status) => {
   const query = encodeURIComponent('content_type=alert&include=2')
   const preview = status === 'preview'
   let url = `${Config.contentfulAPI}livequery?locale=en-US&query=${query}&t=${Date.now()}`
-  if (preview) { url += `&preview=${preview}` }
+  if (preview) {
+    url += `&preview=${preview}`
+  }
 
   return dispatch => {
     dispatch(requestAllAlerts())

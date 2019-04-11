@@ -29,8 +29,8 @@ class DropdownContainer extends Component {
       return
     }
 
-    let title = this.props.entries[index].title
-    let value = this.props.entries[index].value
+    const title = this.props.entries[index].title
+    const value = this.props.entries[index].value
     this.props.submit(value, title)
   }
 
@@ -54,7 +54,7 @@ class DropdownContainer extends Component {
     this.setState({ index: index })
   }
 
-  onSelectedClick (e) {
+  onSelectedClick () {
     this.toggle()
   }
 
@@ -63,7 +63,7 @@ class DropdownContainer extends Component {
       this.toggle()
       e.preventDefault()
     } else if (e.keyCode === 40) { // down arrow
-      this.toggle(open)
+      this.toggle(this.state.open)
       this.setIndex(0)
       e.preventDefault()
     }
@@ -75,7 +75,7 @@ class DropdownContainer extends Component {
 
   onOptionKeyDown (e) {
     let i
-    let numOptions = this.props.entries.length
+    const numOptions = this.props.entries.length
     switch (e.keyCode) {
       case 9: // tab key
         e.preventDefault()
@@ -104,7 +104,7 @@ class DropdownContainer extends Component {
     }
   }
 
-  onButtonClick (e) {
+  onButtonClick () {
     this.onSubmit(this.state.index, true)
   }
 

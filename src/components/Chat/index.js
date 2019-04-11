@@ -17,7 +17,7 @@ const Chat = () => {
             border: '0px',
             inset: '#2a4480',
           }}
-          />
+        />
       </div>
     </section>
   )

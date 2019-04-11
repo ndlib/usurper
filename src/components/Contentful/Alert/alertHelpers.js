@@ -1,7 +1,5 @@
-import React from 'react'
-
 const alertMap = (alert, isGlobal = false) => {
-  let type = alert.type ? alert.type.toLowerCase() : 'warning'
+  const type = alert.type ? alert.type.toLowerCase() : 'warning'
 
   let className = 'alert '
   className += isGlobal ? 'global ' : 'page '
@@ -37,7 +35,7 @@ const alertSort = (left, right) => {
 }
 
 const alertCatagorize = (alerts) => {
-  let out = {}
+  const out = {}
   alerts.forEach((alert) => {
     if (out[alert.type]) {
       out[alert.type].push(alert)

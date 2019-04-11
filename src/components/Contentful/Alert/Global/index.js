@@ -13,11 +13,11 @@ const makeMapStateToProps = () => {
   const selector = makeAlertSelector()
 
   const mapStateToProps = (state) => {
-    let selected = selector(state)
+    const selected = selector(state)
 
     let alerts = []
     selected.forEach((entry) => {
-      let alert = entry.fields
+      const alert = entry.fields
       alerts.push(alertMap(alert, true))
     })
 

@@ -21,10 +21,12 @@ describe('components/Hours/Page/Container', () => {
   beforeEach(() => {
     props = {
       hoursEntry: { status: statuses.NOT_FETCHED, json: {} },
-      servicePointsWithHours: [],
+      servicePointsWithHours: {},
+      servicePointsStatus: statuses.NOT_FETCHED,
       combinedStatus: statuses.NOT_FETCHED,
       hoursStatus: statuses.NOT_FETCHED,
       fetchHours: jest.fn(),
+      fetchServicePoints: jest.fn(),
     }
     enzymeWrapper = setup(props)
   })

@@ -2,10 +2,10 @@ import { createSelector } from 'reselect'
 import * as statuses from '../constants/APIStatuses'
 import { flattenLocale } from '../shared/ContentfulLibs'
 
-const getAlerts = (state, props) => {
+const getAlerts = (state) => {
   let allAlerts = []
   if (state.allAlerts && state.allAlerts.status === statuses.SUCCESS && state.allAlerts.json) {
-    let now = new Date()
+    const now = new Date()
 
     allAlerts = state.allAlerts.json
       .map((entry) => {
@@ -13,8 +13,8 @@ const getAlerts = (state, props) => {
         return entry
       })
       .filter((entry) => {
-        let start = new Date(entry.fields.startTime)
-        let end = new Date(entry.fields.endTime)
+        const start = new Date(entry.fields.startTime)
+        const end = new Date(entry.fields.endTime)
         return start <= now && end >= now && entry.fields.global
       })
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import PageTitle from '../../../PageTitle'
 import SearchProgramaticSet from '../../../SearchProgramaticSet'
 import '../style.css'
@@ -25,6 +26,10 @@ const Current = (props) => {
       </div>
     </div>
   )
+}
+
+Current.propTypes = {
+  events: PropTypes.array,
 }
 
 export default withRouter(Current)

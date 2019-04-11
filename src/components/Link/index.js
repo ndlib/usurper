@@ -20,8 +20,8 @@ const Internal = (to, onClick, ariaLabel, props) => {
 }
 
 const External = (to, noTarget, onClick, ariaLabel, props) => {
-  let target = noTarget ? '_self' : '_blank'
-  let rel = noTarget ? '' : 'noopener noreferrer'
+  const target = noTarget ? '_self' : '_blank'
+  const rel = noTarget ? '' : 'noopener noreferrer'
   return (
     <a href={to}
       target={target}
@@ -49,7 +49,7 @@ const Hidden = (
 
 export const LibLink = (props) => {
   let query = ''
-  for (let k in props.query) {
+  for (const k in props.query) {
     if (props.query.hasOwnProperty(k)) {
       if (query.length > 0) {
         query += '&'
@@ -60,8 +60,8 @@ export const LibLink = (props) => {
     }
   }
 
-  let propsToPass = Object.assign({}, props)
-  for (let k in nonTagProps) {
+  const propsToPass = Object.assign({}, props)
+  for (const k in nonTagProps) {
     delete propsToPass[k]
   }
 
@@ -73,8 +73,8 @@ export const LibLink = (props) => {
     return Invalid(propsToPass)
   }
 
-    // Urls to remove so links are local
-  let replaceUrls = [
+  // Urls to remove so links are local
+  const replaceUrls = [
     'https://alpha.library.nd.edu',
     'http://alpha.library.nd.edu',
     'https://beta.library.nd.edu',
@@ -83,7 +83,7 @@ export const LibLink = (props) => {
     'http://library.nd.edu',
   ]
 
-  for (let index in replaceUrls) {
+  for (const index in replaceUrls) {
     if (to.startsWith(replaceUrls[index])) {
       to = to.substr(replaceUrls[index].length)
       break
@@ -101,7 +101,7 @@ export const LibLink = (props) => {
     return true
   }
 
-  to = to + query
+  to += query
 
   if (to.startsWith('http')) {
     return External(to, props.noTarget, onClick, props.ariaLabel, propsToPass)
@@ -141,6 +141,19 @@ const nonTagProps = {
   dispatch: PropTypes.func,
   staticContext: PropTypes.any,
   history: PropTypes.object,
+}
+
+Internal.propTypes = {
+  children: PropTypes.any,
+}
+
+External.propTypes = {
+  children: PropTypes.any,
+}
+
+Invalid.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.string,
 }
 
 LibLink.propTypes = Object.assign({}, nonTagProps, {

@@ -5,7 +5,7 @@ import ErrorBoundary, { withErrorBoundary } from '../../ErrorBoundary'
 
 const SearchResults = (props) => {
   if (props.items && props.items.length > 0) {
-    let items = props.items.map((item, index) => {
+    const items = props.items.map((item, index) => {
       return (
         <ErrorBoundary key={index}>
           <SearchResult item={item} />

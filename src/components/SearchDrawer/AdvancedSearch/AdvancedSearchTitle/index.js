@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AdvancedSearchTitle = (props) => {
   let title = 'OneSearch'
@@ -8,6 +9,10 @@ const AdvancedSearchTitle = (props) => {
   return (
     <div id='search-type-title'>{title}</div>
   )
+}
+
+AdvancedSearchTitle.propTypes = {
+  searchType: PropTypes.string,
 }
 
 export default AdvancedSearchTitle

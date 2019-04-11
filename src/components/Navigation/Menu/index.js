@@ -4,7 +4,7 @@ import Link from '../../Link'
 
 const Menu = (props) => {
   return (
-    <div className='menu-drawer visible' aria-expanded="true" id={props.id} role='group'>
+    <div className='menu-drawer visible' aria-expanded='true' id={props.id} role='group'>
       <div className='container-fluid row'>
         {props.children}
       </div>
