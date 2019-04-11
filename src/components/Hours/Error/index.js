@@ -20,7 +20,12 @@ const Error = (props) => {
 }
 
 Error.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    servicePoint: PropTypes.shape({
+      title: PropTypes.string,
+      phoneNumber: PropTypes.string,
+    }),
+  }).isRequired,
 }
 
 export default Error

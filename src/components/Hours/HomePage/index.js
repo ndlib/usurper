@@ -53,7 +53,9 @@ export class HomePageHoursContainer extends Component {
 }
 
 HomePageHoursContainer.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    status: PropTypes.string,
+  }).isRequired,
   fetchHours: PropTypes.func.isRequired,
 }
 

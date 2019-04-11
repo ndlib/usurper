@@ -95,7 +95,20 @@ export class CurrentHoursContainer extends Component {
 }
 
 CurrentHoursContainer.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    status: PropTypes.string,
+    today: PropTypes.shape({
+      times: PropTypes.shape({
+        status: PropTypes.string,
+        hours: PropTypes.arrayOf(PropTypes.shape({ // eslint-disable-line react/no-unused-prop-types
+          from: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+          to: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+          fromLocalDate: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+          toLocalDate: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+        })),
+      }),
+    }),
+  }).isRequired,
   fetchHours: PropTypes.func.isRequired,
   children: PropTypes.any,
 }

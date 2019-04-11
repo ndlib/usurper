@@ -29,13 +29,13 @@ const Sections = (column, showDescriptions) => {
                 return (
                   <p key={item.sys.id}>
                     <Link to={linkObject.heading.url} className='item-title'>{linkObject.heading.title}</Link>
-                    <ul className='linkGroup'>
+                    <span className='linkGroup'>
                       {
                         linkObject.conditionalLinks.map((data) => {
                           return data.url && <li key={data.keyId}><Link to={data.url}>{data.title}</Link></li>
                         })
                       }
-                    </ul>
+                    </span>
                     { showDescriptions ? (<span>{linkObject.heading.description}</span>) : null }
                   </p>
                 )

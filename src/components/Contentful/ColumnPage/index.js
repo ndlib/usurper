@@ -33,7 +33,6 @@ export class ContentfulColumnPageContainer extends Component {
   componentWillReceiveProps (nextProps) {
     const slug = this.props.match.params[0]
     const nextSlug = nextProps.match.params[0]
-    console.log(slug, nextSlug)
     if (!slug || slug !== nextSlug) {
       this.props.fetchPage(nextSlug, false, false, 'columnContainer')
     }

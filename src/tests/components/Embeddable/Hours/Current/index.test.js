@@ -17,7 +17,7 @@ const setup = (props) => {
 
 let enzymeWrapper
 let props
-describe('components/Embeddable/Hours/Current/Container', () => {
+describe('components/Embeddable/Hours/Current', () => {
   beforeEach(() => {
     props = {
       hoursEntry: { status: statuses.NOT_FETCHED },

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './style.css'
 import WeeklyHours from '../../../Hours/WeeklyHours'
 
@@ -30,6 +31,23 @@ const Presenter = (hoursEntry, isOpen) => {
       </div>
     </section>
   )
+}
+
+Presenter.propTypes = {
+  hoursEntry: PropTypes.shape({
+    name: PropTypes.string,
+    servicePoint: PropTypes.shape({
+      slug: PropTypes.string,
+    }),
+    today: PropTypes.shape({
+      rendered: PropTypes.string,
+      schemaOpeningHours: PropTypes.string,
+    }),
+    timezone: PropTypes.string,
+    weeks: PropTypes.array,
+    upcomingChangedHours: PropTypes.object,
+  }).isRequired,
+  isOpen: PropTypes.bool,
 }
 
 export default Presenter

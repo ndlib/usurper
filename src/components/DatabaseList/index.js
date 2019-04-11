@@ -224,7 +224,10 @@ DatabaseListContainer.propTypes = {
   allLettersStatus: PropTypes.string.isRequired,
   allDbs: PropTypes.array.isRequired,
   location: PropTypes.shape({
-    search: PropTypes.object,
+    search: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
   }),
   match: PropTypes.shape({
     params: PropTypes.object,

@@ -22,7 +22,9 @@ class HoursInlineContainer extends Component {
 }
 
 HoursInlineContainer.propTypes = {
-  hoursEntry: PropTypes.object.isRequired,
+  hoursEntry: PropTypes.shape({
+    status: PropTypes.string,
+  }).isRequired,
   presenter: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
   toggleExpanded: PropTypes.func,

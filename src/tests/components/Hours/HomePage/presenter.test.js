@@ -3,8 +3,8 @@ import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Hours/HomePage/presenter'
 import Link from '../../../../components/Link'
 
-const setup = (hoursEntry) => {
-  return shallow(PagePresenter(hoursEntry))
+const setup = (props) => {
+  return shallow(PagePresenter(props.hoursEntry))
 }
 
 describe('components/Hours/HomePage/presenter', () => {
@@ -18,6 +18,7 @@ describe('components/Hours/HomePage/presenter', () => {
           rendered: 'today-display',
           opens: 'opens-time',
           closes: 'closes-time',
+          schemaOpeningHours: 'Hours',
         },
         thisWeek: {
           display: 'this-week-display',
