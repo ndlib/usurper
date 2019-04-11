@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Recommendations from '../Recommendations'
 import LoanResources from '../LoanResources'
 import PageTitle from '../PageTitle'
 import Loading from '../Messages/Loading'
@@ -30,7 +29,6 @@ const LoggedIn = (preview, balance) => {
               </div>
             </div>
           }
-          <Recommendations />
           <LoanResources />
           <StaticBody slug='personal' preview={preview} />
         </div>
