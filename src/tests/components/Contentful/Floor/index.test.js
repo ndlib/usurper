@@ -4,10 +4,8 @@ import { shallow } from 'enzyme'
 import { ContentfulFloorContainer } from '../../../../components/Contentful/Floor'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import APIPresenterFactory from '../../../../components/APIPresenterFactory'
-import configureStore from 'redux-mock-store'
 
 const setup = (props) => {
-  const store = configureStore()(props)
   return shallow(<ContentfulFloorContainer {...props} />, { lifecycleExperimental: true })
 }
 

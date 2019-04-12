@@ -1,49 +1,30 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
-import Settings from '../../../components/Settings'
+import { SettingsContainer } from '../../../components/Settings'
 import Loading from '../../../components/Messages/Loading'
-import { mapStateToProps } from '../../../components/Settings'
 import * as statuses from '../../../constants/APIStatuses'
 
-const middlewares = [ thunk ]
-const mockStore = configureMockStore(middlewares)
-
-const loggedInState = {
-  personal: {
-    login: {
-      state: statuses.SUCCESS,
-      token: 'anything',
-    },
-    user: {
-      state: statuses.SUCCESS,
-      alephId: '1234',
-    },
-    settings: {
-      state: statuses.SUCCESS,
-    },
-  },
+const loggedInProps = {
+  loggedIn: true,
+  alephId: '1234',
+  userState: statuses.SUCCESS,
+  libraryStatus: statuses.SUCCESS,
 }
 
-const loggedOutState = {
-  personal: {
-    login: {
-      redirectUrl: 'https://library.nd.edu/fake/login_path',
-    },
-  },
+const loggedOutProps = {
+  loggedIn: false,
+  redirectUrl: 'https://library.nd.edu/fake/login_path',
+  userState: statuses.SUCCESS,
+  libraryStatus: statuses.NOT_FETCHED,
 }
 
-const setup = (state) => {
-  let ownProps = {
+const setup = (props) => {
+  const mockProps = {
     setHomeLibrary: jest.fn(),
     setCircStatus: jest.fn(),
     getCircStatus: jest.fn(),
-    homeLibraries: [],
   }
-  let props = { ...ownProps, ...mapStateToProps(state, ownProps) }
-  let store = mockStore(state)
-  return shallow(<Settings {...props} store={store} />)
+  return shallow(<SettingsContainer {...props} {...mockProps} />)
 }
 
 let enzymeWrapper
@@ -59,56 +40,55 @@ describe('components/Settings/index.js', () => {
   })
 
   describe('logged in', () => {
-    it('should identify the user as being logged in', () => {
-      enzymeWrapper = setup(loggedInState)
-      expect(enzymeWrapper.props().loggedIn).toBe(true)
-    })
-
     it('should not render loading if fully loaded', () => {
-      enzymeWrapper = setup(loggedInState)
+      enzymeWrapper = setup(loggedInProps)
       let have = <Loading />
-      expect(enzymeWrapper.props().alephId).not.toBeNull()
-      expect(enzymeWrapper.dive().containsMatchingElement(have)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(have)).toBe(false)
     })
 
     it('should render loading if user info fetching', () => {
       enzymeWrapper = setup({
-        personal: {
-          login: {
-            state: statuses.SUCCESS,
-            token: 'anything',
-          },
-          user: {
-            state: statuses.FETCHING,
-          },
-          settings: {
-            state: statuses.SUCCESS,
-          },
-        },
+        loggedIn: false,
+        userState: statuses.FETCHING,
+        libraryStatus: statuses.NOT_FETCHED,
       })
 
       let have = <Loading />
-      expect(enzymeWrapper.dive().containsMatchingElement(have)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
   })
 
   describe('not logged in', () => {
+    const realConsoleError = console.error
+
+    beforeAll(() => {
+      // Super hacky. Basically, this stops jsdom from complaining in the console when we mock window.location.
+      console.error = jest.fn().mockImplementation((msg) => {
+        if (msg.startsWith('Error: Not implemented: navigation')) {
+          return
+        }
+        realConsoleError(msg)
+      })
+    })
+
+    afterAll(() => {
+      console.error = realConsoleError
+    })
+
     beforeEach(() => {
-      enzymeWrapper = setup(loggedOutState)
+      enzymeWrapper = setup(loggedOutProps)
     })
 
     it('should redirect to login page', () => {
-      expect(enzymeWrapper.props().loggedIn).toBe(false)
-
       // Mock the redirect function so we can spy on it
       window.location.replace = jest.fn()
 
-      let instance = enzymeWrapper.dive().instance()
+      let instance = enzymeWrapper.instance()
       spy = jest.spyOn(instance, 'checkLoggedIn')
-      instance.checkLoggedIn(enzymeWrapper.props())
+      instance.checkLoggedIn(instance.props)
 
       // Check that the redirect was called with the same url we passed in to the object
-      expect(window.location.replace).toHaveBeenCalledWith(loggedOutState.personal.login.redirectUrl)
+      expect(window.location.replace).toHaveBeenCalledWith(loggedOutProps.redirectUrl)
     })
   })
 })

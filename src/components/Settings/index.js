@@ -26,14 +26,7 @@ const homeLibraries = [
   { value: 'NDCAM', title: 'I would prefer departmental delivery' },
 ]
 
-const updateStatus = {
-  NOT_SET: -2,
-  FAILURE: -1,
-  UPDATING: 0,
-  SUCCESS: 1,
-}
-
-class SettingsContainer extends Component {
+export class SettingsContainer extends Component {
   constructor (props) {
     super(props)
     this.checkLoggedIn = this.checkLoggedIn.bind(this)
@@ -72,19 +65,6 @@ class SettingsContainer extends Component {
   }
 }
 
-const apiStateToInt = (state) => {
-  switch (state) {
-    case states.SUCCESS:
-      return updateStatus.SUCCESS
-    case states.ERROR:
-      return updateStatus.FAILURE
-    case states.FETCHING:
-      return updateStatus.UPDATING
-    default:
-      return updateStatus.NOT_SET
-  }
-}
-
 export const mapStateToProps = (state, ownProps) => {
   const { personal, settings } = state
 
@@ -102,18 +82,18 @@ export const mapStateToProps = (state, ownProps) => {
     }
   }
 
-  const libraryState = (settings && settings[KIND.homeLibrary]) ? settings[KIND.homeLibrary].state : null
+  const libraryState = (settings && settings[KIND.homeLibrary]) ? settings[KIND.homeLibrary].state : states.NOT_FETCHED
 
   return {
     homeIndex: homeIndex,
     alephId: personal.user ? personal.user.alephId : null,
-    userState: personal.user ? personal.user.state : null,
+    userState: personal.user ? personal.user.state : states.NOT_FETCHED,
     preview: (ownProps && ownProps.location && ownProps.location.search)
       ? (new URLSearchParams(ownProps.location.search)).get('preview') === 'true'
       : false,
     loggedIn: loggedIn,
     redirectUrl: personal.login.redirectUrl,
-    libraryStatus: apiStateToInt(libraryState),
+    libraryStatus: libraryState,
   }
 }
 
@@ -134,7 +114,7 @@ SettingsContainer.propTypes = {
   setCircStatus: PropTypes.func,
   getCircStatus: PropTypes.func,
   alephId: PropTypes.string,
-  libraryStatus: PropTypes.number,
+  libraryStatus: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)
