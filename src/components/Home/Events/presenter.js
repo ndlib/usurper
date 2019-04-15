@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
 import ErrorBoundary from '../../ErrorBoundary'

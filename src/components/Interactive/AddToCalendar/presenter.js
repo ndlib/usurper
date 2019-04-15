@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import calendarIcon from '../../static/images/calendar.png'
+import calendarIcon from '../../../static/images/calendar.png'
 
 const AddToCalendar = (props) => {
   return (

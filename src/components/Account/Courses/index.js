@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import getCourses from '../../../actions/personal/courses'
 import * as statuses from '../../../constants/APIStatuses'
 import Loading from '../../Messages/Loading'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 import CoursesPresenter from './presenter'

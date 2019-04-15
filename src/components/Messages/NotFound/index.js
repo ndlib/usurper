@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import ServiceNowLink from '../../ServiceNowLink'
+import ServiceNowLink from '../../Interactive/ServiceNowLink'
 import { Helmet } from 'react-helmet'
 
 const NotFound = ({ message = 'The requested page could not be found' }) => (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import PropTypes from 'prop-types'
 import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'

@@ -7,7 +7,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
 import StaticAlert from '../../Contentful/StaticContent/Alert'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import UserMenu from '../../Layout/Navigation/UserMenu'
 
 const LoggedIn = (preview, balance) => {

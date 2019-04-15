@@ -1,5 +1,5 @@
 import React from 'react'
-import ServiceNowLink from '../../ServiceNowLink'
+import ServiceNowLink from '../../Interactive/ServiceNowLink'
 
 const EmbeddableHours = () => {
   return (

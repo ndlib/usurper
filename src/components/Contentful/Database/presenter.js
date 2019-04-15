@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import '../../../static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'

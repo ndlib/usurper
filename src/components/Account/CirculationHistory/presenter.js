@@ -4,7 +4,7 @@ import PageTitle from '../../Layout/PageTitle'
 import ResourceList from '../LoanResources/ResourceList'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import UserMenu from '../../Layout/Navigation/UserMenu'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import Config from '../../../shared/Configuration'
 

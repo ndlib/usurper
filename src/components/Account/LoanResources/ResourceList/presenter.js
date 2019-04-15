@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Resource from './Resource'
 import Loading from '../../../Messages/InlineLoading'
-import FilterBox from '../../../FilterBox'
+import FilterBox from '../../../Interactive/FilterBox'
 import ExportButton from './ExportButton'
 import DeleteButton from './DeleteButton'
 

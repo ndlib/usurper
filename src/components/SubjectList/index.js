@@ -1,6 +1,6 @@
 // Container component for a Page content type from Contentful
 import React from 'react'
-import Link from '../Link'
+import Link from '../Interactive/Link'
 import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 

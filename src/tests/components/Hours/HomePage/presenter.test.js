@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import PagePresenter from '../../../../components/Hours/HomePage/presenter'
-import Link from '../../../../components/Link'
+import Link from '../../../../components/Interactive/Link'
 
 const setup = (props) => {
   return shallow(PagePresenter(props.hoursEntry))

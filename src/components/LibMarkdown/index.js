@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Markdown from 'markdown-to-jsx'
 import PropTypes from 'prop-types'
-import Link from '../Link'
+import Link from '../Interactive/Link'
 
 const LibLink = (props) => {
   let url = props.href

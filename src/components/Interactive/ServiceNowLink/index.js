@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from '../Link'
-import Config from '../../shared/Configuration'
+import Config from '../../../shared/Configuration'
 
 const ServiceNowLink = ({ children, isWebContent }) => {
   let url = `${Config.serviceNowBaseURL}&URL=${window.location}`

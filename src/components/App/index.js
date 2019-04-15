@@ -31,7 +31,7 @@ import CirculationHistory from '../Account/CirculationHistory'
 
 import NotFound from '../../components/Messages/NotFound'
 
-import { LINK_CLICK } from '../Link'
+import { LINK_CLICK } from '../Interactive/Link'
 import { SET_SEARCH, SAVE_SEARCH_PREFERENCE } from '../../actions/search.js'
 
 const analyticsActions = [LINK_CLICK, SET_SEARCH, SAVE_SEARCH_PREFERENCE]

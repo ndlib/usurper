@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import RadioList from '../../../RadioList'
+import RadioList from '../../../Interactive/RadioList'
 import UpdateStatus from '../settingsUpdateStatus'
 
 let showStatus = false

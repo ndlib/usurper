@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Link from '../../../Link'
+import Link from '../../../Interactive/Link'
 
 class HomeHesburghBanner extends Component {
   render () {

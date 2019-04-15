@@ -4,10 +4,10 @@ import PageTitle from '../../../Layout/PageTitle'
 import SearchProgramaticSet from '../../../SearchProgramaticSet'
 import '../style.css'
 import { makeEventEntry } from '../../../Home/Events/presenter'
-import Link from '../../../Link'
+import Link from '../../../Interactive/Link'
 import DateFilter from './DateFilter'
 import SideNav from '../../../Layout/Navigation/SideNav'
-import FilterBox from '../../../FilterBox'
+import FilterBox from '../../../Interactive/FilterBox'
 
 const Events = (props) => {
   return (

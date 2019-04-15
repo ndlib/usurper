@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from '../../../Link'
+import Link from '../../../Interactive/Link'
 
 const MobileMenu = (props) => {
   const tabIndex = props.open ? '0' : '-1'

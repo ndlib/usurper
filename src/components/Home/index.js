@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../../static/css/global.css'
 
-import Link from '../Link'
+import Link from '../Interactive/Link'
 import HomePageHours from '../Hours/HomePage'
 import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'

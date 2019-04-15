@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { matchPath } from 'react-router'
-import Link from '../../../Link'
+import Link from '../../../Interactive/Link'
 
 const UserMenu = (props) => {
   if (props.format === 'buttons') {

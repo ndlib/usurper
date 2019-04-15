@@ -9,7 +9,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
 import OpenGraph from '../../OpenGraph'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <article aria-describedby='main-page-title' className='container-fluid content-area'>

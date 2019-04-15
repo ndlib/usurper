@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Presenter from './presenter'
-import { withErrorBoundary } from '../ErrorBoundary'
+import { withErrorBoundary } from '../../ErrorBoundary'
 
 class DropdownContainer extends Component {
   constructor (props) {

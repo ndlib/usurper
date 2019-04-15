@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import ResourceList from './ResourceList'
 import PageAlert from '../../Messages/PageAlert'
-import ServiceNowLink from '../../ServiceNowLink'
+import ServiceNowLink from '../../Interactive/ServiceNowLink'
 
 const LoanResources = (props) => {
   const have = props.resources.have

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import DropDown from './DropDown'
 import UserMenu from './UserMenu'
 import MobileMenu from './MobileMenu'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import { USER_MENU, MOBILE_MENU } from '../../../actions/menu'
 
 const myAccountButton = (props) => {

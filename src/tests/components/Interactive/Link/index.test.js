@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { LibLink } from '../../../components/Link'
+import { LibLink } from '../../../../components/Interactive/Link'
 import { Link } from 'react-router-dom'
 
 const setup = (props) => {
@@ -8,7 +8,7 @@ const setup = (props) => {
 }
 
 let enzymeWrapper
-describe('components/Link', () => {
+describe('components/Interactive/Link', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })

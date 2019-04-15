@@ -4,7 +4,7 @@ import { mapStateToProps } from '../../../../components/Account/Courses'
 import CoursesPresenter from '../../../../components/Account/Courses/presenter'
 import { mount, shallow } from 'enzyme'
 import { CoursesContainer } from '../../../../components/Account/Courses'
-import Link from '../../../../components/Link'
+import Link from '../../../../components/Interactive/Link'
 import Loading from '../../../../components/Messages/Loading'
 
 const setup = (props) => {
