@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import SearchCallout from '../../Contentful/Floor/SearchCallout/index'
 import Contact from '../../Contact/ServicePoint'

@@ -1,7 +1,7 @@
 // Container component for a Page content type from Contentful
 import React from 'react'
 import Link from '../Link'
-import PageTitle from '../PageTitle'
+import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 
 const SubjectList = () => {

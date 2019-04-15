@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import Link from '../../Link'
 import PropTypes from 'prop-types'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
 import StaticAlert from '../../Contentful/StaticContent/Alert'
-import UserMenu from '../../Navigation/UserMenu'
+import UserMenu from '../../Layout/Navigation/UserMenu'
 
 class Courses extends Component {
   instructorCard (course) {

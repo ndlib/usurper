@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
 import LibMarkdown from '../../../../components/LibMarkdown'
 import ServicePoint from '../../../../components/Contentful/ServicePoint'
-import PageTitle from '../../../../components/PageTitle'
+import PageTitle from '../../../../components/Layout/PageTitle'
 import Image from '../../../../components/Image'
 
 const setup = (props) => {

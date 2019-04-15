@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServiceNowLink from '../../ServiceNowLink'
 import { Helmet } from 'react-helmet'

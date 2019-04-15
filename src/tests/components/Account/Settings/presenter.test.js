@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Settings from '../../../../components/Account/Settings/presenter.js'
-import UserMenu from '../../../../components/Navigation/UserMenu'
+import UserMenu from '../../../../components/Layout/Navigation/UserMenu'
 
 const setup = (props) => {
   return shallow(

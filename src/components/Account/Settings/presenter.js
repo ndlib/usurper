@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
 import StaticBody from '../../Contentful/StaticContent/Body'
 import StaticAlert from '../../Contentful/StaticContent/Alert'
 import CircOptIn from './CircOptIn'
 // import PickUp from './PickUp'
-import UserMenu from '../../Navigation/UserMenu'
+import UserMenu from '../../Layout/Navigation/UserMenu'
 
 const Presenter = (props) => {
   return (

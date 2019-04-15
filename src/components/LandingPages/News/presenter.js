@@ -2,7 +2,7 @@ import React from 'react'
 import Image from '../../Image'
 import Link from '../../Link'
 import LibMarkdown from '../../LibMarkdown'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import './style.css'
 

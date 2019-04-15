@@ -1,5 +1,5 @@
 import React from 'react'
-import PageTitle from '../../../components/PageTitle'
+import PageTitle from '../../../components/Layout/PageTitle'
 import '../../../static/css/global.css'
 import ListPresenter from '../../../components/DatabaseList/presenter'
 import Link from '../../../components/Link'

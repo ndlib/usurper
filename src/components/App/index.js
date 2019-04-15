@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 
-import PageWrapper from '../../components/PageWrapper'
+import PageWrapper from '../../components/Layout/PageWrapper'
 import Home from '../../components/Home'
 import PersonalInfo from '../../components/Account/PersonalInfo'
 import Courses from '../../components/Account/Courses'

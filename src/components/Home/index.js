@@ -3,7 +3,7 @@ import '../../static/css/global.css'
 
 import Link from '../Link'
 import HomePageHours from '../Hours/HomePage'
-import PageTitle from '../PageTitle'
+import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import News from './News'
 import Events from './Events'
