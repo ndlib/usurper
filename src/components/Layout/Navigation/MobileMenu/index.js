@@ -8,12 +8,12 @@ const MobileMenu = (props) => {
 
   return (
     <li className='menu-icon'>
-      <a
+      <button
         onClick={props.onClick}
         onKeyDown={props.onKeyDown}
         aria-label='Menu'
         tabIndex={props.visible ? '0' : '-1'}
-      >☰</a>
+      >☰</button>
       <ul className='topnav' id='topNav' style={{ display: display }}>
         <li>
           <Link

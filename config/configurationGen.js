@@ -1,7 +1,7 @@
 const parameters = require('./configParameters.js')
 
 const genConfig = () => {
-  let defaultConfig = {
+  const defaultConfig = {
     viceroyAPI: parameters.viceroy,
     recommendAPI: parameters.recommendEngine,
     coursesAPI: parameters.classesAPI,
@@ -19,7 +19,7 @@ const genConfig = () => {
     onesearchBaseURL: parameters.onesearch,
   }
 
-  let config = {
+  const config = {
     viceroyAPI: process.env.VICEROY_API ? process.env.VICEROY_API : defaultConfig.viceroyAPI,
     recommendAPI: process.env.RECOMMEND_API ? process.env.RECOMMEND_API : defaultConfig.recommendAPI,
     coursesAPI: process.env.COURSES_API ? process.env.COURSES_API : defaultConfig.coursesAPI,

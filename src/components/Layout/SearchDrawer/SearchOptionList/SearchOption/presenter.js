@@ -11,7 +11,9 @@ const SearchOption = (props) => {
       onKeyDown={props.onKeyDown}
       tabIndex={props.search.searchBoxOpen ? '0' : '-1'}
       role='option'
-      value={props.index}>
+      value={props.index}
+      aria-selected={props.item.uid === props.search.searchType}
+    >
       <p>{props.item.title}</p>
       <small>{props.item.description}</small>
     </li>
@@ -24,8 +26,12 @@ SearchOption.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    uid: PropTypes.string.isRequired,
   }).isRequired,
   onKeyDown: PropTypes.func,
-  search: PropTypes.object,
+  search: PropTypes.shape({
+    searchBoxOpen: PropTypes.bool,
+    searchType: PropTypes.string.isRequired,
+  }),
 }
 export default SearchOption

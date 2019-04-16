@@ -61,8 +61,8 @@ class ExportButton extends Component {
             role='tree'
           >
             <ul>
-              <li role='treeitem' onClick={this.exportRIS}><a href='#'>Export to RIS</a></li>
-              <li role='treeitem' onClick={this.exportCSV}><a href='#'>Export to CSV</a></li>
+              <li role='treeitem' onClick={this.exportRIS}>Export to RIS</li>
+              <li role='treeitem' onClick={this.exportCSV}>Export to CSV</li>
             </ul>
           </div>
         </button>

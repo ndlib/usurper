@@ -11,7 +11,7 @@ const myAccountButton = (props) => {
   if (props.loggedIn) {
     return (
       <li className='menu-link user right'>
-        <a
+        <button
           onClick={props.handleUserClick}
           onKeyDown={props.handleUserKeyDown}
           tabIndex='0'
@@ -19,7 +19,7 @@ const myAccountButton = (props) => {
           aria-owns='my-account-menu'
           aria-controls='my-account-menu'
           aria-expanded={props.menus.menuId === USER_MENU}
-          className='m'>My Account</a>
+          className='m'>My Account</button>
         <Route component={UserMenu} />
       </li>
     )
@@ -36,7 +36,7 @@ const Navigation = (props) => {
   const dropDowns = props.dropDowns.map((menu, index) => {
     return (
       <li className='menu-link' key={index}>
-        <a
+        <button
           id={menu.title.toLowerCase()}
           onClick={menu.onClick}
           onKeyDown={menu.keyDown}
@@ -47,7 +47,7 @@ const Navigation = (props) => {
           aria-expanded={props.menus.menuId === menu.menuId}
           tabIndex='0'
           href='#'
-        >{menu.title}</a>
+        >{menu.title}</button>
         <DropDown
           title={menu.title}
           landingPage={menu.landingPage}
@@ -83,8 +83,8 @@ const Navigation = (props) => {
           </li>
           { myAccountButton(props) }
           <li className='right menu-link search'>
-            <a
-              className={'search ' + props.toggleClass}
+            <button
+              className={'custom-style search ' + props.toggleClass}
               id='header-search-button'
               onClick={props.handleDrawer}
               onKeyDown={props.handleDrawer}
@@ -92,7 +92,7 @@ const Navigation = (props) => {
               aria-expanded={props.isDrawerOpen}
               aria-controls='drawer'
               aria-label={props.isDrawerOpen ? 'Close Search Drawer' : 'Open Search Drawer'}
-            >Search</a>
+            >Search</button>
           </li>
 
         </ul>

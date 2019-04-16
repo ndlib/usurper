@@ -31,13 +31,7 @@ export const getLinkObject = (fields, sysId) => {
 
   // If we're not handling a resoruce type, get the link to use for the heading
   if (!mainUrl && shouldHaveMain) {
-    if (fields.url) {
-      mainUrl = fields.url
-    } else if (fields.purl) {
-      mainUrl = fields.purl
-    } else if (fields.slug) {
-      mainUrl = '/' + fields.slug
-    }
+    mainUrl = fields.url || fields.purl || ('/' + fields.slug)
   }
 
   // get appropriate description field for this content type

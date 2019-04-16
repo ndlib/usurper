@@ -19,7 +19,7 @@ const Sections = (column, showDescriptions) => {
     }
     return (
       <section key={entry.sys.id} className='group'>
-        <h2><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h2>
+        <h2><span id={encodeURIComponent(s.title)}>{s.title}</span></h2>
         <LibMarkdown>{ s.body }</LibMarkdown>
         <div className='linksgroup'>
           <div role={s.title + ' navigation'}>

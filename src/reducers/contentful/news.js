@@ -1,4 +1,4 @@
-import { CF_REQUEST_NEWS, CF_RECEIVE_NEWS, CF_NO_SUCH_NEWS } from '../../actions/contentful/news'
+import { CF_REQUEST_NEWS, CF_RECEIVE_NEWS } from '../../actions/contentful/news'
 import * as statuses from '../../constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {
@@ -11,10 +11,6 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
       return Object.assign({}, state, {
         status: action.status,
         json: action.news,
-      })
-    case CF_NO_SUCH_NEWS:
-      return Object.assign({}, state, {
-        status: action.status,
       })
     default:
       return state

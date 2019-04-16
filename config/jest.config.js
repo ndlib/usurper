@@ -9,7 +9,10 @@ jest.mock('react-ga')
 
 // Add mock for window functions since they are a browser only thing
 window.scrollTo = () => { }
-window.alert = (msg) => { console.log(msg) } // don't use alert, but just in case
+// don't use alert, but just in case
+window.alert = (msg) => {
+  console.log(msg)
+}
 
 class LocalStorageMock {
   constructor () {

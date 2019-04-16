@@ -15,12 +15,14 @@ const DateFilter = (props) => {
                   key={'filter_' + yIndex}
                   className={props.expanded.includes(year) ? 'expanded' : 'collapsed'}
                 >
+                  { /* eslint-disable jsx-a11y/anchor-is-valid */ }
                   <a
                     className='yearFilter'
                     onClick={props.yearCallback}
                   >
                     {year}
                   </a>
+                  { /* eslint-enable jsx-a11y/anchor-is-valid */ }
                   <ul className={'monthFilter' + (props.expanded.includes(year) ? '' : ' hidden')}>
                     {
                       Object.keys(props.eventDates[year]).reverse().map((month, mIndex) => {

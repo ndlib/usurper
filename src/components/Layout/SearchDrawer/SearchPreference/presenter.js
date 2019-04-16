@@ -12,7 +12,7 @@ const SearchPreference = (props) => {
         onKeyDown={props.forgetClick}
         onClick={props.forgetClick}
       >
-        {props.search.pref.title} is your default search. <a>CLEAR</a>
+        {props.search.pref.title} is your default search. <span className='link-like'>CLEAR</span>
       </div>
     )
   }
@@ -23,7 +23,7 @@ const SearchPreference = (props) => {
       tabIndex='0'
       onKeyDown={props.saveClick}
       onClick={props.saveClick}>
-      <a>SAVE</a> {
+      <span className='link-like'>SAVE</span> {
         props.currentSearch.title
       } as my default search.
     </div>

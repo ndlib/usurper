@@ -16,7 +16,7 @@ const DropDown = (props) => {
               title={section.fields.title}
               key={index}
             >
-              <MenuList items={section.fields.links} tabIndexable={props.open} />
+              <MenuList items={section.fields.links} />
             </MenuColumn>
           )
         }

@@ -18,7 +18,7 @@ const PageWrapper = (props) => {
 
       <Header {...props} />
       <div id='maincontent' className={'container-fluid content'}>
-        <a id='top' />
+        <span id='top' />
 
         {props.children}
       </div>

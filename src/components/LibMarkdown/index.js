@@ -13,6 +13,7 @@ const LibLink = (props) => {
   if (url === undefined) {
     // Exception for named anchors
     if (props.id) {
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
       return (<a id={props.id}>{ props.children }</a>)
     }
     return (<span>{ props.children }</span>)

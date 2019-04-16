@@ -39,7 +39,7 @@ const ResourceList = (props) => {
       />
       <div className={`card-item${props.historical ? ' circ-hist' : ''}`}>
         <button
-          className={sortClass('title')}
+          className={'custom-style ' + sortClass('title')}
           onClick={(e) => sortClick(e, 'title')}
           aria-label={'Sort By Title ' + assistSortDirection('title')}
           aria-controls={listType}
@@ -47,7 +47,7 @@ const ResourceList = (props) => {
           Title
         </button>
         <button
-          className={sortClass('author')}
+          className={'custom-style ' + sortClass('author')}
           onClick={(e) => sortClick(e, 'author')}
           aria-label={'Sort By Author ' + assistSortDirection('author')}
           aria-controls={listType}
@@ -56,7 +56,7 @@ const ResourceList = (props) => {
         </button>
         { !props.borrowed && (
           <button
-            className={sortClass('status')}
+            className={'custom-style ' + sortClass('status')}
             onClick={(e) => sortClick(e, 'status')}
             aria-label={'Sort By Status ' + assistSortDirection('status')}
             aria-controls={listType}
@@ -66,7 +66,7 @@ const ResourceList = (props) => {
         )}
         { props.historical && (
           <button
-            className={sortClass('loanDate')}
+            className={'custom-style ' + sortClass('loanDate')}
             onClick={(e) => sortClick(e, 'loanDate')}
             aria-label={'Sort By Checked Out Date ' + assistSortDirection('loanDate')}
             aria-controls={listType}
@@ -76,7 +76,7 @@ const ResourceList = (props) => {
         )}
         { props.borrowed && (
           <button
-            className={sortClass('dueDate')}
+            className={'custom-style ' + sortClass('dueDate')}
             onClick={(e) => sortClick(e, 'dueDate')}
             aria-label={'Sort By Due Date ' + assistSortDirection('dueDate')}
             aria-controls={listType}
@@ -86,7 +86,7 @@ const ResourceList = (props) => {
         )}
         { props.historical && (
           <button
-            className={sortClass('returnDate')}
+            className={'custom-style ' + sortClass('returnDate')}
             onClick={(e) => sortClick(e, 'returnDate')}
             aria-label={'Sort By Return Date ' + assistSortDirection('returnDate')}
             aria-controls={listType}
@@ -95,7 +95,7 @@ const ResourceList = (props) => {
           </button>
         )}
         <button
-          className={sortClass('from')}
+          className={'custom-style ' + sortClass('from')}
           onClick={(e) => sortClick(e, 'from')}
           aria-label={'Sort By From ' + assistSortDirection('from')}
           aria-controls={listType}

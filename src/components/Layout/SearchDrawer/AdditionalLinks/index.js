@@ -9,7 +9,7 @@ const AdditionalLinks = (props) => {
     return el.uid === props.currentSearch.uid
   })
   if (opt && opt.enableAdvancedSearch) {
-    links.push(
+    links.push( // eslint-disable-next-line jsx-a11y/anchor-is-valid
       <a
         onClick={props.toggleAdvancedSearch}
         onKeyDown={props.toggleAdvancedSearch}

@@ -1,5 +1,4 @@
-import { CF_REQUEST_SERVICEPOINTS, CF_RECEIVE_SERVICEPOINTS, CF_NO_SUCH_SERVICEPOINTS }
-  from '../../actions/contentful/servicePoints'
+import { CF_REQUEST_SERVICEPOINTS, CF_RECEIVE_SERVICEPOINTS } from '../../actions/contentful/servicePoints'
 import * as statuses from '../../constants/APIStatuses'
 import { flattenLocale } from '../../shared/ContentfulLibs'
 
@@ -17,10 +16,6 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
       return Object.assign({}, state, {
         status: action.status,
         json: flattenedServicePoints,
-      })
-    case CF_NO_SUCH_SERVICEPOINTS:
-      return Object.assign({}, state, {
-        status: action.status,
       })
     default:
       return state
