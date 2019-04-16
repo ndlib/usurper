@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
-import SearchPreference from '../../../../../components/Layout/SearchDrawer/SearchPreference/presenter.js'
+import SearchPreference from 'components/Layout/SearchDrawer/SearchPreference/presenter.js'
 
 let enzymeWrapper
 function setup (props) {

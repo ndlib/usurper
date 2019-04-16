@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
-import * as statuses from '../constants/APIStatuses'
-import Config from '../shared/Configuration'
+import * as statuses from 'constants/APIStatuses'
+import Config from 'shared/Configuration'
 
 export const FLOOR_SEARCH_REQUEST = 'FLOOR_SEARCH_REQUEST'
 export const FLOOR_SEARCH_RECEIVE = 'FLOOR_SEARCH_RECEIVE'

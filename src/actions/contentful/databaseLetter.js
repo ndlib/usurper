@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
-import Config from '../../shared/Configuration'
-import * as statuses from '../../constants/APIStatuses'
+import Config from 'shared/Configuration'
+import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_DATABASE_LETTER = 'CF_REQUEST_DATABASE_LETTER'
 export const requestLetter = (letter) => {

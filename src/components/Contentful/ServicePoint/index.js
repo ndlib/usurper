@@ -7,7 +7,7 @@ import CurrentHours from '../../Hours/Current'
 import Contact from '../../Contact/ServicePoint'
 import { withErrorBoundary } from '../../ErrorBoundary'
 import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export class ServicePointContainer extends Component {
   constructor (props) {

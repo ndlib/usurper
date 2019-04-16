@@ -1,4 +1,4 @@
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import { REQUEST_LIBRARIANS, RECEIVE_LIBRARIANS } from '../actions/librarians'
 
 export default (state = { status: statuses.FETCHING }, action) => {

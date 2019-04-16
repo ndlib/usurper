@@ -1,10 +1,10 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { ContentfulPageContainer } from '../../../../components/Contentful/SecurePage'
-import PagePresenter from '../../../../components/Contentful/Page/presenter'
-import APIPresenterFactory from '../../../../components/APIPresenterFactory'
-import * as statuses from '../../../../constants/APIStatuses'
+import { ContentfulPageContainer } from 'components/Contentful/SecurePage'
+import PagePresenter from 'components/Contentful/Page/presenter'
+import APIPresenterFactory from 'components/APIPresenterFactory'
+import * as statuses from 'constants/APIStatuses'
 import configureStore from 'redux-mock-store'
 
 const setup = (props) => {

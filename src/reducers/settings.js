@@ -1,5 +1,5 @@
 import { RECEIVE_SETTINGS, REQUEST_SETTINGS } from '../actions/personal/settings'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const initialState = {}
 const renewalReducer = (state = initialState, action) => {

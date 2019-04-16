@@ -1,5 +1,5 @@
 import { CF_REQUEST_PAGE, CF_RECEIVE_PAGE, CF_CLEAR_PAGE } from '../../actions/contentful/page'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {

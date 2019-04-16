@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ReactModal from 'react-modal'
 import { deleteHistorical } from '../../../../../actions/personal/loanResources'
 import InlineLoading from '../../../../Messages/InlineLoading'
-import * as statuses from '../../../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 ReactModal.setAppElement('body')
 

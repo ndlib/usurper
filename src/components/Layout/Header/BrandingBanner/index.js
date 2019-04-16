@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../../../static/css/global.css'
+import 'static/css/global.css'
 
 class HomeBanner extends Component {
   render () {

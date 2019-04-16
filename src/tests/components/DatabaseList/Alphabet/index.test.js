@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Alphabet from '../../../../components/DatabaseList/Alphabet/index.js'
+import Alphabet from 'components/DatabaseList/Alphabet/index.js'
 
 let setup = () => {
   return shallow(<Alphabet />)

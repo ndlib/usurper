@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import Navigation from './presenter'
 import { withErrorBoundary } from '../../ErrorBoundary'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../../actions/search'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import {
   openMenu,
   closeMenus,

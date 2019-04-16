@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { SettingsContainer } from '../../../../components/Account/Settings'
-import Loading from '../../../../components/Messages/Loading'
-import * as statuses from '../../../../constants/APIStatuses'
+import { SettingsContainer } from 'components/Account/Settings'
+import Loading from 'components/Messages/Loading'
+import * as statuses from 'constants/APIStatuses'
 
 const loggedInProps = {
   loggedIn: true,

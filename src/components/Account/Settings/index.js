@@ -12,7 +12,7 @@ import {
 import { getUser } from '../../../actions/personal/loanResources'
 import Loading from '../../Messages/Loading'
 
-import * as states from '../../../constants/APIStatuses'
+import * as states from 'constants/APIStatuses'
 
 const homeLibraries = [
   { value: 'HESB', title: 'Hesburgh Library' },

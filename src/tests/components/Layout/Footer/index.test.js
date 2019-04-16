@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Footer from '../../../../components/Layout/Footer'
-import FooterInfo from '../../../../components/Layout/Footer/FooterInfo'
-import FooterLinks from '../../../../components/Layout/Footer/FooterLinks'
+import Footer from 'components/Layout/Footer'
+import FooterInfo from 'components/Layout/Footer/FooterInfo'
+import FooterLinks from 'components/Layout/Footer/FooterLinks'
 
 let enzymeWrapper = shallow(<Footer />)
 

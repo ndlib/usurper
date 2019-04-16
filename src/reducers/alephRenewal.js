@@ -1,5 +1,5 @@
 import { RECEIVE_RENEWAL, REQUEST_RENEWAL } from '../actions/personal/alephRenewal'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const initialState = {}
 const renewalReducer = (state = initialState, action) => {

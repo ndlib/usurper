@@ -5,7 +5,7 @@ import { setSearchOption } from '../../../../actions/advancedSearch.js'
 import searchQuery from '../searchQueryBuilder'
 import SearchBox from './presenter'
 import ReactGA from 'react-ga'
-import Config from '../../../../shared/Configuration'
+import Config from 'shared/Configuration'
 import QueryString from 'querystring'
 
 ReactGA.initialize(Config.googleAnalyticsId, {

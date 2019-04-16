@@ -6,7 +6,7 @@ import { fetchHours } from '../../../actions/hours'
 import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
 import HoursPagePresenter from './presenter.js'
 import PresenterFactory from '../../APIPresenterFactory'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import HoursError from '../Error'
 import { withErrorBoundary } from '../../ErrorBoundary'
 

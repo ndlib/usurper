@@ -1,8 +1,8 @@
 import React from 'react'
-import * as statuses from '../../../../constants/APIStatuses'
-import LoanResources from '../../../../components/Account/LoanResources/presenter'
-import PageAlert from '../../../../components/Messages/PageAlert'
-import ResourceList from '../../../../components/Account/LoanResources/ResourceList'
+import * as statuses from 'constants/APIStatuses'
+import LoanResources from 'components/Account/LoanResources/presenter'
+import PageAlert from 'components/Messages/PageAlert'
+import ResourceList from 'components/Account/LoanResources/ResourceList'
 
 import { shallow } from 'enzyme'
 

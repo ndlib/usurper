@@ -1,9 +1,9 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { shallow } from 'enzyme'
-import { ContentfulFloorContainer } from '../../../../components/Contentful/Floor'
-import FloorPresenter from '../../../../components/Contentful/Floor/presenter'
-import APIPresenterFactory from '../../../../components/APIPresenterFactory'
+import { ContentfulFloorContainer } from 'components/Contentful/Floor'
+import FloorPresenter from 'components/Contentful/Floor/presenter'
+import APIPresenterFactory from 'components/APIPresenterFactory'
 
 const setup = (props) => {
   return shallow(<ContentfulFloorContainer {...props} />, { lifecycleExperimental: true })

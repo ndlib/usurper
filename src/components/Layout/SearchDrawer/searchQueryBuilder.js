@@ -1,5 +1,5 @@
-import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from '../../../constants/searchOptions'
-import Config from '../../../shared/Configuration'
+import { ONESEARCH, NDCATALOG, CURATEND, LIBRARY } from 'constants/searchOptions'
+import Config from 'shared/Configuration'
 
 const padLeftZero = (num) => {
   if (num.length < 2) {

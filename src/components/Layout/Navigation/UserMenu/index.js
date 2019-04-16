@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import getToken from '../../../../actions/personal/token'
 import Presenter from './presenter'
 
-import Config from '../../../../shared/Configuration'
+import Config from 'shared/Configuration'
 import { USER_MENU } from '../../../../actions/menu'
 
 class Login extends Component {

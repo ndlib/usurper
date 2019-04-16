@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import { renewAleph, recieveRenewal } from '../../../../actions/personal/alephRenewal'
 import Loading from '../../../Messages/InlineLoading'
 import Presenter from './presenter'
-import * as statuses from '../../../../constants/APIStatuses'
-import * as helper from '../../../../constants/HelperFunctions'
+import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 const filterFields = [
   'title',

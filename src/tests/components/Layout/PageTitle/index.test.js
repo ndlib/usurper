@@ -1,7 +1,7 @@
 import React from 'react'
-import Related from '../../../../components/Related'
+import Related from 'components/Related'
 import { shallow } from 'enzyme'
-import PageTitle from '../../../../components/Layout/PageTitle'
+import PageTitle from 'components/Layout/PageTitle'
 
 let enzymeWrapper
 const setup = (props) => {

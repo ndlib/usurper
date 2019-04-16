@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../../static/css/global.css'
+import 'static/css/global.css'
 
 const SearchPreference = (props) => {
   if (props.search.hasPref) {

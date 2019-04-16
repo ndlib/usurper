@@ -2,8 +2,8 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import SearchBox from '../../../../../components/Layout/SearchDrawer/SearchBox/presenter.js'
-import SearchOptionList from '../../../../../components/Layout/SearchDrawer/SearchOptionList'
+import SearchBox from 'components/Layout/SearchDrawer/SearchBox/presenter.js'
+import SearchOptionList from 'components/Layout/SearchDrawer/SearchOptionList'
 
 const setup = (props) => {
   const store = configureStore()(props)

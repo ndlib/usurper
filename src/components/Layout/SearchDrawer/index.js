@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import SearchDrawer from './presenter.js'
-import { searchOptions } from '../../../constants/searchOptions.js'
+import { searchOptions } from 'constants/searchOptions.js'
 import { openAdvancedSearch, closeAdvancedSearch } from '../../../actions/search'
 
 const mapStateToProps = (state) => {

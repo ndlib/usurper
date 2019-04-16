@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Config from '../../../../../shared/Configuration'
+import Config from 'shared/Configuration'
 import Actions from './Actions'
 import { hasActions } from './Actions/presenter'
-import nduIcon from '../../../../../static/images/icons/ND_monogram.svg'
-import hccIcon from '../../../../../static/images/icons/HCC.svg'
-import illIcon from '../../../../../static/images/icons/ILL.svg'
+import nduIcon from 'static/images/icons/ND_monogram.svg'
+import hccIcon from 'static/images/icons/HCC.svg'
+import illIcon from 'static/images/icons/ILL.svg'
 
 const Card = (className, prefix, data, label) => {
   if (data) {

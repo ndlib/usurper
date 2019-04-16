@@ -1,10 +1,10 @@
 import React from 'react'
-import * as statuses from '../../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import { shallow } from 'enzyme'
-import Courses from '../../../../components/Account/Courses/presenter.js'
-import StaticBody from '../../../../components/Contentful/StaticContent/Body'
-import Lgicon from '../../../../static/images/icons/libguide.png'
-import Link from '../../../../components/Interactive/Link'
+import Courses from 'components/Account/Courses/presenter.js'
+import StaticBody from 'components/Contentful/StaticContent/Body'
+import Lgicon from 'static/images/icons/libguide.png'
+import Link from 'components/Interactive/Link'
 
 const setup = (props) => {
   return shallow(<Courses {...props} />)

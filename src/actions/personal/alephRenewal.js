@@ -1,5 +1,5 @@
-import Config from '../../shared/Configuration'
-import * as statuses from '../../constants/APIStatuses'
+import Config from 'shared/Configuration'
+import * as statuses from 'constants/APIStatuses'
 
 export const RECEIVE_RENEWAL = 'RECEIVE_RENEWAL'
 export const REQUEST_RENEWAL = 'REQUEST_RENEWAL'

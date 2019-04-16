@@ -1,5 +1,5 @@
-import * as statuses from '../../../../constants/APIStatuses'
-import { mapStateToProps } from '../../../../components/Account/LoanResources'
+import * as statuses from 'constants/APIStatuses'
+import { mapStateToProps } from 'components/Account/LoanResources'
 
 describe('components/Account/LoanResources/index.js', () => {
   describe('with data', () => {

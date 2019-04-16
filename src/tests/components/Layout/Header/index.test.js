@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Route } from 'react-router'
-import Header from '../../../../components/Layout/Header'
-import BrandingBanner from '../../../../components/Layout/Header/BrandingBanner'
-import HesburghBanner from '../../../../components/Layout/Header/HesburghBanner'
-import Navigation from '../../../../components/Layout/Navigation'
+import Header from 'components/Layout/Header'
+import BrandingBanner from 'components/Layout/Header/BrandingBanner'
+import HesburghBanner from 'components/Layout/Header/HesburghBanner'
+import Navigation from 'components/Layout/Navigation'
 import createRouterContext from 'react-router-test-context'
 
 const setup = (props, path) => {

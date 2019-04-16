@@ -1,5 +1,5 @@
 import { CF_REQUEST_ALLALERTS, CF_RECEIVE_ALLALERTS } from '../../actions/contentful/allAlerts'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {

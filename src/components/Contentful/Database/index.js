@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulDatabasePresenter from './presenter.js'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const mapStateToProps = (state, thisProps) => {
   const databaseId = thisProps.match.params.id

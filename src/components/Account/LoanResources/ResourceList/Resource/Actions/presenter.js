@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ExportButton from '../../ExportButton'
 import DeleteButton from '../../DeleteButton'
 import Link from '../../../../../Interactive/Link'
-import * as Statuses from '../../../../../../constants/APIStatuses'
+import * as Statuses from 'constants/APIStatuses'
 import InlineLoading from '../../../../../Messages/InlineLoading'
 
 const ILLRenew = (item, message) => {

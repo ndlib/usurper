@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { fetchEvent } from '../../../actions/contentful/event'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
-import { formatDate, hour12, isSameDay, makeLocalTimezone } from '../../../shared/DateLibs.js'
+import { formatDate, hour12, isSameDay, makeLocalTimezone } from 'shared/DateLibs.js'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {

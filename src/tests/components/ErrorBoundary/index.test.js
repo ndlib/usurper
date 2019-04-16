@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import ErrorBoundary, { withErrorBoundary } from '../../../components/ErrorBoundary'
+import ErrorBoundary, { withErrorBoundary } from 'components/ErrorBoundary'
 
 const TestComponent = (props) => {
   return <div>{props.testProp}</div>

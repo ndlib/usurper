@@ -5,8 +5,8 @@ import SearchPreference from './SearchPreference'
 import SearchBox from './SearchBox'
 import AdvancedSearch from './AdvancedSearch'
 import AdditionalLinks from './AdditionalLinks'
-import '../../../static/css/global.css'
-import '../../../static/css/search.css'
+import 'static/css/global.css'
+import 'static/css/search.css'
 
 const Drawer = (props) => {
   const sectionClasses = props.search.advancedSearch ? 'advanaced' : ''

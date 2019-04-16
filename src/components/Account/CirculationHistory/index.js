@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import getResources from '../../../actions/personal/loanResources'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 import Presenter from './presenter'
 

@@ -1,5 +1,5 @@
 import { CF_REQUEST_NEWS, CF_RECEIVE_NEWS } from '../../actions/contentful/news'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {

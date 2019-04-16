@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../static/css/global.css'
+import 'static/css/global.css'
 
 import Link from '../Interactive/Link'
 import HomePageHours from '../Hours/HomePage'
@@ -7,11 +7,11 @@ import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import News from './News'
 import Events from './Events'
-import Reserves from '../../static/images/reserves.jpg'
-import Account from '../../static/images/myaccount.jpg'
-import Room from '../../static/images/reserveroom.jpg'
-import Tech from '../../static/images/tech.jpg'
-import Find from '../../static/images/subjects.jpg'
+import Reserves from 'static/images/reserves.jpg'
+import Account from 'static/images/myaccount.jpg'
+import Room from 'static/images/reserveroom.jpg'
+import Tech from 'static/images/tech.jpg'
+import Find from 'static/images/subjects.jpg'
 import OpenGraph from '../OpenGraph'
 
 class Home extends Component {

@@ -1,14 +1,14 @@
 // Presenter component for a Floor content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
 import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import SearchCallout from './SearchCallout'
-import mapkey from '../../../static/images/key.svg'
+import mapkey from 'static/images/key.svg'
 
 const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid floorplan'>

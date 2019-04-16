@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import configureStore from 'redux-mock-store'
-import SearchOption from '../../../../../../components/Layout/SearchDrawer/SearchOptionList/SearchOption'
+import SearchOption from 'components/Layout/SearchDrawer/SearchOptionList/SearchOption'
 
 const setup = (props) => {
   const store = configureStore()(props)
@@ -15,11 +15,13 @@ const setup = (props) => {
 let enzymeWrapper
 let props = {
   item: {
+    uid: 'FAKE UID',
     title: 'FAKE TITLE',
     description: 'A fake description',
   },
   search: {
-    searchBoxOpen: true
+    searchBoxOpen: true,
+    searchType: 'FAKE VALUE',
   }
 }
 

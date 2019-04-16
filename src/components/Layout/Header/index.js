@@ -6,7 +6,7 @@ import HesburghBanner from './HesburghBanner'
 import Navigation from '../Navigation'
 import SearchDrawer from '../SearchDrawer'
 import GlobalAlert from '../../Contentful/Alert/Global'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 
 const Header = (props) => {
   return (

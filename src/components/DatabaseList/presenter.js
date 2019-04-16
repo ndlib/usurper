@@ -1,19 +1,19 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../static/css/global.css'
+import 'static/css/global.css'
 import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 import Link from '../Interactive/Link'
 import ErrorLoading from '../Messages/Error'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import FilterBox from '../Interactive/FilterBox'
 import OpenGraph from '../OpenGraph'
 import SideNav from '../Layout/Navigation/SideNav'
 import LibMarkdown from '../LibMarkdown'
 import Alphabet from './Alphabet'
 import Loading from '../Messages/Loading'
-import { getLinkObject } from '../../shared/ContentfulLibs'
+import { getLinkObject } from 'shared/ContentfulLibs'
 import './style.css'
 
 const Content = (letter, data, filterValue, onFilterChange, assistText) => {

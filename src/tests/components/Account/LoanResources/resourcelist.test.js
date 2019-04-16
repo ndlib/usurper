@@ -1,6 +1,6 @@
 import React from 'react'
-import ResourceList from '../../../../components/Account/LoanResources/ResourceList/presenter'
-import Resource from '../../../../components/Account/LoanResources/ResourceList/Resource'
+import ResourceList from 'components/Account/LoanResources/ResourceList/presenter'
+import Resource from 'components/Account/LoanResources/ResourceList/Resource'
 import { shallow } from 'enzyme'
 
 let enzymeWrapper

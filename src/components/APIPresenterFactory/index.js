@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import NotFound from '../Messages/NotFound'
 import Loading from '../Messages/Loading'
 import Error from '../Messages/Error'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import { withErrorBoundary } from '../ErrorBoundary'
 
 class APIPresenterFactory extends Component {

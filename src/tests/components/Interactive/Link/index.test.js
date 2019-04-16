@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { LibLink } from '../../../../components/Interactive/Link'
+import { LibLink } from 'components/Interactive/Link'
 import { Link } from 'react-router-dom'
 
 const setup = (props) => {

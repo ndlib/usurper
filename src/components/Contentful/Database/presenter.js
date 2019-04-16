@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from '../../Interactive/Link'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Image from '../../Image'
 import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ErrorBoundary from '../../ErrorBoundary'
-import Config from '../../../shared/Configuration'
+import Config from 'shared/Configuration'
 
 const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
   return (

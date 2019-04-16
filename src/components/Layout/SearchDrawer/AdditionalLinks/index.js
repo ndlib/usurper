@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { searchOptions } from '../../../../constants/searchOptions'
+import { searchOptions } from 'constants/searchOptions'
 
 const AdditionalLinks = (props) => {
   const links = []

@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PageWrapper from '../../../../components/Layout/PageWrapper/presenter.js'
-import Header from '../../../../components/Layout/Header'
-import Footer from '../../../../components/Layout/Footer'
+import PageWrapper from 'components/Layout/PageWrapper/presenter.js'
+import Header from 'components/Layout/Header'
+import Footer from 'components/Layout/Footer'
 
 const setup = (props) => {
   return shallow(

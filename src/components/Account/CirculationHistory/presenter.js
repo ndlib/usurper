@@ -6,7 +6,7 @@ import SearchProgramaticSet from '../../SearchProgramaticSet'
 import UserMenu from '../../Layout/Navigation/UserMenu'
 import Link from '../../Interactive/Link'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
-import Config from '../../../shared/Configuration'
+import Config from 'shared/Configuration'
 
 const OptedOutMessage = () => {
   const illiadUrl = Config.illiadBaseURL.replace('<<form>>', 60).replace('<<value>>', '')

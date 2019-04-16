@@ -7,7 +7,7 @@ import LibMarkdown from '../../LibMarkdown'
 import SideNav from '../../Layout/Navigation/SideNav'
 import PageAlert from '../Alert/Page'
 import OpenGraph from '../../OpenGraph'
-import { getLinkObject } from '../../../shared/ContentfulLibs'
+import { getLinkObject } from 'shared/ContentfulLibs'
 
 import './style.css'
 

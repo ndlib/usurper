@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from '../../../components/Image/presenter'
+import Image from 'components/Image/presenter'
 import { shallow } from 'enzyme'
 
 let enzymeWrapper

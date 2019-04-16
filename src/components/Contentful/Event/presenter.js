@@ -1,7 +1,7 @@
 // Presenter component for a Event content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Link from '../../Interactive/Link'
 import Related from '../../Related'

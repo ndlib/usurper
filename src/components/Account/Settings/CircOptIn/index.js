@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
 import { connect } from 'react-redux'
 import { KIND } from '../../../../actions/personal/settings'
-import * as statuses from '../../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import InlineLoading from '../../../Messages/InlineLoading'
 
 ReactModal.setAppElement('body')

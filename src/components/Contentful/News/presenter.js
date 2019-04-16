@@ -1,7 +1,7 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
 import Image from '../../Image'
@@ -9,7 +9,7 @@ import Link from '../../Interactive/Link'
 import Librarians from '../../Librarians'
 import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import { formatDate } from '../../../shared/DateLibs.js'
+import { formatDate } from 'shared/DateLibs.js'
 import ShareLinks from '../../Interactive/ShareLinks'
 import OpenGraph from '../../OpenGraph'
 

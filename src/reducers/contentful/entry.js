@@ -1,5 +1,5 @@
 import { CF_REQUEST_ENTRY, CF_RECEIVE_ENTRY } from '../../actions/contentful/entry'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export default (state = {}, action) => {
   const entryData = {}

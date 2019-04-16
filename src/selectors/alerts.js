@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import * as statuses from '../constants/APIStatuses'
-import { flattenLocale } from '../shared/ContentfulLibs'
+import * as statuses from 'constants/APIStatuses'
+import { flattenLocale } from 'shared/ContentfulLibs'
 
 const getAlerts = (state) => {
   let allAlerts = []

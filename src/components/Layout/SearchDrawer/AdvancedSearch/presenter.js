@@ -6,7 +6,7 @@ import MaterialType from './MaterialType'
 import Language from './Language'
 import DateField from './DateField'
 import SearchScope from './SearchScope'
-import { searchOptions } from '../../../../constants/searchOptions'
+import { searchOptions } from 'constants/searchOptions'
 
 const AdvancedSearch = (props) => {
   if (!props.visible) {

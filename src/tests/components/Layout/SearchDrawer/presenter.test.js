@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
-import SearchDrawer from '../../../../components/Layout/SearchDrawer/presenter'
+import SearchDrawer from 'components/Layout/SearchDrawer/presenter'
 
 const setup = (props) => {
   const store = configureStore()(props)
