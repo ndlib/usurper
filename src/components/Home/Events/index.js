@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import { fetchAllEvents } from '../../../actions/contentful/allEvents'
 import Presenter from './presenter.js'
 import PresenterFactory from '../../APIInlinePresenterFactory'
-import * as statuses from '../../../constants/APIStatuses'
-import { flattenLocale } from '../../../shared/ContentfulLibs'
-import * as dateLibs from '../../../shared/DateLibs'
+import * as statuses from 'constants/APIStatuses'
+import { flattenLocale } from 'shared/ContentfulLibs'
+import * as dateLibs from 'shared/DateLibs'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 const startEndDate = (start, end) => {

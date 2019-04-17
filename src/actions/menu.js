@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
-import * as statuses from '../constants/APIStatuses'
-import Config from '../shared/Configuration'
+import * as statuses from 'constants/APIStatuses'
+import Config from 'shared/Configuration'
 
 export const OPEN_MENU = 'OPEN_MENU'
 export const CLOSE_MENUS = 'CLOSE_MENUS'

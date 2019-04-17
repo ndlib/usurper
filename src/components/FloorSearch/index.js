@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import searchFloorMaps from '../../actions/floorSearch'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import Loading from '../Messages/Loading'
 import Empty from './Empty'
 import { withErrorBoundary } from '../ErrorBoundary'

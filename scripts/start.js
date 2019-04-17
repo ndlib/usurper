@@ -19,7 +19,8 @@ var checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 var formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 var getProcessForPort = require('react-dev-utils/getProcessForPort');
 var openBrowser = require('react-dev-utils/openBrowser');
-var prompt = require('react-dev-utils/prompt');
+var inquirer = require('react-dev-utils/inquirer');
+var ignoredFiles = require('react-dev-utils/ignoredFiles');
 var fs = require('fs');
 var config = require('../config/webpack.config.dev');
 var paths = require('../config/paths');
@@ -156,6 +157,8 @@ function addMiddleware(devServer) {
   // `proxy` lets you to specify a fallback server during development.
   // Every unrecognized request will be forwarded to it.
   var proxy = require(paths.appPackageJson).proxy;
+  // const proxySetting = require(paths.appPackageJson).proxy;
+  // const proxyConfig = prepareProxy(proxySetting, paths.appPublic);
   devServer.use(historyApiFallback({
     // Paths with dots should still use the history fallback.
     // See https://github.com/facebookincubator/create-react-app/issues/387.
@@ -241,6 +244,8 @@ function runDevServer(host, port, protocol) {
     // for some reason broken when imported through Webpack. If you just want to
     // use an image, put it in `src` and `import` it from JavaScript instead.
     contentBase: paths.appPublic,
+    // By default files from `contentBase` will not trigger a page reload.
+    watchContentBase: true,
     // Enable hot reloading server. It will provide /sockjs-node/ endpoint
     // for the WebpackDevServer client so it can learn when the files were
     // updated. The WebpackDevServer client is included as an entry point
@@ -254,9 +259,11 @@ function runDevServer(host, port, protocol) {
     // by listening to the compiler events with `compiler.plugin` calls above.
     quiet: true,
     // Reportedly, this avoids CPU overload on some systems.
-    // https://github.com/facebookincubator/create-react-app/issues/293
+    // https://github.com/facebook/create-react-app/issues/293
+    // src/node_modules is not ignored to support absolute imports
+    // https://github.com/facebook/create-react-app/issues/1065
     watchOptions: {
-      ignored: /node_modules/
+      ignored: ignoredFiles(paths.appSrc),
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
     https: protocol === "https",
@@ -267,9 +274,9 @@ function runDevServer(host, port, protocol) {
   addMiddleware(devServer);
 
   // Launch WebpackDevServer.
-  devServer.listen(port, err => {
+  devServer.listen(port, host, err => {
     if (err) {
-      return console.log(err);
+      return console.error(err);
     }
 
     if (isInteractive) {
@@ -305,7 +312,7 @@ detect(DEFAULT_PORT).then(port => {
         ((existingProcess) ? ' Probably:\n  ' + existingProcess : '')) +
         '\n\nWould you like to run the app on another port instead?';
 
-    prompt(question, true).then(shouldChangePort => {
+    inquirer(question, true).then(shouldChangePort => {
       if (shouldChangePort) {
         run(port);
       }

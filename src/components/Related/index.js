@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Image from '../Image'
-import Link from '../Link'
+import Link from '../Interactive/Link'
 import LibMarkdown from '../LibMarkdown'
-import { getLinkObject } from '../../shared/ContentfulLibs'
+import { getLinkObject } from 'shared/ContentfulLibs'
 
 const Related = ({ title, className, showImages, children }) => {
   if (!children) {

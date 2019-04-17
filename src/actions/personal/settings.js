@@ -1,6 +1,6 @@
-import Config from '../../shared/Configuration'
+import Config from 'shared/Configuration'
 import * as states from './constants'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export const RECEIVE_SETTINGS = 'RECEIVE_SETTINGS'
 export const REQUEST_SETTINGS = 'REQUEST_SETTINGS'

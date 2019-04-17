@@ -1,6 +1,6 @@
-import Config from '../shared/Configuration'
+import Config from 'shared/Configuration'
 import fetch from 'isomorphic-fetch'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export const REQUEST_LIBRARIANS = 'REQUEST_LIBRARIANS'
 export const RECEIVE_LIBRARIANS = 'RECEIVE_LIBRARIANS'

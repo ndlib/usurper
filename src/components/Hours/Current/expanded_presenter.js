@@ -14,8 +14,8 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
   }
   return (
     <section className={servicePointClassName} role='tablist'>
-      <a
-        className='collapse'
+      <button
+        className='custom-style collapse'
         tabIndex={0}
         onClick={collapseHandler}
         onKeyDown={collapseHandler}
@@ -33,7 +33,7 @@ const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
             <div className='carrow' />
           </div>
         </h4>
-      </a>
+      </button>
       <div className='row hours-listing' role='tabpanel' id={hoursEntry.servicePoint.slug} aria-hidden={false}>
         <div className='col-md-6'>
           <WeeklyHours hours={hoursEntry.weeks[0]} title='Current Hours' showEffectiveDates={false} />
@@ -62,9 +62,9 @@ Presenter.propTypes = {
     weeks: PropTypes.array,
     upcomingChangedHours: PropTypes.object,
   }).isRequired,
-  isOpen: PropTypes.bool,
-  collapseHandler: PropTypes.func,
-  children: PropTypes.any,
+  isOpen: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+  collapseHandler: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  children: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
 }
 
 export default Presenter

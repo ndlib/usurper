@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 
 const Presenter = (hoursEntry) => {
   return (

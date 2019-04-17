@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import InlineContainer from '../../../../components/Hours/InlineContainer'
-import * as statuses from '../../../../constants/APIStatuses'
+import InlineContainer from 'components/Hours/InlineContainer'
+import * as statuses from 'constants/APIStatuses'
 
 const setup = (hoursEntry, presenter) => {
   return shallow(<InlineContainer hoursEntry={hoursEntry} presenter={presenter} />)

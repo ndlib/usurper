@@ -1,5 +1,5 @@
 import React from 'react'
-import PageTitle from '../PageTitle'
+import PageTitle from '../Layout/PageTitle'
 import Chat from '../Chat'
 import SearchProgramaticSet from '../SearchProgramaticSet'
 

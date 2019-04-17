@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PagePresenter from '../../../../components/Hours/WeeklyHours/presenter'
+import PagePresenter from 'components/Hours/WeeklyHours/presenter'
 
 const setup = (hoursEntry, title, effectiveDate) => {
   return shallow(<PagePresenter hours={hoursEntry} title={title} effectiveDate={effectiveDate} showEffectiveDates={true} />)

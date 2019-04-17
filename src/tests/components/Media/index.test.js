@@ -1,7 +1,7 @@
 import React from 'react'
-import Link from '../../../components/Link'
+import Link from 'components/Interactive/Link'
 import { shallow } from 'enzyme'
-import Media from '../../../components/Media'
+import Media from 'components/Media'
 
 let enzymeWrapper
 const setup = (props) => {

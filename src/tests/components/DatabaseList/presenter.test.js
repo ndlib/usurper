@@ -1,11 +1,11 @@
 import React from 'react'
-import PageTitle from '../../../components/PageTitle'
-import '../../../static/css/global.css'
-import ListPresenter from '../../../components/DatabaseList/presenter'
-import Link from '../../../components/Link'
-import ErrorLoading from '../../../components/Messages/Error'
-import Loading from '../../../components/Messages/Loading'
-import * as statuses from '../../../constants/APIStatuses'
+import PageTitle from 'components/Layout/PageTitle'
+import 'static/css/global.css'
+import ListPresenter from 'components/DatabaseList/presenter'
+import Link from 'components/Interactive/Link'
+import ErrorLoading from 'components/Messages/Error'
+import Loading from 'components/Messages/Loading'
+import * as statuses from 'constants/APIStatuses'
 import { shallow } from 'enzyme'
 
 const setup = (props) => {

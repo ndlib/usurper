@@ -1,5 +1,5 @@
 import { HOURS_REQUEST, HOURS_RECEIVE, HOURS_NO_SUCH } from '../actions/hours'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED, json: {} }, action) => {
   switch (action.type) {

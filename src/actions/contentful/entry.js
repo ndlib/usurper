@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
-import Config from '../../shared/Configuration'
-import * as statuses from '../../constants/APIStatuses'
+import Config from 'shared/Configuration'
+import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_ENTRY = 'CF_REQUEST_ENTRY'
 export const requestEntry = (entry) => {

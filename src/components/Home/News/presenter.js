@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeNewsEntry } from '../../LandingPages/News/presenter'
 import './style.css'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import ErrorBoundary from '../../ErrorBoundary'
 
 const News = (entries) => {

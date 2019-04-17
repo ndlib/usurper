@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchLetter } from '../../actions/contentful/databaseLetter'
 import ListPresenter from './presenter.js'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import PageNotFound from '../Messages/NotFound'
 import { withErrorBoundary } from '../ErrorBoundary'
 

@@ -1,15 +1,15 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
 import Related from '../../Related'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
 import OpenGraph from '../../OpenGraph'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <article aria-describedby='main-page-title' className='container-fluid content-area'>

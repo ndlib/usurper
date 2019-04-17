@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Markdown from 'markdown-to-jsx'
 import PropTypes from 'prop-types'
-import Link from '../Link'
+import Link from '../Interactive/Link'
 
 const LibLink = (props) => {
   let url = props.href
@@ -13,6 +13,7 @@ const LibLink = (props) => {
   if (url === undefined) {
     // Exception for named anchors
     if (props.id) {
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
       return (<a id={props.id}>{ props.children }</a>)
     }
     return (<span>{ props.children }</span>)

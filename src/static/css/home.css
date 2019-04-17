@@ -73,7 +73,7 @@
 	bottom: 1.2em;
 }
 
-.home nav a.search {
+.home nav button.search {
 	display: none !important;
 }
 

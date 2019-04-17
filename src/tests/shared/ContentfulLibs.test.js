@@ -1,4 +1,4 @@
-import { getLinkObject } from '../../shared/ContentfulLibs'
+import { getLinkObject } from 'shared/ContentfulLibs'
 
 describe('getLinkObject', () => {
   const testUrl = 'testUrl'

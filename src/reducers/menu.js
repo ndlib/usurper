@@ -4,7 +4,7 @@ import {
   NAV_REQUEST,
   NAV_RECEIVE,
 } from '../actions/menu'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export default (
   state = {

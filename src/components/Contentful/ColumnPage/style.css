@@ -33,7 +33,7 @@
 */
 .group h2 {
 
-  background-image: url('../../../static/images/jesus.2.png');
+  background-image: url('/static/images/jesus.2.png');
     background-repeat: no-repeat;
     background-position-x: right;
     background-color: #072242;

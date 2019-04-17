@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
 import PresenterFactory from '../../APIPresenterFactory'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 import Presenter from './presenter'
 

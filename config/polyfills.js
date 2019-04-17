@@ -1,4 +1,4 @@
-
+/* eslint-disable no-extend-native */
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an
   // inconsistent state due to an error, but it gets swallowed by a Promise,
@@ -8,6 +8,7 @@ if (typeof Promise === 'undefined') {
 }
 
 if (!String.prototype.startsWith) {
+  // eslint-disable-next-line no-extend-native
   String.prototype.startsWith = function (searchString, position) {
     return this.substr(position || 0, searchString.length) === searchString
   }
@@ -19,7 +20,7 @@ if (!Array.prototype.equals) {
       return false
     }
 
-    if (this.length != compare.length) {
+    if (this.length !== compare.length) {
       return false
     }
 
@@ -31,7 +32,7 @@ if (!Array.prototype.equals) {
       }
 
       // this wont corerctly compare objects, eg. { foo: 2 } != { foo: 2 }
-      if (this[i] != compare[i]) {
+      if (this[i] !== compare[i]) {
         return false
       }
       return true

@@ -1,21 +1,21 @@
 // Presenter component for a Event content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../../static/css/global.css'
+import 'static/css/global.css'
 import LibMarkdown from '../../LibMarkdown'
-import Link from '../../Link'
+import Link from '../../Interactive/Link'
 import Related from '../../Related'
 import Image from '../../Image'
 import Librarians from '../../Librarians'
-import PageTitle from '../../PageTitle'
+import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
-import ShareLinks from '../../ShareLinks'
+import ShareLinks from '../../Interactive/ShareLinks'
 import OpenGraph from '../../OpenGraph'
 import Media from '../../Media'
 import Presenters from '../../Presenters'
 import Sponsorships from '../../Sponsorships'
-import AddToCalendar from '../../AddToCalendar'
+import AddToCalendar from '../../Interactive/AddToCalendar'
 
 const PagePresenter = ({ entry }) => {
   return (

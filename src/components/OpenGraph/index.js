@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
-import DefaultImage from '../../static/images/search.banner.jpg'
+import DefaultImage from 'static/images/search.banner.jpg'
 
 const OpenGraph = (props) => {
   const url = props.url || window.location.href

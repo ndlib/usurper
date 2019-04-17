@@ -1,4 +1,4 @@
-import Config from '../shared/Configuration'
+import Config from 'shared/Configuration'
 import QueryString from 'querystring'
 
 export const SET_SEARCH = 'SET_SEARCH'

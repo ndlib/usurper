@@ -1,10 +1,10 @@
 import React from 'react'
-import * as statuses from '../../../constants/APIStatuses'
-import Librarians from '../../../components/Librarians/presenter'
+import * as statuses from 'constants/APIStatuses'
+import Librarians from 'components/Librarians/presenter'
 import { shallow } from 'enzyme'
 
-import Contact from '../../../components/Contact'
-import Image from '../../../components/Image'
+import Contact from 'components/Contact'
+import Image from 'components/Image'
 
 let enzymeWrapper
 const setup = (props) => {

@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineLoading from '../Messages/InlineLoading'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 class APIInlinePresenterFactory extends Component {
   render () {

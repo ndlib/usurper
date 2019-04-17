@@ -13,8 +13,8 @@ const Presenter = (hoursEntry, isOpen, expandHandler) => {
   }
   return (
     <section className={servicePointClassName} itemScope itemType={schemaType} role='tablist'>
-      <a
-        className='expand'
+      <button
+        className='custom-style expand'
         tabIndex={0}
         onClick={expandHandler}
         onKeyDown={expandHandler}
@@ -32,7 +32,7 @@ const Presenter = (hoursEntry, isOpen, expandHandler) => {
             <div className='earrow' />
           </div>
         </div>
-      </a>
+      </button>
       <div className={hoursEntry.servicePoint.slug} role='tabpanel' aria-hidden />
     </section>
   )
@@ -50,8 +50,8 @@ Presenter.propTypes = {
       type: PropTypes.string,
     }),
   }).isRequired,
-  isOpen: PropTypes.bool,
-  expandHandler: PropTypes.func,
+  isOpen: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+  expandHandler: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
 }
 
 export default Presenter

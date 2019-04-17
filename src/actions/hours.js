@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
-import * as statuses from '../constants/APIStatuses'
-import Config from '../shared/Configuration'
+import * as statuses from 'constants/APIStatuses'
+import Config from 'shared/Configuration'
 
 export const HOURS_REQUEST = 'HOURS_REQUEST'
 export const HOURS_RECEIVE = 'HOURS_RECEIVE'

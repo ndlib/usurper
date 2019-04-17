@@ -1,8 +1,8 @@
 import React from 'react'
 import Markdown from 'markdown-to-jsx'
 import { shallow } from 'enzyme'
-import LibMarkdown from '../../../components/LibMarkdown'
-import Link from '../../../components/Link'
+import LibMarkdown from 'components/LibMarkdown'
+import Link from 'components/Interactive/Link'
 
 const setup = (props) => {
   return shallow(<LibMarkdown {...props} ></LibMarkdown>);

@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 import Contact from '../Contact'
 import Image from '../Image'
 import InlineLoading from '../Messages/InlineLoading'
-import PrivateLibrarianImage from '../../static/images/librarian.gif'
+import PrivateLibrarianImage from 'static/images/librarian.gif'
 
 const Loaded = (info, className) => {
   return (

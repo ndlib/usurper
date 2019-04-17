@@ -1,5 +1,5 @@
 import { RECEIVE_PERSONAL, CLEAR_PERSONAL, REQUEST_PERSONAL } from '../actions/personal/constants'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const initialState = {}
 const personalReducer = (state = initialState, action) => {

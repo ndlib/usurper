@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ContactPoint from '../../../../components/Contentful/ContactPoint'
-import Image from '../../../../components/Image'
+import ContactPoint from 'components/Contentful/ContactPoint'
+import Image from 'components/Image'
 
 const setup = (cfPageEntry) => {
 

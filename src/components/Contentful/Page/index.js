@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { fetchPage, clearPage } from '../../../actions/contentful/page'
 import PresenterFactory from '../../APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
-import * as statuses from '../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import { withErrorBoundary } from '../../ErrorBoundary'
 
 const mapStateToProps = (state) => {

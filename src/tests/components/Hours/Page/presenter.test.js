@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PagePresenter from '../../../../components/Hours/Page/presenter'
-import CurrentHours from '../../../../components/Hours/Current'
+import PagePresenter from 'components/Hours/Page/presenter'
+import CurrentHours from 'components/Hours/Current'
 
 const setup = (hoursEntry) => {
   return shallow(<PagePresenter servicePoints={hoursEntry} hoursPageOrder={[

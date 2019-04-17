@@ -1,4 +1,4 @@
-const alertMap = (alert, isGlobal = false) => {
+export const alertMap = (alert, isGlobal = false) => {
   const type = alert.type ? alert.type.toLowerCase() : 'warning'
 
   let className = 'alert '
@@ -14,7 +14,7 @@ const alertMap = (alert, isGlobal = false) => {
   }
 }
 
-const alertSort = (left, right) => {
+export const alertSort = (left, right) => {
   if (left.type === right.type) {
     if (left.startTime < right.startTime) {
       return 1
@@ -34,7 +34,7 @@ const alertSort = (left, right) => {
   return 1
 }
 
-const alertCatagorize = (alerts) => {
+export const alertCatagorize = (alerts) => {
   const out = {}
   alerts.forEach((alert) => {
     if (out[alert.type]) {
@@ -45,10 +45,4 @@ const alertCatagorize = (alerts) => {
   })
 
   return out
-}
-
-module.exports = {
-  alertMap,
-  alertSort,
-  alertCatagorize,
 }

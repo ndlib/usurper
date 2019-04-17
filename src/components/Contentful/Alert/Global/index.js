@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import { fetchAllAlerts } from '../../../../actions/contentful/allAlerts'
 import { alertMap, alertSort, alertCatagorize } from '../alertHelpers.js'
 import Presenter from '../presenter.js'
-import * as statuses from '../../../../constants/APIStatuses'
-import makeAlertSelector from '../../../../selectors/alerts'
+import * as statuses from 'constants/APIStatuses'
+import makeAlertSelector from 'selectors/alerts'
 import { withErrorBoundary } from '../../../ErrorBoundary'
 
 const makeMapStateToProps = () => {

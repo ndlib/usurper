@@ -1,11 +1,11 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { HoursPageContainer } from '../../../../components/Hours/Page'
-import HoursPagePresenter from '../../../../components/Hours/Page/presenter'
-import APIPresenterFactory from '../../../../components/APIPresenterFactory'
+import { HoursPageContainer } from 'components/Hours/Page'
+import HoursPagePresenter from 'components/Hours/Page/presenter'
+import APIPresenterFactory from 'components/APIPresenterFactory'
 import configureStore from 'redux-mock-store'
-import * as statuses from '../../../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const setup = (props) => {
   const store = configureStore()(props)

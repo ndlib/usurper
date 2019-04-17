@@ -1,4 +1,4 @@
-import { mapStateToProps } from '../../../components/Image'
+import { mapStateToProps } from 'components/Image'
 
 let cfImage = {
   cfImage: {

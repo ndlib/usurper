@@ -1,6 +1,6 @@
-import Config from '../../shared/Configuration'
+import Config from 'shared/Configuration'
 import * as states from './constants'
-import * as statuses from '../../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const recommendURL = Config.recommendAPI + '/recommend'
 

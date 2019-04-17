@@ -99,11 +99,11 @@
 }
 
 .earrow {
-	background: url('../../../static/images/arrow.g.d.png') no-repeat;
+	background: url('/static/images/arrow.g.d.png') no-repeat;
 
 }
 .carrow {
-	background: url('../../../static/images/arrow.g.u.png') no-repeat;
+	background: url('/static/images/arrow.g.u.png') no-repeat;
 
 }
 

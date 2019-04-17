@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
-import PageTitle from '../../PageTitle'
-import Link from '../../Link'
+import PageTitle from '../../Layout/PageTitle'
+import Link from '../../Interactive/Link'
 import LibMarkdown from '../../LibMarkdown'
-import SideNav from '../../SideNav'
+import SideNav from '../../Layout/Navigation/SideNav'
 import PageAlert from '../Alert/Page'
 import OpenGraph from '../../OpenGraph'
-import { getLinkObject } from '../../../shared/ContentfulLibs'
+import { getLinkObject } from 'shared/ContentfulLibs'
 
 import './style.css'
 
@@ -19,7 +19,7 @@ const Sections = (column, showDescriptions) => {
     }
     return (
       <section key={entry.sys.id} className='group'>
-        <h2><a name={encodeURIComponent(s.title)} /><span>{s.title}</span></h2>
+        <h2><span id={encodeURIComponent(s.title)}>{s.title}</span></h2>
         <LibMarkdown>{ s.body }</LibMarkdown>
         <div className='linksgroup'>
           <div role={s.title + ' navigation'}>

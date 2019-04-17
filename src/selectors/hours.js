@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import * as statuses from '../constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 const _ = require('lodash')
 const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 const moment = require('moment')
