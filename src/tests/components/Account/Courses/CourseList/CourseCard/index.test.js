@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import CourseCard from 'components/Account/Courses/CourseList/CourseCard'
+import PathFinders from 'components/Account/Courses/CourseList/CourseCard/PathFinders'
 import Link from 'components/Interactive/Link'
 
 const setup = (props) => {
@@ -57,8 +58,8 @@ describe('components/Account/Courses/CourseList/CourseCard', () => {
       })
     })
 
-    it('should include link to pathfinder resources', () => {
-      const have = <Link to={props.course.pathfinder.url}>{expect.any(String)}</Link>
+    it('should create pathfinder', () => {
+      const have = <PathFinders data={[props.course.pathfinder]} />
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
   })
@@ -103,16 +104,9 @@ describe('components/Account/Courses/CourseList/CourseCard', () => {
       enzymeWrapper = setup(props)
     })
 
-    it('should link to each item in pathfinders prop', () => {
-      props.course.pathfinders.forEach((item) => {
-        const have = <Link to={item.url}>{expect.any(String)}</Link>
-        expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-      })
-    })
-
-    it('should ignore pathfinder prop', () => {
-      const have = <Link to={props.course.pathfinder.url}>{expect.any(String)}</Link>
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(false)
+    it('should create pathfinders with correct data', () => {
+      const have = <PathFinders data={props.course.pathfinders} />
+      expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
   })
 })

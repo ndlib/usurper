@@ -1,28 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import t from 'typy'
 import Link from 'components/Interactive/Link'
+import PathFinders from './PathFinders'
+
 import styles from '../style.module.css'
 
-const makePathFinders = (course) => {
-  const arr = t(course, 'pathfinders').isArray ? course.pathfinders : (course.pathfinder ? [ course.pathfinder ] : [])
-  if (!arr.length) {
-    return null
-  }
-
-  return (
-    <ul>
-      { arr.map((item) =>
-        <li key={item.url}>
-          <Link to={item.url}>{item.title} Resources</Link>
-        </li>
-      )}
-    </ul>
-  )
-}
-
 const CourseCard = (props) => {
-  const pathfinders = makePathFinders(props.course)
   const courseReserves = props.course.courseReserveLink
     ? (<Link to={props.course.courseReserveLink}>Course Reserves</Link>)
     : null
@@ -40,7 +23,7 @@ const CourseCard = (props) => {
         {courseReserves}
       </div>
       <div className={styles.courseResources}>
-        {pathfinders}
+        <PathFinders data={props.course.pathfinders || (props.course.pathfinder ? [props.course.pathfinder] : [])} />
       </div>
     </div>
   )
@@ -53,14 +36,8 @@ CourseCard.propTypes = {
       PropTypes.string,
       PropTypes.bool,
     ]),
-    pathfinder: PropTypes.shape({
-      url: PropTypes.string,
-      title: PropTypes.string,
-    }),
-    pathfinders: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string,
-      title: PropTypes.string,
-    })),
+    pathfinder: PropTypes.object,
+    pathfinders: PropTypes.array,
     codes: PropTypes.array,
     sectionNumbers: PropTypes.array,
     instructor_name: PropTypes.string,
