@@ -10,7 +10,7 @@ const handleCourses = (dispatch, data) => {
       states.recievePersonal(
         'courses',
         statuses.SUCCESS,
-        { courses: data }
+        { courseData: data }
       )
     )
   }
@@ -20,7 +20,7 @@ const getCourses = () => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(states.requestPersonal('courses'))
-    states.startRequest(
+    return states.startRequest(
       coursesURL,
       'GET',
       dispatch,

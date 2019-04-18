@@ -1,10 +1,9 @@
 import React from 'react'
-import * as statuses from 'constants/APIStatuses'
 import { shallow } from 'enzyme'
+import t from 'typy'
 import Courses from 'components/Account/Courses/presenter.js'
+import CourseList from 'components/Account/Courses/CourseList'
 import StaticBody from 'components/Contentful/StaticContent/Body'
-import Lgicon from 'static/images/icons/libguide.png'
-import Link from 'components/Interactive/Link'
 
 const setup = (props) => {
   return shallow(<Courses {...props} />)
@@ -13,42 +12,40 @@ const setup = (props) => {
 let enzymeWrapper
 let props
 describe('components/Account/Courses/presenter.js', () => {
-  describe('enrollmentCard(course) test', () => {
+  describe('with courses', () => {
     beforeEach(() => {
       props = {
         preview: true,
         courses: {
-          courses: {
-            enrollments: {
-              current: [{
-                type: 'section',
-                courseReserveLink: 'foo',
-                courseGuide: 'bar',
-                codes: ['27800'],
-                sectionNumbers: ['48'],
-                pathfinder: {
-                  url: 'bar',
-                  title: 'test',
-                },
-                instructor_name: 'Jim',
-                id: '201620-24315',
-                title: 'Research Lab',
-              }],
-              future: [{
-                type: 'section',
-                courseReserveLink: 'foo2',
-                courseGuide: 'bar2',
-                codes: ['29999'],
-                sectionNumbers: ['34'],
-                pathfinder: {
-                  url: 'bar2',
-                  title: 'test2',
-                },
-                instructor_name: 'Jeff',
-                id: '201620-34566',
-                title: 'Research Lab',
-              }],
-            },
+          enrollments: {
+            current: [{
+              type: 'section',
+              courseReserveLink: 'foo',
+              courseGuide: 'bar',
+              codes: ['27800'],
+              sectionNumbers: ['48'],
+              pathfinder: {
+                url: 'bar',
+                title: 'test',
+              },
+              instructor_name: 'Jim',
+              id: '201620-24315',
+              title: 'Research Lab',
+            }],
+            future: [{
+              type: 'section',
+              courseReserveLink: 'foo2',
+              courseGuide: 'bar2',
+              codes: ['29999'],
+              sectionNumbers: ['34'],
+              pathfinder: {
+                url: 'bar2',
+                title: 'test2',
+              },
+              instructor_name: 'Jeff',
+              id: '201620-34566',
+              title: 'Research Lab',
+            }],
           },
         },
       }
@@ -60,146 +57,35 @@ describe('components/Account/Courses/presenter.js', () => {
     })
 
     it('should use preview content', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<StaticBody slug='courses' preview={props.preview} />))
-        .toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<StaticBody slug='courses' preview={props.preview} />)).toBe(true)
     })
 
-    it('should have courseReserves link for current enrollments', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<a href={props.courses.courses.enrollments.current[0].courseReservesLink}>Course Reserves</a>))
-        .toBe(true)
-    })
-
-    it('should have a course subtitle for current enrollments', () => {
-      let subtitle = props.courses.courses.enrollments.current[0].codes.join(', ') + ' - ' + props.courses.courses.enrollments.current[0].sectionNumbers.join(', ')
-      expect(enzymeWrapper
-      .containsMatchingElement(<small>{subtitle}</small>)).toBe(true)
-    })
-
-    it('should have a pathfinder link for current enrollments', () => {
-      let url = props.courses.courses.enrollments.current[0].pathfinder.url
-      let title = props.courses.courses.enrollments.current[0].pathfinder.title
-      expect(enzymeWrapper
-      .containsMatchingElement(<Link to={url}>{title} Resources</Link>)).toBe(true)
-    })
-
-    it('should have courseReserves link for future enrollments', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<a href={props.courses.courses.enrollments.future[0].courseReservesLink}>Course Reserves</a>))
-        .toBe(true)
-    })
-
-    it('should have a course subtitle for future enrollments', () => {
-      let subtitle = props.courses.courses.enrollments.future[0].codes.join(', ') + ' - ' + props.courses.courses.enrollments.future[0].sectionNumbers.join(', ')
-      expect(enzymeWrapper
-      .containsMatchingElement(<small>{subtitle}</small>)).toBe(true)
-    })
-
-    it('should have a pathfinder link for future enrollments', () => {
-      let url = props.courses.courses.enrollments.future[0].pathfinder.url
-      let title = props.courses.courses.enrollments.future[0].pathfinder.title
-      expect(enzymeWrapper
-      .containsMatchingElement(<Link to={url}>{title} Resources</Link>)).toBe(true)
-    })
-  })
-
-  describe('InstructCard(course) test', () => {
-    beforeEach(() => {
-      props = {
-        preview: false,
-        courses: {
-          courses: {
-            instructs: {
-              current: [{
-                type: 'instructor',
-                courseReserveLink: 'foo',
-                courseGuides: ['bar'],
-                codes: ['27800'],
-                sectionNumbers: ['48'],
-                pathfinders: [
-                 {
-                    url: 'bar',
-                    title: 'test',
-                  },
-                ],
-                instructor_name: 'Jim',
-                id: '201620-24315',
-                title: 'Research Lab',
-              }],
-              future: [{
-                type: 'instructor',
-                courseReserveLink: 'foo2',
-                courseGuides: ['bar2'],
-                codes: ['29999'],
-                sectionNumbers: ['34'],
-                pathfinders: [
-                  {
-                    url: 'bar2',
-                    title: 'test2',
-                  },
-                ],
-                instructor_name: 'Jeff',
-                id: '201620-34566',
-                title: 'Research Lab',
-              }],
-            },
-          },
-        },
+    it('should render CourseList components with correct data', () => {
+      let timesCalled = 0
+      const checkForList = (section, category) => {
+        const expectedData = t(props.courses, section + '.' + category).safeObject
+        expect(enzymeWrapper.containsMatchingElement(<CourseList courses={expectedData} />)).toBe(true)
+        timesCalled++
       }
-      enzymeWrapper = setup(props)
+
+      checkForList('enrollments', 'current')
+      checkForList('enrollments', 'future')
+      checkForList('instructs', 'current')
+      checkForList('instructs', 'future')
+
+      // ensure there are no extraneous CourseLists that we didn't check for
+      expect(enzymeWrapper.find(CourseList)).toHaveLength(timesCalled)
+
+      // invalid test prevention
+      expect(timesCalled).toBeGreaterThan(0)
     })
 
-    afterEach(() => {
-      enzymeWrapper = undefined
-    })
-
-    it('should not use preview content', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<StaticBody slug='courses' preview={props.preview} />))
-        .toBe(true)
-    })
-
-    it('should have courseReserves link for current instructs', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<a href={props.courses.courses.instructs.current[0].courseReservesLink}>Course Reserves</a>))
-        .toBe(true)
-    })
-
-    it('should have a course subtitle for current instructs', () => {
-      let subtitle = props.courses.courses.instructs.current[0].codes.join(', ') + ' - ' + props.courses.courses.instructs.current[0].sectionNumbers.join(', ')
-      expect(enzymeWrapper
-      .containsMatchingElement(<small>{subtitle}</small>)).toBe(true)
-    })
-
-    it('should have a pathfinder link for current instructs', () => {
-      let url = props.courses.courses.instructs.current[0].pathfinders[0].url
-      let title = props.courses.courses.instructs.current[0].pathfinders[0].title
-      expect(enzymeWrapper
-      .containsMatchingElement(<Link to={url}>{title} Resources</Link>)).toBe(true)
-    })
-
-    it('should have courseReserves link for future instructs', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<a href={props.courses.courses.instructs.future[0].courseReservesLink}>Course Reserves</a>))
-        .toBe(true)
-    })
-
-    it('should have a course subtitle for future instructs', () => {
-      let subtitle = props.courses.courses.instructs.future[0].codes.join(', ') + ' - ' + props.courses.courses.instructs.future[0].sectionNumbers.join(', ')
-      expect(enzymeWrapper
-      .containsMatchingElement(<small>{subtitle}</small>)).toBe(true)
-    })
-
-    it('should have a pathfinder link for future instructs', () => {
-      let url = props.courses.courses.instructs.future[0].pathfinders[0].url
-      let title = props.courses.courses.instructs.future[0].pathfinders[0].title
-      expect(enzymeWrapper
-      .containsMatchingElement(<Link to={url}>{title} Resources</Link>)).toBe(true)
+    it('should not render a no classes found message', () => {
+      expect(enzymeWrapper.find('.noClasses').exists()).toBe(false)
     })
   })
 
-  describe('Incorrect data test - props.courses.courses = undefined', () => {
+  describe('without courses', () => {
     beforeEach(() => {
       props = {
         preview: false,
@@ -213,35 +99,12 @@ describe('components/Account/Courses/presenter.js', () => {
       enzymeWrapper = undefined
     })
 
-    it('should not have classes to display', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<p>No classes to display for the current semester</p>))
-        .toBe(true)
-    })
-  })
-
-  describe('Incorrect data test - props.courses.courses.enrollments/instructs = undefined', () => {
-    beforeEach(() => {
-      props = {
-        preview: false,
-        courses: {
-          courses: {
-          },
-        },
-      }
-      enzymeWrapper = setup(props)
+    it('should not render CourseList components', () => {
+      expect(enzymeWrapper.find(CourseList).exists()).toBe(false)
     })
 
-    afterEach(() => {
-      enzymeWrapper = undefined
-    })
-
-    it('should not have classes to display', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<p className='noClasses'>
-          No classes to display for the current semester.
-        </p>))
-        .toBe(true)
+    it('should render an appropriate message', () => {
+      expect(enzymeWrapper.find('.noClasses').exists()).toBe(true)
     })
   })
 })
