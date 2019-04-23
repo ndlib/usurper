@@ -38,7 +38,7 @@ const receiveAllNews = (response) => {
 
 export const fetchAllNews = (preview) => {
   const query = encodeURIComponent('content_type=news&include=3')
-  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }

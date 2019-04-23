@@ -4,133 +4,63 @@ import PropTypes from 'prop-types'
 import 'static/css/global.css'
 import PageTitle from '../Layout/PageTitle'
 import SearchProgramaticSet from '../SearchProgramaticSet'
-import Link from '../Interactive/Link'
 import ErrorLoading from '../Messages/Error'
 import * as statuses from 'constants/APIStatuses'
 import FilterBox from '../Interactive/FilterBox'
 import OpenGraph from '../OpenGraph'
 import SideNav from '../Layout/Navigation/SideNav'
-import LibMarkdown from '../LibMarkdown'
 import Alphabet from './Alphabet'
 import Loading from '../Messages/Loading'
-import { getLinkObject } from 'shared/ContentfulLibs'
-import './style.css'
+import Databases from './Databases'
+import styles from './style.module.css'
 
-const Content = (letter, data, filterValue, onFilterChange, assistText) => {
+const Loaded = (props) => {
+  const titleLabel = props.filterValue ? `SEARCH - ${props.filterValue.toUpperCase()}` : props.letter.toUpperCase()
+  const openGraphDesc = (props.filterValue ? 'Search results for ' : 'Databases with the letter ') + titleLabel
   return (
     <section className='container-fluid content-area'>
-      <PageTitle title={'Databases: ' + letter.toUpperCase()} />
-      <OpenGraph
-        title={'Databases: ' + letter.toUpperCase()}
-        description={'Databases with the letter ' + letter.toUpperCase()}
-        image={false}
-      />
+      <PageTitle title={'Databases: ' + titleLabel} />
+      <OpenGraph title={'Databases: ' + titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
       <div className='row'>
-        <SideNav className='col-md-4'>
-          <Alphabet />
-        </SideNav>
+        <SideNav className={'col-md-4 ' + styles.sideNav}><Alphabet /></SideNav>
         <div className='col-md-8'>
           <FilterBox
             title='Search All Databases by Title: '
-            value={filterValue}
-            onChange={onFilterChange}
+            value={props.filterValue}
+            onChange={props.onFilterChange}
             label='Database Search'
           />
-          <div className='screenReaderText' aria-live='assertive'>
-            { assistText }
-          </div>
-          <section
-            aria-label={'List of all "' + letter.toUpperCase() + '" Databases'}
-            className='databaseList'
-          >
-            {data}
-          </section>
+          <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
+          <Databases titleLabel={titleLabel} {...props} />
         </div>
-
       </div>
     </section>
   )
 }
 
-const DBLoading = () => {
-  return (<Loading />)
-}
-
-const LetterNotFound = (letter, filterValue, onFilterChange) => {
-  return Content(letter, 'Nothing found for this letter', filterValue, onFilterChange)
-}
-
-const Loaded = (props) => {
-  if (!props.list) {
-    return null
-  }
-  if (props.list.length < 1) {
-    return LetterNotFound(props.letter, props.filterValue, props.onFilterChange)
-  }
-  const data = props.list.map((item) => {
-    const linkObject = getLinkObject(item.fields, item.sys.id)
-
-    return (
-      <section key={item.fields.alephSystemNumber + item.fields.title}
-        aria-label={item.fields.title} className='dbSection'>
-        <Link to={linkObject.heading.url} title={'Go to ' + item.fields.title}>
-          <h2 className='dbItem'>{item.fields.title}</h2>
-        </Link>
-        <ul className='clamp databaseLink'>
-          {
-            linkObject.conditionalLinks.map((link) => {
-              return (
-                <li key={link.keyId}>
-                  <Link to={link.url}>{link.title}</Link>
-                  { link.notes && <LibMarkdown>{ link.notes }</LibMarkdown> }
-                </li>
-              )
-            })
-          }
-        </ul>
-        <div className='database-list'>
-          {linkObject.heading.description}
-        </div>
-        <Link to={'/database/' + item.sys.id} className='moreinfo'
-          ariaLabel={'More Information about ' + item.fields.title}>More info</Link>
-      </section>
-    )
-  })
-
-  if (props.filterValue && props.list.length === 50) {
-    data.push(
-      <div key='searchClipped'>
-        <p>Search is limited to first 50 results. Add more words to your search to see fewer results.</p>
-      </div>
-    )
-  }
-  return Content(props.letter, data, props.filterValue, props.onFilterChange, props.assistText)
-}
-
 const ListPresenter = (props) => {
   switch (props.status) {
     case statuses.FETCHING:
-      return DBLoading(props.letter)
+      return <Loading />
     case statuses.SUCCESS:
-      return Loaded(props)
     case statuses.NOT_FOUND:
-      return LetterNotFound(props.letter, props.filterValue, props.onFilterChange)
+      return Loaded(props)
     default:
       return <ErrorLoading message='Error loading page' />
   }
 }
 
 Loaded.propTypes = {
-  list: PropTypes.array,
+  list: PropTypes.array.isRequired,
+  letter: PropTypes.string,
+  assistText: PropTypes.string,
+  filterValue: PropTypes.string,
+  onFilterChange: PropTypes.func,
 }
 
 ListPresenter.propTypes = {
   status: PropTypes.string,
-  letter: PropTypes.string.isRequired,
-
-  filterValue: PropTypes.string,
-  onFilterChange: PropTypes.func,
 }
 
 export default ListPresenter

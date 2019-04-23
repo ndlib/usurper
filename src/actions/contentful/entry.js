@@ -54,7 +54,7 @@ export const fetchEntry = (id, slug, preview) => {
     identifierParam = encodeURIComponent(`sys.id=${id}&include=3`)
     entryIdent = id
   }
-  let url = `${Config.contentfulAPI}query?locale=en-US&query=${identifierParam}`
+  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${identifierParam}`
   if (preview) {
     url += `&preview=${preview}`
   }
