@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchNews } from '../../../actions/contentful/news'
-import PresenterFactory from '../../APIPresenterFactory'
+import { fetchNews } from 'actions/contentful/news'
+import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulNewsPresenter from './presenter.js'
 import './style.css'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return { entry: state.cfNewsEntry }

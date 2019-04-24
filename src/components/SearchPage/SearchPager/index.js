@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from '../../Interactive/Link'
+import Link from 'components/Interactive/Link'
 import QueryString from 'querystring'
 
 const SearchPager = (props) => {

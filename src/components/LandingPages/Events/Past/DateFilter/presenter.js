@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from '../../../../Interactive/Link'
+import Link from 'components/Interactive/Link'
 import PropTypes from 'prop-types'
 
 const DateFilter = (props) => {

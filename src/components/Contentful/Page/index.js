@@ -3,11 +3,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPage, clearPage } from '../../../actions/contentful/page'
-import PresenterFactory from '../../APIPresenterFactory'
+import { fetchPage, clearPage } from 'actions/contentful/page'
+import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulPagePresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return { cfPageEntry: state.cfPageEntry }

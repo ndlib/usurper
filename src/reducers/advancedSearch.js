@@ -1,6 +1,6 @@
 import {
   SET_ADVANCED_SEARCH_FIELD,
-} from '../actions/advancedSearch'
+} from 'actions/advancedSearch'
 
 export default (
   state = {},

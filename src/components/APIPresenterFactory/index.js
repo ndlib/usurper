@@ -4,11 +4,11 @@
 // from an API like contentful, but we may find other objects follow a similar pattern.
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import NotFound from '../Messages/NotFound'
-import Loading from '../Messages/Loading'
-import Error from '../Messages/Error'
+import NotFound from 'components/Messages/NotFound'
+import Loading from 'components/Messages/Loading'
+import Error from 'components/Messages/Error'
 import * as statuses from 'constants/APIStatuses'
-import { withErrorBoundary } from '../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 class APIPresenterFactory extends Component {
   render () {

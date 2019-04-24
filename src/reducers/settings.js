@@ -1,4 +1,4 @@
-import { RECEIVE_SETTINGS, REQUEST_SETTINGS } from '../actions/personal/settings'
+import { RECEIVE_SETTINGS, REQUEST_SETTINGS } from 'actions/personal/settings'
 import * as statuses from 'constants/APIStatuses'
 
 const initialState = {}

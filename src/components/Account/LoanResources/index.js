@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import getResources from '../../../actions/personal/loanResources'
+import getResources from 'actions/personal/loanResources'
 import * as statuses from 'constants/APIStatuses'
 
 import Resources from './presenter'

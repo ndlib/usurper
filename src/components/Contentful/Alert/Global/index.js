@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchAllAlerts } from '../../../../actions/contentful/allAlerts'
+import { fetchAllAlerts } from 'actions/contentful/allAlerts'
 import { alertMap, alertSort, alertCatagorize } from '../alertHelpers.js'
 import Presenter from '../presenter.js'
 import * as statuses from 'constants/APIStatuses'
 import makeAlertSelector from 'selectors/alerts'
-import { withErrorBoundary } from '../../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const makeMapStateToProps = () => {
   const selector = makeAlertSelector()

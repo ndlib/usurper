@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ExportButton from '../../ExportButton'
 import DeleteButton from '../../DeleteButton'
-import Link from '../../../../../Interactive/Link'
+import Link from 'components/Interactive/Link'
 import * as Statuses from 'constants/APIStatuses'
-import InlineLoading from '../../../../../Messages/InlineLoading'
+import InlineLoading from 'components/Messages/InlineLoading'
 
 const ILLRenew = (item, message) => {
   if (message && item.transactionNumber) {

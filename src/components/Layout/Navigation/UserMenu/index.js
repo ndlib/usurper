@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import getToken from '../../../../actions/personal/token'
+import getToken from 'actions/personal/token'
 import Presenter from './presenter'
 
 import Config from 'shared/Configuration'
-import { USER_MENU } from '../../../../actions/menu'
+import { USER_MENU } from 'actions/menu'
 
 class Login extends Component {
   componentWillMount () {

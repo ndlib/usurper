@@ -4,7 +4,7 @@
 // from an API like contentful, but we may find other objects follow a similar pattern.
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import InlineLoading from '../Messages/InlineLoading'
+import InlineLoading from 'components/Messages/InlineLoading'
 import * as statuses from 'constants/APIStatuses'
 
 class APIInlinePresenterFactory extends Component {

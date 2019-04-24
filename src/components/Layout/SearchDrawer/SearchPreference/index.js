@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { saveSearchPreference, clearSearchPreference } from '../../../../actions/search.js'
+import { saveSearchPreference, clearSearchPreference } from 'actions/search.js'
 import SearchPreference from './presenter'
 
 const mapStateToProps = (state) => {

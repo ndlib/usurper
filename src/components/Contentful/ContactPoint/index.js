@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Image from '../../Image'
+import Image from 'components/Image'
 import PageLink from '../PageLink'
-import Librarians from '../../Librarians'
+import Librarians from 'components/Librarians'
 import ServicePoint from '../ServicePoint'
-import Related from '../../Related'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import Related from '../Related'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const servicePoints = (points, shouldRender) => {
   if (!shouldRender || !points) {

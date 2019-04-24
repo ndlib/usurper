@@ -1,4 +1,4 @@
-import { RECEIVE_PERSONAL, CLEAR_PERSONAL, REQUEST_PERSONAL } from '../actions/personal/constants'
+import { RECEIVE_PERSONAL, CLEAR_PERSONAL, REQUEST_PERSONAL } from 'actions/personal/constants'
 import * as statuses from 'constants/APIStatuses'
 
 const initialState = {}

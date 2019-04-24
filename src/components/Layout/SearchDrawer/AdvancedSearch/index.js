@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import AdvancedSearch from './presenter'
 import searchQuery from '../searchQueryBuilder'
-import { setSearchType } from '../../../../actions/search.js'
+import { setSearchType } from 'actions/search.js'
 import './style.css'
 
 const mapStateToProps = (state) => {

@@ -10,8 +10,8 @@ import {
   CLOSE_SEARCHDRAWER,
   SITE_SEARCH_REQUEST,
   SITE_SEARCH_RESPONSE,
-} from '../actions/search.js'
-import { CF_RECEIVE_PAGE } from '../actions/contentful/page'
+} from 'actions/search.js'
+import { CF_RECEIVE_PAGE } from 'actions/contentful/page'
 import * as statuses from 'constants/APIStatuses'
 import { searchOptions } from 'constants/searchOptions'
 

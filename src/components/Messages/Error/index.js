@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../Layout/PageTitle'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
-import ServiceNowLink from '../../Interactive/ServiceNowLink'
+import PageTitle from 'components/Layout/PageTitle'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
+import ServiceNowLink from 'components/Interactive/ServiceNowLink'
 import { Helmet } from 'react-helmet'
 
 const Error = ({ message = 'An error has occured' }) => (

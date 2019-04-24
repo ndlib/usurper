@@ -1,12 +1,12 @@
 // Container component for a Floor content type from Contentful
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchFloor } from '../../../actions/contentful/floor'
+import { fetchFloor } from 'actions/contentful/floor'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PresenterFactory from '../../APIPresenterFactory'
+import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulFloorPresenter from './presenter.js'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state, ownProps) => {
   const searchParams = new URLSearchParams(ownProps.location.search)

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import PagePresenter from 'components/Contentful/Page/presenter'
 import ContactPoint from 'components/Contentful/ContactPoint'
 import LibMarkdown from 'components/LibMarkdown'
-import Related from 'components/Related'
+import Related from 'components/Contentful/Related'
 import Link from 'components/Interactive/Link'
 
 const setup = (cfPageEntry) => {
