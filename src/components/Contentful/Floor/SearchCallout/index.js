@@ -1,7 +1,7 @@
 // Container component for a Floor content type from Contentful
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withErrorBoundary } from '../../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 export class SearchCallout extends Component {
   getDataFromURI (search) {

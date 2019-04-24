@@ -3,7 +3,7 @@ import {
   CLOSE_MENUS,
   NAV_REQUEST,
   NAV_RECEIVE,
-} from '../actions/menu'
+} from 'actions/menu'
 import * as statuses from 'constants/APIStatuses'
 
 export default (

@@ -1,4 +1,4 @@
-import { CF_REQUEST_SIDEBAR, CF_RECEIVE_SIDEBAR } from '../../actions/contentful/staticContent'
+import { CF_REQUEST_SIDEBAR, CF_RECEIVE_SIDEBAR } from 'actions/contentful/staticContent'
 import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {

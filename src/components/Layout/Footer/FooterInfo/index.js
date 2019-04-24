@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../images/library.logo.png'
-import Link from '../../../Interactive/Link'
+import Link from 'components/Interactive/Link'
 import ChatModal from './ChatModal'
 
 const FooterInfo = () => {

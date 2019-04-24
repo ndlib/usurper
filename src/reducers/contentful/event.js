@@ -1,4 +1,4 @@
-import { CF_REQUEST_EVENT, CF_RECEIVE_EVENT } from '../../actions/contentful/event'
+import { CF_REQUEST_EVENT, CF_RECEIVE_EVENT } from 'actions/contentful/event'
 import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {

@@ -1,7 +1,7 @@
 import { mapStateToProps } from 'components/Account/LoanResources/ResourceList/Resource/Actions'
 import React, { Component } from 'react'
 import Config from 'shared/Configuration'
-import { renewAleph } from '../../../../../../../actions/personal/alephRenewal'
+import { renewAleph } from 'actions/personal/alephRenewal'
 
 const illViewForm = '67'
 const illWebForm = '75'

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
 import { connect } from 'react-redux'
-import { KIND } from '../../../../actions/personal/settings'
+import { KIND } from 'actions/personal/settings'
 import * as statuses from 'constants/APIStatuses'
-import InlineLoading from '../../../Messages/InlineLoading'
+import InlineLoading from 'components/Messages/InlineLoading'
 
 ReactModal.setAppElement('body')
 

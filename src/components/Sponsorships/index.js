@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import LibMarkdown from '../LibMarkdown'
+import LibMarkdown from 'components/LibMarkdown'
 
 const Sponsorships = ({ sponsors }) => {
   if (!sponsors) {

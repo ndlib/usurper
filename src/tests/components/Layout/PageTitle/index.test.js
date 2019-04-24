@@ -1,5 +1,5 @@
 import React from 'react'
-import Related from 'components/Related'
+import Related from 'components/Contentful/Related'
 import { shallow } from 'enzyme'
 import PageTitle from 'components/Layout/PageTitle'
 

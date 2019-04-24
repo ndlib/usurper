@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../Layout/PageTitle'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
-import SearchCallout from '../../Contentful/Floor/SearchCallout/index'
-import Contact from '../../Contact/ServicePoint'
+import PageTitle from 'components/Layout/PageTitle'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
+import SearchCallout from 'components/Contentful/Floor/SearchCallout/index'
+import Contact from 'components/Contact/ServicePoint'
 
 const Empty = (props) => {
   return (

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import getToken from '../../../actions/personal/token'
+import getToken from 'actions/personal/token'
 import Presenter from './presenter'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 export const mapStateToProps = (state, ownProps) => {
   const { personal } = state

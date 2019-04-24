@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import SearchResultInfo from './SearchResultInfo'
 import SearchResults from './SearchResults'
 import SearchPager from './SearchPager'
-import PageTitle from '../Layout/PageTitle'
+import PageTitle from 'components/Layout/PageTitle'
 
 class SearchPage extends Component {
   componentWillMount () {

@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux'
 import typy from 'typy'
 import getCourses from 'actions/personal/courses'
 import * as statuses from 'constants/APIStatuses'
-import Loading from '../../Messages/Loading'
-import Link from '../../Interactive/Link'
+import Loading from 'components/Messages/Loading'
+import Link from 'components/Interactive/Link'
 
 import CoursesPresenter from './presenter'
 

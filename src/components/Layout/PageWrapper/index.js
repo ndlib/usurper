@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import PageWrapper from './presenter.js'
-import { closeSearchBox } from '../../../actions/search.js'
-import { closeMenus, fetchNavigation } from '../../../actions/menu.js'
+import { closeSearchBox } from 'actions/search.js'
+import { closeMenus, fetchNavigation } from 'actions/menu.js'
 
 const mapStateToProps = (state, ownProps) => {
   return {

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal'
-import { deleteHistorical } from '../../../../../actions/personal/loanResources'
-import InlineLoading from '../../../../Messages/InlineLoading'
+import { deleteHistorical } from 'actions/personal/loanResources'
+import InlineLoading from 'components/Messages/InlineLoading'
 import * as statuses from 'constants/APIStatuses'
 
 ReactModal.setAppElement('body')

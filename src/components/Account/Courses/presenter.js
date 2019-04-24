@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import typy from 'typy'
-import PageTitle from '../../Layout/PageTitle'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
-import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
-import StaticBody from '../../Contentful/StaticContent/Body'
-import StaticAlert from '../../Contentful/StaticContent/Alert'
-import UserMenu from '../../Layout/Navigation/UserMenu'
+import PageTitle from 'components/Layout/PageTitle'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
+import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
+import StaticBody from 'components/Contentful/StaticContent/Body'
+import StaticAlert from 'components/Contentful/StaticContent/Alert'
+import UserMenu from 'components/Layout/Navigation/UserMenu'
 import CourseList from './CourseList'
 
 class Courses extends Component {

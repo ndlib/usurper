@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchEntry } from '../../../actions/contentful/entry'
+import { fetchEntry } from 'actions/contentful/entry'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PresenterFactory from '../../APIPresenterFactory'
+import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulDatabasePresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
 

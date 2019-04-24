@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import typy from 'typy'
-import { fetchLetter } from '../../actions/contentful/databaseLetter'
+import { fetchLetter } from 'actions/contentful/databaseLetter'
 import ListPresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
-import PageNotFound from '../Messages/NotFound'
+import PageNotFound from 'components/Messages/NotFound'
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 // dont allow going to /foo or /1 etc

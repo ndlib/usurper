@@ -1,4 +1,4 @@
-import { CF_REQUEST_FLOOR, CF_RECEIVE_FLOOR } from '../../actions/contentful/floor'
+import { CF_REQUEST_FLOOR, CF_RECEIVE_FLOOR } from 'actions/contentful/floor'
 import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.FETCHING }, action) => {

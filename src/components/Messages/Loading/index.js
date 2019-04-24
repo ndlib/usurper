@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
 
 const Loading = ({ message = '', title = 'Loading' }) => (
   <div className={'Loading content'}>

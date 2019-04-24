@@ -1,5 +1,5 @@
 import React from 'react'
-import Related from 'components/Related'
+import Related from 'components/Contentful/Related'
 import { shallow } from 'enzyme'
 import Link from 'components/Interactive/Link'
 import Image from 'components/Image'
@@ -9,7 +9,7 @@ const setup = (props) => {
   return shallow(<Related {...props} />)
 }
 
-describe('components/Related/index.js', () => {
+describe('components/Contentful/Related/index.js', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })

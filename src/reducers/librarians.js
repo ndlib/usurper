@@ -1,5 +1,5 @@
 import * as statuses from 'constants/APIStatuses'
-import { REQUEST_LIBRARIANS, RECEIVE_LIBRARIANS } from '../actions/librarians'
+import { REQUEST_LIBRARIANS, RECEIVE_LIBRARIANS } from 'actions/librarians'
 
 export default (state = { status: statuses.FETCHING }, action) => {
   switch (action.type) {

@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchAllNews } from '../../../actions/contentful/allNews'
+import { fetchAllNews } from 'actions/contentful/allNews'
 import Presenter from './presenter.js'
-import PresenterFactory from '../../APIInlinePresenterFactory'
+import PresenterFactory from 'components/APIInlinePresenterFactory'
 import * as statuses from 'constants/APIStatuses'
 import { flattenLocale } from 'shared/ContentfulLibs'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 export const sortNews = (left, right, withPreferred = false) => {
   const a = new Date(left.fields.publishedDate)

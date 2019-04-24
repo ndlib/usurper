@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Presenter from './presenter'
 import Config from 'shared/Configuration'
-import { renewAleph } from '../../../../../../actions/personal/alephRenewal'
+import { renewAleph } from 'actions/personal/alephRenewal'
 
 const illViewForm = '67'
 const illWebForm = '75'

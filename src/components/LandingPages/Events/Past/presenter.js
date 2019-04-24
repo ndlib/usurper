@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../../Layout/PageTitle'
-import SearchProgramaticSet from '../../../SearchProgramaticSet'
+import PageTitle from 'components/Layout/PageTitle'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import '../style.css'
 import { makeEventEntry } from '../../../Home/Events/presenter'
-import Link from '../../../Interactive/Link'
+import Link from 'components/Interactive/Link'
 import DateFilter from './DateFilter'
-import SideNav from '../../../Layout/Navigation/SideNav'
-import FilterBox from '../../../Interactive/FilterBox'
+import SideNav from 'components/Layout/Navigation/SideNav'
+import FilterBox from 'components/Interactive/FilterBox'
 
 const Events = (props) => {
   return (

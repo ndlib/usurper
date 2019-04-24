@@ -1,8 +1,8 @@
 import React from 'react'
 import Facebook from '../images/facebook.png'
 import Twitter from '../images/twitter.png'
-import Link from '../../../Interactive/Link'
-import ServiceNowLink from '../../../Interactive/ServiceNowLink'
+import Link from 'components/Interactive/Link'
+import ServiceNowLink from 'components/Interactive/ServiceNowLink'
 
 const FooterLinks = () => {
   return (

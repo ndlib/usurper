@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SearchResult from '../SearchResult'
-import ErrorBoundary, { withErrorBoundary } from '../../ErrorBoundary'
+import ErrorBoundary, { withErrorBoundary } from 'components/ErrorBoundary'
 
 const SearchResults = (props) => {
   if (props.items && props.items.length > 0) {

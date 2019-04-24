@@ -2,14 +2,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import 'static/css/global.css'
-import LibMarkdown from '../../LibMarkdown'
-import Related from '../../Related'
-import PageTitle from '../../Layout/PageTitle'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
+import LibMarkdown from 'components/LibMarkdown'
+import Related from '../Related'
+import PageTitle from 'components/Layout/PageTitle'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import PageAlert from '../Alert/Page'
 import ContactPoint from '../ContactPoint/'
-import OpenGraph from '../../OpenGraph'
-import Link from '../../Interactive/Link'
+import OpenGraph from 'components/OpenGraph'
+import Link from 'components/Interactive/Link'
 
 const PagePresenter = ({ cfPageEntry }) => (
   <article aria-describedby='main-page-title' className='container-fluid content-area'>

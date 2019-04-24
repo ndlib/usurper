@@ -4,7 +4,7 @@ import PagePresenter from 'components/Contentful/News/presenter'
 import ContactPoint from 'components/Contentful/ContactPoint'
 import PageTitle from 'components/Layout/PageTitle'
 import LibMarkdown from 'components/LibMarkdown'
-import Related from 'components/Related'
+import Related from 'components/Contentful/Related'
 
 const setup = (cfPageEntry) => {
   return shallow(<PagePresenter entry={cfPageEntry} />)

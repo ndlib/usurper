@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from '../../Interactive/Link'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import Link from 'components/Interactive/Link'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const PageLink = (props) => {
   if (props.cfPage) {

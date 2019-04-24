@@ -2,7 +2,7 @@
 import { shallow } from 'enzyme'
 import APIPresenterFactory from 'components/APIPresenterFactory'
 import Image from 'components/Image'
-import Related from 'components/Related'
+import Related from 'components/Contentful/Related'
 import * as statuses from 'constants/APIStatuses'
 import Loading from 'components/Messages/Loading'
 import NotFound from 'components/Messages/NotFound'

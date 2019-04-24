@@ -2,11 +2,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import 'static/css/global.css'
-import LibMarkdown from '../../../LibMarkdown'
+import LibMarkdown from 'components/LibMarkdown'
 import PageLink from '../../PageLink'
-import Librarians from '../../../Librarians'
-import Related from '../../../Related'
-import ServicePoint from '../../../Contentful/ServicePoint'
+import Librarians from 'components/Librarians'
+import Related from '../../Related'
+import ServicePoint from 'components/Contentful/ServicePoint'
 
 const Presenter = ({ cfStatic }) => (
   <aside key={`ContentfulSidebar_${cfStatic.sys.id}`} className='col-md-4 col-sm-5 col-xs-12 right'>

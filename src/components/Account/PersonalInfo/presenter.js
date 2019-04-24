@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LoanResources from '../LoanResources'
-import PageTitle from '../../Layout/PageTitle'
-import Loading from '../../Messages/Loading'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
-import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
-import StaticBody from '../../Contentful/StaticContent/Body'
-import StaticAlert from '../../Contentful/StaticContent/Alert'
-import Link from '../../Interactive/Link'
-import UserMenu from '../../Layout/Navigation/UserMenu'
+import PageTitle from 'components/Layout/PageTitle'
+import Loading from 'components/Messages/Loading'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
+import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
+import StaticBody from 'components/Contentful/StaticContent/Body'
+import StaticAlert from 'components/Contentful/StaticContent/Alert'
+import Link from 'components/Interactive/Link'
+import UserMenu from 'components/Layout/Navigation/UserMenu'
 
 const LoggedIn = (preview, balance) => {
   return (

@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchLibrarians } from '../../actions/librarians'
+import { fetchLibrarians } from 'actions/librarians'
 import React, { Component } from 'react'
 import LibrarianPresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
-import { withErrorBoundary } from '../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 const mapStateToProps = (state, ownProps) => {
   const { librarianInfo } = state
 

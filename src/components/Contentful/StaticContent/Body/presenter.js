@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import 'static/css/global.css'
-import Related from '../../../Related'
+import Related from '../../Related'
 
 const Presenter = ({ cfStatic }) => (
   <div key={`ContentfulSidebar_${cfStatic.sys.id}_main`} role='complementary'>
