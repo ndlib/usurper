@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import t from 'typy'
+import typy from 'typy'
 import Courses from 'components/Account/Courses/presenter.js'
 import CourseList from 'components/Account/Courses/CourseList'
 import StaticBody from 'components/Contentful/StaticContent/Body'
@@ -63,7 +63,7 @@ describe('components/Account/Courses/presenter.js', () => {
     it('should render CourseList components with correct data', () => {
       let timesCalled = 0
       const checkForList = (section, category) => {
-        const expectedData = t(props.courses, section + '.' + category).safeObject
+        const expectedData = typy(props.courses, section + '.' + category).safeObject
         expect(enzymeWrapper.containsMatchingElement(<CourseList courses={expectedData} />)).toBe(true)
         timesCalled++
       }

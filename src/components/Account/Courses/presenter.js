@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import t from 'typy'
+import typy from 'typy'
 import PageTitle from '../../Layout/PageTitle'
 import SearchProgramaticSet from '../../SearchProgramaticSet'
 import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
@@ -11,13 +11,13 @@ import CourseList from './CourseList'
 
 class Courses extends Component {
   courseLists () {
-    const enrollments = t(this.props.courses, 'enrollments').safeObjectOrEmpty
-    const instructs = t(this.props.courses, 'instructs').safeObjectOrEmpty
+    const enrollments = typy(this.props.courses, 'enrollments').safeObjectOrEmpty
+    const instructs = typy(this.props.courses, 'instructs').safeObjectOrEmpty
 
-    const currentEnrollCount = t(enrollments, 'current.length').safeNumber
-    const currentInstructCount = t(instructs, 'current.length').safeNumber
-    const futureEnrollCount = t(enrollments, 'future.length').safeNumber
-    const futureInstructCount = t(instructs, 'future.length').safeNumber
+    const currentEnrollCount = typy(enrollments, 'current.length').safeNumber
+    const currentInstructCount = typy(instructs, 'current.length').safeNumber
+    const futureEnrollCount = typy(enrollments, 'future.length').safeNumber
+    const futureInstructCount = typy(instructs, 'future.length').safeNumber
 
     if (currentEnrollCount + currentInstructCount + futureEnrollCount + futureInstructCount === 0) {
       return (<p className='noClasses'>No classes to display for the current semester</p>)

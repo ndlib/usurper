@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import t from 'typy'
+import typy from 'typy'
 import getCourses from 'actions/personal/courses'
 import * as statuses from 'constants/APIStatuses'
 import Loading from '../../Messages/Loading'
@@ -44,8 +44,8 @@ export class CoursesContainer extends Component {
 
 export const mapStateToProps = (state, ownProps) => {
   const { personal } = state
-  const loggedIn = t(t(personal, 'login.token').safeString).isTruthy
-  const courses = t(personal, 'courses').safeObject || { state: statuses.NOT_FETCHED }
+  const loggedIn = typy(typy(personal, 'login.token').safeString).isTruthy
+  const courses = typy(personal, 'courses').safeObject || { state: statuses.NOT_FETCHED }
 
   return {
     preview: ownProps.location ? (new URLSearchParams(ownProps.location.search)).get('preview') === 'true' : false,
