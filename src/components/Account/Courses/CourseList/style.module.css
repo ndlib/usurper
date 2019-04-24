@@ -1,0 +1,50 @@
+.courseSection {
+  margin-bottom: 2em;
+}
+
+.courseSectionTitle {
+  margin-bottom: 12px;
+}
+
+.courseHeader {
+  border-width: 0 0 1px 0;
+}
+
+.courseHeader, .courseName {
+  line-height: 1em;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.courseHeader div {
+  padding: 5px;
+}
+
+.courseCard {
+  border: solid #dcdcdc;
+  border-width: 1px 0;
+  background: #F9F9F9;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1.5fr .5fr;
+  grid-template-columns: 1.5fr 1fr 1fr;
+}
+
+.courseCard div {
+  padding: 10px;
+}
+
+.courseColumn {
+  background: #F1F1F1;
+}
+
+.courseSubtitle {
+  color: #868686;
+}
+
+.courseResources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
