@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchAllEvents } from '../../../actions/contentful/allEvents'
-import PresenterFactory from '../../APIInlinePresenterFactory'
+import { fetchAllEvents } from 'actions/contentful/allEvents'
+import PresenterFactory from 'components/APIInlinePresenterFactory'
 import * as statuses from 'constants/APIStatuses'
 import { mapEvents, sortEvents } from '../../Home/Events'
 import Presenter from './presenter'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state) => {
   let allEvents = []

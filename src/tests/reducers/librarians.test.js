@@ -1,5 +1,5 @@
 import reducer from 'reducers/librarians'
-import * as actions from '../../actions/librarians'
+import * as actions from 'actions/librarians'
 import * as statuses from 'constants/APIStatuses'
 
 describe('Page reducer', () => {

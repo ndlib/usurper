@@ -1,4 +1,4 @@
-import * as actions from '../../actions/hours'
+import * as actions from 'actions/hours'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'

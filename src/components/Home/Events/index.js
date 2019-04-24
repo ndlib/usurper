@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchAllEvents } from '../../../actions/contentful/allEvents'
+import { fetchAllEvents } from 'actions/contentful/allEvents'
 import Presenter from './presenter.js'
-import PresenterFactory from '../../APIInlinePresenterFactory'
+import PresenterFactory from 'components/APIInlinePresenterFactory'
 import * as statuses from 'constants/APIStatuses'
 import { flattenLocale } from 'shared/ContentfulLibs'
 import * as dateLibs from 'shared/DateLibs'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const startEndDate = (start, end) => {
   let startYear = ', ' + start.getFullYear()

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import SearchPage from './presenter.js'
-import { withErrorBoundary } from '../ErrorBoundary'
-import { fetchResults, setSearchType } from '../../actions/search.js'
+import { withErrorBoundary } from 'components/ErrorBoundary'
+import { fetchResults, setSearchType } from 'actions/search.js'
 
 const mapStateToProps = (state) => {
   return {

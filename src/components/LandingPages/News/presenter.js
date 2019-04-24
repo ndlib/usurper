@@ -1,9 +1,9 @@
 import React from 'react'
-import Image from '../../Image'
-import Link from '../../Interactive/Link'
-import LibMarkdown from '../../LibMarkdown'
-import PageTitle from '../../Layout/PageTitle'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
+import Image from 'components/Image'
+import Link from 'components/Interactive/Link'
+import LibMarkdown from 'components/LibMarkdown'
+import PageTitle from 'components/Layout/PageTitle'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import './style.css'
 
 export const makeNewsEntry = (entry, index) => {

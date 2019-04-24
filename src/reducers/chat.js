@@ -1,7 +1,7 @@
 import {
   OPEN_CHAT_MODAL,
   CLOSE_CHAT_MODAL,
-} from '../actions/chat'
+} from 'actions/chat'
 
 export default (
   state = {

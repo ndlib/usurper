@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import InlineLoading from '../../Messages/InlineLoading'
+import InlineLoading from 'components/Messages/InlineLoading'
 
 const SettingsUpdateStatus = (props) => {
   if (props.status === 0) {

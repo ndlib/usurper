@@ -8,9 +8,9 @@ import {
   getCircStatus,
   setCircStatus,
   KIND,
-} from '../../../actions/personal/settings'
-import { getUser } from '../../../actions/personal/loanResources'
-import Loading from '../../Messages/Loading'
+} from 'actions/personal/settings'
+import { getUser } from 'actions/personal/loanResources'
+import Loading from 'components/Messages/Loading'
 
 import * as states from 'constants/APIStatuses'
 

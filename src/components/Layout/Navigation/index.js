@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Navigation from './presenter'
-import { withErrorBoundary } from '../../ErrorBoundary'
-import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from '../../../actions/search'
+import { withErrorBoundary } from 'components/ErrorBoundary'
+import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from 'actions/search'
 import * as statuses from 'constants/APIStatuses'
 import {
   openMenu,
   closeMenus,
   USER_MENU,
   MOBILE_MENU,
-} from '../../../actions/menu'
+} from 'actions/menu'
 
 const mapStateToProps = (state) => {
   const { personal } = state

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
-import { fetchEntry } from '../../actions/contentful/entry'
-import { withErrorBoundary } from '../ErrorBoundary'
+import { fetchEntry } from 'actions/contentful/entry'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 import Presenter from './presenter'
 
 export const mapStateToProps = (state, thisProps) => {

@@ -1,9 +1,9 @@
 import React from 'react'
 import './style.css'
-import Link from '../../Interactive/Link'
-import LibMarkdown from '../../LibMarkdown'
-import Image from '../../Image'
-import ErrorBoundary from '../../ErrorBoundary'
+import Link from 'components/Interactive/Link'
+import LibMarkdown from 'components/LibMarkdown'
+import Image from 'components/Image'
+import ErrorBoundary from 'components/ErrorBoundary'
 export const makeEventEntry = (entry, index, isLast = false, showDescription = true, showImage = true) => {
   return (
     <div

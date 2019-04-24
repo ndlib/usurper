@@ -26,13 +26,13 @@ import FloorSearch from 'components/FloorSearch'
 import rootReducers from 'reducers'
 import thunkMiddleware from 'redux-thunk'
 import Rewrite from './Rewrite'
-import EmbeddableHours from '../Embeddable/Hours'
-import CirculationHistory from '../Account/CirculationHistory'
+import EmbeddableHours from 'components/Embeddable/Hours'
+import CirculationHistory from 'components/Account/CirculationHistory'
 
 import NotFound from 'components/Messages/NotFound'
 
-import { LINK_CLICK } from '../Interactive/Link'
-import { SET_SEARCH, SAVE_SEARCH_PREFERENCE } from '../../actions/search.js'
+import { LINK_CLICK } from 'components/Interactive/Link'
+import { SET_SEARCH, SAVE_SEARCH_PREFERENCE } from 'actions/search.js'
 
 const analyticsActions = [LINK_CLICK, SET_SEARCH, SAVE_SEARCH_PREFERENCE]
 

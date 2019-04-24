@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchEvent } from '../../../actions/contentful/event'
-import PresenterFactory from '../../APIPresenterFactory'
+import { fetchEvent } from 'actions/contentful/event'
+import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
 import { formatDate, hour12, isSameDay, makeLocalTimezone } from 'shared/DateLibs.js'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state) => {
   let data = state.cfEventEntry.json

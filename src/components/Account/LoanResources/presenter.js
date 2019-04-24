@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import ResourceList from './ResourceList'
-import PageAlert from '../../Messages/PageAlert'
-import ServiceNowLink from '../../Interactive/ServiceNowLink'
+import PageAlert from 'components/Messages/PageAlert'
+import ServiceNowLink from 'components/Interactive/ServiceNowLink'
 
 const LoanResources = (props) => {
   const have = props.resources.have

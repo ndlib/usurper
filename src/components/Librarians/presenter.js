@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import * as statuses from 'constants/APIStatuses'
 
-import Contact from '../Contact'
-import Image from '../Image'
-import InlineLoading from '../Messages/InlineLoading'
+import Contact from 'components/Contact'
+import Image from 'components/Image'
+import InlineLoading from 'components/Messages/InlineLoading'
 import PrivateLibrarianImage from 'static/images/librarian.gif'
 
 const Loaded = (info, className) => {

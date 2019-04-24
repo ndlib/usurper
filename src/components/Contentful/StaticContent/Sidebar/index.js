@@ -1,12 +1,12 @@
 // Container component for a Floor content type from Contentful
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchSidebar } from '../../../../actions/contentful/staticContent'
+import { fetchSidebar } from 'actions/contentful/staticContent'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PresenterFactory from '../../../APIInlinePresenterFactory'
+import PresenterFactory from 'components/APIInlinePresenterFactory'
 import Presenter from './presenter.js'
-import { withErrorBoundary } from '../../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return { cfStatic: state.cfStatic }

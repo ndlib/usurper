@@ -1,4 +1,4 @@
-import { FLOOR_SEARCH_REQUEST, FLOOR_SEARCH_RECEIVE } from '../actions/floorSearch'
+import { FLOOR_SEARCH_REQUEST, FLOOR_SEARCH_RECEIVE } from 'actions/floorSearch'
 import * as statuses from 'constants/APIStatuses'
 
 export default (state = { status: statuses.NOT_FETCHED, slug: undefined }, action) => {

@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-import { fetchHours } from '../../../actions/hours'
-import { fetchServicePoints } from '../../../actions/contentful/servicePoints'
+import { fetchHours } from 'actions/hours'
+import { fetchServicePoints } from 'actions/contentful/servicePoints'
 import HoursPagePresenter from './presenter.js'
-import PresenterFactory from '../../APIPresenterFactory'
+import PresenterFactory from 'components/APIPresenterFactory'
 import * as statuses from 'constants/APIStatuses'
 import HoursError from '../Error'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const hoursPageOrder = [
   { servicePointSlug: 'hesburghlibrary', main: true },

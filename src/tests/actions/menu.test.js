@@ -1,4 +1,4 @@
-import * as menuActions from '../../actions/menu'
+import * as menuActions from 'actions/menu'
 
 describe('menu actions', () => {
   const menuId = menuActions.USER_MENU;

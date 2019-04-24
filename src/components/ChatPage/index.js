@@ -1,7 +1,7 @@
 import React from 'react'
-import PageTitle from '../Layout/PageTitle'
+import PageTitle from 'components/Layout/PageTitle'
 import Chat from '../Chat'
-import SearchProgramaticSet from '../SearchProgramaticSet'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
 
 const ChatPage = () => {
   return (

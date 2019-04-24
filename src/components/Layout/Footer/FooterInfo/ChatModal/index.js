@@ -6,7 +6,7 @@ import ChatModal from './presenter.js'
 import {
   openChat,
   closeChat,
-} from '../../../../../actions/chat.js'
+} from 'actions/chat.js'
 
 const mapStateToProps = (state, ownProps) => {
   return {

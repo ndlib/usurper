@@ -1,8 +1,8 @@
 import React from 'react'
-import Image from '../Image'
+import Image from 'components/Image'
 import PropTypes from 'prop-types'
-import LibMarkdown from '../LibMarkdown'
-import { withErrorBoundary } from '../ErrorBoundary'
+import LibMarkdown from 'components/LibMarkdown'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 const capacityTypes = {
   Instructor: 'Instructed By',
   Facilitator: 'Facilitated By',

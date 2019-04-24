@@ -1,4 +1,4 @@
-import { RECEIVE_RENEWAL, REQUEST_RENEWAL } from '../actions/personal/alephRenewal'
+import { RECEIVE_RENEWAL, REQUEST_RENEWAL } from 'actions/personal/alephRenewal'
 import * as statuses from 'constants/APIStatuses'
 
 const initialState = {}

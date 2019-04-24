@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchPage } from '../../../actions/contentful/page'
-import PresenterFactory from '../../APIPresenterFactory'
+import { fetchPage } from 'actions/contentful/page'
+import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulPagePresenter from '../Page/presenter.js'
-import { withErrorBoundary } from '../../ErrorBoundary'
+import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const mapStateToProps = (state) => {
   return {

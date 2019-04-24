@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import SearchInput from './presenter'
-import { setSearchOption } from '../../../../../../actions/advancedSearch'
+import { setSearchOption } from 'actions/advancedSearch'
 
 const mapStateToProps = (state) => {
   return {

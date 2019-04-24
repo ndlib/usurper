@@ -1,5 +1,5 @@
 import Config from 'shared/Configuration'
-import * as actions from '../../actions/librarians'
+import * as actions from 'actions/librarians'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'

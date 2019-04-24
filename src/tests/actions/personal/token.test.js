@@ -1,10 +1,10 @@
 import Config from 'shared/Configuration'
-import getToken from '../../../actions/personal/token'
+import getToken from 'actions/personal/token'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'
 import * as statuses from 'constants/APIStatuses'
-import * as constants from '../../../actions/personal/constants'
+import * as constants from 'actions/personal/constants'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)

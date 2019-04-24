@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from '../../Layout/PageTitle'
+import PageTitle from 'components/Layout/PageTitle'
 import ResourceList from '../LoanResources/ResourceList'
-import SearchProgramaticSet from '../../SearchProgramaticSet'
-import UserMenu from '../../Layout/Navigation/UserMenu'
-import Link from '../../Interactive/Link'
-import StaticSidebar from '../../Contentful/StaticContent/Sidebar'
+import SearchProgramaticSet from 'components/SearchProgramaticSet'
+import UserMenu from 'components/Layout/Navigation/UserMenu'
+import Link from 'components/Interactive/Link'
+import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import Config from 'shared/Configuration'
 
 const OptedOutMessage = () => {
