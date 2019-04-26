@@ -1,0 +1,78 @@
+@media screen and (max-width: 980px) {
+  .sideNav {
+    display: block;
+    position: relative !important;
+    transform: translateX(0) !important;
+    width: 100% !important;
+  }
+  .alphabet {
+    display: inline;
+  }
+}
+
+.dbList {
+  padding-top: 17px;
+}
+
+.dbSection {
+  margin-bottom: 20px;
+}
+
+.dbSummary {
+  width: 100%;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  position: relative;
+  line-height: 1.5em;
+  /* modify the max-height by line-height to determine how many
+     lines are displayed before the ellipsis */
+  max-height: 4.5em; /* max-height = line-height * lines max number (3) */
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+.dbLink li, .dbLink li a {
+  font-weight: bold;
+}
+
+.dbItemTitle {
+  font-family: sans-serif;
+  font-size: 22px;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.dbItemTitle a, a .dbItemTitle {
+  color: #93601D;
+}
+
+@supports (display: grid) and (not (display: -ms-grid)) {
+  .alphabet {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    display: -ms-grid;
+    -ms-grid-columns: (1em)[13];
+    max-width: 75ch;
+    width: 100%;
+  }
+}
+
+.letter {
+  width: 1em;
+  text-align: center;
+}
+
+.letter a {
+  text-decoration: none;
+  padding: .6em;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.letter a:hover {
+  background: rgba(0, 0, 0, .3)
+}

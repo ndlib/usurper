@@ -30,21 +30,16 @@ const receiveLetter = (letter, response) => {
     }
   }
 
-  try {
-    if (Array.isArray(response)) {
-      return success(response)
-    } else {
-      return error
-    }
-  } catch (e) {
-    console.log(e)
+  if (Array.isArray(response)) {
+    return success(response)
+  } else {
     return error
   }
 }
 
 export const fetchLetter = (letter, preview) => {
   const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}`)
-  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }
@@ -53,21 +48,22 @@ export const fetchLetter = (letter, preview) => {
     dispatch(requestLetter(letter))
     return fetch(url)
       .then(response => {
-        return response.ok ? response.json() : { status: response.status }
+        return (response.ok && response.headers.get('content-type')) ? response.json() : { status: response.status }
       })
       .then(json => {
-        json.forEach((row) => {
-          row['searchBlob'] = (row.fields.title
-            ? row.fields.title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
-            : '')
-          if (row.fields.alternateTitles) {
-            row.fields.alternateTitles.forEach((title) => {
-              row['searchBlob'] += ' ' + title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
-            })
-          }
-        })
+        if (Array.isArray(json)) {
+          json.forEach((row) => {
+            row['searchBlob'] = (row.fields.title
+              ? row.fields.title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
+              : '')
+            if (row.fields.alternateTitles) {
+              row.fields.alternateTitles.forEach((title) => {
+                row['searchBlob'] += ' ' + title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
+              })
+            }
+          })
+        }
         dispatch(receiveLetter(letter, json))
       })
-      .catch(error => console.log(error))
   }
 }

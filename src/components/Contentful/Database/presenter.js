@@ -8,6 +8,7 @@ import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Config from 'shared/Configuration'
+import styles from './style.module.css'
 
 const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
   return (
@@ -25,7 +26,7 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
             <LibMarkdown className='description'>{cfDatabaseEntry.fields.description}</LibMarkdown>
             <section>
               <h2>Database Access</h2>
-              <ul className='databaseLink'>
+              <ul className={'linkGroup ' + styles.dbLink}>
                 {
                 // only use this if the field exists
                   cfDatabaseEntry.fields.urls && (
@@ -57,18 +58,18 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
               {
                 Object.keys(fieldData).map(key => {
                   return (
-                    <div className='databaseInfo' key={key}>
+                    <div className={styles.dbInfo} key={key}>
                       <div className='infoLabel'>{fieldData[key].title}:</div>
-                      <LibMarkdown className='infoValue'>{fieldData[key].data}</LibMarkdown>
+                      <LibMarkdown className={styles.infoValue}>{fieldData[key].data}</LibMarkdown>
                     </div>
                   )
                 })
               }
               { cfDatabaseEntry.fields.alephSystemNumber && (
-                <div className='databaseInfo'>
+                <div className={styles.dbInfo}>
                   <div className='infoLabel'>Catalog Number: </div>
                   <Link
-                    className='infoValue'
+                    className={styles.infoValue}
                     to={
                       `${Config.onesearchBaseURL}/NDU:malc_blended:ndu_aleph${cfDatabaseEntry.fields.alephSystemNumber}`
                     }
@@ -83,7 +84,7 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
               (cfDatabaseEntry.fields.relatedResources && cfDatabaseEntry.fields.relatedResources.length) ? (
                 <section>
                   <h2>Related Resources</h2>
-                  <ul className='databaseLink'>
+                  <ul className='linkGroup'>
                     { cfDatabaseEntry.fields.relatedResources.map((data) => (
                       <li key={data.url}>
                         <Link to={data.url}>{ data.title ? data.title : data.url }</Link>

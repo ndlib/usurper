@@ -17,6 +17,8 @@ const filterFields = [
   'loanDate',
 ]
 
+const secondarySort = 'title'
+
 class ListContainer extends Component {
   constructor (props) {
     super(props)
@@ -24,9 +26,9 @@ class ListContainer extends Component {
       this.state = {
         filterValue: '',
         itemList: this.props.list,
-        filteredList: helper.filterAndSort(this.props.list, filterFields, '', 'title', 'desc'),
+        filteredList: helper.filterAndSort(this.props.list, filterFields, '', 'title', 'asc'),
         sortValue: 'title',
-        sortDir: 'desc',
+        sortDir: 'asc',
         assistText: '',
       }
     } catch (e) {
@@ -44,7 +46,7 @@ class ListContainer extends Component {
       this.setState({
         itemList: nextProps.list,
         filteredList: helper.filterAndSort(nextProps.list, filterFields, this.state.filterValue,
-          this.state.sortValue, this.state.sortDir),
+          [this.state.sortValue, secondarySort], this.state.sortDir),
       })
     }
   }
@@ -58,7 +60,7 @@ class ListContainer extends Component {
     this.setState({
       filterValue: event.target.value,
       filteredList: helper.filterAndSort(this.state.itemList, filterFields, event.target.value,
-        this.state.sortValue, this.state.sortDir),
+        [this.state.sortValue, secondarySort], this.state.sortDir),
       assistText: assistText,
     })
 
@@ -76,13 +78,14 @@ class ListContainer extends Component {
     if (sortField === this.state.sortValue) {
       sortDir = this.state.sortDir === 'desc' ? 'asc' : 'desc'
     } else {
-      sortDir = 'desc'
+      sortDir = 'asc'
     }
 
     this.setState({
       sortDir: sortDir,
       sortValue: sortValue,
-      filteredList: helper.filterAndSort(this.state.itemList, filterFields, this.state.filterValue, sortValue, sortDir),
+      filteredList: helper.filterAndSort(this.state.itemList, filterFields, this.state.filterValue,
+        [sortValue, secondarySort], sortDir),
     })
   }
 

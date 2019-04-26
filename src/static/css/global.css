@@ -199,25 +199,6 @@ height:auto;
   display: block;
 }
 
-
-.letter {
-
-  width: 1em;
-  text-align: center;
-
-}
-
-.letter a {
-  text-decoration: none;
-  padding: .6em;
-  display: inline-block;
-  font-size: 20px;
-}
-
-.letter a:hover {
-  background: rgba(0, 0, 0, .3)
-}
-
 .p-resources li {
   line-height: 1.5em;
 
@@ -1642,41 +1623,9 @@ aside section .p-pages {
   margin-top: 0;
 }
 
-/* Databases */
-.databaseList {
-  padding-top: 17px;
-}
-
-.databaseInfo {
-  display: grid;
-  -ms-grid-columns:  0.25fr 1fr;
-  grid-template-columns: 0.25fr 1fr;
-  padding-bottom: 12px;
-}
-
 .infoLabel {
   font-weight: bold;
   grid-column: 1;
-}
-
-.infoValue {
-  white-space: pre;
-  grid-column: 2;
-}
-
-.infoValue p {
-  margin-bottom: 0;
-  white-space: normal;
-}
-
-.databaseLink li {
-  font-weight: bold;
-}
-
-
-.databaseLink p, .linkGroup p {
-  padding-left: 12px;
-  font-weight: normal;
 }
 
 .card-item {
@@ -2762,15 +2711,14 @@ p < img {
   padding-bottom: 0 !important;
 }
 
-.p-resources, .databaseLink, .linkGroup {
+.p-resources, .linkGroup {
   list-style: outside none none;
   padding: 0;
-
-  margin-bottom: 3em;
 }
 
 .p-resources {
 	column-count: 2;
+  margin-bottom: 3em;
 }
 
 .p-resources li {
@@ -2789,6 +2737,11 @@ p < img {
 
 .linkGroup {
   margin: 0;
+}
+
+.linkGroup p {
+  padding-left: 12px;
+  font-weight: normal;
 }
 
 .linkGroup li a {
@@ -2812,14 +2765,6 @@ p < img {
 
 
 @supports (display: grid) and (not (display: -ms-grid)) {
-  .alphabet {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    display: -ms-grid;
-    -ms-grid-columns: (1em)[13];
-    max-width: 75ch;
-    width: 100%;
-  }
   @media screen and (max-width: 780px) {
     .p-resources, .p-guides, .p-services {
       display: block !important;
@@ -2831,7 +2776,7 @@ p < img {
   }
 }
 
-.p-resources li, .databaseLink li, .linkGroup li {
+.p-resources li, .linkGroup li {
   list-style: none;
   width: auto;
   float: none;
@@ -2841,7 +2786,7 @@ p < img {
 
 
 
-.p-resources li::before , .p-pages li::before, .databaseLink li::before, .linkGroup li::before {
+.p-resources li::before , .p-pages li::before, .linkGroup li::before {
   color: #b3b3b3;
   content: "›";
   left: 3px;
@@ -3324,33 +3269,6 @@ line-height: 2em;
 #site-info dd {
   float: left;
   line-height: 2em;
-}
-
-/* styles for '...' */
-.database-list {
-  overflow: hidden;
-  position: relative;
-  line-height: 1.5em;
-  /* modify the max-height by line-height to determine how many
-     lines are displayed before the ellipsis */
-  max-height: 4.5em; /* max-height = line-height * lines max number (3) */
-  margin-right: -1em;
-  padding-right: 1em;
-}
-
-.dbSection {
-  margin-bottom: 20px;
-}
-
-.dbItem {
-  font-family: sans-serif;
-  font-size: 22px;
-  margin-bottom: 2px;
-  font-weight: bold;
-}
-
-a .dbItem {
-  color: #93601D;
 }
 
 .moreinfo {
