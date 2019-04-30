@@ -7,7 +7,7 @@ const coursesURL = Config.coursesAPI + '/courses'
 const handleCourses = (dispatch, data) => {
   if (data.enrollments || data.instructs) {
     dispatch(
-      states.recievePersonal(
+      states.receivePersonal(
         'courses',
         statuses.SUCCESS,
         { courseData: data }
@@ -27,7 +27,7 @@ const getCourses = () => {
       handleCourses,
       state.login.token,
       () => {
-        dispatch(states.recievePersonal('courses', statuses.ERROR))
+        dispatch(states.receivePersonal('courses', statuses.ERROR))
       }
     )
   }

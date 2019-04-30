@@ -3,7 +3,7 @@ export const RECEIVE_PERSONAL = 'RECEIVE_PERSONAL'
 export const CLEAR_PERSONAL = 'CLEAR_PERSONAL'
 export const REQUEST_PERSONAL = 'REQUEST_PERSONAL'
 
-export const recievePersonal = (requestType, state, info) => {
+export const receivePersonal = (requestType, state, info) => {
   return {
     type    : RECEIVE_PERSONAL,
     requestType: requestType,

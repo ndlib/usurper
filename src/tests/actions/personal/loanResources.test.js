@@ -103,7 +103,7 @@ describe('handleResources', () => {
   describe('on checked out items', () => {
     const data = [ { key: 'book' } ]
 
-    it('should create a recievePersonal action with checked out items', () => {
+    it('should create a receivePersonal action with checked out items', () => {
       const store = mockStore({})
       handleResources('aleph', 'borrowed', 'Ndu')(store.dispatch, data)
       handleResources('aleph', 'borrowed', 'Hcc')(store.dispatch, data)
@@ -124,7 +124,7 @@ describe('handleResources', () => {
   describe('on pending items', () => {
     const data = [ { key: 'book' } ]
 
-    it('should create a recievePersonal action with pending items', () => {
+    it('should create a receivePersonal action with pending items', () => {
       const store = mockStore({})
       handleResources('aleph', 'pending', 'Ndu')(store.dispatch, data)
       handleResources('aleph', 'pending', 'Hcc')(store.dispatch, data)

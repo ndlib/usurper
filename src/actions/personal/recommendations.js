@@ -7,7 +7,7 @@ const recommendURL = Config.recommendAPI + '/recommend'
 const handleRecommendations = (dispatch, data) => {
   if (data.recommendations) {
     dispatch(
-      states.recievePersonal(
+      states.receivePersonal(
         'recommend',
         statuses.SUCCESS,
         data.recommendations
@@ -28,7 +28,7 @@ const getRecommendations = () => {
       handleRecommendations,
       state.login.token,
       () => {
-        dispatch(states.recievePersonal('recommend', statuses.ERROR))
+        dispatch(states.receivePersonal('recommend', statuses.ERROR))
       }
     )
   }

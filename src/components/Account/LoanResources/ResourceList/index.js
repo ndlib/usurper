@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { renewAleph, recieveRenewal } from 'actions/personal/alephRenewal'
+import { renewAleph, receiveRenewal } from 'actions/personal/alephRenewal'
 import Loading from 'components/Messages/InlineLoading'
 import Presenter from './presenter'
 import * as statuses from 'constants/APIStatuses'
@@ -144,7 +144,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
         }
       })
       // set renewal of illiad items
-      dispatch(recieveRenewal(undefined, statuses.SUCCESS, { statusText: 'Please view item in ILL to renew' }))
+      dispatch(receiveRenewal(undefined, statuses.SUCCESS, { statusText: 'Please view item in ILL to renew' }))
     },
   }
 }

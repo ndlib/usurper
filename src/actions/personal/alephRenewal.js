@@ -11,7 +11,7 @@ const requestRenewal = (barcode) => {
   }
 }
 
-export const recieveRenewal = (barcode, state, json) => {
+export const receiveRenewal = (barcode, state, json) => {
   return {
     type: RECEIVE_RENEWAL,
     barcode: barcode,
@@ -37,11 +37,11 @@ export const renewAleph = (barcode, alephId) => {
         return response.json()
       })
       .then(json => dispatch(
-        recieveRenewal(barcode, statuses.SUCCESS, json)
+        receiveRenewal(barcode, statuses.SUCCESS, json)
       ))
       .catch((e) => {
         console.log(e)
-        dispatch(recieveRenewal(barcode, statuses.ERROR, e))
+        dispatch(receiveRenewal(barcode, statuses.ERROR, e))
       })
   }
 }
