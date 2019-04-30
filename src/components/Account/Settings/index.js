@@ -9,7 +9,7 @@ import {
   setCircStatus,
   KIND,
 } from 'actions/personal/settings'
-import { getUser } from 'actions/personal/loanResources'
+import getToken from 'actions/personal/token'
 import Loading from 'components/Messages/Loading'
 
 import * as states from 'constants/APIStatuses'
@@ -32,24 +32,24 @@ export class SettingsContainer extends Component {
     this.checkLoggedIn = this.checkLoggedIn.bind(this)
   }
 
-  checkLoggedIn (props) {
-    if (props.loggedIn && props.homeIndex === null && !props.userState) {
-      props.getUser()
-    } else if (props.redirectUrl) {
-      window.location.replace(props.redirectUrl)
+  checkLoggedIn () {
+    if (!this.props.loggedIn && this.props.login.state === states.NOT_FETCHED) {
+      this.props.getToken()
+    } else if (this.props.login.redirectUrl) {
+      window.location.replace(this.props.login.redirectUrl)
     }
   }
 
   componentDidMount () {
-    this.checkLoggedIn(this.props)
+    this.checkLoggedIn()
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.checkLoggedIn(nextProps)
+  componentDidUpdate () {
+    this.checkLoggedIn()
   }
 
   render () {
-    if (this.props.loggedIn && this.props.alephId) {
+    if (this.props.loggedIn) {
       return <Presenter
         preview={this.props.preview}
         homeLibraries={homeLibraries}
@@ -68,8 +68,6 @@ export class SettingsContainer extends Component {
 export const mapStateToProps = (state, ownProps) => {
   const { personal, settings } = state
 
-  const loggedIn = Boolean(state.personal.login && personal.login.token) === true
-
   const currentHomeTitle = personal.user ? personal.user.homeLibrary : null
   let homeIndex = null
   if (currentHomeTitle) {
@@ -86,12 +84,11 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     homeIndex: homeIndex,
-    alephId: personal.user ? personal.user.alephId : null,
-    userState: personal.user ? personal.user.state : states.NOT_FETCHED,
     preview: (ownProps && ownProps.location && ownProps.location.search)
       ? (new URLSearchParams(ownProps.location.search)).get('preview') === 'true'
       : false,
-    loggedIn: loggedIn,
+    loggedIn: !!(personal.login && personal.login.token),
+    login: personal.login,
     redirectUrl: personal.login.redirectUrl,
     libraryStatus: libraryState,
   }
@@ -100,7 +97,7 @@ export const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setHomeLibrary,
-    getUser,
+    getToken,
     getCircStatus,
     setCircStatus,
   }, dispatch)
@@ -108,13 +105,14 @@ export const mapDispatchToProps = (dispatch) => {
 
 SettingsContainer.propTypes = {
   loggedIn: PropTypes.bool,
+  login: PropTypes.object,
   preview: PropTypes.bool,
   setHomeLibrary: PropTypes.func,
   homeIndex: PropTypes.number,
   setCircStatus: PropTypes.func,
   getCircStatus: PropTypes.func,
-  alephId: PropTypes.string,
   libraryStatus: PropTypes.string,
+  getToken: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

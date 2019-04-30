@@ -6,16 +6,24 @@ import * as statuses from 'constants/APIStatuses'
 
 const loggedInProps = {
   loggedIn: true,
-  alephId: '1234',
-  userState: statuses.SUCCESS,
+  login: {
+    state: statuses.SUCCESS,
+    token: 'abcdefg',
+    redirectUrl: '',
+  },
   libraryStatus: statuses.SUCCESS,
+  getToken: jest.fn(),
 }
 
 const loggedOutProps = {
   loggedIn: false,
-  redirectUrl: 'https://library.nd.edu/fake/login_path',
-  userState: statuses.SUCCESS,
+  login: {
+    state: statuses.SUCCESS,
+    token: null,
+    redirectUrl: 'https://library.nd.edu/fake/login_path',
+  },
   libraryStatus: statuses.NOT_FETCHED,
+  getToken: jest.fn(),
 }
 
 const setup = (props) => {
@@ -49,8 +57,12 @@ describe('components/Account/Settings/index.js', () => {
     it('should render loading if user info fetching', () => {
       enzymeWrapper = setup({
         loggedIn: false,
-        userState: statuses.FETCHING,
+        login: {
+          state: statuses.FETCHING,
+          redirectUrl: '',
+        },
         libraryStatus: statuses.NOT_FETCHED,
+        getToken: jest.fn(),
       })
 
       let have = <Loading />
@@ -85,10 +97,10 @@ describe('components/Account/Settings/index.js', () => {
 
       let instance = enzymeWrapper.instance()
       spy = jest.spyOn(instance, 'checkLoggedIn')
-      instance.checkLoggedIn(instance.props)
+      instance.checkLoggedIn()
 
       // Check that the redirect was called with the same url we passed in to the object
-      expect(window.location.replace).toHaveBeenCalledWith(loggedOutProps.redirectUrl)
+      expect(window.location.replace).toHaveBeenCalledWith(loggedOutProps.login.redirectUrl)
     })
   })
 })
