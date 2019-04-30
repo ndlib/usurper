@@ -86,7 +86,7 @@ echo "build production"
 yarn build --production
 
 echo "Push to bucket, $BUCKET"
-aws s3 sync --delete build/public s3://$BUCKET
+aws s3 sync --delete build s3://$BUCKET
 
 # reset sentry changes
 if ! git checkout .
