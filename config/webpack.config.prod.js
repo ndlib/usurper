@@ -15,6 +15,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
+const genConfig = require('./configurationGen')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -420,6 +421,8 @@ module.exports = {
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
     new webpack.DefinePlugin(env.stringified),
+    // Generate the config containing api endpoints
+    new webpack.DefinePlugin(genConfig()),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
