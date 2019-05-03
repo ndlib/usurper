@@ -12,7 +12,7 @@ class APIInlinePresenterFactory extends Component {
     switch (this.props.status) {
       case statuses.NOT_FETCHED:
       case statuses.FETCHING:
-        return <InlineLoading />
+        return this.props.hideLoading ? null : <InlineLoading />
       case statuses.SUCCESS:
         return this.props.presenter(this.props.props)
       case statuses.NOT_FOUND:
@@ -29,6 +29,7 @@ APIInlinePresenterFactory.propTypes = {
   props: PropTypes.oneOfType([ // The props to pass to the given presenter when status === success
     PropTypes.object,
     PropTypes.array]).isRequired,
+  hideLoading: PropTypes.bool,
 }
 
 export default APIInlinePresenterFactory

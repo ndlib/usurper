@@ -96,8 +96,8 @@ describe('components/Account/Settings/index.js', () => {
       window.location.replace = jest.fn()
 
       let instance = enzymeWrapper.instance()
-      spy = jest.spyOn(instance, 'checkLoggedIn')
-      instance.checkLoggedIn()
+      spy = jest.spyOn(instance, 'checkFullyLoaded')
+      instance.checkFullyLoaded()
 
       // Check that the redirect was called with the same url we passed in to the object
       expect(window.location.replace).toHaveBeenCalledWith(loggedOutProps.login.redirectUrl)

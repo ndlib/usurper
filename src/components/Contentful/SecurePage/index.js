@@ -11,7 +11,7 @@ import { withErrorBoundary } from 'components/ErrorBoundary'
 const mapStateToProps = (state) => {
   return {
     cfPageEntry: state.cfPageEntry,
-    personal: state.personal,
+    login: state.personal.login,
   }
 }
 
@@ -20,26 +20,30 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export class ContentfulPageContainer extends Component {
-  checkLoggedIn (props) {
-    const pageSlug = props.match.params.id
+  constructor (props) {
+    super(props)
+    this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
+  }
+
+  checkFullyLoaded () {
+    const pageSlug = this.props.match.params.id
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
-    const personal = props.personal
-    const isLoggedIn = (personal && personal.login && personal.login.token)
+    const isLoggedIn = !!(this.props.login && this.props.login.token)
 
-    if (isLoggedIn && props.cfPageEntry.slug !== pageSlug) {
-      props.fetchPage(pageSlug, preview, true)
-    } else if (props.personal.login.redirectUrl) {
-      window.location = props.personal.login.redirectUrl
+    if (isLoggedIn && this.props.cfPageEntry.slug !== pageSlug) {
+      this.props.fetchPage(pageSlug, preview, true)
+    } else if (this.props.login.redirectUrl) {
+      window.location = this.props.login.redirectUrl
     }
   }
 
   componentDidMount () {
-    this.checkLoggedIn(this.props)
+    this.checkFullyLoaded()
   }
 
   componentWillReceiveProps (nextProps) {
-    this.checkLoggedIn(nextProps)
+    this.checkFullyLoaded()
 
     const slug = this.props.match.params.id
     const nextSlug = nextProps.match.params.id
@@ -57,9 +61,15 @@ export class ContentfulPageContainer extends Component {
 }
 
 ContentfulPageContainer.propTypes = {
+  login: PropTypes.shape({
+    state: PropTypes.string,
+    token: PropTypes.string,
+    redirectUrl: PropTypes.string,
+  }),
   cfPageEntry: PropTypes.shape({
     status: PropTypes.string,
     json: PropTypes.object,
+    slug: PropTypes.string,
   }),
   location: PropTypes.shape({
     search: PropTypes.string,

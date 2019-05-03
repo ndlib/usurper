@@ -28,7 +28,9 @@ export class AlertContainer extends Component {
     return <PresenterFactory
       presenter={Presenter}
       status={this.props.cfStatic.status}
-      props={{ cfStatic: this.props.cfStatic.json }} />
+      props={{ cfStatic: this.props.cfStatic.json }}
+      hideLoading={this.props.hideLoading}
+    />
   }
 }
 
@@ -37,6 +39,7 @@ AlertContainer.propTypes = {
   cfStatic: PropTypes.object.isRequired,
   preview: PropTypes.bool.isRequired,
   slug: PropTypes.string.isRequired,
+  hideLoading: PropTypes.bool,
 }
 
 const AlertComponent = connect(

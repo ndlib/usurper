@@ -5,26 +5,28 @@ import { bindActionCreators } from 'redux'
 import typy from 'typy'
 import getCourses from 'actions/personal/courses'
 import * as statuses from 'constants/APIStatuses'
-import Loading from 'components/Messages/Loading'
 import Link from 'components/Interactive/Link'
 
 import CoursesPresenter from './presenter'
 
 export class CoursesContainer extends Component {
-  checkLoggedIn (props) {
-    if (props.courses.state === statuses.NOT_FETCHED && props.loggedIn) {
-      props.getCourses(props.login.token)
-    } else if (props.login.redirectUrl) {
-      window.location.replace(props.login.redirectUrl)
+  constructor (props) {
+    super(props)
+    this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
+  }
+
+  checkFullyLoaded () {
+    if (this.props.loggedIn && this.props.courses.state === statuses.NOT_FETCHED) {
+      this.props.getCourses()
     }
   }
 
   componentDidMount () {
-    this.checkLoggedIn(this.props)
+    this.checkFullyLoaded()
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.checkLoggedIn(nextProps)
+  componentDidUpdate () {
+    this.checkFullyLoaded()
   }
 
   render () {
@@ -34,24 +36,16 @@ export class CoursesContainer extends Component {
       )
     }
 
-    if (this.props.login.state === statuses.FETCHING || this.props.login.state === statuses.NOT_FETCHED) {
-      return <Loading />
-    }
-
-    return <CoursesPresenter preview={this.props.preview} courses={this.props.courses.courseData} />
+    return <CoursesPresenter courses={this.props.courses.courseData} />
   }
 }
 
-export const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state) => {
   const { personal } = state
-  const loggedIn = typy(typy(personal, 'login.token').safeString).isTruthy
-  const courses = typy(personal, 'courses').safeObject || { state: statuses.NOT_FETCHED }
 
   return {
-    preview: ownProps.location ? (new URLSearchParams(ownProps.location.search)).get('preview') === 'true' : false,
-    loggedIn: loggedIn,
-    login: personal.login,
-    courses: courses,
+    loggedIn: typy(typy(personal, 'login.token').safeString).isTruthy,
+    courses: personal.courses,
   }
 }
 
@@ -61,18 +55,12 @@ export const mapDispatchToProps = (dispatch) => {
 
 CoursesContainer.propTypes = {
   linkOnly: PropTypes.bool,
-  loggedIn: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-  login: PropTypes.shape({
-    state: PropTypes.string,
-    token: PropTypes.string,
-    redirectUrl: PropTypes.string,
-  }),
+  loggedIn: PropTypes.bool,
   courses: PropTypes.shape({
     state: PropTypes.string,
     courseData: PropTypes.object,
   }),
-  getCourses: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
-  preview: PropTypes.bool,
+  getCourses: PropTypes.func,
 }
 const CoursesComponent = connect(mapStateToProps, mapDispatchToProps)(CoursesContainer)
 export default CoursesComponent

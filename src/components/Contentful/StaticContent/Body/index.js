@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchSidebar }, dispatch)
 }
 
-export class SidebarContainer extends Component {
+export class BodyContainer extends Component {
   componentDidMount () {
     this.props.fetchSidebar(this.props.slug, this.props.preview)
   }
@@ -29,20 +29,23 @@ export class SidebarContainer extends Component {
     return <PresenterFactory
       presenter={Presenter}
       status={this.props.cfStatic.status}
-      props={{ cfStatic: this.props.cfStatic.json }} />
+      props={{ cfStatic: this.props.cfStatic.json }}
+      hideLoading={this.props.hideLoading}
+    />
   }
 }
 
-SidebarContainer.propTypes = {
+BodyContainer.propTypes = {
   fetchSidebar: PropTypes.func.isRequired,
   cfStatic: PropTypes.object.isRequired,
   preview: PropTypes.bool.isRequired,
   slug: PropTypes.string.isRequired,
+  hideLoading: PropTypes.bool,
 }
 
-const Sidebar = connect(
+const Body = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SidebarContainer)
+)(BodyContainer)
 
-export default withErrorBoundary(Sidebar)
+export default withErrorBoundary(Body)

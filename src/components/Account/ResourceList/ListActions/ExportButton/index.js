@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import exportHelper from './exportHelper'
+import * as helper from 'constants/HelperFunctions'
 
 class ExportButton extends Component {
   constructor (props) {
@@ -21,12 +22,16 @@ class ExportButton extends Component {
   }
 
   onButtonClick () {
-    this.setState({ hidden: !this.state.hidden })
+    this.setState({
+      hidden: !this.state.hidden,
+    })
   }
 
   onBlur (e) {
     if (!document.getElementById('exportDropdown').contains(e.relatedTarget)) {
-      this.setState({ hidden: true })
+      this.setState({
+        hidden: true,
+      })
     }
   }
 
@@ -41,32 +46,27 @@ class ExportButton extends Component {
   }
 
   render () {
+    const labelText = 'Export Checkout History'
+    const disabled = this.props.items.length === 0
     return (
-      <React.Fragment>
-        <button
-          className='export'
-          onClick={this.onButtonClick}
-          disabled={this.props.items.length === 0}
-          aria-label='Export Checkout History'
+      <button className='export' onClick={this.onButtonClick} disabled={disabled} aria-label={labelText}>
+        { helper.pluralize(this.props.items, 'Export', 'Export All') }
+        <div
+          id='exportDropdown'
+          ref={this.exportButtonDropDownRef}
+          tabIndex='0'
+          onBlur={this.onBlur}
+          className={'exportOptions dropdown' + (this.state.hidden ? ' hidden' : '')}
+          aria-label={labelText}
+          aria-expanded={!this.state.hidden}
+          role='tree'
         >
-          {this.props.items.length === 1 ? 'Export' : 'Export All'}
-          <div
-            id='exportDropdown'
-            ref={this.exportButtonDropDownRef}
-            tabIndex='0'
-            onBlur={this.onBlur}
-            className={'exportOptions dropdown' + (this.state.hidden ? ' hidden' : '')}
-            aria-label='Export Checkout History'
-            aria-expanded={!this.state.hidden}
-            role='tree'
-          >
-            <ul>
-              <li role='treeitem' onClick={this.exportRIS}>Export to RIS</li>
-              <li role='treeitem' onClick={this.exportCSV}>Export to CSV</li>
-            </ul>
-          </div>
-        </button>
-      </React.Fragment>
+          <ul>
+            <li role='treeitem' onClick={this.exportRIS}>Export to RIS</li>
+            <li role='treeitem' onClick={this.exportCSV}>Export to CSV</li>
+          </ul>
+        </div>
+      </button>
     )
   }
 }

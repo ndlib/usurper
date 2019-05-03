@@ -29,7 +29,9 @@ export class SidebarContainer extends Component {
     return <PresenterFactory
       presenter={Presenter}
       status={this.props.cfStatic.status}
-      props={{ cfStatic: this.props.cfStatic.json }} />
+      props={{ cfStatic: this.props.cfStatic.json }}
+      hideLoading={this.props.hideLoading}
+    />
   }
 }
 
@@ -38,6 +40,7 @@ SidebarContainer.propTypes = {
   cfStatic: PropTypes.object.isRequired,
   preview: PropTypes.bool.isRequired,
   slug: PropTypes.string.isRequired,
+  hideLoading: PropTypes.bool,
 }
 
 const Sidebar = connect(

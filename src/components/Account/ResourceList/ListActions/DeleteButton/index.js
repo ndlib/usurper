@@ -4,9 +4,31 @@ import { connect } from 'react-redux'
 import ReactModal from 'react-modal'
 import { deleteHistorical } from 'actions/personal/loanResources'
 import InlineLoading from 'components/Messages/InlineLoading'
+
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 ReactModal.setAppElement('body')
+
+const modalProps = {
+  contentLabel: 'Delete Checkout History Item Confirmation',
+  overlayClassName: 'modal-overlay',
+  style: {
+    content: {
+      top: '50%',
+      bottom: 'auto',
+      transform: 'translate(0, -50%)',
+    },
+  },
+  aria: {
+    labelledby: 'deleteModalTitle',
+    describedby: 'deleteModalDesc',
+  },
+  ariaHideApp: true,
+  shouldFocusAfterRender: true,
+  shouldReturnFocusAfterClose: true,
+  shouldCloseOnEsc: true,
+}
 
 class DeleteButton extends Component {
   constructor (props) {
@@ -17,15 +39,20 @@ class DeleteButton extends Component {
     this.onClick = this.onClick.bind(this)
     this.dismiss = this.dismiss.bind(this)
     this.deleteAction = this.deleteAction.bind(this)
+    this.itemList = this.itemList.bind(this)
   }
 
   onClick () {
-    this.setState({ modalOpen: !this.state.modalOpen })
+    this.setState({
+      modalOpen: !this.state.modalOpen,
+    })
   }
 
   dismiss () {
     if (!this.props.deleting) {
-      this.setState({ modalOpen: false })
+      this.setState({
+        modalOpen: false,
+      })
     }
   }
 
@@ -44,12 +71,12 @@ class DeleteButton extends Component {
     )
   }
 
-  itemList (items) {
+  itemList () {
     const today = new Date(new Date().setUTCHours(0, 0, 0, 0))
     const dateThreshold = new Date(today).setDate(today.getDate() - 31)
 
     const itemList = []
-    items.forEach((item) => {
+    this.props.items.forEach((item) => {
       const d = item.returnDate ? new Date(item.returnDate) : today
       if (item.status === 'returned' && d.getTime() <= dateThreshold) {
         itemList.push(<li key={item.id}>{item.title}</li>)
@@ -59,45 +86,19 @@ class DeleteButton extends Component {
   }
 
   render () {
-    const removableItems = this.itemList(this.props.items)
-    const plural = removableItems.length === 1 ? '' : 's'
+    const removableItems = this.itemList()
     const disabled = removableItems.length === 0
     const hoverText = disabled ? 'Items cannot be deleted until 31 days after they were returned.' : ''
 
     return (
       <React.Fragment>
         <button className='delete' onClick={this.onClick} disabled={disabled} title={hoverText}>
-          {this.props.items.length === 1 ? 'Delete' : 'Delete All'}
+          { helper.pluralize(this.props.items, 'Delete', 'Delete All') }
         </button>
-        <ReactModal
-          isOpen={this.state.modalOpen}
-          shouldCloseOnEsc
-          onRequestClose={this.dismiss}
-          contentLabel='Delete Checkout History Item Confirmation'
-          style={{
-            overlay: {
-              backgroundColor: '#041F44aa',
-              zIndex: '1000',
-            },
-            content: {
-              top: '50%',
-              bottom: 'auto',
-              transform: 'translate(0, -50%)',
-            },
-          }}
-          ariaHideApp
-          aria={{
-            labelledby: 'deleteModalTitle',
-            describedby: 'deleteModalDesc',
-          }}
-          shouldFocusAfterRender
-          shouldReturnFocusAfterClose
-        >
-          <h2 id='deleteModalTitle'>Delete Selected Item{plural}?</h2>
-          <p id='deleteModalDesc'>Do you really want to delete the following item{plural}?</p>
-          <ul>
-            {removableItems}
-          </ul>
+        <ReactModal isOpen={this.state.modalOpen} onRequestClose={this.dismiss} {...modalProps}>
+          <h2 id='deleteModalTitle'>Delete Selected { helper.pluralize(removableItems, 'Item') }?</h2>
+          <p id='deleteModalDesc'>Do you really want to delete the following { helper.pluralize(removableItems, 'item')}?</p>
+          <ul>{removableItems}</ul>
           { this.props.deleting && (
             <InlineLoading title='' />
           )}
@@ -111,19 +112,10 @@ class DeleteButton extends Component {
   }
 }
 
-const get = (dict, key, defaultVal) => {
-  if (!dict || !dict.hasOwnProperty(key)) {
-    return defaultVal
-  }
-  return dict[key]
-}
-
 export const mapStateToProps = (state) => {
   const { personal } = state
-  const deleting = get(personal.deleteHistorical, 'state', false) === statuses.FETCHING
-
   return {
-    deleting: deleting,
+    deleting: personal.deleteHistorical.state === statuses.FETCHING,
   }
 }
 
@@ -132,4 +124,5 @@ DeleteButton.propTypes = {
   dispatch: PropTypes.func.isRequired,
   deleting: PropTypes.bool,
 }
+
 export default connect(mapStateToProps)(DeleteButton)

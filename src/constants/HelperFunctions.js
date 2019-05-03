@@ -16,7 +16,7 @@ export const filterList = (list, filterFields, filterValue) => {
         filterFields = [ filterFields ]
       }
       filterFields.forEach((field) => {
-        inFilter = inFilter || (item[field] && item[field].toLowerCase().indexOf(value) >= 0)
+        inFilter = inFilter || (item && item[field] && item[field].toLowerCase().indexOf(value) >= 0)
       })
     }
     return inFilter
@@ -56,4 +56,10 @@ export const sortList = (list, sortKeys, sortDir) => {
 
 export const filterAndSort = (list, filterFields, filterValue, sortKey, sortDir) => {
   return sortList(filterList(list, filterFields, filterValue), sortKey, sortDir)
+}
+
+export const pluralize = (listOrCount, singularForm, pluralForm) => {
+  singularForm = singularForm || '' // If omitted, will return empty string in singular form
+  pluralForm = pluralForm || (singularForm + 's') // If omitted, will append s to singular form
+  return (typy(listOrCount).isNumber ? listOrCount : listOrCount.length) === 1 ? singularForm : pluralForm
 }

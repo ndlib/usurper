@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 
 import PageWrapper from 'components/Layout/PageWrapper'
 import Home from 'components/Home'
-import PersonalInfo from 'components/Account/PersonalInfo'
+import ItemsRequests from 'components/Account/ItemsRequests'
 import Courses from 'components/Account/Courses'
 import Settings from 'components/Account/Settings'
 import Hours from 'components/Hours/Page'
@@ -80,7 +80,7 @@ const App = (props) => {
               <Route exact path='/floor/:id' component={ContentfulFloor} />
               <Route exact path='/news/:id' component={ContentfulNews} />
               <Route exact path='/event/:id' component={ContentfulEvent} />
-              <Route exact path='/items-requests' component={PersonalInfo} />
+              <Route exact path='/items-requests' component={ItemsRequests} />
               <Route exact path='/checkout-history' component={CirculationHistory} />
               <Route exact path='/subjects' component={SubjectList} />
               <Route exact path='/database/:id' component={DatabasePage} />

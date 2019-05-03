@@ -31,9 +31,9 @@ export const handleResources = (service, type, library = '') => {
       }
 
       if (type === 'borrowed') {
-        dispatch(states.receivePersonal(service + 'Have' + libraryProper, statuses.SUCCESS, { checkedOut: data }))
+        dispatch(states.receivePersonal(service + 'Have' + libraryProper, statuses.SUCCESS, { items: data }))
       } else {
-        dispatch(states.receivePersonal(service + 'Pending' + libraryProper, statuses.SUCCESS, { pending: data }))
+        dispatch(states.receivePersonal(service + 'Pending' + libraryProper, statuses.SUCCESS, { items: data }))
       }
     }
   }
@@ -112,10 +112,8 @@ export const getHistorical = () => {
 }
 const getResources = () => {
   return (dispatch, getState) => {
-    getUser()(dispatch, getState)
     getPending()(dispatch, getState)
     getBorrowed()(dispatch, getState)
-    getHistorical()(dispatch, getState)
   }
 }
 

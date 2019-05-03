@@ -146,8 +146,8 @@ describe('components/Account/Courses', () => {
         window.location.replace = jest.fn()
 
         let instance = enzymeWrapper.instance()
-        spy = jest.spyOn(instance, 'checkLoggedIn')
-        instance.checkLoggedIn(instance.props)
+        spy = jest.spyOn(instance, 'checkFullyLoaded')
+        instance.checkFullyLoaded()
 
         // Check that the redirect was called with the same url we passed in to the object
         expect(window.location.replace).toHaveBeenCalledWith(props.login.redirectUrl)

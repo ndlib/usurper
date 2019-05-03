@@ -1,10 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ExportButton from '../../ExportButton'
-import DeleteButton from '../../DeleteButton'
+import typy from 'typy'
+
+import ExportButton from '../../ListActions/ExportButton'
+import DeleteButton from '../../ListActions/DeleteButton'
 import Link from 'components/Interactive/Link'
-import * as Statuses from 'constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 import InlineLoading from 'components/Messages/InlineLoading'
+
+import typeConstants from '../../constants'
 
 const ILLRenew = (item, message) => {
   if (message && item.transactionNumber) {
@@ -40,73 +44,67 @@ const IllView = (item, url) => {
 }
 
 const AlephRenew = (item, canRenew, renewal, onRenewClick, renewMessage) => {
-  if (item.status === 'On Loan') {
-    if (renewal && renewal[item.barcode]) {
-      if (renewal[item.barcode].state === Statuses.FETCHING) {
-        return <InlineLoading title='' />
-      }
-    }
-
-    if (renewMessage) {
-      const messageClass = 'status' + renewal[item.barcode].data.renewStatus === 200 ? ' success' : ' failure'
-      return (<span className={messageClass}>{renewMessage}</span>)
-    } else {
-      return (<button onClick={onRenewClick} disabled={!canRenew}>Renew</button>)
-    }
-  } else {
+  if (item.status !== 'On Loan') {
     return null
   }
-}
 
-const ExportItem = (item, historical) => {
-  if (!historical) {
-    return null
+  if (typy(renewal, `[${item.barcode}].state`).safeString === statuses.FETCHING) {
+    return <InlineLoading title='' />
+  }
+
+  if (renewMessage) {
+    const messageClass = 'status' + (renewal[item.barcode].data.renewStatus === 200 ? ' success' : ' failure')
+    return (<span className={messageClass}>{renewMessage}</span>)
   } else {
-    return (<ExportButton items={[item]} />)
+    return (<button onClick={onRenewClick} disabled={!canRenew}>Renew</button>)
   }
 }
 
-const DeleteItem = (item, includeDelete) => {
-  if (!includeDelete) {
-    return ''
-  }
-
-  return <DeleteButton items={[item]} />
-}
-
-export const hasActions = (item, includeDelete) => {
+export const hasActions = (item, listType) => {
+  const config = typeConstants[listType]
   return (
     (AlephRenew(item, null, () => {}, null) !== null) ||
     (IllWeb(item, null) !== null) ||
     (IllView(item, null) !== null) ||
-    (ExportItem(item) !== null) ||
-    (DeleteItem(item, includeDelete) !== null)
+    config.exportButton ||
+    config.deleteButton
   )
 }
 
 const Actions = (props) => {
+  const config = typeConstants[props.listType]
   return (
     <div>
-      { AlephRenew(props.item, props.canRenew, props.renewal, props.onRenewClick, props.renewMessage) }
+      { config.renewButton && (
+        AlephRenew(props.item, props.canRenew, props.renewal, props.onRenewClick, props.renewMessage)
+      )}
       { ILLRenew(props.item, props.renewMessage) }
       { IllWeb(props.item, props.illWebUrl) }
       { IllView(props.item, props.illViewUrl) }
-      { ExportItem(props.item, props.historical)}
-      { DeleteItem(props.item, props.includeDelete)}
+      { config.exportButton && (
+        <ExportButton items={[props.item]} />
+      )}
+      { config.deleteButton && (
+        <DeleteButton items={[props.item]} />
+      )}
     </div>
   )
 }
 
 Actions.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    transactionNumber: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+  }).isRequired,
   onRenewClick: PropTypes.func.isRequired,
   renewal: PropTypes.object,
   renewMessage: PropTypes.string,
   canRenew: PropTypes.bool,
   illWebUrl: PropTypes.string,
   illViewUrl: PropTypes.string,
-  historical: PropTypes.bool,
-  includeDelete: PropTypes.bool,
+  listType: PropTypes.string.isRequired,
 }
 
 export default Actions

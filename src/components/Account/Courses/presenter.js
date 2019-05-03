@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import typy from 'typy'
-import PageTitle from 'components/Layout/PageTitle'
-import SearchProgramaticSet from 'components/SearchProgramaticSet'
-import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
-import StaticBody from 'components/Contentful/StaticContent/Body'
-import StaticAlert from 'components/Contentful/StaticContent/Alert'
-import UserMenu from 'components/Layout/Navigation/UserMenu'
+import AccountPageWrapper from '../AccountPageWrapper'
 import CourseList from './CourseList'
 
 class Courses extends Component {
+  constructor (props) {
+    super(props)
+    this.courseLists = this.courseLists.bind(this)
+  }
+
   courseLists () {
     const enrollments = typy(this.props.courses, 'enrollments').safeObjectOrEmpty
     const instructs = typy(this.props.courses, 'instructs').safeObjectOrEmpty
@@ -38,29 +38,15 @@ class Courses extends Component {
 
   render () {
     return (
-      <div className='container-fluid content-area'>
-        <div key='courses' className='content'>
-          <SearchProgramaticSet open={false} />
-          <PageTitle title='My Account' children={<UserMenu format='buttons' subheading='Courses' />} />
-          <PageTitle title='Courses' hideInPage />
-
-          <StaticBody slug='courses' preview={this.props.preview} />
-
-          <div className='row'>
-            <div className='col-md-8 col-sm-7' style={{ position: 'relative' }}>
-              <StaticAlert slug='courses' preview={this.props.preview} />
-              { this.courseLists() }
-              <div style={{ fontStyle: 'italic' }}>
-                If your courses are not showing, check them in the&nbsp;
-                <a href='https://reserves.library.nd.edu' target='_blank' rel='noopener noreferrer'>course reserves
-                system</a> or contact the circulation desk at <a href='mailto:circ@nd.edu'>circ@nd.edu</a> or&nbsp;
-                <a href='tel:+15746316679'>(574) 631-6679</a>.
-              </div>
-            </div>
-            <StaticSidebar slug='courses' preview={this.props.preview} />
-          </div>
+      <AccountPageWrapper title='Courses' slug='courses'>
+        { this.courseLists() }
+        <div style={{ fontStyle: 'italic' }}>
+          If your courses are not showing, check them in the&nbsp;
+          <a href='https://reserves.library.nd.edu' target='_blank' rel='noopener noreferrer'>course reserves
+          system</a> or contact the circulation desk at <a href='mailto:circ@nd.edu'>circ@nd.edu</a> or&nbsp;
+          <a href='tel:+15746316679'>(574) 631-6679</a>.
         </div>
-      </div>
+      </AccountPageWrapper>
     )
   }
 }
@@ -76,7 +62,6 @@ Courses.propTypes = {
       future: PropTypes.array,
     }),
   }),
-  preview: PropTypes.bool,
 }
 
 Courses.contextTypes = {

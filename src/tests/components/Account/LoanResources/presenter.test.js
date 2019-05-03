@@ -10,12 +10,10 @@ let enzymeWrapper
 let props = {
   have: {
     items: ['have'],
-    emptyText: 'have empty',
     loading: false,
   },
   pending: {
     items: ['pend'],
-    emptyText: 'pending empty',
     loading: false,
   },
   canRenew: true,
@@ -32,12 +30,12 @@ describe('components/Account/LoanResources/presenter.js', () => {
     })
 
     it('should render checked out resources', () => {
-      let have = <ResourceList list={ props.have.items } emptyText={props.have.emptyText} loading={false} />
+      let have = <ResourceList list={ props.have.items } loading={false} />
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
 
     it('should render pending resources', () => {
-      let pending = <ResourceList list={ props.pending.items } emptyText={props.pending.emptyText} loading={false} />
+      let pending = <ResourceList list={ props.pending.items } loading={false} />
       expect(enzymeWrapper.containsMatchingElement(pending)).toBe(true)
     })
   })
@@ -52,12 +50,12 @@ describe('components/Account/LoanResources/presenter.js', () => {
     })
 
     it('should render a loading checked out resources', () => {
-      let have = <ResourceList list={ props.have.items } emptyText={props.have.emptyText} loading={true} />
+      let have = <ResourceList list={ props.have.items } loading={true} />
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
 
     it('should render a loading pending resources', () => {
-      let pending = <ResourceList list={ props.pending.items } emptyText={props.pending.emptyText} loading={true} />
+      let pending = <ResourceList list={ props.pending.items } loading={true} />
       expect(enzymeWrapper.containsMatchingElement(pending)).toBe(true)
     })
 

@@ -1,3 +1,4 @@
+/* eslint complexity: ["warn", 10] */
 import moment from 'moment'
 
 const FIELDS = {
@@ -63,14 +64,12 @@ const formatCSVString = (item) => {
 
 const formatRISString = (item) => {
   let formattedData = ''
-  const fieldKeys = Object.keys(FIELDS)
-  for (let i = 0; i < fieldKeys.length; i++) {
-    const key = fieldKeys[i]
+  for (const key in FIELDS) {
     const tag = FIELDS[key].tag
     if (tag) {
       let value = item[key] ? String(item[key]).trim() : ''
       // Apply special rules about restricted characters and limits based on field type
-      if (['A1', 'A2', 'A3', 'A4', 'AU', 'KW', 'J1', 'J2', 'JA', 'JF', 'JO'].includes(FIELDS[key].tag)) {
+      if (['A1', 'A2', 'A3', 'A4', 'AU', 'KW', 'J1', 'J2', 'JA', 'JF', 'JO'].includes(tag)) {
         value.replace(/\*/g, '') // Remove all asterisks
       }
       // Map document types from aleph into types defined by the RIS specification
