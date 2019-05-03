@@ -44,7 +44,7 @@ const EventDate = (props) => {
               : 'There are no events on this date.'
           }
         </div>
-        <div className='col-md-3 col-xs-12'>
+        <div className='col-md-4 col-xs-12'>
           <Calendar date={date} allEvents={props.events} {...props} />
         </div>
       </div>

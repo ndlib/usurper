@@ -15,12 +15,12 @@ const Current = (props) => {
       <PageTitle title='Current and Upcoming Events' />
       <SearchProgramaticSet open={false} />
       <div className='row'>
-        <div className='col-md-9 col-xs-12' >
+        <div className='col-md-8 col-xs-12' >
           {
             props.events.map((event, index) => makeEventEntry(event, index, index === props.events.length - 1))
           }
         </div>
-        <div className='col-md-3 col-xs-12'>
+        <div className='col-md-4 col-xs-12'>
           <Calendar {...props} />
         </div>
       </div>

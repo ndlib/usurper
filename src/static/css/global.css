@@ -130,6 +130,11 @@ table td:nth-child(2) {
 
 a {
   color: #93601D;
+  color: #3D7683;
+}
+
+.article a:visited {
+  color: #93601D;
 }
 
 
@@ -3191,7 +3196,7 @@ body {
     overflow: hidden;
 }
 
-.viewAll {
+.viewAll, .viewAll:visited, .article .viewAll:visited {
   position: relative;
   background: #fff;
   border: 1px solid #a7a7a7;
@@ -3847,6 +3852,10 @@ main .mobile-only h5 {
 .search-action,
 .advanced-basic-toggle {
   cursor: pointer;
+}
+
+div.react-datepicker {
+  float: right;
 }
 
 div.react-datepicker button {
