@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ReactModal from 'react-modal'
 import { deleteHistorical } from 'actions/personal/loanResources'
@@ -30,7 +31,7 @@ const modalProps = {
   shouldCloseOnEsc: true,
 }
 
-class DeleteButton extends Component {
+export class DeleteButtonContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -59,15 +60,13 @@ class DeleteButton extends Component {
   deleteAction () {
     const itemKey = this.props.items.length === 1 ? this.props.items[0].key : null
 
-    this.props.dispatch(
-      deleteHistorical(itemKey,
-        () => { // success callback
-          this.dismiss()
-        },
-        () => { // error callback
-          this.dismiss()
-        },
-      )
+    this.props.deleteHistorical(itemKey,
+      () => { // success callback
+        this.dismiss()
+      },
+      () => { // error callback
+        this.dismiss()
+      },
     )
   }
 
@@ -119,10 +118,14 @@ export const mapStateToProps = (state) => {
   }
 }
 
-DeleteButton.propTypes = {
-  items: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  deleting: PropTypes.bool,
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ deleteHistorical }, dispatch)
 }
 
-export default connect(mapStateToProps)(DeleteButton)
+DeleteButtonContainer.propTypes = {
+  items: PropTypes.array.isRequired,
+  deleting: PropTypes.bool,
+  deleteHistorical: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteButtonContainer)

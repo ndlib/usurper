@@ -18,7 +18,9 @@ class ExportButton extends Component {
   }
 
   componentDidUpdate () {
-    this.exportButtonDropDownRef.current.focus()
+    if (this.exportButtonDropDownRef.current) {
+      this.exportButtonDropDownRef.current.focus()
+    }
   }
 
   onButtonClick () {
@@ -28,7 +30,7 @@ class ExportButton extends Component {
   }
 
   onBlur (e) {
-    if (!document.getElementById('exportDropdown').contains(e.relatedTarget)) {
+    if (!this.exportButtonDropDownRef.current || !this.exportButtonDropDownRef.current.contains(e.relatedTarget)) {
       this.setState({
         hidden: true,
       })

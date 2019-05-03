@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import typy from 'typy'
 
@@ -13,13 +12,9 @@ import * as statuses from 'constants/APIStatuses'
 const illViewForm = '67'
 const illWebForm = '75'
 
-const ActionsContainer = (props) => {
-  const onRenewClick = () => {
-    props.renewAleph(props.item.barcode, props.alephId)
-  }
-
+export const ActionsContainer = (props) => {
   return (
-    <Presenter onRenewClick={onRenewClick} {...props} />
+    <Presenter {...props} />
   )
 }
 
@@ -38,7 +33,9 @@ const renewMessage = (listType, data) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ renewAleph }, dispatch)
+  return {
+    onRenewClick: dispatch(renewAleph),
+  }
 }
 
 export const mapStateToProps = (state, ownProps) => {
@@ -54,7 +51,7 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     actionResponse: itemAction,
-    renewMessage: renewMessage(listType, typy(renewal, `[${item.barcode}].data`).safeObjectOrEmpty),
+    renewMessage: renewMessage(listType, typy(renewal, `${item.barcode}.data`).safeObjectOrEmpty),
     illWebUrl: Config.illiadBaseURL.replace('<<form>>', illWebForm).replace('<<value>>', item.transactionNumber),
     illViewUrl: Config.illiadBaseURL.replace('<<form>>', illViewForm).replace('<<value>>', item.transactionNumber),
     alephId: personal.user.alephId,
@@ -69,7 +66,7 @@ ActionsContainer.propTypes = {
   listType: PropTypes.string.isRequired,
   alephId: PropTypes.string,
   canRenew: PropTypes.bool,
-  renewAleph: PropTypes.func.isRequired,
+  onRenewClick: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActionsContainer)

@@ -16,11 +16,11 @@ const ItemsRequests = (props) => {
 
   return (
     <AccountPageWrapper title='Items &amp; Requests' slug='personal' className='resources-list'>
-      <AccountBalance balance={props.balance} />
       { props.userLoading ? (
         <InlineLoading title='Loading account info' />
       ) : (
         <React.Fragment>
+          <AccountBalance balance={props.balance} />
           { props.userStatus === statuses.ERROR ? <AccountError /> : null }
           { props.userExpired ? <AccountExpired /> : null }
           <ResourceList list={pending.items} loading={pending.loading} type='pending' />

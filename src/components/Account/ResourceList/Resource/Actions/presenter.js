@@ -48,7 +48,7 @@ const AlephRenew = (item, canRenew, renewal, onRenewClick, renewMessage) => {
     return null
   }
 
-  if (typy(renewal, `[${item.barcode}].state`).safeString === statuses.FETCHING) {
+  if (typy(renewal, `${item.barcode}.state`).safeString === statuses.FETCHING) {
     return <InlineLoading title='' />
   }
 

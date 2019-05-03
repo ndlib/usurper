@@ -8,7 +8,7 @@ import Presenter from './presenter'
 import getToken from 'actions/personal/token'
 import * as statuses from 'constants/APIStatuses'
 
-class AccountPageWrapper extends Component {
+export class AccountPageWrapperContainer extends Component {
   constructor (props) {
     super(props)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
@@ -61,7 +61,7 @@ export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getToken }, dispatch)
 }
 
-AccountPageWrapper.propTypes = {
+AccountPageWrapperContainer.propTypes = {
   title: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -81,4 +81,4 @@ AccountPageWrapper.propTypes = {
   getToken: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountPageWrapper)
+export default connect(mapStateToProps, mapDispatchToProps)(AccountPageWrapperContainer)

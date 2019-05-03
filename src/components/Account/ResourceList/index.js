@@ -8,7 +8,7 @@ import typeConstants from './constants'
 
 const secondarySort = 'title'
 
-class ListContainer extends Component {
+class ResourceListContainer extends Component {
   constructor (props) {
     super(props)
 
@@ -28,7 +28,7 @@ class ListContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this.state.itemList || (nextProps.list && this.state.itemList.length !== nextProps.list.length)) {
+    if (!this.state.itemList || (nextProps.list && this.state.itemList !== nextProps.list)) {
       this.setState({
         itemList: nextProps.list,
         filteredList: helper.filterAndSort(nextProps.list, this.filterFields, this.state.filterValue,
@@ -91,10 +91,10 @@ class ListContainer extends Component {
   }
 }
 
-ListContainer.propTypes = {
+ResourceListContainer.propTypes = {
   loading: PropTypes.bool,
   list: PropTypes.array.isRequired,
   type: PropTypes.oneOf(['borrowed', 'pending', 'history']).isRequired,
 }
 
-export default ListContainer
+export default ResourceListContainer

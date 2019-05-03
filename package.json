@@ -24,7 +24,7 @@
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "typy": "^3.0.2"
+    "typy": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

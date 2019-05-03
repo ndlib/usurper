@@ -1,7 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Settings from 'components/Account/Settings/presenter.js'
-import UserMenu from 'components/Layout/Navigation/UserMenu'
+import CircOptIn from 'components/Account/Settings/CircOptIn'
+import AccountPageWrapper from 'components/Account/AccountPageWrapper'
 
 const setup = (props) => {
   return shallow(
@@ -27,8 +28,11 @@ describe('components/Account/Settings/presenter.js', () => {
     enzymeWrapper = undefined
   })
 
-  it('Renders a UserMenu component', () => {
-    let have = <UserMenu />
-    expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
+  it('should use AccountPageWrapper', () => {
+    expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
+  })
+
+  it('should render a CircOptIn component', () => {
+    expect(enzymeWrapper.find(CircOptIn).exists()).toBe(true)
   })
 })

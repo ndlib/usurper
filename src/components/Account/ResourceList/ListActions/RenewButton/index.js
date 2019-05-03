@@ -7,7 +7,7 @@ import { renewAleph, receiveRenewal } from 'actions/personal/alephRenewal'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
-const RenewButton = (props) => {
+export const RenewButtonContainer = (props) => {
   const renewAll = () => {
     props.items.forEach((item) => {
       if (item.barcode) {
@@ -37,7 +37,7 @@ export const mapStateToProps = (state) => {
 
   return {
     alephId: personal.user.alephId,
-    disabled: personal.user.alephId && !expired,
+    disabled: !personal.user.alephId || expired,
   }
 }
 
@@ -48,7 +48,7 @@ export const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-RenewButton.propTypes = {
+RenewButtonContainer.propTypes = {
   items: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
   alephId: PropTypes.string,
@@ -56,4 +56,4 @@ RenewButton.propTypes = {
   receiveRenewal: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RenewButton)
+export default connect(mapStateToProps, mapDispatchToProps)(RenewButtonContainer)

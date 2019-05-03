@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import typy from 'typy'
 import Courses from 'components/Account/Courses/presenter.js'
 import CourseList from 'components/Account/Courses/CourseList'
-import StaticBody from 'components/Contentful/StaticContent/Body'
+import AccountPageWrapper from 'components/Account/AccountPageWrapper'
 
 const setup = (props) => {
   return shallow(<Courses {...props} />)
@@ -56,8 +56,8 @@ describe('components/Account/Courses/presenter.js', () => {
       enzymeWrapper = undefined
     })
 
-    it('should use preview content', () => {
-      expect(enzymeWrapper.containsMatchingElement(<StaticBody slug='courses' preview={props.preview} />)).toBe(true)
+    it('should use AccountPageWrapper', () => {
+      expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
     })
 
     it('should render CourseList components with correct data', () => {

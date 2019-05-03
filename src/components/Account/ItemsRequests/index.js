@@ -8,7 +8,7 @@ import * as statuses from 'constants/APIStatuses'
 
 import Presenter from './presenter'
 
-class ItemsRequestsContainer extends Component {
+export class ItemsRequestsContainer extends Component {
   constructor (props) {
     super(props)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)

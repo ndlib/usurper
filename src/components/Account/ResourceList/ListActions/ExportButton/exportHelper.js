@@ -92,19 +92,14 @@ const exportHelper = (format, items) => {
   let formattedOutput = ''
   formattedOutput += getHeader(format)
 
-  switch (format) {
-    case 'CSV':
-      items.forEach((item) => {
-        formattedOutput += formatCSVString(item)
-      })
-      break
-    case 'RIS':
-      items.forEach((item) => {
-        formattedOutput += formatRISString(item)
-      })
-      break
-    default:
-      throw new Error('undefined export format')
+  if (format === 'CSV') {
+    items.forEach((item) => {
+      formattedOutput += formatCSVString(item)
+    })
+  } else if (format === 'RIS') {
+    items.forEach((item) => {
+      formattedOutput += formatRISString(item)
+    })
   }
 
   // Create a file blob, write data to it, and trigger a download
