@@ -5,7 +5,7 @@ import typy from 'typy'
 
 import Presenter from './presenter'
 
-class ResourceContainer extends Component {
+export class ResourceContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -16,7 +16,7 @@ class ResourceContainer extends Component {
   }
 
   static getDerivedStateFromProps (props, state) {
-    const data = typy(props.renewal, `[${props.item.barcode}].data`).safeObject
+    const data = typy(props.renewal, `${props.item.barcode}.data`).safeObject
     if (state.hidden && data) {
       return {
         hidden: false,
@@ -51,7 +51,7 @@ export const mapStateToProps = (state, ownProps) => {
   const stateItem = typy(renewal, `[${ownProps.item.barcode}]`).safeObjectOrEmpty
   if (ownProps.listType === 'borrowed') {
     if (typy(stateItem, 'data.renewStatus').safeNumber === 200) {
-      newItem.dueDate = renewal.data.dueDate
+      newItem.dueDate = stateItem.data.dueDate
     }
   }
 

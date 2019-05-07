@@ -22,7 +22,7 @@ const TitleCard = (props) => {
         <Link to={link}>{props.title}</Link>
       </Card>
       <Card className='card-published' value={props.published} label='Published' />
-      { <CoinsObject {...props} /> }
+      <CoinsObject {...props} />
     </Card>
   )
 }

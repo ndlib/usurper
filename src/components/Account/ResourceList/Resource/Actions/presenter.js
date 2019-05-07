@@ -66,8 +66,7 @@ export const hasActions = (item, listType) => {
     (AlephRenew(item, null, () => {}, null) !== null) ||
     (IllWeb(item, null) !== null) ||
     (IllView(item, null) !== null) ||
-    config.exportButton ||
-    config.deleteButton
+    (config && (config.exportButton || config.deleteButton))
   )
 }
 
