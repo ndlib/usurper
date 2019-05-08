@@ -2394,7 +2394,7 @@ main blockquote p {
 
 }
 
-.news-card h3, .event-card h4 {
+.news-card h2, .event-card h2 {
   color: #001E45;
   font-size: 22px;
   font-family: GPMed, sans-serif;

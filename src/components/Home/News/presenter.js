@@ -7,15 +7,15 @@ import ErrorBoundary from 'components/ErrorBoundary'
 const News = (entries) => {
   return (
     <div className='col-md-6 col-xs-12'>
-      <Link to='/news' className='newsEventHeader'><h2>News</h2></Link>
-      <ErrorBoundary>
-        <section aria-label='News'>
+      <section aria-label='News'>
+        <Link to='/news' className='newsEventHeader'><h1>News</h1></Link>
+        <ErrorBoundary>
           {
             entries.map(makeNewsEntry)
           }
-        </section>
-      </ErrorBoundary>
-      <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
+        </ErrorBoundary>
+        <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
+      </section>
     </div>
   )
 }
