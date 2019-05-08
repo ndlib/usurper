@@ -1590,9 +1590,10 @@ hr {
   clear: both;
 }
 
-aside .group h5 {
+aside .group .nav-header {
   padding: 10px 20px 10px;
   font-size: 16px;
+  font-family: GPMed, sans-serif;
 
   background-color: #072242;
   color: #fff;
@@ -1604,6 +1605,7 @@ aside .group h5 {
   line-height: 15px;
   font-weight: bold;
   margin-bottom: 0;
+  display: block;
 }
 
 aside .group {
