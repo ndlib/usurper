@@ -12,12 +12,12 @@ class ResourceListContainer extends Component {
   constructor (props) {
     super(props)
 
-    this.filterFields = ['title', 'published', ...Object.keys(typeConstants[props.type].columns)]
-
+    const filterFields = ['title', 'published', ...Object.keys(typeConstants[props.type].columns)]
     this.state = {
       filterValue: '',
+      filterFields: filterFields,
       itemList: this.props.list,
-      filteredList: helper.filterAndSort(props.list, this.filterFields, '', 'title', 'asc'),
+      filteredList: helper.filterAndSort(props.list, filterFields, '', 'title', 'asc'),
       sortValue: 'title',
       sortDir: 'asc',
       assistText: '',
@@ -27,14 +27,15 @@ class ResourceListContainer extends Component {
     this.sortChange = this.sortChange.bind(this)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (!this.state.itemList || (nextProps.list && this.state.itemList !== nextProps.list)) {
-      this.setState({
-        itemList: nextProps.list,
-        filteredList: helper.filterAndSort(nextProps.list, this.filterFields, this.state.filterValue,
-          [this.state.sortValue, secondarySort], this.state.sortDir),
-      })
+  static getDerivedStateFromProps (props, state) {
+    if (!state.itemList || (props.list && state.itemList !== props.list)) {
+      return {
+        itemList: props.list,
+        filteredList: helper.filterAndSort(props.list, state.filterFields, state.filterValue,
+          [state.sortValue, secondarySort], state.sortDir),
+      }
     }
+    return null
   }
 
   filterChange (event) {
@@ -45,7 +46,7 @@ class ResourceListContainer extends Component {
 
     this.setState({
       filterValue: event.target.value,
-      filteredList: helper.filterAndSort(this.state.itemList, this.filterFields, event.target.value,
+      filteredList: helper.filterAndSort(this.state.itemList, this.state.filterFields, event.target.value,
         [this.state.sortValue, secondarySort], this.state.sortDir),
       assistText: assistText,
     })
@@ -70,7 +71,7 @@ class ResourceListContainer extends Component {
     this.setState({
       sortDir: sortDir,
       sortValue: sortValue,
-      filteredList: helper.filterAndSort(this.state.itemList, this.filterFields, this.state.filterValue,
+      filteredList: helper.filterAndSort(this.state.itemList, this.state.filterFields, this.state.filterValue,
         [sortValue, secondarySort], sortDir),
     })
   }
