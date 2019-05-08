@@ -40,7 +40,7 @@ export const renewAleph = (barcode, alephId) => {
         receiveRenewal(barcode, statuses.SUCCESS, json)
       ))
       .catch((e) => {
-        console.log(e)
+        console.error(e)
         dispatch(receiveRenewal(barcode, statuses.ERROR, e))
       })
   }

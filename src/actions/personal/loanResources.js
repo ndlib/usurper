@@ -52,9 +52,9 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, libr
     func,
     token,
     (e) => {
-      console.log(e)
+      console.error(e)
       if (retry === 0) {
-        console.log('Error, retrying ' + service + ' ' + type)
+        console.log('Retrying ' + service + ' ' + type)
         doQuery(dispatch, service, type, func, token, stateKey, 1, library)
       } else {
         dispatch(states.receivePersonal(stateKey, statuses.ERROR, e.message))

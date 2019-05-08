@@ -74,7 +74,7 @@ export const getCircStatus = () => {
         receiveSettings(KIND.circStatus, null, statuses.SUCCESS, json)
       ))
       .catch((e) => {
-        console.log(e)
+        console.error(e)
         dispatch(receiveSettings(KIND.circStatus, null, statuses.ERROR, e))
       })
   }
@@ -101,7 +101,7 @@ export const setCircStatus = (enabled) => {
         dispatch(states.receivePersonal('historical', statuses.SUCCESS, json))
       })
       .catch((e) => {
-        console.log(e)
+        console.error(e)
         dispatch(receiveSettings(KIND.circStatus, enabled, statuses.ERROR, e))
       })
   }
