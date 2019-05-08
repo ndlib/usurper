@@ -16,7 +16,7 @@ const Events = (props) => {
       <PageTitle title={props.pageTitle} />
       <SearchProgramaticSet open={false} />
       <div className='row'>
-        <div className='col-md-9 col-xs-12' >
+        <div className='col-md-8 col-xs-12' >
           <FilterBox value={props.filterValue} title='Search Past Events' onChange={props.onFilterChange} />
           <br />
           {
@@ -30,7 +30,7 @@ const Events = (props) => {
             )
           }
         </div>
-        <SideNav className='col-md-3 col-xs-12'>
+        <SideNav className='col-md-4 col-xs-12'>
           <DateFilter eventDates={props.eventDates} />
         </SideNav>
       </div>
