@@ -14,7 +14,7 @@ export const CF_RECEIVE_SUBJECTS = 'CF_RECEIVE_SUBJECTS'
 const receiveError = (response, depth) => {
   return {
     type: CF_RECEIVE_SUBJECTS,
-    status: response ? statuses.fromHttpStatusCode(response.status) : statuses.NOT_FOUND,
+    status: (response && response.status) ? statuses.fromHttpStatusCode(response.status) : statuses.NOT_FOUND,
     depth: depth,
     error: response,
     receivedAt: Date.now(),
@@ -38,20 +38,16 @@ const receiveSubjects = (response, depth) => {
 }
 
 export const fetchSubjects = (preview, include = 1) => {
-  const endpoint = 'query'
   const query = encodeURIComponent(`content_type=internalLink&fields.context=Subject&include=${include}`)
-  let url = `${Config.contentfulAPI}${endpoint}?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }
 
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(requestSubjects(include))
 
-    const login = getState().personal.login
-    const headers = (login && login.token) ? { Authorization: getState().personal.login.token } : {}
-
-    return fetch(url, { headers })
+    return fetch(url)
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -61,7 +57,7 @@ export const fetchSubjects = (preview, include = 1) => {
       })
       .then(json => dispatch(receiveSubjects(json, include)))
       .catch(response => {
-        dispatch(receiveError(response))
+        dispatch(receiveError(response, include))
       })
   }
 }
