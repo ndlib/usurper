@@ -1,5 +1,6 @@
 // Import all reducers here
 import contentfulPage from './contentful/page'
+import contentfulSubjects from './contentful/subjects'
 import contentfulNews from './contentful/news'
 import contentfulAllNews from './contentful/allNews'
 import contentfulAllAlerts from './contentful/allAlerts'
@@ -25,6 +26,7 @@ import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   cfPageEntry: contentfulPage,
+  cfSubjects: contentfulSubjects,
   cfNewsEntry: contentfulNews,
   allNews: contentfulAllNews,
   allAlerts: contentfulAllAlerts,
