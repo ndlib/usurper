@@ -43,7 +43,7 @@ const MobileMenu = (props) => {
         </li>
         <li>
           { props.loggedIn ? (
-            <Link to='/items-requests' tabIndex={tabIndex}>'My Account'</Link>
+            <Link to='/items-requests' tabIndex={tabIndex}>My Account</Link>
           ) : (
             <a href={`${Config.viceroyAPI}/login`} className='m'>Login</a>
           )}
