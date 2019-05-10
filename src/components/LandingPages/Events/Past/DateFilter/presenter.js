@@ -6,7 +6,7 @@ const DateFilter = (props) => {
   return (
     <aside aria-label='Select archived month to display' role='navigation' className='dateFilter'>
       <div className='group'>
-        <h5>Archive</h5>
+        <span className='nav-header'>Archive</span>
         <ul className='archive'>
           {
             Object.keys(props.eventDates).reverse().map((year, yIndex) => {

@@ -6,7 +6,7 @@ const Alphabet = () => {
   return (
     <aside aria-label='Select Databases by First Letter' role='navigation'>
       <div className='group'>
-        <h5>Filter by First Letter</h5>
+        <span className='nav-header'>Filter by First Letter</span>
         <div className={styles.alphabet}>
           {
             'abcdefghijklmnopqrstuvwxyz#'.split('').map((item) => {
