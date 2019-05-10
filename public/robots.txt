@@ -4,3 +4,5 @@ Disallow: /icons/fdlp-emblem-color.png
 Disallow: /utilities/search
 Disallow: /floor/search
 Disallow: /search?*
+Disallow: /resource-technical-problem
+Disallow: /resource-unavailable
