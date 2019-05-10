@@ -38,7 +38,7 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
           </div>
         )
         }
-        <h4 itemProp='name'>{entry.title}</h4>
+        <h2 itemProp='name'>{entry.title}</h2>
 
         { showDescription && (
           <div className='description' itemProp='description'>
@@ -55,15 +55,15 @@ export const makeEventEntry = (entry, index, isLast = false, showDescription = t
 const Events = (entries) => {
   return (
     <div className='col-md-5 col-xs-12' >
-      <Link to='/events' className='newsEventHeader'><h2>Events</h2></Link>
-      <ErrorBoundary>
-        <section aria-label='Events'>
+      <section aria-label='Events'>
+        <Link to='/events' className='newsEventHeader'><h1>Events</h1></Link>
+        <ErrorBoundary>
           {
             entries.map((entry, index) => makeEventEntry(entry, index, index === entries.length - 1, false, false))
           }
-        </section>
-      </ErrorBoundary>
-      <Link to='/events' className='newsEventsLink viewAll'>View All Events</Link>
+        </ErrorBoundary>
+        <Link to='/events' className='newsEventsLink viewAll'>View All Events</Link>
+      </section>
     </div>
   )
 }

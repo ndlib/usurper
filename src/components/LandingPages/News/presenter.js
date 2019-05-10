@@ -21,7 +21,7 @@ export const makeNewsEntry = (entry, index) => {
       >
         <Image cfImage={entry.fields.image} itemProp='image' />
         <header>
-          <h3 itemProp='headline'>{entry.fields.title}</h3>
+          <h2 itemProp='headline'>{entry.fields.title}</h2>
         </header>
         <div className='description' itemProp='description'>
           <LibMarkdown>{entry.fields.shortDescription}</LibMarkdown>
