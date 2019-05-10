@@ -7,7 +7,7 @@ const userPrefsUrl = Config.userPrefsAPI
 
 export const handleUser = (dispatch, data) => {
   dispatch(
-    states.recievePersonal(
+    states.receivePersonal(
       'user',
       statuses.SUCCESS,
       data,
@@ -18,7 +18,7 @@ export const handleUser = (dispatch, data) => {
 export const handleResources = (service, type, library = '') => {
   return (dispatch, data) => {
     if (type === 'circHistory') {
-      dispatch(states.recievePersonal('historical', statuses.SUCCESS, {
+      dispatch(states.receivePersonal('historical', statuses.SUCCESS, {
         history: data.history,
         saveHistory: data.saveHistory,
       }))
@@ -31,9 +31,9 @@ export const handleResources = (service, type, library = '') => {
       }
 
       if (type === 'borrowed') {
-        dispatch(states.recievePersonal(service + 'Have' + libraryProper, statuses.SUCCESS, { checkedOut: data }))
+        dispatch(states.receivePersonal(service + 'Have' + libraryProper, statuses.SUCCESS, { items: data }))
       } else {
-        dispatch(states.recievePersonal(service + 'Pending' + libraryProper, statuses.SUCCESS, { pending: data }))
+        dispatch(states.receivePersonal(service + 'Pending' + libraryProper, statuses.SUCCESS, { items: data }))
       }
     }
   }
@@ -52,12 +52,12 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, libr
     func,
     token,
     (e) => {
-      console.log(e)
+      console.error(e)
       if (retry === 0) {
-        console.log('Error, retrying ' + service + ' ' + type)
+        console.log('Retrying ' + service + ' ' + type)
         doQuery(dispatch, service, type, func, token, stateKey, 1, library)
       } else {
-        dispatch(states.recievePersonal(stateKey, statuses.ERROR, e.message))
+        dispatch(states.receivePersonal(stateKey, statuses.ERROR, e.message))
       }
     }
   )
@@ -112,10 +112,8 @@ export const getHistorical = () => {
 }
 const getResources = () => {
   return (dispatch, getState) => {
-    getUser()(dispatch, getState)
     getPending()(dispatch, getState)
     getBorrowed()(dispatch, getState)
-    getHistorical()(dispatch, getState)
   }
 }
 
@@ -132,7 +130,7 @@ export const deleteHistorical = (recordKey = null, successCallback = null, error
     dispatch(states.requestPersonal(requestKey))
     states.startRequest(path, 'DELETE', dispatch,
       (dsp, data) => {
-        dispatch(states.recievePersonal(requestKey, statuses.SUCCESS))
+        dispatch(states.receivePersonal(requestKey, statuses.SUCCESS))
         // If a specific record was deleted, remove it from the history list
         if (recordKey) {
           data = { ...data, ...state.historical }
@@ -144,7 +142,7 @@ export const deleteHistorical = (recordKey = null, successCallback = null, error
         }
         // Update the state with the new list
         // Response of delete all should return new list of history that we don't need to alter
-        dispatch(states.recievePersonal('historical', statuses.SUCCESS, data))
+        dispatch(states.receivePersonal('historical', statuses.SUCCESS, data))
 
         if (typeof successCallback === 'function') {
           successCallback(data)
@@ -153,7 +151,7 @@ export const deleteHistorical = (recordKey = null, successCallback = null, error
       token,
       (e) => {
         console.error(e)
-        dispatch(states.recievePersonal(requestKey, statuses.ERROR, e.message))
+        dispatch(states.receivePersonal(requestKey, statuses.ERROR, e.message))
         if (typeof errorCallback === 'function') {
           errorCallback(e)
         }

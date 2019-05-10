@@ -18,7 +18,7 @@ const requestSettings = (kind, data) => {
   }
 }
 
-const recieveSettings = (kind, data, state, json) => {
+const receiveSettings = (kind, data, state, json) => {
   return {
     type: RECEIVE_SETTINGS,
     data: data,
@@ -47,11 +47,11 @@ export const setHomeLibrary = (library, title) => {
       })
       .then(json => {
         state.user.homeLibrary = title
-        dispatch(recieveSettings(KIND.homeLibrary, library, statuses.SUCCESS, json))
+        dispatch(receiveSettings(KIND.homeLibrary, library, statuses.SUCCESS, json))
       })
       .catch((e) => {
         console.error(e)
-        dispatch(recieveSettings(KIND.homeLibrary, library, statuses.ERROR, e))
+        dispatch(receiveSettings(KIND.homeLibrary, library, statuses.ERROR, e))
       })
   }
 }
@@ -71,11 +71,11 @@ export const getCircStatus = () => {
         return jsonResponse
       })
       .then(json => dispatch(
-        recieveSettings(KIND.circStatus, null, statuses.SUCCESS, json)
+        receiveSettings(KIND.circStatus, null, statuses.SUCCESS, json)
       ))
       .catch((e) => {
-        console.log(e)
-        dispatch(recieveSettings(KIND.circStatus, null, statuses.ERROR, e))
+        console.error(e)
+        dispatch(receiveSettings(KIND.circStatus, null, statuses.ERROR, e))
       })
   }
 }
@@ -97,12 +97,12 @@ export const setCircStatus = (enabled) => {
         return jsonResponse
       })
       .then(json => {
-        dispatch(recieveSettings(KIND.circStatus, enabled, statuses.SUCCESS, json))
-        dispatch(states.recievePersonal('historical', statuses.SUCCESS, json))
+        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS, json))
+        dispatch(states.receivePersonal('historical', statuses.SUCCESS, json))
       })
       .catch((e) => {
-        console.log(e)
-        dispatch(recieveSettings(KIND.circStatus, enabled, statuses.ERROR, e))
+        console.error(e)
+        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.ERROR, e))
       })
   }
 }

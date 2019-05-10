@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -9,8 +9,6 @@ import {
   setCircStatus,
   KIND,
 } from 'actions/personal/settings'
-import getToken from 'actions/personal/token'
-import Loading from 'components/Messages/Loading'
 
 import * as states from 'constants/APIStatuses'
 
@@ -22,50 +20,23 @@ const homeLibraries = [
   { value: 'ENGIN', title: 'Engineering Library' },
   { value: 'MATH', title: 'Mathematics Library' },
   { value: 'MUSIC', title: 'Music Library' },
-  // { value: 'RADLAB', title: 'Radiation Lab Reading Room' }, // This was throwing an error.
   { value: 'NDCAM', title: 'I would prefer departmental delivery' },
 ]
 
-export class SettingsContainer extends Component {
-  constructor (props) {
-    super(props)
-    this.checkLoggedIn = this.checkLoggedIn.bind(this)
-  }
-
-  checkLoggedIn () {
-    if (!this.props.loggedIn && this.props.login.state === states.NOT_FETCHED) {
-      this.props.getToken()
-    } else if (this.props.login.redirectUrl) {
-      window.location.replace(this.props.login.redirectUrl)
-    }
-  }
-
-  componentDidMount () {
-    this.checkLoggedIn()
-  }
-
-  componentDidUpdate () {
-    this.checkLoggedIn()
-  }
-
-  render () {
-    if (this.props.loggedIn) {
-      return <Presenter
-        preview={this.props.preview}
-        homeLibraries={homeLibraries}
-        setHomeLibrary={this.props.setHomeLibrary}
-        homeIndex={this.props.homeIndex}
-        libraryStatus={this.props.libraryStatus}
-        setCircStatus={this.props.setCircStatus}
-        getCircStatus={this.props.getCircStatus}
-      />
-    } else {
-      return <Loading message='Loading Your Account' />
-    }
-  }
+export const SettingsContainer = (props) => {
+  return (
+    <Presenter
+      homeLibraries={homeLibraries}
+      setHomeLibrary={props.setHomeLibrary}
+      homeIndex={props.homeIndex}
+      libraryStatus={props.libraryStatus}
+      setCircStatus={props.setCircStatus}
+      getCircStatus={props.getCircStatus}
+    />
+  )
 }
 
-export const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state) => {
   const { personal, settings } = state
 
   const currentHomeTitle = personal.user ? personal.user.homeLibrary : null
@@ -84,12 +55,6 @@ export const mapStateToProps = (state, ownProps) => {
 
   return {
     homeIndex: homeIndex,
-    preview: (ownProps && ownProps.location && ownProps.location.search)
-      ? (new URLSearchParams(ownProps.location.search)).get('preview') === 'true'
-      : false,
-    loggedIn: !!(personal.login && personal.login.token),
-    login: personal.login,
-    redirectUrl: personal.login.redirectUrl,
     libraryStatus: libraryState,
   }
 }
@@ -97,22 +62,17 @@ export const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setHomeLibrary,
-    getToken,
     getCircStatus,
     setCircStatus,
   }, dispatch)
 }
 
 SettingsContainer.propTypes = {
-  loggedIn: PropTypes.bool,
-  login: PropTypes.object,
-  preview: PropTypes.bool,
   setHomeLibrary: PropTypes.func,
   homeIndex: PropTypes.number,
   setCircStatus: PropTypes.func,
   getCircStatus: PropTypes.func,
   libraryStatus: PropTypes.string,
-  getToken: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

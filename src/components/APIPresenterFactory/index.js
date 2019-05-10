@@ -15,7 +15,7 @@ class APIPresenterFactory extends Component {
     switch (this.props.status) {
       case statuses.NOT_FETCHED:
       case statuses.FETCHING:
-        return <Loading />
+        return this.props.hideLoading ? null : <Loading />
       case statuses.SUCCESS:
         return this.props.presenter(this.props.props)
       case statuses.NOT_FOUND:
@@ -37,6 +37,7 @@ APIPresenterFactory.propTypes = {
     PropTypes.array]).isRequired,
   // The error class to show if you don't want the default.
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  hideLoading: PropTypes.bool,
 }
 
 export default withErrorBoundary(APIPresenterFactory)

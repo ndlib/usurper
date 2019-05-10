@@ -1,32 +1,27 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
-import { ContentfulPageContainer } from 'components/Contentful/SecurePage'
+import { shallow } from 'enzyme'
+
+import ContentfulPage, { ContentfulPageContainer } from 'components/Contentful/SecurePage'
 import PagePresenter from 'components/Contentful/Page/presenter'
 import APIPresenterFactory from 'components/APIPresenterFactory'
 import * as statuses from 'constants/APIStatuses'
-import configureStore from 'redux-mock-store'
-
-const setup = (props) => {
-  const store = configureStore()(props)
-  return mount(
-    <Provider store={store}>
-      <ContentfulPageContainer {...props} />
-    </Provider>)
-}
 
 let enzymeWrapper
 let props
+
+const setup = (props) => {
+  return shallow(<ContentfulPageContainer {...props} />)
+}
+
 describe('components/Contentful/SecurePage/Container', () => {
   describe('when logged in', () => {
     beforeEach(() => {
       props = {
-        isLoggedIn: true,
+        login: { state: statuses.SUCCESS, token: 'token' },
         cfPageEntry: { status: statuses.NOT_FETCHED },
-        fetchPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         location: { search: null },
-        personal: { login: { token: 'token' } },
+        fetchPage: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -55,13 +50,11 @@ describe('components/Contentful/SecurePage/Container', () => {
   describe('when not logged in', () => {
     beforeEach(() => {
       props = {
-        isLoggedIn: false,
-        loginLoc: '/loc',
+        login: { redirectUrl: 'newurl' },
         cfPageEntry: { status: statuses.NOT_FETCHED },
-        fetchPage: jest.fn(),
         match: { params: { id: 'fake page slug' } },
         location: { search: null },
-        personal: { login: { redirectUrl: 'newurl' } },
+        fetchPage: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -84,9 +77,5 @@ describe('components/Contentful/SecurePage/Container', () => {
     it('does not call fetch page', () => {
       expect(props.fetchPage.mock.calls.length).toBe(0)
     })
-
-    // it('calls the redirect function', () => {
-    //   expect(window.location).toBe(props.personal.login.redirectUrl)
-    // })
   })
 })

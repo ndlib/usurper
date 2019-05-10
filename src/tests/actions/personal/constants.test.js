@@ -17,7 +17,7 @@ describe('personal receive action creator', () => {
       state: 'state',
     }
 
-    expect(constants.recievePersonal('test', 'state', 'payload')).toMatchObject(expectedAction)
+    expect(constants.receivePersonal('test', 'state', 'payload')).toMatchObject(expectedAction)
   })
 })
 

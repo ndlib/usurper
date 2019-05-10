@@ -1,5 +1,5 @@
 import Config from 'shared/Configuration'
-import getResources, { handleResources } from 'actions/personal/loanResources'
+import getResources, { getUser, getHistorical, handleResources } from 'actions/personal/loanResources'
 import configureMockStore from 'redux-mock-store'
 import nock from 'nock'
 import thunk from 'redux-thunk'
@@ -47,17 +47,37 @@ describe('resources fetch async action creator', () => {
     spy.mockRestore()
   })
 
-  it('should first create fetching actions', () => {
+  it('should create action to fetch user when calling getUser', () => {
+    const store = mockStore(state)
+    store.dispatch(getUser())
+
+    const expectedAction = {
+      type: constants.REQUEST_PERSONAL,
+      requestType: 'user',
+    }
+    expect(store.getActions()).toEqual([ expectedAction ])
+  })
+
+  it('should create action to fetch historical items when calling getHistorical', () => {
+    const store = mockStore(state)
+    store.dispatch(getHistorical())
+
+    const expectedAction = {
+      type: constants.REQUEST_PERSONAL,
+      requestType: 'historical',
+    }
+    expect(store.getActions()).toEqual([ expectedAction ])
+  })
+
+  it('should create fetching actions for getResources', () => {
 
     const store = mockStore(state)
     store.dispatch(getResources())
 
     let expectedAction = {
       type: constants.REQUEST_PERSONAL,
-      requestType: 'user',
+      requestType: 'alephPendingNdu',
     }
-    expect(store.getActions()).toContainEqual(expectedAction)
-    expectedAction.requestType = 'alephPendingNdu'
     expect(store.getActions()).toContainEqual(expectedAction)
     expectedAction.requestType = 'alephPendingHcc'
     expect(store.getActions()).toContainEqual(expectedAction)
@@ -69,21 +89,16 @@ describe('resources fetch async action creator', () => {
     expect(store.getActions()).toContainEqual(expectedAction)
     expectedAction.requestType = 'illPending'
     expect(store.getActions()).toContainEqual(expectedAction)
-    expectedAction.requestType = 'historical'
-    expect(store.getActions()).toContainEqual(expectedAction)
-  })
 
-  it('should call startRequest eight times', () => {
-    const store = mockStore(state)
-    store.dispatch(getResources())
-
-    expect(spy.mock.calls.length).toBe(8)
+    expect(spy.mock.calls.length).toBe(6)
   })
 
   it('should call startRequest with different params', () => {
     const spy = jest.spyOn(constants, 'startRequest')
     const store = mockStore(state)
+    store.dispatch(getUser())
     store.dispatch(getResources())
+    store.dispatch(getHistorical())
 
     expect(spy).toHaveBeenCalledWith(url + '/aleph/user', 'GET', any(), any(), any(), any())
 
@@ -103,7 +118,7 @@ describe('handleResources', () => {
   describe('on checked out items', () => {
     const data = [ { key: 'book' } ]
 
-    it('should create a recievePersonal action with checked out items', () => {
+    it('should create a receivePersonal action with checked out items', () => {
       const store = mockStore({})
       handleResources('aleph', 'borrowed', 'Ndu')(store.dispatch, data)
       handleResources('aleph', 'borrowed', 'Hcc')(store.dispatch, data)
@@ -111,7 +126,7 @@ describe('handleResources', () => {
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
         requestType: 'alephHaveNdu',
-        payload: { checkedOut: data },
+        payload: { items: data },
         state: statuses.SUCCESS,
       }
 
@@ -124,7 +139,7 @@ describe('handleResources', () => {
   describe('on pending items', () => {
     const data = [ { key: 'book' } ]
 
-    it('should create a recievePersonal action with pending items', () => {
+    it('should create a receivePersonal action with pending items', () => {
       const store = mockStore({})
       handleResources('aleph', 'pending', 'Ndu')(store.dispatch, data)
       handleResources('aleph', 'pending', 'Hcc')(store.dispatch, data)
@@ -132,7 +147,7 @@ describe('handleResources', () => {
       let expectedAction = {
         type: constants.RECEIVE_PERSONAL,
         requestType: 'alephPendingNdu',
-        payload: { pending: data },
+        payload: { items: data },
         state: statuses.SUCCESS,
       }
 

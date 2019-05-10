@@ -5,9 +5,8 @@ import thunk from 'redux-thunk'
 
 import * as statuses from 'constants/APIStatuses'
 import * as constants from 'actions/personal/constants'
-import { mapStateToProps, mapDispatchToProps } from 'components/Account/Courses'
+import CoursesComponent, { CoursesContainer, mapStateToProps, mapDispatchToProps } from 'components/Account/Courses'
 import CoursesPresenter from 'components/Account/Courses/presenter'
-import CoursesComponent, { CoursesContainer } from 'components/Account/Courses'
 import Link from 'components/Interactive/Link'
 import Loading from 'components/Messages/Loading'
 
@@ -60,7 +59,7 @@ describe('components/Account/Courses', () => {
       })
 
       it('renders Courses Presenter', () => {
-        const have = <CoursesPresenter preview={props.preview} courses={props.courses.courses} />
+        const have = <CoursesPresenter courses={props.courses.courseData} />
         expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
       })
 
@@ -81,9 +80,9 @@ describe('components/Account/Courses', () => {
             login: {
               state: statuses.FETCHING,
             },
-          },
-          courses: {
-            state: statuses.NOT_FETCHED,
+            courses: {
+              state: statuses.NOT_FETCHED,
+            },
           },
         }
         enzymeWrapper = setup(ownProps, state)
@@ -104,53 +103,6 @@ describe('components/Account/Courses', () => {
           loggedIn: true,
         })
         expect(store.getActions()).toContainEqual(expectedAction)
-      })
-    })
-
-    describe('not logged in', () => {
-      const realConsoleError = console.error
-
-      beforeAll(() => {
-        // Super hacky. Basically, this stops jsdom from complaining in the console when we mock window.location.
-        console.error = jest.fn().mockImplementation((msg) => {
-          if (msg.startsWith('Error: Not implemented: navigation')) {
-            return
-          }
-          realConsoleError(msg)
-        })
-      })
-
-      afterAll(() => {
-        console.error = realConsoleError
-      })
-
-      beforeEach(() => {
-        props = {
-          linkOnly: false,
-          preview: false,
-          loggedIn: false,
-          login: {
-            redirectUrl: 'http://fake.redirect.url',
-            state: statuses.SUCCESS,
-          },
-          courses: {
-            state: statuses.NOT_FETCHED,
-          },
-          dispatch: jest.fn(),
-        }
-        enzymeWrapper = setup(props)
-      })
-
-      it('should redirect to login page', () => {
-        // Mock the redirect function so we can spy on it
-        window.location.replace = jest.fn()
-
-        let instance = enzymeWrapper.instance()
-        spy = jest.spyOn(instance, 'checkLoggedIn')
-        instance.checkLoggedIn(instance.props)
-
-        // Check that the redirect was called with the same url we passed in to the object
-        expect(window.location.replace).toHaveBeenCalledWith(props.login.redirectUrl)
       })
     })
   })
@@ -185,92 +137,59 @@ describe('components/Account/Courses', () => {
     })
   })
 
-  describe('while loading', () => {
-    beforeEach(() => {
-      props = {
-        linkOnly: false,
-        preview: true,
-        loggedIn: false,
-        login: {
-          state: statuses.FETCHING,
+  describe('mapStateToProps', () => {
+    describe('with correct data', () => {
+      const state = {
+        personal: {
+          login: {
+            state: statuses.SUCCESS,
+            token: 'fake token',
+          },
+          courses: ['courses'],
         },
-        courses: {
-          state: statuses.NOT_FETCHED,
+      }
+
+      const ownProp = {
+        location: {
+          search: {
+            preview: 'true',
+          },
         },
         dispatch: jest.fn(),
       }
-      enzymeWrapper = setup(props)
+
+      it('should identify user as logged in', () => {
+        expect(mapStateToProps(state, ownProp).loggedIn).toBe(true)
+      })
+
+      it('should have courses', () => {
+        expect(mapStateToProps(state, ownProp).courses).toEqual(state.personal.courses)
+      })
     })
 
-    it('does not render Courses Presenter', () => {
-      const have = <CoursesPresenter />
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(false)
-    })
-
-    it('renders Loading component', () => {
-      const have = <Loading />
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-    })
-  })
-})
-
-describe('mapStateToProps', () => {
-  describe('with correct data', () => {
-    let state = {
-      personal: {
-        login: {
-          state: statuses.SUCCESS,
-          token: 'fake token',
+    describe('with incorrect data', () => {
+      const state = {
+        personal: {
+          login: {
+            state: statuses.NOT_FOUND,
+          },
+          courses: {
+            state: statuses.NOT_FOUND,
+          },
         },
-        courses: ['courses'],
-      },
-    }
+      }
 
-    let ownProp = {
-      location: {
-        search: {
-          preview: 'true',
-        },
-      },
-      dispatch: jest.fn(),
-    }
+      const ownProp = {
+        dispatch: jest.fn(),
+      }
 
-    it('should identify user as logged in', () => {
-      expect(mapStateToProps(state, ownProp).loggedIn).toBe(true)
-    })
+      it('should not identify user as logged in', () => {
+        expect(mapStateToProps(state, ownProp).loggedIn).toBe(false)
+      })
 
-    it('should use preview content', () => {
-      expect(mapStateToProps(state, ownProp).preview).toBe(true)
-    })
-
-    it('should have courses', () => {
-      expect(mapStateToProps(state, ownProp).courses).toEqual(state.personal.courses)
-    })
-  })
-
-  describe('with incorrect data', () => {
-    let state = {
-      personal: {
-        login: {
-          state: statuses.NOT_FOUND,
-        },
-      },
-    }
-
-    let ownProp = {
-      dispatch: jest.fn(),
-    }
-
-    it('should not identify user as logged in', () => {
-      expect(mapStateToProps(state, ownProp).loggedIn).toBe(false)
-    })
-
-    it('should not use preview content', () => {
-      expect(mapStateToProps(state, ownProp).preview).toBe(false)
-    })
-
-    it('should not have courses', () => {
-      expect(mapStateToProps(state, ownProp).courses.courses).toBeFalsy()
+      it('should not have courses', () => {
+        expect(mapStateToProps(state, ownProp).courses.courseData).toBeFalsy()
+      })
     })
   })
 })

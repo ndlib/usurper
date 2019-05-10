@@ -11,7 +11,7 @@ const loginUrl = Config.viceroyAPI + '/token'
 const handleToken = (dispatch, data) => {
   if (data.redirect) {
     dispatch(
-      states.recievePersonal(
+      states.receivePersonal(
         'login',
         statuses.SUCCESS,
         { redirectUrl: data.redirect }
@@ -19,7 +19,7 @@ const handleToken = (dispatch, data) => {
     )
   } else if (data.jwt) {
     dispatch(
-      states.recievePersonal(
+      states.receivePersonal(
         'login',
         statuses.SUCCESS,
         { token: data.jwt, redirectUrl: null }
@@ -43,7 +43,7 @@ const getToken = () => {
     })
       .then(json => handleToken(dispatch, json))
       .catch(e => {
-        dispatch(states.recievePersonal('login', statuses.ERROR, e.message))
+        dispatch(states.receivePersonal('login', statuses.ERROR, e.message))
       })
   }
 }
