@@ -1,5 +1,33 @@
 # Change Log
 
+## [v2019.7](https://github.com/ndlib/usurper/tree/v2019.7) "Big Kahuna"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.3...v2019.7)
+
+### Note
+The change log for this update includes changes that were deployed previously.
+
+### Accessibility
+- Updated home page headers. [#599](https://github.com/ndlib/usurper/pull/599)
+- Fixed inconsistent spacing issues. [#600](https://github.com/ndlib/usurper/pull/600)
+
+### Bug Fixes
+- Fixed Databases A-Z access information sometimes missing. [View Changes](https://github.com/ndlib/usurper/commit/c8bdb755ea5d2be7e198ed07553a35cbd7eaab2c)
+- Fixed deeply-linked pages creating excessively large responses. [View Changes](https://github.com/ndlib/usurper/commit/e338bf6ff570460c3f6ffee38d3a86608847c928)
+- Fixed Advanced Search truncating certain search terms. [View Changes](https://github.com/ndlib/usurper/commit/f5477e4f4025d9e15d9e00a639cf4bf33d64ef3b)
+
+
+### Other
+- Added checkout history opt-in (beta) [View Changes](https://github.com/ndlib/usurper/commit/267b3b09eff5f0256546eff4f34511acb1b78df4)
+- Updated Study & Media Rooms image.
+- Merged contact page into Hours page. [View Changes](https://github.com/ndlib/usurper/commit/7b5a33fecaddc28497459c201735fe28f698fa29)
+- Improved Google Events information. [View Changes](https://github.com/ndlib/usurper/commit/17b466173239aa8ee5aabdc3d559027ab202d11f)
+- Improved internal build and deployment processes.
+- Updated sitemap and implemented continuous automated update process. [View Changes](https://github.com/ndlib/usurper/commit/145435ed4ac7a68db0477b6b874f84d033bd286a)
+- Added link on select subpages back up to parent page. [View Changes](https://github.com/ndlib/usurper/commit/16ff8b1949717c75d6d873b1e3e6643145632705)
+- Added related resources to Databases A-Z page. [View Changes](https://github.com/ndlib/usurper/commit/fb3d4bc816e4f9b7d601139cbe0e99095071f645)
+- Refactored a lot of code and added additional unit tests.
+- *Dark Feature*: Added favorites functionality [View Changes](https://github.com/ndlib/usurper/commit/31dca9906fa68cd6cd54f96a9bd74e364e8ec579)
+
 ## [v2019.3](https://github.com/ndlib/usurper/tree/v2019.3) “Big Freeze"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2018.31...v2019.3)
 
