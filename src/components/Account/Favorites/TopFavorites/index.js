@@ -24,18 +24,18 @@ class TopFavorites extends Component {
     }
 
     return (
-      <div className='row'>
+      <div className='favorites-column'>
         <span className='subsection-title'>{title}</span>
         <div className='linksgroup'>
           { items.map((obj) => (
-            <div key={obj.key}>
+            <React.Fragment key={obj.key}>
               <span className='link-arrow' />
               <p>
                 <Link to={obj.url ? obj.url : `/${obj.key}`} noTarget={!obj.url} aria-label={obj.title} className='item-title favorite-link'>
                   {obj.title}
                 </Link>
               </p>
-            </div>
+            </React.Fragment>
           ))}
         </div>
       </div>
@@ -53,8 +53,10 @@ class TopFavorites extends Component {
           </Link>
         </h3>
         <div className='section-box'>
-          { this.favoritesSection('My Databases', this.props.favorites[KIND.databases].items || []) }
-          { this.favoritesSection('My Subjects', this.props.favorites[KIND.subjects].items || []) }
+          <div className='favorites-column-container'>
+            { this.favoritesSection('My Databases', this.props.favorites[KIND.databases].items || []) }
+            { this.favoritesSection('My Subjects', this.props.favorites[KIND.subjects].items || []) }
+          </div>
           <div className='row'>
             <Link to={favoritesPath} className='viewAll viewMore'>
               View or Modify Favorites
