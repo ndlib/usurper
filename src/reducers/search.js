@@ -13,7 +13,7 @@ import {
 } from 'actions/search.js'
 import { CF_RECEIVE_PAGE } from 'actions/contentful/page'
 import * as statuses from 'constants/APIStatuses'
-import { searchOptions } from 'constants/searchOptions'
+import { searchOptions, DEFAULT } from 'constants/searchOptions'
 
 let localSearchPref
 let localStorageIsAvailable = false
@@ -46,7 +46,7 @@ const setSearchType = (newState) => {
   }
 
   // Fallback default
-  newState.searchType = 'ONESEARCH'
+  newState.searchType = DEFAULT
 }
 
 const defaultState = () => {
@@ -89,19 +89,30 @@ export default (
     case CLOSE_ADVANCED_SEARCH:
       return Object.assign({}, state, { advancedSearch: false })
     case SAVE_SEARCH_PREFERENCE:
-      if (localStorageIsAvailable) {
-        localStorage.setItem('searchPreference', JSON.stringify(action.pref))
+      if (!action.pref) {
+        return Object.assign(
+          {},
+          state,
+          { hasPref: false, usePref: false, pref: null }
+        )
       }
-
-      return Object.assign(
+      const newState = Object.assign(
         {},
         state,
         {
+          sessionPref: action.pref.searchType,
           hasPref: true,
           usePref: true,
           pref: action.pref,
         }
       )
+      setSearchType(newState)
+
+      if (localStorageIsAvailable) {
+        localStorage.setItem('searchPreference', JSON.stringify(action.pref))
+      }
+
+      return newState
     case CLEAR_SEARCH_PREFERENCE:
 
       if (localStorageIsAvailable) {

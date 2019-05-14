@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import PageWrapper from './presenter.js'
 import { closeSearchBox } from 'actions/search.js'
 import { closeMenus, fetchNavigation } from 'actions/menu.js'
+
+const clickOnPage = () => {
+  return (dispatch, getState) => {
+    const state = getState()
+    if (state.search.searchBoxOpen) {
+      dispatch(closeSearchBox())
+    }
+    if (state.menus.menuId || state.menus.openMenuId) {
+      dispatch(closeMenus())
+    }
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -15,15 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    clickOnPage: () => {
-      dispatch(closeSearchBox())
-      dispatch(closeMenus())
-    },
-    fetchNavigation: () => {
-      dispatch(fetchNavigation())
-    },
-  }
+  return bindActionCreators({ clickOnPage, fetchNavigation }, dispatch)
 }
 
 class PageWrapperContainer extends Component {

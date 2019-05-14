@@ -11,6 +11,7 @@ import DatabaseList,
 } from 'components/DatabaseList/index.js'
 import PageNotFound from 'components/Messages/NotFound'
 import * as statuses from 'constants/APIStatuses'
+import { KIND as FAVORITES_KIND, REQUEST_FAVORITES } from 'actions/personal/favorites'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -105,6 +106,13 @@ describe('components/DatabaseList/index.js', () => {
             preview: true,
           },
         },
+        getToken: jest.fn(),
+        getFavorites: jest.fn(),
+        login: {
+          state: statuses.SUCCESS,
+          token: 'whatever',
+        },
+        favoritesStatus: statuses.NOT_FETCHED,
       }
       enzymeWrapper = setup(props)
     })
@@ -147,6 +155,7 @@ describe('components/DatabaseList/index.js', () => {
             id: 'a',
           },
         },
+        getToken: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -172,6 +181,17 @@ describe('components/DatabaseList/index.js', () => {
       beforeEach(() => {
         const state = {
           cfDatabaseLetter: validCfDatabaseLetter,
+          personal: {
+            login: {
+              state: statuses.SUCCESS,
+              token: 'whatever',
+            },
+          },
+          favorites: {
+            [FAVORITES_KIND.databases]: {
+              state: statuses.NOT_FETCHED,
+            },
+          },
         }
         const ownProps = {
           location: {
@@ -250,6 +270,15 @@ describe('components/DatabaseList/index.js', () => {
         // Should only include items that match the search term
         expect(enzymeWrapper.state().filteredList).toEqual([ validItem3 ])
       })
+
+      it('should fetch database favorites if not already fetched', () => {
+        expect(store.getActions()).toEqual(expect.arrayContaining([
+          {
+            kind: FAVORITES_KIND.databases,
+            type: REQUEST_FAVORITES,
+          },
+        ]))
+      })
     })
 
     describe('mapStateToProps', () => {
@@ -257,6 +286,18 @@ describe('components/DatabaseList/index.js', () => {
       beforeEach(() => {
         state = {
           cfDatabaseLetter: validCfDatabaseLetter,
+          personal: {
+            login: {
+              state: statuses.SUCCESS,
+              token: 'whatever',
+            },
+          },
+          favorites: {
+            [FAVORITES_KIND.databases]: {
+              state: statuses.SUCCESS,
+              items: [],
+            },
+          },
         }
       })
 
@@ -303,6 +344,7 @@ describe('components/DatabaseList/index.js', () => {
               id: 'a',
             },
           },
+          getToken: jest.fn(),
         }
         let tempState
         let result
@@ -313,6 +355,8 @@ describe('components/DatabaseList/index.js', () => {
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
           },
+          personal: state.personal,
+          favorites: state.favorites,
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.FETCHING)
@@ -323,6 +367,8 @@ describe('components/DatabaseList/index.js', () => {
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
           },
+          personal: state.personal,
+          favorites: state.favorites,
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.FETCHING)
@@ -335,6 +381,8 @@ describe('components/DatabaseList/index.js', () => {
             d: { status: statuses.FETCHING, data: [] },
             e: { status: statuses.NOT_FETCHED, data: [] },
           },
+          personal: state.personal,
+          favorites: state.favorites,
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.ERROR)
@@ -344,6 +392,8 @@ describe('components/DatabaseList/index.js', () => {
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.NOT_FOUND, data: [] },
           },
+          personal: state.personal,
+          favorites: state.favorites,
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.SUCCESS)
@@ -382,6 +432,7 @@ describe('components/DatabaseList/index.js', () => {
             preview: true,
           },
         },
+        getToken: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })

@@ -4,7 +4,7 @@ import Link from 'components/Interactive/Link'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
 const PageLink = (props) => {
-  if (props.cfPage) {
+  if (props.cfPage && props.cfPage.fields) {
     const link = props.cfPage.fields.slug ? props.cfPage.fields.slug : props.cfPage.fields.url
 
     return <Link

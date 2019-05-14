@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from '../Link'
+import Link from 'components/Interactive/Link'
 import Config from 'shared/Configuration'
 
 const ServiceNowLink = ({ children, isWebContent }) => {

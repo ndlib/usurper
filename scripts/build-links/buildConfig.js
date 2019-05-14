@@ -5,6 +5,10 @@ const fs = require('fs');
 const findExport = require('./lib/findExport');
 const getStage = require('./lib/getStage');
 
+const RED = '\033[0;31m'
+const GREEN = '\033[0;32m'
+const NC = '\033[0m' // No Color
+
 let apiList = [
   'classesAPI',
   'monarchLibguides',
@@ -24,6 +28,7 @@ const psList = [
   'contentfulCdnToken',
   'contentfulSpace',
   'contentfulEnvironment',
+  'favoritesEnabled',
 ]
 
 let handler = async () => {
@@ -48,7 +53,7 @@ let handler = async () => {
         const data = await ssm.getParameter(params).promise()
         psOutputs[psList[j]] = data.Parameter.Value
       } catch(err) {
-        console.log(err, err.message)
+        console.error(`${RED}Unable to read ${psList[j]} from parameter store.${NC}`)
       }
     }
 
@@ -59,12 +64,18 @@ let handler = async () => {
         stream.write("  " + apiList[i] + ": '" + outputs[apiList[i]] + "',\n")
       }
       for(let i = 0; i < psList.length; i++) {
-        stream.write("  " + psList[i] + ": '" + psOutputs[psList[i]] + "',\n")
+        if (psOutputs[psList[i]]) {
+          const isBool = ['true', 'false'].includes(psOutputs[psList[i]].toLowerCase())
+          const value = isBool ? (psOutputs[psList[i]].toLowerCase() === 'true') : `'${psOutputs[psList[i]]}'`
+          stream.write(`  ${psList[i]}: ${value},\n`)
+        }
       }
       stream.write("  version: '" + stage + "',\n")
       stream.write("}\n")
       stream.end()
     })
+
+    console.log(`Build config complete.`)
   } catch (e) {
     console.log(e)
   }

@@ -17,6 +17,9 @@ const genConfig = () => {
     gcseKey: parameters.gcseKey,
     gcseCx: parameters.gcseCx,
     onesearchBaseURL: parameters.onesearch,
+    features: {
+      favoritesEnabled: parameters.favoritesEnabled || false,
+    },
   }
 
   const config = {
@@ -35,6 +38,9 @@ const genConfig = () => {
     gcseKey:  process.env.GCSE_KEY ? process.env.GCSE_KEY : defaultConfig.gcseKey,
     gcseCx:  process.env.GCSE_CX ? process.env.GCSE_CX : defaultConfig.gcseCx,
     onesearchBaseURL: process.env.ONESEARCH_BASE_URL ? process.env.ONESEARCH_BASE_URL : defaultConfig.onesearchBaseURL,
+    features: {
+      favoritesEnabled: process.env.ENABLE_FAVORITES ? process.env.ENABLE_FAVORITES : defaultConfig.features.favoritesEnabled,
+    },
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }

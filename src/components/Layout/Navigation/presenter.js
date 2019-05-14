@@ -72,6 +72,7 @@ const Navigation = (props) => {
           <MobileMenu
             open={props.menus.menuId === MOBILE_MENU}
             loggedIn={props.loggedIn}
+            loginUrl={props.loginUrl}
             visible={windowWidth <= mobileWidth}
             onClick={props.handleMobileClick}
             onKeyDown={props.handleMobileMenuKeyDown}
@@ -117,6 +118,7 @@ Navigation.propTypes = {
   handleMobileMenuKeyDown: PropTypes.func.isRequired,
   handleMobileClick: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool,
+  loginUrl: PropTypes.string,
   isDrawerOpen: PropTypes.bool.isRequired,
 }
 export default Navigation

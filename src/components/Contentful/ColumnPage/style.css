@@ -31,29 +31,42 @@
 	background: #ccc;
 }
 */
-.group h2 {
-
-  background-image: url('/static/images/jesus.2.png');
+.group h1, .group h2, .group h3 {
+  background-image: url('../../../static/images/jesus.2.png');
     background-repeat: no-repeat;
     background-position-x: right;
+    background-position-y: -15px;
     background-color: #072242;
 	color: #fff;
-
 	width: 100%;
-
-		-webkit-column-break-inside: avoid;
-          page-break-inside: avoid;
-               break-inside: avoid;
-    padding: 20px;
-    text-transform: uppercase;
-    line-height: 1em;
-    font-size: 32px;
-    max-width: 100%;
-    margin-bottom: 0;
+	-webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+                 break-inside: avoid;
+  padding: 20px;
+  text-transform: uppercase;
+  line-height: 1em;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+.group h2 {
+  padding: 16px;
+}
+.group h3 {
+  padding: 12px;
 }
 
-.group h2 span {
+.group h1 span, .group h2 span, .group h3 span {
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+.group h1 a, .group h2 a, .group h3 a,
+.group h1 span.link-like, .group h2 span.link-like, .group h3 span.link-like {
+  color: #fff;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-decoration: underline;
+  text-transform: none;
+  text-shadow: none;
 }
 
 .group p {

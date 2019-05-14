@@ -1,4 +1,5 @@
 // Container component for a Page content type from Contentful
+import typy from 'typy'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -8,9 +9,12 @@ import InternalLink from 'components/Contentful/InternalLink'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import Loading from 'components/Messages/Loading'
+import FavoriteIcon from 'components/Account/Favorites/FavoriteIcon'
 
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 import { fetchSubjects } from 'actions/contentful/subjects'
+import { getFavorites, KIND } from 'actions/personal/favorites'
 
 export class SubjectListContainer extends Component {
   constructor (props) {
@@ -24,6 +28,9 @@ export class SubjectListContainer extends Component {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
     if (this.props.subjectsStatus === statuses.NOT_FETCHED) {
       this.props.fetchSubjects(preview)
+    }
+    if (this.props.loggedIn && this.props.favoritesStatus === statuses.NOT_FETCHED) {
+      this.props.getFavorites(KIND.subjects)
     }
   }
 
@@ -43,9 +50,13 @@ export class SubjectListContainer extends Component {
         <div key={'column_' + i} className={'column col-xs-12 col-sm-' + Math.floor(12 / columnCount)}>
           {
             this.props.subjects.slice(maxPerColumn * i, maxPerColumn * (i + 1)).map((entry) => {
+              const isFavorited = !!(this.props.favorites.find((fav) => {
+                return entry.key === fav.key
+              }))
               return (
-                <p key={entry.sys.id}>
-                  <InternalLink cfEntry={entry} />
+                <p key={entry.key}>
+                  <FavoriteIcon kind={KIND.subjects} data={[ entry ]} isFavorited={isFavorited} />
+                  <InternalLink cfEntry={entry.cfEntry} />
                 </p>
               )
             }, this)
@@ -77,38 +88,47 @@ export class SubjectListContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { cfSubjects } = state
+  const { cfSubjects, personal, favorites } = state
 
   let subjects = []
   if (cfSubjects.status === statuses.SUCCESS) {
-    // alphabetical sort
-    subjects = Object.assign([], cfSubjects.data).sort((a, b) => {
-      const left = a.linkText
-      const right = b.linkText
-      if (left < right) {
-        return -1
-      } else if (right < left) {
-        return 1
-      }
-      return 0
-    })
+    const contentfulSubjects = typy(cfSubjects, 'data.length').isTruthy
+      ? cfSubjects.data.map((entry) => ({
+        title: entry.linkText,
+        key: entry.sys.id,
+        url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
+        cfEntry: entry,
+      }))
+      : []
+
+    subjects = helper.sortList(Object.assign([], contentfulSubjects), 'title', 'asc')
   }
+
+  const favoritesStatus = favorites[KIND.subjects].state
+  const subjectFavorites = favoritesStatus === statuses.SUCCESS ? favorites[KIND.subjects].items : []
 
   return {
     subjects: subjects,
     subjectsStatus: cfSubjects.status,
+    favorites: subjectFavorites,
+    favoritesStatus: favoritesStatus,
+    loggedIn: !!(personal.login && personal.login.token),
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchSubjects }, dispatch)
+  return bindActionCreators({ fetchSubjects, getFavorites }, dispatch)
 }
 
 SubjectListContainer.propTypes = {
   subjects: PropTypes.array.isRequired,
   subjectsStatus: PropTypes.string.isRequired,
   fetchSubjects: PropTypes.func.isRequired,
+  getFavorites: PropTypes.func.isRequired,
   location: PropTypes.object,
+  favorites: PropTypes.array.isRequired,
+  favoritesStatus: PropTypes.string.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubjectListContainer)

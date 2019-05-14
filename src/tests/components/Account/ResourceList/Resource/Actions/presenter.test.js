@@ -6,6 +6,7 @@ import ExportButton from 'components/Account/ResourceList/ListActions/ExportButt
 import DeleteButton from 'components/Account/ResourceList/ListActions/DeleteButton'
 import Link from 'components/Interactive/Link'
 import InlineLoading from 'components/Messages/InlineLoading'
+import UpdateStatus from 'components/Messages/UpdateStatus'
 
 import typeConstants from 'components/Account/ResourceList/constants'
 
@@ -128,7 +129,9 @@ describe('components/Account/ResourceList/Resource/Actions/presenter.js', () => 
       })
 
       it('should show renew message', () => {
-        expect(enzymeWrapper.findWhere((el) => el.text() === props.renewMessage).exists()).toBe(true)
+        const find = <UpdateStatus status={statuses.SUCCESS} text={props.renewMessage} />
+        expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+        expect(enzymeWrapper.find(UpdateStatus)).toHaveLength(1)
       })
 
       it('should not show renew button', () => {

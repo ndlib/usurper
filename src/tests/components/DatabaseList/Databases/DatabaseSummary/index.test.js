@@ -1,78 +1,69 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary'
-import SummaryLink from 'components/DatabaseList/Databases/DatabaseSummary/SummaryLink'
-import Link from 'components/Interactive/Link'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
 
-const setup = (props) => {
-  return shallow(<DatabaseSummary {...props} />)
+import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary'
+import Presenter from 'components/DatabaseList/Databases/DatabaseSummary/presenter.js'
+import { KIND } from 'actions/personal/favorites'
+
+let enzymeWrapper
+let store
+
+const middlewares = [ thunk ]
+const mockStore = configureMockStore(middlewares)
+
+const setup = (state, ownProps) => {
+  store = mockStore(state)
+  return shallow(<DatabaseSummary store={store} {...ownProps} />)
 }
 
-let props
-let enzymeWrapper
 describe('components/DatabaseList/Databases/DatabaseSummary', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })
 
-  describe('with item purl link', () => {
-    beforeEach(() => {
-      props = {
-        item: {
-          sys: {
-            id: 'hgsadpvzcxnup',
-          },
-          fields: {
-            title: 'Database of Epic Research and Cool Things',
-            purl: 'sample.link/path',
-          },
+  beforeEach(() => {
+    const state = {
+      favorites: {
+        [KIND.databases]: {
+          items: [
+            {
+              key: 'fhqwhgads_link_0',
+              title: 'Come on fhqwhgads',
+              url: 'everybody.to/theLimit',
+            },
+          ],
         },
-      }
-      enzymeWrapper = setup(props)
-    })
-
-    it('should display a heading with the database\'s title', () => {
-      const have = <h2>{props.item.fields.title}</h2>
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-    })
-
-    it('should render a link to the database\'s page', () => {
-      const found = enzymeWrapper.find(Link).filterWhere(l => l.props().to.endsWith(props.item.sys.id))
-      expect(found.exists()).toBe(true)
-    })
+      },
+    }
+    const props = {
+      item: {
+        sys: {
+          id: 'fhqwhgads',
+        },
+        fields: {
+          title: 'Come on fhqwhgads',
+          urls: [
+            {
+              url: 'i.said',
+              notes: 'come on fhqwhgads',
+              title: 'I said, come on fhqwhgads',
+            },
+            {
+              url: 'everybody.to/theLimit',
+              notes: 'everybody to the limit',
+              title: 'everybody, come on, fhqwhgads',
+            },
+          ]
+        },
+      },
+    }
+    enzymeWrapper = setup(state, props)
   })
 
-  describe('with multiple urls', () => {
-    beforeEach(() => {
-      props = {
-        item: {
-          sys: {
-            id: 'zvdspahgpetwqt',
-          },
-          fields: {
-            title: 'Qwertyuiop',
-            urls: [
-              {
-                url: '/goHere',
-                title: 'Travel',
-              },
-              {
-                url: '/goHereInstead',
-                title: 'Fly',
-              },
-            ],
-          },
-        },
-      }
-      enzymeWrapper = setup(props)
-    })
-
-    it('should render a link to the database\'s page', () => {
-      expect(props.item.fields.urls.length).toBeGreaterThan(0)
-      props.item.fields.urls.forEach((item) => {
-        const have = <SummaryLink link={item} />
-        expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-      })
-    })
+  it('should render a presenter', () => {
+    const found = enzymeWrapper.dive().dive().find(Presenter)
+    expect(found.exists()).toBe(true)
   })
 })

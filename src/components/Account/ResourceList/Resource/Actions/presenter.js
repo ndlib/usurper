@@ -7,12 +7,13 @@ import DeleteButton from '../../ListActions/DeleteButton'
 import Link from 'components/Interactive/Link'
 import * as statuses from 'constants/APIStatuses'
 import InlineLoading from 'components/Messages/InlineLoading'
+import UpdateStatus from 'components/Messages/UpdateStatus'
 
 import typeConstants from '../../constants'
 
 const ILLRenew = (item, message) => {
-  if (message && item.transactionNumber) {
-    return <span className='failure'>{message}</span>
+  if (message && item.transactionNumber && item.from === 'ILL') {
+    return <UpdateStatus status={statuses.ERROR} text={message} />
   }
 }
 
@@ -53,8 +54,8 @@ const AlephRenew = (item, canRenew, renewal, onRenewClick, renewMessage) => {
   }
 
   if (renewMessage) {
-    const messageClass = 'status' + (renewal[item.barcode].data.renewStatus === 200 ? ' success' : ' failure')
-    return (<span className={messageClass}>{renewMessage}</span>)
+    const apiStatus = (renewal[item.barcode].data.renewStatus === 200 ? statuses.SUCCESS : statuses.ERROR)
+    return (<UpdateStatus status={apiStatus} text={renewMessage} />)
   } else {
     return (<button onClick={onRenewClick} disabled={!canRenew}>Renew</button>)
   }
@@ -73,7 +74,7 @@ export const hasActions = (item, listType) => {
 const Actions = (props) => {
   const config = typeConstants[props.listType]
   return (
-    <div>
+    <React.Fragment>
       { config.renewButton && (
         AlephRenew(props.item, props.canRenew, props.renewal, props.onRenewClick, props.renewMessage)
       )}
@@ -86,7 +87,7 @@ const Actions = (props) => {
       { config.deleteButton && (
         <DeleteButton items={[props.item]} />
       )}
-    </div>
+    </React.Fragment>
   )
 }
 
@@ -96,6 +97,7 @@ Actions.propTypes = {
       PropTypes.string,
       PropTypes.number,
     ]),
+    from: PropTypes.string,
   }).isRequired,
   onRenewClick: PropTypes.func.isRequired,
   renewal: PropTypes.object,

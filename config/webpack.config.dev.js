@@ -260,7 +260,7 @@ module.exports = {
               // because it was compiled. Thus, we don't want the browser
               // debugger to show the original code. Instead, the code
               // being evaluated would be much more helpful.
-              sourceMaps: false,
+              sourceMaps: true,
             },
           },
           // "postcss" loader applies autoprefixer to our CSS.

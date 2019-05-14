@@ -10,6 +10,9 @@ import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 import PageNotFound from 'components/Messages/NotFound'
 
+import getToken from 'actions/personal/token'
+import { getFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
+
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 // dont allow going to /foo or /1 etc
 const routeValid = (letter) => (letter && letter.length === 1 && alphabet.includes(letter))
@@ -49,6 +52,16 @@ export class DatabaseListContainer extends Component {
     }
 
     this.onFilterChange = this.onFilterChange.bind(this)
+    this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
+  }
+
+  checkFullyLoaded () {
+    if (!this.props.login || this.props.login.state === statuses.NOT_FETCHED) {
+      this.props.getToken()
+    }
+    if (this.props.login && this.props.login.token && this.props.favoritesStatus === statuses.NOT_FETCHED) {
+      this.props.getFavorites(FAVORITES_KIND.databases)
+    }
   }
 
   componentDidMount () {
@@ -59,6 +72,11 @@ export class DatabaseListContainer extends Component {
         this.props.fetchLetter(letter, preview)
       })
     }
+    this.checkFullyLoaded()
+  }
+
+  componentDidUpdate () {
+    this.checkFullyLoaded()
   }
 
   componentWillReceiveProps (nextProps) {
@@ -73,6 +91,7 @@ export class DatabaseListContainer extends Component {
         filteredList: this.filter(this.state.filterValue, nextProps.allDbs),
       })
     }
+    this.checkFullyLoaded(nextProps)
   }
 
   filter (filterValue, list) {
@@ -135,6 +154,8 @@ export class DatabaseListContainer extends Component {
 }
 
 export const mapStateToProps = (state, thisProps) => {
+  const { personal, favorites } = state
+
   // get a status for all letters, either error, fetching or success (not found || success = success)
   const allLettersStatus = (state.cfDatabaseLetter && state.cfDatabaseLetter.a)
     ? Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status)
@@ -156,11 +177,13 @@ export const mapStateToProps = (state, thisProps) => {
     allLettersStatus: allLettersStatus,
     allDbs: allLettersStatus === statuses.SUCCESS ? concatDbs(state.cfDatabaseLetter) : [],
     currentLetter: decodeURIComponent(thisProps.match.params.id),
+    login: personal.login,
+    favoritesStatus: favorites[FAVORITES_KIND.databases].state,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchLetter }, dispatch)
+  return bindActionCreators({ fetchLetter, getToken, getFavorites }, dispatch)
 }
 
 DatabaseListContainer.propTypes = {
@@ -168,6 +191,13 @@ DatabaseListContainer.propTypes = {
   currentLetter: PropTypes.string.isRequired,
   cfDatabaseLetter: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
   allLettersStatus: PropTypes.string.isRequired,
+  getToken: PropTypes.func,
+  getFavorites: PropTypes.func,
+  login: PropTypes.shape({
+    state: PropTypes.string,
+    token: PropTypes.string,
+  }),
+  favoritesStatus: PropTypes.string,
   allDbs: PropTypes.array.isRequired,
   location: PropTypes.shape({
     search: PropTypes.oneOfType([

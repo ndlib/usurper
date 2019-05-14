@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import 'static/css/global.css'
 
 import Link from 'components/Interactive/Link'
 import HomePageHours from 'components/Hours/HomePage'
+import TopSection from './TopSection'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import News from './News'
@@ -13,9 +15,14 @@ import Room from 'static/images/reserveroom.jpg'
 import Tech from 'static/images/tech.jpg'
 import Find from 'static/images/subjects.jpg'
 import OpenGraph from 'components/OpenGraph'
+import { HIDE_HOME_FAVORITES } from 'constants/cookies'
+
+import Config from 'shared/Configuration'
 
 class Home extends Component {
   render () {
+    const cookie = this.props.cookies.get(HIDE_HOME_FAVORITES)
+    const hideFavorites = !!(cookie && cookie == 'true') // eslint-disable-line eqeqeq
     return (
       <div className='Home main'>
         <OpenGraph
@@ -23,7 +30,11 @@ class Home extends Component {
         />
         <PageTitle title='Hesburgh Libraries' hideInPage />
         <SearchProgramaticSet open />
-        <HomePageHours />
+        { Config.features.favoritesEnabled ? (
+          <TopSection {...this.props} hideFavoritesCookie={hideFavorites} />
+        ) : (
+          <HomePageHours />
+        )}
 
         <h2 className='skiplink'>Quicklinks</h2>
         <section className=' services hservices' aria-label='Quicklinks' role='navigation'>
@@ -46,13 +57,18 @@ class Home extends Component {
           </div>
         </section>
         <div className='row news'>
-          <News />
+          <News {...this.props} />
           <span className='col-md-1' />
-          <Events />
+          <Events {...this.props} />
         </div>
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  location: PropTypes.object,
+  cookies: PropTypes.any.isRequired,
 }
 
 export default Home

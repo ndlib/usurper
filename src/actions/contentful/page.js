@@ -79,7 +79,6 @@ export const fetchPage = (page, preview, secure = false, cfType = 'page', includ
       })
       .then(json => dispatch(receivePage(page, json)))
       .catch(response => {
-        console.log('catch response', response)
         dispatch(receiveError(page, response))
       })
   }

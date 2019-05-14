@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'components/Interactive/Link'
-import Config from 'shared/Configuration'
+import UserMenu from '../UserMenu'
 
 const MobileMenu = (props) => {
   const tabIndex = props.open ? '0' : '-1'
@@ -42,17 +42,21 @@ const MobileMenu = (props) => {
             tabIndex={tabIndex}>About</Link>
         </li>
         <li>
-          { props.loggedIn ? (
-            <Link to='/items-requests' tabIndex={tabIndex}>My Account</Link>
-          ) : (
-            <a href={`${Config.viceroyAPI}/login`} className='m'>Login</a>
-          )}
-        </li>
-        <li>
           <Link
             to='/hours'
             tabIndex={tabIndex}>Hours</Link>
         </li>
+        {props.loggedIn ? (
+          <UserMenu format='mobile' />
+        ) : (
+          <li>
+            <Link
+              to={props.loginUrl}
+              tabIndex={tabIndex}
+              noTarget
+            >Login</Link>
+          </li>
+        )}
       </ul>
     </li>
   )
@@ -64,6 +68,6 @@ MobileMenu.propTypes = {
   open: PropTypes.bool,
   loggedIn: PropTypes.bool,
   visible: PropTypes.bool,
-
+  loginUrl: PropTypes.string,
 }
 export default MobileMenu

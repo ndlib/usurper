@@ -1,5 +1,6 @@
 // Import all reducers here
 import contentfulPage from './contentful/page'
+import contentfulBranches from './contentful/branches'
 import contentfulSubjects from './contentful/subjects'
 import contentfulNews from './contentful/news'
 import contentfulAllNews from './contentful/allNews'
@@ -21,11 +22,13 @@ import menuReducer, { hasNavigation } from './menu'
 import chatReducer from './chat'
 import advancedSearch from './advancedSearch'
 import floorSearch from './floorSearch'
+import favorites from './favorites'
 
 import { combineReducers } from 'redux'
 
 const rootReducer = combineReducers({
   cfPageEntry: contentfulPage,
+  cfBranches: contentfulBranches,
   cfSubjects: contentfulSubjects,
   cfNewsEntry: contentfulNews,
   allNews: contentfulAllNews,
@@ -47,6 +50,7 @@ const rootReducer = combineReducers({
   chat: chatReducer,
   advancedSearch: advancedSearch,
   floorSearch: floorSearch,
+  favorites: favorites,
   renderComponents: hasNavigation,
 })
 

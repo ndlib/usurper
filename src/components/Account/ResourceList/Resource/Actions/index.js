@@ -32,9 +32,11 @@ const renewMessage = (listType, data) => {
   }
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onRenewClick: dispatch(renewAleph),
+    onRenewClick: () => {
+      dispatch(renewAleph(ownProps.item.barcode))
+    },
   }
 }
 
@@ -56,6 +58,7 @@ export const mapStateToProps = (state, ownProps) => {
     illViewUrl: Config.illiadBaseURL.replace('<<form>>', illViewForm).replace('<<value>>', item.transactionNumber),
     alephId: personal.user.alephId,
     canRenew: personal.user.alephId && !expired,
+    renewal: renewal,
   }
 }
 

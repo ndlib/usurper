@@ -5,6 +5,8 @@ export const NDCATALOG = 'NDCATALOG'
 export const CURATEND = 'CURATEND'
 export const LIBRARY = 'LIBRARY'
 
+export const DEFAULT = ONESEARCH
+
 export const searchOptions = [
   {
     uid: ONESEARCH,

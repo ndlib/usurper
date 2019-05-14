@@ -19,7 +19,7 @@
 	text-align: left;
 }
 
-.service-point h4, .service-point .sp, .service-point address {
+.service-point h4, .service-point address {
 	font-size: 22px;
 	font-family: GPCBold, sans-serif;
 }
@@ -99,11 +99,11 @@
 }
 
 .earrow {
-	background: url('/static/images/arrow.g.d.png') no-repeat;
+	background: url('../../../static/images/arrow.g.d.png') no-repeat;
 
 }
 .carrow {
-	background: url('/static/images/arrow.g.u.png') no-repeat;
+	background: url('../../../static/images/arrow.g.u.png') no-repeat;
 
 }
 

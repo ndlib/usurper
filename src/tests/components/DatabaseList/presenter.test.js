@@ -23,6 +23,7 @@ describe('components/DatabaseList/presenter.js', () => {
         letter: 'a',
         list: [],
         status: statuses.FETCHING,
+        databaseFavorites: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -41,21 +42,44 @@ describe('components/DatabaseList/presenter.js', () => {
       props = {
         status: statuses.SUCCESS,
         letter: 'a',
-        list: [{
-          fields: {
-            title: 'fake title',
-            alephSystemNumber: '12345',
-            purl: 'foo',
-            description: 'test',
-            urls: [{
-              url: 'https://eresources.library.nd.edu/databases/artsource',
-              notes: null,
-              title: null,
-            }],
+        list: [
+          {
+            fields: {
+              title: 'fake title',
+              alephSystemNumber: '12345',
+              purl: 'foo',
+              description: 'test',
+              urls: [{
+                url: 'https://eresources.library.nd.edu/databases/artsource',
+                notes: null,
+                title: null,
+              }],
+            },
+            sys: {
+              id: '5678',
+            },
           },
-          sys: {
-            id: '5678',
+          {
+            fields: {
+              title: 'fake title 2',
+              alephSystemNumber: '55555',
+              purl: 'bar',
+              description: 'baz',
+              urls: [{
+                url: 'https://www.fake.url',
+                notes: null,
+                title: null,
+              }],
+            },
+            sys: {
+              id: '1337',
+            },
           },
+        ],
+        databaseFavorites: [{
+          key: '1337_link_0',
+          title: 'title does not need to match',
+          url: 'http://url.also.not/important',
         }],
       }
       enzymeWrapper = setup(props)
@@ -86,6 +110,7 @@ describe('components/DatabaseList/presenter.js', () => {
         status: statuses.NOT_FOUND,
         letter: 'a',
         list: [],
+        databaseFavorites: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -110,6 +135,7 @@ describe('components/DatabaseList/presenter.js', () => {
         status: null,
         letter: 'a',
         list: [],
+        databaseFavorites: [],
       }
       enzymeWrapper = setup(props)
     })

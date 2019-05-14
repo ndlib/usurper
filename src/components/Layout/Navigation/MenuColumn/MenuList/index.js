@@ -23,7 +23,7 @@ const MenuList = (props) => {
           }
           return (
             <MenuListItem
-              title={item.fields.title}
+              title={item.fields.alternateTitle ? item.fields.alternateTitle : item.fields.title}
               url={url}
               key={index} />
           )

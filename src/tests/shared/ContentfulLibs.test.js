@@ -56,7 +56,7 @@ describe('getLinkObject', () => {
     })
 
     it('Should return with all links', () => {
-      expect(getLinkObject(fields, 0)).toHaveProperty('links', [ { title: fields.title, url: fields.url, keyId: '0link0' } ])
+      expect(getLinkObject(fields, 0)).toHaveProperty('links', [ { title: fields.title, url: fields.url, keyId: '0_link_0' } ])
     })
 
     it('Should return empty conditional links', () => {
@@ -76,7 +76,7 @@ describe('getLinkObject', () => {
 
     it('Should return with all links', () => {
       expect(getLinkObject(fields, 0))
-        .toHaveProperty('links', [ { title: fields.title, url: fields.purl, keyId: '0link0' } ])
+        .toHaveProperty('links', [ { title: fields.title, url: fields.purl, keyId: '0_link_0' } ])
     })
 
     it('Should return empty conditional links', () => {
@@ -96,7 +96,7 @@ describe('getLinkObject', () => {
 
     it('Should return with all links', () => {
       expect(getLinkObject(fields, 0))
-        .toHaveProperty('links', [ { title: fields.title, url: '/' + fields.slug, keyId: '0link0' } ])
+        .toHaveProperty('links', [ { title: fields.title, url: '/' + fields.slug, keyId: '0_link_0' } ])
     })
 
     it('Should return empty conditional links', () => {

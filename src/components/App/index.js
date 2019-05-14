@@ -2,7 +2,9 @@ import React from 'react'
 import { Route, Switch, withRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
+import { withCookies } from 'react-cookie'
 
+import Config from 'shared/Configuration'
 import PageWrapper from 'components/Layout/PageWrapper'
 import Home from 'components/Home'
 import ItemsRequests from 'components/Account/ItemsRequests'
@@ -28,6 +30,7 @@ import thunkMiddleware from 'redux-thunk'
 import Rewrite from './Rewrite'
 import EmbeddableHours from 'components/Embeddable/Hours'
 import CirculationHistory from 'components/Account/CirculationHistory'
+import Favorites from 'components/Account/Favorites'
 
 import NotFound from 'components/Messages/NotFound'
 
@@ -66,10 +69,10 @@ const App = (props) => {
           <Route exact path='/embed/hours/:servicePoint' component={EmbeddableHours} />
           <PageWrapper>
             <Switch>
-              <Route exact path='/' component={Home} />
+              <Route exact path='/' render={() => (<Home {...props} />)} /> {/* Render is needed to pass cookies */}
               <Route exact path='/chat' component={ChatPage} />
               <Route exact path='/courses' component={Courses} />
-              <Route exact path='/settings' component={Settings} />
+              <Route exact path='/settings' render={() => (<Settings {...props} />)} />
               <Route exact path='/hours' component={Hours} />
               <Route exact path='/events' component={Events} />
               <Route exact path='/events/past' component={Events} />
@@ -82,6 +85,9 @@ const App = (props) => {
               <Route exact path='/event/:id' component={ContentfulEvent} />
               <Route exact path='/items-requests' component={ItemsRequests} />
               <Route exact path='/checkout-history' component={CirculationHistory} />
+              { Config.features.favoritesEnabled && (
+                <Route exact path='/favorites' component={Favorites} />
+              )}
               <Route exact path='/subjects' component={SubjectList} />
               <Route exact path='/database/:id' component={DatabasePage} />
               <Route exact path='/databases/:id' component={DatabaseList} />
@@ -99,4 +105,4 @@ const App = (props) => {
   )
 }
 
-export default withRouter(App)
+export default withCookies(withRouter(App))

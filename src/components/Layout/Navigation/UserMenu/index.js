@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Presenter from './presenter'
 
-import Config from 'shared/Configuration'
 import { USER_MENU } from 'actions/menu'
+
+import Config from 'shared/Configuration'
 
 const UserMenuContainer = (props) => {
   const links = [
@@ -14,16 +15,18 @@ const UserMenuContainer = (props) => {
     { key: 'Settings', route: '/settings' },
   ]
 
+  if (Config.features.favoritesEnabled) {
+    links.splice(3, 0, { key: 'Favorites', route: '/favorites' })
+  }
+
   return <Presenter links={links} {...props} />
 }
 
 export const mapStateToProps = (state) => {
-  const { personal } = state
-  const loggedIn = !!(personal.login && personal.login.token)
+  const { menus } = state
 
   return {
-    open: state.menus.menuId === USER_MENU,
-    logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
+    open: menus.menuId === USER_MENU,
     location: window.location,
   }
 }

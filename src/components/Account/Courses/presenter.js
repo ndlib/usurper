@@ -53,6 +53,7 @@ class Courses extends Component {
 
 Courses.propTypes = {
   courses: PropTypes.shape({
+    state: PropTypes.string,
     enrollments: PropTypes.shape({
       current: PropTypes.array,
       future: PropTypes.array,

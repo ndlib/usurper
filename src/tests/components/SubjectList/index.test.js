@@ -7,6 +7,8 @@ import SubjectList, { SubjectListContainer } from 'components/SubjectList'
 import InternalLink from 'components/Contentful/InternalLink'
 import Loading from 'components/Messages/Loading'
 
+import { KIND as FAVORITES_KIND } from 'actions/personal/favorites'
+
 import * as statuses from 'constants/APIStatuses'
 
 let enzymeWrapper
@@ -33,6 +35,17 @@ describe('components/SubjectList', () => {
         location: {},
       }
       state = {
+        personal: {
+          login: {
+            state: statuses.SUCCESS,
+            token: 'fake token',
+          },
+        },
+        favorites: {
+          [FAVORITES_KIND.subjects]: {
+            state: statuses.NOT_FETCHED,
+          },
+        },
         cfSubjects: {
           status: statuses.SUCCESS,
           data: [
@@ -55,12 +68,12 @@ describe('components/SubjectList', () => {
 
     it('should sort subjects based on link text', () => {
       const expected = [
-        state.cfSubjects.data[1],
-        state.cfSubjects.data[2],
-        state.cfSubjects.data[3],
-        state.cfSubjects.data[0],
+        state.cfSubjects.data[1].sys.id,
+        state.cfSubjects.data[2].sys.id,
+        state.cfSubjects.data[3].sys.id,
+        state.cfSubjects.data[0].sys.id,
       ]
-      expect(enzymeWrapper.dive().props().subjects).toEqual(expected)
+      expect(enzymeWrapper.dive().props().subjects.map(subject => subject.key)).toEqual(expected)
     })
 
     it('should not show loading', () => {
@@ -83,6 +96,17 @@ describe('components/SubjectList', () => {
         location: {},
       }
       state = {
+        personal: {
+          login: {
+            state: statuses.SUCCESS,
+            token: 'fake token',
+          },
+        },
+        favorites: {
+          [FAVORITES_KIND.subjects]: {
+            state: statuses.NOT_FETCHED,
+          },
+        },
         cfSubjects: {
           status: statuses.FETCHING,
         },

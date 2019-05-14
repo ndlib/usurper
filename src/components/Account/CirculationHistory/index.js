@@ -7,7 +7,7 @@ import * as statuses from 'constants/APIStatuses'
 
 import Presenter from './presenter'
 
-class CirculationHistoryContainer extends Component {
+export class CirculationHistoryContainer extends Component {
   constructor (props) {
     super(props)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)

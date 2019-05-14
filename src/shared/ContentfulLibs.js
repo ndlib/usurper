@@ -43,12 +43,12 @@ export const getLinkObject = (fields, sysId) => {
   let links
   if (fields.urls) {
     links = fields.urls.map((data, index) => {
-      data.keyId = sysId + 'link' + index
+      data.keyId = sysId + '_link_' + index
       data.title = data.title ? data.title : fields.title
       return data
     })
   } else {
-    links = [ { title: fields.title, url: mainUrl, keyId: sysId + 'link' + 0 } ]
+    links = [ { title: fields.title, url: mainUrl, keyId: sysId + '_link_' + 0 } ]
   }
 
   // heading is the item title, url, and description

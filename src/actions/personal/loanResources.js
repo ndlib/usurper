@@ -28,6 +28,10 @@ export const handleResources = (service, type, library = '') => {
 
       for (let i = 0; i < data.length; i++) {
         data[i].from = from
+        data[i].id = data[i].id || data[i].loanNumber || data[i].transactionNumber
+        if (from !== 'ILL') {
+          data[i].documentType = data[i].material
+        }
       }
 
       if (type === 'borrowed') {

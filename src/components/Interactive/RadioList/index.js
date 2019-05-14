@@ -8,86 +8,38 @@ class RadioList extends Component {
     super(props)
 
     this.state = {
-      index: this.props.defaultIndex ? this.props.defaultIndex : 0,
+      index: props.defaultValue ? props.entries.findIndex((entry) => {
+        // Intentional == to allow numbers and strings to match
+        return entry.value == props.defaultValue // eslint-disable-line eqeqeq
+      }) : 0,
     }
 
-    this.onSelectedClick = this.onSelectedClick.bind(this)
-    this.onSelectedKeyDown = this.onSelectedKeyDown.bind(this)
     this.onOptionClick = this.onOptionClick.bind(this)
-    this.onOptionKeyDown = this.onOptionKeyDown.bind(this)
-    this.onButtonClick = this.onButtonClick.bind(this)
-    this.focus = this.focus.bind(this)
   }
 
-  onSubmit (index, isButton) {
-    this.setIndex(index)
-
-    if (this.props.useButton && !isButton) {
-      return
-    }
-
-    const title = this.props.entries[index].title
-    const value = this.props.entries[index].value
-    this.props.submit(value, title)
-  }
-
-  focus (index, item) {
-    if (item && this.state.index === index) {
-      item.focus()
-    }
-  }
-
-  setIndex (index) {
+  onOptionClick (e) {
+    const index = e.target.value
     // If index is a falsy and is NOT 0 (E.g. if it's null, undefined, or false), the input index is invalid
     if (!index && index !== 0) {
       return
     }
-    this.setState({ index: index }, console.log())
-  }
+    this.setState({ index: parseInt(index, 10) }, console.log())
 
-  onSelectedClick () {
-  }
-
-  onSelectedKeyDown (e) {
-    if (e.keyCode === 13) { // enter
-      e.preventDefault()
-    }
-  }
-
-  onOptionClick (e) {
-    this.onSubmit(e.target.value)
     if (typeof this.props.onChangeCallback === 'function') {
-      this.props.onChangeCallback()
+      const entry = this.props.entries[e.target.value]
+      if (entry) {
+        this.props.onChangeCallback(entry.value, entry.title, e)
+      }
     }
-  }
-
-  onOptionKeyDown (e) {
-    switch (e.keyCode) {
-      case 13: // enter
-        this.onSubmit(e.target.value)
-        break
-      default: // do nothing on other keys
-        break
-    }
-  }
-
-  onButtonClick () {
-    this.onSubmit(this.state.index, true)
   }
 
   render () {
+    const title = this.props.entries[this.state.index] ? this.props.entries[this.state.index].title : null
     return <Presenter
       radioName={this.props.radioName}
-      selectedTitle={this.props.entries[this.state.index].title}
+      selectedTitle={title}
       entries={this.props.entries}
-      onSelectedClick={this.onSelectedClick}
-      onSelectedKeyDown={this.onSelectedKeyDown}
       onOptionClick={this.onOptionClick}
-      onOptionKeyDown={this.onOptionKeyDown}
-      focus={this.focus}
-      useButton={this.props.useButton}
-      buttonText={this.props.buttonText}
-      onButtonClick={this.onButtonClick}
     />
   }
 }
@@ -100,21 +52,9 @@ const mapStateToProps = (state, ownProps) => {
 
 RadioList.propTypes = {
   radioName: PropTypes.string.isRequired,
-  defaultIndex: PropTypes.number,
-
-  entries: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  })).isRequired,
-  submit: PropTypes.func,
-  useButton: PropTypes.bool,
-  buttonText: PropTypes.string,
+  defaultValue: PropTypes.string,
+  entries: PropTypes.array.isRequired,
   onChangeCallback: PropTypes.func,
-}
-
-RadioList.defaultProps = {
-  useButton: false,
-  buttonText: 'Submit',
 }
 
 export default connect(

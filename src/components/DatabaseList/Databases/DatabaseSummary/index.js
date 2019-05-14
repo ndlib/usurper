@@ -1,33 +1,44 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'components/Interactive/Link'
+import { connect } from 'react-redux'
 import { getLinkObject } from 'shared/ContentfulLibs'
-import SummaryLink from './SummaryLink'
-import styles from '../../style.module.css'
+import { KIND } from 'actions/personal/favorites'
+import Presenter from './presenter.js'
 
-const DatabaseSummary = (props) => {
+const DatabaseSummaryContainer = (props) => {
   const linkObject = getLinkObject(props.item.fields, props.item.sys.id)
+  const isFavorited = !!(props.databaseFavorites.find((fav) => {
+    return linkObject.links.find((link) => {
+      return link.keyId === fav.key
+    }) || linkObject.heading.url === fav.url
+  }))
+  const favoritesData = linkObject.links.map((link) => {
+    let faveTitle = linkObject.heading.title
+    if (link.title && link.title !== faveTitle) {
+      faveTitle += ` - ${link.title}`
+    }
+
+    return {
+      key: link.keyId,
+      title: faveTitle,
+      url: link.url,
+    }
+  })
+
   return (
-    <section aria-label={props.item.fields.title} className={styles.dbSection}>
-      <Link to={linkObject.heading.url} title={'Go to ' + props.item.fields.title}>
-        <h2 className={styles.dbItemTitle}>{props.item.fields.title}</h2>
-      </Link>
-      <ul className={'linkGroup ' + styles.dbLink}>
-        { linkObject.conditionalLinks.map((link) => <SummaryLink key={link.keyId} link={link} />) }
-      </ul>
-      <div className={styles.dbSummary}>
-        {linkObject.heading.description}
-      </div>
-      <Link
-        to={'/database/' + props.item.sys.id}
-        className='moreinfo'
-        ariaLabel={'More Information about ' + props.item.fields.title}
-      >More info</Link>
-    </section>
+    <Presenter item={props.item} linkObject={linkObject} isFavorited={isFavorited} favoritesData={favoritesData} />
   )
 }
 
-DatabaseSummary.propTypes = {
+export const mapStateToProps = (state) => {
+  const { favorites } = state
+
+  return {
+    databaseFavorites: favorites[KIND.databases].items || [],
+  }
+}
+
+DatabaseSummaryContainer.propTypes = {
   item: PropTypes.shape({
     fields: PropTypes.shape({
       title: PropTypes.string,
@@ -36,6 +47,11 @@ DatabaseSummary.propTypes = {
       id: PropTypes.string.isRequired,
     }),
   }).isRequired,
+  databaseFavorites: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+    url: PropTypes.string,
+  })),
 }
 
+const DatabaseSummary = connect(mapStateToProps)(DatabaseSummaryContainer)
 export default DatabaseSummary
