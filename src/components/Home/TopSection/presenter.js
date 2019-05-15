@@ -19,7 +19,7 @@ const TopSection = (props) => {
           )}
         </div>
       )}
-      <div className={`col-xs-12 col-sm-5 col-md-4 ${props.locationClassName}`}>
+      <div className={`col-xs-12 col-sm-5 col-md-4 right ${props.locationClassName}`}>
         { props.locationLoading ? (
           <InlineLoading />
         ) : (
