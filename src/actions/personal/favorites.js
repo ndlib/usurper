@@ -204,6 +204,7 @@ const convertSubjectToFavorite = (subject) => {
       ? typy(subject, 'fields.page.fields.title').safeString
       : typy(subject, 'fields.title').safeString,
     url: '/' + typy(subject, 'fields.page.fields.slug').safeString,
+    order: subject.order,
   }
 }
 
@@ -242,7 +243,7 @@ export const searchFavorites = (kind, searchText) => {
     if (kind === KIND.databases) {
       url += encodeURIComponent(`content_type=resource&include=0&fields.title[match]=${searchText}`)
     } else if (kind === KIND.subjects) {
-      url += encodeURIComponent(`content_type=internalLink&fields.context=Subject&include=1`)
+      url += encodeURIComponent(`content_type=internalLink&fields.context=Subject&include=2`)
     }
 
     return fetch(url)

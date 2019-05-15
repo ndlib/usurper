@@ -4,6 +4,8 @@
 
 import typy from 'typy'
 
+import * as statuses from 'constants/APIStatuses'
+
 export const filterList = (list, filterFields, filterValue) => {
   const value = filterValue.toLowerCase()
 
@@ -62,4 +64,29 @@ export const pluralize = (listOrCount, singularForm, pluralForm) => {
   singularForm = singularForm || '' // If omitted, will return empty string in singular form
   pluralForm = pluralForm || (singularForm + 's') // If omitted, will append s to singular form
   return (typy(listOrCount).isNumber ? listOrCount : listOrCount.length) === 1 ? singularForm : pluralForm
+}
+
+export const reduceStatuses = (arrayOfStatuses) => {
+  return arrayOfStatuses.reduce((a, b) => {
+    const error = (status) => status === statuses.ERROR || status === statuses.UNAUTHORIZED
+    const fetching = (status) => status === statuses.FETCHING
+    const notFound = (status) => status === statuses.NOT_FOUND
+    const valid = (status) => status === statuses.SUCCESS || notFound(status)
+
+    if (error(a) || error(b)) {
+      // Return error if any errors
+      return statuses.ERROR
+    } else if (fetching(a) || fetching(b)) {
+      // Return fetching if any fetching
+      return statuses.FETCHING
+    } else if (notFound(a) && notFound(b)) {
+      // Only return not found if ALL statuses are not found
+      return statuses.NOT_FOUND
+    } else if (valid(a) && valid(b)) {
+      // If all are fetched and not errors, return success even if a mix of success and not found
+      return statuses.SUCCESS
+    }
+    // Return not fetched for any combination of "valid" (completed successfully) statuses and not fetched statuses
+    return statuses.NOT_FETCHED
+  })
 }

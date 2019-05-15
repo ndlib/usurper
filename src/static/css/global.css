@@ -4064,6 +4064,10 @@ section.group button.center {
 
 section.group button.right {
   float: right;
+  margin-right: 20px;
+}
+section.group button.right:first-of-type {
+  margin-right: 0;
 }
 
 section.group .modal-footer button {
@@ -4161,7 +4165,7 @@ img.favorite {
 .dnd-remove-area {
   position: relative;
   margin-top: 1em;
-  padding: 1em;
+  min-height: 48px;
   width: 100%;
   border: 2px dashed gray;
   color: gray;
@@ -4350,6 +4354,29 @@ img.favorite {
 
 .subject-checkbox-container input {
   margin: 1px 4px 0 0;
+}
+
+@media only screen and (min-width: 48em) {
+  .subject-checkbox-container span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .subject-wizard-columns .column:nth-child(odd) {
+    order: 1;
+  }
+  .subject-wizard-columns .column:nth-child(even) {
+    order: 2;
+  }
+}
+@media only screen and (min-width: 75em) {
+  .subject-wizard-columns .column:nth-child(odd) {
+    order: initial;
+  }
+  .subject-wizard-columns .column:nth-child(even) {
+    order: initial;
+  }
 }
 
 @media only screen and (min-width: 48em) {

@@ -9,7 +9,8 @@ import RadioList from 'components/Interactive/RadioList'
 
 import { setHideHomeFavorites, setDefaultSearch, clearUpdateSettings, KIND } from 'actions/personal/settings'
 import { saveSearchPreference } from 'actions/search'
-import * as states from 'constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 import { HIDE_HOME_FAVORITES, cookieOptions } from 'constants/cookies'
 import { searchOptions } from 'constants/searchOptions.js'
 
@@ -33,7 +34,7 @@ class HomePageDisplayContainer extends Component {
     stateObj[event.target.name] = event.target.type === 'checkbox' ? event.target.checked : event.target.value
     this.setState(stateObj)
 
-    if (this.props.saveState === states.SUCCESS || this.props.saveState === states.ERROR) {
+    if (this.props.saveState === statuses.SUCCESS || this.props.saveState === statuses.ERROR) {
       this.props.clearUpdateSettings(KIND.hideHomeFavorites)
       this.props.clearUpdateSettings(KIND.defaultSearch)
     }
@@ -41,7 +42,7 @@ class HomePageDisplayContainer extends Component {
 
   onSave = (event) => {
     event.preventDefault()
-    if (this.props.saveState === states.FETCHING) {
+    if (this.props.saveState === statuses.FETCHING) {
       return null
     }
 
@@ -57,7 +58,7 @@ class HomePageDisplayContainer extends Component {
   }
 
   render () {
-    const updateText = this.props.saveState === states.SUCCESS
+    const updateText = this.props.saveState === statuses.SUCCESS
       ? `Saved home page settings successfully.`
       : `Failed to update home page settings. Please refresh and try again.`
 
@@ -95,10 +96,10 @@ class HomePageDisplayContainer extends Component {
                 },
               })}
             />
-            <button type='submit' className='right' aria-label='Save' disabled={!this.props.saveState === states.FETCHING}>
+            <button type='submit' className='right' aria-label='Save' disabled={!this.props.saveState === statuses.FETCHING}>
               Save
             </button>
-            { this.props.saveState === states.FETCHING ? (
+            { this.props.saveState === statuses.FETCHING ? (
               <InlineLoading title='Saving...' className='fright pad-edges-sm' />
             ) : (
               <UpdateStatus className='pad-edges-md' status={this.props.saveState} text={updateText} />
@@ -113,20 +114,11 @@ class HomePageDisplayContainer extends Component {
 export const mapStateToProps = (state) => {
   const { settings } = state
 
-  // If more settings are added, saveState should be a conglomerate of all settings' update statuses
-  let saveState = states.NOT_FETCHED
-  const homeFavoritesState = settings['update'][KIND.hideHomeFavorites].state
-  const defaultSearchState = settings['update'][KIND.defaultSearch].state
-  if (homeFavoritesState === defaultSearchState) {
-    saveState = homeFavoritesState
-  } else if ([homeFavoritesState, defaultSearchState].includes(states.ERROR)) {
-    saveState = states.ERROR
-  } else {
-    saveState = states.FETCHING
-  }
-
   return {
-    saveState: saveState,
+    saveState: helper.reduceStatuses([
+      settings['update'][KIND.hideHomeFavorites].state,
+      settings['update'][KIND.defaultSearch].state,
+    ]),
   }
 }
 
