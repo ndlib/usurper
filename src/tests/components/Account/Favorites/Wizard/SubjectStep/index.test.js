@@ -52,7 +52,19 @@ describe('components/Account/Favorites/Wizard/SubjectStep', () => {
           },
           usePageTitle: true,
         },
-        order: 2,
+      },
+      {
+        sys: { id: 'jkl' },
+        fields: {
+          title: 'I SWIM WITH SHARKS',
+          page: {
+            sys: { id: 'auto' },
+            fields: { slug: 'select', title: 'me' },
+          },
+          usePageTitle: false,
+        },
+        order: 17,
+        selected: true,
       },
     ],
     step: 0,
@@ -95,15 +107,18 @@ describe('components/Account/Favorites/Wizard/SubjectStep', () => {
 
   it('should pass on full selected subject objects when moving to next step', () => {
     const instance = enzymeWrapper.instance()
-    instance.onCheckboxChanged({ target: { name: props.data[0].fields.page.fields.slug, checked: true } })
+    instance.onCheckboxChanged({ target: { name: props.data[0].fields.page.fields.slug, checked: true, order: 3 } })
     instance.onCheckboxChanged({ target: { name: props.data[2].fields.page.fields.slug, checked: true } })
     // Test selecting and deselecting
-    instance.onCheckboxChanged({ target: { name: props.data[1].fields.page.fields.slug, checked: true } })
-    instance.onCheckboxChanged({ target: { name: props.data[1].fields.page.fields.slug, checked: false } })
+    instance.onCheckboxChanged({ target: { name: props.data[1].fields.page.fields.slug, checked: true, order: 1 } })
+    instance.onCheckboxChanged({ target: { name: props.data[1].fields.page.fields.slug, checked: false, order: 1 } })
+    // If null target, shouldn't error or do anything weird
+    instance.onCheckboxChanged()
 
     instance.nextStep() // Note that the instance's nextStep() method is NOT the same as the props.nextStep passed in
 
-    const expected = [props.data[0], props.data[2]]
+    // props.data[3] was designated as selected in props, so that's why it is here
+    const expected = [props.data[3], props.data[0], props.data[2]]
     expect(props.nextStep).toHaveBeenLastCalledWith(expected)
   })
 
@@ -112,5 +127,29 @@ describe('components/Account/Favorites/Wizard/SubjectStep', () => {
     instance.skipStep({ preventDefault: jest.fn() })
 
     expect(props.nextStep).not.toHaveBeenLastCalledWith(expect.any(Array))
+  })
+
+  it('should add tooltip on hover for long titles', () => {
+    const instance = enzymeWrapper.instance()
+
+    const tip = 'remember to test your code'
+    const fakeElement = { scrollWidth: 250, clientWidth: 200, textContent: tip }
+    instance.onSubjectEnter({ target: fakeElement })
+    expect(instance.state.hoveredSubject).toEqual(fakeElement)
+    expect(instance.getTooltip(tip)).toEqual(tip)
+
+    instance.onSubjectLeave()
+    expect(instance.state.hoveredSubject).toBeFalsy()
+    expect(instance.getTooltip(tip)).toBeFalsy()
+  })
+
+  it('should not show tooltip for short titles', () => {
+    const instance = enzymeWrapper.instance()
+
+    const tip = 'remember to test your code'
+    const fakeElement = { scrollWidth: 200, clientWidth: 200, textContent: tip }
+    instance.onSubjectEnter({ target: fakeElement })
+    expect(instance.state.hoveredSubject).toEqual(fakeElement)
+    expect(instance.getTooltip(tip)).toBeFalsy()
   })
 })

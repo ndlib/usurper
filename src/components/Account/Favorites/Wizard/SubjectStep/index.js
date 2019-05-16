@@ -36,7 +36,7 @@ class SubjectStep extends Component {
   }
 
   onCheckboxChanged (event) {
-    if (!event.target) {
+    if (typy(event, 'target').isFalsy) {
       return
     }
 
