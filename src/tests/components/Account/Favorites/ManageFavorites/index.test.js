@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 
 import ManageFavorites, { ManageFavoritesContainer } from 'components/Account/Favorites/ManageFavorites'
 import Presenter from 'components/Account/Favorites/ManageFavorites/presenter.js'
+import Wizard from 'components/Account/Favorites/Wizard'
 
 import { REQUEST_UPDATE_FAVORITES, KIND } from 'actions/personal/favorites'
 import * as statuses from 'constants/APIStatuses'
@@ -149,5 +150,54 @@ describe('components/Account/Favorites/ManageFavorites', () => {
     instance.onSave()
 
     expect(store.getActions()).toHaveLength(0)
+  })
+
+  describe('wizard', () => {
+    const props = {
+      kind: KIND.subjects,
+      items: [
+        { key: 'last', url: '/last', title: 'last item', order: 3 },
+        { key: 'first', url: '/first', title: 'first item', order: 1 },
+      ],
+      saveState: statuses.NOT_FETCHED,
+      setFavorites: jest.fn(),
+      clearUpdateFavorites: jest.fn(),
+    }
+
+    beforeEach(() => {
+      enzymeWrapper = shallow(<ManageFavoritesContainer {...props} />)
+    })
+
+    it('should render wizard when wizard open', () => {
+      const instance = enzymeWrapper.instance()
+
+      instance.openWizard()
+      expect(enzymeWrapper.find(Wizard).exists()).toBe(true)
+
+      // Add an item to simulate what the wizard might do while it is open
+      const newItems = [...props.items, { key: 'new', url: '/new', title: 'new item', order: 999 }]
+      enzymeWrapper.setProps({
+        items: newItems,
+      })
+
+      instance.closeWizard()
+      expect(enzymeWrapper.find(Wizard).exists()).toBe(false)
+      // Should update item list in state after closing wizard, in case the wizard updated them
+      expect(instance.state.listItems).toEqual(expect.arrayContaining(newItems))
+    })
+
+    it('should not allow opening wizard if list modified', () => {
+      window.alert = jest.fn() // Silence alert message in console
+
+      enzymeWrapper.setState({
+        modified: true,
+      })
+
+      const instance = enzymeWrapper.instance()
+      instance.openWizard()
+
+      expect(enzymeWrapper.state().wizardOpen).toBe(false)
+      expect(window.alert).toHaveBeenCalled()
+    })
   })
 })

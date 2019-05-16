@@ -84,10 +84,6 @@ export class ManageFavoritesContainer extends Component {
   }
 
   openWizard () {
-    if (this.props.saveState === statuses.FETCHING) {
-      return
-    }
-
     if (this.state.modified) {
       alert('Please save your changes first.')
       return
@@ -139,7 +135,7 @@ export class ManageFavoritesContainer extends Component {
           openWizard={this.openWizard}
         />
         { this.state.wizardOpen && (
-          <Wizard closeCallback={this.closeWizard} stepList={[KIND.subjects]} />
+          <Wizard closeCallback={this.closeWizard} stepList={[this.props.kind]} />
         )}
       </React.Fragment>
     )
