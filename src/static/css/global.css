@@ -4021,10 +4021,30 @@ img.favorite.white {
   content: "\203A";
 }
 
+.favorites-column-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+
+.favorites-column {
+  margin-top: 1em;
+  flex: 1 0 300px;
+}
+
+.group.favorites .linksgroup {
+  column-count: 1;
+}
+
+.group.favorites .linksgroup p {
+  padding: 6px 6px 0px 6px;
+  word-wrap: break-word;
+}
+
 .group.favorites .linksgroup p,
 .link-arrow {
-  padding-top: 10px;
-  font-size: 18px;
+  padding-top: 6px;
+  font-size: 1em;
   font-weight: bold;
   overflow: hidden;
 }

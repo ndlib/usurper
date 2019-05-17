@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Prompt } from 'react-router'
 
 import Presenter from './presenter.js'
 import Wizard from '../Wizard'
@@ -36,6 +37,14 @@ export class ManageFavoritesContainer extends Component {
     }
 
     return null // Lets React know that the state did not change
+  }
+
+  componentDidUpdate = () => {
+    if (this.state.modified) {
+      window.onbeforeunload = () => true
+    } else {
+      window.onbeforeunload = undefined
+    }
   }
 
   onAddFavorite = (kind, key, title, url) => {
@@ -121,6 +130,7 @@ export class ManageFavoritesContainer extends Component {
 
     return (
       <React.Fragment>
+        <Prompt when={this.state.modified} message='You have unsaved changes. Are you sure you want to leave?' />
         <Presenter
           saveState={this.props.saveState}
           modified={this.state.modified}
