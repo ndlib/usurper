@@ -8,6 +8,7 @@ import FavoritesList from '../FavoritesList'
 import Search from '../Search'
 
 import * as states from 'constants/APIStatuses'
+import { KIND } from 'actions/personal/favorites'
 
 const ManageFavorites = (props) => {
   const saving = props.saveState === states.FETCHING
@@ -25,6 +26,9 @@ const ManageFavorites = (props) => {
           </div>
         </div>
         <button type='submit' className='right' aria-label='Save' disabled={!props.modified || saving} onClick={props.onSave}>Save</button>
+        { props.kind === KIND.subjects && (
+          <button className='right' onClick={props.openWizard} disabled={saving}>View All Subjects</button>
+        )}
         { saving ? (
           <InlineLoading title='Saving...' className='fright pad-edges-sm' />
         ) : (
@@ -46,6 +50,7 @@ ManageFavorites.propTypes = {
   updateList: PropTypes.func,
   onAddFavorite: PropTypes.func,
   onSave: PropTypes.func,
+  openWizard: PropTypes.func,
 }
 
 export default ManageFavorites

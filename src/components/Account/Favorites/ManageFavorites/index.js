@@ -5,9 +5,10 @@ import { bindActionCreators } from 'redux'
 import { Prompt } from 'react-router'
 
 import Presenter from './presenter.js'
+import Wizard from '../Wizard'
 
 import { setFavorites, clearUpdateFavorites, KIND } from 'actions/personal/favorites'
-import * as states from 'constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 export class ManageFavoritesContainer extends Component {
   constructor (props) {
@@ -16,14 +17,17 @@ export class ManageFavoritesContainer extends Component {
       modified: false,
       saved: false,
       listItems: props.items.sort((a, b) => a.order - b.order),
+      wizardOpen: false,
     }
     this.onAddFavorite = this.onAddFavorite.bind(this)
     this.updateList = this.updateList.bind(this)
     this.onSave = this.onSave.bind(this)
+    this.openWizard = this.openWizard.bind(this)
+    this.closeWizard = this.closeWizard.bind(this)
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.saveState === states.SUCCESS && !state.saved) {
+    if (props.saveState === statuses.SUCCESS && !state.saved) {
       return {
         ...state,
         modified: false,
@@ -64,7 +68,7 @@ export class ManageFavoritesContainer extends Component {
       })
     }
 
-    if (this.props.saveState !== states.NOT_FETCHED) {
+    if (this.props.saveState !== statuses.NOT_FETCHED) {
       this.props.clearUpdateFavorites(this.props.kind)
       // We need to force the update to happen to clear props.saveState before we set the new list state
       this.forceUpdate(updateState)
@@ -75,7 +79,7 @@ export class ManageFavoritesContainer extends Component {
 
   onSave = () => {
     // If it hasn't changed or is currently saving, don't try to save again
-    if (!this.state.modified || this.props.saveState === states.FETCHING) {
+    if (!this.state.modified || this.props.saveState === statuses.FETCHING) {
       return null
     }
 
@@ -88,12 +92,39 @@ export class ManageFavoritesContainer extends Component {
     this.props.setFavorites(this.props.kind, newList)
   }
 
+  openWizard () {
+    if (this.state.modified) {
+      alert('Please save your changes first.')
+      return
+    }
+
+    // Clear the update state in the store so the wizard doesn't think it is saving
+    this.props.clearUpdateFavorites(this.props.kind)
+
+    this.setState({
+      wizardOpen: true,
+    })
+  }
+
+  closeWizard () {
+    const newState = {
+      wizardOpen: false,
+    }
+
+    // If the wizard updated favorites, we need to update the state list
+    if (this.props.items !== this.state.listItems) {
+      newState.listItems = this.props.items.sort((a, b) => a.order - b.order)
+    }
+
+    this.setState(newState)
+  }
+
   render () {
     const message = this.props.items.length
       ? 'Your top four items will be displayed on the home page while you are logged in.'
       : 'You do not have any favorites in this category yet. You can add favorites below.'
     const title = this.props.kind === KIND.databases ? 'Databases' : 'Subjects'
-    const updateText = this.props.saveState === states.SUCCESS
+    const updateText = this.props.saveState === statuses.SUCCESS
       ? `Saved ${title} successfully.`
       : `Failed to update ${title} list. Please refresh and try again.`
 
@@ -111,7 +142,11 @@ export class ManageFavoritesContainer extends Component {
           updateList={this.updateList}
           onAddFavorite={this.onAddFavorite}
           onSave={this.onSave}
+          openWizard={this.openWizard}
         />
+        { this.state.wizardOpen && (
+          <Wizard closeCallback={this.closeWizard} stepList={[this.props.kind]} />
+        )}
       </React.Fragment>
     )
   }
@@ -120,7 +155,7 @@ export class ManageFavoritesContainer extends Component {
 export const mapStateToProps = (state, ownProps) => {
   const { favorites } = state
 
-  let saveState = states.NOT_FETCHED
+  let saveState = statuses.NOT_FETCHED
   if (favorites && favorites['update'] && favorites['update'][ownProps.kind]) {
     saveState = favorites['update'][ownProps.kind].state
   }

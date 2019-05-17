@@ -6,6 +6,7 @@ import Presenter from './presenter'
 import Loading from 'components/Messages/Loading'
 
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 import getToken from 'actions/personal/token'
 import { getAllFavorites, clearUpdateFavorites, KIND } from 'actions/personal/favorites'
@@ -58,20 +59,7 @@ class FavoritesContainer extends Component {
 export const mapStateToProps = (state, ownProps) => {
   const { personal, favorites } = state
 
-  const databaseStatus = favorites[KIND.databases] ? favorites[KIND.databases].state : statuses.NOT_FETCHED
-  const subjectStatus = favorites[KIND.subjects] ? favorites[KIND.subjects].state : statuses.NOT_FETCHED
-  let combinedStatus = statuses.NOT_FETCHED
-  if (databaseStatus === subjectStatus) {
-    combinedStatus = databaseStatus
-  } else if (databaseStatus === statuses.ERROR || subjectStatus === statuses.ERROR) {
-    combinedStatus = statuses.ERROR
-  } else if (databaseStatus === statuses.NOT_FETCHED || subjectStatus === statuses.NOT_FETCHED) {
-    // If either one is not fetched, mark as such so that we will know to start fetching
-    combinedStatus = statuses.NOT_FETCHED
-  } else {
-    // Either one is still fetching while the other is SUCCESS... Mark as in progress
-    combinedStatus = statuses.FETCHING
-  }
+  const combinedStatus = helper.reduceStatuses(Object.values(KIND).map((key) => favorites[key].state))
 
   return {
     login: personal.login,

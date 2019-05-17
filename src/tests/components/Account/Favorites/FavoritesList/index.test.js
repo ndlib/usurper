@@ -1,12 +1,15 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { mount, shallow } from 'enzyme'
+import { shallow, mount, render } from 'enzyme'
 import { Droppable } from 'react-beautiful-dnd'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
 
 import FavoritesList from 'components/Account/Favorites/FavoritesList'
 import FavoriteItem from 'components/Account/Favorites/FavoritesList/FavoriteItem'
 
 import { KIND } from 'actions/personal/favorites'
+import * as statuses from 'constants/APIStatuses'
 
 let enzymeWrapper
 let spy
@@ -76,21 +79,61 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
     expect(spy).toHaveBeenCalledWith(expected)
   })
 
+  it('should change style of remove area while dragging', () => {
+    const instance = enzymeWrapper.instance()
+    instance.onDragStart()
+
+    const container  = enzymeWrapper.findWhere((el) => el.type() === Droppable && el.props().droppableId === 'remove')
+    // react-beautiful-dnd uses a function for its children, so we need to pass some stuff to it
+    const provided = {
+      innerRef: React.createRef(),
+    }
+    const snapshot = {
+      isDraggingOver: false,
+    }
+    const child = shallow(container.props().children(provided, snapshot))
+
+    expect(child.hasClass('dnd-remove-area')).toBe(true)
+    expect(child.hasClass('dragging')).toBe(true)
+  })
+
   it('onDragEnd should call updateList with reordered items', () => {
     const instance = enzymeWrapper.instance()
     spy = jest.spyOn(instance.props, 'updateList')
 
     instance.onDragEnd({
-      destination: {
-        index: 1,
-      },
       source: {
+        droppableId: props.kind,
         index: 0,
+      },
+      destination: {
+        droppableId: props.kind,
+        index: 1,
       },
       draggableId: props.items[0].key,
     })
 
     const expected = [ props.items[1], props.items[0] ]
+    expect(spy).toHaveBeenCalledWith(expected)
+  })
+
+  it('onDragEnd should remove item when dropped in remove area', () => {
+    const instance = enzymeWrapper.instance()
+    spy = jest.spyOn(instance.props, 'updateList')
+
+    instance.onDragEnd({
+      source: {
+        droppableId: props.kind,
+        index: 0,
+      },
+      destination: {
+        droppableId: 'remove',
+        index: 0,
+      },
+      draggableId: props.items[0].key,
+    })
+
+    const expected = [ props.items[1] ]
     expect(spy).toHaveBeenCalledWith(expected)
   })
 

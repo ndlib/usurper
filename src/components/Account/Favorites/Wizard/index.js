@@ -3,31 +3,28 @@ import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import typy from 'typy'
 
 import InlineLoading from 'components/Messages/InlineLoading'
 import SubjectStep from './SubjectStep'
 import DatabaseStep from './DatabaseStep'
 import LibraryStep from './LibraryStep'
+import Presenter from './presenter'
 
 import {
   convertContentfulToFavorites,
+  getAllFavorites,
   setFavorites,
   KIND as FAVORITES_KIND,
 } from 'actions/personal/favorites'
-import {
-  getHomeLibrary,
-  setHomeLibrary,
-  KIND as SETTINGS_KIND,
-  DEFAULT_LIBRARY,
-} from 'actions/personal/settings'
+import { getHomeLibrary, setHomeLibrary, KIND as SETTINGS_KIND, DEFAULT_LIBRARY } from 'actions/personal/settings'
 import { fetchBranches } from 'actions/contentful/branches'
 import { fetchSubjects } from 'actions/contentful/subjects'
 
-import * as states from 'constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 ReactModal.setAppElement('body')
-
-const STEPS_ORDER = [FAVORITES_KIND.subjects, FAVORITES_KIND.databases, SETTINGS_KIND.homeLibrary]
 
 const analytics = (event, step, data) => {
   window.dataLayer = window.dataLayer || []
@@ -38,74 +35,81 @@ const analytics = (event, step, data) => {
   })
 }
 
+const initialData = {
+  [FAVORITES_KIND.subjects]: [],
+  [FAVORITES_KIND.databases]: [],
+  [SETTINGS_KIND.homeLibrary]: DEFAULT_LIBRARY,
+}
+
 class Wizard extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
       step: props.defaultStep,
-      data: {
-        [FAVORITES_KIND.subjects]: [],
-        [FAVORITES_KIND.databases]: [],
-        [SETTINGS_KIND.homeLibrary]: DEFAULT_LIBRARY,
-      },
+      data: JSON.parse(JSON.stringify(initialData)),
     }
 
     this.dismiss = this.dismiss.bind(this)
     this.nextStep = this.nextStep.bind(this)
     this.prevStep = this.prevStep.bind(this)
+    this.finishAndSave = this.finishAndSave.bind(this)
     this.body = this.body.bind(this)
+    this.isLoading = this.isLoading.bind(this)
 
-    if ([states.NOT_FETCHED, states.ERROR].includes(props.cfSubjects.status) || !props.cfSubjects.depth >= 1) {
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfSubjects.status) || !props.cfSubjects.depth >= 1) {
       props.fetchSubjects(props.preview, 1)
     }
-    if ([states.NOT_FETCHED, states.ERROR].includes(props.cfBranches.status)) {
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfBranches.status)) {
       props.fetchBranches(props.preview, 0)
     }
-    if ([states.NOT_FETCHED, states.ERROR].includes(props.homeLibrary.state)) {
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.homeLibrary.state)) {
       props.getHomeLibrary()
+    }
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.favoritesStatus)) {
+      props.getAllFavorites()
     }
   }
 
   componentDidUpdate (prevProps) {
     // If saving completed, close the modal
-    if (this.props.updateStatus === states.SUCCESS && prevProps.updateStatus !== states.SUCCESS) {
+    if (this.props.updateStatus === statuses.SUCCESS && prevProps.updateStatus !== statuses.SUCCESS) {
       this.dismiss(true)
     }
   }
 
   dismiss (autoClosed) {
     // If save is already in progress don't do anything
-    if (this.props.updateStatus === states.FETCHING) {
+    if (this.props.updateStatus === statuses.FETCHING) {
       return
     }
 
     if (!autoClosed) {
-      analytics('closeWizard', STEPS_ORDER[this.state.step])
+      analytics('closeWizard', this.props.stepList[this.state.step])
     }
 
     this.props.closeCallback()
   }
 
   prevStep () {
-    const stepBeforeChange = STEPS_ORDER[this.state.step]
+    const stepBeforeChange = this.props.stepList[this.state.step]
     analytics('prevStep', stepBeforeChange)
 
     const stateObj = { data: JSON.parse(JSON.stringify(this.state.data)) }
     if (this.state.step > 0) {
       stateObj.step = this.state.step - 1
-      stateObj.data[stepBeforeChange] = stepBeforeChange === SETTINGS_KIND.homeLibrary ? DEFAULT_LIBRARY : []
+      stateObj.data[stepBeforeChange] = JSON.parse(JSON.stringify(initialData[stepBeforeChange]))
     }
     this.setState(stateObj)
   }
 
   nextStep (saveData) {
     // If save is already in progress don't do anything
-    if (this.props.updateStatus === states.FETCHING) {
+    if (this.props.updateStatus === statuses.FETCHING) {
       return
     }
 
-    const stepBeforeChange = STEPS_ORDER[this.state.step]
+    const stepBeforeChange = this.props.stepList[this.state.step]
     const stateObj = { data: JSON.parse(JSON.stringify(this.state.data)) }
     if (saveData) {
       stateObj.data[stepBeforeChange] = saveData
@@ -113,121 +117,116 @@ class Wizard extends Component {
       // GA doesn't need the full contentful objects. Just get relevant data.
       const analyticsData = !Array.isArray(saveData) ? saveData : saveData.map((fave) => {
         if (fave.sys && fave.fields) {
-          if (fave.sys.contentType.sys.id === 'page' && fave.fields.type === 'Subject') {
-            return fave.fields.alternateTitle || fave.fields.title
-          }
+          return typy(fave, 'sys.contentType.sys.id').safeString === 'internalLink' ? fave.linkText : fave.fields.title
         }
         // Doesn't seem to be a contentful item? Pass everything back.
         return fave
       })
       analytics('nextStep', stepBeforeChange, analyticsData)
     } else {
-      stateObj.data[stepBeforeChange] = stepBeforeChange === SETTINGS_KIND.homeLibrary ? DEFAULT_LIBRARY : []
+      stateObj.data[stepBeforeChange] = JSON.parse(JSON.stringify(initialData[stepBeforeChange]))
       analytics('skipStep', stepBeforeChange)
     }
 
-    if (this.state.step < STEPS_ORDER.length - 1) {
+    if (this.state.step < this.props.stepList.length - 1) {
       stateObj.step = this.state.step + 1
       this.setState(stateObj)
     } else {
       // Save everything since this was the final step.
-      this.setState(stateObj)
-      // Since the real state won't update until the next digest, use the stateObj we just created
-      const subjects = convertContentfulToFavorites(stateObj.data[FAVORITES_KIND.subjects], FAVORITES_KIND.subjects)
+      this.finishAndSave(stateObj)
+    }
+  }
+
+  finishAndSave = (newState) => {
+    this.setState(newState)
+    // Since the real state won't update until the next digest, use the newState we just created
+    // Only update steps that were included in this instance of the Wizard
+    if (this.props.stepList.includes(FAVORITES_KIND.subjects)) {
+      const subjects = convertContentfulToFavorites(newState.data[FAVORITES_KIND.subjects], FAVORITES_KIND.subjects)
       this.props.setFavorites(FAVORITES_KIND.subjects, subjects)
-      this.props.setFavorites(FAVORITES_KIND.databases, stateObj.data[FAVORITES_KIND.databases])
-      this.props.setHomeLibrary(stateObj.data[SETTINGS_KIND.homeLibrary])
+    }
+    if (this.props.stepList.includes(FAVORITES_KIND.databases)) {
+      this.props.setFavorites(FAVORITES_KIND.databases, newState.data[FAVORITES_KIND.databases])
+    }
+    if (this.props.stepList.includes(SETTINGS_KIND.homeLibrary)) {
+      this.props.setHomeLibrary(newState.data[SETTINGS_KIND.homeLibrary])
     }
   }
 
   body () {
-    const currentStepName = STEPS_ORDER[this.state.step]
-    const isLoading = (
-      currentStepName === FAVORITES_KIND.subjects &&
-      [states.NOT_FETCHED, states.FETCHING].includes(this.props.cfSubjects.status)
-    ) || (
-      currentStepName === FAVORITES_KIND.databases &&
-      [states.NOT_FETCHED, states.FETCHING].includes(this.props.cfDatabases.status)
-    ) || (
-      currentStepName === SETTINGS_KIND.homeLibrary &&
-      ([states.NOT_FETCHED, states.FETCHING].includes(this.props.cfBranches.status) ||
-      [states.NOT_FETCHED, states.FETCHING].includes(this.props.homeLibrary.state))
-    )
-
-    if (isLoading) {
-      return <div className='modal-body'><InlineLoading /></div>
-    }
+    const currentStepName = typy(this.props, `stepList[${this.state.step}]`).safeString
 
     const commonProps = {
       step: this.state.step,
-      stepCount: STEPS_ORDER.length,
+      stepCount: this.props.stepList.length,
       nextStep: this.nextStep,
       prevStep: this.prevStep,
-      saving: this.props.updateStatus === states.FETCHING,
+      saving: this.props.updateStatus === statuses.FETCHING,
     }
 
     switch (currentStepName) {
       case FAVORITES_KIND.subjects:
-        const subjectStepData = (!this.state.data[currentStepName] || this.state.data[currentStepName].length === 0)
-          ? this.props.cfSubjects.data
-          : JSON.parse(JSON.stringify(this.props.cfSubjects.data)).map((subject) => {
-            subject.selected = this.state.data[currentStepName].some(x => x.fields.slug === subject.fields.slug)
-            return subject
-          })
+        const subjectStepData = JSON.parse(JSON.stringify(this.props.cfSubjects.data)).map((subject) => {
+          if (this.state.data[currentStepName].length) {
+            subject.selected = this.state.data[currentStepName].some(x => (
+              typy(x, 'fields.page.fields.slug').safeString === typy(subject, 'fields.page.fields.slug').safeString
+            ))
+          } else {
+            const match = typy(this.props.favorites, `${currentStepName}.items`).safeArray.find(y => (
+              y.key === typy(subject, 'fields.page.fields.slug').safeString
+            ))
+            if (match) {
+              subject.selected = true
+              subject.order = match.order
+            }
+          }
+          return subject
+        })
         return <SubjectStep data={subjectStepData} {...commonProps} />
       case FAVORITES_KIND.databases:
         let dbStepData = []
         if (!this.state.data[currentStepName] || this.state.data[currentStepName].length === 0) {
-          const relatedDbs = this.props.cfDatabases.data.filter((db) => {
-            return db.fields && this.state.data[FAVORITES_KIND.subjects].find((subject) => {
-              return subject.fields && subject.fields.relatedResources && subject.fields.relatedResources.find((r) => {
-                return r.sys.id === db.sys.id
-              })
-            })
-          })
-          dbStepData = convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases)
-            .sort((a, b) => a.title < b.title ? -1 : (a.title > b.title ? 1 : 0))
-            .slice(0, 8)
+          const relatedDbs = this.props.cfDatabases.data.filter((db) => (
+            db.sys && this.state.data[FAVORITES_KIND.subjects].find((subject) => (
+              typy(subject, 'fields.page.fields.relatedResources').safeArray.find((r) => r.sys.id === db.sys.id)
+            ))
+          ))
+          dbStepData = helper.sortList(convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases), 'title', 'asc').slice(0, 8)
         } else {
           dbStepData = this.state.data[currentStepName]
         }
         return <DatabaseStep data={dbStepData} {...commonProps} />
       case SETTINGS_KIND.homeLibrary:
-        return <LibraryStep
-          data={this.props.cfBranches.data}
-          defaultValue={this.props.homeLibrary.data}
-          {...commonProps} />
+        return <LibraryStep data={this.props.cfBranches.data} defaultValue={this.props.homeLibrary.data} {...commonProps} />
       default:
         return null
     }
   }
 
+  isLoading () {
+    const currentStepName = this.props.stepList[this.state.step]
+    return typy(this.props.favorites, `${currentStepName}.state`).safeString === statuses.FETCHING || (
+      currentStepName === FAVORITES_KIND.subjects &&
+      [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.cfSubjects.status)
+    ) || (
+      currentStepName === FAVORITES_KIND.databases &&
+      [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.cfDatabases.status)
+    ) || (
+      currentStepName === SETTINGS_KIND.homeLibrary &&
+      ([statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.cfBranches.status) ||
+      [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.homeLibrary.state))
+    )
+  }
+
   render () {
     return (
-      <ReactModal
-        isOpen
-        shouldCloseOnEsc
-        onRequestClose={this.dismiss}
-        contentLabel='Favorites Setup'
-        className='modal'
-        overlayClassName='modal-overlay'
-        ariaHideApp
-        aria={{
-          labelledby: 'favoritesModalTitle',
-          describedby: 'favoritesModalDesc',
-        }}
-        shouldFocusAfterRender
-        shouldReturnFocusAfterClose
-      >
-        <section className='group'>
-          <h3 id='favoritesModalTitle'>
-            <span>Favorites Setup</span>
-            <div className='wizard-step-count-top'>{this.state.step + 1}/{STEPS_ORDER.length}</div>
-            <div className='close-button' title='Close' aria-label='Close' onClick={this.dismiss} />
-          </h3>
-          {this.body()}
-        </section>
-      </ReactModal>
+      <Presenter stepNumber={this.state.step + 1} stepCount={this.props.stepList.length} onDismiss={this.dismiss}>
+        { this.isLoading() ? (
+          <div className='modal-body'><InlineLoading /></div>
+        ) : (
+          this.body()
+        )}
+      </Presenter>
     )
   }
 }
@@ -237,33 +236,27 @@ export const mapStateToProps = (state, ownProps) => {
 
   const homeLibrary = settings[SETTINGS_KIND.homeLibrary]
   const databases = []
-  for (const subject of (cfSubjects.data || [])) {
-    for (const resource of (subject.fields.relatedResources || [])) {
+  for (const subject of typy(cfSubjects, 'data').safeArray) {
+    for (const resource of typy(subject, 'fields.page.fields.relatedResources').safeArray) {
       if (!databases.find((search) => search.sys.id === resource.sys.id)) {
         databases.push(resource)
       }
     }
   }
 
-  // Check status so we know when saving is in progress and completed
-  const updateStatus = [
-    favorites.update[FAVORITES_KIND.subjects].state,
-    favorites.update[FAVORITES_KIND.databases].state,
-    settings.update[SETTINGS_KIND.homeLibrary].state,
-  ].reduce((a, b) => {
-    const success = (status) => status === states.SUCCESS
-    const error = (status) => status === states.ERROR
-    const updating = (status) => status === states.FETCHING
+  // Check status of each step included in this wizard so we know when saving is in progress and completed
+  const updateStatuses = []
+  if (ownProps.stepList.includes(FAVORITES_KIND.subjects)) {
+    updateStatuses.push(favorites.update[FAVORITES_KIND.subjects].state)
+  }
+  if (ownProps.stepList.includes(FAVORITES_KIND.databases)) {
+    updateStatuses.push(favorites.update[FAVORITES_KIND.databases].state)
+  }
+  if (ownProps.stepList.includes(SETTINGS_KIND.homeLibrary)) {
+    updateStatuses.push(settings.update[SETTINGS_KIND.homeLibrary].state)
+  }
 
-    if (error(a) || error(b)) {
-      return states.ERROR
-    } else if (updating(a) || updating(b)) {
-      return states.FETCHING
-    } else if (success(a) && success(b)) {
-      return states.SUCCESS
-    }
-    return states.NOT_FETCHED
-  })
+  const favoritesStatuses = Object.values(FAVORITES_KIND).map((key) => favorites[key].state)
 
   return {
     preview: (ownProps && ownProps.location && ownProps.location.search)
@@ -276,12 +269,21 @@ export const mapStateToProps = (state, ownProps) => {
       data: cfSubjects.data ? databases : null,
     },
     homeLibrary: homeLibrary,
-    updateStatus: updateStatus,
+    updateStatus: helper.reduceStatuses(updateStatuses),
+    favoritesStatus: helper.reduceStatuses(favoritesStatuses),
+    favorites: favorites,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getHomeLibrary, fetchBranches, fetchSubjects, setFavorites, setHomeLibrary }, dispatch)
+  return bindActionCreators({
+    getHomeLibrary,
+    fetchBranches,
+    fetchSubjects,
+    getAllFavorites,
+    setFavorites,
+    setHomeLibrary,
+  }, dispatch)
 }
 
 Wizard.propTypes = {
@@ -292,15 +294,20 @@ Wizard.propTypes = {
   cfDatabases: PropTypes.object,
   homeLibrary: PropTypes.object,
   updateStatus: PropTypes.string.isRequired,
+  favoritesStatus: PropTypes.string.isRequired,
+  favorites: PropTypes.object,
   getHomeLibrary: PropTypes.func.isRequired,
   fetchBranches: PropTypes.func.isRequired,
   fetchSubjects: PropTypes.func.isRequired,
+  getAllFavorites: PropTypes.func.isRequired,
   setFavorites: PropTypes.func.isRequired,
   setHomeLibrary: PropTypes.func.isRequired,
+  stepList: PropTypes.array, // Allows reordering or only using specific steps
   defaultStep: PropTypes.number,
 }
 
 Wizard.defaultProps = {
+  stepList: [FAVORITES_KIND.subjects, FAVORITES_KIND.databases, SETTINGS_KIND.homeLibrary],
   defaultStep: 0,
 }
 

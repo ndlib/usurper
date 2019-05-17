@@ -1,4 +1,5 @@
 import { RECEIVE_PERSONAL, CLEAR_PERSONAL, REQUEST_PERSONAL } from 'actions/personal/constants'
+import { KIND } from 'actions/personal/favorites'
 import * as statuses from 'constants/APIStatuses'
 
 const initialState = {
@@ -13,7 +14,12 @@ const initialState = {
   historical: { state: statuses.NOT_FETCHED },
   deleteHistorical: { state: statuses.NOT_FETCHED },
   courses: { state: statuses.NOT_FETCHED },
+  favorites: {},
 }
+Object.values(KIND).forEach((value) => {
+  initialState.favorites[value] = { state: statuses.NOT_FETCHED }
+})
+
 const personalReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_PERSONAL:

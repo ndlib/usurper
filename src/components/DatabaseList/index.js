@@ -157,20 +157,7 @@ export const mapStateToProps = (state, thisProps) => {
   const { personal, favorites } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
-  const allLettersStatus = (state.cfDatabaseLetter && state.cfDatabaseLetter.a)
-    ? Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status)
-      .reduce((a, b) => {
-        const valid = (status) => [statuses.SUCCESS, statuses.NOT_FOUND].includes(status)
-
-        if ([a, b].includes(statuses.ERROR)) {
-          return statuses.ERROR
-        } else if ([a, b].includes(statuses.FETCHING)) {
-          return statuses.FETCHING
-        }
-
-        return (valid(a) && valid(b)) ? statuses.SUCCESS : statuses.ERROR
-      })
-    : statuses.NOT_FETCHED
+  const allLettersStatus = helper.reduceStatuses(Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status))
 
   return {
     cfDatabaseLetter: sortDbs(state.cfDatabaseLetter),

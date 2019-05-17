@@ -1,16 +1,16 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { mount, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
 import Wizard from 'components/Account/Favorites/Wizard'
+import Presenter from 'components/Account/Favorites/Wizard/presenter'
 import DatabaseStep from 'components/Account/Favorites/Wizard/DatabaseStep'
 import SubjectStep from 'components/Account/Favorites/Wizard/SubjectStep'
 import LibraryStep from 'components/Account/Favorites/Wizard/LibraryStep'
 import InlineLoading from 'components/Messages/InlineLoading'
 
-import { REQUEST_UPDATE_FAVORITES, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
+import { REQUEST_FAVORITES, REQUEST_UPDATE_FAVORITES, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
 import {
   REQUEST_SETTINGS,
   REQUEST_UPDATE_SETTINGS,
@@ -29,17 +29,19 @@ const mockStore = configureMockStore(middlewares)
 
 const setup = (state, ownProps) => {
   store = mockStore(state)
-  return mount(
-    <Provider store={store}>
-      <Wizard {...ownProps} />
-    </Provider>
-  )
+  return shallow(<Wizard store={store} {...ownProps} />)
 }
 
 const STEP_COUNT = 3
-
+const ALL_STEPS = [FAVORITES_KIND.subjects, FAVORITES_KIND.databases, SETTINGS_KIND.homeLibrary]
 const BASE_STATE = {
   favorites: {
+    [FAVORITES_KIND.databases]: {
+      state: statuses.NOT_FETCHED,
+    },
+    [FAVORITES_KIND.subjects]: {
+      state: statuses.NOT_FETCHED,
+    },
     update: {
       [FAVORITES_KIND.databases]: {
         state: statuses.NOT_FETCHED,
@@ -74,23 +76,28 @@ describe('components/Account/Favorites/Wizard', () => {
 
   describe('before loading', () => {
     beforeEach(() => {
-      const state = Object.assign({}, BASE_STATE)
-      enzymeWrapper = setup(state)
+      const props = {
+        stepList: ALL_STEPS,
+      }
+      enzymeWrapper = setup(BASE_STATE, props)
+      enzymeWrapper.dive().dive().instance()
     })
 
     it('should fetch data that has not been fetched yet', () => {
-      const state = Object.assign({}, BASE_STATE)
-      enzymeWrapper = setup(state)
-
       expect(store.getActions()).toEqual(expect.arrayContaining([
         { type: CF_REQUEST_SUBJECTS, depth: expect.any(Number) },
         { type: CF_REQUEST_BRANCHES, depth: expect.any(Number) },
         { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.homeLibrary, data: null },
+        ...Object.values(FAVORITES_KIND).map((kind) => (
+          { type: REQUEST_FAVORITES, kind: kind }
+        ))
       ]))
     })
 
     it('should fetch subjects if data in store is not deep enough', () => {
-      const state = Object.assign({}, BASE_STATE)
+      store.clearActions()
+
+      const state = JSON.parse(JSON.stringify(BASE_STATE))
       Object.assign(state, {
         cfSubjects: {
           status: statuses.SUCCESS,
@@ -98,7 +105,11 @@ describe('components/Account/Favorites/Wizard', () => {
           depth: 0,
         },
       })
-      enzymeWrapper = setup(state)
+      const props = {
+        stepList: ALL_STEPS,
+      }
+      enzymeWrapper = setup(state, props)
+      enzymeWrapper.dive().dive().instance()
 
       expect(store.getActions()).toEqual(expect.arrayContaining([
         { type: CF_REQUEST_SUBJECTS, depth: expect.any(Number) },
@@ -108,7 +119,7 @@ describe('components/Account/Favorites/Wizard', () => {
 
   describe('while loading', () => {
     beforeEach(() => {
-      const state = Object.assign({}, BASE_STATE)
+      const state = JSON.parse(JSON.stringify(BASE_STATE))
       Object.assign(state, {
         cfBranches: {
           status: statuses.FETCHING,
@@ -123,24 +134,48 @@ describe('components/Account/Favorites/Wizard', () => {
       })
       const props = {
         defaultStep: 0,
+        stepList: ALL_STEPS,
       }
       enzymeWrapper = setup(state, props)
     })
 
     it('should display loading indicator', () => {
-      expect(enzymeWrapper.find(InlineLoading).exists()).toBe(true)
+      expect(enzymeWrapper.dive().dive().find(InlineLoading).exists()).toBe(true)
     })
 
     it('should not display normal step body', () => {
-      expect(enzymeWrapper.find(SubjectStep).exists()).toBe(false)
-      expect(enzymeWrapper.find(DatabaseStep).exists()).toBe(false)
-      expect(enzymeWrapper.find(LibraryStep).exists()).toBe(false)
+      expect(enzymeWrapper.dive().dive().find(SubjectStep).exists()).toBe(false)
+      expect(enzymeWrapper.dive().dive().find(DatabaseStep).exists()).toBe(false)
+      expect(enzymeWrapper.dive().dive().find(LibraryStep).exists()).toBe(false)
     })
   })
 
   describe('after data loaded', () => {
-    const state = Object.assign({}, BASE_STATE)
+    const state = JSON.parse(JSON.stringify(BASE_STATE))
     Object.assign(state, {
+      favorites: {
+        [FAVORITES_KIND.databases]: {
+          state: statuses.SUCCESS,
+          items: [],
+        },
+        [FAVORITES_KIND.subjects]: {
+          state: statuses.SUCCESS,
+          items: [{
+            key: 'slugger',
+            title: 'McSlug',
+            url: '/slugger',
+            order: 1,
+          }],
+        },
+        update: {
+          [FAVORITES_KIND.databases]: {
+            state: statuses.NOT_FETCHED,
+          },
+          [FAVORITES_KIND.subjects]: {
+            state: statuses.NOT_FETCHED,
+          },
+        },
+      },
       settings: {
         [SETTINGS_KIND.homeLibrary]: {
           state: statuses.SUCCESS,
@@ -159,25 +194,60 @@ describe('components/Account/Favorites/Wizard', () => {
       },
       cfSubjects: {
         status: statuses.SUCCESS,
-        data: [],
+        data: [
+          {
+            sys: {
+              id: 'subme',
+              contentType: { sys: { id: 'internalLink' }},
+            },
+            fields: {
+              title: 'suuuuubject',
+              usePageTitle: false,
+              page: {
+                fields: {
+                  slug: 'slugger',
+                  relatedResources: [
+                    {
+                      sys: { id: 'DONT_CHANGE_ME' },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        ],
         depth: 999,
       },
     })
 
     it('should not dispatch fetch request for data', () => {
-      enzymeWrapper = setup(state)
+      const props = {
+        stepList: ALL_STEPS,
+      }
+      enzymeWrapper = setup(state, props)
       expect(store.getActions()).toHaveLength(0)
+    })
+
+    it('should call close method when dismissed', () => {
+      const props = {
+        stepList: ALL_STEPS,
+        closeCallback: jest.fn(),
+      }
+      enzymeWrapper = setup(state, props)
+
+      const instance = enzymeWrapper.dive().dive().instance()
+      instance.dismiss()
+      expect(props.closeCallback).toHaveBeenCalled()
     })
 
     it('should flow through steps passing data correctly', () => {
       const props = {
         defaultStep: 0,
+        stepList: ALL_STEPS,
       }
-      store = mockStore(state)
-      // Shallow mount because for some reason I couldn't call nextStep on the fully rendered instance
-      enzymeWrapper = shallow(<Wizard store={store} {...props} />)
+      enzymeWrapper = setup(state, props)
 
-      const firstSubjectData = ['subject data']
+      const firstSubjectData = [state.cfSubjects.data[0]]
       const secondSubjectData = ['redo', 'subjects']
       const firstDatabaseData = ['database data']
       const secondDatabaseData = ['data', 'base', 'data']
@@ -215,9 +285,30 @@ describe('components/Account/Favorites/Wizard', () => {
       ])
     })
 
+    it('should not pass data when skipping step', () => {
+      const props = {
+        defaultStep: 0,
+        stepList: ALL_STEPS,
+      }
+      enzymeWrapper = setup(state, props)
+
+      const instance = enzymeWrapper.dive().dive().instance()
+      // First set up some data in the state temporarily
+      instance.state.data = {
+        ...instance.state.data,
+        [props.stepList[props.defaultStep]]: [{ value: 'temp data' }],
+      }
+      expect(instance.state.data[props.stepList[props.defaultStep]]).toHaveLength(1)
+
+      // Now skip the step and check that the state was updated with no data
+      instance.nextStep()
+      expect(instance.state.data[props.stepList[props.defaultStep]]).toHaveLength(0)
+    })
+
     describe('step 1', () => {
       const props = {
         defaultStep: 0,
+        stepList: ALL_STEPS,
       }
 
       beforeEach(() => {
@@ -228,21 +319,15 @@ describe('components/Account/Favorites/Wizard', () => {
         const have = <SubjectStep
           step={0}
           stepCount={STEP_COUNT}
-          data={store.getState().cfSubjects.data}
         />
-        expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-      })
-
-      it('should show correct human-readable step number', () => {
-        const container = enzymeWrapper.find('.wizard-step-count-top')
-        expect(container.exists()).toBe(true)
-        expect(container.text()).toEqual((props.defaultStep + 1) + '/' + STEP_COUNT)
+        expect(enzymeWrapper.dive().dive().containsMatchingElement(have)).toBe(true)
       })
     })
 
     describe('step 2', () => {
       const props = {
         defaultStep: 1,
+        stepList: ALL_STEPS,
       }
 
       beforeEach(() => {
@@ -255,19 +340,14 @@ describe('components/Account/Favorites/Wizard', () => {
           stepCount={STEP_COUNT}
           data={[]}
         />
-        expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
-      })
-
-      it('should show correct human-readable step number', () => {
-        const container = enzymeWrapper.find('.wizard-step-count-top')
-        expect(container.exists()).toBe(true)
-        expect(container.text()).toEqual((props.defaultStep + 1) + '/' + STEP_COUNT)
+        expect(enzymeWrapper.dive().dive().containsMatchingElement(have)).toBe(true)
       })
     })
 
     describe('step 3', () => {
       const props = {
         defaultStep: 2,
+        stepList: ALL_STEPS,
       }
 
       beforeEach(() => {
@@ -280,13 +360,91 @@ describe('components/Account/Favorites/Wizard', () => {
           stepCount={STEP_COUNT}
           defaultValue={store.getState().settings[SETTINGS_KIND.homeLibrary].data}
           data={store.getState().cfBranches.data} />
+        expect(enzymeWrapper.dive().dive().containsMatchingElement(have)).toBe(true)
+      })
+    })
+
+    describe('unknown step', () => {
+      const props = {
+        defaultStep: 1354,
+        stepList: ALL_STEPS,
+      }
+
+      beforeEach(() => {
+        enzymeWrapper = setup(state, props)
       })
 
-      it('should show correct human-readable step number', () => {
-        const container = enzymeWrapper.find('.wizard-step-count-top')
-        expect(container.exists()).toBe(true)
-        expect(container.text()).toEqual((props.defaultStep + 1) + '/' + STEP_COUNT)
+      it('should render empty presenter', () => {
+        const found = enzymeWrapper.dive().dive().find(Presenter)
+        expect(found.exists()).toBe(true)
+        expect(found.props().children).toBeFalsy()
       })
+    })
+  })
+
+  describe('while saving', () => {
+    beforeEach(() => {
+      const state = JSON.parse(JSON.stringify(BASE_STATE))
+      Object.assign(state, {
+        favorites: {
+          [FAVORITES_KIND.databases]: {
+            state: statuses.SUCCESS,
+            items: [],
+          },
+          [FAVORITES_KIND.subjects]: {
+            state: statuses.SUCCESS,
+            items: [],
+          },
+          update: {
+            [FAVORITES_KIND.databases]: {
+              state: statuses.NOT_FETCHED,
+            },
+            [FAVORITES_KIND.subjects]: {
+              state: statuses.FETCHING,
+            },
+          },
+        },
+        cfBranches: {
+          status: statuses.SUCCESS,
+          data: [],
+          depth: 0,
+        },
+        cfSubjects: {
+          status: statuses.SUCCESS,
+          data: [],
+          depth: 1,
+        },
+      })
+      const props = {
+        defaultStep: 0,
+        stepList: ALL_STEPS,
+        closeCallback: jest.fn(),
+      }
+      enzymeWrapper = setup(state, props)
+    })
+
+    it('should not allow closing the wizard', () => {
+      const instance = enzymeWrapper.dive().dive().instance()
+      instance.dismiss()
+      expect(instance.props.closeCallback).not.toHaveBeenCalled()
+    })
+
+    it('should not allow moving to next step', () => {
+      const instance = enzymeWrapper.dive().dive().instance()
+      const beforeState = JSON.parse(JSON.stringify(instance.state))
+      instance.nextStep()
+      expect(instance.state).toEqual(beforeState)
+    })
+
+    it('should dismiss wizard once save completed', () => {
+      const instance = enzymeWrapper.dive().dive().instance()
+      instance.dismiss = jest.fn()
+
+      enzymeWrapper.dive().dive().setProps({
+        updateStatus: statuses.SUCCESS,
+      })
+
+      expect(enzymeWrapper.dive().props().closeCallback).toHaveBeenCalled()
     })
   })
 })
