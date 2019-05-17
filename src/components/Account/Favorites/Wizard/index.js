@@ -57,8 +57,8 @@ class Wizard extends Component {
     this.body = this.body.bind(this)
     this.isLoading = this.isLoading.bind(this)
 
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfSubjects.status) || !props.cfSubjects.depth >= 1) {
-      props.fetchSubjects(props.preview, 1)
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfSubjects.status) || typy(props, 'cfSubjects.depth').safeNumber < 2) {
+      props.fetchSubjects(props.preview, 2)
     }
     if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfBranches.status)) {
       props.fetchBranches(props.preview, 0)
