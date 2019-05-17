@@ -73,7 +73,7 @@ class TopSection extends Component {
         favoritesLoading={favoritesLoading}
         locationLoading={locationLoading}
         hasItems={this.props.hasItems}
-        locationClassName={this.props.hasItems ? 'right' : 'middle-align'}
+        locationClassName={this.props.hideFavorites ? 'middle-align' : ''}
         servicePoint={typy(this.props, 'cfFavoriteLocation.json.fields.servicePoint').safeObjectOrEmpty}
         calloutLink={typy(this.props, 'cfFavoriteLocation.json.fields.callOutLink').safeObjectOrEmpty}
         favorites={this.props.favorites}
