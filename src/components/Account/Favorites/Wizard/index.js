@@ -246,6 +246,7 @@ export const mapStateToProps = (state, ownProps) => {
 
   // Check status of each step included in this wizard so we know when saving is in progress and completed
   const updateStatuses = []
+  ownProps.stepList = ownProps.stepList || Wizard.defaultProps.stepList
   if (ownProps.stepList.includes(FAVORITES_KIND.subjects)) {
     updateStatuses.push(favorites.update[FAVORITES_KIND.subjects].state)
   }
