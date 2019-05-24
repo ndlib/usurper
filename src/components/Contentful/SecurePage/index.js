@@ -11,7 +11,7 @@ import { withErrorBoundary } from 'components/ErrorBoundary'
 const mapStateToProps = (state) => {
   return {
     cfPageEntry: state.cfPageEntry,
-    login: state.personal.login,
+    login: Object.assign({}, { ...state.personal.login }),
   }
 }
 
