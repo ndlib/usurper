@@ -94,7 +94,43 @@ describe('subjects fetch action creator', () => {
   })
 
   describe('on error', () => {
-    it('should create a CF_RECEIVE_SUBJECTS action with a status of error if response status !== 200', () => {
+    it('should create a CF_RECEIVE_SUBJECTS action with a status of unauthorized if response status === 401', () => {
+      nock(Config.contentfulAPI)
+        .get('/query')
+        .query(true)
+        .reply(401)
+
+      const expectedAction = {
+        type: CF_RECEIVE_SUBJECTS,
+        status: statuses.UNAUTHORIZED,
+      }
+
+      const store = mockStore()
+      return store.dispatch(fetchSubjects())
+        .then(() => {
+          expect(store.getActions()[1]).toMatchObject(expectedAction)
+        })
+    })
+
+    it('should create a CF_RECEIVE_SUBJECTS action with a status of not found if response status === 404', () => {
+      nock(Config.contentfulAPI)
+        .get('/query')
+        .query(true)
+        .reply(404)
+
+      const expectedAction = {
+        type: CF_RECEIVE_SUBJECTS,
+        status: statuses.NOT_FOUND,
+      }
+
+      const store = mockStore()
+      return store.dispatch(fetchSubjects())
+        .then(() => {
+          expect(store.getActions()[1]).toMatchObject(expectedAction)
+        })
+    })
+
+    it('should create a CF_RECEIVE_SUBJECTS action with an error if response status some other error', () => {
       nock(Config.contentfulAPI)
         .get('/query')
         .query(true)

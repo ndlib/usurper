@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux'
 
 import InlineLoading from 'components/Messages/InlineLoading'
 import UpdateStatus from 'components/Messages/UpdateStatus'
-import RadioList from 'components/Interactive/RadioList'
+import HideHomeFavorites from './HideHomeFavorites'
+import DefaultSearch from './DefaultSearch'
 
 import { setHideHomeFavorites, setDefaultSearch, clearUpdateSettings, KIND } from 'actions/personal/settings'
 import { saveSearchPreference } from 'actions/search'
@@ -14,9 +15,7 @@ import * as helper from 'constants/HelperFunctions'
 import { HIDE_HOME_FAVORITES, cookieOptions } from 'constants/cookies'
 import { searchOptions } from 'constants/searchOptions.js'
 
-import Config from 'shared/Configuration'
-
-class HomePageDisplayContainer extends Component {
+export class HomePageDisplayContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -25,7 +24,9 @@ class HomePageDisplayContainer extends Component {
     }
 
     this.onChange = this.onChange.bind(this)
+    this.onSearchChange = this.onSearchChange.bind(this)
     this.onSave = this.onSave.bind(this)
+    this.statusText = this.statusText.bind(this)
   }
 
   onChange = (event) => {
@@ -34,10 +35,19 @@ class HomePageDisplayContainer extends Component {
     stateObj[event.target.name] = event.target.type === 'checkbox' ? event.target.checked : event.target.value
     this.setState(stateObj)
 
-    if (this.props.saveState === statuses.SUCCESS || this.props.saveState === statuses.ERROR) {
+    if ([statuses.SUCCESS, statuses.ERROR].includes(this.props.saveState)) {
       this.props.clearUpdateSettings(KIND.hideHomeFavorites)
       this.props.clearUpdateSettings(KIND.defaultSearch)
     }
+  }
+
+  onSearchChange = (value) => {
+    this.onChange({
+      target: {
+        name: 'defaultSearch',
+        value: value,
+      },
+    })
   }
 
   onSave = (event) => {
@@ -57,52 +67,31 @@ class HomePageDisplayContainer extends Component {
     }
   }
 
-  render () {
-    const updateText = this.props.saveState === statuses.SUCCESS
-      ? `Saved home page settings successfully.`
-      : `Failed to update home page settings. Please refresh and try again.`
+  statusText () {
+    switch (this.props.saveState) {
+      case statuses.SUCCESS:
+        return 'Saved home page settings successfully.'
+      case statuses.ERROR:
+        return 'Failed to update home page settings. Please refresh and try again.'
+      default:
+        return null
+    }
+  }
 
+  render () {
+    const saving = this.props.saveState === statuses.FETCHING
     return (
       <section className='group home-page-display'>
         <h3>Home Page Display</h3>
         <div className='section-box pad-edges'>
           <form onSubmit={this.onSave}>
-            { Config.features.favoritesEnabled && (
-              <React.Fragment>
-                <h4>Favorites</h4>
-                <div className='row'>
-                  <div className='col-xs-12'>
-                    <label>
-                      <input type='checkbox' name='hideHomeFavoritesCheckbox' onChange={this.onChange} defaultChecked={this.props.hideFavorites} />
-                      Hide favorites on the home page.
-                    </label>
-                  </div>
-                </div>
-                <br />
-              </React.Fragment>
-            )}
-            <h4>Default Search</h4>
-            <RadioList
-              radioName='defaultSearch'
-              entries={searchOptions.map((option) => ({
-                title: option.title,
-                value: option.uid,
-              }))}
-              defaultValue={this.state.defaultSearch}
-              onChangeCallback={(value) => this.onChange({
-                target: {
-                  name: 'defaultSearch',
-                  value: value,
-                },
-              })}
-            />
-            <button type='submit' className='right' aria-label='Save' disabled={!this.props.saveState === statuses.FETCHING}>
-              Save
-            </button>
-            { this.props.saveState === statuses.FETCHING ? (
+            <HideHomeFavorites onChange={this.onChange} defaultChecked={this.props.hideFavorites} />
+            <DefaultSearch onChange={this.onSearchChange} defaultValue={this.state.defaultSearch} />
+            <button type='submit' className='right' aria-label='Save' disabled={saving}>Save</button>
+            { saving ? (
               <InlineLoading title='Saving...' className='fright pad-edges-sm' />
             ) : (
-              <UpdateStatus className='pad-edges-md' status={this.props.saveState} text={updateText} />
+              <UpdateStatus className='pad-edges-md' status={this.props.saveState} text={this.statusText()} />
             )}
           </form>
         </div>

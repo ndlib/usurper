@@ -8,9 +8,9 @@ import UpdateStatus from 'components/Messages/UpdateStatus'
 import InlineLoading from 'components/Messages/InlineLoading'
 
 import { clearUpdateSettings, setHomeLibrary, KIND } from 'actions/personal/settings'
-import * as states from 'constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
-class PickUp extends Component {
+export class PickUpContainer extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -19,34 +19,44 @@ class PickUp extends Component {
 
     this.onChange = this.onChange.bind(this)
     this.onSave = this.onSave.bind(this)
+    this.statusText = this.statusText.bind(this)
   }
 
   onChange = (value) => {
     this.setState({
       selectedValue: value,
     })
-    if (this.props.updateStatus === states.SUCCESS || this.props.updateStatus === states.ERROR) {
+    if ([statuses.SUCCESS, statuses.ERROR].includes(this.props.updateStatus)) {
       this.props.clearUpdateSettings(KIND.homeLibrary)
     }
   }
 
   onSave = (event) => {
     event.preventDefault()
-    if (this.props.updateStatus === states.FETCHING) {
+    if (this.props.updateStatus === statuses.FETCHING) {
       return null
     }
 
     this.props.setHomeLibrary(this.state.selectedValue)
   }
 
+  statusText () {
+    switch (this.props.updateStatus) {
+      case statuses.SUCCESS:
+        return 'Preferred location saved.'
+      case statuses.ERROR:
+        return 'Preferred location failed to update.'
+      default:
+        return null
+    }
+  }
+
   render () {
-    const statusText = this.props.updateStatus === states.SUCCESS
-      ? 'Preferred location saved.'
-      : (this.props.updateStatus === states.ERROR ? 'Preferred location failed to update.' : null)
     const radioEntries = this.props.entries.map((entry) => ({
       title: entry.fields.alternateTitle || entry.fields.title,
       value: entry.fields.slug,
     }))
+    const saving = this.props.updateStatus === statuses.FETCHING
 
     return (
       <section className='group preferred-location'>
@@ -55,13 +65,11 @@ class PickUp extends Component {
           <form onSubmit={this.onSave}>
             <span>Select your preferred location to display on the home screen.</span>
             <RadioList radioName='default_library' entries={radioEntries} defaultValue={this.props.defaultValue} onChangeCallback={this.onChange} />
-            <button type='submit' className='right' aria-label='Save' disabled={!this.props.updateStatus === states.FETCHING}>
-              Save
-            </button>
-            { this.props.updateStatus === states.FETCHING ? (
+            <button type='submit' className='right' aria-label='Save' disabled={saving}>Save</button>
+            { saving ? (
               <InlineLoading title='Saving' className='fright pad-edges-sm' />
             ) : (
-              <UpdateStatus className='pad-edges-md' status={this.props.updateStatus} text={statusText} />
+              <UpdateStatus className='pad-edges-md' status={this.props.updateStatus} text={this.statusText()} />
             )}
           </form>
         </div>
@@ -74,11 +82,11 @@ export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ clearUpdateSettings, setHomeLibrary }, dispatch)
 }
 
-PickUp.propTypes = {
+PickUpContainer.propTypes = {
   entries: PropTypes.array.isRequired,
   setHomeLibrary: PropTypes.func.isRequired,
   defaultValue: PropTypes.string,
   updateStatus: PropTypes.string,
   clearUpdateSettings: PropTypes.func.isRequired,
 }
-export default connect(null, mapDispatchToProps)(PickUp)
+export default connect(null, mapDispatchToProps)(PickUpContainer)

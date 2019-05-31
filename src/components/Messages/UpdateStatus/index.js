@@ -1,32 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 
-import * as states from 'constants/APIStatuses'
+import * as statuses from 'constants/APIStatuses'
 
 const UpdateStatus = (props) => {
-  if (!props.show) {
+  // Only show message after update is a "complete" status (and show is true)
+  if (!props.show || ![statuses.SUCCESS, statuses.ERROR].includes(props.status)) {
     return null
   }
 
-  if (props.status === states.SUCCESS) {
-    return (
-      <div className={'updateStatus ' + (props.className || '')}>
-        <div className='success'>
-          {props.text || 'Update successful.'}
-        </div>
-      </div>
-    )
-  } else if (props.status === states.ERROR) {
-    return (
-      <div className={'updateStatus ' + (props.className || '')}>
-        <div className='failure'>
-          {props.text || 'Update failed.'}
-        </div>
-      </div>
-    )
+  let messageClass
+  let defaultText
+  if (props.status === statuses.SUCCESS) {
+    messageClass = 'success'
+    defaultText = 'Update successful.'
+  } else {
+    messageClass = 'failure'
+    defaultText = 'Update failed.'
   }
 
-  return null
+  return (
+    <div className={'updateStatus ' + typy(props.className).safeString}>
+      <div className={messageClass}>{props.text || defaultText}</div>
+    </div>
+  )
 }
 
 UpdateStatus.propTypes = {
