@@ -185,7 +185,7 @@ class CircOptIn extends Component {
           )}
           <div className='modal-footer'>
             { this.props.updating && (
-              <InlineLoading title='' />
+              <InlineLoading title='Updating... This may take a minute.' />
             )}
             <button onClick={this.dismiss} disabled={this.props.updating}>Cancel</button>
             <button
