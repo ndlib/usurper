@@ -49,7 +49,7 @@ export const fetchSubjects = (preview, include = 1) => {
 
     return fetch(url)
       .then(response => {
-        if (response.ok) {
+        if (statuses.fromHttpStatusCode(response.status) === statuses.SUCCESS || response.ok) {
           return response.json()
         } else {
           return response

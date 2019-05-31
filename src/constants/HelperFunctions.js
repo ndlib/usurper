@@ -12,7 +12,7 @@ export const filterList = (list, filterFields, filterValue) => {
   return list.filter((item) => {
     let inFilter = false
     if (!filterFields || !filterFields.length) {
-      inFilter = !value
+      inFilter = typy(value).isTruthy
     } else {
       if (!Array.isArray(filterFields)) {
         filterFields = [ filterFields ]
