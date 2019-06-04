@@ -46,7 +46,7 @@ export class ServicePointContainer extends Component {
   }
 
   render () {
-    if (!this.state.sp || !this.state.sp.fields) {
+    if (!this.state.sp || !this.state.sp.fields || (this.props.slug && this.state.sp.fields.slug !== this.props.slug)) {
       return null
     }
 

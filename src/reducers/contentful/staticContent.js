@@ -7,6 +7,7 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
       return Object.assign({}, state, {
         status: statuses.FETCHING,
         slug: action.slug,
+        json: null, // Clear out any old data in case slug changed
       })
     case CF_RECEIVE_SIDEBAR:
       return Object.assign({}, state, {
