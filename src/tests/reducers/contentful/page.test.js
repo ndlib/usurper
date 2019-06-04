@@ -15,9 +15,12 @@ describe('Page reducer', () => {
     expect(
       reducer(undefined, {
         type: actions.CF_REQUEST_PAGE,
+        slug: 'test',
       })
     ).toEqual({
       status: statuses.FETCHING,
+      slug: 'test',
+      json: null,
     })
   })
 
