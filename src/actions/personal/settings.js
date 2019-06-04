@@ -77,7 +77,7 @@ export const getCircStatus = () => {
 export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
     const state = getState().personal
-    dispatch(requestSettings(KIND.circStatus))
+    dispatch(requestUpdateSettings(KIND.circStatus))
     const url = Config.userPrefsAPI + 'circHistory'
     return fetch(url, {
       method: 'post',
