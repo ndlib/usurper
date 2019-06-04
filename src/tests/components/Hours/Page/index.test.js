@@ -23,10 +23,12 @@ describe('components/Hours/Page/Container', () => {
       hoursEntry: { status: statuses.NOT_FETCHED, json: {} },
       servicePointsWithHours: {},
       servicePointsStatus: statuses.NOT_FETCHED,
+      cfStatic: { status: statuses.NOT_FETCHED },
       combinedStatus: statuses.NOT_FETCHED,
       hoursStatus: statuses.NOT_FETCHED,
       fetchHours: jest.fn(),
       fetchServicePoints: jest.fn(),
+      fetchSidebar: jest.fn(),
     }
     enzymeWrapper = setup(props)
   })

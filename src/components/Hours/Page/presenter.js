@@ -13,9 +13,9 @@ import OpenGraph from 'components/OpenGraph'
 const Presenter = (props) => {
   return (
     <section className='content hours-page'>
-      <PageTitle title={'Hours and Contact Information'} />
+      <PageTitle title={props.title || 'Hours and Contact Information'} />
       <OpenGraph
-        title={'Hours and Contact Information'}
+        title={props.title || 'Hours and Contact Information'}
         description={'Hours and contact info of all the libraries and service points'}
         image={false}
       />
@@ -57,6 +57,7 @@ Presenter.propTypes = {
   servicePoints: PropTypes.array.isRequired,
   preview: PropTypes.bool,
   hoursPageOrder: PropTypes.array.isRequired,
+  title: PropTypes.string,
 }
 
 export default Presenter
