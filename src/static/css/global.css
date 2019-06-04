@@ -1618,11 +1618,11 @@ aside section {
   padding-bottom: 1.5em;
 }
 
-aside section h3, aside section h2 {
+aside section h3, aside section h2, .Home section.sp-address h2 {
   margin-bottom: 8px;
 }
 
-aside section h2 {
+aside section h2, .Home section.sp-address h2 {
   font-size: 24px;
   font-family: GPCMed, sans-serif;
   color: #001E45;
