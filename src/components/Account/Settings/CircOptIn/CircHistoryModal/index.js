@@ -26,7 +26,7 @@ const CircHistoryModal = (props) => {
     >
       { props.optedIn ? <OptOutModalBody /> : <OptInModalBody /> }
       <div className='modal-footer'>
-        { props.updating && (<InlineLoading title='Updating... This may take a minute.' />)}
+        { props.updating && (<InlineLoading title='Updating... This may take a few moments.' />)}
         <button onClick={props.onClose} disabled={props.updating}>Cancel</button>
         <button className={`danger ${buttonClass}`} onClick={props.onConfirm} disabled={props.updating}>Confirm</button>
       </div>
