@@ -7,7 +7,7 @@ describe('Page reducer', () => {
     expect(
       reducer(undefined, {})
     ).toEqual({
-      status: statuses.FETCHING,
+      status: statuses.NOT_FETCHED,
     })
   })
 
@@ -15,9 +15,11 @@ describe('Page reducer', () => {
     expect(
       reducer(undefined, {
         type: actions.REQUEST_LIBRARIANS,
+        netids: ['a123', 'b456'],
       })
     ).toEqual({
       status: statuses.FETCHING,
+      netids: ['a123', 'b456'],
     })
   })
 

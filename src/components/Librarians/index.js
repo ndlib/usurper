@@ -9,11 +9,9 @@ import { withErrorBoundary } from 'components/ErrorBoundary'
 const mapStateToProps = (state, ownProps) => {
   const { librarianInfo } = state
 
-  const info = (librarianInfo && librarianInfo.netids) ? librarianInfo : { status: statuses.NOT_FOUND }
-
   return {
     // only those librarians for this page will affect this page
-    librarianInfo: info,
+    librarianInfo,
     ...ownProps,
   }
 }
@@ -24,8 +22,8 @@ const mapDispatchToProps = (dispatch) => {
 
 export class LibrariansContainer extends Component {
   componentDidMount () {
-    if (this.props.librarianInfo.status !== statuses.FETCHING ||
-    !this.props.netids.equals(this.props.librarianInfo.netids)) {
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(this.props.librarianInfo.status) ||
+      (this.props.librarianInfo.netids && !this.props.netids.equals(this.props.librarianInfo.netids))) {
       this.props.fetchLibrarians(this.props.netids)
     }
   }
