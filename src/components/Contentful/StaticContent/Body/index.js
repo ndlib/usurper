@@ -8,6 +8,8 @@ import PresenterFactory from 'components/APIInlinePresenterFactory'
 import Presenter from './presenter.js'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
+import * as statuses from 'constants/APIStatuses'
+
 const mapStateToProps = (state) => {
   return { cfStatic: state.cfStatic }
 }
@@ -18,7 +20,10 @@ const mapDispatchToProps = (dispatch) => {
 
 export class BodyContainer extends Component {
   componentDidMount () {
-    this.props.fetchSidebar(this.props.slug, this.props.preview)
+    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(this.props.cfStatic.status) ||
+    this.props.cfStatic.slug !== this.props.slug) {
+      this.props.fetchSidebar(this.props.slug, this.props.preview)
+    }
   }
 
   render () {
