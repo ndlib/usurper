@@ -63,7 +63,7 @@ export class PickUpContainer extends Component {
         <h3>Preferred Location</h3>
         <div className='section-box pad-edges-sm'>
           <form onSubmit={this.onSave}>
-            <span>Select your preferred location to display on the home screen.</span>
+            <span>Select your preferred location. These hours will display on the home screen.</span>
             <RadioList radioName='default_library' entries={radioEntries} defaultValue={this.props.defaultValue} onChangeCallback={this.onChange} />
             <button type='submit' className='right' aria-label='Save' disabled={saving}>Save</button>
             { saving ? (
