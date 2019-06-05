@@ -9,7 +9,7 @@ const Wizard = (props) => {
       shouldCloseOnEsc
       onRequestClose={props.onDismiss}
       contentLabel='Favorites Setup'
-      className='modal'
+      className='modal force-scrollbar'
       overlayClassName='modal-overlay'
       ariaHideApp
       aria={{ labelledby: 'favoritesModalTitle', describedby: 'favoritesModalDesc' }}
