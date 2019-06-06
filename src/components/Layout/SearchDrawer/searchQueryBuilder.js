@@ -51,8 +51,10 @@ const searchQuery = (searchStore, advancedSearch, history) => {
       const precision = advancedSearch['precisionOperator_' + i] || 'contains'
       const freeText = advancedSearch['freeText_' + i] || (i === 0 ? 'alldocuments' : '')
       const bool = i < 3 ? (advancedSearch['bool_' + i] || 'AND') : 'AND'
-      searchTerm += i === 0 ? '' : '&'
-      searchTerm += `query=${scope},${precision},${encodeURIComponent(freeText)},${bool}`
+      if (freeText) {
+        searchTerm += i === 0 ? '' : '&'
+        searchTerm += `query=${scope},${precision},${encodeURIComponent(freeText)},${bool}`
+      }
     }
 
     const materialType = advancedSearch['materialType'] || 'all_items'
