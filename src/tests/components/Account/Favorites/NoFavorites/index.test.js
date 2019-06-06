@@ -142,6 +142,22 @@ describe('components/Account/Favorites/NoFavorites', () => {
       setHideHomeFavorites: jest.fn(),
     }
 
+    const realConsoleError = console.error
+
+    beforeAll(() => {
+      // Basically, this stops jsdom from complaining in the console when we mock window.location.
+      console.error = jest.fn().mockImplementation((msg) => {
+        if (msg.startsWith('Error: Not implemented: navigation')) {
+          return
+        }
+        realConsoleError(msg)
+      })
+    })
+
+    afterAll(() => {
+      console.error = realConsoleError
+    })
+
     beforeEach(() => {
       enzymeWrapper = setup(state)
     })
@@ -150,14 +166,16 @@ describe('components/Account/Favorites/NoFavorites', () => {
       expect(enzymeWrapper.dive().props().isLoggedIn).toBe(false)
     })
 
-    it('should show link to log in', () => {
-      const loginPath = Config.viceroyAPI + '/login'
-      expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={loginPath}>log in</Link>)).toBe(true)
-    })
+    it('should redirect to log in when clicking add favorites', () => {
+      window.location.assign = jest.fn()
 
-    it('should disable Wizard button', () => {
-      expect(enzymeWrapper.dive().containsMatchingElement(<Wizard />)).toBe(false)
-      expect(enzymeWrapper.dive().dive().containsMatchingElement(<button disabled={true}>Add Favorites</button>)).toBe(true)
+      const btn = enzymeWrapper.dive().dive().findWhere(n => n.type() === 'button' && n.text() === 'Add Favorites')
+      expect(btn).toHaveLength(1)
+
+      btn.simulate('click')
+
+      const loginPath = Config.viceroyAPI + '/login'
+      expect(window.location.assign).toHaveBeenCalledWith(loginPath)
     })
   })
 })
