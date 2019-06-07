@@ -4395,6 +4395,12 @@ img.favorite {
   margin: 1px 4px 0 0;
 }
 
+.remove-icon {
+  height: 1.3em;
+  margin-right: 0.5em;
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 48em) {
   .subject-checkbox-container span {
     overflow: hidden;

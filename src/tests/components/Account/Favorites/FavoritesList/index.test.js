@@ -64,11 +64,6 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
     })
   })
 
-  it('should render a droppable area to remove items', () => {
-    const find = <Droppable droppableId='remove'>{expect.anything()}</Droppable>
-    expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
-  })
-
   it('onRemoveFavorite should call updateList with 1 less items', () => {
     const instance = enzymeWrapper.instance()
     spy = jest.spyOn(instance.props, 'updateList')
@@ -77,24 +72,6 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
 
     const expected = props.items.slice(1)
     expect(spy).toHaveBeenCalledWith(expected)
-  })
-
-  it('should change style of remove area while dragging', () => {
-    const instance = enzymeWrapper.instance()
-    instance.onDragStart()
-
-    const container  = enzymeWrapper.findWhere((el) => el.type() === Droppable && el.props().droppableId === 'remove')
-    // react-beautiful-dnd uses a function for its children, so we need to pass some stuff to it
-    const provided = {
-      innerRef: React.createRef(),
-    }
-    const snapshot = {
-      isDraggingOver: false,
-    }
-    const child = shallow(container.props().children(provided, snapshot))
-
-    expect(child.hasClass('dnd-remove-area')).toBe(true)
-    expect(child.hasClass('dragging')).toBe(true)
   })
 
   it('onDragEnd should call updateList with reordered items', () => {
@@ -166,5 +143,31 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
     })
 
     expect(spy).not.toHaveBeenCalled()
+  })
+
+  // Skip tests because this has been disabled
+  describe.skip('drag-and-drop to remove', () => {
+    it('should render a droppable area to remove items', () => {
+      const find = <Droppable droppableId='remove'>{expect.anything()}</Droppable>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+    })
+
+    it('should change style of remove area while dragging', () => {
+      const instance = enzymeWrapper.instance()
+      instance.onDragStart()
+
+      const container  = enzymeWrapper.findWhere((el) => el.type() === Droppable && el.props().droppableId === 'remove')
+      // react-beautiful-dnd uses a function for its children, so we need to pass some stuff to it
+      const provided = {
+        innerRef: React.createRef(),
+      }
+      const snapshot = {
+        isDraggingOver: false,
+      }
+      const child = shallow(container.props().children(provided, snapshot))
+
+      expect(child.hasClass('dnd-remove-area')).toBe(true)
+      expect(child.hasClass('dragging')).toBe(true)
+    })
   })
 })
