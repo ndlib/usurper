@@ -5,6 +5,7 @@ import {
   NAV_RECEIVE,
 } from 'actions/menu'
 import * as statuses from 'constants/APIStatuses'
+import typy from 'typy'
 
 export default (
   state = {
@@ -26,10 +27,29 @@ export default (
         status: statuses.FETCHING,
       })
     case NAV_RECEIVE:
-      return Object.assign({}, state, {
+      const outObj = Object.assign({}, state, {
         status: action.status,
         data: action.data,
       })
+      // Dive through the data and add the full internal links when you find them
+      if (action.internalLinks) {
+        typy(outObj.data, 'fields.columns').safeArray.forEach((columnContainer) => {
+          typy(columnContainer, 'fields.columns').safeArray.forEach((column) => {
+            typy(column, 'fields.sections').safeArray.forEach((section) => {
+              typy(section, 'fields.links').safeArray.forEach((link) => {
+                if (typy(link, 'sys.contentType.sys.id').safeString === 'internalLink') {
+                  const match = action.internalLinks.filter(search => search.sys.id === link.sys.id)
+                  if (match) {
+                    // Reassign the properties on the link to match the fully-populated internal link with the same id
+                    Object.assign(link, ...match)
+                  }
+                }
+              })
+            })
+          })
+        })
+      }
+      return outObj
     default:
       return state
   }
