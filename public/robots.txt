@@ -6,3 +6,5 @@ Disallow: /floor/search
 Disallow: /search?*
 Disallow: /resource-technical-problem
 Disallow: /resource-unavailable
+Disallow: /rbsc
+Disallow: /archives
