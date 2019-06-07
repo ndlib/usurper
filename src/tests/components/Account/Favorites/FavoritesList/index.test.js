@@ -94,26 +94,6 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
     expect(spy).toHaveBeenCalledWith(expected)
   })
 
-  it('onDragEnd should remove item when dropped in remove area', () => {
-    const instance = enzymeWrapper.instance()
-    spy = jest.spyOn(instance.props, 'updateList')
-
-    instance.onDragEnd({
-      source: {
-        droppableId: props.kind,
-        index: 0,
-      },
-      destination: {
-        droppableId: 'remove',
-        index: 0,
-      },
-      draggableId: props.items[0].key,
-    })
-
-    const expected = [ props.items[1] ]
-    expect(spy).toHaveBeenCalledWith(expected)
-  })
-
   it('should not update list if drag cancelled', () => {
     const instance = enzymeWrapper.instance()
     spy = jest.spyOn(instance.props, 'updateList')
@@ -168,6 +148,26 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
 
       expect(child.hasClass('dnd-remove-area')).toBe(true)
       expect(child.hasClass('dragging')).toBe(true)
+    })
+
+    it('onDragEnd should remove item when dropped in remove area', () => {
+      const instance = enzymeWrapper.instance()
+      spy = jest.spyOn(instance.props, 'updateList')
+
+      instance.onDragEnd({
+        source: {
+          droppableId: props.kind,
+          index: 0,
+        },
+        destination: {
+          droppableId: 'remove',
+          index: 0,
+        },
+        draggableId: props.items[0].key,
+      })
+
+      const expected = [ props.items[1] ]
+      expect(spy).toHaveBeenCalledWith(expected)
     })
   })
 })

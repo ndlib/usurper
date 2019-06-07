@@ -18,6 +18,8 @@ const setup = (props) => {
 describe('components/Account/Favorites/FavoritesList/FavoriteItem.js', () => {
   afterEach(() => {
     enzymeWrapper = undefined
+    jest.restoreAllMocks()
+    jest.clearAllMocks()
   })
 
   const props = {
@@ -26,6 +28,7 @@ describe('components/Account/Favorites/FavoritesList/FavoriteItem.js', () => {
     index: 0,
     title: 'Whatever it is',
     url: 'www.fake.url',
+    onRemoveFavorite: jest.fn(),
   }
 
   beforeEach(() => {
@@ -57,5 +60,17 @@ describe('components/Account/Favorites/FavoritesList/FavoriteItem.js', () => {
     expect(fnResults.containsMatchingElement(
       <Link to={props.url} aria-label={props.title}>(link)</Link>
     )).toBe(true)
+  })
+
+  it('should remove item when clicking remove icon', () => {
+    const draggable = enzymeWrapper.find(Draggable)
+    expect(draggable.exists()).toBe(true)
+    const fnResults = shallow(draggable.prop('children')({ draggableProps: {}, innerRef: '' }, { isDragging: false }))
+
+    const remove = fnResults.find('.remove-icon')
+    expect(remove.exists()).toBe(true)
+    remove.simulate('click')
+
+    expect(props.onRemoveFavorite).toHaveBeenCalled()
   })
 })
