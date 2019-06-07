@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 
 import Link from 'components/Interactive/Link'
 import LibMarkdown from 'components/LibMarkdown'
@@ -96,15 +97,20 @@ const Contact = (props) => {
 
   // this is hidden in css everywhere except the contact page
   let webPage
-  if (sp.relatedWebPage && sp.relatedWebPage.fields) {
-    const link = sp.relatedWebPage.fields.slug ? sp.relatedWebPage.fields.slug : sp.relatedWebPage.fields.url
-    webPage = (
-      <li className='web'>
-        <Link to={link} itemProp='url'>
-          Web Page
-        </Link>
-      </li>
-    )
+  if (sp.relatedWebPage) {
+    if (sp.relatedWebPage.circular && typy(sp.relatedWebPage, 'sys.id').safeString === typy(props.page, 'sys.id').safeString) {
+      sp.relatedWebPage.fields = props.page.fields
+    }
+    if (sp.relatedWebPage.fields) {
+      const link = sp.relatedWebPage.fields.slug ? sp.relatedWebPage.fields.slug : sp.relatedWebPage.fields.url
+      webPage = (
+        <li className='web'>
+          <Link to={link} itemProp='url'>
+            Web Page
+          </Link>
+        </li>
+      )
+    }
   }
 
   const fullDisplay = (
@@ -139,6 +145,9 @@ const Contact = (props) => {
 Contact.propTypes = {
   servicePoint: PropTypes.object,
   showDetails: PropTypes.bool,
+  page: PropTypes.shape({
+    fields: PropTypes.object,
+  }),
 }
 
 Contact.defaultProps = {
