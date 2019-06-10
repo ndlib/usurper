@@ -72,14 +72,14 @@ class DatabaseStep extends Component {
       <React.Fragment>
         <div className='modal-body row'>
           <div className='col-xs-12 col-sm-7'>
-            <h4 id='favoritesModalDesc'>Recommended databases based on your subject selections.</h4>
+            <span id='favoritesModalDesc'>Recommended databases based on your subject selections.</span>
             <span className='d-sm-none'>{hintText}</span>
             <div className='row'>
               <FavoritesList kind={KIND.databases} items={this.state.listItems} updateList={this.updateList} />
             </div>
           </div>
           <div className='col-xs-12 col-sm-5'>
-            <h4 className='d-xs-none'>Add additional databases.</h4>
+            <span className='d-xs-none'>Add additional databases.</span>
             <Search
               kind={KIND.databases}
               placeholder={'Add Databases'}

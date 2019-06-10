@@ -36,7 +36,7 @@ class LibraryStep extends Component {
     return (
       <React.Fragment>
         <div className='modal-body'>
-          <h4 id='favoritesModalDesc'>Select your preferred location. These hours will display on the home screen.</h4>
+          <span id='favoritesModalDesc'>Select your preferred location. These hours will display on the home screen.</span>
           <RadioList
             radioName='default_library'
             entries={this.props.data.map((entry) => {

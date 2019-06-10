@@ -115,7 +115,7 @@ class SubjectStep extends Component {
       <React.Fragment>
         <ReactTooltip getContent={this.getTooltip} />
         <div className='modal-body'>
-          <h4 id='favoritesModalDesc'>Select the subjects that best describes your major or field(s) of study.</h4>
+          <span id='favoritesModalDesc'>Select the subjects that best describes your major or field(s) of study.</span>
           <div className='gap-top'>
             <div className='row subject-wizard-columns'>
               {this.makeSubjectColumns()}
