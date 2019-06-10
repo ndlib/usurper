@@ -38,6 +38,7 @@ const SearchBox = (props) => {
         >Search in { props.currentSearch.title }</span>
         <input
           id={props.id}
+          type='search'
           role='searchbox'
           name='q'
           defaultValue={props.defaultSearch}

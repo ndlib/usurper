@@ -74,7 +74,7 @@ export class SearchContainer extends Component {
               {this.props.buttonText}
             </span>
             <input
-              type='text'
+              type='search'
               role='searchbox'
               id={this.props.kind + '-search-field'}
               name='searchText'

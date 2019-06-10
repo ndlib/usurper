@@ -7,7 +7,7 @@ const FilterBox = (props) => {
       <label role='search'>
         <span>{props.title}</span>
         <input
-          type='text'
+          type='search'
           value={props.value}
           onChange={props.onChange}
         />

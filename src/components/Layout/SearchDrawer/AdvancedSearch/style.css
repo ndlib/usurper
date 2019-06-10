@@ -44,7 +44,7 @@
 
 #advanced-search input {
 	padding: 6px;
-
+	-webkit-appearance: textfield;
 }
 
 #advanced-search .dateFieldSelector input {
