@@ -80,24 +80,27 @@ class FavoritesList extends Component {
             </div>
           )}
         </Droppable>
-        { this.props.items.length > 0 && (
-          <Droppable droppableId='remove'>
-            { (provided, snapshot) => {
-              const draggingClass = (this.state.isDragging ? 'dragging' : '')
-              const draggedOverClass = (snapshot.isDraggingOver ? 'draggedOver' : '')
-              return (
-                <div
-                  className={`dnd-remove-area ${draggingClass} ${draggedOverClass}`}
-                  ref={provided.innerRef}
-                  {...provided.droppableProps}
-                >
-                  <span>Drag item and drop here to remove.</span>
-                  {provided.placeholder}
-                </div>
-              )
-            }}
-          </Droppable>
-        )}
+        {
+          // User's didn't get it. :( I still think this is a good idea if we could refine the UI to be a tad more intuitive.
+          // { this.props.items.length > 0 && (
+          //   <Droppable droppableId='remove'>
+          //     { (provided, snapshot) => {
+          //       const draggingClass = (this.state.isDragging ? 'dragging' : '')
+          //       const draggedOverClass = (snapshot.isDraggingOver ? 'draggedOver' : '')
+          //       return (
+          //         <div
+          //           className={`dnd-remove-area ${draggingClass} ${draggedOverClass}`}
+          //           ref={provided.innerRef}
+          //           {...provided.droppableProps}
+          //         >
+          //           <span>Drag item and drop here to remove.</span>
+          //           {provided.placeholder}
+          //         </div>
+          //       )
+          //     }}
+          //   </Droppable>
+          // )}
+        }
       </DragDropContext>
     )
   }

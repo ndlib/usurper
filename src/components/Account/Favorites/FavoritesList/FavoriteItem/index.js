@@ -6,8 +6,13 @@ import Link from 'components/Interactive/Link'
 import FavoriteIcon from '../../FavoriteIcon'
 
 import moveIcon from 'static/images/move.png'
+import trashIcon from 'static/images/trashcan.svg'
 
 const FavoriteItem = (props) => {
+  const onRemove = () => {
+    props.onRemoveFavorite(props.kind, props.id)
+  }
+
   return (
     <div className='favorite-list-item'>
       <Draggable draggableId={props.id} index={props.index} isDragDisabled={props.dragDisabled}>
@@ -34,6 +39,7 @@ const FavoriteItem = (props) => {
             <span className='handle fright' disabled={!provided.dragHandleProps} {...provided.dragHandleProps}>
               <img src={moveIcon} alt='☰' />
             </span>
+            <img src={trashIcon} className='fright remove-icon' alt='X' title='Remove' onClick={onRemove} />
           </div>
         )}
       </Draggable>
