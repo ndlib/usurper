@@ -4179,7 +4179,17 @@ img.favorite {
   border-top: 0;
   font-size: 16px;
   margin: 0 8px;
-  padding: 12px;
+  padding: 12px 0 12px 12px;
+}
+
+.favorites-search .search-results-list {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.favorites-search .search-results-text {
+  display: block;
+  margin-top: 12px;
 }
 
 .dnd-remove-area {
