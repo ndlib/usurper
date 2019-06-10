@@ -38,6 +38,11 @@ export class NoFavoritesContainer extends Component {
   }
 
   openWizard () {
+    if (!this.props.isLoggedIn) {
+      window.location.assign(loginPath)
+      return
+    }
+
     // Clear the update state in the store so the wizard doesn't think it is saving
     for (const kind in FAVORITES_KIND) {
       this.props.clearUpdateFavorites(kind)
@@ -58,7 +63,7 @@ export class NoFavoritesContainer extends Component {
     if (!this.props.isLoggedIn) {
       return (
         <React.Fragment>
-          Please <Link to={loginPath} noTarget>log in</Link> to begin selecting favorites. Your top choices
+          Please log in to begin selecting favorites. Your top choices
           will be displayed here for easy access. You can hide this message by clicking the "Hide" link above.
         </React.Fragment>
       )
@@ -91,7 +96,7 @@ export class NoFavoritesContainer extends Component {
             <div className='row'>
               <p><img src={bookmarkAdd} alt='' className='add-favorites' />{this.noFavoritesMessage()}</p>
             </div>
-            <button className='center favorites-wizard-open' disabled={!this.props.isLoggedIn} onClick={this.openWizard}>
+            <button className='center favorites-wizard-open' onClick={this.openWizard}>
               Add Favorites
             </button>
           </div>
