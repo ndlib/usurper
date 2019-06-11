@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import HideHomeFavorites from 'components/Account/Settings/HomePageDisplay/HideHomeFavorites'
+import HideHomeFavorites from 'components/Account/Favorites/HomePageDisplay/HideHomeFavorites'
 import RadioList from 'components/Interactive/RadioList'
 
 let enzymeWrapper
@@ -11,7 +11,7 @@ const setup = (props) => {
   return shallow(<HideHomeFavorites {...props} />)
 }
 
-describe('components/Account/Settings/HomePageDisplay/HideHomeFavorites', () => {
+describe('components/Account/Favorites/HomePageDisplay/HideHomeFavorites', () => {
   afterEach(() => {
     enzymeWrapper = undefined
     props = undefined

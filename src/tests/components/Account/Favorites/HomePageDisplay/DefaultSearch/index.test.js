@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import DefaultSearch from 'components/Account/Settings/HomePageDisplay/DefaultSearch'
+import DefaultSearch from 'components/Account/Favorites/HomePageDisplay/DefaultSearch'
 import RadioList from 'components/Interactive/RadioList'
 
 let enzymeWrapper
@@ -10,7 +10,7 @@ const setup = (props) => {
   return shallow(<DefaultSearch {...props} />)
 }
 
-describe('components/Account/Settings/HomePageDisplay/DefaultSearch', () => {
+describe('components/Account/Favorites/HomePageDisplay/DefaultSearch', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })

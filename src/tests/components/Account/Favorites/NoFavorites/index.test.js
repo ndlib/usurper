@@ -56,9 +56,9 @@ describe('components/Account/Favorites/NoFavorites', () => {
         expect(enzymeWrapper.dive().props().isLoggedIn).toBe(true)
       })
 
-      it('should show link to settings', () => {
-        const settingsPath = '/settings'
-        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={settingsPath}>account settings</Link>)).toBe(true)
+      it('should show link to favorites', () => {
+        const favoritesPath = '/favorites'
+        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={favoritesPath}>{expect.anything()}</Link>)).toBe(true)
       })
 
       it('should update store when hideFavorites called', () => {
@@ -122,11 +122,11 @@ describe('components/Account/Favorites/NoFavorites', () => {
         })
       })
 
-      it('should not show settings or login links', () => {
-        const settingsPath = '/settings'
+      it('should not show favorites or login links', () => {
+        const favoritesPath = '/favorites'
         const loginPath = Config.viceroyAPI + '/login'
-        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={settingsPath}>account settings</Link>)).toBe(false)
-        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={loginPath}>log in</Link>)).toBe(false)
+        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={favoritesPath}>{expect.anything()}</Link>)).toBe(false)
+        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={loginPath}>{expect.anything()}</Link>)).toBe(false)
       })
     })
   })

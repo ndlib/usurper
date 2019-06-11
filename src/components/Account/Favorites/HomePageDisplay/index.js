@@ -81,7 +81,7 @@ export class HomePageDisplayContainer extends Component {
   render () {
     const saving = this.props.saveState === statuses.FETCHING
     return (
-      <section className='group home-page-display'>
+      <section className='group home-page-display' id='homePageDisplay'>
         <h3>Home Page Display</h3>
         <div className='section-box pad-edges'>
           <form onSubmit={this.onSave}>

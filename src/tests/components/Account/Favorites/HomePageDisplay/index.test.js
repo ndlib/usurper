@@ -3,9 +3,9 @@ import { shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import HomePageDisplay, { HomePageDisplayContainer } from 'components/Account/Settings/HomePageDisplay'
-import HideHomeFavorites from 'components/Account/Settings/HomePageDisplay/HideHomeFavorites'
-import DefaultSearch from 'components/Account/Settings/HomePageDisplay/DefaultSearch'
+import HomePageDisplay, { HomePageDisplayContainer } from 'components/Account/Favorites/HomePageDisplay'
+import HideHomeFavorites from 'components/Account/Favorites/HomePageDisplay/HideHomeFavorites'
+import DefaultSearch from 'components/Account/Favorites/HomePageDisplay/DefaultSearch'
 import InlineLoading from 'components/Messages/InlineLoading'
 import UpdateStatus from 'components/Messages/UpdateStatus'
 import RadioList from 'components/Interactive/RadioList'
@@ -25,7 +25,7 @@ const setup = (state, ownProps) => {
   return shallow(<HomePageDisplay store={store} {...ownProps} />)
 }
 
-describe('components/Account/Settings/HomePageDisplay', () => {
+describe('components/Account/Favorites/HomePageDisplay', () => {
   afterEach(() => {
     enzymeWrapper = undefined
     props = undefined

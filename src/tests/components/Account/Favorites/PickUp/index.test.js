@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import PickUp, { PickUpContainer } from 'components/Account/Settings/PickUp'
+import PickUp, { PickUpContainer } from 'components/Account/Favorites/PickUp'
 import InlineLoading from 'components/Messages/InlineLoading'
 import UpdateStatus from 'components/Messages/UpdateStatus'
 import RadioList from 'components/Interactive/RadioList'
@@ -22,7 +22,7 @@ const setup = (state, ownProps) => {
   return shallow(<PickUp store={store} {...ownProps} />)
 }
 
-describe('components/Account/Settings/PickUp', () => {
+describe('components/Account/Favorites/PickUp', () => {
   afterEach(() => {
     enzymeWrapper = undefined
     props = undefined

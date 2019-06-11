@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import AccountPageWrapper from '../AccountPageWrapper'
 import NoFavorites from './NoFavorites'
 import ManageFavorites from './ManageFavorites'
+import PickUp from './PickUp'
+import HomePageDisplay from './HomePageDisplay'
 import InlineLoading from 'components/Messages/InlineLoading'
 import SideNav from 'components/Layout/Navigation/SideNav'
 
@@ -19,6 +21,8 @@ const Presenter = (props) => {
       <ul>
         <a className='side-anchors' href={'#manage_' + KIND.databases}><li>Databases</li></a>
         <a className='side-anchors' href={'#manage_' + KIND.subjects}><li>Subjects</li></a>
+        <a className='side-anchors' href={'#preferredLocation'}><li>Preferred Location</li></a>
+        <a className='side-anchors' href={'#homePageDisplay'}><li>Home Page Display</li></a>
       </ul>
     </SideNav>
   )
@@ -41,6 +45,16 @@ const Presenter = (props) => {
       ) : (
         <NoFavorites preview={props.preview} />
       )}
+      { (props.homeLibraries && props.selectedLocation && ![statuses.NOT_FETCHED, statuses.FETCHING].includes(props.cfBranches.status)) ? (
+        <PickUp entries={props.homeLibraries} defaultValue={props.selectedLocation} updateStatus={props.libraryUpdateStatus} />
+      ) : (
+        <InlineLoading />
+      )}
+      { !props.homePageDisplayLoading ? (
+        <HomePageDisplay hideFavorites={props.hideFavorites} defaultSearch={props.defaultSearch} cookies={props.cookies} />
+      ) : (
+        <InlineLoading />
+      )}
     </AccountPageWrapper>
   )
 }
@@ -50,6 +64,16 @@ Presenter.propTypes = {
   dbFavorites: PropTypes.object,
   subjectFavorites: PropTypes.object,
   favoritesStatus: PropTypes.string.isRequired,
+  homeLibraries: PropTypes.array,
+  selectedLocation: PropTypes.string,
+  libraryUpdateStatus: PropTypes.string,
+  cfBranches: PropTypes.shape({
+    status: PropTypes.string,
+  }),
+  hideFavorites: PropTypes.bool.isRequired,
+  homePageDisplayLoading: PropTypes.bool.isRequired,
+  cookies: PropTypes.any,
+  defaultSearch: PropTypes.string.isRequired,
 }
 
 export default Presenter

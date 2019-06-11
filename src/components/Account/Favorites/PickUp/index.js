@@ -59,7 +59,7 @@ export class PickUpContainer extends Component {
     const saving = this.props.updateStatus === statuses.FETCHING
 
     return (
-      <section className='group preferred-location'>
+      <section className='group preferred-location' id='preferredLocation'>
         <h3>Preferred Location</h3>
         <div className='section-box pad-edges-sm'>
           <form onSubmit={this.onSave}>
