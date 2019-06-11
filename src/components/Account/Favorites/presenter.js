@@ -4,6 +4,7 @@ import AccountPageWrapper from '../AccountPageWrapper'
 import NoFavorites from './NoFavorites'
 import ManageFavorites from './ManageFavorites'
 import InlineLoading from 'components/Messages/InlineLoading'
+import SideNav from 'components/Layout/Navigation/SideNav'
 
 import * as statuses from 'constants/APIStatuses'
 
@@ -13,9 +14,17 @@ const Presenter = (props) => {
   const dbItems = (props.dbFavorites && props.dbFavorites.items) ? props.dbFavorites.items : []
   const subjectItems = (props.subjectFavorites && props.subjectFavorites.items) ? props.subjectFavorites.items : []
   const loading = (props.favoritesStatus === statuses.NOT_FETCHED || props.favoritesStatus === statuses.FETCHING)
+  const sidebar = (
+    <SideNav className='side-nav-bg'>
+      <ul>
+        <a className='side-anchors' href={'#manage_' + KIND.databases}><li>Databases</li></a>
+        <a className='side-anchors' href={'#manage_' + KIND.subjects}><li>Subjects</li></a>
+      </ul>
+    </SideNav>
+  )
 
   return (
-    <AccountPageWrapper title='Favorites' slug='favorites'>
+    <AccountPageWrapper title='Favorites' slug='favorites' customSidebar={sidebar}>
       { (loading || dbItems.length || subjectItems.length) ? (
         <React.Fragment>
           { (!props.dbFavorites || props.dbFavorites.state === statuses.FETCHING) ? (

@@ -9,6 +9,7 @@ import ManageFavorites from 'components/Account/Favorites/ManageFavorites'
 import NoFavorites from 'components/Account/Favorites/NoFavorites'
 import InlineLoading from 'components/Messages/InlineLoading'
 import AccountPageWrapper from 'components/Account/AccountPageWrapper'
+import SideNav from 'components/Layout/Navigation/SideNav'
 
 import { KIND } from 'actions/personal/favorites'
 import * as statuses from 'constants/APIStatuses'
@@ -43,6 +44,11 @@ describe('components/Account/Favorites/presenter.js', () => {
 
     it('should use AccountPageWrapper', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
+    })
+
+    it('should include SideNav component in sidebar', () => {
+      const pageWrapper = enzymeWrapper.find(AccountPageWrapper)
+      expect(pageWrapper.props().customSidebar.type).toEqual(SideNav)
     })
 
     it('should not render loading', () => {
@@ -86,6 +92,11 @@ describe('components/Account/Favorites/presenter.js', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
     })
 
+    it('should include SideNav component in sidebar', () => {
+      const pageWrapper = enzymeWrapper.find(AccountPageWrapper)
+      expect(pageWrapper.props().customSidebar.type).toEqual(SideNav)
+    })
+
     it('should not render loading', () => {
       expect(enzymeWrapper.containsMatchingElement(<InlineLoading />)).toBe(false)
     })
@@ -116,6 +127,11 @@ describe('components/Account/Favorites/presenter.js', () => {
 
     it('should use AccountPageWrapper', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
+    })
+
+    it('should include SideNav component in sidebar', () => {
+      const pageWrapper = enzymeWrapper.find(AccountPageWrapper)
+      expect(pageWrapper.props().customSidebar.type).toEqual(SideNav)
     })
 
     it('should render NoFavorites component', () => {
