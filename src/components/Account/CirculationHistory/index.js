@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { getHistorical } from 'actions/personal/loanResources'
+import { KIND as SETTINGS_KIND, setCircStatus } from 'actions/personal/settings'
 import * as statuses from 'constants/APIStatuses'
 
 import Presenter from './presenter'
@@ -33,7 +34,7 @@ export class CirculationHistoryContainer extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { personal } = state
+  const { personal, settings } = state
 
   let checkedOut = []
   if (personal.historical.history) {
@@ -44,17 +45,20 @@ export const mapStateToProps = (state) => {
     })
   }
 
+  const updateStatus = settings['update'][SETTINGS_KIND.circStatus].state
   return {
     loggedIn: !!(personal.login && personal.login.token),
     historicalStatus: personal.historical.state,
     loading: [statuses.NOT_FETCHED, statuses.FETCHING].includes(personal.historical.state),
     items: checkedOut,
     optedIn: personal.historical.state === statuses.SUCCESS ? personal.historical.saveHistory : false,
+    updateStatus: updateStatus,
+    updating: updateStatus === statuses.FETCHING,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getHistorical }, dispatch)
+  return bindActionCreators({ getHistorical, setCircStatus }, dispatch)
 }
 
 CirculationHistoryContainer.propTypes = {
@@ -63,7 +67,10 @@ CirculationHistoryContainer.propTypes = {
   loading: PropTypes.bool,
   items: PropTypes.array,
   optedIn: PropTypes.bool,
+  updateStatus: PropTypes.string,
+  updating: PropTypes.bool,
   getHistorical: PropTypes.func.isRequired,
+  setCircStatus: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CirculationHistoryContainer)

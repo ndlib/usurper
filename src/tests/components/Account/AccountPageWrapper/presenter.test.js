@@ -111,4 +111,27 @@ describe('components/Account/AccountPageWrapper', () => {
       expect(enzymeWrapper.find(InlineLoading).exists()).toBe(false)
     })
   })
+
+  describe('with custom sidebar', () => {
+    beforeEach(() => {
+      props = {
+        loading: false,
+        title: 'Made up Title',
+        slug: 'made-up-slug',
+        preview: true,
+        className: 'accountPageClass',
+        children: <span id='lookForMe' />,
+        customSidebar: <span id='lookForMeSidebar' />,
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    it('should not render static sidebar', () => {
+      expect(enzymeWrapper.find(StaticSidebar).exists()).toBe(false)
+    })
+
+    it('should render component passed in', () => {
+      expect(enzymeWrapper.find('#lookForMeSidebar').exists()).toBe(true)
+    })
+  })
 })

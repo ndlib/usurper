@@ -1,0 +1,15 @@
+.optedOutDesc {
+  float: left;
+}
+
+.optIn {
+  padding-bottom: 10px;
+}
+
+.optIn .sectionBox {
+  padding: 20px;
+}
+
+.sectionBox button.optInBtn {
+  margin-top: 0;
+}

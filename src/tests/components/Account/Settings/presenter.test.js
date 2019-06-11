@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Settings from 'components/Account/Settings/presenter.js'
-import CircOptIn from 'components/Account/Settings/CircOptIn'
+import CircOptIn from 'components/Account/CirculationHistory/CircOptIn'
 import AccountPageWrapper from 'components/Account/AccountPageWrapper'
 import HomePageDisplay from 'components/Account/Settings/HomePageDisplay'
 import PickUp from 'components/Account/Settings/PickUp'
@@ -21,8 +21,6 @@ const props = {
   setHomeLibrary: jest.fn(),
   selectedLocation: 'bar',
   libraryStatus: statuses.SUCCESS,
-  setCircStatus: jest.fn(),
-  getCircStatus: jest.fn(),
   hideFavorites: true,
   homePageDisplayLoading: false,
   defaultSearch: 'fake',
@@ -40,7 +38,6 @@ describe('components/Account/Settings/presenter.js', () => {
   it('renders a section for each setting', () => {
     expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
     expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
-    expect(enzymeWrapper.containsMatchingElement(<CircOptIn />)).toBe(true)
   })
 
   it('should use AccountPageWrapper', () => {

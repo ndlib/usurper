@@ -1,15 +1,15 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import OptInModalBody from 'components/Account/Settings/CircOptIn/CircHistoryModal/OptInModalBody'
+import OptOutModalBody from 'components/Account/CirculationHistory/CircHistoryModal/OptOutModalBody'
 
 let enzymeWrapper
 
 const setup = (props) => {
-  return shallow(<OptInModalBody {...props} />)
+  return shallow(<OptOutModalBody {...props} />)
 }
 
-describe('components/Account/Settings/CircOptIn/CircHistoryModal/OptInModalBody', () => {
+describe('components/Account/CirculationHistory/CircHistoryModal/OptOutModalBody', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })

@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import AccountPageWrapper from '../AccountPageWrapper'
 import PickUp from './PickUp'
-import CircOptIn from './CircOptIn'
 import HomePageDisplay from './HomePageDisplay'
 import InlineLoading from 'components/Messages/InlineLoading'
 
@@ -23,7 +22,6 @@ const Presenter = (props) => {
       ) : (
         <InlineLoading />
       )}
-      <CircOptIn />
     </AccountPageWrapper>
   )
 }

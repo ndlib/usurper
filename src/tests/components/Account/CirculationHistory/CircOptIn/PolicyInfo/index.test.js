@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import PolicyInfo from 'components/Account/Settings/CircOptIn/PolicyInfo'
+import PolicyInfo from 'components/Account/CirculationHistory/CircOptIn/PolicyInfo'
 
 let enzymeWrapper
 
@@ -9,7 +9,7 @@ const setup = (props) => {
   return shallow(<PolicyInfo {...props} />)
 }
 
-describe('components/Account/Settings/CircOptIn/PolicyInfo', () => {
+describe('components/Account/CirculationHistory/CircOptIn/PolicyInfo', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })

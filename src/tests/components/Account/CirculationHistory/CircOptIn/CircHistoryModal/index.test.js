@@ -2,9 +2,9 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import ReactModal from 'react-modal'
 
-import CircHistoryModal from 'components/Account/Settings/CircOptIn/CircHistoryModal'
-import OptInModalBody from 'components/Account/Settings/CircOptIn/CircHistoryModal/OptInModalBody'
-import OptOutModalBody from 'components/Account/Settings/CircOptIn/CircHistoryModal/OptOutModalBody'
+import CircHistoryModal from 'components/Account/CirculationHistory/CircHistoryModal'
+import OptInModalBody from 'components/Account/CirculationHistory/CircHistoryModal/OptInModalBody'
+import OptOutModalBody from 'components/Account/CirculationHistory/CircHistoryModal/OptOutModalBody'
 
 let enzymeWrapper
 
@@ -12,7 +12,7 @@ const setup = (props) => {
   return shallow(<CircHistoryModal {...props} />)
 }
 
-describe('components/Account/Settings/CircOptIn/CircHistoryModal', () => {
+describe('components/Account/CirculationHistory/CircHistoryModal', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })
