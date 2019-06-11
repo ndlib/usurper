@@ -1,5 +1,23 @@
 # Change Log
 
+## [v2019.9](https://github.com/ndlib/usurper/tree/v2019.9) "Calm Breeze"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.7...v2019.9)
+
+### Note
+The change log for this update includes changes that were deployed previously.
+
+### Bug Fixes
+- Fixed intermittent page rendering issue on secure pages. [#608](https://github.com/ndlib/usurper/pull/608)
+- Fixed incorrect contact persons displaying sometimes. [#613](https://github.com/ndlib/usurper/pull/613)
+- Fixed checkout history opt-in/opt-out display issue. [#610](https://github.com/ndlib/usurper/pull/610)
+- Fixed blank text in advanced search causing search to fail. [#619](https://github.com/ndlib/usurper/pull/619)
+
+### Other
+- Patched vulnerability. [#609](https://github.com/ndlib/usurper/pull/609)
+- Remove Hesnet link from footer - this service has been retired. [#614](https://github.com/ndlib/usurper/pull/614)
+- Added clear button for search boxes. [#618](https://github.com/ndlib/usurper/pull/618)
+- Numerous enhancements and bug fixes to Favorites (*dark feature*).
+
 ## [v2019.7](https://github.com/ndlib/usurper/tree/v2019.7) "Big Kahuna"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.3...v2019.7)
 
