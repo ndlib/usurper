@@ -67,7 +67,7 @@ export class ServicePointContainer extends Component {
             <CurrentHours servicePoint={this.state.sp} />
           </div>
         )}
-        <Contact servicePoint={this.state.sp} showDetails={this.props.showDetails} />
+        <Contact servicePoint={this.state.sp} showDetails={this.props.showDetails} page={this.props.page} />
       </section>
     )
   }
@@ -91,6 +91,7 @@ ServicePointContainer.propTypes = {
   fetchServicePointBySlug: PropTypes.func.isRequired,
   slug: requiredPropsCheck,
   preview: PropTypes.bool,
+  page: PropTypes.object,
 }
 
 ServicePointContainer.defaultProps = {

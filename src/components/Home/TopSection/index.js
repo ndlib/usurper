@@ -17,6 +17,7 @@ import { fetchPage } from 'actions/contentful/page'
 import Presenter from './presenter'
 
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 import Config from 'shared/Configuration'
 
@@ -49,7 +50,7 @@ class TopSection extends Component {
     }
     if (this.props.favoriteLocationSlug && this.props.cfFavoriteLocation.slug !== this.props.favoriteLocationSlug) {
       const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-      this.props.fetchPage(this.props.favoriteLocationSlug, preview, false, 'page', 1)
+      this.props.fetchPage(this.props.favoriteLocationSlug, preview, false, 'page', 3)
     }
   }
 
@@ -78,6 +79,7 @@ class TopSection extends Component {
         calloutLink={typy(this.props, 'cfFavoriteLocation.json.fields.callOutLink').safeObjectOrEmpty}
         favorites={this.props.favorites}
         cookies={this.props.cookies}
+        page={typy(this.props, 'cfFavoriteLocation.json').safeObjectOrEmpty}
       />
     )
   }
@@ -88,18 +90,7 @@ export const mapStateToProps = (state, ownProps) => {
 
   const databaseStatus = favorites[FAVE_KIND.databases].state
   const subjectStatus = favorites[FAVE_KIND.subjects].state
-  let combinedStatus = statuses.NOT_FETCHED
-  if (databaseStatus === subjectStatus) {
-    combinedStatus = databaseStatus
-  } else if (databaseStatus === statuses.ERROR || subjectStatus === statuses.ERROR) {
-    combinedStatus = statuses.ERROR
-  } else if (databaseStatus === statuses.NOT_FETCHED || subjectStatus === statuses.NOT_FETCHED) {
-    // If either one is not fetched, mark as such so that we will know to start fetching
-    combinedStatus = statuses.NOT_FETCHED
-  } else {
-    // Either one is still fetching while the other is SUCCESS... Mark as in progress
-    combinedStatus = statuses.FETCHING
-  }
+  const combinedStatus = helper.reduceStatuses([databaseStatus, subjectStatus])
 
   const hasItems = (databaseStatus === statuses.SUCCESS && favorites[FAVE_KIND.databases].items.length > 0) ||
     (subjectStatus === statuses.SUCCESS && favorites[FAVE_KIND.subjects].items.length > 0)

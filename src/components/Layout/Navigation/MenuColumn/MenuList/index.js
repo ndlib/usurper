@@ -2,13 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MenuListItem from './MenuListItem'
 import MenuImage from './MenuImage'
+import InternalLink from 'components/Contentful/InternalLink'
 
 const MenuList = (props) => {
   let isImageList = false
   if (props.items) {
     const menuList = props.items.map(
-      (item, index) => {
+      (item) => {
         if (item && item.fields) {
+          if (item.sys.contentType.sys.id === 'internalLink') {
+            return (
+              <li key={item.sys.id}><InternalLink cfEntry={item} /></li>
+            )
+          }
           const url = (item.fields.url ? item.fields.url : item.fields.slug) || item.fields.purl
 
           if (item.image) {
@@ -18,14 +24,14 @@ const MenuList = (props) => {
                 title={item.title}
                 url={item.url}
                 image={item.image}
-                key={index} />
+                key={item.sys.id} />
             )
           }
           return (
             <MenuListItem
               title={item.fields.alternateTitle ? item.fields.alternateTitle : item.fields.title}
               url={url}
-              key={index} />
+              key={item.sys.id} />
           )
         }
         return null

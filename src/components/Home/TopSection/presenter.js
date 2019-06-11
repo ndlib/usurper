@@ -24,7 +24,7 @@ const TopSection = (props) => {
           <InlineLoading />
         ) : (
           <React.Fragment>
-            <ServicePoint cfServicePoint={props.servicePoint} />
+            <ServicePoint cfServicePoint={props.servicePoint} page={props.page} />
             <PageLink className='button callout' cfPage={props.calloutLink} />
           </React.Fragment>
         )}
@@ -43,6 +43,7 @@ TopSection.propTypes = {
   calloutLink: PropTypes.object,
   favorites: PropTypes.object,
   cookies: PropTypes.any,
+  page: PropTypes.object,
 }
 
 export default TopSection
