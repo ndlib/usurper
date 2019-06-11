@@ -93,32 +93,25 @@ export class SearchContainer extends Component {
               <InlineLoading title='Searching...' />
             ) : (
               <React.Fragment>
-                { helper.sortList(this.props.searchResults, 'title', 'asc')
-                  .map((result, index) => {
-                    if (index >= 10) {
-                      return null
-                    }
-                    return (
-                      <SearchResult
-                        key={result.key}
-                        kind={this.props.kind}
-                        id={result.key}
-                        title={result.title}
-                        url={result.url}
-                        disabled={this.props.disabled}
-                        onAddFavorite={this.props.onAddFavorite}
-                      />
-                    )
-                  })
-                }
+                <div className='search-results-list force-scrollbar'>
+                  { helper.sortList(this.props.searchResults, 'title', 'asc')
+                    .map((result) => {
+                      return (
+                        <SearchResult
+                          key={result.key}
+                          kind={this.props.kind}
+                          id={result.key}
+                          title={result.title}
+                          url={result.url}
+                          disabled={this.props.disabled}
+                          onAddFavorite={this.props.onAddFavorite}
+                        />
+                      )
+                    })
+                  }
+                </div>
                 <span className='search-results-text'>
-                  <em>
-                    {
-                      resultCount === 0
-                        ? 'No results found.'
-                        : `Showing ${Math.min(10, resultCount)} of ${resultCount} result${resultCount === 1 ? '' : 's'}.`
-                    }
-                  </em>
+                  <em>{resultCount} {helper.pluralize(resultCount, 'result')} found.</em>
                 </span>
               </React.Fragment>
             )}
