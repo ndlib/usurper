@@ -7,8 +7,11 @@ import thunk from 'redux-thunk'
 import Presenter from 'components/Account/Favorites/presenter'
 import ManageFavorites from 'components/Account/Favorites/ManageFavorites'
 import NoFavorites from 'components/Account/Favorites/NoFavorites'
+import HomePageDisplay from 'components/Account/Favorites/HomePageDisplay'
+import PickUp from 'components/Account/Favorites/PickUp'
 import InlineLoading from 'components/Messages/InlineLoading'
 import AccountPageWrapper from 'components/Account/AccountPageWrapper'
+import SideNav from 'components/Layout/Navigation/SideNav'
 
 import { KIND } from 'actions/personal/favorites'
 import * as statuses from 'constants/APIStatuses'
@@ -35,6 +38,16 @@ describe('components/Account/Favorites/presenter.js', () => {
         state: statuses.SUCCESS,
         items: ['fake subject 1', 'fake subject 2', 'fake subject 3'],
       },
+      homeLibraries: ['foo', 'bar', 'baz'],
+      setHomeLibrary: jest.fn(),
+      selectedLocation: 'bar',
+      libraryStatus: statuses.SUCCESS,
+      cfBranches: {
+        status: statuses.SUCCESS,
+      },
+      hideFavorites: true,
+      homePageDisplayLoading: false,
+      defaultSearch: 'fake',
     }
 
     beforeEach(() => {
@@ -43,6 +56,11 @@ describe('components/Account/Favorites/presenter.js', () => {
 
     it('should use AccountPageWrapper', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
+    })
+
+    it('should include SideNav component in sidebar', () => {
+      const pageWrapper = enzymeWrapper.find(AccountPageWrapper)
+      expect(pageWrapper.props().customSidebar.type).toEqual(SideNav)
     })
 
     it('should not render loading', () => {
@@ -76,6 +94,16 @@ describe('components/Account/Favorites/presenter.js', () => {
       subjectFavorites: {
         state: statuses.ERROR,
       },
+      homeLibraries: ['foo', 'bar', 'baz'],
+      setHomeLibrary: jest.fn(),
+      selectedLocation: 'bar',
+      libraryStatus: statuses.SUCCESS,
+      cfBranches: {
+        status: statuses.SUCCESS,
+      },
+      hideFavorites: true,
+      homePageDisplayLoading: false,
+      defaultSearch: 'fake',
     }
 
     beforeEach(() => {
@@ -86,6 +114,11 @@ describe('components/Account/Favorites/presenter.js', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
     })
 
+    it('should include SideNav component in sidebar', () => {
+      const pageWrapper = enzymeWrapper.find(AccountPageWrapper)
+      expect(pageWrapper.props().customSidebar.type).toEqual(SideNav)
+    })
+
     it('should not render loading', () => {
       expect(enzymeWrapper.containsMatchingElement(<InlineLoading />)).toBe(false)
     })
@@ -93,6 +126,11 @@ describe('components/Account/Favorites/presenter.js', () => {
     it('should render a section for each type of favorite', () => {
       const numFavoriteTypes = Object.keys(KIND).length
       expect(enzymeWrapper.find(ManageFavorites)).toHaveLength(numFavoriteTypes)
+    })
+
+    it('should render a section for each setting', () => {
+      expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
     })
   })
 
@@ -108,6 +146,16 @@ describe('components/Account/Favorites/presenter.js', () => {
         state: statuses.SUCCESS,
         items: [],
       },
+      homeLibraries: ['foo', 'bar', 'baz'],
+      setHomeLibrary: jest.fn(),
+      selectedLocation: 'bar',
+      libraryStatus: statuses.SUCCESS,
+      cfBranches: {
+        status: statuses.SUCCESS,
+      },
+      hideFavorites: true,
+      homePageDisplayLoading: false,
+      defaultSearch: 'fake',
     }
 
     beforeEach(() => {
@@ -116,6 +164,11 @@ describe('components/Account/Favorites/presenter.js', () => {
 
     it('should use AccountPageWrapper', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
+    })
+
+    it('should include SideNav component in sidebar', () => {
+      const pageWrapper = enzymeWrapper.find(AccountPageWrapper)
+      expect(pageWrapper.props().customSidebar.type).toEqual(SideNav)
     })
 
     it('should render NoFavorites component', () => {
@@ -129,11 +182,23 @@ describe('components/Account/Favorites/presenter.js', () => {
     it('should not render loading', () => {
       expect(enzymeWrapper.containsMatchingElement(<InlineLoading />)).toBe(false)
     })
+
+    it('should render a section for each setting', () => {
+      expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
+    })
   })
 
   describe('while loading', () => {
     const props = {
       favoritesStatus: statuses.FETCHING,
+      libraryStatus: statuses.FETCHING,
+      cfBranches: {
+        status: statuses.FETCHING,
+      },
+      hideFavorites: false,
+      homePageDisplayLoading: true,
+      defaultSearch: 'fake',
     }
 
     beforeEach(() => {
@@ -147,6 +212,8 @@ describe('components/Account/Favorites/presenter.js', () => {
     it('should not render favorites display components', () => {
       expect(enzymeWrapper.containsMatchingElement(<ManageFavorites />)).toBe(false)
       expect(enzymeWrapper.containsMatchingElement(<NoFavorites />)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(false)
     })
 
     it('should render loading', () => {

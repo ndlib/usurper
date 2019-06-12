@@ -79,15 +79,6 @@
 	padding-top: .4em;
 }
 
-.group.opt-in .section-box {
-  padding: 20px 20px 20px;
-}
-
-.group.opt-in .section-box span {
-	margin-left: 1.5em;
-	padding-top: .4em;
-}
-
 .linksgroup {
 	-moz-column-count: 2;
 	column-count: 2;

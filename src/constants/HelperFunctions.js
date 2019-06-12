@@ -50,6 +50,9 @@ const sortInternal = (a, b, sortKeys, sortDir) => {
 }
 
 export const sortList = (list, sortKeys, sortDir) => {
+  if (!Array.isArray(list)) {
+    list = typy(list).safeArray
+  }
   if (!Array.isArray(sortKeys)) {
     sortKeys = [ sortKeys ]
   }

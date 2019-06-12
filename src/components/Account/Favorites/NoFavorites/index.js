@@ -13,7 +13,7 @@ import { setHideHomeFavorites } from 'actions/personal/settings'
 import { HIDE_HOME_FAVORITES, cookieOptions } from 'constants/cookies'
 
 const loginPath = Config.viceroyAPI + '/login'
-const settingsPath = '/settings'
+const favoritesPath = '/favorites'
 
 export class NoFavoritesContainer extends Component {
   constructor (props) {
@@ -71,7 +71,7 @@ export class NoFavoritesContainer extends Component {
       return (
         <React.Fragment>
           Click below to begin selecting favorites. Your top choices will be displayed here for easy access.
-          You can disable this message in your <Link to={settingsPath}>account settings</Link>.
+          You can disable this message on the <Link to={favoritesPath}>favorites page</Link>.
         </React.Fragment>
       )
     }
@@ -85,7 +85,7 @@ export class NoFavoritesContainer extends Component {
   render () {
     return (
       <React.Fragment>
-        <section className='group favorites'>
+        <section className='group favorites' id='manage_favorites'>
           <h3>
             <img src={bookmark} alt='' className='favorite white' />Favorites
             {this.props.isHomePage && (

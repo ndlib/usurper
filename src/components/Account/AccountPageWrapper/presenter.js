@@ -27,7 +27,11 @@ const AccountPageWrapper = (props) => {
           )}
           <StaticBody slug={props.slug} preview={props.preview} hideLoading />
         </div>
-        <StaticSidebar slug={props.slug} preview={props.preview} />
+        { props.customSidebar ? (
+          props.customSidebar
+        ) : (
+          <StaticSidebar slug={props.slug} preview={props.preview} />
+        )}
       </div>
     </div>
   )
@@ -40,6 +44,7 @@ AccountPageWrapper.propTypes = {
   children: PropTypes.any,
   preview: PropTypes.bool,
   loading: PropTypes.bool,
+  customSidebar: PropTypes.node,
 }
 
 export default AccountPageWrapper

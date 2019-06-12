@@ -4060,9 +4060,6 @@ img.favorite.white {
 .settings .group {
   padding-bottom: 0;
 }
-.settings .group.opt-in {
-  padding-bottom: 10px;
-}
 
 .group.favorites p {
   max-width: 100%;

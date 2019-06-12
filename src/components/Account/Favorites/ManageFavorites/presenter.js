@@ -13,7 +13,7 @@ import { KIND } from 'actions/personal/favorites'
 const ManageFavorites = (props) => {
   const saving = props.saveState === states.FETCHING
   return (
-    <section className='group favorites'>
+    <section className='group favorites' id={'manage_' + props.kind}>
       <h3><img src={bookmark} alt='' className='favorite white' />{props.title}</h3>
       <div className='section-box pad-edges'>
         <div className='row'>

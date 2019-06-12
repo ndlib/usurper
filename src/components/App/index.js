@@ -9,7 +9,6 @@ import PageWrapper from 'components/Layout/PageWrapper'
 import Home from 'components/Home'
 import ItemsRequests from 'components/Account/ItemsRequests'
 import Courses from 'components/Account/Courses'
-import Settings from 'components/Account/Settings'
 import Hours from 'components/Hours/Page'
 import ChatPage from 'components/ChatPage'
 import ContentfulPage from 'components/Contentful/Page'
@@ -72,7 +71,6 @@ const App = (props) => {
               <Route exact path='/' render={() => (<Home {...props} />)} /> {/* Render is needed to pass cookies */}
               <Route exact path='/chat' component={ChatPage} />
               <Route exact path='/courses' component={Courses} />
-              <Route exact path='/settings' render={() => (<Settings {...props} />)} />
               <Route exact path='/hours' component={Hours} />
               <Route exact path='/events' component={Events} />
               <Route exact path='/events/past' component={Events} />
@@ -86,7 +84,7 @@ const App = (props) => {
               <Route exact path='/items-requests' component={ItemsRequests} />
               <Route exact path='/checkout-history' component={CirculationHistory} />
               { Config.features.favoritesEnabled && (
-                <Route exact path='/favorites' component={Favorites} />
+                <Route exact path='/favorites' render={() => (<Favorites {...props} />)} />
               )}
               <Route exact path='/subjects' component={SubjectList} />
               <Route exact path='/database/:id' component={DatabasePage} />

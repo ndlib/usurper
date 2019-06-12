@@ -12,7 +12,6 @@ const UserMenuContainer = (props) => {
     { key: 'Items & Requests', route: '/items-requests' },
     { key: 'Courses', route: '/courses' },
     { key: 'Checkout History', route: '/checkout-history' },
-    { key: 'Settings', route: '/settings' },
   ]
 
   if (Config.features.favoritesEnabled) {

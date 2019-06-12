@@ -47,6 +47,16 @@ describe('components/Account/CirculationHistory', () => {
             },
           },
         },
+        settings: {
+          circStatus: {
+            state: statuses.NOT_FETCHED,
+          },
+          update: {
+            circStatus: {
+              state: statuses.NOT_FETCHED,
+            },
+          },
+        },
       }
       enzymeWrapper = setup(state, null)
     })
@@ -65,6 +75,8 @@ describe('components/Account/CirculationHistory', () => {
         items: [],
         optedIn: false,
         getHistorical: jest.fn(),
+        setCircStatus: jest.fn(),
+        updateStatus: statuses.NOT_FETCHED,
       }
       enzymeWrapper = shallow(<CirculationHistoryContainer {...props} />)
     })

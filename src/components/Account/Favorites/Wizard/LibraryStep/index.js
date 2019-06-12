@@ -5,6 +5,7 @@ import Footer from '../Footer'
 import RadioList from 'components/Interactive/RadioList'
 
 import { DEFAULT_LIBRARY } from 'actions/personal/settings'
+import * as helper from 'constants/HelperFunctions'
 
 class LibraryStep extends Component {
   constructor (props) {
@@ -39,12 +40,14 @@ class LibraryStep extends Component {
           <span id='favoritesModalDesc'>Select your preferred location. These hours will display on the home screen.</span>
           <RadioList
             radioName='default_library'
-            entries={this.props.data.map((entry) => {
-              return {
-                title: entry.fields.alternateTitle || entry.fields.title,
+            entries={helper.sortList(
+              this.props.data.map((entry) => ({
+                title: entry.fields.alternateTitle,
                 value: entry.fields.slug,
-              }
-            })}
+              })),
+              'title',
+              'asc',
+            )}
             defaultValue={this.state.library}
             onChangeCallback={this.onRadioChanged}
           />

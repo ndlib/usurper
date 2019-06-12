@@ -41,6 +41,7 @@ export class AccountPageWrapperContainer extends Component {
         className={this.props.className}
         preview={preview}
         loading={this.props.loading}
+        customSidebar={this.props.customSidebar}
       >
         {this.props.children}
       </Presenter>
@@ -78,6 +79,7 @@ AccountPageWrapperContainer.propTypes = {
     redirectUrl: PropTypes.string,
   }),
   loading: PropTypes.bool,
+  customSidebar: PropTypes.node,
   getToken: PropTypes.func.isRequired,
 }
 
