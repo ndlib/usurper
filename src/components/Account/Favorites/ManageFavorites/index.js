@@ -27,7 +27,12 @@ export class ManageFavoritesContainer extends Component {
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.saveState === statuses.SUCCESS && !state.saved) {
+    if (props.saveState !== statuses.SUCCESS && state.saved) {
+      return {
+        ...state,
+        saved: false,
+      }
+    } else if (props.saveState === statuses.SUCCESS && !state.saved) {
       return {
         ...state,
         modified: false,
@@ -99,7 +104,10 @@ export class ManageFavoritesContainer extends Component {
     }
 
     // Clear the update state in the store so the wizard doesn't think it is saving
-    this.props.clearUpdateFavorites(this.props.kind)
+    // Do this with all favorites types since the wizard can be multi-step
+    Object.keys(KIND).forEach(key => {
+      this.props.clearUpdateFavorites(KIND[key])
+    })
 
     this.setState({
       wizardOpen: true,
@@ -145,7 +153,7 @@ export class ManageFavoritesContainer extends Component {
           openWizard={this.openWizard}
         />
         { this.state.wizardOpen && (
-          <Wizard closeCallback={this.closeWizard} stepList={[this.props.kind]} />
+          <Wizard closeCallback={this.closeWizard} stepList={[KIND.subjects, KIND.databases]} />
         )}
       </React.Fragment>
     )
