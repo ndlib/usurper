@@ -85,7 +85,7 @@ export class NoFavoritesContainer extends Component {
   render () {
     return (
       <React.Fragment>
-        <section className='group favorites'>
+        <section className='group favorites' id='manage_favorites'>
           <h3>
             <img src={bookmark} alt='' className='favorite white' />Favorites
             {this.props.isHomePage && (

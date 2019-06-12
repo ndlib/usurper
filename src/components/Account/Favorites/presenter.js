@@ -19,8 +19,14 @@ const Presenter = (props) => {
   const sidebar = (
     <SideNav className='side-nav-bg'>
       <ul>
-        <a className='side-anchors' href={'#manage_' + KIND.databases}><li>Databases</li></a>
-        <a className='side-anchors' href={'#manage_' + KIND.subjects}><li>Subjects</li></a>
+        { dbItems.length || subjectItems.length ? (
+          <React.Fragment>
+            <a className='side-anchors' href={'#manage_' + KIND.databases}><li>Databases</li></a>
+            <a className='side-anchors' href={'#manage_' + KIND.subjects}><li>Subjects</li></a>
+          </React.Fragment>
+        ) : (
+          <a className='side-anchors' href={'#manage_favorites'}><li>Favorites</li></a>
+        )}
         <a className='side-anchors' href={'#preferredLocation'}><li>Preferred Location</li></a>
         <a className='side-anchors' href={'#homePageDisplay'}><li>Home Page Display</li></a>
       </ul>

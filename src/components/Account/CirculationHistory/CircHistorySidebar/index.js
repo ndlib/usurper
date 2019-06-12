@@ -20,19 +20,17 @@ const CircHistorySidebar = (props) => {
 
   return (
     <aside className={'col-md-4 col-sm-5 col-xs-12 right ' + styles.checkoutHistorySidebar}>
-      <div>
-        <button className={'button callout ' + styles.optOutBtn} onClick={props.onClickOptOut}>
-          Opt-Out and Delete History
-        </button>
-        <PageLink className='button callout' cfPage={calloutLink} />
-        <h3 id='note'>NOTE:</h3>
-        <ul>
-          <li>Items may take up to 24 hours to display or update.</li>
-          <li>You cannot delete items in your history until 31 days after they are returned.</li>
-          <li>ILL records cannot be deleted.</li>
-          <li>Deleted items are lost permanently and cannot be restored.</li>
-        </ul>
-      </div>
+      <button className={'button callout ' + styles.optOutBtn} onClick={props.onClickOptOut}>
+        Opt-Out and Delete History
+      </button>
+      <PageLink className='button callout' cfPage={calloutLink} />
+      <h3 id='note'>NOTE:</h3>
+      <ul>
+        <li>Items may take up to 24 hours to display or update.</li>
+        <li>You cannot delete items in your history until 31 days after they are returned.</li>
+        <li>ILL records cannot be deleted.</li>
+        <li>Deleted items are lost permanently and cannot be restored.</li>
+      </ul>
     </aside>
   )
 }

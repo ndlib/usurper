@@ -27,49 +27,40 @@ class FavoritesContainer extends Component {
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
 
     // Clear the update status in the store in case it was leftover from a previous action
-    if (props.dbFavorites.state !== statuses.NOT_FETCHED) {
-      props.clearUpdateFavorites(FAVORITES_KIND.databases)
-    }
-    if (props.subjectFavorites.state !== statuses.NOT_FETCHED) {
-      props.clearUpdateFavorites(FAVORITES_KIND.subjects)
-    }
-    if (props.libraryUpdateStatus !== statuses.NOT_FETCHED) {
-      props.clearUpdateSettings(SETTINGS_KIND.homeLibrary)
-    }
-    if (props.hideFavoritesState !== statuses.NOT_FETCHED) {
-      props.clearUpdateSettings(SETTINGS_KIND.hideHomeFavorites)
-    }
-    if (props.defaultSearchState !== statuses.NOT_FETCHED) {
-      props.clearUpdateSettings(SETTINGS_KIND.defaultSearch)
-    }
-    if (props.circStatus !== statuses.NOT_FETCHED) {
-      props.clearUpdateSettings(SETTINGS_KIND.circStatus)
-    }
+    const clearConditions = [
+      { status: props.dbFavorites.state, type: FAVORITES_KIND.databases, action: props.clearUpdateFavorites },
+      { status: props.subjectFavorites.state, type: FAVORITES_KIND.subjects, action: props.clearUpdateFavorites },
+      { status: props.libraryUpdateStatus, type: SETTINGS_KIND.homeLibrary, action: props.clearUpdateSettings },
+      { status: props.hideFavoritesState, type: SETTINGS_KIND.hideHomeFavorites, action: props.clearUpdateSettings },
+      { status: props.defaultSearchState, type: SETTINGS_KIND.defaultSearch, action: props.clearUpdateSettings },
+      { status: props.circStatus, type: SETTINGS_KIND.circStatus, action: props.clearUpdateSettings },
+    ]
+    clearConditions.forEach(condition => {
+      if (condition.status !== statuses.NOT_FETCHED) {
+        condition.action(condition.type)
+      }
+    })
   }
 
   checkFullyLoaded () {
-    if (this.props.login.state === statuses.NOT_FETCHED) {
-      this.props.getToken()
-    } else if (this.props.login.redirectUrl) {
+    if (this.props.login.state !== statuses.NOT_FETCHED && this.props.login.redirectUrl) {
       window.location.replace(this.props.login.redirectUrl)
     }
-    if (this.props.loggedIn) {
-      if (this.props.favoritesStatus === statuses.NOT_FETCHED) {
-        this.props.getAllFavorites()
+
+    const fetchConditions = [
+      { status: this.props.login.state, requiresLogin: false, action: this.props.getToken },
+      { status: this.props.favoritesStatus, requiresLogin: true, action: this.props.getAllFavorites },
+      { status: this.props.libraryStatus, requiresLogin: true, action: this.props.getHomeLibrary },
+      { status: this.props.hideFavoritesState, requiresLogin: true, action: this.props.getHideHomeFavorites },
+      { status: this.props.defaultSearchState, requiresLogin: true, action: this.props.getDefaultSearch },
+      { status: this.props.cfBranches.status, requiresLogin: false, action: this.props.fetchBranches },
+    ]
+    fetchConditions.forEach(condition => {
+      if ([statuses.NOT_FETCHED, statuses.ERROR].includes(condition.status) &&
+      (!condition.requiresLogin || this.props.loggedIn)) {
+        condition.action()
       }
-      if (this.props.libraryStatus === statuses.NOT_FETCHED) {
-        this.props.getHomeLibrary()
-      }
-      if (this.props.hideFavoritesState === statuses.NOT_FETCHED) {
-        this.props.getHideHomeFavorites()
-      }
-      if (this.props.defaultSearchState === statuses.NOT_FETCHED) {
-        this.props.getDefaultSearch()
-      }
-    }
-    if (!this.props.cfBranches || this.props.cfBranches.status === statuses.NOT_FETCHED) {
-      this.props.fetchBranches()
-    }
+    })
   }
 
   componentDidMount () {
