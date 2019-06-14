@@ -46,7 +46,11 @@
   font-weight: bold;
 }
 
-.dbItemTitle a, a .dbItemTitle {
+.dbItemTitle a:link, a:link .dbItemTitle {
+  color: #417D8B;
+}
+
+.dbItemTitle a:visited, a:visited .dbItemTitle {
   color: #93601D;
 }
 
