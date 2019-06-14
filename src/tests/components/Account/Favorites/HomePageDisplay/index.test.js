@@ -193,5 +193,14 @@ describe('components/Account/Favorites/HomePageDisplay', () => {
       })
       expect(enzymeWrapper.containsMatchingElement(<UpdateStatus status={statuses.ERROR} />)).toBe(true)
     })
+
+    it('should update state when certain props change', () => {
+      enzymeWrapper.setProps({
+        defaultSearch: 'newValue',
+        hideFavorites: !props.hideFavorites,
+      })
+      expect(enzymeWrapper.state().defaultSearch).toEqual('newValue')
+      expect(enzymeWrapper.state().hideHomeFavoritesCheckbox).toEqual(!props.hideFavorites)
+    })
   })
 })

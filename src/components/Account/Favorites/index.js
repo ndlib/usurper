@@ -9,7 +9,12 @@ import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
 import getToken from 'actions/personal/token'
-import { getAllFavorites, clearUpdateFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
+import {
+  getAllFavorites,
+  clearUpdateFavorites,
+  clearAllFavorites,
+  KIND as FAVORITES_KIND,
+} from 'actions/personal/favorites'
 import {
   getHomeLibrary,
   getHideHomeFavorites,
@@ -25,6 +30,7 @@ class FavoritesContainer extends Component {
   constructor (props) {
     super(props)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
+    this.clearAll = this.clearAll.bind(this)
 
     // Clear the update status in the store in case it was leftover from a previous action
     const clearConditions = [
@@ -71,12 +77,17 @@ class FavoritesContainer extends Component {
     this.checkFullyLoaded()
   }
 
+  clearAll () {
+    this.props.clearAllFavorites()
+  }
+
   render () {
     if (this.props.loggedIn && !this.props.loading) {
       return (
         <Presenter
           {...this.props}
           homeLibraries={helper.sortList(this.props.cfBranches.data, 'fields.alternateTitle', 'asc')}
+          clearAll={this.clearAll}
         />
       )
     } else {
@@ -108,8 +119,7 @@ export const mapStateToProps = (state, ownProps) => {
     libraryStatus: libraryState,
     libraryUpdateStatus: settings['update'][SETTINGS_KIND.homeLibrary].state,
     cfBranches: state.cfBranches,
-    // eslint-disable-next-line eqeqeq
-    hideFavorites: settings[SETTINGS_KIND.hideHomeFavorites].data == 'true',
+    hideFavorites: [true, 'true'].includes(settings[SETTINGS_KIND.hideHomeFavorites].data),
     hideFavoritesState: settings[SETTINGS_KIND.hideHomeFavorites].state,
     homePageDisplayLoading: loadingHomePageDisplay,
     defaultSearch: settings[SETTINGS_KIND.defaultSearch].data || DEFAULT_DEFAULT_SEARCH,
@@ -118,11 +128,12 @@ export const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getToken,
     getAllFavorites,
     clearUpdateFavorites,
+    clearAllFavorites,
     getHomeLibrary,
     fetchBranches,
     getHideHomeFavorites,
@@ -161,6 +172,7 @@ FavoritesContainer.propTypes = {
   getToken: PropTypes.func.isRequired,
   getAllFavorites: PropTypes.func.isRequired,
   clearUpdateFavorites: PropTypes.func.isRequired,
+  clearAllFavorites: PropTypes.func.isRequired,
   getHomeLibrary: PropTypes.func.isRequired,
   fetchBranches: PropTypes.func,
   getHideHomeFavorites: PropTypes.func.isRequired,

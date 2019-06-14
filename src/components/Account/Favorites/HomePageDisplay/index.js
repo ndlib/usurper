@@ -29,6 +29,22 @@ export class HomePageDisplayContainer extends Component {
     this.statusText = this.statusText.bind(this)
   }
 
+  componentDidUpdate (prevProps) {
+    // This is needed to reset the state after props change. (I.e. after clearing favorites)
+    if (this.props.defaultSearch !== prevProps.defaultSearch) {
+      this.onSearchChange(this.props.defaultSearch)
+    }
+    if (this.props.hideFavorites !== prevProps.hideFavorites) {
+      this.onChange({
+        target: {
+          name: 'hideHomeFavoritesCheckbox',
+          type: 'checkbox',
+          checked: this.props.hideFavorites,
+        },
+      })
+    }
+  }
+
   onChange = (event) => {
     // Note that all form inputs should have a name property that matches the name in the state
     const stateObj = {}
@@ -85,8 +101,8 @@ export class HomePageDisplayContainer extends Component {
         <h3>Home Page Display</h3>
         <div className='section-box pad-edges'>
           <form onSubmit={this.onSave}>
-            <HideHomeFavorites onChange={this.onChange} defaultChecked={this.props.hideFavorites} />
-            <DefaultSearch onChange={this.onSearchChange} defaultValue={this.state.defaultSearch} />
+            <HideHomeFavorites onChange={this.onChange} defaultChecked={this.props.hideFavorites} key={this.props.hideFavorites} />
+            <DefaultSearch onChange={this.onSearchChange} defaultValue={this.props.defaultSearch} key={this.props.defaultSearch} />
             <button type='submit' className='right' aria-label='Save' disabled={saving}>Save</button>
             { saving ? (
               <InlineLoading title='Saving...' className='fright pad-edges-sm' />

@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import FavoritesContainer, { mapStateToProps } from 'components/Account/Favorites'
+import FavoritesContainer, { mapStateToProps, mapDispatchToProps } from 'components/Account/Favorites'
 import Loading from 'components/Messages/Loading'
 
 import {
@@ -100,6 +100,17 @@ describe('components/Account/Favorites/index.js', () => {
         { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.defaultSearch, data: null },
         { type: CF_REQUEST_BRANCHES, depth: expect.any(Number) },
       ]))
+    })
+
+    it('should call clearAllFavorites action when calling clearAll', () => {
+      const instance = enzymeWrapper.dive().dive().instance()
+      instance.props = {
+        ...instance.props,
+        clearAllFavorites: jest.fn(),
+      }
+
+      instance.clearAll()
+      expect(instance.props.clearAllFavorites).toHaveBeenCalled()
     })
   })
 

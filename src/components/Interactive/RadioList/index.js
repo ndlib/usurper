@@ -17,6 +17,18 @@ class RadioList extends Component {
     this.onOptionClick = this.onOptionClick.bind(this)
   }
 
+  componentDidUpdate (prevProps) {
+    if (this.props.defaultValue !== prevProps.defaultValue) {
+      this.onOptionClick({
+        target: {
+          value: this.props.entries.findIndex((entry) => {
+            return entry.value == this.props.defaultValue // eslint-disable-line eqeqeq
+          }),
+        },
+      })
+    }
+  }
+
   onOptionClick (e) {
     const index = e.target.value
     // If index is a falsy and is NOT 0 (E.g. if it's null, undefined, or false), the input index is invalid
