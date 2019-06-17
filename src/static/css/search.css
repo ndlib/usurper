@@ -1,5 +1,5 @@
 .home #drawer {
-	background: url('../images/search.banner.jpg') top;
+	background: url('https://s3.amazonaws.com/resources.library.nd.edu/images/website/search.banner.jpg') top;
 	background-size: cover;
 }
 

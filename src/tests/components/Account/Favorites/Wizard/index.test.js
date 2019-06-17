@@ -219,6 +219,27 @@ describe('components/Account/Favorites/Wizard', () => {
                       },
                     },
                   ],
+                  relatedExtraSections: [
+                    {
+                      sys: {
+                        id: 'section',
+                        contentType: { sys: { id: 'linkGroup' }},
+                      },
+                      fields: {
+                        links: [
+                          {
+                            sys: {
+                              id: 'LEAVE_ME_BE',
+                              contentType: { sys: { id: 'resource' }},
+                            },
+                            fields: {
+                              title: 'itza me, a resource in a section',
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
                 },
               },
             },

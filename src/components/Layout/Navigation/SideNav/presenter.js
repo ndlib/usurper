@@ -14,7 +14,7 @@ class SideNavPresenter extends Component {
     this.listenScrollEvent = this.listenScrollEvent.bind(this)
     this.state = {
       isScrolled: NOTSCROLLED,
-      offsetHeight: DEFAULT_OFFSET,
+      offsetHeight: DEFAULT_OFFSET + props.offset,
     }
   }
   componentDidMount () {
@@ -26,7 +26,7 @@ class SideNavPresenter extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.search !== this.props.search) {
+    if (nextProps.search !== this.props.search || nextProps.offset !== this.props.offset) {
       let currentOffset = DEFAULT_OFFSET
       if (nextProps.search.drawerOpen) {
         currentOffset = MENU_OPEN_OFFSET
@@ -34,7 +34,7 @@ class SideNavPresenter extends Component {
           currentOffset = ADVANCED_MENU_OFFSET
         }
       }
-      this.setState({ offsetHeight: currentOffset })
+      this.setState({ offsetHeight: currentOffset + nextProps.offset })
     }
   }
 
@@ -76,6 +76,11 @@ SideNavPresenter.propTypes = {
   children: PropTypes.any.isRequired,
   className: PropTypes.string,
   search: PropTypes.object,
+  offset: PropTypes.number,
+}
+
+SideNavPresenter.defaultProps = {
+  offset: 0,
 }
 
 export default SideNavPresenter

@@ -17,7 +17,7 @@ const Presenter = (props) => {
   const subjectItems = (props.subjectFavorites && props.subjectFavorites.items) ? props.subjectFavorites.items : []
   const loading = (props.favoritesStatus === statuses.NOT_FETCHED || props.favoritesStatus === statuses.FETCHING)
   const sidebar = (
-    <SideNav className='side-nav-bg'>
+    <SideNav className='side-nav-bg' offset={130}>
       <ul>
         { dbItems.length || subjectItems.length ? (
           <React.Fragment>
@@ -33,10 +33,19 @@ const Presenter = (props) => {
     </SideNav>
   )
 
+  const clearAllConfirm = () => {
+    if (window.confirm('Continuing will delete all of your favorites and reset settings to their default values. Do you wish to continue?')) {
+      props.clearAll()
+    }
+  }
+
   return (
     <AccountPageWrapper title='Favorites' slug='favorites' customSidebar={sidebar}>
       { (loading || dbItems.length || subjectItems.length) ? (
         <React.Fragment>
+          { !loading && (
+            <button className={'button callout'} onClick={clearAllConfirm}>Clear All Favorites</button>
+          )}
           { (!props.dbFavorites || props.dbFavorites.state === statuses.FETCHING) ? (
             <InlineLoading className='pad-edges-sm' />
           ) : (
@@ -52,7 +61,7 @@ const Presenter = (props) => {
         <NoFavorites preview={props.preview} />
       )}
       { (props.homeLibraries && props.selectedLocation && ![statuses.NOT_FETCHED, statuses.FETCHING].includes(props.cfBranches.status)) ? (
-        <PickUp entries={props.homeLibraries} defaultValue={props.selectedLocation} updateStatus={props.libraryUpdateStatus} />
+        <PickUp entries={props.homeLibraries} defaultValue={props.selectedLocation} updateStatus={props.libraryUpdateStatus} key={props.selectedLocation} />
       ) : (
         <InlineLoading />
       )}
@@ -80,6 +89,7 @@ Presenter.propTypes = {
   homePageDisplayLoading: PropTypes.bool.isRequired,
   cookies: PropTypes.any,
   defaultSearch: PropTypes.string.isRequired,
+  clearAll: PropTypes.func,
 }
 
 export default Presenter

@@ -127,9 +127,25 @@ table td:nth-child(2) {
   width: 35%;
 }
 
+a:link, a:hover, a:active {
+  color: #417D8B;
+}
 
-a {
+a:visited {
   color: #93601D;
+}
+
+.jesus a:link, .jesus .jesus a:hover, .jesus a:active, .jesus a:visited {
+  color: #fff;
+}
+
+
+.menu-link li a:link, .menu-link li a:hover, .menu-link li a:active, .menu-link li a:visited {
+  color: #93601D;
+}
+
+.menu-list .menu-link button {
+  border-radius: 0;
 }
 
 
@@ -4256,6 +4272,7 @@ img.favorite {
 
 .row .column label {
   display: flex;
+  align-items: center;
 }
 
 .round-corners {
