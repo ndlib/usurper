@@ -20,14 +20,16 @@ const ManageFavorites = (props) => {
           {props.message}
           <FavoritesList kind={props.kind} items={props.favorited} updateList={props.updateList} disabled={saving} />
         </div>
-        <div className='row'>
-          <div className='col-xs-12 col-sm-12 col-md-10 col-lg-9'>
-            <Search kind={props.kind} placeholder={'Add ' + props.title} buttonText={'Search ' + props.title} existingFavorites={props.favorited} onAddFavorite={props.onAddFavorite} disabled={saving} />
+        { props.kind !== KIND.subjects && (
+          <div className='row'>
+            <div className='col-xs-12 col-sm-12 col-md-10 col-lg-9'>
+              <Search kind={props.kind} placeholder={'Add ' + props.title} buttonText={'Search ' + props.title} existingFavorites={props.favorited} onAddFavorite={props.onAddFavorite} disabled={saving} />
+            </div>
           </div>
-        </div>
+        )}
         <button type='submit' className='right' aria-label='Save' disabled={!props.modified || saving} onClick={props.onSave}>Save</button>
         { props.kind === KIND.subjects && (
-          <button className='right' onClick={props.openWizard} disabled={saving}>View All Subjects</button>
+          <button className='right' onClick={props.openWizard} disabled={saving}>Add Favorite Subjects</button>
         )}
         { saving ? (
           <InlineLoading title='Saving...' className='fright pad-edges-sm' />

@@ -48,8 +48,8 @@ describe('components/Account/Favorites/ManageFavorites/presenter.js', () => {
     beforeEach(() => {
       props = {
         saveState: statuses.FETCHING,
-        kind: KIND.subjects,
-        favorited: ['korean', 'japanese', 'german'],
+        kind: KIND.databases,
+        favorited: ['MySQL', 'DynamoDB', 'MongoDB'],
       }
       enzymeWrapper = setup(props)
     })
@@ -65,6 +65,26 @@ describe('components/Account/Favorites/ManageFavorites/presenter.js', () => {
       expect(submit.props().disabled).toBe(true)
       expect(search.props().disabled).toBe(true)
       expect(favesList.props().disabled).toBe(true)
+    })
+  })
+
+  describe('subjects type', () => {
+    beforeEach(() => {
+      props = {
+        saveState: statuses.SUCCESS,
+        kind: KIND.subjects,
+        favorited: ['korean', 'japanese', 'german'],
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    it('should render a FavoritesList component with items', () => {
+      const have = <FavoritesList kind={props.kind} items={props.favorited} />
+      expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
+    })
+
+    it('should not render a Search component', () => {
+      expect(enzymeWrapper.find(Search).exists()).toBe(false)
     })
   })
 })

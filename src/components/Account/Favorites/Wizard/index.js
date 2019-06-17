@@ -194,7 +194,16 @@ class Wizard extends Component {
               ))
             ))
           ))
-          dbStepData = helper.sortList(convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases), 'title', 'asc')
+          const existingFavorites = typy(this.props.favorites, `${FAVORITES_KIND.databases}.items`).safeArray
+          // Convert the related dbs to match the favorites model, then remove any which are already favorites, and finally sort them
+          const newDbs = helper.sortList(
+            convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases).filter(db => {
+              return !existingFavorites.find(x => x.key === db.key)
+            }),
+            'title',
+            'asc',
+          )
+          dbStepData = existingFavorites.concat(newDbs)
         } else {
           dbStepData = this.state.data[currentStepName]
         }

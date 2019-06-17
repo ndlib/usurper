@@ -156,7 +156,11 @@ describe('components/Account/Favorites/Wizard', () => {
       favorites: {
         [FAVORITES_KIND.databases]: {
           state: statuses.SUCCESS,
-          items: [],
+          items: [{
+            key: 'yo dawg',
+            title: 'I heard you like memes',
+            url: '/soiputamemeinyourcodesoyoucancodewhileyoumeme',
+          }],
         },
         [FAVORITES_KIND.subjects]: {
           state: statuses.SUCCESS,
@@ -209,6 +213,10 @@ describe('components/Account/Favorites/Wizard', () => {
                   relatedResources: [
                     {
                       sys: { id: 'DONT_CHANGE_ME' },
+                      fields: {
+                        title: 'LEAVE_ME_BE',
+                        purl: '/srsly',
+                      },
                     },
                   ],
                   relatedExtraSections: [
@@ -359,7 +367,7 @@ describe('components/Account/Favorites/Wizard', () => {
         const have = <DatabaseStep
           step={1}
           stepCount={STEP_COUNT}
-          data={[]}
+          data={store.getState().favorites[FAVORITES_KIND.databases].items}
         />
         expect(enzymeWrapper.dive().dive().containsMatchingElement(have)).toBe(true)
       })
