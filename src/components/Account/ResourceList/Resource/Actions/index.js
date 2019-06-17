@@ -64,12 +64,12 @@ export const mapStateToProps = (state, ownProps) => {
 
 ActionsContainer.propTypes = {
   item: PropTypes.shape({
-    barcode: PropTypes.string.isRequired,
+    barcode: PropTypes.string,
   }),
   listType: PropTypes.string.isRequired,
   alephId: PropTypes.string,
   canRenew: PropTypes.bool,
-  onRenewClick: PropTypes.func.isRequired,
+  onRenewClick: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActionsContainer)

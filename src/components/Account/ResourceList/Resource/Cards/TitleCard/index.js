@@ -28,7 +28,10 @@ const TitleCard = (props) => {
 }
 
 TitleCard.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   title: PropTypes.string,
   from: PropTypes.string,
   published: PropTypes.string,
