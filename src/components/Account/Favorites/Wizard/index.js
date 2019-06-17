@@ -58,7 +58,7 @@ class Wizard extends Component {
     this.isLoading = this.isLoading.bind(this)
 
     if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfSubjects.status) || typy(props, 'cfSubjects.depth').safeNumber < 2) {
-      props.fetchSubjects(props.preview, 2)
+      props.fetchSubjects(props.preview, 3)
     }
     if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfBranches.status)) {
       props.fetchBranches(props.preview, 0)
@@ -188,10 +188,13 @@ class Wizard extends Component {
         if (!this.state.data[currentStepName] || this.state.data[currentStepName].length === 0) {
           const relatedDbs = this.props.cfDatabases.data.filter((db) => (
             db.sys && this.state.data[FAVORITES_KIND.subjects].find((subject) => (
-              typy(subject, 'fields.page.fields.relatedResources').safeArray.find((r) => r.sys.id === db.sys.id)
+              typy(subject, 'fields.page.fields.relatedResources').safeArray.find((r) => r.sys.id === db.sys.id) ||
+              typy(subject, 'fields.page.fields.relatedExtraSections').safeArray.find((section) => (
+                typy(section, 'fields.links').safeArray.find((r) => r.sys.id === db.sys.id)
+              ))
             ))
           ))
-          dbStepData = helper.sortList(convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases), 'title', 'asc').slice(0, 8)
+          dbStepData = helper.sortList(convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases), 'title', 'asc')
         } else {
           dbStepData = this.state.data[currentStepName]
         }
@@ -240,6 +243,16 @@ export const mapStateToProps = (state, ownProps) => {
     for (const resource of typy(subject, 'fields.page.fields.relatedResources').safeArray) {
       if (!databases.find((search) => search.sys.id === resource.sys.id)) {
         databases.push(resource)
+      }
+    }
+    for (const section of typy(subject, 'fields.page.fields.relatedExtraSections').safeArray) {
+      // Only get the items in the linkGroup that are a resource.
+      for (const resource of typy(section, 'fields.links').safeArray.filter(link => {
+        return typy(link, 'sys.contentType.sys.id').safeString === 'resource'
+      })) {
+        if (!databases.find((search) => search.sys.id === resource.sys.id)) {
+          databases.push(resource)
+        }
       }
     }
   }
