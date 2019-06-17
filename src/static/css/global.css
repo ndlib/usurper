@@ -4272,6 +4272,7 @@ img.favorite {
 
 .row .column label {
   display: flex;
+  align-items: center;
 }
 
 .round-corners {
