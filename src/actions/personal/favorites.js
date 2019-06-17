@@ -2,6 +2,12 @@ import typy from 'typy'
 
 import Config from 'shared/Configuration'
 import * as statuses from 'constants/APIStatuses'
+import {
+  setHomeLibrary,
+  setHideHomeFavorites,
+  setDefaultSearch,
+  DEFAULT_LIBRARY,
+} from './settings'
 
 export const RECEIVE_FAVORITES = 'RECEIVE_FAVORITES'
 export const REQUEST_FAVORITES = 'REQUEST_FAVORITES'
@@ -170,6 +176,20 @@ export const setFavorites = (kind, favorites) => {
 export const clearUpdateFavorites = (kind) => {
   return (dispatch) => {
     dispatch(receiveUpdateFavorites(kind, statuses.NOT_FETCHED))
+  }
+}
+
+export const clearAllFavorites = () => {
+  return (dispatch) => {
+    const promises = []
+    Object.keys(KIND).forEach(key => {
+      promises.push(dispatch(setFavorites(KIND[key], [])))
+    })
+    promises.push(dispatch(setHomeLibrary(DEFAULT_LIBRARY)))
+    promises.push(dispatch(setHideHomeFavorites(false)))
+    promises.push(dispatch(setDefaultSearch(null)))
+
+    return Promise.all(promises)
   }
 }
 

@@ -48,6 +48,7 @@ describe('components/Account/Favorites/presenter.js', () => {
       hideFavorites: true,
       homePageDisplayLoading: false,
       defaultSearch: 'fake',
+      clearAll: jest.fn(),
     }
 
     beforeEach(() => {
@@ -81,6 +82,22 @@ describe('components/Account/Favorites/presenter.js', () => {
 
     it('should not render NoFavorites component', () => {
       expect(enzymeWrapper.containsMatchingElement(<NoFavorites />)).toBe(false)
+    })
+
+    it('should render clear all favorites button', () => {
+      const find = <button>Clear All Favorites</button>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+    })
+
+    it('should show confirmation before clearing favorites', () => {
+      window.confirm = jest.fn().mockImplementation(() => true)
+
+      const btn = enzymeWrapper.findWhere(el => el.type() === 'button' && el.text() === 'Clear All Favorites')
+      expect(btn.exists()).toBe(true)
+
+      btn.simulate('click')
+      expect(window.confirm).toHaveBeenCalled()
+      expect(props.clearAll).toHaveBeenCalled()
     })
   })
 
@@ -131,6 +148,11 @@ describe('components/Account/Favorites/presenter.js', () => {
     it('should render a section for each setting', () => {
       expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
       expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
+    })
+
+    it('should render clear all favorites button', () => {
+      const find = <button>Clear All Favorites</button>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
     })
   })
 
@@ -187,6 +209,11 @@ describe('components/Account/Favorites/presenter.js', () => {
       expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
       expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
     })
+
+    it('should not render clear all favorites button', () => {
+      const find = <button>Clear All Favorites</button>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(false)
+    })
   })
 
   describe('while loading', () => {
@@ -218,6 +245,11 @@ describe('components/Account/Favorites/presenter.js', () => {
 
     it('should render loading', () => {
       expect(enzymeWrapper.containsMatchingElement(<InlineLoading />)).toBe(true)
+    })
+
+    it('should not render clear all favorites button', () => {
+      const find = <button>Clear All Favorites</button>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(false)
     })
   })
 })
