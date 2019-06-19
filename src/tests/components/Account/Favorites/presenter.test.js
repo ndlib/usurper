@@ -210,9 +210,9 @@ describe('components/Account/Favorites/presenter.js', () => {
       expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
     })
 
-    it('should not render clear all favorites button', () => {
+    it('should render clear all favorites button', () => {
       const find = <button>Clear All Favorites</button>
-      expect(enzymeWrapper.containsMatchingElement(find)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
     })
   })
 

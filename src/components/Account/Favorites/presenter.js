@@ -12,6 +12,8 @@ import * as statuses from 'constants/APIStatuses'
 
 import { KIND } from 'actions/personal/favorites'
 
+import styles from './style.module.css'
+
 const Presenter = (props) => {
   const dbItems = (props.dbFavorites && props.dbFavorites.items) ? props.dbFavorites.items : []
   const subjectItems = (props.subjectFavorites && props.subjectFavorites.items) ? props.subjectFavorites.items : []
@@ -43,9 +45,6 @@ const Presenter = (props) => {
     <AccountPageWrapper title='Favorites' slug='favorites' customSidebar={sidebar}>
       { (loading || dbItems.length || subjectItems.length) ? (
         <React.Fragment>
-          { !loading && (
-            <button className={'button callout'} onClick={clearAllConfirm}>Clear All Favorites</button>
-          )}
           { (!props.dbFavorites || props.dbFavorites.state === statuses.FETCHING) ? (
             <InlineLoading className='pad-edges-sm' />
           ) : (
@@ -69,6 +68,9 @@ const Presenter = (props) => {
         <HomePageDisplay hideFavorites={props.hideFavorites} defaultSearch={props.defaultSearch} cookies={props.cookies} />
       ) : (
         <InlineLoading />
+      )}
+      { !loading && (
+        <button className={'button callout ' + styles.clearFavorites} onClick={clearAllConfirm}>Clear All Favorites</button>
       )}
     </AccountPageWrapper>
   )

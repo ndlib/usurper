@@ -1,0 +1,4 @@
+/* class name is repeated to give it higher specificity than global css file */
+button.clearFavorites.clearFavorites {
+  background-color: #5D422C;
+}
