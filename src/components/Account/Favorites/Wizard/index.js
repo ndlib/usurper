@@ -61,18 +61,18 @@ class Wizard extends Component {
     if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfSubjects.status) || typy(props, 'cfSubjects.depth').safeNumber < 2) {
       props.fetchSubjects(props.preview, 3)
     }
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfDatabases.defaults.status)) {
-      props.fetchDefaultDbFavorites(props.preview)
-    }
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfBranches.status)) {
-      props.fetchBranches(props.preview, 0)
-    }
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.homeLibrary.state)) {
-      props.getHomeLibrary()
-    }
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.favoritesStatus)) {
-      props.getAllFavorites()
-    }
+
+    const fetchConditions = [
+      { status: props.cfDatabases.defaults.status, action: () => props.fetchDefaultDbFavorites(props.preview) },
+      { status: props.cfBranches.status, action: () => props.fetchBranches(props.preview, 0) },
+      { status: props.homeLibrary.state, action: props.getHomeLibrary },
+      { status: props.favoritesStatus, action: props.getAllFavorites },
+    ]
+    fetchConditions.forEach(condition => {
+      if ([statuses.NOT_FETCHED, statuses.ERROR].includes(condition.status)) {
+        condition.action()
+      }
+    })
   }
 
   componentDidUpdate (prevProps) {
