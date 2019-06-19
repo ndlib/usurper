@@ -9,7 +9,7 @@ import contentfulEvent from './contentful/event'
 import contentfulAllEvents from './contentful/allEvents'
 import contentfulFloor from './contentful/floor'
 import contentfulStatic from './contentful/staticContent'
-import databaseLetter from './contentful/databaseLetter'
+import database from './contentful/database'
 import servicePoints from './contentful/servicePoints'
 import entryReducer from './contentful/entry'
 import personalReducer from './personal'
@@ -37,7 +37,7 @@ const rootReducer = combineReducers({
   allEvents: contentfulAllEvents,
   cfFloorEntry: contentfulFloor,
   cfStatic: contentfulStatic,
-  cfDatabaseLetter: databaseLetter,
+  cfDatabases: database,
   cfServicePoints: servicePoints,
   cfEntry: entryReducer,
   personal: personalReducer,

@@ -73,7 +73,7 @@ const validItem4 = {
   searchBlob: '4  last record',
 }
 
-const validCfDatabaseLetter = {
+const validcfDatabases = {
   a: {
     status: statuses.SUCCESS,
     data: [
@@ -96,7 +96,7 @@ describe('components/DatabaseList/index.js', () => {
   describe('with no data', () => {
     beforeEach(() => {
       props = {
-        cfDatabaseLetter: {},
+        cfDatabases: {},
         fetchLetter: jest.fn(),
         currentLetter: 'a',
         allLettersStatus: statuses.NOT_FETCHED,
@@ -135,7 +135,7 @@ describe('components/DatabaseList/index.js', () => {
   describe('given valid data', () => {
     beforeEach(() => {
       props = {
-        cfDatabaseLetter: validCfDatabaseLetter,
+        cfDatabases: validcfDatabases,
         fetchLetter: jest.fn(),
         currentLetter: 'a',
         allLettersStatus: statuses.SUCCESS,
@@ -167,9 +167,9 @@ describe('components/DatabaseList/index.js', () => {
     it('renders the DatabaseListPresenter', () => {
       const have = (
         <ListPresenter
-          list={props.cfDatabaseLetter.a.data}
+          list={props.cfDatabases.a.data}
           letter={props.currentLetter}
-          status={props.cfDatabaseLetter.a.status}
+          status={props.cfDatabases.a.status}
         />
       )
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
@@ -180,7 +180,7 @@ describe('components/DatabaseList/index.js', () => {
 
       beforeEach(() => {
         const state = {
-          cfDatabaseLetter: validCfDatabaseLetter,
+          cfDatabases: validcfDatabases,
           personal: {
             login: {
               state: statuses.SUCCESS,
@@ -285,7 +285,7 @@ describe('components/DatabaseList/index.js', () => {
       let state
       beforeEach(() => {
         state = {
-          cfDatabaseLetter: validCfDatabaseLetter,
+          cfDatabases: validcfDatabases,
           personal: {
             login: {
               state: statuses.SUCCESS,
@@ -305,7 +305,7 @@ describe('components/DatabaseList/index.js', () => {
         state = undefined
       })
 
-      it('should sort cfDatabaseLetter lists', () => {
+      it('should sort cfDatabases lists', () => {
         const expectedData = {
           a: {
             status: statuses.SUCCESS,
@@ -324,14 +324,14 @@ describe('components/DatabaseList/index.js', () => {
         }
         const result = mapStateToProps(state, props)
 
-        expect(result.cfDatabaseLetter).toEqual(expectedData)
+        expect(result.cfDatabases).toEqual(expectedData)
       })
 
       it('should include records from all letters in allDbs', () => {
         const result = mapStateToProps(state, props)
 
-        for (const letter in props.cfDatabaseLetter) {
-          props.cfDatabaseLetter[letter].data.forEach((record) => {
+        for (const letter in props.cfDatabases) {
+          props.cfDatabases[letter].data.forEach((record) => {
             expect(result.allDbs).toContain(record)
           })
         }
@@ -350,7 +350,7 @@ describe('components/DatabaseList/index.js', () => {
         let result
 
         tempState = {
-          cfDatabaseLetter: {
+          cfDatabases: {
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
@@ -362,7 +362,7 @@ describe('components/DatabaseList/index.js', () => {
         expect(result.allLettersStatus).toEqual(statuses.FETCHING)
 
         tempState = {
-          cfDatabaseLetter: {
+          cfDatabases: {
             a: { status: statuses.NOT_FOUND, data: [] },
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
@@ -374,7 +374,7 @@ describe('components/DatabaseList/index.js', () => {
         expect(result.allLettersStatus).toEqual(statuses.FETCHING)
 
         tempState = {
-          cfDatabaseLetter: {
+          cfDatabases: {
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.ERROR, data: [] },
             c: { status: statuses.NOT_FOUND, data: [] },
@@ -388,7 +388,7 @@ describe('components/DatabaseList/index.js', () => {
         expect(result.allLettersStatus).toEqual(statuses.ERROR)
 
         tempState = {
-          cfDatabaseLetter: {
+          cfDatabases: {
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.NOT_FOUND, data: [] },
           },
@@ -404,7 +404,7 @@ describe('components/DatabaseList/index.js', () => {
   describe('letter.length > 1', () => {
     beforeEach(() => {
       props = {
-        cfDatabaseLetter: {
+        cfDatabases: {
           a: {
             status: statuses.SUCCESS,
             data: [{

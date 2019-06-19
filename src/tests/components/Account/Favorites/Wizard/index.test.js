@@ -18,6 +18,7 @@ import {
   KIND as SETTINGS_KIND,
 } from 'actions/personal/settings'
 import { CF_REQUEST_BRANCHES } from 'actions/contentful/branches'
+import { CF_REQUEST_DATABASE_DEFAULT_FAVORITES } from 'actions/contentful/database'
 import { CF_REQUEST_SUBJECTS } from 'actions/contentful/subjects'
 import * as statuses from 'constants/APIStatuses'
 
@@ -63,6 +64,9 @@ const BASE_STATE = {
   },
   cfSubjects: { status: statuses.NOT_FETCHED },
   cfBranches: { status: statuses.NOT_FETCHED },
+  cfDatabases: {
+    defaultFavorites: { status: statuses.NOT_FETCHED },
+  },
   personal: {
     login: { status: statuses.SUCCESS, token: 'fake token' }
   },
@@ -87,6 +91,7 @@ describe('components/Account/Favorites/Wizard', () => {
       expect(store.getActions()).toEqual(expect.arrayContaining([
         { type: CF_REQUEST_SUBJECTS, depth: expect.any(Number) },
         { type: CF_REQUEST_BRANCHES, depth: expect.any(Number) },
+        { type: CF_REQUEST_DATABASE_DEFAULT_FAVORITES },
         { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.homeLibrary, data: null },
         ...Object.values(FAVORITES_KIND).map((kind) => (
           { type: REQUEST_FAVORITES, kind: kind }
@@ -195,6 +200,17 @@ describe('components/Account/Favorites/Wizard', () => {
         status: statuses.SUCCESS,
         data: [],
         depth: 999,
+      },
+      cfDatabases: {
+        defaultFavorites: {
+          status: statuses.SUCCESS,
+          data: [
+            {
+              title: 'default',
+              url: 'somewhere.place',
+            },
+          ],
+        },
       },
       cfSubjects: {
         status: statuses.SUCCESS,
@@ -365,9 +381,10 @@ describe('components/Account/Favorites/Wizard', () => {
 
       it('should display DatabaseStep', () => {
         const have = <DatabaseStep
+          didSelectSubjects={false}
           step={1}
           stepCount={STEP_COUNT}
-          data={store.getState().favorites[FAVORITES_KIND.databases].items}
+          data={store.getState().cfDatabases.data}
         />
         expect(enzymeWrapper.dive().dive().containsMatchingElement(have)).toBe(true)
       })

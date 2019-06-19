@@ -3,6 +3,10 @@ import Config from 'shared/Configuration'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_DATABASE_LETTER = 'CF_REQUEST_DATABASE_LETTER'
+export const CF_RECEIVE_DATABASE_LETTER = 'CF_RECEIVE_DATABASE_LETTER'
+export const CF_REQUEST_DATABASE_DEFAULT_FAVORITES = 'CF_REQUEST_DATABASE_DEFAULT_FAVORITES'
+export const CF_RECEIVE_DATABASE_DEFAULT_FAVORITES = 'CF_RECEIVE_DATABASE_DEFAULT_FAVORITES'
+
 export const requestLetter = (letter) => {
   return {
     type: CF_REQUEST_DATABASE_LETTER,
@@ -10,7 +14,6 @@ export const requestLetter = (letter) => {
   }
 }
 
-export const CF_RECEIVE_DATABASE_LETTER = 'CF_RECEIVE_DATABASE_LETTER'
 const receiveLetter = (letter, response) => {
   const error = {
     type: CF_RECEIVE_DATABASE_LETTER,
@@ -34,6 +37,35 @@ const receiveLetter = (letter, response) => {
     return success(response)
   } else {
     return error
+  }
+}
+
+export const requestDatabaseDefaults = () => {
+  return {
+    type: CF_REQUEST_DATABASE_DEFAULT_FAVORITES,
+  }
+}
+
+const receiveDatabaseDefaults = (response) => {
+  const error = (response) => {
+    return {
+      type: CF_RECEIVE_DATABASE_DEFAULT_FAVORITES,
+      status: response ? statuses.fromHttpStatusCode(response.status) : statuses.ERROR,
+    }
+  }
+
+  const success = (data) => {
+    return {
+      type: CF_RECEIVE_DATABASE_DEFAULT_FAVORITES,
+      status: statuses.SUCCESS,
+      data: data,
+    }
+  }
+
+  if (Array.isArray(response)) {
+    return success(response)
+  } else {
+    return error(response)
   }
 }
 
@@ -64,6 +96,28 @@ export const fetchLetter = (letter, preview) => {
           })
         }
         dispatch(receiveLetter(letter, json))
+      })
+  }
+}
+
+export const fetchDefaultDbFavorites = (preview) => {
+  // Academic Search Premier, JSTOR, and Scopus
+  const alephIds = ['002056133', '001517508', '004862587']
+  const query = encodeURIComponent(`content_type=resource&fields.alephSystemNumber[in]=${alephIds.join(',')}&include=0`)
+  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
+  if (preview) {
+    url += `&preview=${preview}`
+  }
+
+  return dispatch => {
+    dispatch(requestDatabaseDefaults())
+    return fetch(url)
+      .then(response => {
+        return response.ok ? response.json() : { status: response.status }
+      })
+      .then(json => dispatch(receiveDatabaseDefaults(json)))
+      .catch(response => {
+        dispatch(receiveDatabaseDefaults(response))
       })
   }
 }
