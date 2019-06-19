@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import typy from 'typy'
-import { fetchLetter } from 'actions/contentful/databaseLetter'
+import { fetchLetter } from 'actions/contentful/database'
 import ListPresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
@@ -121,8 +121,8 @@ export class DatabaseListContainer extends Component {
   shouldComponentUpdate (nextProps, nextState) {
     const currentStatusChanged = (this.props.currentLetter !== nextProps.currentLetter ||
       this.props.allLettersStatus !== nextProps.allLettersStatus)
-    const oldLetterStatus = typy(this.props, 'cfDatabaseLetter[this.props.currentLetter].status').safeString
-    const newLetterStatus = typy(nextProps, 'cfDatabaseLetter[this.props.currentLetter].status').safeString
+    const oldLetterStatus = typy(this.props, 'cfDatabases[this.props.currentLetter].status').safeString
+    const newLetterStatus = typy(nextProps, 'cfDatabases[this.props.currentLetter].status').safeString
     const letterStatusChanged = oldLetterStatus && oldLetterStatus !== newLetterStatus
     const filterChanged = this.state.filterValue !== nextState.filterValue
 
@@ -135,8 +135,8 @@ export class DatabaseListContainer extends Component {
       return <PageNotFound />
     }
 
-    let status = typy(this.props, `cfDatabaseLetter[${letter}].status`).safeString || statuses.FETCHING
-    let data = typy(this.props, `cfDatabaseLetter[${letter}].data`).safeObject || []
+    let status = typy(this.props, `cfDatabases[${letter}].status`).safeString || statuses.FETCHING
+    let data = typy(this.props, `cfDatabases[${letter}].data`).safeObject || []
     if (this.state.filterValue) {
       status = this.props.allLettersStatus
       data = this.state.filteredList
@@ -157,12 +157,12 @@ export const mapStateToProps = (state, thisProps) => {
   const { personal, favorites } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
-  const allLettersStatus = helper.reduceStatuses(Object.keys(state.cfDatabaseLetter).map((key) => state.cfDatabaseLetter[key].status))
+  const allLettersStatus = helper.reduceStatuses(Object.keys(state.cfDatabases).map((key) => state.cfDatabases[key].status))
 
   return {
-    cfDatabaseLetter: sortDbs(state.cfDatabaseLetter),
+    cfDatabases: sortDbs(state.cfDatabases),
     allLettersStatus: allLettersStatus,
-    allDbs: allLettersStatus === statuses.SUCCESS ? concatDbs(state.cfDatabaseLetter) : [],
+    allDbs: allLettersStatus === statuses.SUCCESS ? concatDbs(state.cfDatabases) : [],
     currentLetter: decodeURIComponent(thisProps.match.params.id),
     login: personal.login,
     favoritesStatus: favorites[FAVORITES_KIND.databases].state,
@@ -176,7 +176,7 @@ export const mapDispatchToProps = (dispatch) => {
 DatabaseListContainer.propTypes = {
   fetchLetter: PropTypes.func.isRequired,
   currentLetter: PropTypes.string.isRequired,
-  cfDatabaseLetter: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
+  cfDatabases: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
   allLettersStatus: PropTypes.string.isRequired,
   getToken: PropTypes.func,
   getFavorites: PropTypes.func,

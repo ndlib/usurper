@@ -68,12 +68,19 @@ class DatabaseStep extends Component {
     const hintText = `
       The first four items in this list will be the links that appear for you
       on the library website's home page.`
+    const descText = this.props.didSelectSubjects
+      ? 'Recommended databases based on your subject selections.'
+      : `You have not selected any subjects. You can start with
+        the following interdisciplinary databases or select databases using the search box on the right.`
     return (
       <React.Fragment>
         <div className='modal-body row'>
           <div className='col-xs-12 col-sm-7'>
-            <span id='favoritesModalDesc'>Recommended databases based on your subject selections.</span>
-            <span className='d-sm-none'>{hintText}</span>
+            <span id='favoritesModalDesc'>{descText}</span>
+            <div className='d-sm-none'>
+              <br />
+              <span>{hintText}</span>
+            </div>
             <div className='row'>
               <FavoritesList kind={KIND.databases} items={this.state.listItems} updateList={this.updateList} />
             </div>
@@ -119,6 +126,7 @@ DatabaseStep.propTypes = {
   nextStep: PropTypes.func,
   prevStep: PropTypes.func,
   saving: PropTypes.bool,
+  didSelectSubjects: PropTypes.bool,
   searchFavorites: PropTypes.func,
 }
 
