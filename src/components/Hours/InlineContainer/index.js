@@ -10,7 +10,7 @@ class HoursInlineContainer extends Component {
         return (<div>Loading</div>)
       case statuses.SUCCESS:
         return this.props.presenter(this.props.hoursEntry,
-          this.props.isOpen,
+          this.props.openStatus,
           this.props.toggleExpanded,
           this.props.children)
       case statuses.ERROR:
@@ -26,7 +26,7 @@ HoursInlineContainer.propTypes = {
     status: PropTypes.string,
   }).isRequired,
   presenter: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool,
+  openStatus: PropTypes.string,
   toggleExpanded: PropTypes.func,
   children: PropTypes.any,
 }

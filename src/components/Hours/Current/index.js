@@ -10,6 +10,12 @@ import * as statuses from 'constants/APIStatuses'
 import InlineContainer from '../InlineContainer'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
+export const hoursOpenStatus = {
+  OPEN: 'OPEN',
+  CLOSED: 'CLOSED',
+  PARTIALLY_OPEN: 'PARTIALLY_OPEN',
+}
+
 // We  need a way to give each instance of a container access to its own private selector.
 // this is done by creating a private instance of the conector for each component.
 const makeMapStateToProps = () => {
@@ -33,7 +39,7 @@ export class CurrentHoursContainer extends Component {
     super(props)
     this.state = {
       expanded: false,
-      isOpen: this.checkOpen(props),
+      openStatus: this.checkOpen(props),
     }
     this.toggleExpanded = this.toggleExpanded.bind(this)
   }
@@ -63,16 +69,20 @@ export class CurrentHoursContainer extends Component {
     try {
       const entry = props.hoursEntry
       if (entry.today.times.status === 'closed') {
-        return false
+        return hoursOpenStatus.CLOSED
       }
 
       if (entry.today.times.status === '24hours') {
-        return true
+        return hoursOpenStatus.OPEN
+      }
+
+      if (entry.today.times.status === 'text') {
+        return entry.today.times.text.toLowerCase().indexOf('card swipe') >= 0 ? hoursOpenStatus.PARTIALLY_OPEN : hoursOpenStatus.CLOSED
       }
 
       const currentOpenBlocks = entry.today.times.hours.filter(hoursBlock => {
         if (hoursBlock.from === hoursBlock.to) {
-          return false
+          return hoursOpenStatus.CLOSED
         }
 
         const opens = new Date(hoursBlock.fromLocalDate)
@@ -81,9 +91,9 @@ export class CurrentHoursContainer extends Component {
         const now = new Date()
         return (opens <= now && now <= closes)
       })
-      return (currentOpenBlocks.length > 0)
+      return (currentOpenBlocks.length > 0) ? hoursOpenStatus.OPEN : hoursOpenStatus.CLOSED
     } catch (e) {
-      return false
+      return hoursOpenStatus.CLOSED
     }
   }
 
@@ -101,7 +111,7 @@ export class CurrentHoursContainer extends Component {
       <InlineContainer
         status={this.props.hoursEntry.status}
         hoursEntry={this.props.hoursEntry}
-        isOpen={this.state.isOpen}
+        openStatus={this.state.openStatus}
         presenter={presenter}
         toggleExpanded={this.toggleExpanded}
       >{this.props.children}</InlineContainer>)
