@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import styles from './style.module.css'
+
 const FilterBox = (props) => {
   return (
-    <div className='filter'>
+    <div className={styles.filter}>
       <label role='search'>
         <span>{props.title}</span>
         <input

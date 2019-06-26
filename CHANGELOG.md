@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2019.11](https://github.com/ndlib/usurper/tree/v2019.11) "Drizzle"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.9...v2019.11)
+
+### Bug Fixes
+- Fixed Checkout History not updating correctly for some users.
+- Fixed filter box shrinking too small to use on mobile. [#635](https://github.com/ndlib/usurper/pull/635)
+
+### Other
+- Updated search background image on home page. It's ⚡electrifying⚡. [#626](https://github.com/ndlib/usurper/pull/626)
+- Updated link colors. Visited links will now display a different color than non-visited. [#630](https://github.com/ndlib/usurper/pull/630)
+- Removed Settings page. Default search setting will be brought back in a future update. [#624](https://github.com/ndlib/usurper/pull/624)
+
 ## [v2019.9](https://github.com/ndlib/usurper/tree/v2019.9) "Calm Breeze"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.7...v2019.9)
 

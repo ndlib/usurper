@@ -141,7 +141,7 @@ a:visited {
 
 
 .menu-link li a:link, .menu-link li a:hover, .menu-link li a:active, .menu-link li a:visited {
-  color: #93601D;
+  color: #417D8B;
 }
 
 .menu-list .menu-link button {
@@ -1562,41 +1562,6 @@ hr {
   margin-left: 3px;
 }
 
-/* Filter Component */
-.filter {
-  width: 100%;
-  display: block;
-  background-color: #072242;
-  color: #fff;
-  height: 45px;
-}
-.filter span {
-  color: #fff;
-  display: inline-block;
-  float: left;
-  background-color: #0C2340;
-  line-height: 20px;
-  padding: 12px 20px 10px;
-  margin-bottom: 0px;
-  font-size: 16px;
-}
-.filter label {
-  display: block;
-  width: 100%;
-}
-.filter input {
-  float: left;
-  line-height: 22px;
-  padding: 5px;
-  width: 100%;
-  font-size: 14px;
-  border: solid 1px #000;
-  margin: 5px 0px;
-  width: calc(100% - 400px);
-}
-.filter .renew {
-  float: right;
-}
 .screenReaderText {
   visibility: visible;
   width: 1px;
