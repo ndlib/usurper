@@ -51,6 +51,10 @@
 	border-left-color: #AA272F;
 }
 
+.service-point.swipe-only h4, .service-point.swipe-only .sp {
+	border-left-color: #FFCF01;
+}
+
 .hours-page .hours-listing {
 	padding: 20px;
 }
@@ -78,6 +82,11 @@
 
 .closed .today {
 	background: #AA272F;
+}
+
+.swipe-only .today {
+	background: #FFCF01;
+	color: #4D3D00;
 }
 
 .expand, .collapse {

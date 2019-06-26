@@ -1,10 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { hoursOpenStatus } from './index'
 import './style.css'
 import WeeklyHours from '../WeeklyHours'
 
-const Presenter = (hoursEntry, isOpen, collapseHandler, children) => {
-  const servicePointClassName = 'service-point ' + (isOpen ? 'open' : 'closed')
+const Presenter = (hoursEntry, openStatus, collapseHandler, children) => {
+  const servicePointClassName = 'service-point ' + (
+    openStatus === hoursOpenStatus.OPEN
+      ? 'open'
+      : openStatus === hoursOpenStatus.CLOSED ? 'closed' : 'swipe-only'
+  )
   const todayLabel = 'Today: ' + hoursEntry.today.rendered
   const ariaLabel = hoursEntry.name + ', Open ' + todayLabel
 
@@ -62,7 +67,7 @@ Presenter.propTypes = {
     weeks: PropTypes.array,
     upcomingChangedHours: PropTypes.object,
   }).isRequired,
-  isOpen: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+  openStatus: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   collapseHandler: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
   children: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
 }
