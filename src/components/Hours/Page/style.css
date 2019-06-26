@@ -52,7 +52,7 @@
 }
 
 .service-point.swipe-only h4, .service-point.swipe-only .sp {
-	border-left-color: #FFD000;
+	border-left-color: #FFCF01;
 }
 
 .hours-page .hours-listing {
@@ -85,7 +85,8 @@
 }
 
 .swipe-only .today {
-	background: #FFD000;
+	background: #FFCF01;
+	color: #4D3D00;
 }
 
 .expand, .collapse {
