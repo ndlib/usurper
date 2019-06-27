@@ -32,9 +32,10 @@ const concatDbs = (raw) => {
 const sortDbs = (raw) => {
   const out = Object.assign({}, raw)
   if (raw) {
-    Object.keys(raw).forEach((letter) => {
-      if (raw[letter].data) {
-        out[letter]['data'] = helper.sortList(raw[letter].data, 'fields.title', 'asc')
+    alphabet.forEach((letter) => {
+      const letterData = typy(raw[letter], 'data').safeArray
+      if (letterData.length) {
+        out[letter]['data'] = helper.sortList(letterData, 'fields.title', 'asc')
       }
     })
   }
@@ -136,7 +137,7 @@ export class DatabaseListContainer extends Component {
     }
 
     let status = typy(this.props, `cfDatabases[${letter}].status`).safeString || statuses.FETCHING
-    let data = typy(this.props, `cfDatabases[${letter}].data`).safeObject || []
+    let data = typy(this.props, `cfDatabases[${letter}].data`).safeArray
     if (this.state.filterValue) {
       status = this.props.allLettersStatus
       data = this.state.filteredList
@@ -157,7 +158,9 @@ export const mapStateToProps = (state, thisProps) => {
   const { personal, favorites } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
-  const allLettersStatus = helper.reduceStatuses(Object.keys(state.cfDatabases).map((key) => state.cfDatabases[key].status))
+  const allLettersStatus = helper.reduceStatuses(
+    alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED)
+  )
 
   return {
     cfDatabases: sortDbs(state.cfDatabases),
