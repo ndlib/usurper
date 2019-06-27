@@ -27,14 +27,14 @@ export class ContentfulColumnPageContainer extends Component {
   componentDidMount () {
     const pageSlug = this.props.match.params[0]
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    this.props.fetchPage(pageSlug, preview, false, 'columnContainer')
+    this.props.fetchPage(pageSlug, preview, false, 'columnContainer', 4)
   }
 
   componentWillReceiveProps (nextProps) {
     const slug = this.props.match.params[0]
     const nextSlug = nextProps.match.params[0]
     if (!slug || slug !== nextSlug) {
-      this.props.fetchPage(nextSlug, false, false, 'columnContainer')
+      this.props.fetchPage(nextSlug, false, false, 'columnContainer', 4)
     }
   }
 

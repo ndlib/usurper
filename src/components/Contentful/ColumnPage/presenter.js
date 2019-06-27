@@ -8,6 +8,7 @@ import SideNav from 'components/Layout/Navigation/SideNav'
 import PageAlert from '../Alert/Page'
 import OpenGraph from 'components/OpenGraph'
 import { getLinkObject } from 'shared/ContentfulLibs'
+import InternalLink from 'components/Contentful/InternalLink'
 
 import './style.css'
 
@@ -25,6 +26,11 @@ const Sections = (column, showDescriptions) => {
           <div role={s.title + ' navigation'}>
             {
               s.links.map((item) => {
+                if (item.sys.contentType.sys.id === 'internalLink') {
+                  return (
+                    <p key={item.sys.id}><InternalLink cfEntry={item} /></p>
+                  )
+                }
                 const linkObject = getLinkObject(item.fields, item.sys.id)
                 return (
                   <p key={item.sys.id}>
