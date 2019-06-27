@@ -30,14 +30,22 @@ describe('Subjects reducer', () => {
         status: 'status from receiveSubjects',
         depth: 1,
         items: [{
-          text: 'some item data',
+          sys: {},
+          fields: {
+            page: null,
+            text: 'some item data',
+          },
         }],
       })
     ).toEqual({
       status: 'status from receiveSubjects',
       depth: 1,
       data: [{
-        text: 'some item data',
+        sys: {},
+        fields: {
+          page: null,
+          text: 'some item data',
+        },
         linkText: '',
       }],
     })

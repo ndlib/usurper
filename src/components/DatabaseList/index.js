@@ -71,7 +71,7 @@ export class DatabaseListContainer extends Component {
     }
     // Subjects are needed before fetching databases because the databases depend on it
     if (this.props.cfSubjects.status === statuses.SUCCESS) {
-      for (const letter in this.props.cfDatabases) {
+      for (const letter in alphabet) {
         const letterStatus = typy(this.props.cfDatabases, `${letter}.status`).safeString || statuses.NOT_FETCHED
         if (letterStatus === statuses.NOT_FETCHED) {
           this.props.fetchLetter(letter, preview)
