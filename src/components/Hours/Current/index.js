@@ -56,7 +56,7 @@ export class CurrentHoursContainer extends Component {
     clearInterval(this.state.intervalId)
   }
   componentWillReceiveProps (newProps) {
-    this.setState({ isOpen: this.checkOpen(newProps) })
+    this.setState({ openStatus: this.checkOpen(newProps) })
   }
 
   toggleExpanded (e) {
@@ -98,7 +98,7 @@ export class CurrentHoursContainer extends Component {
   }
 
   tick () {
-    this.setState({ isOpen: this.checkOpen(this.props) })
+    this.setState({ openStatus: this.checkOpen(this.props) })
   }
 
   render () {
