@@ -93,3 +93,30 @@ export const reduceStatuses = (arrayOfStatuses) => {
     return statuses.NOT_FETCHED
   })
 }
+
+// When given a contentful reference with an internalLink sys.id, find the correct internalLink with all its fields
+// and return a merged object. In other words, get the internal link (and its page) when the initial call was not
+// deep enough to include the required fields to make it work.
+export const mergeInternalLink = (partialRecord, internalLinks) => {
+  const match = internalLinks.find(search => search.sys.id === partialRecord.sys.id)
+  if (!match) {
+    return partialRecord
+  }
+  return {
+    sys: match.sys,
+    fields: {
+      ...match.fields,
+      // The page is huge, so only get what we actually need
+      page: match.fields.page ? {
+        sys: typy(match.fields, 'page.sys').safeObjectOrEmpty,
+        fields: {
+          title: typy(match.fields, 'page.fields.title').safeString,
+          slug: typy(match.fields, 'page.fields.slug').safeString,
+        },
+      } : null,
+    },
+    linkText: (typy(match, 'fields.usePageTitle').safeBoolean && typy(match, 'fields.page').isObject)
+      ? typy(match, 'fields.page.fields.title').safeString
+      : typy(match, 'fields.title').safeString,
+  }
+}

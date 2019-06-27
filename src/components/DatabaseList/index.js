@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import typy from 'typy'
+import { fetchSubjects } from 'actions/contentful/subjects'
 import { fetchLetter } from 'actions/contentful/database'
 import ListPresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
@@ -30,12 +31,12 @@ const concatDbs = (raw) => {
 
 // sort all letters by title alphabetically
 const sortDbs = (raw) => {
-  const out = Object.assign({}, raw)
+  const out = {}
   if (raw) {
     alphabet.forEach((letter) => {
-      const letterData = typy(raw[letter], 'data').safeArray
-      if (letterData.length) {
-        out[letter]['data'] = helper.sortList(letterData, 'fields.title', 'asc')
+      out[letter] = {
+        ...raw[letter],
+        data: helper.sortList(typy(raw[letter], 'data').safeArray, 'fields.title', 'asc'),
       }
     })
   }
@@ -57,22 +58,29 @@ export class DatabaseListContainer extends Component {
   }
 
   checkFullyLoaded () {
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+
     if (!this.props.login || this.props.login.state === statuses.NOT_FETCHED) {
       this.props.getToken()
     }
     if (this.props.login && this.props.login.token && this.props.favoritesStatus === statuses.NOT_FETCHED) {
       this.props.getFavorites(FAVORITES_KIND.databases)
     }
+    if (this.props.cfSubjects.status === statuses.NOT_FETCHED) {
+      this.props.fetchSubjects(preview)
+    }
+    // Subjects are needed before fetching databases because the databases depend on it
+    if (this.props.cfSubjects.status === statuses.SUCCESS) {
+      for (const letter in this.props.cfDatabases) {
+        const letterStatus = typy(this.props.cfDatabases, `${letter}.status`).safeString || statuses.NOT_FETCHED
+        if (letterStatus === statuses.NOT_FETCHED) {
+          this.props.fetchLetter(letter, preview)
+        }
+      }
+    }
   }
 
   componentDidMount () {
-    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-
-    if (this.props.allLettersStatus === statuses.NOT_FETCHED) {
-      alphabet.forEach((letter) => {
-        this.props.fetchLetter(letter, preview)
-      })
-    }
     this.checkFullyLoaded()
   }
 
@@ -92,7 +100,6 @@ export class DatabaseListContainer extends Component {
         filteredList: this.filter(this.state.filterValue, nextProps.allDbs),
       })
     }
-    this.checkFullyLoaded(nextProps)
   }
 
   filter (filterValue, list) {
@@ -155,15 +162,17 @@ export class DatabaseListContainer extends Component {
 }
 
 export const mapStateToProps = (state, thisProps) => {
-  const { personal, favorites } = state
+  const { personal, favorites, cfSubjects } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
-  const allLettersStatus = helper.reduceStatuses(
-    alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED)
-  )
+  const allLettersStatus = helper.reduceStatuses([
+    ...alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED),
+    cfSubjects.status,
+  ])
 
   return {
     cfDatabases: sortDbs(state.cfDatabases),
+    cfSubjects: cfSubjects,
     allLettersStatus: allLettersStatus,
     allDbs: allLettersStatus === statuses.SUCCESS ? concatDbs(state.cfDatabases) : [],
     currentLetter: decodeURIComponent(thisProps.match.params.id),
@@ -173,13 +182,15 @@ export const mapStateToProps = (state, thisProps) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchLetter, getToken, getFavorites }, dispatch)
+  return bindActionCreators({ fetchSubjects, fetchLetter, getToken, getFavorites }, dispatch)
 }
 
 DatabaseListContainer.propTypes = {
+  fetchSubjects: PropTypes.func.isRequired,
   fetchLetter: PropTypes.func.isRequired,
   currentLetter: PropTypes.string.isRequired,
   cfDatabases: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
+  cfSubjects: PropTypes.object.isRequired,
   allLettersStatus: PropTypes.string.isRequired,
   getToken: PropTypes.func,
   getFavorites: PropTypes.func,

@@ -5,6 +5,7 @@ import {
   NAV_RECEIVE,
 } from 'actions/menu'
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 import typy from 'typy'
 
 export default (
@@ -38,11 +39,8 @@ export default (
             typy(column, 'fields.sections').safeArray.forEach((section) => {
               typy(section, 'fields.links').safeArray.forEach((link) => {
                 if (typy(link, 'sys.contentType.sys.id').safeString === 'internalLink') {
-                  const match = action.internalLinks.filter(search => search.sys.id === link.sys.id)
-                  if (match) {
-                    // Reassign the properties on the link to match the fully-populated internal link with the same id
-                    Object.assign(link, ...match)
-                  }
+                  // Reassign the properties on the link to match the fully-populated internal link with the same id
+                  Object.assign(link, helper.mergeInternalLink(link, action.internalLinks))
                 }
               })
             })
