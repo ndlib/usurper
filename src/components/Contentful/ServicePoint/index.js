@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 import CurrentHours from 'components/Hours/Current'
 import Contact from 'components/Contact/ServicePoint'
 import { withErrorBoundary } from 'components/ErrorBoundary'
@@ -35,7 +36,7 @@ export class ServicePointContainer extends Component {
     }
 
     if (this.state.fetchStatus === statuses.NOT_FETCHED) {
-      if (this.state.sp && !this.state.sp.fields) {
+      if (typy(this.state, 'sp.sys').safeObject && !this.state.sp.fields) {
         this.props.fetchServicePoints(this.props.preview, this.state.sp.sys.id)
           .then(successCallback).catch(errorCallback)
       } else if (this.props.slug) {
