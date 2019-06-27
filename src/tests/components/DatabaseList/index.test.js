@@ -20,6 +20,12 @@ const setup = (props) => {
   return shallow(<DatabaseListContainer {...props} />)
 }
 
+const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
+const allLettersSuccess = {}
+alphabet.forEach(letter => {
+  allLettersSuccess[letter] = { status: statuses.SUCCESS, data: [] }
+})
+
 const validItem1 = {
   sys: {
     contentType: {
@@ -74,6 +80,7 @@ const validItem4 = {
 }
 
 const validcfDatabases = {
+  ...allLettersSuccess,
   a: {
     status: statuses.SUCCESS,
     data: [
@@ -307,6 +314,7 @@ describe('components/DatabaseList/index.js', () => {
 
       it('should sort cfDatabases lists', () => {
         const expectedData = {
+          ...allLettersSuccess,
           a: {
             status: statuses.SUCCESS,
             data: [
@@ -351,6 +359,7 @@ describe('components/DatabaseList/index.js', () => {
 
         tempState = {
           cfDatabases: {
+            ...allLettersSuccess,
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
@@ -363,6 +372,7 @@ describe('components/DatabaseList/index.js', () => {
 
         tempState = {
           cfDatabases: {
+            ...allLettersSuccess,
             a: { status: statuses.NOT_FOUND, data: [] },
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
@@ -375,6 +385,7 @@ describe('components/DatabaseList/index.js', () => {
 
         tempState = {
           cfDatabases: {
+            ...allLettersSuccess,
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.ERROR, data: [] },
             c: { status: statuses.NOT_FOUND, data: [] },
@@ -389,6 +400,7 @@ describe('components/DatabaseList/index.js', () => {
 
         tempState = {
           cfDatabases: {
+            ...allLettersSuccess,
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.NOT_FOUND, data: [] },
           },
