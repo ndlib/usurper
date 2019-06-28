@@ -42,6 +42,7 @@ const Loaded = (props) => {
 
 const ListPresenter = (props) => {
   switch (props.status) {
+    case statuses.NOT_FETCHED:
     case statuses.FETCHING:
       return <Loading />
     case statuses.SUCCESS:

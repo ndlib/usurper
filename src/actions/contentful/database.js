@@ -1,6 +1,8 @@
 import fetch from 'isomorphic-fetch'
+import typy from 'typy'
 import Config from 'shared/Configuration'
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 export const CF_REQUEST_DATABASE_LETTER = 'CF_REQUEST_DATABASE_LETTER'
 export const CF_RECEIVE_DATABASE_LETTER = 'CF_RECEIVE_DATABASE_LETTER'
@@ -70,21 +72,25 @@ const receiveDatabaseDefaults = (response) => {
 }
 
 export const fetchLetter = (letter, preview) => {
-  const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}`)
+  const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}&include=1`)
   let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }
 
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(requestLetter(letter))
     return fetch(url)
       .then(response => {
         return (response.ok && response.headers.get('content-type')) ? response.json() : { status: response.status }
       })
       .then(json => {
+        const allSubjects = typy(getState(), 'cfSubjects.data').safeArray
         if (Array.isArray(json)) {
           json.forEach((row) => {
+            row.fields.subjects = typy(row.fields.subjects).safeArray.map(dbSubject => {
+              return helper.mergeInternalLink(dbSubject, allSubjects)
+            })
             row['searchBlob'] = (row.fields.title
               ? row.fields.title.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
               : '')

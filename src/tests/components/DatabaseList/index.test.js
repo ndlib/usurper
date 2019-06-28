@@ -104,6 +104,8 @@ describe('components/DatabaseList/index.js', () => {
     beforeEach(() => {
       props = {
         cfDatabases: {},
+        cfSubjects: { status: statuses.NOT_FETCHED },
+        fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
         currentLetter: 'a',
         allLettersStatus: statuses.NOT_FETCHED,
@@ -128,8 +130,20 @@ describe('components/DatabaseList/index.js', () => {
       enzymeWrapper = undefined
     })
 
-    it('calls the bound fetchLetter action for every letter plus # on load', () => {
-      expect(props.fetchLetter.mock.calls.length).toBe(27)
+    it('calls the fetchSubjects action', () => {
+      expect(props.fetchSubjects).toHaveBeenCalled()
+    })
+
+    it('calls the bound fetchLetter action for every letter plus # after subjects loaded', () => {
+      props = {
+        ...props,
+        cfSubjects: {
+          status: statuses.SUCCESS,
+        },
+      }
+      enzymeWrapper = setup(props)
+
+      expect(props.fetchLetter).toHaveBeenCalledTimes(27)
     })
 
     it('renders the DatabaseListPresenter that is fetching data', () => {
@@ -143,6 +157,8 @@ describe('components/DatabaseList/index.js', () => {
     beforeEach(() => {
       props = {
         cfDatabases: validcfDatabases,
+        cfSubjects: { status: statuses.SUCCESS },
+        fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
         currentLetter: 'a',
         allLettersStatus: statuses.SUCCESS,
@@ -188,6 +204,7 @@ describe('components/DatabaseList/index.js', () => {
       beforeEach(() => {
         const state = {
           cfDatabases: validcfDatabases,
+          cfSubjects: { status: statuses.SUCCESS },
           personal: {
             login: {
               state: statuses.SUCCESS,
@@ -293,6 +310,7 @@ describe('components/DatabaseList/index.js', () => {
       beforeEach(() => {
         state = {
           cfDatabases: validcfDatabases,
+          cfSubjects: { status: statuses.SUCCESS },
           personal: {
             login: {
               state: statuses.SUCCESS,
@@ -364,6 +382,7 @@ describe('components/DatabaseList/index.js', () => {
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
           },
+          cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
         }
@@ -377,6 +396,7 @@ describe('components/DatabaseList/index.js', () => {
             b: { status: statuses.FETCHING, data: [] },
             c: { status: statuses.NOT_FETCHED, data: [] },
           },
+          cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
         }
@@ -392,6 +412,7 @@ describe('components/DatabaseList/index.js', () => {
             d: { status: statuses.FETCHING, data: [] },
             e: { status: statuses.NOT_FETCHED, data: [] },
           },
+          cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
         }
@@ -404,6 +425,7 @@ describe('components/DatabaseList/index.js', () => {
             a: { status: statuses.SUCCESS, data: [] },
             b: { status: statuses.NOT_FOUND, data: [] },
           },
+          cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
         }
@@ -430,6 +452,8 @@ describe('components/DatabaseList/index.js', () => {
             }],
           },
         },
+        cfSubjects: { status: statuses.SUCCESS },
+        fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
         currentLetter: 'ab',
         allLettersStatus: 'test',
