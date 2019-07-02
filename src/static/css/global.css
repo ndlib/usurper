@@ -2897,8 +2897,8 @@ p < img {
 }
 
 .flogo {
-  width: 230px;
-  height: 75px;
+  width: auto;
+  height: 45px;
 
 }
 
