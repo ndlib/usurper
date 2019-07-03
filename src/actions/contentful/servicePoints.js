@@ -80,7 +80,7 @@ export const fetchServicePoints = (preview, id) => {
   if (id) {
     query += encodeURIComponent(`&sys.id=${id}`)
   }
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }
@@ -96,7 +96,7 @@ export const fetchServicePoints = (preview, id) => {
 
 export const fetchServicePointBySlug = (slug, preview) => {
   const query = encodeURIComponent(`content_type=servicePoint&fields.slug=${slug}&include=2`)
-  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }

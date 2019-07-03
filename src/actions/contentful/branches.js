@@ -38,9 +38,8 @@ const receiveBranches = (response, depth) => {
 }
 
 export const fetchBranches = (preview, include = 0) => {
-  const endpoint = 'query'
   const query = encodeURIComponent(`content_type=page&fields.type=Branch&include=${include}&order=fields.title`)
-  let url = `${Config.contentfulAPI}/${endpoint}?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }

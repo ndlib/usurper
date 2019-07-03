@@ -44,7 +44,7 @@ describe('menu actions', () => {
       status: 500,
     }
     nock(Config.contentfulAPI)
-      .get('/query')
+      .get(() => true)
       .query(true)
       .reply(mockResponse.status, mockResponse)
       .persist()
@@ -63,7 +63,7 @@ describe('menu actions', () => {
       code: 500,
     }
     nock(Config.contentfulAPI)
-      .get('/query')
+      .get(() => true)
       .query(true)
       .replyWithError(mockResponse)
       .persist()
@@ -79,7 +79,7 @@ describe('menu actions', () => {
   it('fetch navigation - success', async () => {
     const mockResponse = [{}]
     nock(Config.contentfulAPI)
-      .get('/query')
+      .get(() => true)
       .query(true)
       .reply(200, mockResponse)
       .persist()

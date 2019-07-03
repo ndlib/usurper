@@ -53,7 +53,7 @@ export function clearPage () {
 }
 
 export const fetchPage = (page, preview, secure = false, cfType = 'page', include = 3) => {
-  let endpoint = 'query'
+  let endpoint = preview ? 'livequery' : 'query'
   if (secure) {
     endpoint = 'secureQuery'
   }

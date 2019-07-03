@@ -5,7 +5,7 @@ import Config from 'shared/Configuration'
 // will then transform the data to get the desired result.
 export const fetchInternalLinks = (preview) => {
   const query = encodeURIComponent(`content_type=internalLink&include=1`)
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }

@@ -73,7 +73,7 @@ const receiveDatabaseDefaults = (response) => {
 
 export const fetchLetter = (letter, preview) => {
   const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}&include=1`)
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }
@@ -110,7 +110,7 @@ export const fetchDefaultDbFavorites = (preview) => {
   // Academic Search Premier, JSTOR, and Scopus
   const alephIds = ['002056133', '001517508', '004862587']
   const query = encodeURIComponent(`content_type=resource&fields.alephSystemNumber[in]=${alephIds.join(',')}&include=0`)
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
+  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
   if (preview) {
     url += `&preview=${preview}`
   }
