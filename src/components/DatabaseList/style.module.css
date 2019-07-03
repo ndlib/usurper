@@ -1,6 +1,5 @@
 @media screen and (max-width: 980px) {
   .sideNav {
-    display: block;
     position: relative !important;
     transform: translateX(0) !important;
     width: 100% !important;

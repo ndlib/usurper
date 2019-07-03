@@ -8,10 +8,12 @@ import ErrorLoading from 'components/Messages/Error'
 import * as statuses from 'constants/APIStatuses'
 import FilterBox from 'components/Interactive/FilterBox'
 import OpenGraph from 'components/OpenGraph'
-import SideNav from 'components/Layout/Navigation/SideNav'
 import Alphabet from './Alphabet'
+import SubjectFacets from './SubjectFacets'
 import Loading from 'components/Messages/Loading'
 import Databases from './Databases'
+
+import Config from 'shared/Configuration'
 
 import styles from './style.module.css'
 
@@ -23,8 +25,17 @@ const Loaded = (props) => {
       <PageTitle title={'Databases: ' + titleLabel} />
       <OpenGraph title={'Databases: ' + titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
-      <div className='row'>
-        <SideNav className={'col-md-4 ' + styles.sideNav}><Alphabet /></SideNav>
+      <div className='row reverse'>
+        <div className={'col-xs-12 col-md-4 ' + styles.sideNav}>
+          <Alphabet history={props.history} />
+          { Config.features.subjectFilteringEnabled && (
+            <SubjectFacets
+              subjects={props.subjects}
+              activeSubjects={props.activeSubjects}
+              onSubjectFilterApply={props.onSubjectFilterApply}
+            />
+          )}
+        </div>
         <div className='col-md-8'>
           <FilterBox
             title='Search All Databases by Title: '
@@ -33,7 +44,7 @@ const Loaded = (props) => {
             label='Database Search'
           />
           <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
-          <Databases titleLabel={titleLabel} {...props} />
+          <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
         </div>
       </div>
     </section>
@@ -59,6 +70,10 @@ Loaded.propTypes = {
   assistText: PropTypes.string,
   filterValue: PropTypes.string,
   onFilterChange: PropTypes.func,
+  subjects: PropTypes.array,
+  activeSubjects: PropTypes.array,
+  onSubjectFilterApply: PropTypes.func,
+  history: PropTypes.object,
 }
 
 ListPresenter.propTypes = {

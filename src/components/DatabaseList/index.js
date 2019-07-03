@@ -14,6 +14,8 @@ import PageNotFound from 'components/Messages/NotFound'
 import getToken from 'actions/personal/token'
 import { getFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
 
+import Config from 'shared/Configuration'
+
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 // dont allow going to /foo or /1 etc
 const routeValid = (letter) => (letter && letter.length === 1 && alphabet.includes(letter))
@@ -54,6 +56,7 @@ export class DatabaseListContainer extends Component {
     }
 
     this.onFilterChange = this.onFilterChange.bind(this)
+    this.onSubjectFilterApply = this.onSubjectFilterApply.bind(this)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
   }
 
@@ -66,11 +69,11 @@ export class DatabaseListContainer extends Component {
     if (this.props.login && this.props.login.token && this.props.favoritesStatus === statuses.NOT_FETCHED) {
       this.props.getFavorites(FAVORITES_KIND.databases)
     }
-    if (this.props.cfSubjects.status === statuses.NOT_FETCHED) {
+    if (Config.features.subjectFilteringEnabled && this.props.cfSubjects.status === statuses.NOT_FETCHED) {
       this.props.fetchSubjects(preview)
     }
     // Subjects are needed before fetching databases because the databases depend on it
-    if (this.props.cfSubjects.status === statuses.SUCCESS) {
+    if (this.props.cfSubjects.status === statuses.SUCCESS || !Config.features.subjectFilteringEnabled) {
       alphabet.forEach(letter => {
         const letterStatus = typy(this.props.cfDatabases, `${letter}.status`).safeString || statuses.NOT_FETCHED
         if (letterStatus === statuses.NOT_FETCHED) {
@@ -126,6 +129,27 @@ export class DatabaseListContainer extends Component {
     }, 1500)
   }
 
+  onSubjectFilterApply (selection) {
+    let queryString = ''
+    if (Array.isArray(selection)) {
+      selection.forEach((subject, index) => {
+        queryString += index === 0 ? '?' : '&'
+        queryString += `subject=${encodeURIComponent(subject.sys.id)}`
+      })
+    }
+
+    // Add any query parameters that were already part of the url besides subject filters
+    const oldQuery = this.props.location.search.replace('?', '').split('&')
+    oldQuery.forEach(item => {
+      const pair = item.split('=')
+      if (pair[0].toLowerCase() !== 'subject') {
+        queryString += `${queryString.length ? '&' : '?'}${pair[0]}=${pair[1]}`
+      }
+    })
+
+    this.props.history.push(this.props.location.pathname + queryString)
+  }
+
   shouldComponentUpdate (nextProps, nextState) {
     const currentStatusChanged = (this.props.currentLetter !== nextProps.currentLetter ||
       this.props.allLettersStatus !== nextProps.allLettersStatus)
@@ -133,8 +157,9 @@ export class DatabaseListContainer extends Component {
     const newLetterStatus = typy(nextProps, 'cfDatabases[this.props.currentLetter].status').safeString
     const letterStatusChanged = oldLetterStatus && oldLetterStatus !== newLetterStatus
     const filterChanged = this.state.filterValue !== nextState.filterValue
+    const subjectsChanged = JSON.stringify(this.props.activeSubjects) !== JSON.stringify(nextProps.activeSubjects)
 
-    return currentStatusChanged || letterStatusChanged || filterChanged
+    return currentStatusChanged || letterStatusChanged || filterChanged || subjectsChanged
   }
 
   render () {
@@ -157,6 +182,10 @@ export class DatabaseListContainer extends Component {
       filterValue={this.state.filterValue}
       onFilterChange={this.onFilterChange}
       assistText={this.state.assistText}
+      subjects={typy(this.props.cfSubjects, 'data').safeArray}
+      activeSubjects={this.props.activeSubjects}
+      onSubjectFilterApply={this.onSubjectFilterApply}
+      history={this.props.history}
     />
   }
 }
@@ -169,6 +198,14 @@ export const mapStateToProps = (state, thisProps) => {
     ...alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED),
     cfSubjects.status,
   ])
+  const queryParams = decodeURIComponent(thisProps.location.search.replace('?', '')).split('&')
+  const activeSubjects = []
+  queryParams.forEach(param => {
+    const split = param.split('=')
+    if (split[0].toLowerCase() === 'subject') {
+      activeSubjects.push(split[1])
+    }
+  })
 
   return {
     cfDatabases: sortDbs(state.cfDatabases),
@@ -178,6 +215,7 @@ export const mapStateToProps = (state, thisProps) => {
     currentLetter: decodeURIComponent(thisProps.match.params.id),
     login: personal.login,
     favoritesStatus: favorites[FAVORITES_KIND.databases].state,
+    activeSubjects: activeSubjects,
   }
 }
 
@@ -199,16 +237,19 @@ DatabaseListContainer.propTypes = {
     token: PropTypes.string,
   }),
   favoritesStatus: PropTypes.string,
+  activeSubjects: PropTypes.arrayOf(PropTypes.string),
   allDbs: PropTypes.array.isRequired,
   location: PropTypes.shape({
     search: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.object,
     ]),
+    pathname: PropTypes.string,
   }),
   match: PropTypes.shape({
     params: PropTypes.object,
   }),
+  history: PropTypes.object,
 }
 
 const DatabaseList = connect(mapStateToProps, mapDispatchToProps)(DatabaseListContainer)

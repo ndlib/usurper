@@ -24,6 +24,8 @@ describe('components/DatabaseList/presenter.js', () => {
         list: [],
         status: statuses.FETCHING,
         databaseFavorites: [],
+        subjects: [],
+        activeSubjects: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -81,6 +83,8 @@ describe('components/DatabaseList/presenter.js', () => {
           title: 'title does not need to match',
           url: 'http://url.also.not/important',
         }],
+        subjects: [],
+        activeSubjects: ['test'],
       }
       enzymeWrapper = setup(props)
     })
@@ -90,7 +94,7 @@ describe('components/DatabaseList/presenter.js', () => {
     })
 
     it('should render a Databases component', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} subjectFilter={props.activeSubjects} />)).toBe(true)
     })
 
     it('should render an Alphabet component for filtering', () => {
@@ -111,6 +115,8 @@ describe('components/DatabaseList/presenter.js', () => {
         letter: 'a',
         list: [],
         databaseFavorites: [],
+        subjects: [],
+        activeSubjects: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -120,7 +126,7 @@ describe('components/DatabaseList/presenter.js', () => {
     })
 
     it('should render a Databases component', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} subjectFilter={props.activeSubjects} />)).toBe(true)
     })
 
     it('should have proper page title', () => {
@@ -136,6 +142,8 @@ describe('components/DatabaseList/presenter.js', () => {
         letter: 'a',
         list: [],
         databaseFavorites: [],
+        subjects: [],
+        activeSubjects: [],
       }
       enzymeWrapper = setup(props)
     })
