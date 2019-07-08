@@ -23,10 +23,10 @@ const FooterInfo = () => {
               <p>Phone <a href='tel:5746316679'>(574) 631-6679</a></p>
             </div>
           </div>
-          <div className='col-xs-12 col-md-4'>
+          <div className='col-xs-12 col-md-3'>
             <div className='box center' />
           </div>
-          <div className='col-xs-12 col-md-4'>
+          <div className='col-xs-12 col-md-5'>
             <div className='box right'>
               <img src={Logo} className='flogo' alt='Hesburgh Library Logo' />
             </div>
