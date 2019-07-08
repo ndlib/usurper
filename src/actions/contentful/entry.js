@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_ENTRY = 'CF_REQUEST_ENTRY'
@@ -51,13 +51,10 @@ export const fetchEntry = (id, slug, preview) => {
   }
   */
   if (id) {
-    identifierParam = encodeURIComponent(`sys.id=${id}&include=3`)
+    identifierParam = `sys.id=${id}&include=3`
     entryIdent = id
   }
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${identifierParam}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(identifierParam, preview)
 
   return (dispatch, getState) => {
     dispatch(requestEntry(entryIdent))

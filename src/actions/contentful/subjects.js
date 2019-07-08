@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_SUBJECTS = 'CF_REQUEST_SUBJECTS'
@@ -38,11 +38,7 @@ const receiveSubjects = (response, depth) => {
 }
 
 export const fetchSubjects = (preview, include = 1) => {
-  const query = encodeURIComponent(`content_type=internalLink&fields.context=Subject&include=${include}`)
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=internalLink&fields.context=Subject&include=${include}`, preview)
 
   return (dispatch) => {
     dispatch(requestSubjects(include))

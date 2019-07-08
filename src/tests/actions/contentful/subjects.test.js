@@ -47,7 +47,7 @@ describe('subjects fetch action creator', () => {
 
   it('should first create a CF_REQUEST_SUBJECTS action', () => {
     nock(Config.contentfulAPI)
-      .get('/query')
+      .get(() => true)
       .query(true) // We don't care what the query string is; just mock it no matter what
       .reply(200, successfulResponse)
 
@@ -63,7 +63,7 @@ describe('subjects fetch action creator', () => {
 
   it('should be able to fetch preview content', () => {
     nock(Config.contentfulAPI)
-      .get('/query')
+      .get(() => true)
       .query((queryObj) => queryObj.preview === 'true')
       .reply(200, successfulResponse)
 
@@ -75,7 +75,7 @@ describe('subjects fetch action creator', () => {
   describe('on success', () => {
     it('should create a CF_RECEIVE_SUBJECTS action with data', () => {
       nock(Config.contentfulAPI)
-        .get('/query')
+        .get(() => true)
         .query(true)
         .reply(200, successfulResponse)
 
@@ -96,7 +96,7 @@ describe('subjects fetch action creator', () => {
   describe('on error', () => {
     it('should create a CF_RECEIVE_SUBJECTS action with a status of unauthorized if response status === 401', () => {
       nock(Config.contentfulAPI)
-        .get('/query')
+        .get(() => true)
         .query(true)
         .reply(401)
 
@@ -114,7 +114,7 @@ describe('subjects fetch action creator', () => {
 
     it('should create a CF_RECEIVE_SUBJECTS action with a status of not found if response status === 404', () => {
       nock(Config.contentfulAPI)
-        .get('/query')
+        .get(() => true)
         .query(true)
         .reply(404)
 
@@ -132,7 +132,7 @@ describe('subjects fetch action creator', () => {
 
     it('should create a CF_RECEIVE_SUBJECTS action with an error if response status some other error', () => {
       nock(Config.contentfulAPI)
-        .get('/query')
+        .get(() => true)
         .query(true)
         .reply(500)
 
@@ -150,7 +150,7 @@ describe('subjects fetch action creator', () => {
 
     it('should create a CF_RECEIVE_SUBJECTS action with a status of not found if response status === 200', () => {
       nock(Config.contentfulAPI)
-        .get('/query')
+        .get(() => true)
         .query(true)
         .reply(200)
 

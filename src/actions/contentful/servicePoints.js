@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_SERVICEPOINTS = 'CF_REQUEST_SERVICEPOINTS'
@@ -76,14 +76,11 @@ const receiveServicePoint = (slug, response) => {
 }
 
 export const fetchServicePoints = (preview, id) => {
-  let query = encodeURIComponent(`content_type=servicePoint&include=3`)
+  let query = `content_type=servicePoint&include=3`
   if (id) {
-    query += encodeURIComponent(`&sys.id=${id}`)
+    query += `&sys.id=${id}`
   }
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(query, preview)
 
   return dispatch => {
     dispatch(requestServicePoints())
@@ -95,11 +92,7 @@ export const fetchServicePoints = (preview, id) => {
 }
 
 export const fetchServicePointBySlug = (slug, preview) => {
-  const query = encodeURIComponent(`content_type=servicePoint&fields.slug=${slug}&include=2`)
-  let url = `${Config.contentfulAPI}query?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=servicePoint&fields.slug=${slug}&include=2`, preview)
 
   return (dispatch) => {
     dispatch(requestServicePointBySlug(slug))

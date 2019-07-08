@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_PAGE = 'CF_REQUEST_PAGE'
@@ -53,15 +53,7 @@ export function clearPage () {
 }
 
 export const fetchPage = (page, preview, secure = false, cfType = 'page', include = 3) => {
-  let endpoint = 'query'
-  if (secure) {
-    endpoint = 'secureQuery'
-  }
-  const query = encodeURIComponent(`content_type=${cfType}&fields.slug=${page}&include=${include}`)
-  let url = `${Config.contentfulAPI}/${endpoint}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=${cfType}&fields.slug=${page}&include=${include}`, preview, secure)
 
   return (dispatch, getState) => {
     dispatch(requestPage(page))

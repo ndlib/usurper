@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_ALLNEWS = 'CF_REQUEST_ALLNEWS'
@@ -37,11 +37,7 @@ const receiveAllNews = (response) => {
 }
 
 export const fetchAllNews = (preview) => {
-  const query = encodeURIComponent('content_type=news&include=3')
-  let url = `${Config.contentfulAPI}/query?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl('content_type=news&include=3', preview)
 
   return dispatch => {
     dispatch(requestAllNews())
