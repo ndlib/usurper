@@ -153,8 +153,8 @@ export class DatabaseListContainer extends Component {
   shouldComponentUpdate (nextProps, nextState) {
     const currentStatusChanged = (this.props.currentLetter !== nextProps.currentLetter ||
       this.props.allLettersStatus !== nextProps.allLettersStatus)
-    const oldLetterStatus = typy(this.props, 'cfDatabases[this.props.currentLetter].status').safeString
-    const newLetterStatus = typy(nextProps, 'cfDatabases[this.props.currentLetter].status').safeString
+    const oldLetterStatus = typy(this.props, `cfDatabases[${this.props.currentLetter}].status`).safeString
+    const newLetterStatus = typy(nextProps, `cfDatabases[${this.props.currentLetter}].status`).safeString
     const letterStatusChanged = oldLetterStatus && oldLetterStatus !== newLetterStatus
     const filterChanged = this.state.filterValue !== nextState.filterValue
     const subjectsChanged = JSON.stringify(this.props.activeSubjects) !== JSON.stringify(nextProps.activeSubjects)
@@ -194,10 +194,14 @@ export const mapStateToProps = (state, thisProps) => {
   const { personal, favorites, cfSubjects } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
-  const allLettersStatus = helper.reduceStatuses([
-    ...alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED),
-    cfSubjects.status,
-  ])
+  const letterStatuses = alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED)
+  const allLettersStatus = helper.reduceStatuses(
+    Config.features.subjectFilteringEnabled
+      ? [
+        ...letterStatuses,
+        cfSubjects.status,
+      ] : letterStatuses
+  )
   const queryParams = decodeURIComponent(thisProps.location.search.replace('?', '')).split('&')
   const activeSubjects = []
   queryParams.forEach(param => {
