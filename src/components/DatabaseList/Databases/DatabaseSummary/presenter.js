@@ -14,6 +14,15 @@ const DatabaseSummary = (props) => {
       <Link to={props.linkObject.heading.url} title={'Go to ' + props.item.fields.title} className='inline'>
         <h2 className={styles.dbItemTitle}>{props.item.fields.title}</h2>
       </Link>
+      { props.item.fields.subjects.length > 0 && (
+        <div aria-label='subjects'>
+          {props.item.fields.subjects.map(subject => (
+            <span key={subject.sys.id} className={styles.dbSubject} onClick={() => props.applySubjectFilter(subject)}>
+              {subject.linkText}
+            </span>
+          ))}
+        </div>
+      )}
       <ul className={'linkGroup ' + styles.dbLink}>
         { props.linkObject.conditionalLinks.map((link) => <SummaryLink key={link.keyId} link={link} />) }
       </ul>
@@ -33,6 +42,7 @@ DatabaseSummary.propTypes = {
   item: PropTypes.shape({
     fields: PropTypes.shape({
       title: PropTypes.string,
+      subjects: PropTypes.array,
     }),
     sys: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -49,6 +59,7 @@ DatabaseSummary.propTypes = {
   }),
   isFavorited: PropTypes.bool,
   favoritesData: PropTypes.array,
+  applySubjectFilter: PropTypes.func.isRequired,
 }
 
 export default DatabaseSummary

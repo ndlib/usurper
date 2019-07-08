@@ -26,7 +26,13 @@ const DatabaseSummaryContainer = (props) => {
   })
 
   return (
-    <Presenter item={props.item} linkObject={linkObject} isFavorited={isFavorited} favoritesData={favoritesData} />
+    <Presenter
+      item={props.item}
+      linkObject={linkObject}
+      isFavorited={isFavorited}
+      favoritesData={favoritesData}
+      applySubjectFilter={(subject) => props.onSubjectFilterApply([ subject ])}
+    />
   )
 }
 
@@ -51,6 +57,7 @@ DatabaseSummaryContainer.propTypes = {
     key: PropTypes.string,
     url: PropTypes.string,
   })),
+  onSubjectFilterApply: PropTypes.func,
 }
 
 const DatabaseSummary = connect(mapStateToProps)(DatabaseSummaryContainer)

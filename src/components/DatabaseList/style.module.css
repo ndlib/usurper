@@ -34,6 +34,19 @@
   padding-right: 1em;
 }
 
+.dbSubject {
+  border: 1px solid black;
+  border-radius: 16px;
+  color: #417D8B;
+  display: inline-block;
+  padding: 6px;
+  margin: 0.25em;
+}
+.dbSubject:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
 .dbLink li, .dbLink li a {
   font-weight: bold;
 }

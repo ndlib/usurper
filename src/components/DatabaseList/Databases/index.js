@@ -20,7 +20,9 @@ const Databases = (props) => {
       className={styles.dbList}
     >
       { filteredList.length
-        ? filteredList.map((item) => <DatabaseSummary key={item.sys.id} item={item} />)
+        ? filteredList.map((item) => (
+          <DatabaseSummary key={item.sys.id} item={item} onSubjectFilterApply={props.onSubjectFilterApply} />
+        ))
         : noResultsMessage
       }
       { (props.filterValue && props.list.length === 50) && (
@@ -39,6 +41,7 @@ Databases.propTypes = {
   titleLabel: PropTypes.string,
   filterValue: PropTypes.string,
   subjectFilter: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSubjectFilterApply: PropTypes.func,
 }
 
 export default Databases

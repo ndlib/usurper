@@ -25,6 +25,18 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
           },
           fields: {
             title: 'Database of Epic Research and Cool Things',
+            subjects: [
+              {
+                sys: { id: 'math' },
+                fields: {},
+                linkText: 'Mathematics',
+              },
+              {
+                sys: { id: 'history' },
+                fields: {},
+                linkText: 'History',
+              },
+            ],
           },
         },
         linkObject: {
@@ -40,6 +52,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
         },
         isFavorited: true,
         favoritesData: [],
+        applySubjectFilter: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -57,6 +70,21 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
     it('should render FavoriteIcon', () => {
       expect(enzymeWrapper.containsMatchingElement(<FavoriteIcon isFavorited={props.isFavorited} />)).toBe(true)
     })
+
+    it('should display each subject', () => {
+      expect(props.item.fields.subjects.length).toBeGreaterThan(0)
+
+      props.item.fields.subjects.forEach((subject) => {
+        const found = enzymeWrapper.findWhere(el => el.hasClass('dbSubject') && el.text() === subject.linkText)
+        expect(found.exists()).toBe(true)
+      })
+    })
+
+    it('should apply filter when clicking subject', () => {
+      const found = enzymeWrapper.find('.dbSubject').first()
+      found.simulate('click')
+      expect(props.applySubjectFilter).toHaveBeenCalled()
+    })
   })
 
   describe('with multiple urls', () => {
@@ -68,6 +96,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
           },
           fields: {
             title: 'Qwertyuiop',
+            subjects: [],
           },
         },
         linkObject: {
@@ -89,6 +118,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
         },
         isFavorited: false,
         favoritesData: [],
+        applySubjectFilter: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
