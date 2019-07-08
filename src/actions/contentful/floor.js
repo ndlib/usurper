@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_FLOOR = 'CF_REQUEST_FLOOR'
@@ -38,11 +38,7 @@ const receiveFloor = (floor, response) => {
 }
 
 export const fetchFloor = (floor, preview) => {
-  const query = encodeURIComponent(`content_type=floor&fields.slug=${floor}`)
-  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=floor&fields.slug=${floor}`, preview)
 
   return dispatch => {
     dispatch(requestFloor(floor))

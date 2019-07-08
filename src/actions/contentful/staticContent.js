@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_SIDEBAR = 'CF_REQUEST_SIDEBAR'
@@ -40,11 +40,7 @@ const receiveSidebar = (slug, response) => {
 }
 
 export const fetchSidebar = (slug, preview) => {
-  const query = encodeURIComponent(`content_type=dynamicPage&fields.slug=${slug}&include=3`)
-  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=dynamicPage&fields.slug=${slug}&include=3`, preview)
 
   return (dispatch, getState) => {
     const state = getState()

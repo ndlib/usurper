@@ -1,6 +1,5 @@
 import fetch from 'isomorphic-fetch'
 import typy from 'typy'
-import Config from 'shared/Configuration'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
@@ -72,11 +71,7 @@ const receiveDatabaseDefaults = (response) => {
 }
 
 export const fetchLetter = (letter, preview) => {
-  const query = encodeURIComponent(`content_type=resource&fields.databaseLetter=${letter}&include=1`)
-  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=resource&fields.databaseLetter=${letter}&include=1`, preview)
 
   return (dispatch, getState) => {
     dispatch(requestLetter(letter))
@@ -109,11 +104,7 @@ export const fetchLetter = (letter, preview) => {
 export const fetchDefaultDbFavorites = (preview) => {
   // Academic Search Premier, JSTOR, and Scopus
   const alephIds = ['002056133', '001517508', '004862587']
-  const query = encodeURIComponent(`content_type=resource&fields.alephSystemNumber[in]=${alephIds.join(',')}&include=0`)
-  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=resource&fields.alephSystemNumber[in]=${alephIds.join(',')}&include=0`, preview)
 
   return dispatch => {
     dispatch(requestDatabaseDefaults())

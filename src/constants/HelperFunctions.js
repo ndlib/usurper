@@ -5,6 +5,7 @@
 import typy from 'typy'
 
 import * as statuses from 'constants/APIStatuses'
+import Config from 'shared/Configuration'
 
 export const filterList = (list, filterFields, filterValue) => {
   const value = filterValue.toLowerCase()
@@ -119,4 +120,13 @@ export const mergeInternalLink = (partialRecord, internalLinks) => {
       ? typy(match, 'fields.page.fields.title').safeString
       : typy(match, 'fields.title').safeString,
   }
+}
+
+export const getContentfulQueryUrl = (query, preview = false, secure = false) => {
+  const endpoint = secure ? 'secureQuery' : (preview ? 'livequery' : 'query')
+  let url = `${Config.contentfulAPI}/${endpoint}?locale=en-US&query=${encodeURIComponent(query)}`
+  if (preview) {
+    url += `&preview=${preview}`
+  }
+  return url
 }

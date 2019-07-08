@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_BRANCHES = 'CF_REQUEST_BRANCHES'
@@ -38,11 +38,7 @@ const receiveBranches = (response, depth) => {
 }
 
 export const fetchBranches = (preview, include = 0) => {
-  const query = encodeURIComponent(`content_type=page&fields.type=Branch&include=${include}&order=fields.title`)
-  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl(`content_type=page&fields.type=Branch&include=${include}&order=fields.title`, preview)
 
   return (dispatch, getState) => {
     dispatch(requestBranches(include))
