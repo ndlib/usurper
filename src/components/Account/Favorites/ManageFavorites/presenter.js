@@ -21,8 +21,7 @@ const ManageFavorites = (props) => {
       <div className='section-box pad-edges'>
         <div className='row'>
           {props.message}
-          <br /><br />
-          <span>
+          <span className={styles.rearrangeTip}>
             You can rearrange the listing using the
             <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
           </span>
@@ -42,7 +41,13 @@ const ManageFavorites = (props) => {
         { saving ? (
           <InlineLoading title='Saving...' className='fright pad-edges-sm' />
         ) : (
-          <UpdateStatus status={props.saveState} text={props.updateText} className='pad-edges-md' />
+          props.modified ? (
+            <div className={'alert informational ' + styles.unsavedMessage}>
+              <span>You have unsaved changes.</span>
+            </div>
+          ) : (
+            <UpdateStatus status={props.saveState} text={props.updateText} className='pad-edges-md' />
+          )
         )}
       </div>
     </section>
