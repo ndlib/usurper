@@ -1,30 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import FavoriteIcon from '../../FavoriteIcon'
 
-class SearchResult extends Component {
-  render () {
-    return (
-      <div className='favorite-list-item'>
-        <div className={'favorite-list-item-draggable clearfix'}>
-          <FavoriteIcon
-            kind={this.props.kind}
-            data={[
-              {
-                key: this.props.id,
-                title: this.props.title,
-                url: this.props.url,
-              },
-            ]}
-            addFavorite={this.props.onAddFavorite}
-            disabled={this.props.disabled}
-          />
-          {this.props.title}
-        </div>
+const SearchResult = (props) => {
+  return (
+    <div className='favorite-list-item'>
+      <div className={'favorite-list-item-draggable clearfix'}>
+        <FavoriteIcon
+          kind={props.kind}
+          data={[
+            {
+              key: props.id,
+              title: props.title,
+              url: props.url,
+            },
+          ]}
+          addFavorite={props.onAddFavorite}
+          disabled={props.disabled}
+        />
+        <span className='link-like' onClick={() => props.onAddFavorite(props.kind, props.id, props.title, props.url)}>
+          {props.title}
+        </span>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 SearchResult.propTypes = {
