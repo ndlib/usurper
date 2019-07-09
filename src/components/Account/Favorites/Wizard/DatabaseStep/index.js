@@ -10,6 +10,7 @@ import Footer from '../Footer'
 import { searchFavorites, KIND } from 'actions/personal/favorites'
 
 import moveIcon from 'static/images/move.png'
+import styles from '../../style.module.css'
 
 class DatabaseStep extends Component {
   constructor (props) {
@@ -98,7 +99,7 @@ class DatabaseStep extends Component {
               {hintText}
               <br /><br />
               You can rearrange the listing using the
-              <img src={moveIcon} alt='☰' style={{ position: 'relative', left: '6px', top: '2px' }} />
+              <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
             </div>
           </div>
         </div>

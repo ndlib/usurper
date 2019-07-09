@@ -28,14 +28,13 @@ const FavoriteItem = (props) => {
               removeFavorite={props.onRemoveFavorite}
               disabled={!provided.dragHandleProps}
             />
-            {props.title}&nbsp;
             <Link
               to={props.url ? props.url : `/${props.id}`}
               aria-label={props.title}
               className='item-title favorite-link'
               target='_blank'
               rel='noopener noreferrer'
-            >(link)</Link>
+            >{props.title}</Link>
             <span className='handle fright' disabled={!provided.dragHandleProps} {...provided.dragHandleProps}>
               <img src={moveIcon} alt='☰' />
             </span>
