@@ -58,7 +58,7 @@ describe('components/Account/Favorites/FavoritesList/FavoriteItem.js', () => {
     const fnResults = shallow(draggable.prop('children')({ draggableProps: {}, innerRef: '' }, { isDragging: false }))
 
     expect(fnResults.containsMatchingElement(
-      <Link to={props.url} aria-label={props.title}>(link)</Link>
+      <Link to={props.url} aria-label={props.title}>{expect.any(String)}</Link>
     )).toBe(true)
   })
 

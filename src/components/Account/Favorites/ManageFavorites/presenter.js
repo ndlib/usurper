@@ -10,6 +10,9 @@ import Search from '../Search'
 import * as states from 'constants/APIStatuses'
 import { KIND } from 'actions/personal/favorites'
 
+import moveIcon from 'static/images/move.png'
+import styles from '../style.module.css'
+
 const ManageFavorites = (props) => {
   const saving = props.saveState === states.FETCHING
   return (
@@ -18,6 +21,11 @@ const ManageFavorites = (props) => {
       <div className='section-box pad-edges'>
         <div className='row'>
           {props.message}
+          <br /><br />
+          <span>
+            You can rearrange the listing using the
+            <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
+          </span>
           <FavoritesList kind={props.kind} items={props.favorited} updateList={props.updateList} disabled={saving} />
         </div>
         { props.kind !== KIND.subjects && (
