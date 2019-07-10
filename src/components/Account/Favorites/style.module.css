@@ -8,3 +8,24 @@ button.clearFavorites.clearFavorites {
   left: 6px;
   top: 2px;
 }
+
+.infoIcon {
+  vertical-align: middle;
+}
+
+.rearrangeTip {
+  margin-top: 1em;
+}
+
+.unsavedMessage {
+  float: left;
+  margin: 1em;
+  padding: 12px;
+}
+.unsavedMessage span {
+  background: url('../../../static/images/ic_info_outline_white_24px.svg') no-repeat;
+  background-size: 1.5em;
+  padding-left: 34px;
+  padding-bottom: 5px;
+  padding-top: 4px;
+}
