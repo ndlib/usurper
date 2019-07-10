@@ -2,6 +2,8 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import InlineContainer from 'components/Hours/InlineContainer'
 import * as statuses from 'constants/APIStatuses'
+import InlineLoading from 'components/Messages/InlineLoading'
+import HoursError from 'components/Hours/Error'
 
 const setup = (hoursEntry, presenter) => {
   return shallow(<InlineContainer hoursEntry={hoursEntry} presenter={presenter} />)
@@ -43,7 +45,7 @@ describe('components/Hours/Page/presenter', () => {
     })
 
     it('sends a loading response', () => {
-      expect(enzymeWrapper.html()).toBe('<div>Loading</div>')
+      expect(enzymeWrapper.find(InlineLoading).exists()).toBe(true)
     })
   })
 
@@ -62,7 +64,7 @@ describe('components/Hours/Page/presenter', () => {
     })
 
     it('sends a empty response', () => {
-      expect(enzymeWrapper.html()).toBe('<div></div>')
+      expect(enzymeWrapper.isEmptyRender()).toBe(true)
     })
   })
 
@@ -81,7 +83,7 @@ describe('components/Hours/Page/presenter', () => {
     })
 
     it('sends a empty response', () => {
-      expect(enzymeWrapper.html()).toBe('<section class=\"hours-display\"><h2>The hours are currently unavailable. <br/>Please call the circulation desk at (574) 631-6679.</h2></section>')
+      expect(enzymeWrapper.find(HoursError).exists()).toBe(true)
     })
   })
 
@@ -100,7 +102,7 @@ describe('components/Hours/Page/presenter', () => {
     })
 
     it('sends a empty response', () => {
-      expect(enzymeWrapper.html()).toBe('<div></div>')
+      expect(enzymeWrapper.isEmptyRender()).toBe(true)
     })
   })
 })
