@@ -102,6 +102,7 @@ let props
 describe('components/DatabaseList/index.js', () => {
   describe('with no data', () => {
     beforeEach(() => {
+      global.__APP_CONFIG__.features.subjectFilteringEnabled = false
       props = {
         cfDatabases: {},
         cfSubjects: { status: statuses.NOT_FETCHED },
@@ -111,9 +112,7 @@ describe('components/DatabaseList/index.js', () => {
         allLettersStatus: statuses.NOT_FETCHED,
         allDbs: [],
         location: {
-          search: {
-            preview: true,
-          },
+          search: '?preview=true',
         },
         getToken: jest.fn(),
         getFavorites: jest.fn(),
@@ -130,11 +129,16 @@ describe('components/DatabaseList/index.js', () => {
       enzymeWrapper = undefined
     })
 
-    it('calls the fetchSubjects action', () => {
+    it('calls the fetchSubjects action if enabled', () => {
+      global.__APP_CONFIG__.features.subjectFilteringEnabled = true
+      props.fetchSubjects.mockReset()
+      enzymeWrapper = setup(props)
+
       expect(props.fetchSubjects).toHaveBeenCalled()
     })
 
     it('calls the bound fetchLetter action for every letter plus # after subjects loaded', () => {
+      props.fetchLetter.mockReset()
       props = {
         ...props,
         cfSubjects: {
@@ -169,10 +173,11 @@ describe('components/DatabaseList/index.js', () => {
           validItem3,
         ],
         location: {
-          search: {
-            preview: true,
-          },
+          search: '?preview=true&subject=latin',
         },
+        activeSubjects: [
+          'latin',
+        ],
         match: {
           params: {
             id: 'a',
@@ -193,6 +198,7 @@ describe('components/DatabaseList/index.js', () => {
           list={props.cfDatabases.a.data}
           letter={props.currentLetter}
           status={props.cfDatabases.a.status}
+          activeSubjects={['latin']}
         />
       )
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
@@ -219,24 +225,35 @@ describe('components/DatabaseList/index.js', () => {
         }
         const ownProps = {
           location: {
-            search: {
-              preview: 'true',
-            },
+            search: '?preview=true&subject=latin',
           },
           match: {
             params: {
               id: 'a',
             },
           },
+          history: {
+            push: jest.fn(),
+          },
         }
 
         store = mockStore(state)
-        props = { ...ownProps, ...mapStateToProps(state, props), ...mapDispatchToProps(store.dispatch) }
+        props = { ...ownProps, ...mapStateToProps(state, ownProps), ...mapDispatchToProps(store.dispatch) }
         enzymeWrapper = shallow(<DatabaseListContainer store={store} {...props} />)
       })
 
       afterEach(() => {
         store = undefined
+      })
+
+      it('should update history when filtering subjects', () => {
+        const instance = enzymeWrapper.instance()
+        instance.onSubjectFilterApply([
+          {
+            sys: { id: 'spanish' },
+          },
+        ])
+        expect(enzymeWrapper.props().history.push).toHaveBeenCalled()
       })
 
       it('should reset filter when letter changed', () => {
@@ -370,6 +387,9 @@ describe('components/DatabaseList/index.js', () => {
               id: 'a',
             },
           },
+          location: {
+            search: '?preview=true',
+          },
           getToken: jest.fn(),
         }
         let tempState
@@ -464,9 +484,7 @@ describe('components/DatabaseList/index.js', () => {
           label: 'label',
         },
         location: {
-          search: {
-            preview: true,
-          },
+          search: '?preview=true',
         },
         getToken: jest.fn(),
       }

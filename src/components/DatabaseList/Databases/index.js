@@ -6,14 +6,21 @@ import styles from '../style.module.css'
 const Databases = (props) => {
   const noResultsMessage = props.filterValue
     ? `No results found matching "${props.filterValue}" `
-    : `Nothing found for this letter.`
+    : `Nothing found for this letter matching subject filters.`
+  const filteredList = props.list.filter((item) => {
+    if (!props.subjectFilter.length) {
+      return true
+    }
+    return item.fields.subjects.some(fullSubject => props.subjectFilter.includes(fullSubject.sys.id))
+  })
+
   return (
     <section
       aria-label={`List of all "${props.titleLabel}" Databases`}
       className={styles.dbList}
     >
-      { props.list.length
-        ? props.list.map((item) => <DatabaseSummary key={item.sys.id} item={item} />)
+      { filteredList.length
+        ? filteredList.map((item) => <DatabaseSummary key={item.sys.id} item={item} />)
         : noResultsMessage
       }
       { (props.filterValue && props.list.length === 50) && (
@@ -31,6 +38,7 @@ Databases.propTypes = {
   })).isRequired, // NOTE: These should be pre-filtered
   titleLabel: PropTypes.string,
   filterValue: PropTypes.string,
+  subjectFilter: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default Databases

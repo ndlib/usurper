@@ -19,6 +19,7 @@ const genConfig = () => {
     onesearchBaseURL: parameters.onesearch,
     features: {
       favoritesEnabled: parameters.favoritesEnabled || false,
+      subjectFilteringEnabled: parameters.subjectFilteringEnabled || false,
     },
   }
 
@@ -40,6 +41,7 @@ const genConfig = () => {
     onesearchBaseURL: process.env.ONESEARCH_BASE_URL ? process.env.ONESEARCH_BASE_URL : defaultConfig.onesearchBaseURL,
     features: {
       favoritesEnabled: process.env.ENABLE_FAVORITES ? process.env.ENABLE_FAVORITES : defaultConfig.features.favoritesEnabled,
+      subjectFilteringEnabled: process.env.ENABLE_SUBJECT_FILTERING ? process.env.ENABLE_SUBJECT_FILTERING : defaultConfig.features.subjectFilteringEnabled,
     },
   }
 

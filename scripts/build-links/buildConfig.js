@@ -29,6 +29,7 @@ const psList = [
   'contentfulSpace',
   'contentfulEnvironment',
   'favoritesEnabled',
+  'subjectFilteringEnabled',
 ]
 
 let handler = async () => {

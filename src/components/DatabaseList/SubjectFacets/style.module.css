@@ -1,0 +1,33 @@
+.subjectFacets {
+  display: block;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+
+.subject {
+  display: block;
+  padding: 2px 4px;
+}
+
+.subjectActions > * {
+  margin-left: 4px;
+}
+
+.subjectLink {
+  color: #417D8B;
+  line-height: 1.7em;
+  text-decoration: none;
+  padding: 4px;
+}
+.subjectLink:hover, .subjectLink:active {
+  background: rgba(0, 0, 0, .1);
+}
+
+.showMore {
+  color: #417D8B;
+  font-size: 0.9em;
+  padding: 4px;
+}
+.showMore:hover, .showMore:active {
+  background: rgba(0, 0, 0, .1);
+}
