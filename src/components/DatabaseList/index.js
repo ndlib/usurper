@@ -58,6 +58,7 @@ export class DatabaseListContainer extends Component {
     this.onFilterChange = this.onFilterChange.bind(this)
     this.onSubjectFilterApply = this.onSubjectFilterApply.bind(this)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
+    this.removeSubjectFromFilter = this.removeSubjectFromFilter.bind(this)
   }
 
   checkFullyLoaded () {
@@ -150,6 +151,12 @@ export class DatabaseListContainer extends Component {
     this.props.history.push(this.props.location.pathname + queryString)
   }
 
+  removeSubjectFromFilter (subjectId) {
+    const newSubjectIds = this.props.activeSubjects.filter(activeSubject => activeSubject !== subjectId)
+    const newSubjects = typy(this.props.cfSubjects, 'data').safeArray.filter(sub => newSubjectIds.includes(sub.sys.id))
+    this.onSubjectFilterApply(newSubjects)
+  }
+
   shouldComponentUpdate (nextProps, nextState) {
     const currentStatusChanged = (this.props.currentLetter !== nextProps.currentLetter ||
       this.props.allLettersStatus !== nextProps.allLettersStatus)
@@ -185,6 +192,7 @@ export class DatabaseListContainer extends Component {
       subjects={typy(this.props.cfSubjects, 'data').safeArray}
       activeSubjects={this.props.activeSubjects}
       onSubjectFilterApply={this.onSubjectFilterApply}
+      removeSubjectFromFilter={this.removeSubjectFromFilter}
       history={this.props.history}
     />
   }
