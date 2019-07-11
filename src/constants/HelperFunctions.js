@@ -113,6 +113,8 @@ export const mergeInternalLink = (partialRecord, internalLinks) => {
         fields: {
           title: typy(match.fields, 'page.fields.title').safeString,
           slug: typy(match.fields, 'page.fields.slug').safeString,
+          relatedResources: typy(match.fields, 'page.fields.relatedResources').safeArray,
+          relatedExtraSections: typy(match.fields, 'page.fields.relatedExtraSections').safeArray,
         },
       } : null,
     },
