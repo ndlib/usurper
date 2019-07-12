@@ -5,6 +5,7 @@ export const typeConstants = {
     exportButton: false,
     deleteButton: false,
     columns: {
+      title: 'Title',
       author: 'Author',
       dueDate: 'Due Date',
       from: 'From',
@@ -18,6 +19,7 @@ export const typeConstants = {
     exportButton: false,
     deleteButton: false,
     columns: {
+      title: 'Title',
       author: 'Author',
       status: 'Status',
       from: 'From',
@@ -31,6 +33,7 @@ export const typeConstants = {
     exportButton: true,
     deleteButton: true,
     columns: {
+      title: 'Title',
       author: 'Author',
       loanDate: 'Checked Out',
       dueDate: 'Due Date',

@@ -27,6 +27,7 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
           item: {
             fakeProp1: 'test',
             fakeProp2: 123,
+            title: 'Do not need',
             author: 'dennie moore',
             status: 'lost',
             loanDate: '2019-05-06',
@@ -45,10 +46,15 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
 
       Object.keys(typeConstants[listType].columns).forEach((column) => {
         it('should render a card for column: ' + column, () => {
-          const find = (column === 'from'
-            ? <Card value={props.item[column]}><FromIcon code={props.item[column]} /></Card>
-            : <Card value={props.item[column]} />)
-          expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+          if (column === 'from') {
+            const find = <Card value={props.item[column]}><FromIcon code={props.item[column]} /></Card>
+            expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+          } else if (column === 'title') {
+            expect(enzymeWrapper.find(TitleCard).exists()).toBe(true)
+          } else {
+            const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === props.item[column])
+            expect(found.exists()).toBe(true)
+          }
         })
       })
     })
@@ -74,8 +80,54 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
     })
 
     it('should render "Not Available" for return date', () => {
-      const find = <Card value={'Not Available'} label={typeConstants[props.listType].columns['returnDate']} />
-      expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+      const found = enzymeWrapper.findWhere(el => el.type() === Card && el.hasClass('returnDate'))
+      expect(found.exists()).toBe(true)
+      expect(found.props().value).toEqual('Not Available')
+    })
+  })
+
+  describe('mobile view', () => {
+    const listType = 'history'
+
+    beforeEach(() => {
+      props = {
+        item: {
+          author: 'dennie moore',
+          loanDate: '2019-05-06',
+          dueDate: '2019-05-07',
+          from: 'NDU',
+        },
+        listType: listType,
+        isMobileDetails: true,
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    it('should NOT render a title card', () => {
+      expect(enzymeWrapper.find(TitleCard).exists()).toBe(false)
+    })
+
+    it('should NOT render a dueDate card', () => {
+      const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === props.item['dueDate'])
+      expect(found.exists()).toBe(false)
+    })
+
+    it('should NOT render a card for a column with no value', () => {
+      const value = props.item['returnDate']
+      expect(value).toBeFalsy()
+
+      const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === value)
+      expect(found.exists()).toBe(false)
+    })
+
+    Object.keys(typeConstants[listType].columns).forEach((column) => {
+      // Omit columns that have already been tested above
+      if (!['title', 'dueDate', 'returnDate'].includes(column)) {
+        it('should render a card for column: ' + column, () => {
+          const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === props.item[column])
+          expect(found.exists()).toBe(true)
+        })
+      }
     })
   })
 })

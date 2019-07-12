@@ -2,3 +2,17 @@
   margin-bottom: 10px;
   background-color: #5D422C;
 }
+
+/* .checkoutHistorySidebar {
+  -ms-flex-preferred-size: 33.333%;
+  flex-basis: 33.333%;
+  max-width: 33.333%;
+}
+
+@media only screen and (max-width: 850px) {
+  .checkoutHistorySidebar {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+} */

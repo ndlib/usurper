@@ -1618,97 +1618,6 @@ aside section .p-pages {
   grid-column: 1;
 }
 
-.card-item {
-  width:100% ;
-  border: solid #dcdcdc;
-  border-width: 1px 0;
-  background: #F9F9F9;
-  display: grid;
-  display: -ms-grid;
-
-  grid-template-columns: 2fr 1.2fr .7fr .2fr .2fr;
-  -ms-grid-columns: 1.5fr 1fr 1.3fr .7fr .7fr;
-  justify-content: left;
-  font-size: 16px;
-}
-
-.card-item.circ-hist {
-  grid-template-columns: 1.6fr .8fr .8fr .8fr .8fr .2fr .2fr;
-  -ms-grid-columns: 1.3fr 0.8fr 1.3fr 1.2fr 1.2fr .7fr .7fr;
-}
-.circ-hist .card-header {
-  grid-column: 1 / 2 !important;
-  grid-row: 1 / 4 !important;
-}
-
-.card-item > button,
-.card-item > span {
-  padding: 4px;
-  background-position: 4px 10px;
-  /* Override some properties on buttons because this isn't meant to look like a normal button */
-  border: 0;
-  border-radius: 0;
-  box-shadow: 0 0;
-  text-align: left;
-  text-transform: none !important;
-  font-size: 16px !important;
-  font-family: sans-serif !important;
-}
-
-.card-item > button.sort-none {
-  background-position: 4px 7px;
-}
-
-.card-item .actions button {
-  margin-left: 10px;
-}
-
-.card-item > div {
-  padding: 10px;
-}
-
-.card-header {
-  grid-row: 1 / 4;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 3;
-  background: #F1F1F1;
-}
-
-.card-title {
-  font-weight: bold;
-  line-height: 1.4em;
-}
-
-.card-published {
-  font-size: 14px;
-  color: #868686;
-  line-height: 1.4em;
-}
-
-.card-author {
-  -ms-grid-column: 2;
-}
-
-.card-status {
-  -ms-grid-column: 3;
-}
-
-.card-loanDate {
-  -ms-grid-column: 2;
-}
-
-.card-dueDate {
-  -ms-grid-column: 3;
-}
-
-.card-returnDate {
-  -ms-grid-column: 4;
-}
-
-.card-from {
-  -ms-grid-column: 5;
-}
-
 .status {
   border: solid 2px;
   padding: 3px 5px;
@@ -1729,74 +1638,10 @@ aside section .p-pages {
   font-size: 1rem;
 }
 
-.card-actions {
-  width: 20%;
-  text-align: right;
-
-}
-
-.item-list-global-actions button {
-  padding: 5px 5px;
-  margin: -5px 5px 5px 0;
-}
 button:disabled {
   background: #999 !important;
   cursor: not-allowed !important;
   user-select: none !important;
-}
-button:disabled {
-  background: #999 !important;
-  cursor: not-allowed !important;
-  user-select: none !important;
-}
-
-.actions-hidden {
-  display: none;
-}
-
-.actions-button {
-  grid-column: 5;
-  grid-row: 1;
-  text-align: right;
-}
-.actions-button.wide {
-  min-width: 130px;
-}
-.actions-button button.danger {
-  margin-right: 10px;
-}
-.actions-button span {
-  cursor: pointer;
-  font-size: 26px;
-}
-.circ-hist .actions-button {
-  grid-column: 7;
-}
-
-.actions {
-  grid-column: 3 / 6;
-  grid-row: 3;
-  text-align: right;
-  -ms-grid-column: 3;
-  -ms-grid-row: 3;
-}
-
-.circ-hist .actions {
-  grid-column: 3 / 8;
-}
-
-.actions a {
-  margin: 0 0 10px 10px;
-  display: inline-block;
-}
-
-.actions div {
-  display: inline-block;
-  margin-left: 5px;
-}
-
-.card-actions button {
-  margin-left: 5px;
 }
 
 .notfound {
@@ -3599,55 +3444,6 @@ main .mobile-only h5 {
   .row {
     margin: 0 !important;
   }
-  .card-item {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    -ms-grid-columns: 1fr 1fr 1fr 1fr;
-    -ms-grid-rows: auto auto auto auto;
-    width: 100%;
-  }
-  .card-header {
-    grid-column: 1 / 4;
-    grid-row: 1 / 2;
-    -ms-grid-column: 1;
-    -ms-grid-row: 1;
-    -ms-grid-column-span: 3;
-    -ms-grid-row-span: 1;
-  }
-  .card-published {
-    -ms-grid-column: 1;
-    -ms-grid-row: 2;
-  }
-  .card-status {
-    -ms-grid-column: 2;
-    -ms-grid-row: 2;
-  }
-  .card-loanDate {
-    -ms-grid-column: 2;
-    -ms-grid-row: 2;
-  }
-  .card-dueDate {
-    -ms-grid-column: 3;
-    -ms-grid-row: 2;
-  }
-  .card-returnDate {
-    -ms-grid-column: 4;
-    -ms-grid-row: 2;
-  }
-  .card-from {
-    -ms-grid-column: 5;
-    -ms-grid-row: 2;
-  }
-  .actions {
-    grid-column: 3 / 6;
-    grid-row: 3;
-    text-align: right;
-    -ms-grid-column: 3;
-    -ms-grid-row: 3;
-  }
-
-  .circ-hist .actions {
-    grid-column: 3 / 8;
-  }
 
   .event-card .time:before, .news .separator:before {
     content: "";
@@ -3885,33 +3681,6 @@ ul.col-2-list {
   position: absolute;
   right: 20px;
   bottom: 20px;
-}
-
-.exportOptions.dropdown {
-  margin-top: 2px;
-  position: absolute;
-  top: 32px;
-  left: 0;
-  z-index: 1;
-  font-family: sans-serif;
-  font-size: 16px;
-  font-weight: normal;
-  text-align: left;
-  text-transform: none;
-  box-sizing: border-box;
-  outline-color: rgb(0, 103, 244);
-  outline-style: auto;
-  outline-width: 5px;
-}
-.exportOptions.dropdown.hidden{
-  display: none;
-}
-.exportOptions.dropdown ul {
-  background-color: transparent !important;
-  width: auto !important;
-}
-.export {
-  position: relative;
 }
 
 main {

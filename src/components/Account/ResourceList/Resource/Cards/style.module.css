@@ -1,0 +1,76 @@
+.cardHeader {
+  background: #F1F1F1;
+  grid-column: 1;
+  -ms-grid-column: 1;
+  grid-row: 1;
+  -ms-grid-row: 1;
+}
+
+.title {
+  font-weight: bold;
+  line-height: 1.4em;
+}
+
+.published {
+  font-size: 14px;
+  color: #868686;
+  line-height: 1.4em;
+}
+
+.author,
+.status,
+.loanDate,
+.returnDate,
+.from {
+  display: none;
+}
+
+.mobileDetail {
+  font-size: 0.8em;
+  margin-left: 1em;
+}
+
+.mobileDetail .detailLabel {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 62em) {
+  .cardHeader {
+    grid-row: 1 / 4;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+  }
+
+  .author,
+  .status,
+  .loanDate,
+  .returnDate,
+  .from {
+    display: block;
+  }
+
+  .author {
+    -ms-grid-column: 2;
+  }
+
+  .status {
+    -ms-grid-column: 3;
+  }
+
+  .loanDate {
+    -ms-grid-column: 2;
+  }
+
+  .dueDate {
+    -ms-grid-column: 3;
+  }
+
+  .returnDate {
+    -ms-grid-column: 4;
+  }
+
+  .from {
+    text-align: center;
+    -ms-grid-column: 5;
+  }
+}

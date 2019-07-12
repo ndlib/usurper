@@ -1,5 +1,6 @@
 .filter {
   width: 100%;
+  min-width: 288px;
   display: block;
   background-color: #072242;
   color: #fff;

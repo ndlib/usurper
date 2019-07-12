@@ -5,6 +5,8 @@ import nduIcon from 'static/images/icons/ND_monogram.svg'
 import hccIcon from 'static/images/icons/HCC.svg'
 import illIcon from 'static/images/icons/ILL.svg'
 
+import styles from './style.module.css'
+
 const FromIcon = (props) => {
   let image = nduIcon
   let desc = props.code
@@ -23,7 +25,7 @@ const FromIcon = (props) => {
       desc = 'University of Notre Dame'
   }
   return (
-    <span style={{ display: 'inline-block', cursor: 'default' }}>
+    <span className={styles.fromIconContainer}>
       <img src={image} alt={desc} title={desc} height='24px' width='24px' />
     </span>
   )

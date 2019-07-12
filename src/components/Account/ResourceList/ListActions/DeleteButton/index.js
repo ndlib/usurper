@@ -9,6 +9,8 @@ import InlineLoading from 'components/Messages/InlineLoading'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
+import styles from '../style.module.css'
+
 ReactModal.setAppElement('body')
 
 const modalProps = {
@@ -91,7 +93,7 @@ export class DeleteButtonContainer extends Component {
 
     return (
       <React.Fragment>
-        <button className='delete' onClick={this.onClick} disabled={disabled} title={hoverText}>
+        <button className={styles.delete} onClick={this.onClick} disabled={disabled} title={hoverText}>
           { helper.pluralize(this.props.items, 'Delete', 'Delete All') }
         </button>
         <ReactModal isOpen={this.state.modalOpen} onRequestClose={this.dismiss} {...modalProps}>

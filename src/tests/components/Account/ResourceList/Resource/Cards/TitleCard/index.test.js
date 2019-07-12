@@ -30,7 +30,7 @@ describe('components/Account/ResourceList/Resource/Cards/TitleCard', () => {
     })
 
     it('should render title as a link to OneSearch', () => {
-      const container = enzymeWrapper.find('.card-title')
+      const container = enzymeWrapper.find('.title')
       expect(container.exists()).toBe(true)
 
       const found = container.find(Link)
@@ -40,7 +40,7 @@ describe('components/Account/ResourceList/Resource/Cards/TitleCard', () => {
     })
 
     it('should render publication details', () => {
-      const found = enzymeWrapper.find('.card-published')
+      const found = enzymeWrapper.find('.published')
       expect(found.exists()).toBe(true)
       expect(found.props().value).toEqual(props.published)
     })
@@ -63,7 +63,7 @@ describe('components/Account/ResourceList/Resource/Cards/TitleCard', () => {
     })
 
     it('should render title as a link to ILLiad', () => {
-      const container = enzymeWrapper.find('.card-title')
+      const container = enzymeWrapper.find('.title')
       expect(container.exists()).toBe(true)
 
       const found = container.find(Link)
@@ -73,7 +73,7 @@ describe('components/Account/ResourceList/Resource/Cards/TitleCard', () => {
     })
 
     it('should render publication details', () => {
-      const found = enzymeWrapper.find('.card-published')
+      const found = enzymeWrapper.find('.published')
       expect(found.exists()).toBe(true)
       expect(found.props().value).toEqual(props.published)
     })

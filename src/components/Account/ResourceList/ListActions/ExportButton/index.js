@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import exportHelper from './exportHelper'
 import * as helper from 'constants/HelperFunctions'
 
+import styles from '../style.module.css'
+
 class ExportButton extends Component {
   constructor (props) {
     super(props)
@@ -51,14 +53,14 @@ class ExportButton extends Component {
     const labelText = 'Export Checkout History'
     const disabled = this.props.items.length === 0
     return (
-      <button className='export' onClick={this.onButtonClick} disabled={disabled} aria-label={labelText}>
+      <button className={styles.export} onClick={this.onButtonClick} disabled={disabled} aria-label={labelText}>
         { helper.pluralize(this.props.items, 'Export', 'Export All') }
         <div
           id='exportDropdown'
           ref={this.exportButtonDropDownRef}
           tabIndex='0'
           onBlur={this.onBlur}
-          className={'exportOptions dropdown' + (this.state.hidden ? ' hidden' : '')}
+          className={'dropdown ' + styles.exportOptions + (this.state.hidden ? ` ${styles.hidden}` : '')}
           aria-label={labelText}
           aria-expanded={!this.state.hidden}
           role='tree'

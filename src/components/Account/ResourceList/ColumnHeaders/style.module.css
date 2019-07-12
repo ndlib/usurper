@@ -1,0 +1,17 @@
+.authorHeader,
+.statusHeader,
+.loanDateHeader,
+.returnDateHeader,
+.fromHeader {
+  display: none;
+}
+
+@media screen and (min-width: 62em) {
+  .authorHeader,
+  .statusHeader,
+  .loanDateHeader,
+  .returnDateHeader,
+  .fromHeader {
+    display: block;
+  }
+}

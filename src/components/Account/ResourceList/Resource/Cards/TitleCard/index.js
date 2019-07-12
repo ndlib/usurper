@@ -7,6 +7,8 @@ import Link from 'components/Interactive/Link'
 
 import Config from 'shared/Configuration'
 
+import styles from '../style.module.css'
+
 const TitleCard = (props) => {
   let link
   const docNumber = (props.itemNumber || props.docNumber)
@@ -17,17 +19,18 @@ const TitleCard = (props) => {
   }
 
   return (
-    <Card className='card-header'>
-      <Card className='card-title' value={props.title} label='Title'>
+    <Card className={styles.cardHeader + (props.listType === 'history' ? ` ${styles.circHist}` : '')}>
+      <Card className={styles.title} value={props.title} label='Title'>
         <Link to={link}>{props.title}</Link>
       </Card>
-      <Card className='card-published' value={props.published} label='Published' />
+      <Card className={styles.published} value={props.published} label='Published' />
       <CoinsObject {...props} />
     </Card>
   )
 }
 
 TitleCard.propTypes = {
+  listType: PropTypes.string,
   id: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

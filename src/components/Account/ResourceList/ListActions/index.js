@@ -7,18 +7,20 @@ import DeleteButton from './DeleteButton'
 
 import typeConstants from '../constants'
 
+import styles from './style.module.css'
+
 const ListActions = (props) => {
   const config = typeConstants[props.listType]
   return (
-    <div className='item-list-global-actions'>
+    <div className={styles.itemListGlobalActions}>
       { config.renewButton && (
-        <RenewButton items={props.list} className='globalRenew' />
+        <RenewButton items={props.list} className={styles.globalRenew} />
       )}
       { config.exportButton && (
-        <ExportButton items={props.list} className='globalExport' />
+        <ExportButton items={props.list} className={styles.globalExport} />
       )}
       { config.deleteButton && (
-        <DeleteButton items={props.list} className='globalDelete' />
+        <DeleteButton items={props.list} className={styles.globalDelete} />
       )}
     </div>
   )
