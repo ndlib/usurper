@@ -1,7 +1,7 @@
 # Change Log
 
-## [v2019.13](https://github.com/ndlib/usurper/tree/v2019.13) "Hot Head"
-[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.11...v2019.13)
+## [v2019.14](https://github.com/ndlib/usurper/tree/v2019.13) "Hot Head"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.11...v2019.14)
 
 ### Note
 The change log for this update includes changes that were deployed previously.
