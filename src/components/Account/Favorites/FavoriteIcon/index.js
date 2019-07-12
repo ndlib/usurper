@@ -91,11 +91,11 @@ export class FavoriteIconContainer extends Component {
     let image, hoverText, classes
     if (this.state.forceIsFavorited || this.props.isFavorited) {
       image = this.state.isHovered ? bookmarkDelete : bookmark
-      hoverText = 'Unfavorite'
+      hoverText = 'Remove item from Favorites'
       classes = 'remove-favorite'
     } else {
       image = this.state.isHovered ? bookmark : bookmarkEmpty
-      hoverText = 'Favorite item'
+      hoverText = 'Add item to Favorites'
       classes = 'add-favorite'
     }
 
