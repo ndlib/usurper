@@ -15,7 +15,7 @@ class SubjectStep extends Component {
     this.state = {
       selected: selectedSubjects,
       hoveredSubject: null,
-      maxOrder: Math.max(...selectedSubjects.map((item) => typy(item, 'order').safeNumber)),
+      maxOrder: Math.max(0, ...selectedSubjects.map((item) => typy(item, 'order').safeNumber)),
     }
     this.nextStep = this.nextStep.bind(this)
     this.skipStep = this.skipStep.bind(this)
@@ -45,7 +45,7 @@ class SubjectStep extends Component {
       selected: JSON.parse(JSON.stringify(this.state.selected)),
     }
     if (event.target.checked) {
-      const match = this.props.data.find((item) => item.fields.page.fields.slug === event.target.name)
+      const match = this.props.data.find((item) => item.sys.id === event.target.name)
       if (match) {
         // If order is falsy and NOT 0, add an order attribute that will append the item at the end of the list
         if (!match.order && match.order !== 0) {
@@ -54,7 +54,7 @@ class SubjectStep extends Component {
         stateObj.selected.push(match)
       }
     } else {
-      stateObj.selected = stateObj.selected.filter((item) => item.fields.page.fields.slug !== event.target.name)
+      stateObj.selected = stateObj.selected.filter((item) => item.sys.id !== event.target.name)
     }
     this.setState(stateObj)
   }
@@ -96,7 +96,7 @@ class SubjectStep extends Component {
                 : entry.fields.title
               return (
                 <label key={entry.sys.id} className='subject-checkbox-container'>
-                  <input type='checkbox' name={entry.fields.page.fields.slug} onChange={this.onCheckboxChanged} defaultChecked={entry.selected} />
+                  <input type='checkbox' name={entry.sys.id} onChange={this.onCheckboxChanged} defaultChecked={entry.selected} />
                   <span data-tip={title} onMouseEnter={this.onSubjectEnter} onMouseLeave={this.onSubjectLeave}>
                     {title}
                   </span>

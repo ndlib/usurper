@@ -107,11 +107,11 @@ describe('components/Account/Favorites/Wizard/SubjectStep', () => {
 
   it('should pass on full selected subject objects when moving to next step', () => {
     const instance = enzymeWrapper.instance()
-    instance.onCheckboxChanged({ target: { name: props.data[0].fields.page.fields.slug, checked: true, order: 3 } })
-    instance.onCheckboxChanged({ target: { name: props.data[2].fields.page.fields.slug, checked: true } })
+    instance.onCheckboxChanged({ target: { name: props.data[0].sys.id, checked: true, order: 3 } })
+    instance.onCheckboxChanged({ target: { name: props.data[2].sys.id, checked: true } })
     // Test selecting and deselecting
-    instance.onCheckboxChanged({ target: { name: props.data[1].fields.page.fields.slug, checked: true, order: 1 } })
-    instance.onCheckboxChanged({ target: { name: props.data[1].fields.page.fields.slug, checked: false, order: 1 } })
+    instance.onCheckboxChanged({ target: { name: props.data[1].sys.id, checked: true, order: 1 } })
+    instance.onCheckboxChanged({ target: { name: props.data[1].sys.id, checked: false, order: 1 } })
     // If null target, shouldn't error or do anything weird
     instance.onCheckboxChanged()
 

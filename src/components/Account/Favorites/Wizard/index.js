@@ -173,11 +173,11 @@ class Wizard extends Component {
         const subjectStepData = JSON.parse(JSON.stringify(this.props.cfSubjects.data)).map((subject) => {
           if (this.state.data[currentStepName].length) {
             subject.selected = this.state.data[currentStepName].some(x => (
-              typy(x, 'fields.page.fields.slug').safeString === typy(subject, 'fields.page.fields.slug').safeString
+              typy(x, 'sys.id').safeString === typy(subject, 'sys.id').safeString
             ))
           } else {
             const match = typy(this.props.favorites, `${currentStepName}.items`).safeArray.find(y => (
-              y.key === typy(subject, 'fields.page.fields.slug').safeString
+              y.key === typy(subject, 'sys.id').safeString
             ))
             if (match) {
               subject.selected = true
