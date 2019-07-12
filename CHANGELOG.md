@@ -1,5 +1,24 @@
 # Change Log
 
+## [v2019.13](https://github.com/ndlib/usurper/tree/v2019.13) "Hot Head"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.11...v2019.13)
+
+### Note
+The change log for this update includes changes that were deployed previously.
+
+### Bug Fixes
+- Fixed Databases A-Z search. [View Changes](https://github.com/ndlib/usurper/commit/c369294172d85633a8c549181d456f1f67c04012)
+- Fixed a few links not working in certain areas of the site. [View Changes](https://github.com/ndlib/usurper/commit/a021f1ce1d3402cf47069c0738acc5a54b3c9206)
+- Fixed Contentful previews not refreshing. [#644](https://github.com/ndlib/usurper/pull/644)
+
+### Other
+- Updated link colors. [#637](https://github.com/ndlib/usurper/pull/637) [#638](https://github.com/ndlib/usurper/pull/638)
+- Updated branding logo in footer. [#643](https://github.com/ndlib/usurper/pull/643)
+- Added yellow coloring on ours with card swipe access. [#636](https://github.com/ndlib/usurper/pull/636)
+- Updated global gateway libraries with shorter URLs. [#653](https://github.com/ndlib/usurper/pull/653)
+- Improvements to favorites. (*dark feature*)
+- Added prototype of subject filtering on databases. (*dark feature*)
+
 ## [v2019.11](https://github.com/ndlib/usurper/tree/v2019.11) "Drizzle"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.9...v2019.11)
 
