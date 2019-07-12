@@ -48,6 +48,7 @@ const RedirectRoutes = [
   { path: '/london-global-gateway-library-policies', target: '/london-policies' },
   { path: '/london-global-gateway-library-services', target: '/london-services' },
   { path: '/london-global-gateway-faq', target: '/london-faqs' },
+  { path: '/external-libraries-in-london', target: '/london-external-libraries' },
   { path: '/fischer-hall-study-rooms redirects', target: '/london-fischer-rooms' },
   { path: '/rome-global-gateway', target: '/rome' },
   { path: '/rome-library-policies', target: '/rome-policies' },
