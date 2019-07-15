@@ -142,7 +142,7 @@ export class DatabaseListContainer extends Component {
     const oldQuery = this.props.location.search.replace('?', '').split('&')
     oldQuery.forEach(item => {
       const pair = item.split('=')
-      if (pair[0].toLowerCase() !== 'subject') {
+      if (pair[0].toLowerCase() !== 'subject' && pair.length === 2) {
         queryString += `${queryString.length ? '&' : '?'}${pair[0]}=${pair[1]}`
       }
     })

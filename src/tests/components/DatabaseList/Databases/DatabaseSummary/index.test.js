@@ -58,6 +58,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
           ]
         },
       },
+      onSubjectFilterApply: jest.fn(),
     }
     enzymeWrapper = setup(state, props)
   })
@@ -65,5 +66,12 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
   it('should render a presenter', () => {
     const found = enzymeWrapper.dive().dive().find(Presenter)
     expect(found.exists()).toBe(true)
+  })
+
+  it('should apply subject filter when appropriate', () => {
+    const dummyObj = { 'test': 'object' }
+    const presenter = enzymeWrapper.dive().dive().find(Presenter)
+    presenter.props().applySubjectFilter(dummyObj)
+    expect(enzymeWrapper.dive().props().onSubjectFilterApply).toHaveBeenCalledWith([ dummyObj ])
   })
 })
