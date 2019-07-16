@@ -1316,7 +1316,7 @@ label[for='q']:after, .uSearchBox label:after {
   -webkit-appearance: textfield;
 }
 
-section input {
+section input[type="search"] {
   -webkit-appearance: textfield;
 }
 
