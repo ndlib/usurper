@@ -1313,7 +1313,11 @@ label[for='q']:after, .uSearchBox label:after {
   width: 100%;
   font-size: 18px;
   border: none;
-  -webkit-appearance: textarea;
+  -webkit-appearance: textfield;
+}
+
+section input {
+  -webkit-appearance: textfield;
 }
 
 .appliance option {
