@@ -66,13 +66,19 @@ class DatabaseStep extends Component {
   }
 
   render () {
-    const hintText = `
-      The first four items in this list will be the links that appear for you
-      on the library website's home page.`
+    const hintText = (
+      <React.Fragment>
+        Your top four items will be displayed on the home page while you are logged in.
+        <br /><br />
+        You can rearrange the listing using the
+        <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
+      </React.Fragment>
+    )
     const descText = this.props.didSelectSubjects
       ? 'Recommended databases based on your subject selections.'
       : `You have not selected any subjects. You can start with
         the following interdisciplinary databases or select databases using the search box on the right.`
+
     return (
       <React.Fragment>
         <div className='modal-body row'>
@@ -97,9 +103,6 @@ class DatabaseStep extends Component {
             />
             <div className='gap-top d-xs-none'>
               {hintText}
-              <br /><br />
-              You can rearrange the listing using the
-              <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
             </div>
           </div>
         </div>
