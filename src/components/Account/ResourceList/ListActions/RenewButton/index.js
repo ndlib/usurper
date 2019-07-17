@@ -7,6 +7,8 @@ import { renewAleph, receiveRenewal } from 'actions/personal/alephRenewal'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
+import styles from '../style.module.css'
+
 export const RenewButtonContainer = (props) => {
   const renewAll = () => {
     props.items.forEach((item) => {
@@ -20,7 +22,7 @@ export const RenewButtonContainer = (props) => {
 
   const labelText = 'Renew all renewable items'
   return (
-    <button className='renew' onClick={renewAll} aria-label={labelText} disabled={props.disabled}>
+    <button className={styles.renew} onClick={renewAll} aria-label={labelText} disabled={props.disabled}>
       { helper.pluralize(props.items, 'Renew', 'Renew All') }
     </button>
   )

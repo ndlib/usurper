@@ -1,0 +1,147 @@
+.cardItem {
+  width:100% ;
+  border: solid #dcdcdc;
+  border-width: 1px 0;
+  background: #F9F9F9;
+  display: grid;
+  display: -ms-grid;
+
+  grid-template-columns: 2fr 1fr .25fr;
+  -ms-grid-columns: 2fr 1fr .25fr;
+  grid-template-rows: 2fr auto auto;
+  -ms-grid-rows: 2fr auto auto;
+  justify-content: left;
+  font-size: 16px;
+}
+
+.cardItem > button,
+.cardItem > span {
+  padding: 4px;
+  background-position: 4px 10px;
+  /* Override some properties on buttons because this isn't meant to look like a normal button */
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0;
+  text-align: left;
+  text-transform: none !important;
+  font-size: 16px !important;
+  font-family: sans-serif !important;
+}
+
+.cardItem > button.sort-none {
+  background-position: 4px 7px;
+}
+
+.cardItem .actions button {
+  margin-left: 10px;
+}
+
+.cardItem > div {
+  padding: 10px;
+}
+
+.cardActions {
+  width: 20%;
+  text-align: right;
+}
+
+.cardActions button {
+  margin-left: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.actionsButton {
+  grid-column: 3;
+  -ms-gird-column: 3;
+  grid-row: 1;
+  -ms-grid-row: 1;
+  text-align: right;
+}
+.actionsButton.wide {
+  min-width: 130px;
+}
+.actionsButton button.danger {
+  margin-right: 10px;
+}
+.actionsButton span {
+  cursor: pointer;
+  font-size: 26px;
+}
+
+.actions {
+  grid-column: 1 / 6;
+  grid-row: 3;
+  text-align: right;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 5;
+  -ms-grid-row: 3;
+}
+
+.circHist .actions {
+  grid-column: 1 / 8;
+  -ms-grid-column-span: 7;
+}
+
+.actions a {
+  margin: 0 0 10px 10px;
+  display: inline-block;
+}
+
+.actions div {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.circHist .mobileDetails {
+  grid-column: 1 / 8;
+}
+
+.mobileDetails {
+  grid-column: 1 / 6;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 5;
+  grid-row: 2;
+  -ms-grid-row: 2;
+}
+
+@media screen and (min-width: 62em) {
+  .cardItem {
+    grid-template-columns: 2fr 1fr 1fr .5fr .25fr;
+    -ms-grid-columns: 2fr 1fr 1fr .5fr .25fr;
+    grid-template-rows: auto auto auto;
+    -ms-grid-rows: auto auto auto;
+  }
+  .cardItem.circHist {
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr .5fr .25fr;
+    -ms-grid-columns: 2fr 1fr 1fr 1fr 1fr .5fr .25fr;
+  }
+
+  .mobileDetails {
+    display: none;
+  }
+
+  .actions {
+    grid-column: 2 / 6;
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 4;
+    grid-row: 3;
+    -ms-grid-row: 3;
+  }
+
+  .circHist .actions {
+    grid-column: 2 / 8;
+    -ms-grid-column-span: 6;
+  }
+
+  .actionsButton {
+    grid-column: 5;
+    -ms-grid-column: 5;
+  }
+  .circHist .actionsButton {
+    grid-column: 7;
+    -ms-grid-column: 7;
+  }
+}

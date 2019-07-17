@@ -25,7 +25,7 @@ class ColumnHeader extends Component {
     return (
       <button
         key={this.props.columnKey}
-        className={`custom-style ${this.sortClass(this.props.columnKey)}`}
+        className={`custom-style ${this.sortClass(this.props.columnKey)} ${this.props.className}`}
         onClick={(e) => this.props.sortClick(e, this.props.columnKey)}
         title={label}
         aria-label={label}
@@ -40,6 +40,7 @@ class ColumnHeader extends Component {
 ColumnHeader.propTypes = {
   displayName: PropTypes.string.isRequired,
   columnKey: PropTypes.string.isRequired,
+  className: PropTypes.string,
   sortValue: PropTypes.string.isRequired,
   sortDir: PropTypes.string,
   sortClick: PropTypes.func.isRequired,
