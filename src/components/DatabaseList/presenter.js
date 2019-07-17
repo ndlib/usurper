@@ -12,6 +12,7 @@ import Alphabet from './Alphabet'
 import SubjectFacets from './SubjectFacets'
 import Loading from 'components/Messages/Loading'
 import Databases from './Databases'
+import ActiveFiltersList from './ActiveFiltersList'
 
 import Config from 'shared/Configuration'
 
@@ -20,6 +21,7 @@ import styles from './style.module.css'
 const Loaded = (props) => {
   const titleLabel = props.filterValue ? `SEARCH - ${props.filterValue.toUpperCase()}` : props.letter.toUpperCase()
   const openGraphDesc = (props.filterValue ? 'Search results for ' : 'Databases with the letter ') + titleLabel
+  const fullActiveSubjects = props.subjects.filter(sub => props.activeSubjects.includes(sub.sys.id))
   return (
     <section className='container-fluid content-area'>
       <PageTitle title={'Databases: ' + titleLabel} />
@@ -44,6 +46,9 @@ const Loaded = (props) => {
             label='Database Search'
           />
           <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
+          { fullActiveSubjects.length > 0 && (
+            <ActiveFiltersList subjects={fullActiveSubjects} removeSubjectFromFilter={props.removeSubjectFromFilter} />
+          )}
           <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
         </div>
       </div>
@@ -73,6 +78,7 @@ Loaded.propTypes = {
   subjects: PropTypes.array,
   activeSubjects: PropTypes.array,
   onSubjectFilterApply: PropTypes.func,
+  removeSubjectFromFilter: PropTypes.func,
   history: PropTypes.object,
 }
 

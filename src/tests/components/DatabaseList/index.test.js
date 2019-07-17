@@ -210,7 +210,17 @@ describe('components/DatabaseList/index.js', () => {
       beforeEach(() => {
         const state = {
           cfDatabases: validcfDatabases,
-          cfSubjects: { status: statuses.SUCCESS },
+          cfSubjects: {
+            status: statuses.SUCCESS,
+            data: [
+              {
+                sys: { id: 'latin' },
+              },
+              {
+                sys: { id: 'french' },
+              },
+            ],
+          },
           personal: {
             login: {
               state: statuses.SUCCESS,
@@ -225,7 +235,7 @@ describe('components/DatabaseList/index.js', () => {
         }
         const ownProps = {
           location: {
-            search: '?preview=true&subject=latin',
+            search: '?preview=true&subject=latin&subject=french',
           },
           match: {
             params: {
@@ -254,6 +264,18 @@ describe('components/DatabaseList/index.js', () => {
           },
         ])
         expect(enzymeWrapper.props().history.push).toHaveBeenCalled()
+      })
+
+      it('should allow removing individual subject from filter', () => {
+        const instance = enzymeWrapper.instance()
+        const activeSubjectCount = instance.props.activeSubjects.length
+        expect(activeSubjectCount).toBeGreaterThan(1)
+
+        instance.onSubjectFilterApply = jest.fn()
+        instance.removeSubjectFromFilter('french')
+
+        expect(instance.onSubjectFilterApply).toHaveBeenCalled()
+        expect(instance.onSubjectFilterApply.mock.calls[0][0]).toHaveLength(activeSubjectCount - 1)
       })
 
       it('should reset filter when letter changed', () => {

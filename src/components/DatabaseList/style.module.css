@@ -92,3 +92,26 @@
 .letter a:hover {
   background: rgba(0, 0, 0, .3)
 }
+
+.activeFilters {
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  padding: 6px;
+}
+
+.activeFiltersLabel {
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.activeFilters .dbSubject span {
+  position: relative;
+  top: 0.1em;
+}
+
+.clearIcon {
+  margin-right: 0.2em;
+  height: 1.3em;
+  width: 1.3em;
+  vertical-align: middle
+}
