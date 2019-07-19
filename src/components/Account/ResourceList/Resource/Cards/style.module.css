@@ -34,6 +34,10 @@
   font-weight: bold;
 }
 
+.mobileDetail img {
+  vertical-align: bottom;
+}
+
 @media screen and (min-width: 62em) {
   .cardHeader {
     grid-row: 1 / 4;
