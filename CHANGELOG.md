@@ -1,6 +1,19 @@
 # Change Log
 
-## [v2019.14](https://github.com/ndlib/usurper/tree/v2019.13) "Hot Head"
+## [v2019.15](https://github.com/ndlib/usurper/tree/v2019.15) "Friendly Fiesta"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.14...v2019.15)
+
+### Features
+- Favorites tool released. Log in and click Add Favorites to begin selecting your favorite databases and subjects.
+
+### Bug Fixes
+- Fixed search box display on Safari. [#658](https://github.com/ndlib/usurper/pull/658)
+- Fixed display of librarian contact photos. [#660](https://github.com/ndlib/usurper/pull/660)
+
+### Other
+- Improve mobile UI for Items & Requests and Checkout History. [#656](https://github.com/ndlib/usurper/pull/656)
+
+## [v2019.14](https://github.com/ndlib/usurper/tree/v2019.14) "Hot Head"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.11...v2019.14)
 
 ### Note
