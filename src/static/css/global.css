@@ -290,7 +290,7 @@ height:auto;
 
 .librarian .frame {
 
-  height: 100px;
+  max-height: 100px;
   text-align: center;
   -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
@@ -304,7 +304,9 @@ height:auto;
 
 .librarian .frame img {
 
-  height: 100px;
+  max-height: 100px;
+  width: 100%;
+  display: block;
 
 }
 
@@ -2445,6 +2447,7 @@ main blockquote p {
 main h2, main h3, main h4, main h5 {
   margin-top: 36px;
   margin-bottom: .5em;
+  line-height: 1.5em;
 }
 
 h3:first-child {
@@ -3021,7 +3024,7 @@ body {
   background: #fff;
   border: 1px solid #a7a7a7;
   border-width: 1px 0 2px 1px;
-  color: #001F46;
+  color: #001F46 !important;
   font-size: 16px;
   font-family: GPBold, sans-serif;
   text-decoration: none;
