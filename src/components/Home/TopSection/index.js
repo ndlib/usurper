@@ -100,7 +100,7 @@ export const mapStateToProps = (state, ownProps) => {
   const locationSlug = (() => {
     if (hlStatus === statuses.SUCCESS) {
       return settings[SETTING_KIND.homeLibrary].data
-    } else if (hlStatus === statuses.ERROR || (personal.login.state === statuses.SUCCESS && !personal.login.token)) {
+    } else if (hlStatus === statuses.ERROR || ([statuses.ERROR, statuses.SUCCESS].includes(personal.login.state) && !personal.login.token)) {
       return DEFAULT_LIBRARY
     }
     return null
@@ -110,7 +110,7 @@ export const mapStateToProps = (state, ownProps) => {
     login: personal.login,
     hideFavorites: (loggedIn && (
       settings[SETTING_KIND.hideHomeFavorites].state !== statuses.SUCCESS || !!settings[SETTING_KIND.hideHomeFavorites].data
-    )) || (!loggedIn && ownProps.hideFavoritesCookie),
+    )) || (!loggedIn && (ownProps.hideFavoritesCookie || personal.login.state === statuses.ERROR)),
     hideFavoritesPref: settings[SETTING_KIND.hideHomeFavorites],
     favoriteLocationSlug: locationSlug,
     favoritesStatus: combinedStatus,
