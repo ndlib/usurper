@@ -10,7 +10,9 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
     case CF_RECEIVE_ALLALERTS:
       return Object.assign({}, state, {
         status: action.status,
-        json: action.allAlerts,
+        json: action.allAlerts.filter(alert => {
+          return alert.fields.domain === 'library' || alert.fields.domain === 'all'
+        }),
       })
     default:
       return state
