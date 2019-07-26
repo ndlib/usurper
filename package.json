@@ -27,7 +27,8 @@
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "typy": "^3.1.0"
+    "typy": "^3.1.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
@@ -102,7 +103,9 @@
     "build": "node scripts/build.js",
     "lint": "node node_modules/eslint/bin/eslint.js ./src",
     "test": "node scripts/test.js --env=jsdom",
-    "sitemap": "python scripts/makeSitemap.py"
+    "sitemap": "python scripts/makeSitemap.py",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "jest": {
     "globals": {
@@ -172,5 +175,6 @@
     "last 4 versions",
     "Firefox ESR",
     "not ie < 9"
-  ]
+  ],
+  "snyk": true
 }
