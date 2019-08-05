@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Alert from 'components/Contentful/Alert/presenter'
-import Link from 'components/Interactive/Link'
+import LibMarkdown from 'components/LibMarkdown'
 import { Provider } from 'react-redux'
 import { MemoryRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
@@ -37,18 +37,16 @@ describe('components/Alert', () => {
             {
               startTime: yesterday,
               endTime: tomorrow,
-              url:  'google.com',
               title: 'what went wrong',
-              description: 'the sky is falling',
+              description: '[the sky is falling](google.com)',
               className: 'alert',
               type: 'test_alert',
             },
             {
               startTime: yesterday,
               endTime: tomorrow,
-              url:  'sample.com',
               title: 'what went right',
-              description: 'the sun is shining',
+              description: '[the sun is shining](sample.com)',
               className: 'alert',
               type: 'test_alert',
             },
@@ -62,7 +60,7 @@ describe('components/Alert', () => {
     it('renders global alert(s)', () => {
       const alerts = props.alerts.test_alert
       alerts.forEach((alert) => {
-        expect(enzymeWrapper.containsMatchingElement(<Link className='description' to={alert.url}>{alert.description}</Link>)).toBe(true)
+        expect(enzymeWrapper.containsMatchingElement(<LibMarkdown className='description'>{alert.description}</LibMarkdown>)).toBe(true)
       })
     })
   })
@@ -74,9 +72,8 @@ describe('components/Alert', () => {
           test_alerts: [
             {
               startTime: yesterday,
-              url:  'google.com',
               title: 'what went wrong',
-              description: 'the sky is falling',
+              description: '[the sky is falling](google.com)',
               className: 'alert',
               type: 'test_alert',
             },
@@ -88,7 +85,7 @@ describe('components/Alert', () => {
 
     it('renders single alert', () => {
       const alert = props.alerts.test_alerts[0]
-      expect(enzymeWrapper.containsMatchingElement(<Link to={alert.url}>{alert.description}</Link>)).toBe(true);
+      expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>{alert.description}</LibMarkdown>)).toBe(true);
     })
   })
 })
