@@ -31,7 +31,7 @@ class TopFavorites extends Component {
             <React.Fragment key={obj.key}>
               <span className='link-arrow' />
               <p>
-                <Link to={obj.url ? obj.url : `/${obj.key}`} noTarget={!obj.url} aria-label={obj.title} className='item-title favorite-link'>
+                <Link to={obj.url ? obj.url : `/${obj.key}`} noTarget={!obj.url} aria-label={obj.title} className='favorite-link'>
                   {obj.title}
                 </Link>
               </p>

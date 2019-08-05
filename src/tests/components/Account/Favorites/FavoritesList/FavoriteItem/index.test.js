@@ -67,7 +67,7 @@ describe('components/Account/Favorites/FavoritesList/FavoriteItem.js', () => {
     expect(draggable.exists()).toBe(true)
     const fnResults = shallow(draggable.prop('children')({ draggableProps: {}, innerRef: '' }, { isDragging: false }))
 
-    const remove = fnResults.find('.remove-icon')
+    const remove = fnResults.find('.removeIcon')
     expect(remove.exists()).toBe(true)
     remove.simulate('click')
 
