@@ -14,7 +14,6 @@ const SearchScope = (props) => {
             <option value='bic'>Business Library</option>
             <option value='cslc'>Center for the Study of Language &amp; Cultures</option>
             <option value='chemphys'>Chemistry Physics Library</option>
-            <option value='engineering'>Engineering Library</option>
             <option value='ref'>Hesburgh Reference</option>
             <option value='kellog'>Kellogg Kroc Library</option>
             <option value='ndlaw'>Kresge Law Library</option>
