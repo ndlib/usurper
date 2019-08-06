@@ -38,7 +38,7 @@ const receiveFloor = (floor, response) => {
 }
 
 export const fetchFloor = (floor, preview) => {
-  const url = helper.getContentfulQueryUrl(`content_type=floor&fields.slug=${floor}`, preview)
+  const url = helper.getContentfulQueryUrl(`content_type=floor&fields.slug=${floor}&include=3`, preview)
 
   return dispatch => {
     dispatch(requestFloor(floor))
