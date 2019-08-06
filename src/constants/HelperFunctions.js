@@ -8,7 +8,7 @@ import * as statuses from 'constants/APIStatuses'
 import Config from 'shared/Configuration'
 
 export const filterList = (list, filterFields, filterValue) => {
-  const value = filterValue.toLowerCase()
+  const value = filterValue.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 
   return list.filter((item) => {
     let inFilter = false
@@ -19,7 +19,7 @@ export const filterList = (list, filterFields, filterValue) => {
         filterFields = [ filterFields ]
       }
       filterFields.forEach((field) => {
-        inFilter = inFilter || (item && item[field] && item[field].toLowerCase().indexOf(value) >= 0)
+        inFilter = inFilter || (item && item[field] && item[field].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').indexOf(value) >= 0)
       })
     }
     return inFilter
