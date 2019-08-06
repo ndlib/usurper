@@ -3860,43 +3860,6 @@ section.group .modal-footer button {
   padding-top: 20px;
   width: 100%;
 }
-.favorite-list .favorite-list-item:nth-of-type(-n + 4) {
-  background-color: #ebebe0;
-  border-left: 6px solid #7d7a0d;
-}
-.favorite-list .favorite-list-item:nth-of-type(n + 5) {
-  margin-left: 6px;
-}
-
-.favorite-list-item-draggable {
-  padding: 6px 12px 6px;
-  background-color: transparent;
-  font-family: GPMed, sans-serif;
-  font-weight: bold;
-}
-.favorite-list-item-draggable.dragging {
-  background-color: rgba(150, 150, 150, 0.1);
-}
-
-.favorite-list-item-draggable .handle,
-img.favorite {
-  -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-}
-
-.favorite-list-item-draggable .handle img {
-  vertical-align: middle;
-}
-
-.favorite-list-item-draggable :disabled,
-.favorite-list-item-draggable [disabled],
-.favorite-list-item-draggable [data-disabled] {
-  cursor: not-allowed;
-}
 
 .favorites-search {
   display: grid;
@@ -4160,12 +4123,6 @@ img.favorite {
 
 .subject-checkbox-container input {
   margin: 0 4px 0 0;
-}
-
-.remove-icon {
-  height: 1.3em;
-  margin-right: 0.5em;
-  cursor: pointer;
 }
 
 @media only screen and (min-width: 48em) {

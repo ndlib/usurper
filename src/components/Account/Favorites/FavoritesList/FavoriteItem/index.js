@@ -8,37 +8,43 @@ import FavoriteIcon from '../../FavoriteIcon'
 import moveIcon from 'static/images/move.png'
 import trashIcon from 'static/images/trashcan.svg'
 
+import styles from './style.module.css'
+
 const FavoriteItem = (props) => {
   const onRemove = () => {
     props.onRemoveFavorite(props.kind, props.id)
   }
 
   return (
-    <div className='favorite-list-item'>
+    <div className={styles.favoriteListItem}>
       <Draggable draggableId={props.id} index={props.index} isDragDisabled={props.dragDisabled}>
         {(provided, snapshot) => (
           <div
-            className={'favorite-list-item-draggable clearfix ' + (snapshot.isDragging ? 'dragging' : '')}
+            className={styles.favoriteListItemDraggable + ' clearfix ' + (snapshot.isDragging ? 'dragging' : '')}
             {...provided.draggableProps} ref={provided.innerRef}
           >
-            <FavoriteIcon
-              kind={props.kind}
-              isFavorited
-              data={[ { key: props.id } ]}
-              removeFavorite={props.onRemoveFavorite}
-              disabled={!provided.dragHandleProps}
-            />
-            <Link
-              to={props.url ? props.url : `/${props.id}`}
-              aria-label={props.title}
-              className='item-title favorite-link'
-              target='_blank'
-              rel='noopener noreferrer'
-            >{props.title}</Link>
-            <span className='handle fright' disabled={!provided.dragHandleProps} {...provided.dragHandleProps}>
-              <img src={moveIcon} alt='☰' />
-            </span>
-            <img src={trashIcon} className='fright remove-icon' alt='X' title='Remove' onClick={onRemove} />
+            <div className={styles.leftSide}>
+              <FavoriteIcon
+                kind={props.kind}
+                isFavorited
+                data={[ { key: props.id } ]}
+                removeFavorite={props.onRemoveFavorite}
+                disabled={!provided.dragHandleProps}
+              />
+              <Link
+                to={props.url ? props.url : `/${props.id}`}
+                aria-label={props.title}
+                className={styles.title + ' favorites-link'}
+                target='_blank'
+                rel='noopener noreferrer'
+              >{props.title}</Link>
+            </div>
+            <div className={styles.rightSide}>
+              <img src={trashIcon} className={styles.removeIcon} alt='X' title='Remove' onClick={onRemove} />
+              <span className={styles.handle} disabled={!provided.dragHandleProps} {...provided.dragHandleProps}>
+                <img src={moveIcon} alt='☰' />
+              </span>
+            </div>
           </div>
         )}
       </Draggable>

@@ -1,0 +1,60 @@
+.favoriteListItem:nth-of-type(-n + 4) {
+  background-color: #ebebe0;
+  border-left: 6px solid #7d7a0d;
+}
+.favoriteListItem:nth-of-type(n + 5) {
+  margin-left: 6px;
+}
+
+.favoriteListItemDraggable {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6px 12px 6px;
+  background-color: transparent;
+  font-family: GPMed, sans-serif;
+  font-weight: bold;
+}
+.favoriteListItemDraggable.dragging {
+  background-color: rgba(150, 150, 150, 0.1);
+}
+
+.favoriteListItemDraggable .leftSide {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.favoriteListItemDraggable .rightSide {
+  flex: 0 0 auto;
+  margin-left: 0.5em;
+  vertical-align: middle;
+}
+
+.favoriteListItemDraggable :disabled,
+.favoriteListItemDraggable [disabled],
+.favoriteListItemDraggable [data-disabled] {
+  cursor: not-allowed;
+}
+
+.removeIcon {
+  height: 1.3em;
+  margin-right: 0.5em;
+  cursor: pointer;
+}
+
+.handle,
+.removeIcon {
+  vertical-align: top;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+.handle img {
+  vertical-align: middle;
+}
