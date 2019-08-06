@@ -30,7 +30,7 @@ const ManageFavorites = (props) => {
         { props.kind !== KIND.subjects && (
           <div className='row'>
             <div className='col-xs-12 col-sm-12 col-md-10 col-lg-9'>
-              <Search kind={props.kind} placeholder={'Add ' + props.title} buttonText={'Search ' + props.title} existingFavorites={props.favorited} onAddFavorite={props.onAddFavorite} disabled={saving} />
+              <Search kind={props.kind} placeholder={`Search for ${props.title.toLowerCase()} by title`} buttonText='Search' existingFavorites={props.favorited} onAddFavorite={props.onAddFavorite} disabled={saving} />
             </div>
           </div>
         )}

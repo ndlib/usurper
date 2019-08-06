@@ -96,8 +96,8 @@ class DatabaseStep extends Component {
             <span className='d-xs-none'>Add additional databases.</span>
             <Search
               kind={KIND.databases}
-              placeholder={'Add Databases'}
-              buttonText={'Search Databases'}
+              placeholder='Search for databases by title'
+              buttonText='Search'
               existingFavorites={this.state.listItems}
               onAddFavorite={this.onAddFavorite}
             />
