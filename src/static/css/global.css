@@ -3095,16 +3095,6 @@ line-height: 2em;
   line-height: 2em;
 }
 
-.moreinfo {
-  display: inline-block;
-  padding-left: 22px;
-  background-image: url("../images/more2.svg");
-  background-size: 18px;
-  background-repeat: no-repeat;
-  background-position: 0px 3px;
-  line-height: 1.5em;
-}
-
 @media screen and (max-width: 620px) {
   label[for="q"]::after, .uSearchBox label::after {
     top: 10px;

@@ -37,8 +37,13 @@ const Loaded = (props) => {
             label='Database Search'
           />
           <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
-          { fullActiveSubjects.length > 0 && (
-            <ActiveFiltersList subjects={fullActiveSubjects} removeSubjectFromFilter={props.removeSubjectFromFilter} />
+          { (fullActiveSubjects.length > 0 || props.letterFilter) && (
+            <ActiveFiltersList
+              subjects={fullActiveSubjects}
+              letter={props.letterFilter}
+              removeSubjectFromFilter={props.removeSubjectFromFilter}
+              removeLetterFilter={props.removeLetterFilter}
+            />
           )}
           <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
         </div>
@@ -72,7 +77,7 @@ const ListPresenter = (props) => {
 
 Loaded.propTypes = {
   list: PropTypes.array.isRequired,
-  letter: PropTypes.string,
+  letterFilter: PropTypes.string,
   assistText: PropTypes.string,
   filterValue: PropTypes.string,
   onFilterChange: PropTypes.func,
@@ -80,6 +85,7 @@ Loaded.propTypes = {
   activeSubjects: PropTypes.array,
   onSubjectFilterApply: PropTypes.func,
   removeSubjectFromFilter: PropTypes.func,
+  removeLetterFilter: PropTypes.func,
   history: PropTypes.object,
 }
 

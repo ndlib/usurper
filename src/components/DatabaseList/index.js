@@ -59,6 +59,7 @@ export class DatabaseListContainer extends Component {
     this.onSubjectFilterApply = this.onSubjectFilterApply.bind(this)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
     this.removeSubjectFromFilter = this.removeSubjectFromFilter.bind(this)
+    this.removeLetterFilter = this.removeLetterFilter.bind(this)
   }
 
   checkFullyLoaded () {
@@ -157,6 +158,10 @@ export class DatabaseListContainer extends Component {
     this.onSubjectFilterApply(newSubjects)
   }
 
+  removeLetterFilter () {
+    return '' // TODO
+  }
+
   shouldComponentUpdate (nextProps, nextState) {
     const currentStatusChanged = (this.props.currentLetter !== nextProps.currentLetter ||
       this.props.allLettersStatus !== nextProps.allLettersStatus)
@@ -184,7 +189,7 @@ export class DatabaseListContainer extends Component {
 
     return <ListPresenter
       list={data}
-      letter={letter}
+      letterFilter={letter}
       status={status}
       filterValue={this.state.filterValue}
       onFilterChange={this.onFilterChange}
@@ -193,6 +198,7 @@ export class DatabaseListContainer extends Component {
       activeSubjects={this.props.activeSubjects}
       onSubjectFilterApply={this.onSubjectFilterApply}
       removeSubjectFromFilter={this.removeSubjectFromFilter}
+      removeLetterFilter={this.removeLetterFilter}
       history={this.props.history}
     />
   }
