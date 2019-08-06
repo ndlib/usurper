@@ -20,8 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export class SidebarContainer extends Component {
   componentDidMount () {
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(this.props.cfStatic.status) ||
-    this.props.cfStatic.slug !== this.props.slug) {
+    if (this.props.cfStatic.status === statuses.NOT_FETCHED || this.props.cfStatic.slug !== this.props.slug) {
       this.props.fetchSidebar(this.props.slug, this.props.preview)
     }
   }

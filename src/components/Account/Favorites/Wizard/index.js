@@ -58,7 +58,7 @@ class Wizard extends Component {
     this.body = this.body.bind(this)
     this.isLoading = this.isLoading.bind(this)
 
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(props.cfSubjects.status) || typy(props, 'cfSubjects.depth').safeNumber < 2) {
+    if (props.cfSubjects.status === statuses.NOT_FETCHED || typy(props, 'cfSubjects.depth').safeNumber < 2) {
       props.fetchSubjects(props.preview, 3)
     }
 
@@ -69,7 +69,7 @@ class Wizard extends Component {
       { status: props.favoritesStatus, action: props.getAllFavorites },
     ]
     fetchConditions.forEach(condition => {
-      if ([statuses.NOT_FETCHED, statuses.ERROR].includes(condition.status)) {
+      if (condition.status === statuses.NOT_FETCHED) {
         condition.action()
       }
     })

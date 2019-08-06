@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export class LibrariansContainer extends Component {
   componentDidMount () {
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(this.props.librarianInfo.status) ||
+    if (this.props.librarianInfo.status === statuses.NOT_FETCHED ||
       (this.props.librarianInfo.netids && !this.props.netids.equals(this.props.librarianInfo.netids))) {
       this.props.fetchLibrarians(this.props.netids)
     }

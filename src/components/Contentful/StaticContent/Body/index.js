@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export class BodyContainer extends Component {
   componentDidMount () {
-    if ([statuses.NOT_FETCHED, statuses.ERROR].includes(this.props.cfStatic.status) ||
+    if (this.props.cfStatic.status === statuses.NOT_FETCHED ||
     this.props.cfStatic.slug !== this.props.slug) {
       this.props.fetchSidebar(this.props.slug, this.props.preview)
     }

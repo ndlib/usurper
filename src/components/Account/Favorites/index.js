@@ -62,8 +62,7 @@ class FavoritesContainer extends Component {
       { status: this.props.cfBranches.status, requiresLogin: false, action: this.props.fetchBranches },
     ]
     fetchConditions.forEach(condition => {
-      if ([statuses.NOT_FETCHED, statuses.ERROR].includes(condition.status) &&
-      (!condition.requiresLogin || this.props.loggedIn)) {
+      if (condition.status === statuses.NOT_FETCHED && (!condition.requiresLogin || this.props.loggedIn)) {
         condition.action()
       }
     })

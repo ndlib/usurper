@@ -49,7 +49,7 @@ const combineState = (inArr) => {
   inArr.forEach((type) => {
     if (type.state === statuses.FETCHING) {
       outObj.loading = true
-    } else if ([statuses.NOT_FETCHED, statuses.ERROR].includes(type.state)) {
+    } else if (type.state === statuses.NOT_FETCHED) {
       outObj.needToFetch = true
     }
     if (type.items) {
