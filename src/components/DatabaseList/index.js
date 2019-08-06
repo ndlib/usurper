@@ -52,7 +52,7 @@ export class DatabaseListContainer extends Component {
     this.state = {
       filterValue: '',
       filteredList: [],
-      assistText: '',
+      assistText: 'All Databases',
     }
 
     this.onFilterChange = this.onFilterChange.bind(this)

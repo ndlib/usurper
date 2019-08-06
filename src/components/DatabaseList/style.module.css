@@ -1,11 +1,13 @@
-@media screen and (max-width: 980px) {
+.sideNav {
+  order: -1;
+}
+.alphabet {
+  display: inline;
+}
+
+@media screen and (min-width: 62em) {
   .sideNav {
-    position: relative !important;
-    transform: translateX(0) !important;
-    width: 100% !important;
-  }
-  .alphabet {
-    display: inline;
+    order: 2;
   }
 }
 
@@ -114,4 +116,16 @@
   height: 1.3em;
   width: 1.3em;
   vertical-align: middle
+}
+
+.navHeader {
+  background-color: #0C2340;
+  color: #fff;
+  display: inline-block;
+  line-height: 20px;
+  padding: 10px 20px;
+  margin: 0;
+  font-size: 1em;
+  font-family: GPMed, sans-serif;
+  width: 100%;
 }

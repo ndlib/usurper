@@ -15,10 +15,7 @@ const Databases = (props) => {
   })
 
   return (
-    <section
-      aria-label={`List of all "${props.titleLabel}" Databases`}
-      className={styles.dbList}
-    >
+    <section aria-label='List of databases' className={styles.dbList}>
       { filteredList.length
         ? filteredList.map((item) => (
           <DatabaseSummary key={item.sys.id} item={item} onSubjectFilterApply={props.onSubjectFilterApply} />
@@ -38,7 +35,6 @@ Databases.propTypes = {
       id: PropTypes.string,
     }),
   })).isRequired, // NOTE: These should be pre-filtered
-  titleLabel: PropTypes.string,
   filterValue: PropTypes.string,
   subjectFilter: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSubjectFilterApply: PropTypes.func,

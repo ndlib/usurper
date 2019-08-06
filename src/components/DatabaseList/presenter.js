@@ -19,28 +19,19 @@ import Config from 'shared/Configuration'
 import styles from './style.module.css'
 
 const Loaded = (props) => {
-  const titleLabel = props.filterValue ? `SEARCH - ${props.filterValue.toUpperCase()}` : props.letter.toUpperCase()
-  const openGraphDesc = (props.filterValue ? 'Search results for ' : 'Databases with the letter ') + titleLabel
+  const titleLabel = 'Databases' + (props.filterValue ? `: SEARCH - ${props.filterValue.toUpperCase()}` : '')
+  const openGraphDesc = (props.filterValue ? 'Search results for ' + props.filterValue : 'Databases matching filter')
   const fullActiveSubjects = props.subjects.filter(sub => props.activeSubjects.includes(sub.sys.id))
   return (
     <section className='container-fluid content-area'>
-      <PageTitle title={'Databases: ' + titleLabel} />
-      <OpenGraph title={'Databases: ' + titleLabel} description={openGraphDesc} image={false} />
+      <PageTitle title={titleLabel} />
+      <OpenGraph title={titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
-      <div className='row reverse'>
-        <div className={'col-xs-12 col-md-4 ' + styles.sideNav}>
-          <Alphabet history={props.history} />
-          { Config.features.subjectFilteringEnabled && (
-            <SubjectFacets
-              subjects={props.subjects}
-              activeSubjects={props.activeSubjects}
-              onSubjectFilterApply={props.onSubjectFilterApply}
-            />
-          )}
-        </div>
+      <div className='row'>
         <div className='col-md-8'>
           <FilterBox
-            title='Search All Databases by Title: '
+            htag='2'
+            title='Search Databases by Title: '
             value={props.filterValue}
             onChange={props.onFilterChange}
             label='Database Search'
@@ -50,6 +41,16 @@ const Loaded = (props) => {
             <ActiveFiltersList subjects={fullActiveSubjects} removeSubjectFromFilter={props.removeSubjectFromFilter} />
           )}
           <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
+        </div>
+        <div className={'col-xs-12 col-md-4 ' + styles.sideNav}>
+          <Alphabet history={props.history} />
+          { Config.features.subjectFilteringEnabled && (
+            <SubjectFacets
+              subjects={props.subjects}
+              activeSubjects={props.activeSubjects}
+              onSubjectFilterApply={props.onSubjectFilterApply}
+            />
+          )}
         </div>
       </div>
     </section>

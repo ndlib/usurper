@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './style.module.css'
+import parentStyles from '../style.module.css'
 
 const SubjectFacets = (props) => {
   const displaySubjects = []
@@ -23,7 +24,7 @@ const SubjectFacets = (props) => {
   return (
     <aside aria-label='Select Subjects to Filter Databases' role='navigation'>
       <div className='group'>
-        <span className='nav-header'>Filter by Subject</span>
+        <span className={parentStyles.navHeader}>Filter by Subject</span>
         <div className={styles.subjectFacets}>
           {
             displaySubjects.map(subject => (
