@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2019.16](https://github.com/ndlib/usurper/tree/v2019.16) "Simple Satisfaction"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.15...v2019.16)
+
+### Bug Fixes
+- Fixed alerts sometimes displaying twice. [#661](https://github.com/ndlib/usurper/pull/661)
+- Fixed service points not showing on floor map pages. [#664](https://github.com/ndlib/usurper/pull/664)
+- Fixed layout on favorites item lists on small window sizes. [#666](https://github.com/ndlib/usurper/pull/666)
+
+### Other
+- Removed Engineering Library from search options. [#667](https://github.com/ndlib/usurper/pull/667)
+
 ## [v2019.15](https://github.com/ndlib/usurper/tree/v2019.15) "Friendly Fiesta"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.14...v2019.15)
 
