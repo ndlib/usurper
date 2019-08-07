@@ -5,7 +5,7 @@ import typy from 'typy'
 import styles from './style.module.css'
 
 const FilterBox = (props) => {
-  const hNum = typy(props.htag).isNumber ? props.htag : parseInt(props.htag.replace('h', ''))
+  const hNum = typy(props.htag).isNumber ? props.htag : parseInt(props.htag.replace('h', ''), 10)
   const headerTextEl = React.createElement((hNum > 0 && hNum <= 6) ? ('h' + hNum) : 'span', {
     className: styles.headerText,
   }, props.title)

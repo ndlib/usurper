@@ -230,9 +230,6 @@ DatabaseListContainer.propTypes = {
     ]),
     pathname: PropTypes.string,
   }),
-  match: PropTypes.shape({
-    params: PropTypes.object,
-  }),
   history: PropTypes.object,
 }
 
