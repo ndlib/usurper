@@ -2455,6 +2455,10 @@ main h2, main h3, main h4, main h5 {
   line-height: 1.5em;
 }
 
+main div > h2:first-child {
+  margin-top: 0;
+}
+
 h3:first-child {
 	margin-top: 0;
 }
@@ -3831,6 +3835,12 @@ img.favorite.white {
 .group.favorites .viewMore {
   margin: 20px;
   width: 250px;
+}
+
+.style_dbSubject__2ESmF {
+	color: #fff;
+	background: #417d8b;
+	border: none;
 }
 
 section.group button {
