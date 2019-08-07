@@ -26,6 +26,8 @@ describe('components/DatabaseList/presenter.js', () => {
         databaseFavorites: [],
         subjects: [],
         activeSubjects: [],
+        onSubjectFilterApply: jest.fn(),
+        onLetterFilterApply: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -85,6 +87,8 @@ describe('components/DatabaseList/presenter.js', () => {
         }],
         subjects: [],
         activeSubjects: ['test'],
+        onSubjectFilterApply: jest.fn(),
+        onLetterFilterApply: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -98,13 +102,13 @@ describe('components/DatabaseList/presenter.js', () => {
     })
 
     it('should render an Alphabet component for filtering', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Alphabet />)).toBe(true)
+      expect(enzymeWrapper.find(Alphabet).exists()).toBe(true)
     })
 
     it('should have proper page title', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<PageTitle title={'Databases: ' + props.letter.toUpperCase()} />))
-        .toBe(true)
+      const titleElement = enzymeWrapper.find(PageTitle)
+      expect(titleElement.exists()).toBe(true)
+      expect(titleElement.props().title).toEqual(expect.stringMatching('Databases'))
     })
   })
 
@@ -117,6 +121,8 @@ describe('components/DatabaseList/presenter.js', () => {
         databaseFavorites: [],
         subjects: [],
         activeSubjects: [],
+        onSubjectFilterApply: jest.fn(),
+        onLetterFilterApply: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -130,8 +136,9 @@ describe('components/DatabaseList/presenter.js', () => {
     })
 
     it('should have proper page title', () => {
-      const have = <PageTitle title={'Databases: ' + props.letter.toUpperCase()} />
-      expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
+      const titleElement = enzymeWrapper.find(PageTitle)
+      expect(titleElement.exists()).toBe(true)
+      expect(titleElement.props().title).toEqual(expect.stringMatching('Databases'))
     })
   })
 
@@ -144,6 +151,8 @@ describe('components/DatabaseList/presenter.js', () => {
         databaseFavorites: [],
         subjects: [],
         activeSubjects: [],
+        onSubjectFilterApply: jest.fn(),
+        onLetterFilterApply: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })

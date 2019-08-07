@@ -103,7 +103,8 @@ export class DatabaseListContainer extends Component {
     const value = filterValue.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
     const searchFiltered = helper.filterList(list, 'searchBlob', value)
     return (!this.props.filterLetter) ? searchFiltered : searchFiltered.filter(item => {
-      return item.fields.title.toLowerCase().startsWith(this.props.filterLetter)
+      return item.fields.title.toLowerCase().startsWith(this.props.filterLetter) ||
+        item.fields.databaseLetter === this.props.filterLetter
     })
   }
 
