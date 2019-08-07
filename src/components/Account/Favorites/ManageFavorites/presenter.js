@@ -55,12 +55,12 @@ const ManageFavorites = (props) => {
 }
 
 ManageFavorites.propTypes = {
-  saveState: PropTypes.string,
+  saveState: PropTypes.string.isRequired,
   modified: PropTypes.bool,
   message: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   updateText: PropTypes.string,
-  kind: PropTypes.string,
+  kind: PropTypes.string.isRequired,
   favorited: PropTypes.array,
   updateList: PropTypes.func,
   onAddFavorite: PropTypes.func,

@@ -26,6 +26,7 @@ describe('components/Account/Favorites/ManageFavorites/presenter.js', () => {
       props = {
         saveState: statuses.SUCCESS,
         kind: KIND.databases,
+        title: 'Databases',
         favorited: ['MySQL', 'DynamoDB', 'MongoDB'],
       }
       enzymeWrapper = setup(props)
@@ -49,6 +50,7 @@ describe('components/Account/Favorites/ManageFavorites/presenter.js', () => {
       props = {
         saveState: statuses.FETCHING,
         kind: KIND.databases,
+        title: 'Databases',
         favorited: ['MySQL', 'DynamoDB', 'MongoDB'],
       }
       enzymeWrapper = setup(props)
@@ -73,6 +75,7 @@ describe('components/Account/Favorites/ManageFavorites/presenter.js', () => {
       props = {
         saveState: statuses.SUCCESS,
         kind: KIND.subjects,
+        title: 'Subjects',
         favorited: ['korean', 'japanese', 'german'],
       }
       enzymeWrapper = setup(props)
