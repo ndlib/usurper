@@ -2426,6 +2426,11 @@ main blockquote p {
   overflow: hidden;
 }
 
+.alert .description {
+  margin: 0;
+  line-height: normal;
+}
+
 .content-area, .content {
   position: relative;
   padding-top: 40px;

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'components/Interactive/Link'
 import { withErrorBoundary } from 'components/ErrorBoundary'
+import LibMarkdown from 'components/LibMarkdown'
 const Alert = ({ alerts }) => {
   return (
     <div className='alerts'>
@@ -17,9 +17,7 @@ const Alert = ({ alerts }) => {
                 currentAllerts.map((alert, index) => {
                   return (
                     <div className='width' key={key + '_' + alert.url + '_' + index}>
-                      <Link className='description' to={alert.url}>
-                        { alert.description }
-                      </Link>
+                      <LibMarkdown className='description'>{ alert.description }</LibMarkdown>
                     </div>
                   )
                 })
