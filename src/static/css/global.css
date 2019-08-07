@@ -2429,6 +2429,7 @@ main blockquote p {
 .alert .description {
   margin: 0;
   line-height: normal;
+  max-width: 100%;
 }
 
 .content-area, .content {
