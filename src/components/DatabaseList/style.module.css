@@ -81,18 +81,16 @@
 }
 
 .letter {
-  width: 1em;
-  text-align: center;
-}
-
-.letter a {
-  text-decoration: none;
-  padding: .6em;
+  color: #417d8b;
+  cursor: pointer;
   display: inline-block;
   font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  padding: .6em;
 }
 
-.letter a:hover {
+.letter:hover {
   background: rgba(0, 0, 0, .3)
 }
 

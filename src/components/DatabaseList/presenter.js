@@ -37,10 +37,10 @@ const Loaded = (props) => {
             label='Database Search'
           />
           <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
-          { (fullActiveSubjects.length > 0 || props.letterFilter) && (
+          { (fullActiveSubjects.length > 0 || props.filterLetter) && (
             <ActiveFiltersList
               subjects={fullActiveSubjects}
-              letter={props.letterFilter}
+              letter={props.filterLetter}
               removeSubjectFromFilter={props.removeSubjectFromFilter}
               removeLetterFilter={props.removeLetterFilter}
             />
@@ -48,7 +48,7 @@ const Loaded = (props) => {
           <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
         </div>
         <div className={'col-xs-12 col-md-4 ' + styles.sideNav}>
-          <Alphabet history={props.history} />
+          <Alphabet history={props.history} onLetterFilterApply={props.onLetterFilterApply} />
           { Config.features.subjectFilteringEnabled && (
             <SubjectFacets
               subjects={props.subjects}
@@ -77,13 +77,14 @@ const ListPresenter = (props) => {
 
 Loaded.propTypes = {
   list: PropTypes.array.isRequired,
-  letterFilter: PropTypes.string,
+  filterLetter: PropTypes.string,
   assistText: PropTypes.string,
   filterValue: PropTypes.string,
   onFilterChange: PropTypes.func,
   subjects: PropTypes.array,
   activeSubjects: PropTypes.array,
   onSubjectFilterApply: PropTypes.func,
+  onLetterFilterApply: PropTypes.func,
   removeSubjectFromFilter: PropTypes.func,
   removeLetterFilter: PropTypes.func,
   history: PropTypes.object,

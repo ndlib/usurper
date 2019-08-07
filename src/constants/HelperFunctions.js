@@ -132,3 +132,28 @@ export const getContentfulQueryUrl = (query, preview = false, secure = false) =>
   }
   return url
 }
+
+export const buildQueryString = (existingQuery, key, values) => {
+  let queryString = ''
+  // Add any query parameters that were already part of the url besides subject filters
+  if (typy(existingQuery).isString) {
+    const oldQuery = existingQuery.replace('?', '').split('&')
+    oldQuery.forEach(item => {
+      const pair = item.split('=')
+      if (pair.length === 2 && pair[0].toLowerCase() !== key.toLowerCase()) {
+        queryString += `${queryString.length ? '&' : '?'}${item}`
+      }
+    })
+  }
+
+  // Now URL encode and add each value using the specified key, ignoring duplicates
+  typy(values).safeArray.forEach(value => {
+    if (value) {
+      const encoded = `${key}=${encodeURIComponent(value)}`
+      if (queryString.indexOf(encoded) < 0) {
+        queryString += `${queryString.length ? '&' : '?'}${encoded}`
+      }
+    }
+  })
+  return queryString
+}
