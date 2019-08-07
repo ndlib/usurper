@@ -7,21 +7,23 @@ import itemStyles from '../../FavoritesList/FavoriteItem/style.module.css'
 const SearchResult = (props) => {
   return (
     <div className={itemStyles.favoriteListItemDraggable + ' clearfix'}>
-      <FavoriteIcon
-        kind={props.kind}
-        data={[
-          {
-            key: props.id,
-            title: props.title,
-            url: props.url,
-          },
-        ]}
-        addFavorite={props.onAddFavorite}
-        disabled={props.disabled}
-      />
-      <span className='link-like' onClick={() => props.onAddFavorite(props.kind, props.id, props.title, props.url)}>
-        {props.title}
-      </span>
+      <div className={itemStyles.leftSide}>
+        <FavoriteIcon
+          kind={props.kind}
+          data={[
+            {
+              key: props.id,
+              title: props.title,
+              url: props.url,
+            },
+          ]}
+          addFavorite={props.onAddFavorite}
+          disabled={props.disabled}
+        />
+        <span className='link-like' onClick={() => props.onAddFavorite(props.kind, props.id, props.title, props.url)}>
+          {props.title}
+        </span>
+      </div>
     </div>
   )
 }
