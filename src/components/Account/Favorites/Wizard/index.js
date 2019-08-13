@@ -263,7 +263,7 @@ export const mapStateToProps = (state, ownProps) => {
   const databases = []
   for (const subject of typy(cfSubjects, 'data').safeArray) {
     for (const resource of typy(subject, 'fields.page.fields.relatedResources').safeArray) {
-      if (!databases.find((search) => search.sys.id === resource.sys.id)) {
+      if (!databases.find((search) => typy(search, 'sys.id').safeString === typy(resource, 'sys.id').safeString)) {
         databases.push(resource)
       }
     }
@@ -272,7 +272,7 @@ export const mapStateToProps = (state, ownProps) => {
       for (const resource of typy(section, 'fields.links').safeArray.filter(link => {
         return typy(link, 'sys.contentType.sys.id').safeString === 'resource'
       })) {
-        if (!databases.find((search) => search.sys.id === resource.sys.id)) {
+        if (!databases.find((search) => typy(search, 'sys.id').safeString === typy(resource, 'sys.id').safeString)) {
           databases.push(resource)
         }
       }
