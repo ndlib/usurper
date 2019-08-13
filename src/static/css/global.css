@@ -2429,6 +2429,7 @@ main blockquote p {
 .alert .description {
   margin: 0;
   line-height: normal;
+  max-width: 100%;
 }
 
 .content-area, .content {
@@ -2453,6 +2454,10 @@ main h2, main h3, main h4, main h5 {
   margin-top: 36px;
   margin-bottom: .5em;
   line-height: 1.5em;
+}
+
+main div > h2:first-child {
+  margin-top: 0;
 }
 
 h3:first-child {
