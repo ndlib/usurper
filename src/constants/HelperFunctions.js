@@ -8,7 +8,7 @@ import * as statuses from 'constants/APIStatuses'
 import Config from 'shared/Configuration'
 
 export const filterList = (list, filterFields, filterValue) => {
-  const value = filterValue.toLowerCase()
+  const value = filterValue.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 
   return list.filter((item) => {
     let inFilter = false
@@ -19,7 +19,7 @@ export const filterList = (list, filterFields, filterValue) => {
         filterFields = [ filterFields ]
       }
       filterFields.forEach((field) => {
-        inFilter = inFilter || (item && item[field] && item[field].toLowerCase().indexOf(value) >= 0)
+        inFilter = inFilter || (item && item[field] && item[field].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').indexOf(value) >= 0)
       })
     }
     return inFilter
@@ -131,4 +131,29 @@ export const getContentfulQueryUrl = (query, preview = false, secure = false) =>
     url += `&preview=${preview}`
   }
   return url
+}
+
+export const buildQueryString = (existingQuery, key, values) => {
+  let queryString = ''
+  // Add any query parameters that were already part of the url besides subject filters
+  if (typy(existingQuery).isString) {
+    const oldQuery = existingQuery.replace('?', '').split('&')
+    oldQuery.forEach(item => {
+      const pair = item.split('=')
+      if (pair.length === 2 && pair[0].toLowerCase() !== key.toLowerCase()) {
+        queryString += `${queryString.length ? '&' : '?'}${item}`
+      }
+    })
+  }
+
+  // Now URL encode and add each value using the specified key, ignoring duplicates
+  typy(values).safeArray.forEach(value => {
+    if (value) {
+      const encoded = `${key}=${encodeURIComponent(value)}`
+      if (queryString.indexOf(encoded) < 0) {
+        queryString += `${queryString.length ? '&' : '?'}${encoded}`
+      }
+    }
+  })
+  return queryString
 }

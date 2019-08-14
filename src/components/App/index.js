@@ -88,7 +88,7 @@ const App = (props) => {
               )}
               <Route exact path='/subjects' component={SubjectList} />
               <Route exact path='/database/:id' component={DatabasePage} />
-              <Route exact path='/databases/:id' component={DatabaseList} />
+              <Route exact path='/databases' component={DatabaseList} />
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
               <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
               <Route exact path='/search' component={SearchPage} />

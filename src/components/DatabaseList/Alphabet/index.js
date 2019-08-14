@@ -1,22 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'components/Interactive/Link'
 import styles from '../style.module.css'
 
 const Alphabet = (props) => {
   return (
     <aside aria-label='Select Databases by First Letter' role='navigation'>
       <div className='group'>
-        <span className='nav-header'>Filter by First Letter</span>
+        <span className={styles.navHeader}>Filter by First Letter</span>
         <div className={styles.alphabet}>
           {
-            'abcdefghijklmnopqrstuvwxyz#'.split('').map((item) => {
+            'abcdefghijklmnopqrstuvwxyz#'.split('').map(letter => {
               return (
-                <span key={'letter_link_' + item} className={styles.letter}>
-                  <Link
-                    to={'/databases/' + encodeURIComponent(item) + props.history.location.search}
-                    ariaLabel={'All "' + item.toUpperCase() + '" Databases'}
-                  >{ item.toUpperCase() }</Link>
+                <span
+                  key={'letter_link_' + letter}
+                  className={styles.letter}
+                  aria-label={`All "${letter.toUpperCase()}" Databases`}
+                  onClick={() => props.onLetterFilterApply(letter)}
+                >
+                  { letter.toUpperCase() }
                 </span>
               )
             })
@@ -28,6 +29,7 @@ const Alphabet = (props) => {
 }
 
 Alphabet.propTypes = {
+  onLetterFilterApply: PropTypes.func.isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({
       search: PropTypes.string,

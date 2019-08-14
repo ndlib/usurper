@@ -19,17 +19,36 @@ import Config from 'shared/Configuration'
 import styles from './style.module.css'
 
 const Loaded = (props) => {
-  const titleLabel = props.filterValue ? `SEARCH - ${props.filterValue.toUpperCase()}` : props.letter.toUpperCase()
-  const openGraphDesc = (props.filterValue ? 'Search results for ' : 'Databases with the letter ') + titleLabel
+  const titleLabel = 'Databases' + (props.filterValue ? `: SEARCH - ${props.filterValue.toUpperCase()}` : '')
+  const openGraphDesc = (props.filterValue ? 'Search results for ' + props.filterValue : 'Databases matching filter')
   const fullActiveSubjects = props.subjects.filter(sub => props.activeSubjects.includes(sub.sys.id))
   return (
     <section className='container-fluid content-area'>
-      <PageTitle title={'Databases: ' + titleLabel} />
-      <OpenGraph title={'Databases: ' + titleLabel} description={openGraphDesc} image={false} />
+      <PageTitle title={titleLabel} />
+      <OpenGraph title={titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
-      <div className='row reverse'>
+      <div className='row'>
+        <div className='col-md-8'>
+          <FilterBox
+            htag='2'
+            title='Search Databases by Title: '
+            value={props.filterValue}
+            onChange={props.onFilterChange}
+            label='Database Search'
+          />
+          <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
+          { (fullActiveSubjects.length > 0 || props.filterLetter) && (
+            <ActiveFiltersList
+              subjects={fullActiveSubjects}
+              letter={props.filterLetter}
+              removeSubjectFromFilter={props.removeSubjectFromFilter}
+              removeLetterFilter={props.removeLetterFilter}
+            />
+          )}
+          <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
+        </div>
         <div className={'col-xs-12 col-md-4 ' + styles.sideNav}>
-          <Alphabet history={props.history} />
+          <Alphabet history={props.history} onLetterFilterApply={props.onLetterFilterApply} />
           { Config.features.subjectFilteringEnabled && (
             <SubjectFacets
               subjects={props.subjects}
@@ -37,19 +56,6 @@ const Loaded = (props) => {
               onSubjectFilterApply={props.onSubjectFilterApply}
             />
           )}
-        </div>
-        <div className='col-md-8'>
-          <FilterBox
-            title='Search All Databases by Title: '
-            value={props.filterValue}
-            onChange={props.onFilterChange}
-            label='Database Search'
-          />
-          <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
-          { fullActiveSubjects.length > 0 && (
-            <ActiveFiltersList subjects={fullActiveSubjects} removeSubjectFromFilter={props.removeSubjectFromFilter} />
-          )}
-          <Databases titleLabel={titleLabel} subjectFilter={props.activeSubjects} {...props} />
         </div>
       </div>
     </section>
@@ -71,14 +77,16 @@ const ListPresenter = (props) => {
 
 Loaded.propTypes = {
   list: PropTypes.array.isRequired,
-  letter: PropTypes.string,
+  filterLetter: PropTypes.string,
   assistText: PropTypes.string,
   filterValue: PropTypes.string,
   onFilterChange: PropTypes.func,
   subjects: PropTypes.array,
   activeSubjects: PropTypes.array,
   onSubjectFilterApply: PropTypes.func,
+  onLetterFilterApply: PropTypes.func,
   removeSubjectFromFilter: PropTypes.func,
+  removeLetterFilter: PropTypes.func,
   history: PropTypes.object,
 }
 

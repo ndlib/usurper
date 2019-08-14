@@ -11,6 +11,7 @@ let enzymeWrapper
 
 describe('components/DatabaseList/Alphabet/index.js', () => {
   const props = {
+    onLetterFilterApply: jest.fn(),
     history: {
       location: {
         search: '?test=test'
@@ -30,22 +31,18 @@ describe('components/DatabaseList/Alphabet/index.js', () => {
     expect(enzymeWrapper.find('aside').exists()).toBe(true)
   })
 
-  it('renders a Link for each alphabet letter (and the # sign)', () => {
+  it('renders a clickable element for each alphabet letter (and the # sign)', () => {
     'abcdefghijklmnopqrstuvwxyz#'.split('').forEach((letter) => {
-      const have = <Link>{letter.toUpperCase()}</Link>
+      const have = <span>{letter.toUpperCase()}</span>
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
   })
 
-  it('maintains query parameters for link urls', () => {
-    // String ends with same query params as those passed in to props
-    const escapedInput = props.history.location.search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(escapedInput + '$')
+  it('applies filter when clicking a letter', () => {
+    const letterEl = enzymeWrapper.findWhere(el => el.hasClass('letter')).first()
+    expect(letterEl.exists()).toBe(true)
 
-    'abcdefghijklmnopqrstuvwxyz#'.split('').forEach((letter) => {
-      const found = enzymeWrapper.findWhere(el => el.type() === Link && el.props().to.startsWith(`/databases/${encodeURIComponent(letter)}`))
-      expect(found.exists()).toBe(true)
-      expect(found.props().to).toEqual(expect.stringMatching(regex))
-    })
+    letterEl.simulate('click')
+    expect(props.onLetterFilterApply).toHaveBeenCalledWith(letterEl.text().toLowerCase())
   })
 })

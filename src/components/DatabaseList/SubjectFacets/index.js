@@ -16,7 +16,7 @@ export class SubjectFacets extends Component {
     this.getFullSubjectFilters = this.getFullSubjectFilters.bind(this)
 
     this.state = {
-      resultsToShow: 5,
+      resultsToShow: 500, // Basically infinite. Left here in case this functionality is changed in the future.
       selectedSubjects: this.getFullSubjectFilters(),
     }
   }

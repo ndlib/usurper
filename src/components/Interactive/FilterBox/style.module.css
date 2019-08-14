@@ -1,3 +1,16 @@
+.headerText {
+  flex: 0 0 auto;
+  background-color: #0C2340;
+  color: #fff;
+  cursor: default;
+  display: inline-block;
+  line-height: 20px;
+  padding: 12px 20px 10px;
+  margin: 0;
+  font-size: 1em;
+  font-family: GPMed, sans-serif;
+}
+
 .filter {
   width: 100%;
   min-width: 288px;
@@ -11,17 +24,6 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
-}
-
-.filter label span {
-  flex: 0 0 auto;
-  color: #fff;
-  display: inline-block;
-  background-color: #0C2340;
-  line-height: 20px;
-  padding: 12px 20px 10px;
-  margin-bottom: 0;
-  font-size: 1em;
 }
 
 .filter input {

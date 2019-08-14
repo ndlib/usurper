@@ -12,12 +12,12 @@ const DatabaseSummary = (props) => {
     <section aria-label={props.item.fields.title} className={styles.dbSection}>
       <FavoriteIcon kind={KIND.databases} data={props.favoritesData} isFavorited={props.isFavorited} />
       <Link to={props.linkObject.heading.url} title={'Go to ' + props.item.fields.title} className='inline'>
-        <h2 className={styles.dbItemTitle}>{props.item.fields.title}</h2>
+        <h3 className={styles.dbItemTitle}>{props.item.fields.title}</h3>
       </Link>
       { props.item.fields.subjects.length > 0 && (
         <div aria-label='subjects'>
           {props.item.fields.subjects.map(subject => (
-            <span key={subject.sys.id} className={styles.dbSubject} onClick={() => props.applySubjectFilter(subject)}>
+            <span key={subject.sys.id} className={styles.itemTag} onClick={() => props.applySubjectFilter(subject)}>
               {subject.linkText}
             </span>
           ))}
@@ -31,7 +31,7 @@ const DatabaseSummary = (props) => {
       </div>
       <Link
         to={'/database/' + props.item.sys.id}
-        className='moreinfo'
+        className={styles.moreInfo}
         ariaLabel={'More Information about ' + props.item.fields.title}
       >More info</Link>
     </section>

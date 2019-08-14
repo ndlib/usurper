@@ -36,6 +36,7 @@ const validItem1 = {
   },
   fields: {
     title: '1 - first record',
+    databaseLetter: '#',
   },
   searchBlob: '1  first record',
 }
@@ -49,6 +50,7 @@ const validItem2 = {
   },
   fields: {
     title: '2 - middle record SEARCH',
+    databaseLetter: '#',
   },
   searchBlob: '2  middle record search',
 }
@@ -62,6 +64,7 @@ const validItem3 = {
   },
   fields: {
     title: '3 - third record SEARCH',
+    databaseLetter: '#',
   },
   searchBlob: '3  third record search',
 }
@@ -75,6 +78,7 @@ const validItem4 = {
   },
   fields: {
     title: '4 - last record',
+    databaseLetter: '#',
   },
   searchBlob: '4  last record',
 }
@@ -108,8 +112,7 @@ describe('components/DatabaseList/index.js', () => {
         cfSubjects: { status: statuses.NOT_FETCHED },
         fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
-        currentLetter: 'a',
-        allLettersStatus: statuses.NOT_FETCHED,
+        allLettersStatus: statuses.FETCHING,
         allDbs: [],
         location: {
           search: '?preview=true',
@@ -151,7 +154,7 @@ describe('components/DatabaseList/index.js', () => {
     })
 
     it('renders the DatabaseListPresenter that is fetching data', () => {
-      const have = <ListPresenter letter={props.currentLetter} status={statuses.FETCHING} />
+      const have = <ListPresenter status={statuses.FETCHING} />
 
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
@@ -164,7 +167,7 @@ describe('components/DatabaseList/index.js', () => {
         cfSubjects: { status: statuses.SUCCESS },
         fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
-        currentLetter: 'a',
+        filterLetter: 'a',
         allLettersStatus: statuses.SUCCESS,
         allDbs: [
           validItem4,
@@ -173,16 +176,11 @@ describe('components/DatabaseList/index.js', () => {
           validItem3,
         ],
         location: {
-          search: '?preview=true&subject=latin',
+          search: '?preview=true&subject=latin&letter=%23',
         },
         activeSubjects: [
           'latin',
         ],
-        match: {
-          params: {
-            id: 'a',
-          },
-        },
         getToken: jest.fn(),
       }
       enzymeWrapper = setup(props)
@@ -195,10 +193,10 @@ describe('components/DatabaseList/index.js', () => {
     it('renders the DatabaseListPresenter', () => {
       const have = (
         <ListPresenter
-          list={props.cfDatabases.a.data}
-          letter={props.currentLetter}
-          status={props.cfDatabases.a.status}
-          activeSubjects={['latin']}
+          list={props.allDbs}
+          filterLetter={props.filterLetter}
+          status={props.allLettersStatus}
+          activeSubjects={props.activeSubjects}
         />
       )
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
@@ -235,12 +233,7 @@ describe('components/DatabaseList/index.js', () => {
         }
         const ownProps = {
           location: {
-            search: '?preview=true&subject=latin&subject=french',
-          },
-          match: {
-            params: {
-              id: 'a',
-            },
+            search: '?preview=true&subject=latin&subject=french&letter=%23',
           },
           history: {
             push: jest.fn(),
@@ -278,29 +271,25 @@ describe('components/DatabaseList/index.js', () => {
         expect(instance.onSubjectFilterApply.mock.calls[0][0]).toHaveLength(activeSubjectCount - 1)
       })
 
-      it('should reset filter when letter changed', () => {
-        // Set up a filter value so we can ensure it is reset
-        enzymeWrapper.setState({
-          filterValue: 'test',
-        })
-        expect(enzymeWrapper.props().filterValue).toEqual('test')
+      it('should update history when filtering by letter', () => {
+        const instance = enzymeWrapper.instance()
+        instance.onLetterFilterApply('x')
+        expect(enzymeWrapper.props().history.push).toHaveBeenCalled()
+      })
 
-        // Now change the letter being requested by setting props
-        enzymeWrapper.setProps({
-          match: {
-            params: {
-              id: 'b',
-            },
-          },
-        })
-        expect(enzymeWrapper.props().filterValue).toBeFalsy()
+      it('should allow removing letter filter', () => {
+        const instance = enzymeWrapper.instance()
+
+        instance.onLetterFilterApply = jest.fn()
+        instance.removeLetterFilter()
+
+        expect(instance.onLetterFilterApply).toHaveBeenCalledWith(null)
       })
 
       it('should filter records when searching', () => {
         // Check what records are currently being returned. This will help us ensure our test is doing something
         const originalResults = enzymeWrapper.props().list
         expect(enzymeWrapper.props().list).toBeTruthy()
-
 
         // Search for the term "SEARCH" and make sure we get only the correct results based on our test data
         enzymeWrapper.instance().onFilterChange({
@@ -404,13 +393,8 @@ describe('components/DatabaseList/index.js', () => {
 
       it('should conglomerate status results', () => {
         const tempProps = {
-          match: {
-            params: {
-              id: 'a',
-            },
-          },
           location: {
-            search: '?preview=true',
+            search: '?preview=true&letter=a',
           },
           getToken: jest.fn(),
         }
@@ -474,51 +458,6 @@ describe('components/DatabaseList/index.js', () => {
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.SUCCESS)
       })
-    })
-  })
-
-  describe('letter.length > 1', () => {
-    beforeEach(() => {
-      props = {
-        cfDatabases: {
-          a: {
-            status: statuses.SUCCESS,
-            data: [{
-              sys: {
-                contentType: {
-                  sys: {
-                    id: 'page',
-                  },
-                },
-              },
-            }],
-          },
-        },
-        cfSubjects: { status: statuses.SUCCESS },
-        fetchSubjects: jest.fn(),
-        fetchLetter: jest.fn(),
-        currentLetter: 'ab',
-        allLettersStatus: 'test',
-        allDbs: [],
-        personal: {
-          login: {},
-          loggedIn: true,
-          label: 'label',
-        },
-        location: {
-          search: '?preview=true',
-        },
-        getToken: jest.fn(),
-      }
-      enzymeWrapper = setup(props)
-    })
-
-    afterEach(() => {
-      enzymeWrapper = undefined
-    })
-
-    it('should render PageNotFound', () => {
-      expect(enzymeWrapper.containsMatchingElement(<PageNotFound />)).toBe(true)
     })
   })
 })

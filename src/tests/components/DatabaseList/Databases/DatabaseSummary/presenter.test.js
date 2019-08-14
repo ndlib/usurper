@@ -58,7 +58,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
     })
 
     it('should display a heading with the database\'s title', () => {
-      const have = <h2>{props.item.fields.title}</h2>
+      const have = <h3>{props.item.fields.title}</h3>
       expect(enzymeWrapper.containsMatchingElement(have)).toBe(true)
     })
 
@@ -75,13 +75,13 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
       expect(props.item.fields.subjects.length).toBeGreaterThan(0)
 
       props.item.fields.subjects.forEach((subject) => {
-        const found = enzymeWrapper.findWhere(el => el.hasClass('dbSubject') && el.text() === subject.linkText)
+        const found = enzymeWrapper.findWhere(el => el.hasClass('itemTag') && el.text() === subject.linkText)
         expect(found.exists()).toBe(true)
       })
     })
 
     it('should apply filter when clicking subject', () => {
-      const found = enzymeWrapper.find('.dbSubject').first()
+      const found = enzymeWrapper.find('.itemTag').first()
       found.simulate('click')
       expect(props.applySubjectFilter).toHaveBeenCalled()
     })
