@@ -1,0 +1,18 @@
+.hideAlert {
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 4px;
+}
+
+.showHiddenBar {
+  color: white;
+  background-color: #002A5D;
+  padding: 0.25em;
+  text-align: right;
+}
+.showHiddenButton {
+  text-decoration: underline;
+  cursor: pointer;
+}
