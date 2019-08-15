@@ -71,7 +71,7 @@ export const mapEvents = (json) => {
 
         return {
           displayDate: startEndDate(start, end),
-          displayTime: startEndTime(start, end),
+          displayTime: entry.timeOverride ? entry.timeOverride : startEndTime(start, end),
           ...entry,
         }
       }
