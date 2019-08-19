@@ -5,7 +5,7 @@
 }
 
 .subject {
-  display: block;
+  display: flex;
   padding: 2px 4px;
 }
 
@@ -15,7 +15,6 @@
 
 .subjectLink {
   color: #417D8B;
-  line-height: 1.7em;
   text-decoration: none;
   padding: 4px;
 }
