@@ -11,6 +11,7 @@ export class SubjectFacets extends Component {
 
     this.showMore = this.showMore.bind(this)
     this.applyFilter = this.applyFilter.bind(this)
+    this.clearFilter = this.clearFilter.bind(this)
     this.onSubjectClick = this.onSubjectClick.bind(this)
     this.onCheckboxChanged = this.onCheckboxChanged.bind(this)
     this.getFullSubjectFilters = this.getFullSubjectFilters.bind(this)
@@ -44,6 +45,13 @@ export class SubjectFacets extends Component {
   applyFilter (overrideSubjects) {
     const selection = Array.isArray(overrideSubjects) ? overrideSubjects : this.state.selectedSubjects
     this.props.onSubjectFilterApply(selection)
+  }
+
+  clearFilter () {
+    const fullActiveSubjects = this.props.subjects.filter(subject => this.props.activeSubjects.includes(subject.sys.id))
+    this.setState({
+      selectedSubjects: fullActiveSubjects,
+    })
   }
 
   onSubjectClick (subject) {
@@ -89,6 +97,7 @@ export class SubjectFacets extends Component {
         resultsToShow={this.state.resultsToShow}
         showMore={this.showMore}
         applyFilter={this.applyFilter}
+        clearFilter={this.clearFilter}
         onSubjectClick={this.onSubjectClick}
         onCheckboxChanged={this.onCheckboxChanged}
       />
