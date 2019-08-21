@@ -83,6 +83,31 @@ describe('components/DatabaseList/SubjectFacets', () => {
     expect(enzymeWrapper.state().selectedSubjects).toEqual([ newSubject ])
   })
 
+  it('should clear changes to selected subjects when calling clearFilter', () => {
+    // Make sure our initial state is valid so we know the test is going to work
+    expect(enzymeWrapper.state().selectedSubjects.includes(subject2))
+    expect(!enzymeWrapper.state().selectedSubjects.includes(newSubject))
+
+    enzymeWrapper.setState({
+      selectedSubjects: [
+        subject1,
+        // subject2 is removed
+        subject3,
+        newSubject, // newly selected
+      ],
+    })
+
+    // State update should definitely work, but let's jsut make sure before proceeding to clear...
+    expect(!enzymeWrapper.state().selectedSubjects.includes(subject2))
+    expect(enzymeWrapper.state().selectedSubjects.includes(newSubject))
+
+    enzymeWrapper.instance().clearFilter()
+
+    // Now after clearing, make sure the state is back to how it started
+    expect(enzymeWrapper.state().selectedSubjects.includes(subject2))
+    expect(!enzymeWrapper.state().selectedSubjects.includes(newSubject))
+  })
+
   describe('onCheckboxChanged', () => {
     it('should add item when checked', () => {
       const instance = enzymeWrapper.instance()
