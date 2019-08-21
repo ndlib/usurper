@@ -49,6 +49,7 @@ describe('components/DatabaseList/SubjectFacets/presenter.js', () => {
       ],
       showMore: jest.fn(),
       applyFilter: jest.fn(),
+      clearFilter: jest.fn(),
       onSubjectClick: jest.fn(),
       onCheckboxChanged: jest.fn(),
     }
@@ -89,9 +90,9 @@ describe('components/DatabaseList/SubjectFacets/presenter.js', () => {
     expect(props.applyFilter).toHaveBeenCalled()
   })
 
-  it('should call applyFilter with empty array when clicking clear button', () => {
+  it('should call clearFilter when clicking clear button', () => {
     const btn = enzymeWrapper.findWhere(el => el.hasClass('clearSubjectFilter'))
     btn.simulate('click')
-    expect(props.applyFilter).toHaveBeenCalledWith([])
+    expect(props.clearFilter).toHaveBeenCalled()
   })
 })

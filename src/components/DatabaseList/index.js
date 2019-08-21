@@ -7,6 +7,7 @@ import typy from 'typy'
 import { fetchSubjects } from 'actions/contentful/subjects'
 import { fetchLetter } from 'actions/contentful/database'
 import ListPresenter from './presenter.js'
+import { frequentlyUsedSubject } from 'constants/staticData'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
@@ -191,9 +192,20 @@ export const mapStateToProps = (state, thisProps) => {
     }
   })
 
+  // Add "Frequently Used" which mimics a normal subject on this page, but doesn't exist in Contentful because it isn't really
+  const subjectsList = cfSubjects.data
+    ? [
+      ...cfSubjects.data,
+      frequentlyUsedSubject,
+    ]
+    : []
+
   return {
     cfDatabases: sortDbs(state.cfDatabases),
-    cfSubjects: cfSubjects,
+    cfSubjects: {
+      ...cfSubjects,
+      data: subjectsList,
+    },
     allLettersStatus: allLettersStatus,
     allDbs: allLettersStatus === statuses.SUCCESS ? concatDbs(state.cfDatabases) : [],
     filterLetter: letter,

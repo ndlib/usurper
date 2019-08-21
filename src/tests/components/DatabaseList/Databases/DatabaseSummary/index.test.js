@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary'
 import Presenter from 'components/DatabaseList/Databases/DatabaseSummary/presenter.js'
 import { KIND } from 'actions/personal/favorites'
+import { frequentlyUsedSubject } from 'constants/staticData'
 
 let enzymeWrapper
 let store
@@ -55,7 +56,9 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
               notes: 'everybody to the limit',
               title: 'everybody, come on, fhqwhgads',
             },
-          ]
+          ],
+          subjects: [],
+          multidisciplinary: true,
         },
       },
       onSubjectFilterApply: jest.fn(),
@@ -73,5 +76,9 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
     const presenter = enzymeWrapper.dive().dive().find(Presenter)
     presenter.props().applySubjectFilter(dummyObj)
     expect(enzymeWrapper.dive().props().onSubjectFilterApply).toHaveBeenCalledWith([ dummyObj ])
+  })
+
+  it('should add frequentlyUsedSubject to list of subjects', () => {
+    expect(enzymeWrapper.dive().props().item.fields.subjects.some(sub => sub === frequentlyUsedSubject))
   })
 })

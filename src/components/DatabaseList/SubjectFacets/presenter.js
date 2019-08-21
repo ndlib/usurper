@@ -18,45 +18,44 @@ const SubjectFacets = (props) => {
       })
     }
   })
-
-  const clearFilter = () => {
-    props.applyFilter([])
-  }
+  const modified = props.selectedSubjects.length !== props.activeSubjects.length || props.selectedSubjects.some(subject => {
+    return !props.activeSubjects.includes(subject.sys.id)
+  })
 
   return (
-    <aside aria-label='Select Subjects to Filter Databases' role='navigation'>
-      <Accordion
-        className='group'
-        header='Filter by Subject'
-        headerClassName={parentStyles.navHeader}
-        bodyClassName={styles.subjectFacets}
-        mobileOnly
-      >
-        {
-          displaySubjects.map(subject => (
-            <div key={subject.sys.id} className={styles.subject}>
-              <input
-                type='checkbox'
-                onChange={(event) => props.onCheckboxChanged(event, subject)}
-                checked={subject.selected}
-              />
-              <span className={'link-like ' + styles.subjectLink} tabIndex={0} onClick={() => props.onSubjectClick(subject)}>
-                {subject.linkText}
-              </span>
-            </div>
-          ))
-        }
-      </Accordion>
-      <div className={styles.subjectActions}>
+    <React.Fragment>
+      <aside aria-label='Select Subjects to Filter Databases' role='navigation'>
+        <Accordion
+          className='group'
+          header='Filter by Subject'
+          headerClassName={parentStyles.navHeader}
+          bodyClassName={styles.subjectFacets}
+          mobileOnly
+        >
+          {
+            displaySubjects.map(subject => (
+              <div key={subject.sys.id} className={styles.subject}>
+                <input
+                  type='checkbox'
+                  onChange={(event) => props.onCheckboxChanged(event, subject)}
+                  checked={subject.selected}
+                />
+                <span className={'link-like ' + styles.subjectLink} tabIndex={0} onClick={() => props.onSubjectClick(subject)}>
+                  {subject.linkText}
+                </span>
+              </div>
+            ))
+          }
+        </Accordion>
+      </aside>
+      <div className={styles.subjectActions + (modified ? '' : ` ${styles.hidden}`)}>
         { props.subjects.length > props.resultsToShow && (
           <span className={'link-like ' + styles.showMore} tabIndex={0} onClick={props.showMore}>Show More</span>
         )}
         <button className={styles.applySubjectFilter} onClick={props.applyFilter}>Apply Filter</button>
-        <button className={styles.clearSubjectFilter} onClick={clearFilter} disabled={!props.activeSubjects.length}>
-          Clear Filter
-        </button>
+        <button className={styles.clearSubjectFilter} onClick={props.clearFilter}>Clear Changes</button>
       </div>
-    </aside>
+    </React.Fragment>
   )
 }
 
@@ -76,6 +75,7 @@ SubjectFacets.propTypes = {
   resultsToShow: PropTypes.number.isRequired,
   showMore: PropTypes.func,
   applyFilter: PropTypes.func,
+  clearFilter: PropTypes.func,
   onSubjectClick: PropTypes.func,
   onCheckboxChanged: PropTypes.func,
 }

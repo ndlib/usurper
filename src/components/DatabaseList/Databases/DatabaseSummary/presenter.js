@@ -17,18 +17,18 @@ const DatabaseSummary = (props) => {
       { props.item.fields.subjects.length > 0 && (
         <div aria-label='subjects'>
           {props.item.fields.subjects.map(subject => (
-            <span key={subject.sys.id} className={styles.itemTag} onClick={() => props.applySubjectFilter(subject)}>
+            <span key={subject.sys.id} className={[styles.itemTag, styles.small].join(' ')} onClick={() => props.applySubjectFilter(subject)}>
               {subject.linkText}
             </span>
           ))}
         </div>
       )}
-      <ul className={'linkGroup ' + styles.dbLink}>
-        { props.linkObject.conditionalLinks.map((link) => <SummaryLink key={link.keyId} link={link} />) }
-      </ul>
       <div className={styles.dbSummary}>
         {props.linkObject.heading.description}
       </div>
+      <ul className={'linkGroup ' + styles.dbLink}>
+        { props.linkObject.conditionalLinks.map((link) => <SummaryLink key={link.keyId} link={link} />) }
+      </ul>
       <Link
         to={'/database/' + props.item.sys.id}
         className={styles.moreInfo}

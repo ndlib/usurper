@@ -50,6 +50,9 @@
   background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+.itemTag.small {
+  font-size: 0.8em;
+}
 
 .dbLink li, .dbLink li a {
   font-weight: bold;
