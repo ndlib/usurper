@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getLinkObject } from 'shared/ContentfulLibs'
 import { KIND } from 'actions/personal/favorites'
+import { frequentlyUsedSubject } from 'constants/staticData'
 import Presenter from './presenter.js'
 
 const DatabaseSummaryContainer = (props) => {
@@ -24,6 +25,12 @@ const DatabaseSummaryContainer = (props) => {
       url: link.url,
     }
   })
+  if (props.item.fields.multidisciplinary) {
+    props.item.fields.subjects = props.item.fields.subjects || []
+    if (!props.item.fields.subjects.some(sub => sub.sys.id === frequentlyUsedSubject.sys.id)) {
+      props.item.fields.subjects.push(frequentlyUsedSubject)
+    }
+  }
 
   return (
     <Presenter
@@ -47,7 +54,8 @@ export const mapStateToProps = (state) => {
 DatabaseSummaryContainer.propTypes = {
   item: PropTypes.shape({
     fields: PropTypes.shape({
-      title: PropTypes.string,
+      subjects: PropTypes.array,
+      multidisciplinary: PropTypes.bool,
     }),
     sys: PropTypes.shape({
       id: PropTypes.string.isRequired,
