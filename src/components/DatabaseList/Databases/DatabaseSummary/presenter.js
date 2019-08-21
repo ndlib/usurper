@@ -17,7 +17,7 @@ const DatabaseSummary = (props) => {
       { props.item.fields.subjects.length > 0 && (
         <div aria-label='subjects'>
           {props.item.fields.subjects.map(subject => (
-            <span key={subject.sys.id} className={styles.itemTag} onClick={() => props.applySubjectFilter(subject)}>
+            <span key={subject.sys.id} className={[styles.itemTag, styles.small].join(' ')} onClick={() => props.applySubjectFilter(subject)}>
               {subject.linkText}
             </span>
           ))}
