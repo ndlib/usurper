@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Alphabet from 'components/DatabaseList/Alphabet/index.js'
 import Link from 'components/Interactive/Link'
+import Accordion from 'components/Interactive/Accordion'
 
 const setup = (props) => {
   return shallow(<Alphabet {...props} />)
@@ -29,6 +30,12 @@ describe('components/DatabaseList/Alphabet/index.js', () => {
 
   it('renders an aside', () => {
     expect(enzymeWrapper.find('aside').exists()).toBe(true)
+  })
+
+  it('renders a mobile-only Accordion component', () => {
+    const found = enzymeWrapper.find(Accordion)
+    expect(found.exists()).toBe(true)
+    expect(found.props().mobileOnly).toBe(true)
   })
 
   it('renders a clickable element for each alphabet letter (and the # sign)', () => {

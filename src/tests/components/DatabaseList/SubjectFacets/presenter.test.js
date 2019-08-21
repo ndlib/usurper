@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import SubjectFacets from 'components/DatabaseList/SubjectFacets/presenter.js'
+import Accordion from 'components/Interactive/Accordion'
 
 const setup = (props) => {
   return shallow(<SubjectFacets {...props} />)
@@ -53,6 +54,12 @@ describe('components/DatabaseList/SubjectFacets/presenter.js', () => {
       onCheckboxChanged: jest.fn(),
     }
     enzymeWrapper = setup(props)
+  })
+
+  it('should render a mobile-only Accordion component', () => {
+    const found = enzymeWrapper.find(Accordion)
+    expect(found.exists()).toBe(true)
+    expect(found.props().mobileOnly).toBe(true)
   })
 
   it('should limit subjects shown based on props', () => {

@@ -1,0 +1,22 @@
+.collapseHandle {
+  cursor: pointer;
+  user-select: none;
+}
+.collapseHandle:hover {
+  text-decoration: underline;
+}
+
+.collapseHandle::after {
+  content: '\25BC'; /* down arrow */
+  color: white;
+  font-family: sans-serif;
+  float: right;
+  transform: scale(1, 0.7);
+}
+.collapseHandle.expanded::after {
+  content: '\25B2'; /* up arrow */
+}
+
+.accordionBody:not(.expanded) {
+  display: none !important;
+}

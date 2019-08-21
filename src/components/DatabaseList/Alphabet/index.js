@@ -1,29 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Accordion from 'components/Interactive/Accordion'
 import styles from '../style.module.css'
 
 const Alphabet = (props) => {
   return (
     <aside aria-label='Select Databases by First Letter' role='navigation'>
-      <div className='group'>
-        <span className={styles.navHeader}>Filter by First Letter</span>
-        <div className={styles.alphabet}>
-          {
-            'abcdefghijklmnopqrstuvwxyz#'.split('').map(letter => {
-              return (
-                <span
-                  key={'letter_link_' + letter}
-                  className={styles.letter}
-                  aria-label={`All "${letter.toUpperCase()}" Databases`}
-                  onClick={() => props.onLetterFilterApply(letter)}
-                >
-                  { letter.toUpperCase() }
-                </span>
-              )
-            })
-          }
-        </div>
-      </div>
+      <Accordion
+        className='group'
+        header='Filter by First Letter'
+        headerClassName={styles.navHeader}
+        bodyClassName={styles.alphabet}
+        mobileOnly
+      >
+        {
+          'abcdefghijklmnopqrstuvwxyz#'.split('').map(letter => {
+            return (
+              <span
+                key={'letter_link_' + letter}
+                className={styles.letter}
+                aria-label={`All "${letter.toUpperCase()}" Databases`}
+                onClick={() => props.onLetterFilterApply(letter)}
+              >
+                { letter.toUpperCase() }
+              </span>
+            )
+          })
+        }
+      </Accordion>
     </aside>
   )
 }

@@ -76,10 +76,9 @@
 @supports (display: grid) and (not (display: -ms-grid)) {
   .alphabet {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, 11.11%);
     display: -ms-grid;
     -ms-grid-columns: (1em)[13];
-    max-width: 75ch;
     width: 100%;
   }
 }
