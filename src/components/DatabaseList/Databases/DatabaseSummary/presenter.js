@@ -23,12 +23,12 @@ const DatabaseSummary = (props) => {
           ))}
         </div>
       )}
-      <ul className={'linkGroup ' + styles.dbLink}>
-        { props.linkObject.conditionalLinks.map((link) => <SummaryLink key={link.keyId} link={link} />) }
-      </ul>
       <div className={styles.dbSummary}>
         {props.linkObject.heading.description}
       </div>
+      <ul className={'linkGroup ' + styles.dbLink}>
+        { props.linkObject.conditionalLinks.map((link) => <SummaryLink key={link.keyId} link={link} />) }
+      </ul>
       <Link
         to={'/database/' + props.item.sys.id}
         className={styles.moreInfo}
