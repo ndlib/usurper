@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './style.css'
+
 import CurrentHours from '../Current'
 import Contact from 'components/Contact/ServicePoint'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
@@ -9,6 +9,8 @@ import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import StaticBody from 'components/Contentful/StaticContent/Body'
 import StaticAlert from 'components/Contentful/StaticContent/Alert'
 import OpenGraph from 'components/OpenGraph'
+
+import './style.css'
 
 const Presenter = (props) => {
   return (
@@ -35,7 +37,7 @@ const Presenter = (props) => {
 
                 return (
                   <div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
-                    <CurrentHours servicePoint={sp} >
+                    <CurrentHours servicePoint={sp}>
                       <address>{sp.fields.address}</address>
                       <Contact servicePoint={sp} />
                     </CurrentHours>
@@ -54,7 +56,7 @@ const Presenter = (props) => {
 }
 
 Presenter.propTypes = {
-  servicePoints: PropTypes.array.isRequired,
+  servicePoints: PropTypes.object.isRequired,
   preview: PropTypes.bool,
   hoursPageOrder: PropTypes.array.isRequired,
   title: PropTypes.string,

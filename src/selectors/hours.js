@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
 import * as statuses from 'constants/APIStatuses'
-const _ = require('lodash')
 const days = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
 const moment = require('moment')
 
@@ -45,20 +44,19 @@ const getTodaysHours = (hours) => {
 }
 
 const getUpcomingChangedHours = (hours) => {
-  if (!hours.weeks) {
+  if (!hours.weeks || hours.weeks.length < 2) {
     return {}
   }
-  // get all the keys to loop through the days
-  const weekdays = Object.keys(hours.weeks[0])
 
-  const test = weekdays.map((day) => {
-    return hours.weeks[0][day].rendered
+  // Select just the "rendered" value for comparing upcoming weeks against current week
+  const weekHours = hours.weeks.map(week => {
+    return Object.keys(week).map(dayOfWeek => (
+      { [dayOfWeek]: week[dayOfWeek].rendered }
+    ))
   })
-  for (let step = 1; step < hours.weeks.length; step++) {
-    const test2 = weekdays.map((day) => {
-      return hours.weeks[step][day].rendered
-    })
-    if (!_.isEqual(test, test2)) {
+
+  for (let step = 1; step < weekHours.length; step++) {
+    if (JSON.stringify(weekHours[step]) !== JSON.stringify(weekHours[0])) {
       return hours.weeks[step]
     }
   }
@@ -70,9 +68,7 @@ const makeGetHoursForServicePoint = () => {
   return createSelector(
     [getHoursStatus, getHours, getHoursName, getServicePoint],
     (status, hours, name, servicePoint) => {
-      if (!hours) {
-        hours = { }
-      }
+      hours = hours || { }
       hours.today = getTodaysHours(hours)
       hours.name = name
       hours.status = status

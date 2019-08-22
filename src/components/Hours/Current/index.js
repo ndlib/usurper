@@ -2,61 +2,44 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchHours } from 'actions/hours'
-import CurrentHoursCollapsedPresenter from './collapsed_presenter.js'
-import CurrentHoursExpandedPresenter from './expanded_presenter.js'
-import makeGetHoursForServicePoint from 'selectors/hours'
-import * as statuses from 'constants/APIStatuses'
-import InlineContainer from '../InlineContainer'
+
+import Presenter from './presenter'
+import HoursError from '../Error'
 import { withErrorBoundary } from 'components/ErrorBoundary'
+import InlineLoading from 'components/Messages/InlineLoading'
 
-export const hoursOpenStatus = {
-  OPEN: 'OPEN',
-  CLOSED: 'CLOSED',
-  PARTIALLY_OPEN: 'PARTIALLY_OPEN',
-}
-
-// We  need a way to give each instance of a container access to its own private selector.
-// this is done by creating a private instance of the conector for each component.
-const makeMapStateToProps = () => {
-  const getHoursForServicePoint = makeGetHoursForServicePoint()
-  const mapStateToProps = (state, props) => {
-    // these props are required for the inline container.
-    const ret = {
-      hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
-    }
-    return ret
-  }
-  return mapStateToProps
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchHours }, dispatch)
-}
+import * as statuses from 'constants/APIStatuses'
+import { getOpenStatus } from 'constants/hours'
+import { fetchHours } from 'actions/hours'
+import makeGetHoursForServicePoint from 'selectors/hours'
 
 export class CurrentHoursContainer extends Component {
   constructor (props) {
     super(props)
+
     this.state = {
       expanded: false,
-      openStatus: this.checkOpen(props),
+      openStatus: getOpenStatus(props.hoursEntry),
     }
+
     this.toggleExpanded = this.toggleExpanded.bind(this)
+    this.tick = this.tick.bind(this)
   }
 
   componentDidMount () {
     // check current time every second to update color
-    const intervalId = setInterval(this.tick.bind(this), 1000)
-    this.setState({ intervalId: intervalId })
+    const intervalId = setInterval(this.tick, 1000)
+    this.setState({
+      intervalId: intervalId,
+      openStatus: getOpenStatus(this.props.hoursEntry),
+    })
     if (this.props.hoursEntry.status === statuses.NOT_FETCHED) {
       this.props.fetchHours()
     }
   }
+
   componentWillUnmount () {
     clearInterval(this.state.intervalId)
-  }
-  componentWillReceiveProps (newProps) {
-    this.setState({ openStatus: this.checkOpen(newProps) })
   }
 
   toggleExpanded (e) {
@@ -65,57 +48,42 @@ export class CurrentHoursContainer extends Component {
     }
   }
 
-  checkOpen (props) {
-    try {
-      const entry = props.hoursEntry
-      if (entry.today.times.status === 'closed') {
-        return hoursOpenStatus.CLOSED
-      }
-
-      if (entry.today.times.status === '24hours') {
-        return hoursOpenStatus.OPEN
-      }
-
-      if (entry.today.times.status === 'text') {
-        return entry.today.times.text.toLowerCase().indexOf('card swipe') >= 0 ? hoursOpenStatus.PARTIALLY_OPEN : hoursOpenStatus.CLOSED
-      }
-
-      const currentOpenBlocks = entry.today.times.hours.filter(hoursBlock => {
-        if (hoursBlock.from === hoursBlock.to) {
-          return hoursOpenStatus.CLOSED
-        }
-
-        const opens = new Date(hoursBlock.fromLocalDate)
-        const closes = new Date(hoursBlock.toLocalDate)
-
-        const now = new Date()
-        return (opens <= now && now <= closes)
-      })
-      return (currentOpenBlocks.length > 0) ? hoursOpenStatus.OPEN : hoursOpenStatus.CLOSED
-    } catch (e) {
-      return hoursOpenStatus.CLOSED
-    }
-  }
-
   tick () {
-    this.setState({ openStatus: this.checkOpen(this.props) })
+    this.setState({ openStatus: getOpenStatus(this.props.hoursEntry) })
   }
 
   render () {
-    let presenter = CurrentHoursCollapsedPresenter
-    if (this.state.expanded) {
-      presenter = CurrentHoursExpandedPresenter
+    switch (this.props.hoursEntry.status) {
+      case statuses.FETCHING:
+        return <InlineLoading />
+      case statuses.SUCCESS:
+        return (
+          <Presenter
+            hoursEntry={this.props.hoursEntry}
+            openStatus={this.state.openStatus}
+            expanded={this.state.expanded}
+            toggleExpanded={this.toggleExpanded}
+          >
+            {this.props.children}
+          </Presenter>
+        )
+      case statuses.ERROR:
+        return <HoursError hoursEntry={this.props.hoursEntry} />
+      default:
+        return null
     }
-
-    return (
-      <InlineContainer
-        status={this.props.hoursEntry.status}
-        hoursEntry={this.props.hoursEntry}
-        openStatus={this.state.openStatus}
-        presenter={presenter}
-        toggleExpanded={this.toggleExpanded}
-      >{this.props.children}</InlineContainer>)
   }
+}
+
+export const mapStateToProps = (state, props) => {
+  const selector = makeGetHoursForServicePoint()
+  return {
+    hoursEntry: selector(state, props),
+  }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchHours }, dispatch)
 }
 
 CurrentHoursContainer.propTypes = {
@@ -124,21 +92,26 @@ CurrentHoursContainer.propTypes = {
     today: PropTypes.shape({
       times: PropTypes.shape({
         status: PropTypes.string,
-        hours: PropTypes.arrayOf(PropTypes.shape({ // eslint-disable-line react/no-unused-prop-types
-          from: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
-          to: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
-          fromLocalDate: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
-          toLocalDate: PropTypes.any, // eslint-disable-line react/no-unused-prop-types
+        hours: PropTypes.arrayOf(PropTypes.shape({
+          from: PropTypes.any,
+          to: PropTypes.any,
+          fromLocalDate: PropTypes.any,
+          toLocalDate: PropTypes.any,
         })),
       }),
     }),
+  }).isRequired,
+  servicePoint: PropTypes.shape({
+    fields: PropTypes.shape({
+      hoursCode: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   fetchHours: PropTypes.func.isRequired,
   children: PropTypes.any,
 }
 
 const CurrentHours = connect(
-  makeMapStateToProps,
+  mapStateToProps,
   mapDispatchToProps
 )(CurrentHoursContainer)
 

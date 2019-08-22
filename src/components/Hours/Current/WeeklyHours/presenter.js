@@ -3,16 +3,14 @@ import PropTypes from 'prop-types'
 
 const Presenter = ({ hours, title, effectiveDate, showEffectiveDates }) => {
   if (Object.keys(hours).length === 0) {
-    return (<div />)
-  }
-  let effectiveMessage = ''
-  if (showEffectiveDates) {
-    effectiveMessage = (<p> Starting On: { effectiveDate }</p>)
+    return null
   }
   return (
     <div className='week'>
       <h3>{ title }</h3>
-      { effectiveMessage }
+      { showEffectiveDates && (
+        <p>Starting On: { effectiveDate }</p>
+      )}
       <dl className='hours-grid'>
         {
           hours.map((row) => {

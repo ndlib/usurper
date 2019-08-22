@@ -1,10 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PagePresenter from 'components/Hours/HomePage/presenter'
+import Presenter from 'components/Hours/HomePage/presenter'
 import Link from 'components/Interactive/Link'
 
 const setup = (props) => {
-  return shallow(PagePresenter(props.hoursEntry))
+  return shallow(<Presenter {...props} />)
 }
 
 describe('components/Hours/HomePage/presenter', () => {
@@ -13,6 +13,7 @@ describe('components/Hours/HomePage/presenter', () => {
   beforeEach(() => {
     enzymeWrapper = setup({
       hoursEntry: {
+        name: 'Hesburgh Library',
         today: {
           date: 'today-date',
           rendered: 'today-display',
@@ -53,7 +54,7 @@ describe('components/Hours/HomePage/presenter', () => {
   })
 
   it('adds the home page className', () => {
-    expect(enzymeWrapper.find('section.hours-display').exists()).toBe(true)
+    expect(enzymeWrapper.find('.hours-display').exists()).toBe(true)
   })
 
   it('Adds a Link to the hours page', () => {
