@@ -71,7 +71,8 @@ let handler = async () => {
           stream.write(`  ${psList[i]}: ${value},\n`)
         }
       }
-      stream.write("  version: '" + stage + "',\n")
+      stream.write("  environment: '" + stage + "',\n")
+      stream.write("  version: '" + fs.readFileSync('../../VERSION', 'utf8').trim() + "',\n")
       stream.write("}\n")
       stream.end()
     })
