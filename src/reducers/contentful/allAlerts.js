@@ -1,5 +1,6 @@
 import { CF_REQUEST_ALLALERTS, CF_RECEIVE_ALLALERTS } from 'actions/contentful/allAlerts'
 import * as statuses from 'constants/APIStatuses'
+import typy from 'typy'
 
 export default (state = { status: statuses.NOT_FETCHED }, action) => {
   switch (action.type) {
@@ -10,7 +11,7 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
     case CF_RECEIVE_ALLALERTS:
       return Object.assign({}, state, {
         status: action.status,
-        json: action.allAlerts.filter(alert => {
+        json: typy(action, 'allAlerts').safeArray.filter(alert => {
           return alert.fields.domain === 'library' || alert.fields.domain === 'all'
         }),
       })

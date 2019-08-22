@@ -3,9 +3,12 @@ import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { fetchLibrarians } from 'actions/librarians'
 import React, { Component } from 'react'
+import typy from 'typy'
+
 import LibrarianPresenter from './presenter.js'
 import * as statuses from 'constants/APIStatuses'
 import { withErrorBoundary } from 'components/ErrorBoundary'
+
 const mapStateToProps = (state, ownProps) => {
   const { librarianInfo } = state
 
@@ -22,8 +25,10 @@ const mapDispatchToProps = (dispatch) => {
 
 export class LibrariansContainer extends Component {
   componentDidMount () {
-    if (this.props.librarianInfo.status === statuses.NOT_FETCHED ||
-      (this.props.librarianInfo.netids && !this.props.netids.equals(this.props.librarianInfo.netids))) {
+    const currentIds = typy(this.props, 'librarianInfo.netids').safeArray
+    const newIds = typy(this.props, 'netids').safeArray
+    const netIdsModified = newIds.length !== currentIds.length || newIds.some(value => !currentIds.includes(value))
+    if (this.props.librarianInfo.status === statuses.NOT_FETCHED || netIdsModified) {
       this.props.fetchLibrarians(this.props.netids)
     }
   }

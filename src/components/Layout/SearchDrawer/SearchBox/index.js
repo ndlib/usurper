@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import typy from 'typy'
 import { openSearchBox, closeSearchBox } from 'actions/search.js'
 import { setSearchOption } from 'actions/advancedSearch.js'
 import searchQuery from '../searchQueryBuilder'
@@ -39,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     e.stopPropagation()
     e.nativeEvent.stopImmediatePropagation()
   }
-  const qs = QueryString.parse(ownProps.location.search.replace('?', ''))
+  const qs = QueryString.parse(typy(ownProps, 'location.search').safeString.replace('?', ''))
 
   return {
     defaultSearch: qs.q,

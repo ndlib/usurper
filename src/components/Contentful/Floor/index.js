@@ -1,9 +1,11 @@
 // Container component for a Floor content type from Contentful
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchFloor } from 'actions/contentful/floor'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
+
+import { fetchFloor } from 'actions/contentful/floor'
 import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulFloorPresenter from './presenter.js'
 import { withErrorBoundary } from 'components/ErrorBoundary'
@@ -40,7 +42,7 @@ export class ContentfulFloorContainer extends Component {
 
   render () {
     const floor = this.props.cfFloorEntry.json ? this.props.cfFloorEntry.json : null
-    const sp = floor && floor.fields.building ? floor.fields.building.fields.primaryServicePoint : null
+    const sp = typy(floor, 'fields.building.fields.primaryServicePoint').safeObject
 
     return <PresenterFactory
       presenter={ContentfulFloorPresenter}

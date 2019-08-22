@@ -6,6 +6,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import hoistNonReactStatic from 'hoist-non-react-statics'
+import * as Sentry from '@sentry/browser'
 
 /***
 
@@ -26,15 +27,24 @@ Example Usage:
 class ErrorBoundary extends Component {
   constructor (props) {
     super(props)
-    this.state = { hasCatastrophicError: false }
+    this.state = {
+      hasCatastrophicError: false,
+      eventId: null,
+    }
   }
 
   componentDidCatch (error, info) {
     this.setState({ hasCatastrophicError: true })
     if (process.env.NODE_ENV === 'production') {
-      window.Raven.captureException(error, { extra: info })
+      Sentry.withScope(scope => {
+        scope.setExtras(info)
+        const eventId = Sentry.captureException(error)
+        this.setState({
+          eventId,
+        })
+      })
     }
-    console.log('Hit an error boundary: ', error, info)
+    console.error('Hit an error boundary: ', error, info)
   }
 
   // If nothing is broken return unaltered component.
@@ -81,19 +91,14 @@ Example Usage (with an alternate component to be render in case of an error):
 
 ***/
 function withErrorBoundary (WrappedComponent, AlternateComponent) {
-  // If there isn't an alternate component render null.
-  if (!AlternateComponent) {
-    AlternateComponent = () => {
-      return null
-    }
-  }
-
   // We need to make some changes to render for a higher order component to work
   // because we are passing around actual components instead of just props.
   class ErrorBoundaryWrapper extends ErrorBoundary {
     render () {
       if (this.state.hasCatastrophicError) {
-        return <AlternateComponent />
+        return AlternateComponent ? <AlternateComponent /> : (
+          <button onClick={() => Sentry.showReportDialog({ eventId: this.state.eventId })}>Report feedback</button>
+        )
       }
       return <WrappedComponent {...this.props} />
     }

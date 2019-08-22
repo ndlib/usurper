@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { withCookies } from 'react-cookie'
+import typy from 'typy'
 
 import Config from 'shared/Configuration'
 import PageWrapper from 'components/Layout/PageWrapper'
@@ -40,7 +41,7 @@ const analyticsActions = [LINK_CLICK, SET_SEARCH, SAVE_SEARCH_PREFERENCE]
 
 const analytics = () => next => action => {
   window.dataLayer = window.dataLayer || []
-  if (analyticsActions.indexOf(action.type) > -1) {
+  if (analyticsActions.indexOf(typy(action, 'type').safeString) > -1) {
     window.dataLayer.push({
       event: action.type,
       ...action,

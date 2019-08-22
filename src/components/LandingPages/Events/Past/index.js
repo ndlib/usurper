@@ -71,7 +71,9 @@ const mapStateToProps = (state, ownProps) => {
   let events = []
   if (filterYear !== null && filterMonth !== null) {
     events = monthFilter(ownProps.events, filterYear, filterMonth)
-    eventDates[filterYear][filterMonth].url = null
+    if (eventDates[filterYear][filterMonth]) {
+      eventDates[filterYear][filterMonth].url = null
+    }
   } else {
     const daysAgo30 = new Date()
     // subtract 30 days from now

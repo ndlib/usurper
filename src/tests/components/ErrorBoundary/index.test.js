@@ -20,13 +20,13 @@ beforeEach(() => {
   // with the BrokenComponet. We do not want to see them right now.
   jest.spyOn(console, 'error')
   global.console.error.mockImplementation(() => {})
-  jest.spyOn(console, 'log')
-  global.console.log.mockImplementation(() => {})
+  // jest.spyOn(console, 'log')
+  // global.console.log.mockImplementation(() => {})
 })
 
 describe('componets/ErrorBoundary/index.js', () => {
   describe('ErrorBoundary component', () => {
-    
+
     it('renders the child commponent when there is no error', () => {
       let enzymeWrapper = shallow(<ErrorBoundary><div>Some Text</div></ErrorBoundary>)
       expect(enzymeWrapper.containsMatchingElement(<div>Some Text</div>)).toBe(true)
@@ -60,10 +60,10 @@ describe('componets/ErrorBoundary/index.js', () => {
       expect(enzymeWrapper.containsMatchingElement(<div>Alternative</div>)).toBe(false)
     })
 
-    it('renders null when the commponent has an error and no alternate component is passed', () => {
+    it('renders a report feedback button  when the commponent has an error and no alternate component is passed', () => {
       const WrappedComponent = withErrorBoundary(BrokenComponent)
       let enzymeWrapper = mount(<WrappedComponent testProp='Different Text'/>)
-      expect(enzymeWrapper.children().children().length).toBe(0)
+      expect(enzymeWrapper.containsMatchingElement(<button>Report feedback</button>)).toBe(true)
     })
 
     it('renders the alternative component when the commponent has an error', () => {

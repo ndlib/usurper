@@ -11,7 +11,7 @@ import spacer from 'static/images/spacer.gif'
 const PageWrapper = (props) => {
   return (
     <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
-      <meta id='nd-version' content={Config.version} />
+      <meta id='nd-version' content={Config.environment} />
       <a href='#maincontent' className='skip'>
         <img src={spacer} className='skip' width='0' height='0' border='0' alt='skip to content' />
       </a>
