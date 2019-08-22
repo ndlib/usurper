@@ -54,6 +54,9 @@ require('ie-array-find-polyfill')
 // React now requires Array.prototype.map and other things filled out by babel-polyfill
 require('babel-polyfill')
 
+// requestAnimationFrame polyfill, required by React
+require('raf/polyfill')
+
 // Object.assign() is commonly used with React.
 // It will use the native implementation if it's present and isn't buggy.
 Object.assign = require('object-assign')

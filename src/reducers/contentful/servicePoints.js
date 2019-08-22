@@ -1,3 +1,4 @@
+import typy from 'typy'
 import { CF_REQUEST_SERVICEPOINTS, CF_RECEIVE_SERVICEPOINTS } from 'actions/contentful/servicePoints'
 import * as statuses from 'constants/APIStatuses'
 import { flattenLocale } from 'shared/ContentfulLibs'
@@ -9,7 +10,7 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
         status: statuses.FETCHING,
       })
     case CF_RECEIVE_SERVICEPOINTS:
-      const flattenedServicePoints = action.servicePoints.map((servicePoint) => {
+      const flattenedServicePoints = typy(action, 'servicePoints').safeArray.map((servicePoint) => {
         flattenLocale(servicePoint.fields, 'en-US')
         return servicePoint
       })

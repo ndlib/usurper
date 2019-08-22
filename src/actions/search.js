@@ -86,7 +86,7 @@ export const siteSearchResponse = (json) => {
 export const fetchResults = (queryString) => {
   return dispatch => {
     dispatch(siteSearchRequest(queryString))
-    const qs = QueryString.parse(queryString.replace('?', ''))
+    const qs = queryString ? QueryString.parse(queryString.replace('?', '')) : ''
     fetch(
       'https://www.googleapis.com/customsearch/v1?key=' + Config.gcseKey +
       '&cx=' + Config.gcseCx +

@@ -37,7 +37,9 @@ const Rewrite = (props) => {
       )
     // index.php redirect
     } else if (route.path.indexOf('index.php') > 1) {
-      const target = route.target + props.location.pathname.replace('index.php', '')
+      // Remove slashes at the beginning of the location string and strip off /index.php at the end
+      // This fixes an issue where duplicated slashes would result in a path that wasn't relative to the application
+      const target = route.target + '/' + props.location.pathname.replace(/^[/\\]+|\/index\.php/g, '')
       return (
         <Route
           key={index}

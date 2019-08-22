@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 import Link from 'components/Interactive/Link'
 
 const InternalLink = (props) => {
   const page = props.cfEntry.fields.page
-  const link = page ? (page.fields.slug || page.fields.url) : null
+  const link = page ? (typy(page, 'fields.slug').safeString || typy(page, 'fields.url').safeString) : null
   const displayText = (props.cfEntry.fields.usePageTitle && props.cfEntry.fields.page)
     ? page.fields.title
     : props.cfEntry.fields.title

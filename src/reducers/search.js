@@ -57,7 +57,7 @@ const defaultState = () => {
     advancedSearch: false,
     hasPref: localSearchPref !== null,
     usePref: true,
-    pref: JSON.parse(localSearchPref) || null,
+    pref: localSearchPref ? (JSON.parse(localSearchPref) || null) : null,
   }
   setSearchType(state)
   return state
