@@ -1,5 +1,21 @@
 # Change Log
 
+## [v2019.18](https://github.com/ndlib/usurper/tree/v2019.18) "Insecticide"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.16...v2019.18)
+
+### Note
+The change log for this update includes changes that were deployed previously.
+
+### Bug Fixes
+- Fixed events sometimes displaying incorrect time information. 
+- Fixed minor layout issues. [#673](https://github.com/ndlib/usurper/pull/673)
+- Fixed description display on Databases page. [#675](https://github.com/ndlib/usurper/pull/675)
+
+### Other
+- Added support for partial-text links on alerts. [#708](https://github.com/ndlib/usurper/pull/708)
+- Modified Databases page to list all databases on a single page, with the option to filter by letter. [#668](https://github.com/ndlib/usurper/pull/668)
+- Updated internal error reporting. [#680](https://github.com/ndlib/usurper/pull/680)
+
 ## [v2019.16](https://github.com/ndlib/usurper/tree/v2019.16) "Simple Satisfaction"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.15...v2019.16)
 
