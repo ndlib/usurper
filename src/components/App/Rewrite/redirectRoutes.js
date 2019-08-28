@@ -64,6 +64,7 @@ const RedirectRoutes = [
   { path: '/srch-find/*', target: '/research' },
   { path: '/circulation/*', target: '/services' },
   { path: '/about/hours/*', target: '/hours' },
+  { path: '/databases/*', target: '/databases' },
 ]
 /* eslint-enable max-len */
 
