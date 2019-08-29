@@ -18,6 +18,8 @@ const FilterBox = (props) => {
           type='search'
           value={props.value}
           onChange={props.onChange}
+          autoComplete='off'
+          data-lpignore
         />
       </label>
     </div>

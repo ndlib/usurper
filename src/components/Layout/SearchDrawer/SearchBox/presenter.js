@@ -44,7 +44,10 @@ const SearchBox = (props) => {
           defaultValue={props.defaultSearch}
           onBlur={props.onBlur}
           onKeyDown={props.inputOnKeyDown}
-          aria-labelledby={`label-for-${props.id}`} />
+          aria-labelledby={`label-for-${props.id}`}
+          autoComplete='off'
+          data-lpignore
+        />
       </div>
       <button onClick={props.onSubmit}>Search</button>
     </span>
