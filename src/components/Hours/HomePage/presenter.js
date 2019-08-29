@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './style.css'
 import Link from 'components/Interactive/Link'
 
-const Presenter = (hoursEntry) => {
+const Presenter = (props) => {
   return (
-    <section className='hours-display' aria-label='Today&#39;s Hours' itemScope itemType='http://schema.org/Library'>
-      <h2>Today's <span itemProp='name'>{hoursEntry.name}</span> Hours:&nbsp;
-        <Link to='hours' ariaLabel={hoursEntry.today.rendered + ' - Click for more hours'}>
-          <span itemProp='openingHours' content={hoursEntry.today.schemaOpeningHours}>
-            {hoursEntry.today.rendered}
+    <section className='hours-display' aria-label={`Today's Hours`} itemScope itemType='http://schema.org/Library'>
+      <h2>Today's <span itemProp='name'>{props.hoursEntry.name}</span> Hours:&nbsp;
+        <Link to='hours' ariaLabel={`${props.hoursEntry.today.rendered} - Click for more hours`}>
+          <span itemProp='openingHours' content={props.hoursEntry.today.schemaOpeningHours}>
+            {props.hoursEntry.today.rendered}
           </span>
         </Link>
       </h2>

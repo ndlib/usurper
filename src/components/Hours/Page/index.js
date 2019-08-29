@@ -3,50 +3,56 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import typy from 'typy'
+
+import HoursPagePresenter from './presenter'
+import HoursError from '../Error'
+import PresenterFactory from 'components/APIPresenterFactory'
+import { withErrorBoundary } from 'components/ErrorBoundary'
+
 import { fetchHours } from 'actions/hours'
 import { fetchServicePoints } from 'actions/contentful/servicePoints'
 import { fetchSidebar } from 'actions/contentful/staticContent'
-import HoursPagePresenter from './presenter.js'
-import PresenterFactory from 'components/APIPresenterFactory'
+import { hoursPageSlug, hoursPageOrder } from 'constants/hours'
 import * as statuses from 'constants/APIStatuses'
-import HoursError from '../Error'
-import { withErrorBoundary } from 'components/ErrorBoundary'
 import * as helper from 'constants/HelperFunctions'
 
-const PAGE_SLUG = 'hours'
-const hoursPageOrder = [
-  { servicePointSlug: 'hesburghlibrary', main: true },
-  { servicePointSlug: 'askusdesk', main: false },
-  { servicePointSlug: 'circulationservicedesk', main: false },
-  { servicePointSlug: 'course-reserves-office', main: false },
-  { servicePointSlug: 'ill-office', main: false },
-  { servicePointSlug: 'mediacorps', main: false },
-  { servicePointSlug: 'oitoutpost', main: false },
-  { servicePointSlug: 'reservesmicrotextandmediadesk', main: false },
-  { servicePointSlug: 'architecturelibrary', main: true },
-  { servicePointSlug: 'mahaffeybusinesslibrary', main: true },
-  { servicePointSlug: 'centerfordigitalscholarship', main: true },
-  { servicePointSlug: 'chemistryphysicslibrary', main: true },
-  { servicePointSlug: 'engineeringlibrary', main: true },
-  { servicePointSlug: 'kelloggkroclibrary', main: true },
-  { servicePointSlug: 'omearamathematicslibrary', main:true },
-  { servicePointSlug: 'medievalinstitutelibrary', main: true },
-  { servicePointSlug: 'byzantinestudiesreadingroom', main: false },
-  { servicePointSlug: 'musiclibrary', main: true },
-  { servicePointSlug: 'radiationchemistryreadingroom', main: true },
-  { servicePointSlug: 'rarebooksspecialcollections', main: true },
-  { servicePointSlug: 'universityarchives', main: true },
-  { servicePointSlug: 'visualresourcescenter', main: true },
-]
+export class HoursPageContainer extends Component {
+  componentDidMount () {
+    if (this.props.hoursStatus === statuses.NOT_FETCHED) {
+      this.props.fetchHours()
+    }
+    if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
+      this.props.fetchServicePoints(false)
+    }
+    if (this.props.cfStatic.status === statuses.NOT_FETCHED || this.props.cfStatic.slug !== hoursPageSlug) {
+      this.props.fetchSidebar(hoursPageSlug, this.props.preview)
+    }
+  }
 
-const mapStateToProps = (state, ownProps) => {
+  render () {
+    return (
+      <PresenterFactory
+        presenter={HoursPagePresenter}
+        error={HoursError}
+        props={{
+          servicePoints: this.props.servicePointsWithHours,
+          preview: this.props.preview,
+          hoursPageOrder: hoursPageOrder,
+          title: typy(this.props.cfStatic, 'json.fields.title').safeString,
+        }}
+        status={this.props.combinedStatus} />
+    )
+  }
+}
+
+export const mapStateToProps = (state, ownProps) => {
   const combinedStatus = helper.reduceStatuses([
     state.cfServicePoints.status,
     state.hours.status,
     state.cfStatic.status,
   ])
   const servicePointsWithHours = combinedStatus === statuses.SUCCESS
-    ? state.cfServicePoints.json
+    ? typy(state.cfServicePoints, 'json').safeArray
       .filter((servicePoint) => servicePoint.fields.hoursCode)
       .reduce((map, obj) => {
         map[obj.fields.slug] = obj
@@ -66,37 +72,8 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchHours, fetchServicePoints, fetchSidebar }, dispatch)
-}
-
-export class HoursPageContainer extends Component {
-  componentDidMount () {
-    if (this.props.hoursStatus === statuses.NOT_FETCHED) {
-      this.props.fetchHours()
-    }
-    if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchServicePoints(false)
-    }
-    if (this.props.cfStatic.status === statuses.NOT_FETCHED || this.props.cfStatic.slug !== PAGE_SLUG) {
-      this.props.fetchSidebar(PAGE_SLUG, this.props.preview)
-    }
-  }
-
-  render () {
-    return (
-      <PresenterFactory
-        presenter={HoursPagePresenter}
-        error={HoursError}
-        props={{
-          servicePoints: this.props.servicePointsWithHours,
-          preview: this.props.preview,
-          hoursPageOrder: hoursPageOrder,
-          title: typy(this.props.cfStatic, 'json.fields.title').safeString,
-        }}
-        status={this.props.combinedStatus} />
-    )
-  }
 }
 
 HoursPageContainer.propTypes = {

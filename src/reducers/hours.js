@@ -1,7 +1,12 @@
-import { HOURS_REQUEST, HOURS_RECEIVE, HOURS_NO_SUCH } from 'actions/hours'
+import { HOURS_REQUEST, HOURS_RECEIVE } from 'actions/hours'
 import * as statuses from 'constants/APIStatuses'
 
-export default (state = { status: statuses.NOT_FETCHED, json: {} }, action) => {
+const initialState = {
+  status: statuses.NOT_FETCHED,
+  json: {},
+}
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case HOURS_REQUEST:
       return Object.assign({}, state, {
@@ -11,10 +16,6 @@ export default (state = { status: statuses.NOT_FETCHED, json: {} }, action) => {
       return Object.assign({}, state, {
         status: action.status,
         json: action.hours,
-      })
-    case HOURS_NO_SUCH:
-      return Object.assign({}, state, {
-        status: action.status,
       })
     default:
       return state

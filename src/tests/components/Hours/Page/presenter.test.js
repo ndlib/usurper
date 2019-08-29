@@ -1,61 +1,83 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import PagePresenter from 'components/Hours/Page/presenter'
+import Presenter from 'components/Hours/Page/presenter'
 import CurrentHours from 'components/Hours/Current'
+import PageTitle from 'components/Layout/PageTitle'
 
-const setup = (hoursEntry) => {
-  return shallow(<PagePresenter servicePoints={hoursEntry} hoursPageOrder={[
-    { servicePointSlug: 'hesburghlibrary', main: true }]} />)
+const setup = (props) => {
+  return shallow(
+    <Presenter
+      servicePoints={props.servicePoints}
+      hoursPageOrder={[
+        { servicePointSlug: 'hesburghlibrary', main: true },
+      ]}
+    />
+  )
 }
 
 let enzymeWrapper
+let props
+
 describe('components/Hours/Page/presenter', () => {
-  beforeEach(() => {
-    let servicePoints = [{
-      hesburghlibrary: {
-      fields: {
-        address: '117 Bond Hall',
-        city: 'Notre Dame',
-        country: 'United States',
-        floor: {
-          fields: {
-            building: null,
-            image: null,
-            shortDescription: 'Map of Bond Hall (Campus)',
-            slug: 'bond-1st-floor',
-            title: 'Bond Hall 1st Floor',
-          },
-        },
-        hoursCode: 'architecturelibrary',
-        phoneNumber: '(574) 631-6654',
-        state: 'IN',
-        title: 'Architecture Library',
-        type: 'Library',
-        zipcode: '46556',
-      },
-      sys:{
-        contentType: null,
-        createdAt: '2017-05-04T14:11:02.530Z',
-        id: '2NHpjJTyZyeaAIEwcEyKOg',
-        revision: 5,
-        space: null,
-        type: 'Entry',
-        updatedAt: '2017-07-03T18:23:15.202Z',
-      },
-    } }]
-
-    enzymeWrapper = setup(servicePoints)
-  })
-
   afterEach(() => {
     enzymeWrapper = undefined
+    props = undefined
   })
 
-  // it('Calls Current Hours for the key in the data', () => {
-  //   expect(enzymeWrapper.containsMatchingElement(<CurrentHours />)).toBe(true)
-  // })
+  describe('with data', () => {
+    beforeEach(() => {
+      props = {
+        servicePoints: {
+          hesburghlibrary: {
+            fields: {
+              address: '1337 Road Rd',
+              hoursCode: '12345678',
+              type: 'Library',
+            },
+            sys: {
+              id: 'jIPhspahfHdSFHhpcnzxpfajpthAS',
+            },
+          },
+        },
+      }
 
-  it('Adds a title to the page', () => {
-    expect(enzymeWrapper.find('PageTitle').exists()).toBe(true)
+      enzymeWrapper = setup(props)
+    })
+
+    it('should add a title to the page', () => {
+      expect(enzymeWrapper.find(PageTitle).exists()).toBe(true)
+    })
+
+    it('should render CurrentHours component for each servicePoint', () => {
+      // Make sure there is at least one entry in the test data or this test is invalid
+      const servicePointCount = Object.keys(props.servicePoints).length
+      expect(servicePointCount).toBeGreaterThan(0)
+      expect(enzymeWrapper.find(CurrentHours)).toHaveLength(servicePointCount)
+
+      Object.keys(props.servicePoints).forEach(spName => {
+        const found = enzymeWrapper.findWhere(el => el.type() === CurrentHours && el.props().servicePoint === props.servicePoints[spName])
+        expect(found.exists()).toBe(true)
+      })
+    })
+  })
+
+  describe('with invalid data', () => {
+    beforeEach(() => {
+      props = {
+        servicePoints: {
+          thisNameDoesNotExist: {
+            sys: { id: 'fake' },
+          },
+        },
+      }
+
+      enzymeWrapper = setup(props)
+    })
+
+    it('should not render any service points or hours', () => {
+      expect(enzymeWrapper.findWhere(el => el.hasClass('main-service-point')).exists()).toBe(false)
+      expect(enzymeWrapper.findWhere(el => el.hasClass('sub-service-point')).exists()).toBe(false)
+      expect(enzymeWrapper.find(CurrentHours).exists()).toBe(false)
+    })
   })
 })

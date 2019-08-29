@@ -4,40 +4,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import typy from 'typy'
 
-import { fetchHours } from 'actions/hours'
-import HoursHomePagePresenter from './presenter.js'
-import makeGetHoursForServicePoint from 'selectors/hours'
-import * as statuses from 'constants/APIStatuses'
-import InlineContainer from '../InlineContainer'
+import Presenter from './presenter'
+import HoursError from '../Error'
+import InlineLoading from 'components/Messages/InlineLoading'
 import { withErrorBoundary } from 'components/ErrorBoundary'
+import { hesburghHoursCode } from 'constants/hours'
+import * as statuses from 'constants/APIStatuses'
 
-export const HESBURGH_LIBRARY_HOURS_CODE = '426'
-
-// We  need a way to give each instance of a container access to its own private selector.
-// this is done by creating a private instance of the conector for each component.
-export const makeMapStateToProps = () => {
-  const getHoursForServicePoint = makeGetHoursForServicePoint()
-  const mapStateToProps = (state) => {
-    const { cfPageEntry } = state
-    // these props are required for the inline container.
-    const props = {
-      servicePoint: typy(cfPageEntry, 'json.fields.servicePoint').safeObject || {
-        fields: {
-          title: 'Hesburgh Library',
-          hoursCode: HESBURGH_LIBRARY_HOURS_CODE,
-        },
-      },
-    }
-    return {
-      hoursEntry: getHoursForServicePoint(state, props), // the actual hours used in the selector.
-    }
-  }
-  return mapStateToProps
-}
-
-export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchHours }, dispatch)
-}
+import { fetchHours } from 'actions/hours'
+import makeGetHoursForServicePoint from 'selectors/hours'
 
 export class HomePageHoursContainer extends Component {
   componentDidMount () {
@@ -47,12 +22,38 @@ export class HomePageHoursContainer extends Component {
   }
 
   render () {
-    return (
-      <InlineContainer
-        status={this.props.hoursEntry.status}
-        hoursEntry={this.props.hoursEntry}
-        presenter={HoursHomePagePresenter} />)
+    switch (this.props.hoursEntry.status) {
+      case statuses.FETCHING:
+        return <InlineLoading />
+      case statuses.SUCCESS:
+        return <Presenter hoursEntry={this.props.hoursEntry} />
+      case statuses.ERROR:
+        return <HoursError hoursEntry={this.props.hoursEntry} />
+      default:
+        return null
+    }
   }
+}
+
+export const mapStateToProps = (state) => {
+  const { cfPageEntry } = state
+  // these props are required for the inline container.
+  const props = {
+    servicePoint: typy(cfPageEntry, 'json.fields.servicePoint').safeObject || {
+      fields: {
+        title: 'Hesburgh Library',
+        hoursCode: hesburghHoursCode,
+      },
+    },
+  }
+  const selector = makeGetHoursForServicePoint()
+  return {
+    hoursEntry: selector(state, props), // the actual hours used in the selector.
+  }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchHours }, dispatch)
 }
 
 HomePageHoursContainer.propTypes = {
@@ -63,7 +64,7 @@ HomePageHoursContainer.propTypes = {
 }
 
 const HomePageHours = connect(
-  makeMapStateToProps,
+  mapStateToProps,
   mapDispatchToProps
 )(HomePageHoursContainer)
 

@@ -1,30 +1,26 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
+import configureStore from 'redux-mock-store'
 import {
   HomePageHoursContainer,
-  makeMapStateToProps,
+  mapStateToProps,
   mapDispatchToProps,
-  HESBURGH_LIBRARY_HOURS_CODE,
 } from 'components/Hours/HomePage'
-import PagePresenter from 'components/Hours/HomePage/presenter'
-import configureStore from 'redux-mock-store'
+import Presenter from 'components/Hours/HomePage/presenter'
+import HoursError from 'components/Hours/Error'
+import InlineLoading from 'components/Messages/InlineLoading'
+import { hesburghHoursCode } from 'constants/hours'
 import * as statuses from 'constants/APIStatuses'
-import InlineContainer from 'components/Hours/InlineContainer'
 
 let enzymeWrapper
 let props
 let store
 
 const setup = (props) => {
-  store = configureStore()(props)
-  return mount(
-    <Provider store={store}>
-      <HomePageHoursContainer {...props} />
-    </Provider>)
+  return shallow(<HomePageHoursContainer {...props} />)
 }
 
-describe('components/Hours/HomePage/Container', () => {
+describe('components/Hours/HomePage', () => {
   beforeEach(() => {
     props = {
       hoursEntry: { status: statuses.NOT_FETCHED },
@@ -37,28 +33,76 @@ describe('components/Hours/HomePage/Container', () => {
     enzymeWrapper = undefined
   })
 
-  it('only renders InlineContainer with hoursEntry status and PagePresenter', () => {
-    expect(enzymeWrapper
-      .containsMatchingElement(
-        <InlineContainer
-          status={props.hoursEntry.status}
-          hoursEntry={props.hoursEntry}
-          presenter={PagePresenter} />))
-      .toBe(true)
-  })
-
   it('calls the bound fetch hours action on load', () => {
     expect(props.fetchHours.mock.calls.length).toBe(1)
   })
 
+  it('should not render anything when hoursEntry has not been fetched', () => {
+    expect(enzymeWrapper.isEmptyRender()).toBe(true)
+  })
+
+  describe('with SUCCESS', () => {
+    beforeEach(() => {
+      props = {
+        hoursEntry: {
+          status: statuses.SUCCESS,
+          name: 'Some Library IDK',
+          today: {
+            rendered: '8am - 5pm',
+          },
+        },
+        fetchHours: jest.fn(),
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    it('should render presenter with hoursEntry', () => {
+      expect(enzymeWrapper.containsMatchingElement(<Presenter hoursEntry={props.hoursEntry} />)).toBe(true)
+    })
+  })
+
+  describe('while FETCHING', () => {
+    beforeEach(() => {
+      props = {
+        hoursEntry: {
+          status: statuses.FETCHING,
+        },
+        fetchHours: jest.fn(),
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    it('should render InlineLoading component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<InlineLoading />)).toBe(true)
+    })
+  })
+
+  describe('with ERROR', () => {
+    beforeEach(() => {
+      props = {
+        hoursEntry: {
+          status: statuses.ERROR,
+        },
+        fetchHours: jest.fn(),
+      }
+      enzymeWrapper = setup(props)
+    })
+
+    it('should render presenter HoursError component', () => {
+      expect(enzymeWrapper.containsMatchingElement(<HoursError hoursEntry={props.hoursEntry} />)).toBe(true)
+    })
+  })
+
   describe('mapDispatchToProps', () => {
+    const store = configureStore()(props)
+
     it('returns a function for fetchHours', () => {
       const result = mapDispatchToProps(store.dispatch)
       expect(result.fetchHours).toEqual(expect.any(Function))
     })
   })
 
-  describe('makeMapStateToProps', () => {
+  describe('mapStateToProps', () => {
     const dayHours = {
       currently_open: true,
       status: 'open',
@@ -84,8 +128,8 @@ describe('components/Hours/HomePage/Container', () => {
       status: statuses.SUCCESS,
       json: {
         locations: {
-          '426': {
-            lid: 426,
+          [hesburghHoursCode]: {
+            lid: parseInt(hesburghHoursCode, 10),
             name: 'Hesburgh Library',
             weeks: [ weekHours, weekHours, weekHours, weekHours  ],
           },
@@ -98,22 +142,15 @@ describe('components/Hours/HomePage/Container', () => {
       },
     }
 
-    it('returns a function', () => {
-      const mapStateToProps = makeMapStateToProps()
-      expect(mapStateToProps).toEqual(expect.any(Function))
-    })
-
-    it('mapStateToProps should use Hesburgh hours code if no service point found in state', () => {
-      const mapStateToProps = makeMapStateToProps()
+    it('should use Hesburgh hours code if no service point found in state', () => {
       const state = {
         hours: hoursState,
       }
       const result = mapStateToProps(state)
-      expect(result.hoursEntry.servicePoint.hoursCode).toEqual(HESBURGH_LIBRARY_HOURS_CODE)
+      expect(result.hoursEntry.servicePoint.hoursCode).toEqual(hesburghHoursCode)
     })
 
-    it('mapStateToProps should use service point in cfPageEntry', () => {
-      const mapStateToProps = makeMapStateToProps()
+    it('should use service point in cfPageEntry', () => {
       const state = {
         cfPageEntry: {
           json: {

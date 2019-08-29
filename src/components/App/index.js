@@ -28,7 +28,6 @@ import FloorSearch from 'components/FloorSearch'
 import rootReducers from 'reducers'
 import thunkMiddleware from 'redux-thunk'
 import Rewrite from './Rewrite'
-import EmbeddableHours from 'components/Embeddable/Hours'
 import CirculationHistory from 'components/Account/CirculationHistory'
 import Favorites from 'components/Account/Favorites'
 
@@ -65,40 +64,37 @@ const App = (props) => {
     <Switch>
       { Rewrite(props) }
       <Provider store={store}>
-        <Switch>
-          <Route exact path='/embed/hours/:servicePoint' component={EmbeddableHours} />
-          <PageWrapper>
-            <Switch>
-              <Route exact path='/' render={() => (<Home {...props} />)} /> {/* Render is needed to pass cookies */}
-              <Route exact path='/chat' component={ChatPage} />
-              <Route exact path='/courses' component={Courses} />
-              <Route exact path='/hours' component={Hours} />
-              <Route exact path='/events' component={Events} />
-              <Route exact path='/events/past' component={Events} />
-              <Route exact path='/events/past/:date' component={Events} />
-              <Route exact path='/events/:date' component={Events} />
-              <Route exact path='/news' component={News} />
-              <Route exact path='/floor/search' component={FloorSearch} />
-              <Route exact path='/floor/:id' component={ContentfulFloor} />
-              <Route exact path='/news/:id' component={ContentfulNews} />
-              <Route exact path='/event/:id' component={ContentfulEvent} />
-              <Route exact path='/items-requests' component={ItemsRequests} />
-              <Route exact path='/checkout-history' component={CirculationHistory} />
-              { Config.features.favoritesEnabled && (
-                <Route exact path='/favorites' render={() => (<Favorites {...props} />)} />
-              )}
-              <Route exact path='/subjects' component={SubjectList} />
-              <Route exact path='/database/:id' component={DatabasePage} />
-              <Route exact path='/databases' component={DatabaseList} />
-              <Route exact path='/secure/:id' component={SecureContentfulPage} />
-              <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
-              <Route exact path='/search' component={SearchPage} />
-              <Route exact path='/:id' component={ContentfulPage} />
+        <PageWrapper>
+          <Switch>
+            <Route exact path='/' render={() => (<Home {...props} />)} /> {/* Render is needed to pass cookies */}
+            <Route exact path='/chat' component={ChatPage} />
+            <Route exact path='/courses' component={Courses} />
+            <Route exact path='/hours' component={Hours} />
+            <Route exact path='/events' component={Events} />
+            <Route exact path='/events/past' component={Events} />
+            <Route exact path='/events/past/:date' component={Events} />
+            <Route exact path='/events/:date' component={Events} />
+            <Route exact path='/news' component={News} />
+            <Route exact path='/floor/search' component={FloorSearch} />
+            <Route exact path='/floor/:id' component={ContentfulFloor} />
+            <Route exact path='/news/:id' component={ContentfulNews} />
+            <Route exact path='/event/:id' component={ContentfulEvent} />
+            <Route exact path='/items-requests' component={ItemsRequests} />
+            <Route exact path='/checkout-history' component={CirculationHistory} />
+            { Config.features.favoritesEnabled && (
+              <Route exact path='/favorites' render={() => (<Favorites {...props} />)} />
+            )}
+            <Route exact path='/subjects' component={SubjectList} />
+            <Route exact path='/database/:id' component={DatabasePage} />
+            <Route exact path='/databases' component={DatabaseList} />
+            <Route exact path='/secure/:id' component={SecureContentfulPage} />
+            <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
+            <Route exact path='/search' component={SearchPage} />
+            <Route exact path='/:id' component={ContentfulPage} />
 
-              <Route path='*' component={NotFound} />
-            </Switch>
-          </PageWrapper>
-        </Switch>
+            <Route path='*' component={NotFound} />
+          </Switch>
+        </PageWrapper>
       </Provider>
     </Switch>
   )
