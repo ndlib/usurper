@@ -13,7 +13,7 @@
 
 .filter {
   width: 100%;
-  min-width: 288px;
+  min-width: 200px;
   display: block;
   background-color: #072242;
   color: #fff;
@@ -22,7 +22,7 @@
 
 .filter label {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
 }
 
@@ -32,6 +32,6 @@
   padding: 5px;
   font-size: 14px;
   border: solid 1px #000;
-  margin: 5px 5px 5px 0;
+  margin: 5px;
   max-width: 350px;
 }

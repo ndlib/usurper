@@ -31,7 +31,7 @@ const Loaded = (props) => {
         <div className='col-md-8'>
           <FilterBox
             htag='2'
-            title='Search Databases by Title: '
+            title='Search Databases by Title'
             value={props.filterValue}
             onChange={props.onFilterChange}
             label='Database Search'
