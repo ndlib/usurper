@@ -103,7 +103,7 @@ CurrentHoursContainer.propTypes = {
   }).isRequired,
   servicePoint: PropTypes.shape({
     fields: PropTypes.shape({
-      hoursCode: PropTypes.string.isRequired,
+      hoursCode: PropTypes.string,
     }).isRequired,
   }).isRequired,
   fetchHours: PropTypes.func.isRequired,
