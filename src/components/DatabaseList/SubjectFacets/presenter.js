@@ -53,7 +53,7 @@ const SubjectFacets = (props) => {
           <span className={'link-like ' + styles.showMore} tabIndex={0} onClick={props.showMore}>Show More</span>
         )}
         <button className={styles.applySubjectFilter} onClick={props.applyFilter}>Apply Filter</button>
-        <button className={styles.clearSubjectFilter} onClick={props.clearFilter}>Clear Changes</button>
+        <button className={styles.clearSubjectFilter} onClick={props.clearFilter}>Undo Changes</button>
       </div>
     </React.Fragment>
   )
