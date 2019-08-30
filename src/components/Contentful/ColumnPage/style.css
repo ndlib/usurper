@@ -112,40 +112,34 @@
   margin-bottom: 0.5rem;
 }
 
+.side-nav.column-md {
+  display: none; /* will use media query to show when screen is large enough */
+  width: calc(100% - 32px); /* account for padding on parent container */
+}
+
+@media screen and (min-width: 62em) {
+  .side-nav.column-md {
+    display: inline;
+  }
+}
+
 @media screen and (min-width: 157px) {
-  .side-nav {
+  .side-nav:not(.column-md) {
     transform: translateX(calc(1200px - 232px));
     width: 232px;
   }
-
-  .side-nav.col-md-4 {
-    transform: translateX(calc(1200px - 400px));
-    width: 400px;
-  }
 }
 @media screen and (min-width: 1200px) and (max-width: 1570px) {
-  .side-nav {
+  .side-nav:not(.column-md) {
     transform: translateX(calc(1200px - 262px));
     width: 232px;
-  }
-
-  .side-nav.col-md-4 {
-    transform: translateX(calc(1200px - 430px));
-    -ms-transform: translateX(0px) !important;
-    width: 389px;
   }
 }
 
 @media screen and (min-width: 981px) and (max-width: 1199px) {
-  .side-nav {
+  .side-nav:not(.column-md) {
     transform: translateX(calc(80vw - 1em));
     width: calc(20vw - 1em);
-  }
-
-  .side-nav.col-md-4 {
-    transform: translateX(calc(80vw - 11em));
-    -ms-transform: translateX(0px) !important;
-    width: calc(30vw);
   }
 }
 
@@ -154,7 +148,7 @@
     width: 100%;
   }
 
-  .side-nav {
+  .side-nav:not(.column-md) {
     display: none;
   }
 }

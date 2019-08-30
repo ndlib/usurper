@@ -66,3 +66,13 @@ export const makeLocalTimezone = (stringDate) => {
 
   return ret
 }
+
+export const isInMonth = (startDate, endDate, year, month) => {
+  const startYear = startDate ? startDate.getFullYear() : 0
+  const inStart = startYear < year || (startYear === year && startDate.getMonth() <= month)
+
+  const endYear = endDate ? endDate.getFullYear() : 9999
+  const inEnd = endYear > year || (endYear === year && endDate.getMonth() >= month)
+
+  return inStart && inEnd
+}

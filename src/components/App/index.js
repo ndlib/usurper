@@ -70,10 +70,10 @@ const App = (props) => {
             <Route exact path='/chat' component={ChatPage} />
             <Route exact path='/courses' component={Courses} />
             <Route exact path='/hours' component={Hours} />
-            <Route exact path='/events' component={Events} />
-            <Route exact path='/events/past' component={Events} />
-            <Route exact path='/events/past/:date' component={Events} />
-            <Route exact path='/events/:date' component={Events} />
+            <Route exact path='/events' render={() => <Events {...props} />} />
+            <Route exact path='/events/past' render={() => <Events isPast {...props} />} />
+            <Route exact path='/events/past/:date' render={() => <Events isPast {...props} />} />
+            <Route exact path='/events/:date' render={() => <Events {...props} />} />} />
             <Route exact path='/news' component={News} />
             <Route exact path='/floor/search' component={FloorSearch} />
             <Route exact path='/floor/:id' component={ContentfulFloor} />

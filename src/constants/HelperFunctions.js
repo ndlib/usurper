@@ -1,4 +1,4 @@
-/* eslint complexity: ["warn", 10] */
+/* eslint complexity: ["warn", 15] */
 // Helper functions are not something that should need regular maintenance. They should "just work",
 // and their inner-workings often need to be complex to accommodate generic usage.
 
@@ -40,9 +40,18 @@ const sortInternal = (a, b, sortKeys, sortDir) => {
   // If one of them is null or undefined, a direct string comparison won't work right...
   if (typy(aValue).isNullOrUndefined || typy(bValue).isNullOrUndefined) {
     result = (!!aValue - !!bValue) * direction // falsy values will be given lower priority in asc and higher in desc
+  } else if (aValue instanceof Date && bValue instanceof Date) {
+    result = (aValue.getTime() - bValue.getTime()) * direction
   } else {
     result = aValue.toString() // works on numbers and puts them at the top (asc) or bottm (desc)
       .localeCompare(bValue, undefined, { sensitivity: 'accent', ignorePunctuation: true }) * direction
+    // If any of these returns true, that means we are comparing booleans. While booleans don't logically sort
+    // well, the most natural way to sort is ascending and you usually want the "true" values at the top. For this
+    // reason, invert the direction since 'true' > 'false', but we want (boolean) true < false.
+    // eslint-disable-next-line eqeqeq
+    if (typy(a).isBoolean || typy(b).isBoolean || aValue.toString().toLowerCase() == 'true' || bValue.toString().toLowerCase() == 'true') {
+      result = -result
+    }
   }
   if (result === 0 && sortKeys.length > 1) {
     return sortInternal(a, b, sortKeys.slice(1), sortDir)

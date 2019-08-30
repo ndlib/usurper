@@ -36,8 +36,8 @@ const receiveAllEvents = (response) => {
   }
 }
 
-export const fetchAllEvents = (status) => {
-  const url = helper.getContentfulQueryUrl('content_type=event&include=3', status === 'preview')
+export const fetchAllEvents = (preview) => {
+  const url = helper.getContentfulQueryUrl('content_type=event&include=3', preview)
 
   return dispatch => {
     dispatch(requestAllEvents())

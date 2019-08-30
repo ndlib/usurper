@@ -1,25 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import DateFilter from './DateFilter'
+import Calendar from './Calendar'
 import Event from 'components/Event'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import Link from 'components/Interactive/Link'
-import SideNav from 'components/Layout/Navigation/SideNav'
 import FilterBox from 'components/Interactive/FilterBox'
 
 import '../style.css'
 
-const PastEvents = (props) => {
+const CurrentEvents = (props) => {
   return (
     <div className='content'>
-      <Link to='/events' className='button fright tab'>Current Events</Link>
+      { (props.filterDay) ? (
+        <Link to='/events' className='button fright tab'>Current Events</Link>
+      ) : (
+        <Link to='/events/past' className='button fright tab'>Past Events</Link>
+      )}
       <PageTitle title={props.pageTitle} />
       <SearchProgramaticSet open={false} />
       <div className='row'>
-        <div className='col-md-8 col-xs-12'>
-          <FilterBox value={props.filterValue} title='Search Past Events' onChange={props.onFilterChange} />
+        <div className='col-md-8 col-sm-7 col-xs-12'>
+          <FilterBox value={props.filterValue} title='Search Current Events' onChange={props.onFilterChange} />
           <br />
           { props.events.map((event, index) => (
             <Event key={event.id} entry={event} isLast={index === props.events.length - 1} />
@@ -32,24 +35,27 @@ const PastEvents = (props) => {
             )
           }
         </div>
-        <div className='col-md-4 col-xs-12' style={{ position: 'relative' }}>
-          <SideNav className='column-md'>
-            <DateFilter events={props.allEvents} filterYear={props.filterYear} filterMonth={props.filterMonth} />
-          </SideNav>
+        <div className='col-md-4 col-sm-5 col-xs-12 right'>
+          <Calendar events={props.allEvents} history={props.history} match={props.match} />
         </div>
       </div>
     </div>
   )
 }
 
-PastEvents.propTypes = {
+CurrentEvents.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   events: PropTypes.array,
   allEvents: PropTypes.array,
   onFilterChange: PropTypes.func.isRequired,
   filterValue: PropTypes.string,
-  filterYear: PropTypes.number,
-  filterMonth: PropTypes.number,
+  filterDay: PropTypes.number,
+  history: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      date: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 }
 
-export default PastEvents
+export default CurrentEvents
