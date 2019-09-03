@@ -11,22 +11,27 @@ const validSubjects = [
   {
     sys: { id: 'subject1' },
     linkText: 'Display Text 1',
+    selected: true,
   },
   {
     sys: { id: 'subject2' },
     linkText: 'Display Text 2',
+    selected: true,
   },
   {
     sys: { id: 'subject3' },
     linkText: 'Display Text 3',
+    selected: true,
   },
   {
     sys: { id: 'SELECT_ME' },
     linkText: 'Selected subject',
+    selected: false,
   },
   {
     sys: { id: 'ACTIVATE' },
     linkText: 'Active subject',
+    selected: false,
   }
 ]
 
@@ -78,21 +83,9 @@ describe('components/DatabaseList/SubjectFacets/presenter.js', () => {
     expect(props.onSubjectClick).toHaveBeenCalled()
   })
 
-  it('should call onCheckboxChanged when clicking subject checkbox', () => {
+  it('should call onSubjectClick when clicking subject checkbox', () => {
     const found = enzymeWrapper.findWhere(el => el.type() === 'input' && el.props().type === 'checkbox')
     found.first().simulate('change')
-    expect(props.onCheckboxChanged).toHaveBeenCalled()
-  })
-
-  it('should call applyFilter when clicking appropriate button', () => {
-    const btn = enzymeWrapper.findWhere(el => el.hasClass('applySubjectFilter'))
-    btn.simulate('click')
-    expect(props.applyFilter).toHaveBeenCalled()
-  })
-
-  it('should call clearFilter when clicking clear button', () => {
-    const btn = enzymeWrapper.findWhere(el => el.hasClass('clearSubjectFilter'))
-    btn.simulate('click')
-    expect(props.clearFilter).toHaveBeenCalled()
+    expect(props.onSubjectClick).toHaveBeenCalled()
   })
 })

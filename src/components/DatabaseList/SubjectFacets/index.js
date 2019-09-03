@@ -9,49 +9,12 @@ export class SubjectFacets extends Component {
   constructor (props) {
     super(props)
 
-    this.showMore = this.showMore.bind(this)
-    this.applyFilter = this.applyFilter.bind(this)
-    this.clearFilter = this.clearFilter.bind(this)
     this.onSubjectClick = this.onSubjectClick.bind(this)
-    this.onCheckboxChanged = this.onCheckboxChanged.bind(this)
     this.getFullSubjectFilters = this.getFullSubjectFilters.bind(this)
-
-    this.state = {
-      resultsToShow: 500, // Basically infinite. Left here in case this functionality is changed in the future.
-      selectedSubjects: this.getFullSubjectFilters(),
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    // If the applied filters changes, update the state to match
-    if (JSON.stringify(this.props.activeSubjects) !== JSON.stringify(prevProps.activeSubjects)) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        selectedSubjects: this.getFullSubjectFilters(),
-      })
-    }
   }
 
   getFullSubjectFilters () {
     return this.props.activeSubjects.map(id => this.props.subjects.find(subject => subject.sys.id === id))
-  }
-
-  showMore () {
-    this.setState({
-      resultsToShow: this.state.resultsToShow + 10,
-    })
-  }
-
-  applyFilter (overrideSubjects) {
-    const selection = Array.isArray(overrideSubjects) ? overrideSubjects : this.state.selectedSubjects
-    this.props.onSubjectFilterApply(selection)
-  }
-
-  clearFilter () {
-    const fullActiveSubjects = this.props.subjects.filter(subject => this.props.activeSubjects.includes(subject.sys.id))
-    this.setState({
-      selectedSubjects: fullActiveSubjects,
-    })
   }
 
   onSubjectClick (subject) {
@@ -63,44 +26,16 @@ export class SubjectFacets extends Component {
       newSubjects.push(subject)
     }
 
-    this.setState({
-      selectedSubjects: newSubjects,
-    })
-
-    // We need to override subjects by passing them because the state will not update until the next cycle
-    this.applyFilter(newSubjects)
-  }
-
-  onCheckboxChanged (event, subject) {
-    const newSubjects = JSON.parse(JSON.stringify(this.state.selectedSubjects))
-
-    if (event.target.checked) {
-      newSubjects.push(subject)
-    } else {
-      const position = newSubjects.findIndex(search => search.sys.id === subject.sys.id)
-      if (position >= 0) {
-        newSubjects.splice(position, 1)
-      }
-    }
-
-    this.setState({
-      selectedSubjects: newSubjects,
-    })
+    this.props.onSubjectFilterApply(newSubjects)
   }
 
   render () {
+    const displaySubjects = helper.sortList(this.props.subjects, 'linkText', 'asc').map(subject => ({
+      ...subject,
+      selected: this.props.activeSubjects.includes(subject.sys.id),
+    }))
     return (
-      <Presenter
-        subjects={helper.sortList(this.props.subjects, 'linkText', 'asc')}
-        selectedSubjects={this.state.selectedSubjects}
-        activeSubjects={this.props.activeSubjects}
-        resultsToShow={this.state.resultsToShow}
-        showMore={this.showMore}
-        applyFilter={this.applyFilter}
-        clearFilter={this.clearFilter}
-        onSubjectClick={this.onSubjectClick}
-        onCheckboxChanged={this.onCheckboxChanged}
-      />
+      <Presenter subjects={displaySubjects} onSubjectClick={this.onSubjectClick} />
     )
   }
 }
