@@ -42,7 +42,7 @@ const PagePresenter = ({ entry }) => (
       <main className='col-md-8 col-sm-8 article'>
         <Image cfImage={entry.fields.image} className='news cover' itemProp='image' />
         <LibMarkdown itemProp='articleBody'>{ entry.fields.content }</LibMarkdown>
-        <LibMarkdown >{ entry.fields.contactUsPubInfo }</LibMarkdown>
+        <LibMarkdown className='contactNews'>{ entry.fields.contactUsPubInfo }</LibMarkdown>
         <Related className='p-resources' title='Resources' showImages={false}>
           { entry.fields.relatedResources }
         </Related>

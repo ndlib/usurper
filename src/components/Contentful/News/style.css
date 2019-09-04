@@ -1,0 +1,13 @@
+.contactNews {
+	margin: 6em 0;
+    padding: 16px 10px 0;
+    border:  solid #aaa;
+    border-width: 2px 0;
+    color: #6F7275;
+}
+
+.contactNews p {
+	color: #6F7275;
+	font-size: 14px;
+	font-weight: bold;
+}
