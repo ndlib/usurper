@@ -12,17 +12,17 @@ const EventCalendar = (props) => {
   props.events.forEach((event) => {
     // If an event last longer than a month should we highlight all the days?
     // Highlight only the first and last days in this case.
-    if (moment(event.endDate).diff(moment(event.startDate), 'days') > 28) {
-      if (event.startDate >= today) {
-        specialDays.push(event.startDate)
+    const start = new Date(event.startDate)
+    const end = new Date(event.endDate)
+    if (moment(event.endDate).diff(moment(event.startDate), 'days') >= 28) {
+      if (start >= today) {
+        specialDays.push(start)
       }
-      if (event.endDate >= today) {
-        specialDays.push(event.endDate)
+      if (end >= today) {
+        specialDays.push(end)
       }
     } else {
-      let current = new Date(event.startDate)
-      const end = new Date(event.endDate)
-
+      let current = new Date(start)
       while (current <= end) {
         if (current >= today) {
           specialDays.push(current)
@@ -32,8 +32,8 @@ const EventCalendar = (props) => {
     }
   })
 
-  const onChange = (selectedDate) => {
-    const date = moment(selectedDate).format('YYYYMMDD')
+  const onChange = (newDate) => {
+    const date = moment(newDate).format('YYYYMMDD')
     props.history.push(`/events/${date}`)
   }
 

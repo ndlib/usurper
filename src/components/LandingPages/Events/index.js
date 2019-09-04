@@ -15,7 +15,7 @@ import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 import * as dateLibs from 'shared/DateLibs'
 
-export class EventsPageContainer extends Component {
+export class EventsContainer extends Component {
   constructor (props) {
     super(props)
 
@@ -95,7 +95,7 @@ export class EventsPageContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   let events = []
   let relevantEvents = []
   if (state.allEvents.status === statuses.SUCCESS) {
@@ -130,7 +130,7 @@ const mapStateToProps = (state, ownProps) => {
 
       filterMonth = date.month()
       filterYear = date.year()
-      filterDay = hasDay ? date.day() : null
+      filterDay = hasDay ? date.date() : null
     }
   }
 
@@ -168,11 +168,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchAllEvents }, dispatch)
 }
 
-EventsPageContainer.propTypes = {
+EventsContainer.propTypes = {
   allEvents: PropTypes.array.isRequired,
   events: PropTypes.array.isRequired,
   pageTitle: PropTypes.string.isRequired,
@@ -188,9 +188,9 @@ EventsPageContainer.propTypes = {
   }),
 }
 
-const EventsPage = withRouter(connect(
+const Events = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EventsPageContainer))
+)(EventsContainer))
 
-export default EventsPage
+export default Events

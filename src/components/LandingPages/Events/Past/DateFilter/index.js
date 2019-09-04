@@ -60,13 +60,13 @@ export class DateFilter extends Component {
     }
 
     this.props.events.forEach((event) => {
-      const date = new Date(event.startDate)
+      let date = new Date(event.startDate)
       const end = new Date(event.endDate)
-      // compare value of "date" is modified with the setMonth method
-      // eslint-disable-next-line no-unmodified-loop-condition
-      while (date < end) {
+
+      while (date <= end) {
         addDate(date.getFullYear(), date.getMonth())
-        date.setMonth(date.getMonth() + 1, 1) // set to first day of the following month
+        // set to first day of the following month
+        date = new Date(date.getFullYear(), date.getMonth() + 1, 1)
       }
     })
 
@@ -75,17 +75,16 @@ export class DateFilter extends Component {
     }
 
     return (
-      <Presenter
-        eventDates={eventDates}
-        yearCallback={this.onYearClick}
-        expanded={this.state.expanded}
-      />
+      <Presenter eventDates={eventDates} yearCallback={this.onYearClick} expanded={this.state.expanded} />
     )
   }
 }
 
 DateFilter.propTypes = {
-  events: PropTypes.array.isRequired,
+  events: PropTypes.arrayOf(PropTypes.shape({
+    startDate: PropTypes.string.isRequired,
+    endDate: PropTypes.string.isRequired,
+  })).isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
 }

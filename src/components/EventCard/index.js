@@ -5,7 +5,7 @@ import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
 
-const Event = ({ entry, isLast, showDescription, showImage }) => {
+const EventCard = ({ entry, isLast, showDescription, showImage }) => {
   return (
     <div className='event-card' itemScope itemType='http://schema.org/Event'>
       <Link
@@ -42,7 +42,7 @@ const Event = ({ entry, isLast, showDescription, showImage }) => {
   )
 }
 
-Event.propTypes = {
+EventCard.propTypes = {
   entry: PropTypes.shape({
     slug: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -57,10 +57,10 @@ Event.propTypes = {
   showImage: PropTypes.bool,
 }
 
-Event.defaultProps = {
+EventCard.defaultProps = {
   isLast: false,
   showDescription: true,
   showImage: true,
 }
 
-export default Event
+export default EventCard

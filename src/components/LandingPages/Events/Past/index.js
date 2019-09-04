@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import DateFilter from './DateFilter'
-import Event from 'components/Event'
+import EventCard from 'components/EventCard'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import Link from 'components/Interactive/Link'
@@ -22,7 +22,7 @@ const PastEvents = (props) => {
           <FilterBox value={props.filterValue} title='Search Past Events' onChange={props.onFilterChange} />
           <br />
           { props.events.map((event, index) => (
-            <Event key={event.id} entry={event} isLast={index === props.events.length - 1} />
+            <EventCard key={event.id} entry={event} isLast={index === props.events.length - 1} />
           ))}
           {
             props.filterValue && props.events.length === 50 && (

@@ -6,10 +6,9 @@ import { fetchAllEvents } from 'actions/contentful/allEvents'
 import Presenter from './presenter.js'
 import PresenterFactory from 'components/APIInlinePresenterFactory'
 import * as statuses from 'constants/APIStatuses'
-import { withErrorBoundary } from 'components/ErrorBoundary'
 import * as helper from 'constants/HelperFunctions'
 
-export class AllEventsContainer extends Component {
+export class HomeEventsContainer extends Component {
   componentDidMount () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
@@ -20,7 +19,7 @@ export class AllEventsContainer extends Component {
 
   render () {
     return (
-      <PresenterFactory presenter={Presenter} props={this.props.allEvents} status={this.props.allEventsStatus} />
+      <PresenterFactory presenter={Presenter} props={{ entries: this.props.allEvents }} status={this.props.allEventsStatus} />
     )
   }
 }
@@ -53,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchAllEvents }, dispatch)
 }
 
-AllEventsContainer.propTypes = {
+HomeEventsContainer.propTypes = {
   allEventsStatus: PropTypes.string.isRequired,
   fetchAllEvents: PropTypes.func.isRequired,
   allEvents: PropTypes.array.isRequired,
@@ -65,9 +64,9 @@ AllEventsContainer.propTypes = {
   }),
 }
 
-const AllEvents = connect(
+const HomeEvents = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AllEventsContainer)
+)(HomeEventsContainer)
 
-export default withErrorBoundary(AllEvents)
+export default HomeEvents

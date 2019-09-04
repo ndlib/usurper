@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Calendar from './Calendar'
-import Event from 'components/Event'
+import EventCard from 'components/EventCard'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import Link from 'components/Interactive/Link'
@@ -25,7 +25,7 @@ const CurrentEvents = (props) => {
           <FilterBox value={props.filterValue} title='Search Current Events' onChange={props.onFilterChange} />
           <br />
           { props.events.map((event, index) => (
-            <Event key={event.id} entry={event} isLast={index === props.events.length - 1} />
+            <EventCard key={event.id} entry={event} isLast={index === props.events.length - 1} />
           ))}
           {
             props.filterValue && props.events.length === 50 && (
@@ -51,11 +51,7 @@ CurrentEvents.propTypes = {
   filterValue: PropTypes.string,
   filterDay: PropTypes.number,
   history: PropTypes.object,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      date: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
+  match: PropTypes.object,
 }
 
 export default CurrentEvents
