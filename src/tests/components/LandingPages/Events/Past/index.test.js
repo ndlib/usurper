@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
 import { PastEventsContainer, mapStateToProps, mapDispatchToProps } from 'components/LandingPages/Events/Past'
-import Presenter from 'components/LandingPages/Events/Past/Presenter'
+import Presenter from 'components/LandingPages/Events/Past/presenter'
 
 import * as testData from '../testData'
 import * as statuses from 'constants/APIStatuses'
