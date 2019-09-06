@@ -14,11 +14,11 @@ export class ContentfulEventContainer extends Component {
     this.props.fetchEvent(eventSlug, this.props.preview)
   }
 
-  componentWillReceiveProps (nextProps) {
-    const slug = this.props.match.params.id
-    const nextSlug = nextProps.match.params.id
-    if (slug !== nextSlug) {
-      this.props.fetchEvent(nextSlug, nextProps.preview)
+  componentDidUpdate (prevProps) {
+    const oldSlug = prevProps.match.params.id
+    const newSlug = this.props.match.params.id
+    if (newSlug !== oldSlug) {
+      this.props.fetchEvent(newSlug, this.props.preview)
     }
   }
 
