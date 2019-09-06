@@ -82,8 +82,14 @@ export class DateFilter extends Component {
 
 DateFilter.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
+    startDate: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]).isRequired,
+    endDate: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]).isRequired,
   })).isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,

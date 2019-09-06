@@ -1,55 +1,91 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+import typy from 'typy'
 
-import DateFilter from './DateFilter'
-import EventCard from 'components/EventCard'
-import PageTitle from 'components/Layout/PageTitle'
-import SearchProgramaticSet from 'components/SearchProgramaticSet'
-import Link from 'components/Interactive/Link'
-import SideNav from 'components/Layout/Navigation/SideNav'
-import FilterBox from 'components/Interactive/FilterBox'
+import Presenter from './presenter'
 
-import '../style.css'
+import { fetchAllEvents } from 'actions/contentful/allEvents'
+import * as statuses from 'constants/APIStatuses'
+import * as dateLibs from 'shared/DateLibs'
 
-const PastEvents = (props) => {
-  return (
-    <div className='content'>
-      <Link to='/events' className='button fright tab'>Current Events</Link>
-      <PageTitle title={props.pageTitle} />
-      <SearchProgramaticSet open={false} />
-      <div className='row'>
-        <div className='col-md-8 col-xs-12'>
-          <FilterBox value={props.filterValue} title='Search Past Events' onChange={props.onFilterChange} />
-          <br />
-          { props.events.map((event, index) => (
-            <EventCard key={event.id} entry={event} isLast={index === props.events.length - 1} />
-          ))}
-          {
-            props.filterValue && props.events.length === 50 && (
-              <div className='searchClipped'>
-                <p>Search is limited to first 50 results. Add more words to your search to see fewer results.</p>
-              </div>
-            )
-          }
-        </div>
-        <div className='col-md-4 col-xs-12' style={{ position: 'relative' }}>
-          <SideNav className='column-md'>
-            <DateFilter events={props.allEvents} filterYear={props.filterYear} filterMonth={props.filterMonth} />
-          </SideNav>
-        </div>
-      </div>
-    </div>
-  )
+export class PastEventsContainer extends Component {
+  componentDidMount () {
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+    if (this.props.allEventsStatus === statuses.NOT_FETCHED) {
+      this.props.fetchAllEvents(preview)
+    }
+  }
+
+  render () {
+    return <Presenter {...this.props} />
+  }
 }
 
-PastEvents.propTypes = {
+export const mapStateToProps = (state, ownProps) => {
+  const { allEvents } = state
+  // Check for month filter
+  const dateString = ownProps.match.params.date || ''
+  const hasFilter = !!(dateString.match(/^\d{6}$/))
+
+  let pageTitle = 'Past Events'
+  let pageDate
+  let filterYear
+  let filterMonth
+
+  if (hasFilter) {
+    pageTitle = `${pageTitle} - ${moment(dateString, 'YYYYMM').format('MMMM YYYY')}`
+    pageDate = dateString
+    filterYear = moment(dateString, 'YYYYMM').year()
+    filterMonth = moment(dateString, 'YYYYMM').month()
+  }
+
+  const now = new Date()
+  const events = typy(state, 'allEvents.json').safeArray.filter(entry => {
+    if (entry && entry.startDate && entry.endDate) {
+      return entry.startDate < now && entry.endDate < now
+    }
+    return false
+  })
+  const filteredEvents = events.filter(entry => {
+    return hasFilter
+      ? dateLibs.isInMonth(entry.startDate, entry.endDate, filterYear, filterMonth)
+      : entry.endDate >= moment().subtract(30, 'days')
+  })
+
+  return {
+    pageTitle,
+    pageDate,
+    events,
+    filteredEvents,
+    filterYear,
+    filterMonth,
+    allEventsStatus: allEvents.status,
+  }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchAllEvents }, dispatch)
+}
+
+PastEventsContainer.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  events: PropTypes.array,
-  allEvents: PropTypes.array,
-  onFilterChange: PropTypes.func.isRequired,
-  filterValue: PropTypes.string,
+  pageDate: PropTypes.string,
+  filteredEvents: PropTypes.array.isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
+  allEventsStatus: PropTypes.string.isRequired,
+  fetchAllEvents: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
+  }),
 }
+
+const PastEvents = connect(mapStateToProps, mapDispatchToProps)(PastEventsContainer)
 
 export default PastEvents

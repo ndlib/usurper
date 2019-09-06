@@ -50,12 +50,12 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
             return entry
           }
           // Adjust start and end dates so they are Date objects
-          const start = dateLibs.makeLocalTimezone(entry.fields.startDate)
+          const start = entry.fields.startDate ? dateLibs.makeLocalTimezone(entry.fields.startDate) : null
           const end = entry.fields.endDate
             ? dateLibs.makeLocalTimezone(entry.fields.endDate)
-            : dateLibs.makeLocalTimezone(entry.fields.startDate)
+            : (start ? new Date(start) : null)
           // if end time is 0:00, add 23:59
-          if (end.getHours() === 0 && end.getMinutes() === 0) {
+          if (end instanceof Date && end.getHours() === 0 && end.getMinutes() === 0) {
             end.setTime(end.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000))
           }
 

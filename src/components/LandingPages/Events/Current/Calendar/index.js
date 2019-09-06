@@ -51,8 +51,14 @@ const EventCalendar = (props) => {
 
 EventCalendar.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({
-    startDate: PropTypes.string.isRequired,
-    endDate: PropTypes.string.isRequired,
+    startDate: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]).isRequired,
+    endDate: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]).isRequired,
   })).isRequired,
   history: PropTypes.object.isRequired,
   match: PropTypes.shape({

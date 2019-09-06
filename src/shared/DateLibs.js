@@ -30,12 +30,17 @@ export const hour12 = (date) => {
 
 // return true if two dates fall on the same day
 export const isSameDay = (start, end) => {
-  return start.getMonth() === end.getMonth() &&
+  return start instanceof Date &&
+         end instanceof Date &&
+         start.getMonth() === end.getMonth() &&
          start.getDay() === end.getDay() &&
          start.getYear() === end.getYear()
 }
 
 export const makeLocalTimezone = (stringDate) => {
+  if (!stringDate) {
+    return new Date(0, 0, 0)
+  }
   // local timezone offset string (eg -04:00)
   const givenTz = stringDate.slice(-6)
 

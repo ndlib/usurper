@@ -21,7 +21,8 @@ import DatabasePage from 'components/Contentful/Database'
 import SearchPage from 'components/SearchPage'
 import ContentfulEvent from 'components/Contentful/Event'
 import News from 'components/LandingPages/News'
-import Events from 'components/LandingPages/Events'
+import CurrentEvents from 'components/LandingPages/Events/Current'
+import PastEvents from 'components/LandingPages/Events/Past'
 import DatabaseList from 'components/DatabaseList'
 import SubjectList from 'components/SubjectList'
 import FloorSearch from 'components/FloorSearch'
@@ -70,10 +71,10 @@ const App = (props) => {
             <Route exact path='/chat' component={ChatPage} />
             <Route exact path='/courses' component={Courses} />
             <Route exact path='/hours' component={Hours} />
-            <Route exact path='/events' render={() => <Events {...props} />} />
-            <Route exact path='/events/past' render={() => <Events isPast {...props} />} />
-            <Route exact path='/events/past/:date' render={() => <Events isPast {...props} />} />
-            <Route exact path='/events/:date' render={() => <Events {...props} />} />} />
+            <Route exact path='/events' component={CurrentEvents} />
+            <Route exact path='/events/past' component={PastEvents} />
+            <Route exact path='/events/past/:date' component={PastEvents} />
+            <Route exact path='/events/:date' component={CurrentEvents} />
             <Route exact path='/news' component={News} />
             <Route exact path='/floor/search' component={FloorSearch} />
             <Route exact path='/floor/:id' component={ContentfulFloor} />

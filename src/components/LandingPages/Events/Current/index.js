@@ -1,57 +1,85 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+import typy from 'typy'
 
-import Calendar from './Calendar'
-import EventCard from 'components/EventCard'
-import PageTitle from 'components/Layout/PageTitle'
-import SearchProgramaticSet from 'components/SearchProgramaticSet'
-import Link from 'components/Interactive/Link'
-import FilterBox from 'components/Interactive/FilterBox'
+import Presenter from './presenter'
 
-import '../style.css'
+import { fetchAllEvents } from 'actions/contentful/allEvents'
+import * as statuses from 'constants/APIStatuses'
 
-const CurrentEvents = (props) => {
-  return (
-    <div className='content'>
-      { (props.filterDay) ? (
-        <Link to='/events' className='button fright tab'>Current Events</Link>
-      ) : (
-        <Link to='/events/past' className='button fright tab'>Past Events</Link>
-      )}
-      <PageTitle title={props.pageTitle} />
-      <SearchProgramaticSet open={false} />
-      <div className='row'>
-        <div className='col-md-8 col-sm-7 col-xs-12'>
-          <FilterBox value={props.filterValue} title='Search Current Events' onChange={props.onFilterChange} />
-          <br />
-          { props.events.map((event, index) => (
-            <EventCard key={event.id} entry={event} isLast={index === props.events.length - 1} />
-          ))}
-          {
-            props.filterValue && props.events.length === 50 && (
-              <div className='searchClipped'>
-                <p>Search is limited to first 50 results. Add more words to your search to see fewer results.</p>
-              </div>
-            )
-          }
-        </div>
-        <div className='col-md-4 col-sm-5 col-xs-12 right'>
-          <Calendar events={props.allEvents} history={props.history} match={props.match} />
-        </div>
-      </div>
-    </div>
-  )
+export class CurrentEventsContainer extends Component {
+  componentDidMount () {
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+    if (this.props.allEventsStatus === statuses.NOT_FETCHED) {
+      this.props.fetchAllEvents(preview)
+    }
+  }
+
+  render () {
+    return <Presenter {...this.props} />
+  }
 }
 
-CurrentEvents.propTypes = {
+export const mapStateToProps = (state, ownProps) => {
+  const { allEvents } = state
+  // Check for date filter
+  const dateString = ownProps.match.params.date || ''
+  const hasFilter = !!(dateString.match(/^\d{8}$/))
+
+  let pageTitle = 'Current Events'
+  let pageDate
+
+  if (hasFilter) {
+    pageTitle = `Events on ${moment(dateString, 'YYYYMMDD').format('MMM Do YYYY')}`
+    pageDate = dateString
+  }
+
+  const now = new Date()
+  const events = typy(state, 'allEvents.json').safeArray.filter(entry => {
+    if (entry && entry.startDate && entry.endDate) {
+      return entry.startDate >= now || entry.endDate >= now
+    }
+    return false
+  })
+  const filteredEvents = hasFilter ? events.filter(entry => {
+    const start = moment(entry.startDate).format('YYYYMMDD')
+    const end = moment(entry.endDate).format('YYYYMMDD')
+    return start === dateString || end === dateString || (start < dateString && end >= dateString)
+  }) : events
+
+  return {
+    pageTitle,
+    pageDate,
+    hasFilter,
+    events,
+    filteredEvents,
+    allEventsStatus: allEvents.status,
+  }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchAllEvents }, dispatch)
+}
+
+CurrentEventsContainer.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  events: PropTypes.array,
-  allEvents: PropTypes.array,
-  onFilterChange: PropTypes.func.isRequired,
-  filterValue: PropTypes.string,
-  filterDay: PropTypes.number,
-  history: PropTypes.object,
-  match: PropTypes.object,
+  pageDate: PropTypes.string,
+  hasFilter: PropTypes.bool,
+  events: PropTypes.array.isRequired,
+  filteredEvents: PropTypes.array.isRequired,
+  allEventsStatus: PropTypes.string.isRequired,
+  fetchAllEvents: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
+  }),
 }
+
+const CurrentEvents = connect(mapStateToProps, mapDispatchToProps)(CurrentEventsContainer)
 
 export default CurrentEvents

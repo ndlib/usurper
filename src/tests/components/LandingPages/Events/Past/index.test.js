@@ -1,41 +1,19 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
 
-import PastEvents from 'components/LandingPages/Events/Past'
-import DateFilter from 'components/LandingPages/Events/Past/DateFilter'
-import EventCard from 'components/EventCard'
-import SideNav from 'components/Layout/Navigation/SideNav'
-import PageTitle from 'components/Layout/PageTitle'
-import Link from 'components/Interactive/Link'
-import FilterBox from 'components/Interactive/FilterBox'
+import { PastEventsContainer, mapStateToProps, mapDispatchToProps } from 'components/LandingPages/Events/Past'
+import Presenter from 'components/LandingPages/Events/Past/Presenter'
+
+import * as testData from '../testData'
+import * as statuses from 'constants/APIStatuses'
 
 let enzymeWrapper
 let props
 
 const setup = (props) => {
-  return shallow(<PastEvents {...props} />)
-}
-
-const firstEvent = {
-  id: 'some event',
-  slug: 'somewhere',
-  title: 'something',
-  startDate: '2017-09-07',
-  endDate: '2017-09-07',
-}
-const filteredEvent = {
-  id: 'you will not see me',
-  slug: 'in events',
-  title: 'but you will in allEvents',
-  startDate: '2017-09-07',
-  endDate: '2017-09-07',
-}
-const lastEvent = {
-  id: 'in the end',
-  slug: 'this is just',
-  title: 'a silly test',
-  startDate: '2017-09-07',
-  endDate: '2017-09-07',
+  return shallow(<PastEventsContainer {...props} />)
 }
 
 describe('components/LandingPages/Events/Past', () => {
@@ -44,64 +22,182 @@ describe('components/LandingPages/Events/Past', () => {
     props = undefined
   })
 
-  beforeEach(() => {
-    props = {
-      pageTitle: 'BLAST FROM THE PAST',
-      events: [
-        firstEvent,
-        lastEvent,
-      ],
-      allEvents: [
-        firstEvent,
-        filteredEvent,
-        lastEvent,
-      ],
-      onFilterChange: jest.fn(),
-      filterYear: 2009,
-      filterMonth: 8,
-      filterValue: 'test',
-    }
-    enzymeWrapper = setup(props)
-  })
+  describe('before fetching data', () => {
+    beforeEach(() => {
+      props = {
+        pageTitle: 'Past Events',
+        pageDate: '201909',
+        events: [],
+        filteredEvents: [],
+        allEventsStatus: statuses.NOT_FETCHED,
+        filterYear: 2019,
+        filterMonth: 8,
+        location: {
+          search: '?preview=true'
+        },
+        match: {
+          params: {
+            date: '201909',
+          },
+        },
+        fetchAllEvents: jest.fn(),
+      }
+      enzymeWrapper = setup(props)
+    })
 
-  it('should render correct page title', () => {
-    expect(enzymeWrapper.containsMatchingElement(<PageTitle title={props.pageTitle} />)).toBe(true)
-  })
-
-  it('should render link to current events page', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Link to='/events'>{expect.anything()}</Link>)).toBe(true)
-  })
-
-  it('should render Event component for each entry', () => {
-    expect(props.events.length).toBeGreaterThan(0)
-    expect(enzymeWrapper.find(EventCard)).toHaveLength(props.events.length)
-
-    props.events.forEach(event => {
-      const found = enzymeWrapper.findWhere(el => el.type() === EventCard && el.props().entry === event)
-      expect(found.exists()).toBe(true)
-      expect(found.props().isLast).toEqual(event === lastEvent)
+    it('should call fetchAllEvents with preview flag', () => {
+      expect(props.fetchAllEvents).toHaveBeenCalledWith(true)
     })
   })
 
-  it('should render a DateFilter inside SideNav', () => {
-    const nav = enzymeWrapper.find(SideNav)
-    expect(nav.exists()).toBe(true)
+  describe('after fetching data', () => {
+    beforeEach(() => {
+      props = {
+        pageTitle: 'Past Events',
+        pageDate: '201909',
+        events: [],
+        filteredEvents: [],
+        allEventsStatus: statuses.SUCCESS,
+        filterYear: 2019,
+        filterMonth: 8,
+        location: {
+          search: '?preview=true'
+        },
+        match: {
+          params: {
+            date: '201909',
+          },
+        },
+        fetchAllEvents: jest.fn(),
+      }
+      enzymeWrapper = setup(props)
+    })
 
-    expect(nav.containsMatchingElement(
-      <DateFilter events={props.allEvents} filterYear={props.filterYear} filterMonth={props.filterMonth} />
-    )).toBe(true)
-    // Make sure those props actually had values otherwise we can't verify it is passing anything
-    expect(props.allEvents.length).toBeGreaterThan(0)
-    expect(props.filterYear).toBeGreaterThan(0)
-    expect(props.filterMonth).toBeGreaterThan(0)
+    it('should not call fetchAllEvents', () => {
+      expect(props.fetchAllEvents).not.toHaveBeenCalled()
+    })
   })
 
-  it('should call onFilterChange when modifying FilterBox value', () => {
-    const filter = enzymeWrapper.find(FilterBox)
-    expect(filter.exists()).toBe(true)
-    expect(filter.props().value).toEqual(props.filterValue)
+  describe('mapStateToProps', () => {
+    beforeEach(() => {
+      props = {
+        match: {
+          params: {
+            date: null,
+          },
+        },
+      }
+    })
 
-    filter.simulate('change')
-    expect(props.onFilterChange).toHaveBeenCalled()
+    it('should return only past events', () => {
+      const state = {
+        allEvents: {
+          status: statuses.SUCCESS,
+          json: testData.allTestEvents,
+        },
+      }
+      const result = mapStateToProps(state, props)
+      const expected = [
+        testData.previousEvent,
+        testData.twentyNineDaysAgoEvent,
+        testData.thirtyDaysAgoEvent,
+        testData.yesterdayEvent,
+      ]
+      expect(result.events).toEqual(expect.arrayContaining(expected))
+      expect(result.events).toHaveLength(expected.length)
+    })
+
+    it('should return filteredEvents for last 30 days by default', () => {
+      const state = {
+        allEvents: {
+          status: statuses.SUCCESS,
+          json: testData.allTestEvents,
+        },
+      }
+      const result = mapStateToProps(state, props)
+      const expected = [
+        testData.previousEvent,
+        testData.twentyNineDaysAgoEvent,
+        testData.yesterdayEvent,
+      ]
+      expect(result.filteredEvents).toEqual(expect.arrayContaining(expected))
+      expect(result.filteredEvents).toHaveLength(expected.length)
+    })
+
+    it('should return filteredEvents for specific month if provided', () => {
+      const todayDate = testData.todayEvent.startDate
+      const currentMonth = todayDate.getMonth()
+      const currentMonthString = todayDate.getFullYear().toString() +
+        (todayDate.getMonth() + 1).toString().padStart(2, '0')
+      props = {
+        match: {
+          params: {
+            date: currentMonthString,
+          },
+        },
+      }
+
+      const state = {
+        allEvents: {
+          status: statuses.SUCCESS,
+          json: testData.allTestEvents,
+        },
+      }
+      const result = mapStateToProps(state, props)
+      const expected = [
+        ...testData.allTestEvents.filter(event => (event.startDate && event.endDate) && // filter out invalid records
+          (event.startDate < new Date() || event.endDate < new Date()) && // filter out current/future records
+          (event.startDate.getMonth() === currentMonth || event.endDate.getMonth() === currentMonth)) // filter out not matching month
+      ]
+
+      // arrayContaining and equal length so that we can ignore order
+      expect(result.filteredEvents).toEqual(expect.arrayContaining(expected))
+      expect(result.filteredEvents).toHaveLength(expected.length)
+      // Make sure we got at least one result to know it worked
+      expect(expected.length).toBeGreaterThan(0)
+      // Also make sure the filter props were set
+      expect(result.filterYear).toEqual(testData.todayEvent.startDate.getFullYear())
+      expect(result.filterMonth).toEqual(testData.todayEvent.startDate.getMonth())
+    })
+
+    it('should provide safe defaults', () => {
+      const state = {
+        allEvents: {
+          status: statuses.FETCHING,
+        },
+      }
+      const result = mapStateToProps(state, props)
+      expect(result).toEqual(expect.objectContaining({
+        pageTitle: expect.stringMatching(/.+/), // Match any string of 1 or more characters
+        events: [],
+        filteredEvents: [],
+        allEventsStatus: state.allEvents.status,
+      }))
+    })
+  })
+
+  describe('mapDispatchToProps', () => {
+    const middlewares = [ thunk ]
+    const mockStore = configureMockStore(middlewares)
+    let store
+
+    beforeEach(() => {
+      const state = {
+        allEvents: {
+          status: statuses.SUCCESS,
+          json: []
+        },
+      }
+      store = mockStore(state)
+    })
+
+    afterEach(() => {
+      store = undefined
+    })
+
+    it('should create fetchAllEvents action', () => {
+      const result = mapDispatchToProps(store.dispatch)
+      expect(result.fetchAllEvents).toEqual(expect.any(Function))
+    })
   })
 })
