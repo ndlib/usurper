@@ -6,8 +6,12 @@
     color: #6F7275;
 }
 
-.contactNews p {
+.contactNews * {
 	color: #6F7275;
 	font-size: 14px;
 	font-weight: bold;
+}
+
+.contactNews a {
+	color: #417d8b;
 }
