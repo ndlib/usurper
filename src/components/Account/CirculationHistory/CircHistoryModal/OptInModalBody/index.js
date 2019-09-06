@@ -5,7 +5,7 @@ const OptInModalBody = () => {
     <div className='modal-body'>
       <h2 id='checkoutHistoryModalTitle'>Opt-in to Save Checkout History?</h2>
       <div id='checkoutHistoryModalDesc'>
-        You are selecting that you no longer wish to have your checkout history saved.
+        You are selecting that you wish to have your checkout history saved.
         <ul>
           <li>
             By opting in, you agree that the Hesburgh Libraries can retain a complete record of your
