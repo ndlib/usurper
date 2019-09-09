@@ -13,18 +13,22 @@ let props
 const subject1 = {
   sys: { id: 'bar' },
   linkText: 'A_First record',
+  selected: true,
 }
 const subject2 = {
   sys: { id: 'foo' },
-  linkText: 'M_Middle 1'
+  linkText: 'M_Middle 1',
+  selected: true,
 }
 const subject3 = {
   sys: { id: 'baz' },
   linkText: 'Z_Last record',
+  selected: true,
 }
 const newSubject = {
   sys: { id: 'foobar' },
   linkText: 'M_Middle 2',
+  selected: false,
 }
 
 const setup = (props) => {
@@ -70,103 +74,27 @@ describe('components/DatabaseList/SubjectFacets', () => {
     ])
   })
 
-  it('should increase result count when calling showMore', () => {
-    const beforeCount = enzymeWrapper.state().resultsToShow
-    enzymeWrapper.instance().showMore()
-    expect(enzymeWrapper.state().resultsToShow).toBeGreaterThan(beforeCount)
-  })
-
-  it('should reset selected subjects when active filter list updated', () => {
-    enzymeWrapper.setProps({
-      activeSubjects: [ newSubject.sys.id ],
-    })
-    expect(enzymeWrapper.state().selectedSubjects).toEqual([ newSubject ])
-  })
-
-  it('should clear changes to selected subjects when calling clearFilter', () => {
-    // Make sure our initial state is valid so we know the test is going to work
-    expect(enzymeWrapper.state().selectedSubjects.includes(subject2))
-    expect(!enzymeWrapper.state().selectedSubjects.includes(newSubject))
-
-    enzymeWrapper.setState({
-      selectedSubjects: [
-        subject1,
-        // subject2 is removed
-        subject3,
-        newSubject, // newly selected
-      ],
-    })
-
-    // State update should definitely work, but let's jsut make sure before proceeding to clear...
-    expect(!enzymeWrapper.state().selectedSubjects.includes(subject2))
-    expect(enzymeWrapper.state().selectedSubjects.includes(newSubject))
-
-    enzymeWrapper.instance().clearFilter()
-
-    // Now after clearing, make sure the state is back to how it started
-    expect(enzymeWrapper.state().selectedSubjects.includes(subject2))
-    expect(!enzymeWrapper.state().selectedSubjects.includes(newSubject))
-  })
-
-  describe('onCheckboxChanged', () => {
-    it('should add item when checked', () => {
-      const instance = enzymeWrapper.instance()
-      instance.onCheckboxChanged({
-        target: {
-          checked: true,
-        },
-      }, newSubject)
-
-      expect(enzymeWrapper.state().selectedSubjects).toEqual(expect.arrayContaining([
-        subject1,
-        subject2,
-        subject3,
-        newSubject,
-      ]))
-    })
-
-    it('should remove item when unchecked', () => {
-      const instance = enzymeWrapper.instance()
-      instance.onCheckboxChanged({
-        target: {
-          checked: false,
-        },
-      }, subject2)
-
-      const newValue = enzymeWrapper.state().selectedSubjects
-      expect(newValue).not.toEqual(expect.arrayContaining([ subject2 ]))
-      expect(newValue).toEqual(expect.arrayContaining([
-        subject1,
-        subject3,
-      ]))
-    })
-  })
-
   describe('onSubjectClick', () => {
     it('should add item when not already active', () => {
       const instance = enzymeWrapper.instance()
       instance.onSubjectClick(newSubject)
 
-      expect(enzymeWrapper.state().selectedSubjects).toEqual(expect.arrayContaining([
+      expect(props.onSubjectFilterApply).toHaveBeenCalledWith(expect.arrayContaining([
         subject1,
         subject2,
         subject3,
         newSubject,
       ]))
-      expect(props.onSubjectFilterApply).toHaveBeenCalled()
     })
 
     it('should remove item when already active', () => {
       const instance = enzymeWrapper.instance()
       instance.onSubjectClick(subject2)
 
-      const newValue = enzymeWrapper.state().selectedSubjects
-      expect(newValue).not.toEqual(expect.arrayContaining([ subject2 ]))
-      expect(newValue).toEqual(expect.arrayContaining([
+      expect(props.onSubjectFilterApply).toHaveBeenCalledWith([
         subject1,
         subject3,
-      ]))
-      expect(props.onSubjectFilterApply).toHaveBeenCalled()
+      ])
     })
   })
 })

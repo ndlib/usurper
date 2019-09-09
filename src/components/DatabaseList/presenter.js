@@ -28,7 +28,7 @@ const Loaded = (props) => {
       <OpenGraph title={titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
       <div className='row'>
-        <div className='col-md-8'>
+        <div className={'col-md-8 ' + styles.content}>
           <FilterBox
             htag='2'
             title='Search Databases by Title'

@@ -9,6 +9,11 @@
   .sideNav {
     order: 2;
   }
+
+  /* prevent updating filters from causing the scrollbar to jump by disabling anchor point on main page content */
+  .content {
+    overflow-anchor: none;
+  }
 }
 
 .dbList {
