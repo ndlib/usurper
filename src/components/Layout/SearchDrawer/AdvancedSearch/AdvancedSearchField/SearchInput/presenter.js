@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const SearchInput = (props) => {
-  return (<input type='search' id={props.id} onBlur={props.onBlur} onKeyDown={props.onKeyDown} />)
+  return (<input type='search' id={props.id} onBlur={props.onBlur} onKeyDown={props.onKeyDown} autoComplete='off' data-lpignore />)
 }
 
 SearchInput.propTypes = {

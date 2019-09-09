@@ -33,6 +33,8 @@ const DateField = (props) => {
           placeholder='year'
           onBlur={props.onChange}
           onKeyDown={props.onKeyDown}
+          autoComplete='off'
+          data-lpignore
         />
       </div>
     </div>

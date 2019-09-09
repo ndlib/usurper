@@ -8,11 +8,10 @@ const padLeftZero = (num) => {
   return num
 }
 
-const onesearchUrl = (queryTerm, isAdvanced, isOnesearch) => {
-  const tab = isOnesearch ? 'onesearch' : 'nd_campus'
+const onesearchUrl = (queryTerm, isAdvanced, searchScope = 'malc_blended') => {
+  const tab = searchScope !== 'malc_blended' ? 'nd_campus' : 'onesearch'
   const vid = 'NDU'
   const mode = isAdvanced ? 'advanced' : 'basic'
-  const searchScope = isOnesearch ? 'malc_blended' : 'nd_campus'
 
   return `${Config.onesearchBaseURL}/primo-explore/search` +
     `?${queryTerm}` +
@@ -41,8 +40,8 @@ const libSearchBasicURL = (queryTerm) => {
 // Actual searchQuery function
 const searchQuery = (searchStore, advancedSearch, history) => {
   let searchTerm = ''
+  let searchScope = searchStore.searchType === NDCATALOG ? 'nd_campus' : 'malc_blended'
   const isAdvanced = searchStore.advancedSearch
-  // let searchScope = 'nd_campus'
 
   if (isAdvanced) {
     // Advanced Search
@@ -65,7 +64,7 @@ const searchQuery = (searchStore, advancedSearch, history) => {
     const drEndDay = advancedSearch['drEndDay'] || '31'
     const drEndMonth = advancedSearch['drEndMonth'] || '12'
     const drEndYear = advancedSearch['drEndYear5']
-    // searchScope = advancedSearch['scopesListAdvanced'] ? advancedSearch['scopesListAdvanced'] : searchScope
+    searchScope = advancedSearch['scopesListAdvanced']
 
     // Build advanced search query
     if (materialType !== 'all_items') {
@@ -93,10 +92,10 @@ const searchQuery = (searchStore, advancedSearch, history) => {
 
   switch (searchStore.searchType) {
     case ONESEARCH:
-      window.location = onesearchUrl(searchTerm, isAdvanced, true)
+      window.location = onesearchUrl(searchTerm, isAdvanced)
       break
     case NDCATALOG:
-      window.location = onesearchUrl(searchTerm, isAdvanced, false)
+      window.location = onesearchUrl(searchTerm, isAdvanced, searchScope)
       break
     case CURATEND:
       window.location = curateBasicURL(searchTerm)
