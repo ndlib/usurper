@@ -1,35 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from 'components/Layout/PageTitle'
-import SearchProgramaticSet from 'components/SearchProgramaticSet'
-import '../style.css'
-import { makeEventEntry } from '../../../Home/Events/presenter'
-import Link from 'components/Interactive/Link'
-import Calendar from '../Calendar'
-import { withRouter } from 'react-router'
 
-const Current = (props) => {
+import Calendar from './Calendar'
+import EventsWrapper from '../Wrapper'
+
+const Presenter = (props) => {
   return (
-    <div className='content'>
-      <Link to='/events/past' className='button fright tab'>Past Events</Link>
-      <PageTitle title='Current and Upcoming Events' />
-      <SearchProgramaticSet open={false} />
-      <div className='row'>
-        <div className='col-md-8 col-sm-7' >
-          {
-            props.events.map((event, index) => makeEventEntry(event, index, index === props.events.length - 1))
-          }
-        </div>
-        <div className='col-md-4 col-sm-5 col-xs-12 right'>
-          <Calendar {...props} />
-        </div>
+    <EventsWrapper
+      linkPath={props.pageDate ? '/events' : '/events/past'}
+      linkText={props.pageDate ? 'Current Events' : 'Past Events'}
+      pageTitle={props.pageTitle}
+      pageDate={props.pageDate}
+      events={props.events}
+      filteredEvents={props.filteredEvents}
+    >
+      <div className='col-md-4 col-sm-5 col-xs-12 right'>
+        <Calendar events={props.events} history={props.history} match={props.match} />
       </div>
-    </div>
+    </EventsWrapper>
   )
 }
 
-Current.propTypes = {
-  events: PropTypes.array,
+Presenter.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
+  pageDate: PropTypes.string,
+  events: PropTypes.array.isRequired,
+  filteredEvents: PropTypes.array.isRequired,
+  history: PropTypes.object,
+  match: PropTypes.object,
 }
 
-export default withRouter(Current)
+export default Presenter

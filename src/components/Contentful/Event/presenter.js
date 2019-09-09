@@ -1,6 +1,7 @@
 // Presenter component for a Event content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 import 'static/css/global.css'
 import LibMarkdown from 'components/LibMarkdown'
 import Link from 'components/Interactive/Link'
@@ -59,7 +60,7 @@ const PagePresenter = ({ entry }) => {
           <LibMarkdown itemProp='articleBody'>{ entry.content }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           <Sponsorships sponsors={entry.sponsors} />
-          <Presenters presenters={entry.presenters} />
+          <Presenters presenters={typy(entry, 'presenters').safeArray} />
           <ShareLinks title={entry.title} />
           <AddToCalendar
             title={entry.title}

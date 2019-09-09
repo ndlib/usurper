@@ -9,9 +9,8 @@ import Presenter from './presenter'
 
 import { fetchAllEvents } from 'actions/contentful/allEvents'
 import * as statuses from 'constants/APIStatuses'
-import * as dateLibs from 'shared/DateLibs'
 
-export class PastEventsContainer extends Component {
+export class CurrentEventsContainer extends Component {
   componentDidMount () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
     if (this.props.allEventsStatus === statuses.NOT_FETCHED) {
@@ -26,42 +25,37 @@ export class PastEventsContainer extends Component {
 
 export const mapStateToProps = (state, ownProps) => {
   const { allEvents } = state
-  // Check for month filter
+  // Check for date filter
   const dateString = ownProps.match.params.date || ''
-  const hasFilter = !!(dateString.match(/^\d{6}$/))
+  const hasFilter = !!(dateString.match(/^\d{8}$/))
 
-  let pageTitle = 'Past Events'
+  let pageTitle = 'Current Events'
   let pageDate
-  let filterYear
-  let filterMonth
 
   if (hasFilter) {
-    pageTitle = `${pageTitle} - ${moment(dateString, 'YYYYMM').format('MMMM YYYY')}`
+    pageTitle = `Events on ${moment(dateString, 'YYYYMMDD').format('MMM Do YYYY')}`
     pageDate = dateString
-    filterYear = moment(dateString, 'YYYYMM').year()
-    filterMonth = moment(dateString, 'YYYYMM').month()
   }
 
   const now = new Date()
   const events = typy(state, 'allEvents.json').safeArray.filter(entry => {
     if (entry && entry.startDate && entry.endDate) {
-      return entry.startDate < now && entry.endDate < now
+      return entry.startDate >= now || entry.endDate >= now
     }
     return false
   })
-  const filteredEvents = events.filter(entry => {
-    return hasFilter
-      ? dateLibs.isInMonth(entry.startDate, entry.endDate, filterYear, filterMonth)
-      : entry.endDate >= moment().subtract(30, 'days')
-  })
+  const filteredEvents = hasFilter ? events.filter(entry => {
+    const start = moment(entry.startDate).format('YYYYMMDD')
+    const end = moment(entry.endDate).format('YYYYMMDD')
+    return start === dateString || end === dateString || (start < dateString && end >= dateString)
+  }) : events
 
   return {
     pageTitle,
     pageDate,
+    hasFilter,
     events,
     filteredEvents,
-    filterYear,
-    filterMonth,
     allEventsStatus: allEvents.status,
   }
 }
@@ -70,12 +64,12 @@ export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchAllEvents }, dispatch)
 }
 
-PastEventsContainer.propTypes = {
+CurrentEventsContainer.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   pageDate: PropTypes.string,
+  hasFilter: PropTypes.bool,
+  events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
-  filterYear: PropTypes.number,
-  filterMonth: PropTypes.number,
   allEventsStatus: PropTypes.string.isRequired,
   fetchAllEvents: PropTypes.func.isRequired,
   location: PropTypes.shape({
@@ -86,6 +80,6 @@ PastEventsContainer.propTypes = {
   }),
 }
 
-const PastEvents = connect(mapStateToProps, mapDispatchToProps)(PastEventsContainer)
+const CurrentEvents = connect(mapStateToProps, mapDispatchToProps)(CurrentEventsContainer)
 
-export default PastEvents
+export default CurrentEvents

@@ -1,49 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PageTitle from 'components/Layout/PageTitle'
-import SearchProgramaticSet from 'components/SearchProgramaticSet'
-import '../style.css'
-import { makeEventEntry } from '../../../Home/Events/presenter'
-import Link from 'components/Interactive/Link'
-import DateFilter from './DateFilter'
-import SideNav from 'components/Layout/Navigation/SideNav'
-import FilterBox from 'components/Interactive/FilterBox'
 
-const Events = (props) => {
+import DateFilter from './DateFilter'
+import EventsWrapper from '../Wrapper'
+import SideNav from 'components/Layout/Navigation/SideNav'
+
+const Presenter = (props) => {
   return (
-    <div className='content'>
-      <Link to='/events' className='button fright tab'>Current Events</Link>
-      <PageTitle title={props.pageTitle} />
-      <SearchProgramaticSet open={false} />
-      <div className='row'>
-        <div className='col-md-8 col-xs-12' >
-          <FilterBox value={props.filterValue} title='Search Past Events' onChange={props.onFilterChange} />
-          <br />
-          {
-            props.events.map((entry, index) => makeEventEntry(entry, index, index === props.events.length - 1))
-          }
-          {
-            props.filterValue && props.events.length === 50 && (
-              <div className='searchClipped'>
-                <p>Search is limited to first 50 results. Add more words to your search to see fewer results.</p>
-              </div>
-            )
-          }
-        </div>
-        <SideNav className='col-md-4 col-xs-12'>
-          <DateFilter eventDates={props.eventDates} />
+    <EventsWrapper
+      linkPath='/events'
+      linkText='Current Events'
+      pageTitle={props.pageTitle}
+      pageDate={props.pageDate}
+      events={props.events}
+      filteredEvents={props.filteredEvents}
+    >
+      <div className='col-md-4 col-xs-12' style={{ position: 'relative' }}>
+        <SideNav className='column-md'>
+          <DateFilter events={props.events} filterYear={props.filterYear} filterMonth={props.filterMonth} />
         </SideNav>
       </div>
-    </div>
+    </EventsWrapper>
   )
 }
 
-Events.propTypes = {
+Presenter.propTypes = {
   pageTitle: PropTypes.string.isRequired,
-  events: PropTypes.array,
-  eventDates: PropTypes.object.isRequired,
-  onFilterChange: PropTypes.func.isRequired,
-  filterValue: PropTypes.string,
+  pageDate: PropTypes.string,
+  events: PropTypes.array.isRequired,
+  filteredEvents: PropTypes.array.isRequired,
+  filterYear: PropTypes.number,
+  filterMonth: PropTypes.number,
 }
 
-export default Events
+export default Presenter

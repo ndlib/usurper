@@ -8,7 +8,29 @@ import ContentfulEventPresenter from './presenter.js'
 import { formatDate, hour12, isSameDay, makeLocalTimezone } from 'shared/DateLibs.js'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
-const mapStateToProps = (state) => {
+export class ContentfulEventContainer extends Component {
+  componentDidMount () {
+    const eventSlug = this.props.match.params.id
+    this.props.fetchEvent(eventSlug, this.props.preview)
+  }
+
+  componentDidUpdate (prevProps) {
+    const oldSlug = prevProps.match.params.id
+    const newSlug = this.props.match.params.id
+    if (newSlug !== oldSlug) {
+      this.props.fetchEvent(newSlug, this.props.preview)
+    }
+  }
+
+  render () {
+    return <PresenterFactory
+      presenter={ContentfulEventPresenter}
+      status={this.props.status}
+      props={{ entry: this.props.data }} />
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
   let data = state.cfEventEntry.json
 
   if (data) {
@@ -36,34 +58,12 @@ const mapStateToProps = (state) => {
   return {
     status: state.cfEventEntry.status,
     data: data,
+    preview: (new URLSearchParams(ownProps.location.search)).get('preview') === 'true',
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchEvent }, dispatch)
-}
-
-export class ContentfulEventContainer extends Component {
-  componentDidMount () {
-    const eventSlug = this.props.match.params.id
-    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    this.props.fetchEvent(eventSlug, preview)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const slug = this.props.match.params.id
-    const nextSlug = nextProps.match.params.id
-    if (slug !== nextSlug) {
-      this.props.fetchEvent(nextSlug)
-    }
-  }
-
-  render () {
-    return <PresenterFactory
-      presenter={ContentfulEventPresenter}
-      status={this.props.status}
-      props={{ entry: this.props.data }} />
-  }
 }
 
 ContentfulEventContainer.propTypes = {
@@ -74,6 +74,7 @@ ContentfulEventContainer.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string,
   }),
+  preview: PropTypes.bool,
 }
 
 const ContentfulEvent = connect(

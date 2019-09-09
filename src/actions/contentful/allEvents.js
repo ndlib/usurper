@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import typy from 'typy'
 import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
@@ -26,7 +27,7 @@ const receiveAllEvents = (response) => {
   }
 
   try {
-    if (Array.isArray(response)) {
+    if (typy(response).isArray) {
       return success
     } else {
       return error
@@ -36,8 +37,8 @@ const receiveAllEvents = (response) => {
   }
 }
 
-export const fetchAllEvents = (status) => {
-  const url = helper.getContentfulQueryUrl('content_type=event&include=3', status === 'preview')
+export const fetchAllEvents = (preview) => {
+  const url = helper.getContentfulQueryUrl('content_type=event&include=3', preview)
 
   return dispatch => {
     dispatch(requestAllEvents())
