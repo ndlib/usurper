@@ -15,7 +15,7 @@ const Header = (props) => {
         <Route exact path='/preview/*' component={PreviewBanner} />
         <Route exact path='/' component={BrandingBanner} />
         <HesburghBanner />
-        <GlobalAlert />
+        <Route path='*' component={GlobalAlert} />
         <hgroup className='nav-search'>
           <Navigation {...props} />
           <SearchDrawer {...props} />

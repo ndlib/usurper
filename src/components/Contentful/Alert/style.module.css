@@ -1,8 +1,54 @@
-.hideAlert {
+.alerts {
+  width: 100%;
+}
+
+.alertSection.informational {
+  background-color: #FFB073;
+  border: solid 2px #AA272F;
+}
+
+.alertSection.informational .alertContainer {
+  background: url('../../../static/images/ic_info_outline_white_24px.svg') no-repeat;
+  background-size: 1.5em;
+}
+
+.alertSection.warning {
+  background-color: #FC7279;
+  border: solid 2px #AA272F;
+}
+
+.alertSection.warning .alertContainer {
+  background: url('../../../static/images/alert.svg') no-repeat;
+  background-size: 1.5em;
+}
+
+.alertContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 5px;
+  padding-left: 34px;
+  padding-top: 4px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.alertContainer .description {
+  flex: 1 1 auto;
+  line-height: normal;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.alertContainer .hideAlert {
+  flex: 0 0 auto;
   display: inline-block;
   color: white;
   cursor: pointer;
   text-decoration: underline;
+  margin-left: 1em;
   margin-top: 4px;
 }
 

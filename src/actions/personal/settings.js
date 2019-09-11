@@ -192,3 +192,7 @@ export const setDefaultSearch = (value) => {
 export const getHiddenAlerts = () => {
   return getSimpleSetting(KIND.hiddenAlerts, [])
 }
+
+export const setHiddenAlerts = (hiddenIds) => {
+  return setSimpleSetting(KIND.hiddenAlerts, hiddenIds)
+}
