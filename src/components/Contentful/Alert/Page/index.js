@@ -24,7 +24,7 @@ export const PageAlerts = (props) => {
 
 PageAlerts.propTypes = {
   alerts: PropTypes.arrayOf(PropTypes.shape({
-    fields: {
+    fields: PropTypes.shape({
       startTime: PropTypes.oneOfType([
         PropTypes.instanceOf(Date),
         PropTypes.string,
@@ -33,7 +33,7 @@ PageAlerts.propTypes = {
         PropTypes.instanceOf(Date),
         PropTypes.string,
       ]).isRequired,
-    },
+    }).isRequired,
   })),
 }
 
