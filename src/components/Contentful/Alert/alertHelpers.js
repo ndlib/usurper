@@ -1,15 +1,14 @@
-export const alertMap = (alert, isGlobal = false) => {
-  const type = alert.type ? alert.type.toLowerCase() : 'warning'
+import styles from './style.module.css'
 
-  let className = 'alert '
-  className += isGlobal ? 'global ' : 'page '
-  className += type
+export const alertMap = (alert, isGlobal = false) => {
+  const type = styles[alert.fields.type ? alert.fields.type.toLowerCase() : 'warning']
+  const className = ['alert', (isGlobal ? 'global' : 'page'), styles.alertSection, type].join(' ')
 
   return {
-    ...alert,
-
+    ...alert.fields,
+    id: alert.sys.id,
     className: className,
-    startTime: new Date(alert.startTime),
+    startTime: new Date(alert.fields.startTime),
     type: type,
   }
 }
@@ -34,15 +33,18 @@ export const alertSort = (left, right) => {
   return 1
 }
 
-export const alertCatagorize = (alerts) => {
+export const alertCategorize = (alerts) => {
   const out = {}
-  alerts.forEach((alert) => {
-    if (out[alert.type]) {
-      out[alert.type].push(alert)
-    } else {
-      out[alert.type] = [alert]
-    }
-  })
+
+  if (alerts.length) {
+    alerts.forEach((alert) => {
+      if (out[alert.type]) {
+        out[alert.type].push(alert)
+      } else {
+        out[alert.type] = [alert]
+      }
+    })
+  }
 
   return out
 }

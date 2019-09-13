@@ -29,6 +29,7 @@ describe('components/Contentful/Page/presenter', () => {
             title: 'Fake breadcrumb'
           }
         },
+        alerts: [],
       },
     })
   })

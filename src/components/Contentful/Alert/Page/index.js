@@ -1,44 +1,40 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Presenter from '../presenter'
-import { alertMap, alertSort, alertCatagorize } from '../alertHelpers.js'
+import { alertMap, alertSort, alertCategorize } from '../alertHelpers.js'
 
-const mapStateToProps = (state, ownProps) => {
-  let alerts = []
-
-  if (ownProps.alerts) {
+export const PageAlerts = (props) => {
+  const alerts = []
+  if (props.alerts) {
     const now = new Date()
 
-    ownProps.alerts.forEach((entry) => {
-      const alert = entry.fields
-
-      const start = new Date(alert.startTime)
-      const end = new Date(alert.endTime)
+    props.alerts.forEach((entry) => {
+      const start = new Date(entry.fields.startTime)
+      const end = new Date(entry.fields.endTime)
       if (start <= now && end >= now) {
-        alerts.push(alertMap(alert))
+        alerts.push(alertMap(entry))
       }
     })
 
     alerts.sort(alertSort)
+  }
 
-    alerts = alertCatagorize(alerts)
-  } else {
-    alerts = {}
-  }
-  return {
-    alerts: alerts,
-  }
+  return <Presenter alerts={alertCategorize(alerts)} />
 }
 
-class AlertContainer extends Component {
-  render () {
-    return (<Presenter {...this.props} />)
-  }
+PageAlerts.propTypes = {
+  alerts: PropTypes.arrayOf(PropTypes.shape({
+    fields: {
+      startTime: PropTypes.oneOfType([
+        PropTypes.instanceOf(Date),
+        PropTypes.string,
+      ]).isRequired,
+      endTime: PropTypes.oneOfType([
+        PropTypes.instanceOf(Date),
+        PropTypes.string,
+      ]).isRequired,
+    },
+  })),
 }
 
-AlertContainer.propTypes = {
-  alerts: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
-}
-
-export default connect(mapStateToProps)(AlertContainer)
+export default PageAlerts

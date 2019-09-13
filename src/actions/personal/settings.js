@@ -12,6 +12,7 @@ export const KIND = {
   circStatus: 'circStatus',
   hideHomeFavorites: 'hideHomeFavorites',
   defaultSearch: 'defaultSearch',
+  hiddenAlerts: 'hiddenAlerts',
 }
 export const DEFAULT_LIBRARY = 'hesburgh'
 
@@ -118,7 +119,9 @@ const getSimpleSetting = (kind, defaultValue) => {
         return jsonResponse
       })
       .then((json) => {
-        const receivedValue = (typeof json !== 'object' && json.toString()) ? json.toString() : defaultValue
+        const receivedValue = Array.isArray(json)
+          ? json
+          : (typeof json !== 'object' && json.toString()) ? json.toString() : defaultValue
         dispatch(receiveSettings(kind, receivedValue, statuses.SUCCESS))
       })
       .catch((e) => {
@@ -184,4 +187,12 @@ export const getDefaultSearch = () => {
 
 export const setDefaultSearch = (value) => {
   return setSimpleSetting(KIND.defaultSearch, value)
+}
+
+export const getHiddenAlerts = () => {
+  return getSimpleSetting(KIND.hiddenAlerts, [])
+}
+
+export const setHiddenAlerts = (hiddenIds) => {
+  return setSimpleSetting(KIND.hiddenAlerts, hiddenIds)
 }
