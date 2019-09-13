@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Databases from 'components/DatabaseList/Databases'
 import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary'
+import BestBets from 'components/DatabaseList/Databases/BestBets'
 
 const setup = (props) => {
   return shallow(<Databases {...props} />)
@@ -18,11 +19,13 @@ describe('components/DatabaseList/Databases', () => {
             sys: {
               id: 'very id',
             },
+            fields: {},
           },
           {
             sys: {
               id: 'much wow',
             },
+            fields: {},
           },
         ],
         subjectFilter: [],
@@ -69,6 +72,13 @@ describe('components/DatabaseList/Databases', () => {
                   },
                 },
               ],
+              bestBets: [
+                {
+                  sys: {
+                    id: 'doge',
+                  },
+                },
+              ],
             },
           },
           {
@@ -76,7 +86,13 @@ describe('components/DatabaseList/Databases', () => {
               id: 'much wow',
             },
             fields: {
-              subjects: [],
+              subjects: [
+                {
+                  sys: {
+                    id: 'woof',
+                  },
+                },
+              ],
             },
           },
         ],
@@ -91,10 +107,19 @@ describe('components/DatabaseList/Databases', () => {
       enzymeWrapper = undefined
     })
 
-    it('should only render DatabaseSummary for records with matching subject', () => {
+    it('should render BestBets with databases that match filter', () => {
+      const bestBets = enzymeWrapper.find(BestBets)
+      expect(bestBets.exists()).toBe(true)
+      expect(bestBets.props().databases).toEqual([
+        props.list[1],
+        props.list[2],
+      ])
+    })
+
+    it('should only render DatabaseSummary for records with matching subject that are not best bets', () => {
       const found = enzymeWrapper.find(DatabaseSummary)
       expect(found).toHaveLength(1)
-      expect(found.props().item).toEqual(props.list[1])
+      expect(found.props().item).toEqual(props.list[2])
     })
   })
 })
