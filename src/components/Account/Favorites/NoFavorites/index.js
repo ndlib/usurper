@@ -86,12 +86,16 @@ export class NoFavoritesContainer extends Component {
     return (
       <React.Fragment>
         <section className='group favorites' id='manage_favorites'>
-          <h3>
-            <img src={bookmark} alt='' className='favorite white' />Favorites
-            {this.props.isHomePage && (
+          {this.props.isHomePage ? (
+            <h2>
+              <img src={bookmark} alt='' className='favorite white' />Favorites
               <span className='fright link-like' onClick={this.hideFavorites}>Hide</span>
-            )}
-          </h3>
+            </h2>
+          ) : (
+            <h3>
+              <img src={bookmark} alt='' className='favorite white' />Favorites
+            </h3>
+          )}
           <div className='section-box'>
             <div className='row'>
               <p><img src={bookmarkAdd} alt='' className='add-favorites' />{this.noFavoritesMessage()}</p>

@@ -45,13 +45,13 @@ class TopFavorites extends Component {
   render () {
     return (
       <section className='group favorites'>
-        <h3>
+        <h2>
           <img src={bookmark} alt='' className='favorite white' />
           Favorites
           <Link to={favoritesPath} className='fright'>
             <img src={gear} alt='Manage Favorites' title='Manage Favorites' aria-label='Manage Favorites' />
           </Link>
-        </h3>
+        </h2>
         <div className='section-box'>
           <div className='favorites-column-container'>
             { this.favoritesSection('My Databases', this.props.favorites[KIND.databases].items || []) }
