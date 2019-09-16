@@ -83,13 +83,15 @@ export class GlobalAlertsContainer extends Component {
   }
 
   render () {
-    if (this.props.allAlertsStatus === statuses.SUCCESS && [statuses.SUCCESS, statuses.ERROR].includes(this.props.hiddenAlerts.state)) {
+    if (this.props.allAlertsStatus === statuses.SUCCESS && (
+      !this.props.isLoggedIn || [statuses.SUCCESS, statuses.ERROR].includes(this.props.hiddenAlerts.state))
+    ) {
       return (
         <Presenter
           alerts={this.props.allAlerts}
           hiddenIds={this.state.hiddenAlertIds}
-          clearHiddenAlerts={this.clearHiddenAlerts}
-          hideAlert={this.hideAlert}
+          clearHiddenAlerts={this.props.isLoggedIn ? this.clearHiddenAlerts : null}
+          hideAlert={this.props.isLoggedIn ? this.hideAlert : null}
         />
       )
     }
