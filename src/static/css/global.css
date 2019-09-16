@@ -624,7 +624,7 @@ body.gold-blue #header h4 a {
   padding:16px 0 16px !important;
   transition-duration: .5s, .5s;
 }*/
-.sp-address .hours-display {
+.servicePointContainer .hours-display {
   width: 90%;
   margin-bottom: 10px;
 }
@@ -1584,11 +1584,11 @@ aside section {
   padding-bottom: 1.5em;
 }
 
-aside section h3, aside section h2, .Home section.sp-address h2 {
+aside section h3, aside section h2, .Home section.sp-name {
   margin-bottom: 8px;
 }
 
-aside section h2, .Home section.sp-address h2 {
+aside section h2, .Home section.sp-name {
   font-size: 24px;
   font-family: GPCMed, sans-serif;
   color: #001E45;
@@ -3297,10 +3297,12 @@ line-height: 2em;
   border-color: #5e5e5e;
 }
 
-.sp-address h4[itemprop] {
+.sp-address {
+  display: block;
   font-family: GPCMed, sans-serif;
   margin-left: 10px;
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .news-card a {

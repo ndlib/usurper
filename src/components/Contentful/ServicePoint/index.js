@@ -55,15 +55,15 @@ export class ServicePointContainer extends Component {
       <section
         aria-label={'Service Point: ' + this.state.sp.fields.title}
         role='complementary'
-        className='sp-address'
+        className='servicePointContainer'
         itemScope
         itemType='http://schema.org/Place'
       >
-        <h2 itemProp='name'>{this.state.sp.fields.title}</h2>
+        <h2 className='sp-name' itemProp='name'>{this.state.sp.fields.title}</h2>
         { this.props.showDetails && (
           <div>
             { this.state.sp.fields.address !== this.state.sp.fields.title && (
-              <h4 itemProp='streetAddress'><address>{this.state.sp.fields.address}</address></h4>
+              <span className='sp-address' itemProp='streetAddress'>{this.state.sp.fields.address}</span>
             )}
             <CurrentHours servicePoint={this.state.sp} />
           </div>
