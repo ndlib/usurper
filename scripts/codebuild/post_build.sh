@@ -1,4 +1,5 @@
 #!/bin/bash
+green=`tput setaf 2`
 blue=`tput setaf 4`
 magenta=`tput setaf 5`
 reset=`tput sgr0`
@@ -12,3 +13,5 @@ then
   # build can unexpectedly connect to another environment's microservices. Therefore, rebuld dev config if not already.
   node ./scripts/build-links/buildConfig.js stage=dev
 fi
+
+echo -e "${green}\nDeployment completed successfully.\n${reset}"
