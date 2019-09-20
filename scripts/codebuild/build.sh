@@ -11,4 +11,4 @@ yarn build --production || { echo "Build failed"; exit 1; }
 
 cd deploy/blueprints
 echo -e "\n${blue}Deploying with cdk...${reset}"
-cdk deploy $STACK_NAME || { echo "CDK deployment failed"; exit 1; }
+cdk deploy $STACK_NAME -c usurperBuildPath='../../build' || { echo "CDK deployment failed"; exit 1; }
