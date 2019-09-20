@@ -8,7 +8,7 @@ export LOCAL_DEPLOY=true
 
 # provide some friendly defaults so the user does not need to assuming they are deploying a dev build
 export STAGE=${STAGE:="dev"}
-export STACK_NAME=${STACK_NAME:="wse-web-usurperbucket-${STAGE}-library-nd-edu"}
+export STACK_NAME=${STACK_NAME:="usurper-${STAGE}"}
 
 ./scripts/codebuild/install.sh || { exit 1; }
 ./scripts/codebuild/pre_build.sh || { exit 1; }
