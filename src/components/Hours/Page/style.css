@@ -15,10 +15,6 @@
 	font-weight: 400;
 }
 
-.sp-address address {
-	text-align: left;
-}
-
 .service-point h4, .service-point address {
 	font-size: 22px;
 	font-family: GPCBold, sans-serif;
