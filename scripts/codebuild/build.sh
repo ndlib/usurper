@@ -17,4 +17,4 @@ else
   APPROVAL='never'
 fi
 echo -e "\n${blue}Deploying with cdk...${reset}"
-cdk deploy $STACK_NAME -c usurperBuildPath='../../build' --require-approval=$APPROVAL "$@" || { echo "CDK deployment failed"; exit 1; }
+cdk deploy $STACK_NAME -c usurperBuildPath='../../build' --require-approval=$APPROVAL --exclusively "$@" || { echo "CDK deployment failed"; exit 1; }
