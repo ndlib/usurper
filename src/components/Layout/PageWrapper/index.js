@@ -33,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
 
 class PageWrapperContainer extends Component {
   componentWillMount () {
-    this.props.fetchNavigation()
+    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+    this.props.fetchNavigation(preview)
   }
 
   render () {
@@ -43,6 +44,9 @@ class PageWrapperContainer extends Component {
 
 PageWrapperContainer.propTypes = {
   fetchNavigation: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }).isRequired,
 }
 
 export default connect(

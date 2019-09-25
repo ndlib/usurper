@@ -34,7 +34,8 @@ const mapDispatchToProps = (dispatch) => {
 export class AllNewsContainer extends Component {
   componentDidMount () {
     if (this.props.allNewsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchAllNews(false)
+      const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+      this.props.fetchAllNews(preview)
     }
   }
 
@@ -52,6 +53,9 @@ AllNewsContainer.propTypes = {
   allNewsStatus: PropTypes.string.isRequired,
   fetchAllNews: PropTypes.func.isRequired,
   allNews: PropTypes.array.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }).isRequired,
 }
 
 const HoursPage = connect(

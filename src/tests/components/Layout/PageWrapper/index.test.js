@@ -31,7 +31,12 @@ describe('components/Layout/PageWrapper', () => {
         openMenuId: 1,
       },
     }
-    enzymeWrapper = setup(state, null)
+    props = {
+      location: {
+        search: '?preview=true'
+      },
+    }
+    enzymeWrapper = setup(state, props)
   })
 
   afterEach(() => {
