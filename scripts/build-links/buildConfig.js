@@ -38,9 +38,15 @@ let handler = async () => {
     let data = JSON.parse(stdout)
     let outputs = {}
     let stage = getStage()
+    let error = false
 
     for(let i = 0; i < apiList.length; i++) {
-      outputs[apiList[i]] = findExport(apiList[i], stage, 'api-url', data['Exports'])
+      try {
+        outputs[apiList[i]] = findExport(apiList[i], stage, 'api-url', data['Exports'])
+      } catch(err) {
+        console.error(`${RED}${err}${NC}`)
+        error = true
+      }
     }
 
     let psOutputs = {}
@@ -55,7 +61,13 @@ let handler = async () => {
         psOutputs[psList[j]] = data.Parameter.Value
       } catch(err) {
         console.error(`${RED}Unable to read ${psList[j]} from parameter store.${NC}`)
+        error = true
       }
+    }
+
+    if (error) {
+      throw new Error('Failed to retrieve required parameter(s).')
+      process.exit(1)
     }
 
     var stream = fs.createWriteStream(`${__dirname}/../../config/configParameters.js`);
@@ -79,7 +91,8 @@ let handler = async () => {
 
     console.log(`Build config complete.`)
   } catch (e) {
-    console.log(e)
+    console.error(e)
+    throw e
   }
 }
 

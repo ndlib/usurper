@@ -10,7 +10,7 @@ echo -e "\n${blue}Building code...${reset}"
 yarn build --production || { echo "Build failed"; exit 1; }
 
 cd deploy/blueprints
-if [ $LOCAL_DEPLOY = true ]
+if [ ${LOCAL_DEPLOY:=false} = true ]
 then
   APPROVAL='any-change'
 else
