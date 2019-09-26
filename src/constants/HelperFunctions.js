@@ -135,7 +135,11 @@ export const mergeInternalLink = (partialRecord, internalLinks) => {
 
 export const getContentfulQueryUrl = (query, preview = false, secure = false) => {
   const endpoint = secure ? 'secureQuery' : (preview ? 'preview/query' : 'query')
-  return `${Config.contentfulAPI}/${endpoint}?preview=true&locale=en-US&query=${encodeURIComponent(query)}`
+  let url = `${Config.contentfulAPI}/${endpoint}?locale=en-US&query=${encodeURIComponent(query)}`
+  if (preview) {
+    url += `&preview=${preview}`
+  }
+  return url
 }
 
 export const buildQueryString = (existingQuery, key, values) => {
