@@ -5,9 +5,9 @@ const fs = require('fs');
 const findExport = require('./lib/findExport');
 const getStage = require('./lib/getStage');
 
-const RED = '\033[0;31m'
-const GREEN = '\033[0;32m'
-const NC = '\033[0m' // No Color
+const RED = process.env.CI ? '' : '\033[0;31m'
+const GREEN = process.env.CI ? '' : '\033[0;32m'
+const NC = process.env.CI ? '' : '\033[0m' // No Color
 
 let apiList = [
   'classesAPI',
@@ -66,7 +66,6 @@ let handler = async () => {
     }
 
     if (error) {
-      throw new Error('Failed to retrieve required parameter(s).')
       process.exit(1)
     }
 
@@ -92,7 +91,7 @@ let handler = async () => {
     console.log(`Build config complete.`)
   } catch (e) {
     console.error(e)
-    throw e
+    process.exit(1)
   }
 }
 
