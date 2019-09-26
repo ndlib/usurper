@@ -61,6 +61,9 @@ let handler = async () => {
         psOutputs[psList[j]] = data.Parameter.Value
       } catch(err) {
         console.error(`${RED}Unable to read ${psList[j]} from parameter store.${NC}`)
+        if (process.env.CI) {
+          console.error(err)
+        }
         error = true
       }
     }
