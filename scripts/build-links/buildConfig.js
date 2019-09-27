@@ -5,9 +5,9 @@ const fs = require('fs');
 const findExport = require('./lib/findExport');
 const getStage = require('./lib/getStage');
 
-const RED = '\033[0;31m'
-const GREEN = '\033[0;32m'
-const NC = '\033[0m' // No Color
+const RED = process.env.CI ? '' : '\033[0;31m'
+const GREEN = process.env.CI ? '' : '\033[0;32m'
+const NC = process.env.CI ? '' : '\033[0m' // No Color
 
 let apiList = [
   'classesAPI',
@@ -38,9 +38,15 @@ let handler = async () => {
     let data = JSON.parse(stdout)
     let outputs = {}
     let stage = getStage()
+    let error = false
 
     for(let i = 0; i < apiList.length; i++) {
-      outputs[apiList[i]] = findExport(apiList[i], stage, 'api-url', data['Exports'])
+      try {
+        outputs[apiList[i]] = findExport(apiList[i], stage, 'api-url', data['Exports'])
+      } catch(err) {
+        console.error(`${RED}${err}${NC}`)
+        error = true
+      }
     }
 
     let psOutputs = {}
@@ -55,10 +61,18 @@ let handler = async () => {
         psOutputs[psList[j]] = data.Parameter.Value
       } catch(err) {
         console.error(`${RED}Unable to read ${psList[j]} from parameter store.${NC}`)
+        if (process.env.CI) {
+          console.error(err)
+        }
+        error = true
       }
     }
 
-    var stream = fs.createWriteStream("../../config/configParameters.js");
+    if (error) {
+      process.exit(1)
+    }
+
+    var stream = fs.createWriteStream(`${__dirname}/../../config/configParameters.js`);
     stream.once('open', function(fd) {
       stream.write("module.exports = {\n")
       for(let i = 0; i < apiList.length; i++) {
@@ -72,14 +86,15 @@ let handler = async () => {
         }
       }
       stream.write("  environment: '" + stage + "',\n")
-      stream.write("  version: '" + fs.readFileSync('../../VERSION', 'utf8').trim() + "',\n")
+      stream.write("  version: '" + fs.readFileSync(`${__dirname}/../../VERSION`, 'utf8').trim() + "',\n")
       stream.write("}\n")
       stream.end()
     })
 
     console.log(`Build config complete.`)
   } catch (e) {
-    console.log(e)
+    console.error(e)
+    process.exit(1)
   }
 }
 

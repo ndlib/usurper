@@ -9,5 +9,5 @@ module.exports = (pre, stage, post, data) => {
     }
   }
 
-  throw key + " is not found in the cloudformation exports for stage, " + stage;
+  throw `${key} is not found in the cloudformation exports for stage "${stage}"`
 }
