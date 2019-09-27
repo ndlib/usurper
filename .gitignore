@@ -17,6 +17,7 @@ babel_cache/
 /build
 /public/*.json
 /public/secure
+/public/sitemap.xml
 
 # misc
 .DS_Store
@@ -30,3 +31,4 @@ yarn-error.log*
 
 deployEnv
 deploy/logs
+deploy/blueprints
