@@ -16,5 +16,13 @@ then
 else
   APPROVAL='never'
 fi
+export BUILD_PATH=$(cd '../../build'; pwd)
+
 echo -e "\n${blue}Deploying with cdk...${reset}"
-cdk deploy $STACK_NAME -c usurperBuildPath='../../build' --require-approval=$APPROVAL --exclusively "$@" || { echo "CDK deployment failed"; exit 1; }
+npm run -- cdk deploy $STACK_NAME \
+  -c usurperBuildPath="$BUILD_PATH" \
+  -c contact=$CONTACT \
+  -c owner=$OWNER \
+  --require-approval=$APPROVAL \
+  --exclusively "$@" \
+  || { echo "CDK deployment failed"; exit 1; }

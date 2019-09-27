@@ -9,6 +9,8 @@ export LOCAL_DEPLOY=true
 # provide some friendly defaults so the user does not need to assuming they are deploying a dev build
 export STAGE=${STAGE:="dev"}
 export STACK_NAME=${STACK_NAME:="usurper-${STAGE}"}
+export OWNER=${OWNER:=$(id -un)}
+export CONTACT=${CONTACT:=$OWNER@nd.edu}
 
 ./scripts/codebuild/install.sh || { exit 1; }
 ./scripts/codebuild/pre_build.sh || { exit 1; }
