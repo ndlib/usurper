@@ -9,32 +9,17 @@ import ColumnPagePresenter from './presenter.js'
 import { NOT_FETCHED } from 'constants/APIStatuses'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
-const mapStateToProps = (state, thisProps) => {
-  const slug = thisProps.match.params[0]
-  let page = state.cfPageEntry
-  if (page && page.json && page.json.fields.slug !== slug) {
-    page = { status: NOT_FETCHED }
-  }
-
-  return { cfPageEntry: page }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchPage }, dispatch)
-}
-
 export class ContentfulColumnPageContainer extends Component {
   componentDidMount () {
     const pageSlug = this.props.match.params[0]
-    const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    this.props.fetchPage(pageSlug, preview, false, 'columnContainer', 4)
+    this.props.fetchPage(pageSlug, this.props.preview, false, 'columnContainer', 4)
   }
 
   componentWillReceiveProps (nextProps) {
     const slug = this.props.match.params[0]
     const nextSlug = nextProps.match.params[0]
     if (!slug || slug !== nextSlug) {
-      this.props.fetchPage(nextSlug, false, false, 'columnContainer', 4)
+      this.props.fetchPage(nextSlug, nextProps.preview, false, 'columnContainer', 4)
     }
   }
 
@@ -46,6 +31,23 @@ export class ContentfulColumnPageContainer extends Component {
   }
 }
 
+const mapStateToProps = (state, thisProps) => {
+  const slug = thisProps.match.params[0]
+  let page = state.cfPageEntry
+  if (page && page.json && page.json.fields.slug !== slug) {
+    page = { status: NOT_FETCHED }
+  }
+
+  return {
+    cfPageEntry: page,
+    preview: (new URLSearchParams(thisProps.location.search)).get('preview') === 'true',
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ fetchPage }, dispatch)
+}
+
 ContentfulColumnPageContainer.propTypes = {
   fetchPage: PropTypes.func.isRequired,
   cfPageEntry: PropTypes.object.isRequired,
@@ -53,6 +55,7 @@ ContentfulColumnPageContainer.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string,
   }),
+  preview: PropTypes.bool,
 }
 
 const ContentfulPage = connect(

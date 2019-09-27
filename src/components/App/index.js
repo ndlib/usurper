@@ -65,7 +65,7 @@ const App = (props) => {
     <Switch>
       { Rewrite(props) }
       <Provider store={store}>
-        <PageWrapper>
+        <PageWrapper {...props}>
           <Switch>
             <Route exact path='/' render={() => (<Home {...props} />)} /> {/* Render is needed to pass cookies */}
             <Route exact path='/chat' component={ChatPage} />

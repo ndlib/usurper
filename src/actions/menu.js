@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import * as statuses from 'constants/APIStatuses'
-import Config from 'shared/Configuration'
 import { fetchInternalLinks } from './contentful/internalLink'
+import * as helper from 'constants/HelperFunctions'
 
 export const OPEN_MENU = 'OPEN_MENU'
 export const CLOSE_MENUS = 'CLOSE_MENUS'
@@ -56,11 +56,7 @@ const receiveNavigation = (response, internalLinks) => {
 }
 
 export const fetchNavigation = (preview) => {
-  const query = encodeURIComponent('content_type=columnContainer&fields.slug=navigation&include=4')
-  let url = `${Config.contentfulAPI}/${preview ? 'livequery' : 'query'}?locale=en-US&query=${query}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl('content_type=columnContainer&fields.slug=navigation&include=4', preview)
 
   return (dispatch) => {
     dispatch(requestNavigation())

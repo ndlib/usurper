@@ -22,7 +22,7 @@ export class HoursPageContainer extends Component {
       this.props.fetchHours()
     }
     if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchServicePoints(false)
+      this.props.fetchServicePoints(this.props.preview)
     }
     if (this.props.cfStatic.status === statuses.NOT_FETCHED || this.props.cfStatic.slug !== hoursPageSlug) {
       this.props.fetchSidebar(hoursPageSlug, this.props.preview)

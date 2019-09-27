@@ -32,6 +32,24 @@ export const sortNews = (left, right, withPreferred = false) => {
   return 0
 }
 
+export class AllNewsContainer extends Component {
+  componentDidMount () {
+    if (this.props.allNewsStatus === statuses.NOT_FETCHED) {
+      const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+      this.props.fetchAllNews(preview)
+    }
+  }
+
+  render () {
+    return (
+      <PresenterFactory
+        presenter={Presenter}
+        props={this.props.allNews}
+        status={this.props.allNewsStatus} />
+    )
+  }
+}
+
 const mapStateToProps = (state) => {
   let allNews = []
   if (state.allNews && state.allNews.status === statuses.SUCCESS) {
@@ -53,32 +71,18 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchAllNews }, dispatch)
 }
 
-export class AllNewsContainer extends Component {
-  componentDidMount () {
-    if (this.props.allNewsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchAllNews(false)
-    }
-  }
-
-  render () {
-    return (
-      <PresenterFactory
-        presenter={Presenter}
-        props={this.props.allNews}
-        status={this.props.allNewsStatus} />
-    )
-  }
-}
-
 AllNewsContainer.propTypes = {
   allNewsStatus: PropTypes.string.isRequired,
   fetchAllNews: PropTypes.func.isRequired,
   allNews: PropTypes.array.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }).isRequired,
 }
 
-const HoursPage = connect(
+const AllNews = connect(
   mapStateToProps,
   mapDispatchToProps
 )(AllNewsContainer)
 
-export default withErrorBoundary(HoursPage)
+export default withErrorBoundary(AllNews)
