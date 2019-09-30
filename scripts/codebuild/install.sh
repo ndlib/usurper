@@ -8,4 +8,4 @@ echo "${magenta}----- INSTALL -----${reset}"
 # install yarn and packages
 npm install -g yarn || { echo "Npm install failed"; exit 1; }
 yarn install || { echo "Yarn install failed"; exit 1; }
-cd scripts/build-links && yarn install --production || { echo "Failed to install packages in scripts/build-links"; exit 1; }
+cd scripts && yarn install --production || { echo "Failed to install packages in scripts"; exit 1; }

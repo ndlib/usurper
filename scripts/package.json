@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.266.1",
+    "node-fetch": "^2.6.0",
+    "typy": "^3.3.0"
+  }
+}

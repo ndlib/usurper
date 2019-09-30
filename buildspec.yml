@@ -9,11 +9,11 @@ phases:
     commands:
       - npm install -g yarn
       - yarn install
-      - cd scripts/build-links && yarn install --production && cd ../..
+      - cd scripts && yarn install --production && cd ../..
 
   build:
     commands:
-      - cd scripts/build-links
+      - cd scripts
       - node buildConfig.js stage=prep
       - REACT_OUTPUT=$(node getStageBucket.js stage=prep)
       - cd ../..
