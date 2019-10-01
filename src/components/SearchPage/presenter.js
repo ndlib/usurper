@@ -27,7 +27,7 @@ class SearchPage extends Component {
     if (this.props.query) {
       displayQuery = this.props.query.replace(/(&start=\d+)/, '').replace('?q=', '')
       pagerQuery += displayQuery
-      start = parseInt(this.props.query.replace(/(\?q=.*(?=&))/, '').replace('&start=', '') || '1')
+      start = parseInt(this.props.query.replace(/(\?q=.*(?=&))/, '').replace('&start=', '') || '1', 10)
     }
     return (
       <div className='search-results'>
