@@ -87,12 +87,7 @@ export const fetchResults = (queryString) => {
   return dispatch => {
     dispatch(siteSearchRequest(queryString))
     const qs = queryString ? QueryString.parse(queryString.replace('?', '')) : ''
-    fetch(
-      'https://www.googleapis.com/customsearch/v1?key=' + Config.gcseKey +
-      '&cx=' + Config.gcseCx +
-      '&q=' + qs.q +
-      '&start=' + (qs.start ? qs.start : '1')
-    )
+    fetch(`https://www.googleapis.com/customsearch/v1?key=${Config.gcseKey}&cx=${Config.gcseCx}&q=${qs.q}&start=${qs.start || '1'}&filter=0`)
       .then(response => response.json())
       .then(json => dispatch(siteSearchResponse(json)))
   }

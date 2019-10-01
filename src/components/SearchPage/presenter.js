@@ -23,9 +23,11 @@ class SearchPage extends Component {
   render () {
     let displayQuery = ''
     let pagerQuery = '/search?q='
+    let start = 1
     if (this.props.query) {
       displayQuery = this.props.query.replace(/(&start=\d+)/, '').replace('?q=', '')
       pagerQuery += displayQuery
+      start = parseInt(this.props.query.replace(/(\?q=.*(?=&))/, '').replace('&start=', '') || '1')
     }
     return (
       <div className='search-results'>
@@ -35,6 +37,7 @@ class SearchPage extends Component {
         <SearchPager
           queries={this.props.queries}
           pagerQuery={pagerQuery}
+          start={start}
         />
       </div>
     )
