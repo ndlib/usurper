@@ -4115,6 +4115,10 @@ section.group .modal-footer button {
   margin: 0 4px 0 0;
 }
 
+.searchPagerSpace {
+  margin-top: 2rem;
+}
+
 @media only screen and (min-width: 48em) {
   .subject-checkbox-container span {
     overflow: hidden;

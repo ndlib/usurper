@@ -154,7 +154,10 @@ describe('components/LandingPages/Events/Past', () => {
       expect(result.filteredEvents).toEqual(expect.arrayContaining(expected))
       expect(result.filteredEvents).toHaveLength(expected.length)
       // Make sure we got at least one result to know it worked
-      expect(expected.length).toBeGreaterThan(0)
+      // We can't do this check on the first of a month because we can't have any past events within the same month
+      if (todayDate.getDate() !== 1) {
+        expect(expected.length).toBeGreaterThan(0)
+      }
       // Also make sure the filter props were set
       expect(result.filterYear).toEqual(testData.todayEvent.startDate.getFullYear())
       expect(result.filterMonth).toEqual(testData.todayEvent.startDate.getMonth())
