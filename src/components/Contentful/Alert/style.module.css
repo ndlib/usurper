@@ -2,6 +2,12 @@
   width: 100%;
 }
 
+.alerts a,
+.alertContainer .hideAlert,
+.showHiddenBar {
+  color: #0b1f40;
+}
+
 .alertSection.informational {
   background-color: #FFB073;
   border: solid 2px #AA272F;
@@ -45,7 +51,6 @@
 .alertContainer .hideAlert {
   flex: 0 0 auto;
   display: inline-block;
-  color: white;
   cursor: pointer;
   text-decoration: underline;
   margin-left: 1em;
@@ -53,10 +58,13 @@
 }
 
 .showHiddenBar {
-  color: white;
-  background-color: #002A5D;
-  padding: 0.25em;
+  background-color: #f6e9a3;
+  padding: 0.25em 20px;
   text-align: right;
+}
+.showHiddenContainer {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .showHiddenButton {
   text-decoration: underline;
