@@ -69,10 +69,10 @@ node buildConfig.js stage=$stage
 
 echo "determine bucket"
 BUCKET=$(node getStageBucket.js stage=$stage)
-popd
 
 echo "generate updated sitemap"
 node makeSitemap.js
+popd
 
 # set sentry values
 sed -i '' 's/ENVIRONMENT/'$stage'/g' ./public/index.html
