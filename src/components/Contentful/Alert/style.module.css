@@ -16,6 +16,7 @@
 .alertSection.informational .alertContainer {
   background: url('../../../static/images/ic_info_outline_white_24px.svg') no-repeat;
   background-size: 1.5em;
+  background-position: left center;
 }
 
 .alertSection.warning {
@@ -26,18 +27,20 @@
 .alertSection.warning .alertContainer {
   background: url('../../../static/images/alert.svg') no-repeat;
   background-size: 1.5em;
+  background-position: left center;
 }
 
 .alertContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   padding-left: 34px;
-  padding-top: 4px;
+  padding-top: 12px;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
 }
 
 .alertContainer .description {
