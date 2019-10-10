@@ -12,7 +12,7 @@ import Events from './Events'
 import Reserves from 'static/images/reserves.jpg'
 import Account from 'static/images/myaccount.jpg'
 import Room from 'static/images/reserveroom.jpg'
-import Tech from 'static/images/tech.jpg'
+import ComputerLabs from 'static/images/computer_availability.png'
 import Find from 'static/images/subjects.jpg'
 import OpenGraph from 'components/OpenGraph'
 import { HIDE_HOME_FAVORITES } from 'constants/cookies'
@@ -53,7 +53,9 @@ class Home extends Component {
             </Link>
           </div>
           <div className='-col-sm-3 -col-xs-6 five'>
-            <Link to='/technology-lending' title='Technology Lending'><img src={Tech} alt='' aria-hidden /></Link>
+            <Link to='https://m.nd.edu/current_students/student_computer_labs/' title='Computer Availability'>
+              <img src={ComputerLabs} alt='' aria-hidden />
+            </Link>
           </div>
         </section>
         <div className='row news'>
