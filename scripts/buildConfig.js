@@ -42,7 +42,9 @@ let handler = async () => {
 
     for(let i = 0; i < apiList.length; i++) {
       try {
-        outputs[apiList[i]] = findExport(apiList[i], stage, 'api-url', data['Exports'])
+        outputs[apiList[i]] = (process.env.CI && stage === 'test')
+          ? `https://${apiList[i]}.test.url`
+          : findExport(apiList[i], stage, 'api-url', data['Exports'])
       } catch(err) {
         console.error(`${RED}${err}${NC}`)
         error = true

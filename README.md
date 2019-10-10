@@ -59,12 +59,12 @@
   * [Redux Developer Tools (Chrome plug-in)](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
 ### Building the urls from the exports
-  To build the apis call this.
-  * cd scrips
-  * yarn install
-  * assume a role that can access the exports
+Before running, you will need to build the config file. All URLs and parameters needed are stored in AWS; run the following to fetch them locally.
+
+  * `cd scripts`
+  * `yarn install`
+  * assume a role that can access the exports (or use `aws-vault`)
   * `node buildConfig.js stage=dev`
-  This must be done before you start the application.
 
 ### Running Locally
 * `yarn start`
@@ -75,28 +75,10 @@
 * `yarn test`
 
 ## Branching Strategy
-We have two main branches, `master` and `UA`. `Master` is "production ready" and is what ends up getting tagged and deployed to production. `UA` is what all branches get merged into for testing and User Aceptance (UA). All development branches should start off of master, interated on and merged into `UA`. After the changes are accepted, that branch may then be merged into `master` and deleted. Remember the **branch** is merged into master, **not UA directly**. This also means **UA should not be merged into your development branch at any time**. We don't want to accidentally get unapproved changes into master.
+We have two main branches, `master` and `prep`. `master` is "production ready" and is what ends up getting tagged and deployed to production. `prep` is what all branches get merged into for testing and User Aceptance (UA). All development branches should start off of master, be iterated on, and merged into `prep` (with a pull request). After the changes are accepted, that branch may then be merged into `master` and deleted. Remember, the **feature branch** is merged into `master`, **not `prep` directly**. This also means **`prep` should not be merged into your development branch at any time**. We don't want to accidentally get unapproved changes into master.
 
 ## Deployment to AWS
- There are three scripts that need to be run to do a full deployment of the stack to one of the 5 environments
- prod|beta|alpha|prep|dev
-
- Each of these require the assumption of the correct role.  testlib for all dev paths alpha|dev|prep.  
-
- 1. go to the deploy directory
- 2. assume either testlib of prod-dev
- 3. run deployServicesLocal.sh stage create|update [--branch]  [--[project]]
- 4. assume either testlib or libnd
- 5. run deployWebsiteLocal stage [--branch]
- 6. assume either testlib or prod-invalidator
- 7. run invalidateCloudFront.sh stage
-
-
-## Cloud Front Invalidation
-First, assume this role: /wse/StackSet-iam-developer-ro-InvalidateCloudFrontRole-1IKWK6RIAXND6
-
-Then, this command needs to be issued via the CLI:
-`aws cloudfront create-invalidation --distribution-id {CloudFrontID} --paths /*`
+A continuous integration pipeline handles all build and deployment to test environments. There is a pipeline for the `prep` branch which is triggered on each push; these changes get deployed to https://prep.library.nd.edu/. The production pipeline is based on `master`. In order to allow for batches of changes to be easily grouped and released together, checkout `master` and run `./release.sh` from the root. This should do everything necessary to prepare a release candidate and kick off the pipeline.
 
 ## Quality and User Acceptance Testing
 
