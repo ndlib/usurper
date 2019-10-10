@@ -59,9 +59,9 @@ else
   git checkout $(cat VERSION)
 fi
 
-echo "install build-links modules"
+echo "install scripts node modules"
 pushd .
-cd ./scripts/build-links
+cd ./scripts
 yarn install --production
 
 echo "get the apiurls and other config parameters"
@@ -72,7 +72,7 @@ BUCKET=$(node getStageBucket.js stage=$stage)
 popd
 
 echo "generate updated sitemap"
-python ./scripts/makeSitemap.py
+node makeSitemap.js
 
 # set sentry values
 sed -i '' 's/ENVIRONMENT/'$stage'/g' ./public/index.html

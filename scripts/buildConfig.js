@@ -72,7 +72,7 @@ let handler = async () => {
       process.exit(1)
     }
 
-    var stream = fs.createWriteStream(`${__dirname}/../../config/configParameters.js`);
+    var stream = fs.createWriteStream(`${__dirname}/../config/configParameters.js`);
     stream.once('open', function(fd) {
       stream.write("module.exports = {\n")
       for(let i = 0; i < apiList.length; i++) {
@@ -86,7 +86,7 @@ let handler = async () => {
         }
       }
       stream.write("  environment: '" + stage + "',\n")
-      stream.write("  version: '" + fs.readFileSync(`${__dirname}/../../VERSION`, 'utf8').trim() + "',\n")
+      stream.write("  version: '" + fs.readFileSync(`${__dirname}/../VERSION`, 'utf8').trim() + "',\n")
       stream.write("}\n")
       stream.end()
     })

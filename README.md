@@ -60,10 +60,10 @@
 
 ### Building the urls from the exports
   To build the apis call this.
-  * cd scrips/build-links
+  * cd scrips
   * yarn install
   * assume a role that can access the exports
-  * `node buildConfig.js stage=devJon`
+  * `node buildConfig.js stage=dev`
   This must be done before you start the application.
 
 ### Running Locally

@@ -63,13 +63,15 @@ describe('subjects fetch action creator', () => {
 
   it('should be able to fetch preview content', () => {
     nock(Config.contentfulAPI)
-      .get(() => true)
-      .query((queryObj) => queryObj.preview === 'true')
+      .get('/preview/query')
+      .query(true)
       .reply(200, successfulResponse)
 
     const store = mockStore()
-    store.dispatch(fetchSubjects(true, 1))
-    expect(nock.isDone()).toBe(true)
+    return store.dispatch(fetchSubjects(true, 1))
+      .then(() => {
+        expect(nock.isDone()).toBe(true)
+      })
   })
 
   describe('on success', () => {

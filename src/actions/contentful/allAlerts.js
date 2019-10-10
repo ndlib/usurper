@@ -38,7 +38,7 @@ const receiveAllAlerts = (response) => {
 
 export const fetchAllAlerts = (preview) => {
   const query = encodeURIComponent('content_type=alert&include=0')
-  let url = `${Config.contentfulAPI}/livequery?locale=en-US&query=${query}&t=${Date.now()}`
+  let url = `${Config.contentfulAPI}/${preview ? 'preview/query' : 'livequery'}?locale=en-US&query=${query}&t=${Date.now()}`
   if (preview) {
     url += `&preview=${preview}`
   }

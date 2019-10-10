@@ -6,10 +6,10 @@ reset=`tput sgr0`
 echo "${magenta}----- PRE-BUILD -----${reset}"
 
 echo -e "\n${blue}Fetching application configuration...${reset}"
-node ./scripts/build-links/buildConfig.js stage=$STAGE || { echo "Building config file failed"; exit 1; }
+node ./scripts/buildConfig.js stage=$STAGE || { echo "Building config file failed"; exit 1; }
 
 echo -e "\n${blue}Building sitemap...${reset}"
-python ./scripts/makeSitemap.py || { echo "Building sitemap failed"; exit 1; }
+node ./scripts/makeSitemap.js || { echo "Building sitemap failed"; exit 1; }
 
 echo -e "\n${blue}Running unit tests...${reset}"
 yarn test || { echo "Unit Tests Failed"; exit 1; }

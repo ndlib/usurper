@@ -44,10 +44,11 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchServicePoints }, dispatch)
 }
 
-class ContactContainer extends Component {
+class FloorSearchEmptyContainer extends Component {
   componentDidMount () {
     if (this.props.servicePointsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchServicePoints(false)
+      const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+      this.props.fetchServicePoints(preview)
     }
   }
 
@@ -60,9 +61,12 @@ class ContactContainer extends Component {
   }
 }
 
-ContactContainer.propTypes = {
+FloorSearchEmptyContainer.propTypes = {
   fetchServicePoints: PropTypes.func,
   servicePointsStatus: PropTypes.string,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }).isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(FloorSearchEmptyContainer)

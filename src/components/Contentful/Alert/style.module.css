@@ -2,6 +2,12 @@
   width: 100%;
 }
 
+.alerts a,
+.alertContainer .hideAlert,
+.showHiddenBar {
+  color: #0b1f40;
+}
+
 .alertSection.informational {
   background-color: #FFB073;
   border: solid 2px #AA272F;
@@ -10,6 +16,7 @@
 .alertSection.informational .alertContainer {
   background: url('../../../static/images/ic_info_outline_white_24px.svg') no-repeat;
   background-size: 1.5em;
+  background-position: left center;
 }
 
 .alertSection.warning {
@@ -20,18 +27,20 @@
 .alertSection.warning .alertContainer {
   background: url('../../../static/images/alert.svg') no-repeat;
   background-size: 1.5em;
+  background-position: left center;
 }
 
 .alertContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   padding-left: 34px;
-  padding-top: 4px;
+  padding-top: 12px;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: center;
 }
 
 .alertContainer .description {
@@ -45,7 +54,6 @@
 .alertContainer .hideAlert {
   flex: 0 0 auto;
   display: inline-block;
-  color: white;
   cursor: pointer;
   text-decoration: underline;
   margin-left: 1em;
@@ -53,10 +61,13 @@
 }
 
 .showHiddenBar {
-  color: white;
-  background-color: #002A5D;
-  padding: 0.25em;
+  background-color: #fed43c;
+  padding: 0.25em 20px;
   text-align: right;
+}
+.showHiddenContainer {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .showHiddenButton {
   text-decoration: underline;

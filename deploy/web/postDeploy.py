@@ -13,8 +13,8 @@ def run(stage, outputs):
     return {}
 
   heslog.info("Build URLS and parameters")
-  scriptutil.executeCommand("cd ../../scripts/build-links && yarn install --production")
-  scriptutil.executeCommand("cd ../../scripts/build-links && node buildConfig.js stage=" + stage)
+  scriptutil.executeCommand("cd ../../scripts && yarn install --production")
+  scriptutil.executeCommand("cd ../../scripts && node buildConfig.js stage=" + stage)
 
   heslog.info("Building Source")
   scriptutil.executeCommand("cd ../.. && yarn install")
