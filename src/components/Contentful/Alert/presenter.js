@@ -42,7 +42,7 @@ const Alert = ({ alerts, hiddenIds, clearHiddenAlerts, hideAlert }) => {
       { canHide && someHidden && (
         <div className={styles.showHiddenBar}>
           <div className={styles.showHiddenContainer}>
-            <span className={styles.showHiddenButton} onClick={clearHiddenAlerts}>Show hidden alerts</span>
+            <span className={styles.showHiddenButton} onClick={clearHiddenAlerts}>Show Hidden Alerts</span>
           </div>
         </div>
       )}
