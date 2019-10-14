@@ -1,5 +1,27 @@
 # Change Log
 
+## [v2019.19](https://github.com/ndlib/usurper/tree/v2019.19) "Ship Shape"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.18...v2019.19)
+
+### Features
+- Added ability to search on current events page. [#688](https://github.com/ndlib/usurper/pull/688)
+- Added ability to hide individual alerts (must be logged in.) [#690](https://github.com/ndlib/usurper/pull/690) [#706](https://github.com/ndlib/usurper/pull/706)
+- *Dark feature - Added featured resources display to highlight databases based on subject.* (This change will be available in a future release)
+
+### Bug Fixes
+- Fixed Search Scope option in advanced search. [#689](https://github.com/ndlib/usurper/pull/689)
+- Fixed previewing of Contentful data having too long of a cache. [#696](https://github.com/ndlib/usurper/pull/696)
+
+### Other
+- Updated quick links to include link to computer availability. [#709](https://github.com/ndlib/usurper/pull/709)
+- Updated contact information on Courses page. [#683](https://github.com/ndlib/usurper/pull/683)
+- Improved search box display in mobile view. [#682](https://github.com/ndlib/usurper/pull/682)
+- Improved styling on News pages. [#686](https://github.com/ndlib/usurper/pull/686)
+- Improved accessibility. [#693](https://github.com/ndlib/usurper/pull/693)
+- Modified website search to return more results to users. [#699](https://github.com/ndlib/usurper/pull/699)
+- Added redirects to a couple libguides. [#710](https://github.com/ndlib/usurper/pull/710)
+- Internal improvements to release and deployment process.
+
 ## [v2019.18](https://github.com/ndlib/usurper/tree/v2019.18) "Insecticide"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.16...v2019.18)
 
