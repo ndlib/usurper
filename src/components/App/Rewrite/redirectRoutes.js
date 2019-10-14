@@ -25,6 +25,8 @@ const RedirectRoutes = [
   { path: '/eresources/*', target: 'https://eresources.library.nd.edu', forwardPath: /\/eresources(.*)/ },
   { path: '/instruction-request', target: 'https://docs.google.com/a/nd.edu/forms/d/e/1FAIpQLScI5b_i5N8ZL1ReOeIDmN1WyzIgQHwQ3FKnrncJdkOvw1Zf6g/viewform' },
   { path: '/fys', target: 'http://libguides.library.nd.edu/first-year-studies' },
+  { path: '/help/plagiarism.shtml', target: 'http://libguides.library.nd.edu/scholarly-publishing/plagiarism' },
+  { path: '/one-button-studio', target: 'https://libguides.library.nd.edu/multimedia' },
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
   { path: '/about/employment', target: '/employment' },
