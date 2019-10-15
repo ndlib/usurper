@@ -38,7 +38,7 @@ const receiveAllEvents = (response) => {
 }
 
 export const fetchAllEvents = (preview) => {
-  const url = helper.getContentfulQueryUrl('content_type=event&include=3', preview)
+  const url = helper.getContentfulQueryUrl('content_type=event&include=1', preview)
 
   return dispatch => {
     dispatch(requestAllEvents())

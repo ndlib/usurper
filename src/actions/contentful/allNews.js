@@ -37,7 +37,7 @@ const receiveAllNews = (response) => {
 }
 
 export const fetchAllNews = (preview) => {
-  const url = helper.getContentfulQueryUrl('content_type=news&include=3', preview)
+  const url = helper.getContentfulQueryUrl('content_type=news&include=1', preview)
 
   return dispatch => {
     dispatch(requestAllNews())

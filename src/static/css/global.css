@@ -2203,6 +2203,7 @@ main blockquote p {
 }
 
 .event-card a, .news-card a {
+  display: block;
   text-decoration: none;
 }
 
