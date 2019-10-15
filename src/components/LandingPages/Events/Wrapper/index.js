@@ -47,7 +47,7 @@ export class EventsWrapperContainer extends Component {
 
     if (!value) {
       this.setState({
-        events: this.props.filteredEvents,
+        events: helper.sortList(this.props.filteredEvents, 'startDate', 'asc'),
         filterValue: '',
         pageTitle: this.props.pageTitle,
       })
@@ -56,7 +56,7 @@ export class EventsWrapperContainer extends Component {
 
     const searchFields = ['title', 'content', 'presenter', 'shortDescription']
     // filter to events that have the search value in any of the specified fields
-    const events = helper.filterList(this.props.events, searchFields, value).slice(0, 50)
+    const events = helper.filterAndSort(this.props.events, searchFields, value, 'startDate', 'asc').slice(0, 50)
 
     this.setState({
       events: events,
