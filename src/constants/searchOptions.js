@@ -25,14 +25,12 @@ export const searchOptions = [
     uid: CURATEND,
     title: 'CurateND',
     description:'Theses, dissertations, articles, and data by ND Researchers',
-    additionalLinks: '\u00a0',
     enableAdvancedSearch: false,
   },
   {
     uid: LIBRARY,
     title: 'Library Website',
     description:'Research guides, services, people and places',
-    additionalLinks: '\u00a0',
     enableAdvancedSearch: false,
   },
 ]
