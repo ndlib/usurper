@@ -26,6 +26,13 @@ export class CurrentHoursContainer extends Component {
     this.tick = this.tick.bind(this)
   }
 
+  componentDidUpdate (prevProps) {
+    // When finished load, force a tick so the open status gets updated in the state before render
+    if (this.props.hoursEntry.status === statuses.SUCCESS && prevProps.hoursEntry.status !== statuses.SUCCESS) {
+      this.tick()
+    }
+  }
+
   componentDidMount () {
     // check current time every second to update color
     const intervalId = setInterval(this.tick, 1000)
