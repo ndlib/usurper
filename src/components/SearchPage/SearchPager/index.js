@@ -9,7 +9,7 @@ const SearchPager = (props) => {
   const pagerQuery = QueryString.parse(props.pagerQuery.replace(/.*[?]/, ''))
   const qs = `/search?q=${pagerQuery.q}`
 
-  const resultCount = parseInt(typy(queries, 'request[0].totalResults').safeString || '0')
+  const resultCount = parseInt(typy(queries, 'request[0].totalResults').safeString || '0', 10)
   const pageCount = 10
   const startIndex = typy(queries, 'request[0].startIndex').safeNumber || props.start || 1
   const currentPage = Math.ceil(startIndex / pageCount)
