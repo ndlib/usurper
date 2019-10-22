@@ -1,39 +1,40 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { searchOptions } from 'constants/searchOptions'
+import { NDCATALOG } from 'constants/searchOptions'
+import Link from 'components/Interactive/Link'
+import Config from 'shared/Configuration'
 
 const AdditionalLinks = (props) => {
-  const links = []
-  let key = 0
-  const opt = searchOptions.find((el) => {
-    return el.uid === props.currentSearch.uid
-  })
-  if (opt && opt.enableAdvancedSearch) {
-    links.push( // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <a
-        onClick={props.toggleAdvancedSearch}
-        onKeyDown={props.toggleAdvancedSearch}
-        tabIndex='0'
-        key={key++}
-        className='advanced-basic-toggle'
-      >{props.advancedButtonLabel}</a>
-    )
-  }
-  if (props.currentSearch.additionalLinks) {
-    if (key > 0) {
-      links.push(<span key={key++}> | </span>)
+  let advancedLink
+  if (props.currentSearch.enableAdvancedSearch) {
+    let destination = `${Config.onesearchBaseURL}/primo-explore/search?institution=NDU&vid=NDU&mode=advanced`
+    if (props.currentSearch.uid === NDCATALOG) {
+      destination += '&search_scope=nd_campus'
     }
-    links.push(<span key={key++}>{props.currentSearch.additionalLinks}</span>)
+
+    advancedLink = (
+      <Link key={destination} to={destination} tabIndex='0' className='advanced-basic-toggle'>
+        {props.advancedButtonLabel}
+      </Link>
+    )
   }
 
   return (
-    <div className='additional-links'>{links}</div>)
+    <div className='additional-links'>
+      { advancedLink }
+      { props.currentSearch.additionalLinks && (
+        <React.Fragment>
+          <span> | </span>
+          <span>{props.currentSearch.additionalLinks}</span>
+        </React.Fragment>
+      )}
+    </div>
+  )
 }
 
 AdditionalLinks.propTypes = {
-  toggleAdvancedSearch: PropTypes.func,
   advancedButtonLabel: PropTypes.string,
-  currentSearch: PropTypes.object,
+  currentSearch: PropTypes.object.isRequired,
 }
 
 export default AdditionalLinks

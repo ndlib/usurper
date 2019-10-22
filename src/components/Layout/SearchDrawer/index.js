@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import SearchDrawer from './presenter.js'
 import { searchOptions, DEFAULT } from 'constants/searchOptions.js'
-import { openAdvancedSearch, closeAdvancedSearch, saveSearchPreference } from 'actions/search'
+import { saveSearchPreference } from 'actions/search'
 import { getDefaultSearch, KIND as SETTINGS_KIND } from 'actions/personal/settings'
 
 import * as statuses from 'constants/APIStatuses'
@@ -30,11 +30,12 @@ const mapDispatchToProps = (dispatch, state) => {
 
   return {
     advancedButtonLabel: search.advancedSearch ? 'Basic Search' : 'Advanced Search',
-    toggleAdvancedSearch: (e) => {
-      if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
-        search.advancedSearch ? dispatch(closeAdvancedSearch()) : dispatch(openAdvancedSearch())
-      }
-    },
+    // Advanced search is disabled. Send the user straight to primo
+    // toggleAdvancedSearch: (e) => {
+    //   if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
+    //     search.advancedSearch ? dispatch(closeAdvancedSearch()) : dispatch(openAdvancedSearch())
+    //   }
+    // },
   }
 }
 
