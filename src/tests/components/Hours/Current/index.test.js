@@ -84,6 +84,35 @@ describe('components/Hours/Current', () => {
     expect(global.clearInterval).toHaveBeenCalled()
   })
 
+  it('should get the open status before first SUCCESS render', () => {
+    const instance = enzymeWrapper.instance()
+    // Initialize as closed
+    instance.setState({
+      openStatus: 'closed',
+    })
+
+    // When tick is called, set to open
+    instance.tick = jest.fn(() => {
+      instance.setState({
+        openStatus: 'open',
+      })
+    })
+
+    // Should trigger a tick since the hoursEntry now has a SUCCESS status
+    const hoursEntry = {
+      status: statuses.SUCCESS,
+      name: 'Some Library IDK',
+      today: {
+        times: {
+          status: '24hours',
+        },
+        rendered: 'All the time, man',
+      },
+    }
+    enzymeWrapper.setProps({ hoursEntry })
+    expect(enzymeWrapper.containsMatchingElement(<Presenter hoursEntry={hoursEntry} openStatus='open' />)).toBe(true)
+  })
+
   describe('with SUCCESS', () => {
     beforeEach(() => {
       props = {
