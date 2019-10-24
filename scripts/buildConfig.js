@@ -42,9 +42,12 @@ let handler = async () => {
 
     for(let i = 0; i < apiList.length; i++) {
       try {
-        outputs[apiList[i]] = (process.env.CI && stage === 'test')
+        // In test, use prod version of other services
+        // Prod does not exist in testlibnd, so we have an environment variable to fake these service urls there
+        const exportStage = (stage === 'test' ? 'prod' : stage)
+        outputs[apiList[i]] = (process.env.FAKE_SERVICE_URLS)
           ? `https://${apiList[i]}.test.url`
-          : findExport(apiList[i], stage, 'api-url', data['Exports'])
+          : findExport(apiList[i], exportStage, 'api-url', data['Exports'])
       } catch(err) {
         console.error(`${RED}${err}${NC}`)
         error = true
