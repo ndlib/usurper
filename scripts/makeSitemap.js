@@ -90,7 +90,7 @@ const handler = async () => {
       if (queryResults && Array.isArray(queryResults)) {
         const excludeField = info.exclude ? info.exclude.split('.')[1] : ''
         queryResults.forEach(entry => {
-          const id = (!excludeField || !entry[excludeField]) ? typy(entry, info.field).safeString : null
+          const id = (!excludeField || !typy(entry, excludeField)) ? typy(entry, info.field).safeString : null
           if (id) {
             data += routeString(`${info.route}/${id}`)
             writtenCount++
