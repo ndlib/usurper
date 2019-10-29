@@ -102,7 +102,7 @@ export class DatabaseListContainer extends Component {
 
   filter (filterValue, list) {
     const value = filterValue.toLowerCase().replace(/[.,/#!$%^&*;:{}=\-_`'~()]/g, '')
-    const searchFiltered = helper.filterList(list, 'searchBlob', value)
+    const searchFiltered = helper.filterList(list, 'searchBlob', value, false)
     return (!this.props.filterLetter) ? searchFiltered : searchFiltered.filter(item => {
       return item.fields.title.toLowerCase().startsWith(this.props.filterLetter) ||
         item.fields.databaseLetter === this.props.filterLetter
@@ -128,9 +128,8 @@ export class DatabaseListContainer extends Component {
     }, 1500)
   }
 
-  onSubjectFilterApply (selection) {
-    const subjectSelections = typy(selection).safeArray.map(subject => subject.sys.id)
-    const queryString = helper.buildQueryString(this.props.location.search, 'subject', subjectSelections)
+  onSubjectFilterApply (filterName, selection) {
+    const queryString = helper.buildQueryString(this.props.location.search, filterName, selection)
     this.props.history.push(this.props.location.pathname + queryString)
   }
 
@@ -141,8 +140,7 @@ export class DatabaseListContainer extends Component {
 
   removeSubjectFromFilter (subjectId) {
     const newSubjectIds = this.props.activeSubjects.filter(activeSubject => activeSubject !== subjectId)
-    const newSubjects = typy(this.props.cfSubjects, 'data').safeArray.filter(sub => newSubjectIds.includes(sub.sys.id))
-    this.onSubjectFilterApply(newSubjects)
+    this.onSubjectFilterApply('subject', newSubjectIds)
   }
 
   removeLetterFilter () {

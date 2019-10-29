@@ -2211,93 +2211,6 @@ main blockquote p {
   display: inline-block;
 }
 
-.event-card {
-  clear: left;
-  cursor: pointer;
-  margin-bottom: 21px;
-}
-
-.home .event-card:last-of-type {
-  margin-bottom: 36px;
-}
-
-.home .event-card {
-  margin-bottom: 20px;
-}
-
-.event-card .date, .event-card .time, .news .author, .news .published {
-  font-style: normal;
-  font-size: 14px;
-  padding: 6px 0px;
-  color: #5D6A83;
-  font-weight: normal;
-  text-transform: uppercase;
-  display: inline-block;
-}
-
-.event-card .time, .news .separator {
-  margin-left: 1em;
-  padding-left: 1em;
-
-}
-
-.event-card .time:before, .news .separator:before {
-  content: "•";
-  margin-left: -1em;
-  padding-right: 1em;
-  display: inline-block;
-}
-
-.event-card p {
-  font-weight: normal;
-  margin-bottom: 0px;
-}
-
-.event-card hr {
-  margin: 31px auto 0px;
-  border-color: #c6cbd6;
-  border-width: 1px;
-}
-
-.event-card hr {
-  margin: 40px auto 0px;
-}
-
-.event-card .date {
-  padding-top: 11px;
-  line-height: 20px;
-  padding-bottom: 2px;
-}
-
-.event-card-text {
-  display: inline-block;
-}
-
-.event-card .description {
-  margin-top: 15px;
-  margin-top: 8px;
-}
-
-.event-card img{
-  float: left;
-  border: solid 2px #fff;
-  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.25);
-  margin-right: 15px;
-  max-width: 300px;
-  /* in case the text doesn't go to the bottom of the image, make sure it has the same margin as <hr/> top */
-  margin-bottom: 40px;
-}
-
-.home .event-card img {
-  margin-bottom: 31px;
-}
-
-.home .event-card .description {
-  display: none;
-}
-
 .event-link, .newsEventHeader {
   text-decoration: none;
 }
@@ -2345,48 +2258,6 @@ main blockquote p {
   background-image: url('../images/map-marker.g.svg');
   background-size: 21px 26px;
   background-position:2px 0 ;
-}
-
-.dateFilter ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.dateFilter li {
-  list-style: none;
-  padding-left: 10px;
-  position: relative;
-  font-weight: bold;
-}
-
-.dateFilter .archive {
-  margin-top: 8px;
-}
-
-.dateFilter .collapsed::before {
-  color: #b3b3b3;
-  content: "›";
-  font-size: 25px;
-  left: 0;
-  position: absolute;
-  top: -2px;
-  speak: none;
-}
-
-.dateFilter .expanded::before {
-  color: #b3b3b3;
-  content: "›";
-  left: 0px;
-  position: absolute;
-  font-size: 25px;
-  top: -2px;
-  speak: none;
-
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
 }
 
 .yearFilter {
@@ -4118,6 +3989,17 @@ section.group .modal-footer button {
 
 .searchPagerSpace {
   margin-top: 2rem;
+}
+
+.activeFilters {
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  padding: 6px;
+}
+
+.activeFiltersLabel {
+  font-weight: bold;
+  margin-left: 6px;
 }
 
 @media only screen and (min-width: 48em) {

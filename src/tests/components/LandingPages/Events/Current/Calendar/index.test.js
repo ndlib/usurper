@@ -37,6 +37,9 @@ describe('components/LandingPages/Events/Current/Calendar', () => {
           endDate: '2900-05-05',
         },
       ],
+      location: {
+        search: '?type=test',
+      },
       history: {
         push: jest.fn(),
       },
@@ -59,7 +62,7 @@ describe('components/LandingPages/Events/Current/Calendar', () => {
     const setTo = new Date('2900-12-25T00:00:00')
     picker.simulate('change', setTo)
 
-    expect(props.history.push).toHaveBeenCalledWith('/events/29001225')
+    expect(props.history.push).toHaveBeenCalledWith(`/events/29001225${props.location.search}`)
   })
 
   it('should highlight each day with events (unless > 28 days, then mark start and end date)', () => {

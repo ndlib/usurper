@@ -50,7 +50,7 @@ export class DateFilter extends Component {
         date.year(year)
 
         eventDates[year][month] = {
-          url: '/events/past/' + date.format('YYYYMM'),
+          url: '/events/past/' + date.format('YYYYMM') + this.props.location.search,
           display: date.format('MMM'),
           count: 0,
         }
@@ -93,6 +93,12 @@ DateFilter.propTypes = {
   })).isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
+  location: PropTypes.shape({
+    search: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
+  }).isRequired,
 }
 
 export default DateFilter

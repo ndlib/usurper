@@ -38,6 +38,9 @@ describe('components/LandingPages/Events/Current', () => {
             date: '20190907',
           },
         },
+        history: {
+          push: jest.fn(),
+        },
         fetchAllEvents: jest.fn(),
       }
       enzymeWrapper = setup(props)
@@ -64,6 +67,9 @@ describe('components/LandingPages/Events/Current', () => {
             date: '20190907',
           },
         },
+        history: {
+          push: jest.fn(),
+        },
         fetchAllEvents: jest.fn(),
       }
       enzymeWrapper = setup(props)
@@ -77,6 +83,9 @@ describe('components/LandingPages/Events/Current', () => {
   describe('mapStateToProps', () => {
     beforeEach(() => {
       props = {
+        location: {
+          search: '?preview=false&audience=me&audience=you'
+        },
         match: {
           params: {
             date: null,
@@ -108,6 +117,9 @@ describe('components/LandingPages/Events/Current', () => {
         (todayDate.getMonth() + 1).toString().padStart(2, '0') +
         todayDate.getDate().toString().padStart(2, '0')
       props = {
+        location: {
+          search: ''
+        },
         match: {
           params: {
             date: todayDateString,

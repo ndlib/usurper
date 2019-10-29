@@ -43,9 +43,9 @@ describe('components/EventCard', () => {
     })
 
     it('should render link to event page', () => {
-      const link = enzymeWrapper.find(Link)
+      const link = enzymeWrapper.find(Link).first()
       expect(link.exists()).toBe(true)
-      expect(link.props().to).toEqual(`/event/${props.entry.slug}`)
+      expect(link.props().to.startsWith(`/event/${props.entry.slug}`)).toBe(true)
     })
 
     it('should render Image', () => {
@@ -73,9 +73,9 @@ describe('components/EventCard', () => {
     })
 
     it('should render link to event page', () => {
-      const link = enzymeWrapper.find(Link)
+      const link = enzymeWrapper.find(Link).first()
       expect(link.exists()).toBe(true)
-      expect(link.props().to).toEqual(`/event/${props.entry.slug}`)
+      expect(link.props().to.startsWith(`/event/${props.entry.slug}`)).toBe(true)
     })
 
     it('should not render Image', () => {

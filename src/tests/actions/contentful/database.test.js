@@ -15,13 +15,19 @@ import * as statuses from 'constants/APIStatuses'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
+const fakeSubject = {
+  sys: { id: 'faker' },
+  fields: { title: 'Mr. Fake' },
+  linkText: 'SUPER FAKE',
+}
 const successfulResponse = [
   {
     sys: {
       id: 'napsghspegHIHOWAREYOUafpdasfpdsjhsd',
     },
     fields: {
-      title: 'dummy item 1'
+      title: 'dummy item 1',
+      bestBets: [ fakeSubject ],
     },
   },
   {
@@ -92,6 +98,35 @@ describe('database fetch action creator', () => {
           status: statuses.SUCCESS,
           letter: requestLetter,
           data: successfulResponse,
+        }
+
+        const store = mockStore()
+        return store.dispatch(fetchLetter(requestLetter))
+          .then(() => {
+            expect(store.getActions()[1]).toMatchObject(expectedAction)
+          })
+      })
+
+      it('should copy best bets to subjects field', () => {
+        nock(Config.contentfulAPI)
+          .get(() => true)
+          .query(true)
+          .reply(200, successfulResponse)
+
+        const expectedAction = {
+          type: CF_RECEIVE_DATABASE_LETTER,
+          status: statuses.SUCCESS,
+          letter: requestLetter,
+          data: [
+            {
+              ...successfulResponse[0],
+              fields: {
+                ...successfulResponse[0].fields,
+                subjects: [ fakeSubject ],
+              },
+            },
+            successfulResponse[1],
+          ],
         }
 
         const store = mockStore()

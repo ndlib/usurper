@@ -7,22 +7,52 @@ import typy from 'typy'
 import * as statuses from 'constants/APIStatuses'
 import Config from 'shared/Configuration'
 
-export const filterList = (list, filterFields, filterValue) => {
-  const value = filterValue.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+export const filterList = (list, filterFields, filterValue, exactMatch) => {
+  const normalize = (str) => {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  }
+  const value = normalize(filterValue)
 
   return list.filter((item) => {
-    let inFilter = false
     if (!filterFields || !filterFields.length) {
-      inFilter = typy(value).isTruthy
+      return typy(value).isTruthy
     } else {
       if (!Array.isArray(filterFields)) {
         filterFields = [ filterFields ]
       }
-      filterFields.forEach((field) => {
-        inFilter = inFilter || (item && item[field] && item[field].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').indexOf(value) >= 0)
+      return filterFields.some((field) => {
+        if (typy(item, field).isString) {
+          return normalize(item[field]).indexOf(value) >= 0
+        } else {
+          // Sometimes you want to search an array for a value. Typy can dive throw multiple object properties in a row,
+          // but can't with arrays. This helper supports an arbitrary syntax of arr[*] to dive into all elements of an
+          // array and search for a given property's value.
+          const typyArrayDeepMatch = (obj, remaining) => {
+            // Look for an array wildcard and if we find one, separate the part before as its own "segment".
+            // Typy can then loop through those objects and check their properties on each subsequent segment.
+            //    Ex: The input string "arr[*].use.this.feature[*].now"
+            //    will process segments like so: arr.forEach(item => item.use.this.feature.forEach(feat => feat.now))
+            const segments = remaining.split('[*]')
+            const current = segments.length ? typy(obj, segments[0]) : typy(obj)
+            // Reconstruct string with all but the first segment
+            const leftover = segments.length > 1 ? segments.slice(1).join('[*]') : ''
+
+            if (current.isArray) {
+              return current.safeArray.some(currentSubitem => typyArrayDeepMatch(currentSubitem, leftover))
+            } else if (!leftover && current.isString) {
+              const normalized = normalize(current.safeString)
+              return exactMatch ? normalized == value : normalized.indexOf(value) >= 0 // eslint-disable-line eqeqeq
+            } else {
+              // prevent infinite loop if the final segment is an object rather than a string
+              const childObject = current.safeObject
+              return childObject !== obj ? typyArrayDeepMatch(current.safeObject, leftover) : false
+            }
+          }
+
+          return typyArrayDeepMatch(item, field)
+        }
       })
     }
-    return inFilter
   })
 }
 
@@ -35,8 +65,9 @@ const sortInternal = (a, b, sortKeys, sortDir) => {
   const direction = (sortDir.toLowerCase() === 'desc' ? -1 : 1)
   const sortKey = sortKeys[0] // Expect an array. We'll call the function recursively if we need to go past first key
 
-  const aValue = typy(a, sortKey).safeObject
-  const bValue = typy(b, sortKey).safeObject
+  // If no sort key is provided, assume these are simple types and can be compared directly
+  const aValue = sortKey ? typy(a, sortKey).safeObject : a
+  const bValue = sortKey ? typy(b, sortKey).safeObject : b
   // If one of them is null or undefined, a direct string comparison won't work right...
   if (typy(aValue).isNullOrUndefined || typy(bValue).isNullOrUndefined) {
     result = (!!aValue - !!bValue) * direction // falsy values will be given lower priority in asc and higher in desc
@@ -66,11 +97,11 @@ export const sortList = (list, sortKeys, sortDir) => {
   if (!Array.isArray(sortKeys)) {
     sortKeys = [ sortKeys ]
   }
-  return list.sort((a, b) => sortInternal(a, b, sortKeys, sortDir))
+  return list.sort((a, b) => sortInternal(a, b, sortKeys, sortDir || 'asc'))
 }
 
-export const filterAndSort = (list, filterFields, filterValue, sortKey, sortDir) => {
-  return sortList(filterList(list, filterFields, filterValue), sortKey, sortDir)
+export const filterAndSort = (list, filterFields, filterValue, exactMatch, sortKey, sortDir) => {
+  return sortList(filterList(list, filterFields, filterValue, exactMatch), sortKey, sortDir)
 }
 
 export const pluralize = (listOrCount, singularForm, pluralForm) => {
@@ -165,4 +196,15 @@ export const buildQueryString = (existingQuery, key, values) => {
     }
   })
   return queryString
+}
+
+// Simple title casing which will capitalize first letter of every word
+// Does not account for articles which are not typically capitalized in titles
+export const titleCase = (string) => {
+  const words = []
+  const split = string.toLowerCase().split(' ')
+  split.forEach(word => {
+    words.push(word.charAt(0).toUpperCase() + word.slice(1))
+  })
+  return words.join(' ')
 }

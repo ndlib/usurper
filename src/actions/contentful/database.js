@@ -83,6 +83,15 @@ export const fetchLetter = (letter, preview) => {
         const allSubjects = typy(getState(), 'cfSubjects.data').safeArray
         if (Array.isArray(json)) {
           json.forEach((row) => {
+            // If best bets exist, add them to subjects
+            typy(row, 'fields.bestBets').safeArray.forEach(bestBet => {
+              row.fields.subjects = typy(row, 'fields.subjects').safeArray
+              // Make sure best bet does not already exist in subject list to prevent duplicates
+              if (!row.fields.subjects.find(subject => subject.sys.id === bestBet.sys.id)) {
+                row.fields.subjects.push(bestBet)
+              }
+            })
+            // Merge internal link info into subject so we can get the correct title in the UI
             row.fields.subjects = typy(row.fields.subjects).safeArray.map(dbSubject => {
               return helper.mergeInternalLink(dbSubject, allSubjects)
             })

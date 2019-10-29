@@ -251,11 +251,7 @@ describe('components/DatabaseList/index.js', () => {
 
       it('should update history when filtering subjects', () => {
         const instance = enzymeWrapper.instance()
-        instance.onSubjectFilterApply([
-          {
-            sys: { id: 'spanish' },
-          },
-        ])
+        instance.onSubjectFilterApply('subject', ['spanish'])
         expect(enzymeWrapper.props().history.push).toHaveBeenCalled()
       })
 
@@ -268,7 +264,7 @@ describe('components/DatabaseList/index.js', () => {
         instance.removeSubjectFromFilter('french')
 
         expect(instance.onSubjectFilterApply).toHaveBeenCalled()
-        expect(instance.onSubjectFilterApply.mock.calls[0][0]).toHaveLength(activeSubjectCount - 1)
+        expect(instance.onSubjectFilterApply.mock.calls[0][1]).toHaveLength(activeSubjectCount - 1)
       })
 
       it('should update history when filtering by letter', () => {

@@ -1,0 +1,33 @@
+.itemTag {
+  border-radius: 16px;
+  display: inline-block;
+  padding: 5px 10px 5px 5px;
+  margin: 0.25em;
+  color: #fff;
+  background: #417d8b;
+  border: none;
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+}
+.itemTag:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #417D8B;
+  cursor: pointer;
+}
+.itemTag.small {
+  font-size: 0.8em;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.itemTag:not(.small) span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 2px;
+}
+
+.clearIcon {
+  margin-right: 0.4em;
+  height: 1.3em;
+  width: 1.3em;
+  vertical-align: middle
+}

@@ -7,6 +7,7 @@ import ErrorLoading from 'components/Messages/Error'
 import Loading from 'components/Messages/Loading'
 import Databases from 'components/DatabaseList/Databases'
 import Alphabet from 'components/DatabaseList/Alphabet'
+import Facet from 'components/Interactive/Facet'
 import * as statuses from 'constants/APIStatuses'
 import { shallow } from 'enzyme'
 
@@ -43,6 +44,7 @@ describe('components/DatabaseList/presenter.js', () => {
 
   describe('status: SUCCESS', () => {
     beforeEach(() => {
+      global.__APP_CONFIG__.features.subjectFilteringEnabled = true
       props = {
         status: statuses.SUCCESS,
         letter: 'a',
@@ -85,10 +87,17 @@ describe('components/DatabaseList/presenter.js', () => {
           title: 'title does not need to match',
           url: 'http://url.also.not/important',
         }],
-        subjects: [],
+        subjects: [
+          {
+            sys: { id: 'test' },
+            linkText: 'Display value',
+          }
+        ],
         activeSubjects: ['test'],
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
+        removeSubjectFromFilter: jest.fn(),
+        removeLetterFilter: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -109,6 +118,18 @@ describe('components/DatabaseList/presenter.js', () => {
       const titleElement = enzymeWrapper.find(PageTitle)
       expect(titleElement.exists()).toBe(true)
       expect(titleElement.props().title).toEqual(expect.stringMatching('Databases'))
+    })
+
+    it('should render a facet selector for subjects', () => {
+      const facet = enzymeWrapper.findWhere(el => el.type() === Facet && el.props().name === 'subject')
+      expect(facet.exists()).toBe(true)
+      expect(facet.props().options).toEqual([
+        {
+          key: props.subjects[0].sys.id,
+          value: props.subjects[0].linkText,
+        }
+      ])
+      expect(facet.props().selectedValues).toEqual(props.activeSubjects)
     })
   })
 

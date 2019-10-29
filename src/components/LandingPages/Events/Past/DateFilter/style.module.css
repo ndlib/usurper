@@ -1,0 +1,41 @@
+.dateFilter ul {
+  list-style: none;
+	padding-left: 10px;
+  -webkit-padding-start: 15px;
+	margin: 0;
+	margin-top: 8px;
+}
+
+.dateFilter li {
+  list-style: none;
+  padding-left: 10px;
+  position: relative;
+  font-weight: bold;
+	margin-bottom: .4em;
+}
+
+.dateFilter .collapsed::before {
+  color: #b3b3b3;
+  content: "›";
+  font-size: 25px;
+  left: 0;
+  position: absolute;
+  top: -2px;
+  speak: none;
+}
+
+.dateFilter .expanded::before {
+  color: #b3b3b3;
+  content: "›";
+  left: 0px;
+  position: absolute;
+  font-size: 25px;
+  top: -2px;
+  speak: none;
+
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}

@@ -77,7 +77,7 @@ CurrentEventsContainer.propTypes = {
       PropTypes.string,
       PropTypes.object,
     ]),
-  }),
+  }).isRequired,
 }
 
 const CurrentEvents = connect(mapStateToProps, mapDispatchToProps)(CurrentEventsContainer)

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import './style.css'
 
 const EventCalendar = (props) => {
   const selectedDate = props.match.params.date ? moment(props.match.params.date, 'YYYYMMDD').toDate() : null
@@ -34,7 +35,7 @@ const EventCalendar = (props) => {
 
   const onChange = (newDate) => {
     const date = moment(newDate).format('YYYYMMDD')
-    props.history.push(`/events/${date}`)
+    props.history.push(`/events/${date}${props.location.search}`)
   }
 
   return (
@@ -45,6 +46,7 @@ const EventCalendar = (props) => {
       highlightDates={specialDays}
       minDate={new Date()}
       color='#ffd102'
+      calendarClassName='sidebarCalendar'
     />
   )
 }
@@ -60,6 +62,12 @@ EventCalendar.propTypes = {
       PropTypes.string,
     ]).isRequired,
   })).isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+    ]),
+  }).isRequired,
   history: PropTypes.object.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({

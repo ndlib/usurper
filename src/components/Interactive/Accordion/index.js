@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './style.module.css'
 
-const desktopQuery = '(min-width: 62em)'
+const desktopQuery = '(min-width: 48em)'
 
 class Accordion extends Component {
   constructor (props) {

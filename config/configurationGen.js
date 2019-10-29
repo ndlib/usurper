@@ -21,6 +21,7 @@ const genConfig = () => {
     features: {
       favoritesEnabled: parameters.favoritesEnabled || false,
       subjectFilteringEnabled: parameters.subjectFilteringEnabled || false,
+      eventsFilteringEnabled: parameters.eventsFilteringEnabled || false,
     },
   }
 
@@ -44,6 +45,7 @@ const genConfig = () => {
     features: {
       favoritesEnabled: process.env.ENABLE_FAVORITES ? process.env.ENABLE_FAVORITES : defaultConfig.features.favoritesEnabled,
       subjectFilteringEnabled: process.env.ENABLE_SUBJECT_FILTERING ? process.env.ENABLE_SUBJECT_FILTERING : defaultConfig.features.subjectFilteringEnabled,
+      eventsFilteringEnabled: process.env.ENABLE_EVENTS_FILTERING ? process.env.ENABLE_EVENTS_FILTERING : defaultConfig.features.eventsFilteringEnabled,
     },
   }
 

@@ -72,10 +72,10 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
   })
 
   it('should apply subject filter when appropriate', () => {
-    const dummyObj = { 'test': 'object' }
+    const dummyId = 'zngodpabgpeujnvbhzouyxcv'
     const presenter = enzymeWrapper.dive().dive().find(Presenter)
-    presenter.props().applySubjectFilter(dummyObj)
-    expect(enzymeWrapper.dive().props().onSubjectFilterApply).toHaveBeenCalledWith([ dummyObj ])
+    presenter.props().applySubjectFilter(dummyId)
+    expect(enzymeWrapper.dive().props().onSubjectFilterApply).toHaveBeenCalledWith('subject', [ dummyId ])
   })
 
   it('should add frequentlyUsedSubject to list of subjects', () => {

@@ -7,16 +7,21 @@ import EventsWrapper from '../Wrapper'
 const Presenter = (props) => {
   return (
     <EventsWrapper
-      linkPath={props.pageDate ? '/events' : '/events/past'}
+      linkPath={(props.pageDate ? '/events' : '/events/past') + props.location.search}
       linkText={props.pageDate ? 'Current Events' : 'Past Events'}
       pageTitle={props.pageTitle}
       pageDate={props.pageDate}
       events={props.events}
       filteredEvents={props.filteredEvents}
+      location={props.location}
+      history={props.history}
     >
-      <div className='col-md-4 col-sm-5 col-xs-12 right'>
-        <Calendar events={props.events} history={props.history} match={props.match} />
-      </div>
+      <Calendar
+        events={props.events}
+        location={props.location}
+        history={props.history}
+        match={props.match}
+      />
     </EventsWrapper>
   )
 }
@@ -26,6 +31,9 @@ Presenter.propTypes = {
   pageDate: PropTypes.string,
   events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
   history: PropTypes.object,
   match: PropTypes.object,
 }

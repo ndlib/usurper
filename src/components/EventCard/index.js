@@ -1,44 +1,77 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 
 import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
+import Tags from 'components/Interactive/Tags'
 
-const EventCard = ({ entry, isLast, showDescription, showImage }) => {
+import './style.css'
+
+const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagClick }) => {
+  const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
+  const linkPath = '/event/' + entry.slug
+
+  const audienceTags = () => {
+    const clickHandler = (tag) => {
+      onTagClick('audience', [ tag.key ])
+    }
+    return typy(entry.audience).safeArray.map(displayName => ({
+      key: displayName,
+      value: displayName,
+      onClick: clickHandler,
+    }))
+  }
+  const typeTag = entry.type ? {
+    key: entry.type,
+    value: entry.type,
+    onClick: (tag) => onTagClick('type', [ tag.key ]),
+  } : null
+
   return (
-    <div className='event-card' itemScope itemType='http://schema.org/Event'>
-      <Link
-        ariaLabel={entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime}
-        to={'/event/' + entry.slug}
-        itemProp='mainEntityOfPage'
-      >
+    <React.Fragment>
+      <div className='event-card' itemScope itemType='http://schema.org/Event' itemProp='mainEntityOfPage'>
         <meta itemProp='startDate' content={entry.startDate} />
         <meta itemProp='endDate' content={entry.endDate} />
         <div itemProp='location' itemScope itemType='http://schema.org/Place' hidden>
           <meta itemProp='address' content={entry.locationText} />
         </div>
-        { showImage && (
-          <Image cfImage={entry.representationalImage} className='card-image' itemProp='image' />
-        )}
-        <div className='date'>
-          {entry.displayDate}
+        <div className='card-image'>
+          { showImage && (
+            <Link ariaLabel={linkAriaLabel} to={linkPath}>
+              <Image cfImage={entry.representationalImage} itemProp='image' />
+            </Link>
+          )}
         </div>
-        { entry.displayTime && (
-          <div className='time'>
-            {entry.displayTime}
-          </div>
-        )}
-        <h2 itemProp='name'>{entry.title}</h2>
+        <div className='card-text'>
+          <Link ariaLabel={linkAriaLabel} to={linkPath}>
+            <div className='date'>
+              {entry.displayDate}
+            </div>
+            { entry.displayTime && (
+              <div className='time'>
+                {entry.displayTime}
+              </div>
+            )}
+            <h2 itemProp='name'>{entry.title}</h2>
+            { entry.recurring && (
+              <div className='event-recurring'>Recurring</div>
+            )}
 
-        { showDescription && (
-          <div className='description' itemProp='description'>
-            <LibMarkdown>{entry.shortDescription}</LibMarkdown>
-          </div>
-        )}
-      </Link>
-      { !isLast && <hr /> }
-    </div>
+            { showDescription && (
+              <div className='description' itemProp='description'>
+                <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+              </div>
+            )}
+          </Link>
+          { showTags && (
+            <Tags groups={[typeTag, audienceTags()]} />
+          )}
+        </div>
+      </div>
+      { !isLast && <hr className='card-divider' /> }
+    </React.Fragment>
   )
 }
 
@@ -51,16 +84,21 @@ EventCard.propTypes = {
     displayTime: PropTypes.string,
     locationText: PropTypes.string,
     representationalImage: PropTypes.object,
+    audience: PropTypes.arrayOf(PropTypes.string),
+    type: PropTypes.string,
   }).isRequired,
   isLast: PropTypes.bool,
   showDescription: PropTypes.bool,
   showImage: PropTypes.bool,
+  showTags: PropTypes.bool,
+  onTagClick: PropTypes.func,
 }
 
 EventCard.defaultProps = {
   isLast: false,
   showDescription: true,
   showImage: true,
+  showTags: true,
 }
 
 export default EventCard

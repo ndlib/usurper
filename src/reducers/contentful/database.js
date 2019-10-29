@@ -4,7 +4,9 @@ import {
   CF_REQUEST_DATABASE_DEFAULT_FAVORITES,
   CF_RECEIVE_DATABASE_DEFAULT_FAVORITES,
 } from 'actions/contentful/database'
+import { frequentlyUsedSubject } from 'constants/staticData'
 import * as statuses from 'constants/APIStatuses'
+import typy from 'typy'
 
 const initialState = {
   defaultFavorites: { status: statuses.NOT_FETCHED },
@@ -25,7 +27,17 @@ export default (state = initialState, action) => {
     case CF_RECEIVE_DATABASE_LETTER:
       letterData[action.letter] = {
         status: action.status,
-        data: action.data,
+        data: Array.isArray(action.data)
+          ? action.data.map(item => {
+            if (typy(item, 'fields.multidisciplinary').safeBoolean) {
+              item.fields.subjects = typy(item, 'fields.subjects').safeArray
+              if (!item.fields.subjects.some(sub => sub.sys.id === frequentlyUsedSubject.sys.id)) {
+                item.fields.subjects.push(frequentlyUsedSubject)
+              }
+            }
+            return item
+          })
+          : null,
       }
       return Object.assign({}, state, letterData)
     case CF_REQUEST_DATABASE_DEFAULT_FAVORITES:

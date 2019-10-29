@@ -1,0 +1,36 @@
+.facets .header {
+  background-color: #0C2340;
+  color: #fff;
+  display: inline-block;
+  line-height: 20px;
+  padding: 10px 20px;
+  margin: 0;
+  font-size: 1em;
+  font-family: GPMed, sans-serif;
+  width: 100%;
+}
+
+.facets .optionsBox {
+  display: block;
+  font-size: 1.1em;
+  text-decoration: none;
+  margin: 4px;
+}
+
+.optionsBox .option {
+  display: flex;
+  padding: 1px 2px;
+}
+
+.option .linkText {
+  color: #417D8B;
+  font-size: 0.9em;
+  font-family: "HelveticaNeue", Helvetica, Arial, Verdana, sans-serif;
+  font-weight: normal;
+  line-height: 1.6em;
+  text-align: left;
+  text-decoration: none;
+}
+.linkText:hover, .linkText:active {
+  background: rgba(0, 0, 0, .1);
+}

@@ -3,23 +3,25 @@ import PropTypes from 'prop-types'
 
 import DateFilter from './DateFilter'
 import EventsWrapper from '../Wrapper'
-import SideNav from 'components/Layout/Navigation/SideNav'
 
 const Presenter = (props) => {
   return (
     <EventsWrapper
-      linkPath='/events'
+      linkPath={'/events' + props.location.search}
       linkText='Current Events'
       pageTitle={props.pageTitle}
       pageDate={props.pageDate}
       events={props.events}
       filteredEvents={props.filteredEvents}
+      location={props.location}
+      history={props.history}
     >
-      <div className='col-md-4 col-xs-12' style={{ position: 'relative' }}>
-        <SideNav className='column-md'>
-          <DateFilter events={props.events} filterYear={props.filterYear} filterMonth={props.filterMonth} />
-        </SideNav>
-      </div>
+      <DateFilter
+        events={props.events}
+        filterYear={props.filterYear}
+        filterMonth={props.filterMonth}
+        location={props.location}
+      />
     </EventsWrapper>
   )
 }
@@ -31,6 +33,10 @@ Presenter.propTypes = {
   filteredEvents: PropTypes.array.isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
+  history: PropTypes.object,
 }
 
 export default Presenter

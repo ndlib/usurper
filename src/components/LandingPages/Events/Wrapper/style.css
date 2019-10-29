@@ -37,29 +37,6 @@
 
 }
 
-.events-listing .event-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: 0 !important;
-}
-
-.events-listing .event-card-text {
-  order: 1;
-  padding: 10px 10px 0;
-  width: 100%;
-}
-
-.events-listing time {
-  order: 2;
-  padding: 0 10px ;
-}
-
-.events-listing .description {
-  order: 3;
-  padding: 0 10px ;
-}
-
 .date-as-calendar,
 .news-card img {
   color: #999;
@@ -121,6 +98,18 @@
   padding: 3px 0;
 }
 
-.events-listing .cover {
-  width: 350px;
+.events-sidebar {
+  order: -1;
+}
+
+@media screen and (min-width: 48em) {
+  .events-sidebar {
+    order: 2;
+  }
+
+  /* prevent updating filters from causing the scrollbar to jump by disabling anchor point on main page content */
+  .events-list {
+    order: 1;
+    overflow-anchor: none;
+  }
 }

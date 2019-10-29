@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getLinkObject } from 'shared/ContentfulLibs'
 import { KIND } from 'actions/personal/favorites'
-import { frequentlyUsedSubject } from 'constants/staticData'
 import Presenter from './presenter.js'
 
 const DatabaseSummaryContainer = (props) => {
@@ -25,12 +24,6 @@ const DatabaseSummaryContainer = (props) => {
       url: link.url,
     }
   })
-  if (props.item.fields.multidisciplinary) {
-    props.item.fields.subjects = props.item.fields.subjects || []
-    if (!props.item.fields.subjects.some(sub => sub.sys.id === frequentlyUsedSubject.sys.id)) {
-      props.item.fields.subjects.push(frequentlyUsedSubject)
-    }
-  }
 
   return (
     <Presenter
@@ -38,7 +31,7 @@ const DatabaseSummaryContainer = (props) => {
       linkObject={linkObject}
       isFavorited={isFavorited}
       favoritesData={favoritesData}
-      applySubjectFilter={(subject) => props.onSubjectFilterApply([ subject ])}
+      applySubjectFilter={(subjectId) => props.onSubjectFilterApply('subject', [ subjectId ])}
     />
   )
 }

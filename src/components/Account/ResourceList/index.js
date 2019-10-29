@@ -17,7 +17,7 @@ class ResourceListContainer extends Component {
       filterValue: '',
       filterFields: filterFields,
       itemList: this.props.list,
-      filteredList: helper.filterAndSort(props.list, filterFields, '', 'title', 'asc'),
+      filteredList: helper.filterAndSort(props.list, filterFields, '', false, 'title', 'asc'),
       sortValue: 'title',
       sortDir: 'asc',
       assistText: '',
@@ -31,7 +31,7 @@ class ResourceListContainer extends Component {
     if (!state.itemList || (props.list && state.itemList !== props.list)) {
       return {
         itemList: props.list,
-        filteredList: helper.filterAndSort(props.list, state.filterFields, state.filterValue,
+        filteredList: helper.filterAndSort(props.list, state.filterFields, state.filterValue, false,
           [state.sortValue, secondarySort], state.sortDir),
       }
     }
@@ -46,7 +46,7 @@ class ResourceListContainer extends Component {
 
     this.setState({
       filterValue: event.target.value,
-      filteredList: helper.filterAndSort(this.state.itemList, this.state.filterFields, event.target.value,
+      filteredList: helper.filterAndSort(this.state.itemList, this.state.filterFields, event.target.value, false,
         [this.state.sortValue, secondarySort], this.state.sortDir),
       assistText: assistText,
     })
@@ -71,7 +71,7 @@ class ResourceListContainer extends Component {
     this.setState({
       sortDir: sortDir,
       sortValue: sortValue,
-      filteredList: helper.filterAndSort(this.state.itemList, this.state.filterFields, this.state.filterValue,
+      filteredList: helper.filterAndSort(this.state.itemList, this.state.filterFields, this.state.filterValue, false,
         [sortValue, secondarySort], sortDir),
     })
   }

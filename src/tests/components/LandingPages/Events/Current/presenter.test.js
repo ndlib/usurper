@@ -39,6 +39,9 @@ describe('components/LandingPages/Events/Current/presenter', () => {
       filteredEvents: [
         someEvent,
       ],
+      location: {
+        search: '?type=test',
+      },
       history: {},
       match: {
         params: {},
@@ -64,6 +67,7 @@ describe('components/LandingPages/Events/Current/presenter', () => {
     expect(wrapper.containsMatchingElement(
       <Calendar
         events={props.events}
+        location={props.location}
         history={props.history}
         match={props.match}
       />

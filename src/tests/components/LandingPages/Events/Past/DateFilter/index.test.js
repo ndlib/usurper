@@ -43,6 +43,9 @@ describe('components/LandingPages/Events/Past/DateFilter', () => {
       ],
       filterYear: 2017,
       filterMonth: 0, // January; months in javascript are zero-indexed
+      location: {
+        search: '?type=test',
+      },
     }
     enzymeWrapper = setup(props)
   })
@@ -58,34 +61,34 @@ describe('components/LandingPages/Events/Past/DateFilter', () => {
           count: 1,
         },
         '11': {
-          url: '/events/past/201712',
+          url: `/events/past/201712${props.location.search}`,
           display: 'Dec',
           count: 1,
         },
       },
       '2018': {
         '0': {
-          url: '/events/past/201801',
+          url: `/events/past/201801${props.location.search}`,
           display: 'Jan',
           count: 1,
         },
         '2': {
-          url: '/events/past/201803',
+          url: `/events/past/201803${props.location.search}`,
           display: 'Mar',
           count: 2,
         },
         '5': {
-          url: '/events/past/201806',
+          url: `/events/past/201806${props.location.search}`,
           display: 'Jun',
           count: 1,
         },
         '6': {
-          url: '/events/past/201807',
+          url: `/events/past/201807${props.location.search}`,
           display: 'Jul',
           count: 1,
         },
         '7': {
-          url: '/events/past/201808',
+          url: `/events/past/201808${props.location.search}`,
           display: 'Aug',
           count: 1,
         },

@@ -20,6 +20,7 @@ const Presenter = ({ entries }) => {
               isLast={index === entries.length - 1}
               showDescription={false}
               showImage={false}
+              showTags={false}
             />
           ))}
         </ErrorBoundary>
