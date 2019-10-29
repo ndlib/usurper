@@ -28,13 +28,13 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
             title: 'Database of Epic Research and Cool Things',
             subjects: [
               {
-                sys: { id: 'math' },
-                fields: {},
+                sys: { id: '1111' },
+                fields: { id: 'math' },
                 linkText: 'Mathematics',
               },
               {
-                sys: { id: 'history' },
-                fields: {},
+                sys: { id: '22222' },
+                fields: { id: 'history' },
                 linkText: 'History',
               },
             ],

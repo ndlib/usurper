@@ -11,7 +11,7 @@ const ActiveFiltersList = (props) => {
       props.removeSubjectFromFilter(tag.key)
     }
     return sortedList.map(subject => ({
-      key: subject.sys.id,
+      key: subject.fields.id,
       value: subject.linkText,
       onClick: clickHandler,
     }))

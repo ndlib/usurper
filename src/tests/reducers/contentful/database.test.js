@@ -1,7 +1,7 @@
 import reducer from 'reducers/contentful/database'
 import * as actions from 'actions/contentful/database'
 import * as statuses from 'constants/APIStatuses'
-import { frequentlyUsedSubject } from 'constants/staticData'
+import { multidisciplinarySubject } from 'constants/staticData'
 
 describe('database reducer', () => {
   it('should return the initial state', () => {
@@ -53,7 +53,7 @@ describe('database reducer', () => {
           text: 'some item data',
           fields: {
             multidisciplinary: true,
-            subjects: [frequentlyUsedSubject],
+            subjects: [multidisciplinarySubject],
           },
         }],
       },

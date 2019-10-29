@@ -49,10 +49,10 @@ describe('components/SubjectList', () => {
         cfSubjects: {
           status: statuses.SUCCESS,
           data: [
-            { linkText: 'Link 3', sys: { id: 3 } },
-            { linkText: 'Link 1', sys: { id: 1 } },
-            { linkText: 'Link 1', sys: { id: 12 } },
-            { linkText: 'Link 2', sys: { id: 2 } },
+            { linkText: 'Link 3', sys: { id: 3 }, fields: { id: 'c'} },
+            { linkText: 'Link 1', sys: { id: 1 }, fields: { id: 'a'} },
+            { linkText: 'Link 1', sys: { id: 12 }, fields: { id: 'z'} },
+            { linkText: 'Link 2', sys: { id: 2 }, fields: { id: 'b'} },
           ],
         },
       }
@@ -68,10 +68,10 @@ describe('components/SubjectList', () => {
 
     it('should sort subjects based on link text', () => {
       const expected = [
-        state.cfSubjects.data[1].sys.id,
-        state.cfSubjects.data[2].sys.id,
-        state.cfSubjects.data[3].sys.id,
-        state.cfSubjects.data[0].sys.id,
+        state.cfSubjects.data[1].fields.id,
+        state.cfSubjects.data[2].fields.id,
+        state.cfSubjects.data[3].fields.id,
+        state.cfSubjects.data[0].fields.id,
       ]
       expect(enzymeWrapper.dive().props().subjects.map(subject => subject.key)).toEqual(expected)
     })

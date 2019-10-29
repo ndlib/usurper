@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary'
 import Presenter from 'components/DatabaseList/Databases/DatabaseSummary/presenter.js'
 import { KIND } from 'actions/personal/favorites'
-import { frequentlyUsedSubject } from 'constants/staticData'
+import { multidisciplinarySubject } from 'constants/staticData'
 
 let enzymeWrapper
 let store
@@ -78,7 +78,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
     expect(enzymeWrapper.dive().props().onSubjectFilterApply).toHaveBeenCalledWith('subject', [ dummyId ])
   })
 
-  it('should add frequentlyUsedSubject to list of subjects', () => {
-    expect(enzymeWrapper.dive().props().item.fields.subjects.some(sub => sub === frequentlyUsedSubject))
+  it('should add multidisciplinarySubject to list of subjects', () => {
+    expect(enzymeWrapper.dive().props().item.fields.subjects.some(sub => sub === multidisciplinarySubject))
   })
 })

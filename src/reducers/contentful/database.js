@@ -4,7 +4,7 @@ import {
   CF_REQUEST_DATABASE_DEFAULT_FAVORITES,
   CF_RECEIVE_DATABASE_DEFAULT_FAVORITES,
 } from 'actions/contentful/database'
-import { frequentlyUsedSubject } from 'constants/staticData'
+import { multidisciplinarySubject } from 'constants/staticData'
 import * as statuses from 'constants/APIStatuses'
 import typy from 'typy'
 
@@ -31,8 +31,8 @@ export default (state = initialState, action) => {
           ? action.data.map(item => {
             if (typy(item, 'fields.multidisciplinary').safeBoolean) {
               item.fields.subjects = typy(item, 'fields.subjects').safeArray
-              if (!item.fields.subjects.some(sub => sub.sys.id === frequentlyUsedSubject.sys.id)) {
-                item.fields.subjects.push(frequentlyUsedSubject)
+              if (!item.fields.subjects.some(sub => sub.sys.id === multidisciplinarySubject.sys.id)) {
+                item.fields.subjects.push(multidisciplinarySubject)
               }
             }
             return item

@@ -89,7 +89,8 @@ describe('components/DatabaseList/presenter.js', () => {
         }],
         subjects: [
           {
-            sys: { id: 'test' },
+            sys: { id: '11111111' },
+            fields: { id: 'test' },
             linkText: 'Display value',
           }
         ],
@@ -125,7 +126,7 @@ describe('components/DatabaseList/presenter.js', () => {
       expect(facet.exists()).toBe(true)
       expect(facet.props().options).toEqual([
         {
-          key: props.subjects[0].sys.id,
+          key: props.subjects[0].fields.id,
           value: props.subjects[0].linkText,
         }
       ])

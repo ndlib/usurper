@@ -6,6 +6,7 @@ import Link from 'components/Interactive/Link'
 import FavoriteIcon from 'components/Account/Favorites/FavoriteIcon'
 import { KIND } from 'actions/personal/favorites'
 import SummaryLink from './SummaryLink'
+import { multidisciplinarySubject } from 'constants/staticData'
 import Tags from 'components/Interactive/Tags'
 import Config from 'shared/Configuration'
 
@@ -16,8 +17,9 @@ const DatabaseSummary = (props) => {
     const clickHandler = (tag) => {
       props.applySubjectFilter(tag.key)
     }
-    return typy(props.item, 'fields.subjects').safeArray.map(subject => ({
-      key: subject.sys.id,
+    const subjectsArr = typy(props.item, 'fields.subjects').safeArray
+    return (subjectsArr.includes(multidisciplinarySubject) ? [multidisciplinarySubject] : subjectsArr).map(subject => ({
+      key: subject.fields.id,
       value: subject.linkText,
       onClick: clickHandler,
     }))

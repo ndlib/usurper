@@ -22,11 +22,13 @@ describe('components/DatabaseList/ActiveFiltersList', () => {
       letter: 's',
       subjects: [
         {
-          sys: { id: 'music' },
+          sys: { id: '1' },
+          fields: { id: 'music' },
           linkText: 'Music Display Text',
         },
         {
-          sys: { id: 'math' },
+          sys: { id: '2' },
+          fields: { id: 'math' },
           linkText: 'Mathematics Display Text',
         }
       ],

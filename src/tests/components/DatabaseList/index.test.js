@@ -35,6 +35,7 @@ const validItem1 = {
     },
   },
   fields: {
+    id: '1-first',
     title: '1 - first record',
     databaseLetter: '#',
   },
@@ -49,6 +50,7 @@ const validItem2 = {
     },
   },
   fields: {
+    id: '2-second',
     title: '2 - middle record SEARCH',
     databaseLetter: '#',
   },
@@ -63,6 +65,7 @@ const validItem3 = {
     },
   },
   fields: {
+    id: '3-third',
     title: '3 - third record SEARCH',
     databaseLetter: '#',
   },
@@ -77,6 +80,7 @@ const validItem4 = {
     },
   },
   fields: {
+    id: '4-fourth',
     title: '4 - last record',
     databaseLetter: '#',
   },
@@ -212,10 +216,12 @@ describe('components/DatabaseList/index.js', () => {
             status: statuses.SUCCESS,
             data: [
               {
-                sys: { id: 'latin' },
+                sys: { id: 'asdfgthyjkl' },
+                fields: { id: 'latin' },
               },
               {
-                sys: { id: 'french' },
+                sys: { id: 'qwertyuiop' },
+                fields: { id: 'french' },
               },
             ],
           },

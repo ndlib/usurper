@@ -7,7 +7,7 @@ import typy from 'typy'
 import { fetchSubjects } from 'actions/contentful/subjects'
 import { fetchLetter } from 'actions/contentful/database'
 import ListPresenter from './presenter.js'
-import { frequentlyUsedSubject } from 'constants/staticData'
+import { multidisciplinarySubject } from 'constants/staticData'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
@@ -190,11 +190,11 @@ export const mapStateToProps = (state, thisProps) => {
     }
   })
 
-  // Add "Frequently Used" which mimics a normal subject on this page, but doesn't exist in Contentful because it isn't really
+  // Add "Multidisciplinary" which mimics a normal subject on this page, but doesn't exist in Contentful because it isn't really
   const subjectsList = cfSubjects.data
     ? [
       ...cfSubjects.data,
-      frequentlyUsedSubject,
+      multidisciplinarySubject,
     ]
     : []
 

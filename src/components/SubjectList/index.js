@@ -95,7 +95,7 @@ const mapStateToProps = (state) => {
     const contentfulSubjects = typy(cfSubjects, 'data.length').isTruthy
       ? cfSubjects.data.map((entry) => ({
         title: entry.linkText,
-        key: entry.sys.id,
+        key: entry.fields.id,
         url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
         cfEntry: entry,
       }))

@@ -2,7 +2,7 @@
 	* {
 		font-family: sans-serif !important;
 	}
-	.top, #footer-links, #footer-info, .floor-info p, .floor-info h3, .floor .servicePoint {
+	.top, #footer-links, #footer-info, .floor-info p, .floor-info h3, .floorplan .servicePointContainer {
 		display: none;
 	}
 
@@ -14,6 +14,8 @@
 	#maincontent {
 		margin: 1em;
 		padding: 10px;
+		padding-top: 0;
+		margin-top: 0;
 	}
 
 	.content-area {
