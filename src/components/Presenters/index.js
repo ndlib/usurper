@@ -19,7 +19,7 @@ const retrieveCapacity = (type) => {
 }
 
 const Presenters = ({ presenters }) => {
-  if (!presenters) {
+  if (!presenters || !presenters.length) {
     return null
   }
   return (
