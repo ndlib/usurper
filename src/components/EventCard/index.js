@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import typy from 'typy'
 
 import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
@@ -13,16 +12,6 @@ const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagC
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
   const linkPath = '/event/' + entry.slug
 
-  const audienceTags = () => {
-    const clickHandler = (tag) => {
-      onTagClick('audience', [ tag.key ])
-    }
-    return typy(entry.audience).safeArray.map(displayName => ({
-      key: displayName,
-      value: displayName,
-      onClick: clickHandler,
-    }))
-  }
   const typeTag = entry.type ? {
     key: entry.type,
     value: entry.type,
@@ -66,7 +55,7 @@ const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagC
             )}
           </Link>
           { showTags && (
-            <Tags groups={[typeTag, audienceTags()]} />
+            <Tags groups={[typeTag]} />
           )}
         </div>
       </div>
