@@ -1,5 +1,22 @@
 # Change Log
 
+## [v2019.20](https://github.com/ndlib/usurper/tree/v2019.20) "First Flurry"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.19...v2019.20)
+
+### Features
+*These features will be available in a future release:*
+- *Dark feature - Added best bets for select databases in a given subject.* [#731](https://github.com/ndlib/usurper/pull/731)
+- *Dark feature - Added filtering options to Events pages.* [#730](https://github.com/ndlib/usurper/pull/730)
+
+### Bug Fixes
+- Fixed hours for service points sometimes showing incorrect background color on initial page load. [#717](https://github.com/ndlib/usurper/pull/717)
+- Fixed presenters box showing when there were no presenters for an event. [#735](https://github.com/ndlib/usurper/pull/735)
+
+### Other
+- Advanced search now links directly to Onesearch to utilize their robust options. [#724](https://github.com/ndlib/usurper/pull/724)
+- Patched some potential security vulnerabilities. [#720](https://github.com/ndlib/usurper/pull/720)
+- Minor styling improvements. [View Changes](https://github.com/ndlib/usurper/pull/736/commits/13ffcac7dd38ad0b45731a736d80a7c315e7c97b)
+
 ## [v2019.19](https://github.com/ndlib/usurper/tree/v2019.19) "Ship Shape"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.18...v2019.19)
 
