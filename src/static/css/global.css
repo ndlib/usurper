@@ -3997,6 +3997,10 @@ section.group .modal-footer button {
   padding: 6px;
 }
 
+.activeFilters span {
+  line-height: 1em;
+}
+
 .activeFiltersLabel {
   font-weight: bold;
   margin-left: 6px;
