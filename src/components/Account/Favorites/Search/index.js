@@ -98,9 +98,9 @@ export class SearchContainer extends Component {
                     .map((result) => {
                       return (
                         <SearchResult
-                          key={result.key}
+                          key={result.itemKey}
                           kind={this.props.kind}
-                          id={result.key}
+                          id={result.itemKey}
                           title={result.title}
                           url={result.url}
                           disabled={this.props.disabled}
@@ -130,7 +130,7 @@ export const mapStateToProps = (state, ownProps) => {
   if (favorites && favorites['search'] && favorites['search'][ownProps.kind]) {
     searchState = favorites['search'][ownProps.kind].state
     searchResults = (favorites['search'][ownProps.kind].results || []).filter((result) => {
-      return ownProps.existingFavorites.findIndex((fav) => fav.key === result.key) < 0
+      return ownProps.existingFavorites.findIndex((fav) => fav.itemKey === result.itemKey) < 0
     })
   }
 

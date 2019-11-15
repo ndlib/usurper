@@ -21,10 +21,12 @@ const ManageFavorites = (props) => {
       <div className='section-box pad-edges'>
         <div className='row'>
           {props.message}
-          <span className={styles.rearrangeTip}>
-            You can rearrange the listing using the
-            <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
-          </span>
+          {props.favorited.length > 0 && (
+            <span className={styles.rearrangeTip}>
+              You can rearrange the listing using the
+              <img src={moveIcon} alt='☰' aria-label='grid icon' className={styles.moveIcon} />
+            </span>
+          )}
           <FavoritesList kind={props.kind} items={props.favorited} updateList={props.updateList} disabled={saving} />
         </div>
         { props.kind !== KIND.subjects && (

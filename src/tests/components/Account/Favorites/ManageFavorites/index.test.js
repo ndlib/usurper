@@ -77,7 +77,7 @@ describe('components/Account/Favorites/ManageFavorites', () => {
     const instance = enzymeWrapper.dive().dive().instance()
     const originalListItems = instance.state.listItems
     const newItem = {
-      key: 'some_id',
+      itemKey: 'some_id',
       title: 'title',
       url: 'url.to.thing',
     }
@@ -85,18 +85,18 @@ describe('components/Account/Favorites/ManageFavorites', () => {
     // Mock this so it will not upset our state after adding item
     jest.spyOn(ManageFavoritesContainer, 'getDerivedStateFromProps').mockImplementation(() => null)
 
-    instance.onAddFavorite(KIND.subjects, newItem.key, newItem.title, newItem.url)
+    instance.onAddFavorite(KIND.subjects, newItem.itemKey, newItem.title, newItem.url)
     expect(instance.state.listItems).toEqual(originalListItems.concat([newItem]))
   })
 
   it('should dispatch favorites update on saving modified list', () => {
     const instance = enzymeWrapper.dive().dive().instance()
     const newItem = {
-      key: 'some_id',
+      itemKey: 'some_id',
       title: 'title',
       url: 'url.to.thing',
     }
-    instance.onAddFavorite(KIND.subjects, newItem.key, newItem.title, newItem.url)
+    instance.onAddFavorite(KIND.subjects, newItem.itemKey, newItem.title, newItem.url)
     instance.onSave()
 
     expect(store.getActions()).toEqual([
@@ -132,12 +132,12 @@ describe('components/Account/Favorites/ManageFavorites', () => {
 
     const instance = enzymeWrapper.dive().dive().instance()
     const newItem = {
-      key: 'some_id',
+      itemKey: 'some_id',
       title: 'title',
       url: 'url.to.thing',
     }
 
-    instance.onAddFavorite(KIND.subjects, newItem.key, newItem.title, newItem.url)
+    instance.onAddFavorite(KIND.subjects, newItem.itemKey, newItem.title, newItem.url)
     expect(instance.state.saved).toBe(true)
     expect(instance.state.modified).toBe(false)
   })
@@ -156,8 +156,8 @@ describe('components/Account/Favorites/ManageFavorites', () => {
     const props = {
       kind: KIND.subjects,
       items: [
-        { key: 'last', url: '/last', title: 'last item', order: 3 },
-        { key: 'first', url: '/first', title: 'first item', order: 1 },
+        { itemKey: 'last', url: '/last', title: 'last item', order: 3 },
+        { itemKey: 'first', url: '/first', title: 'first item', order: 1 },
       ],
       saveState: statuses.NOT_FETCHED,
       setFavorites: jest.fn(),
@@ -175,7 +175,7 @@ describe('components/Account/Favorites/ManageFavorites', () => {
       expect(enzymeWrapper.find(Wizard).exists()).toBe(true)
 
       // Add an item to simulate what the wizard might do while it is open
-      const newItems = [...props.items, { key: 'new', url: '/new', title: 'new item', order: 999 }]
+      const newItems = [...props.items, { itemKey: 'new', url: '/new', title: 'new item', order: 999 }]
       enzymeWrapper.setProps({
         items: newItems,
       })

@@ -9,7 +9,7 @@ export const REQUEST_UPDATE_SETTINGS = 'REQUEST_UPDATE_SETTINGS'
 
 export const KIND = {
   homeLibrary: 'homeLibrary',
-  circStatus: 'circStatus',
+  circStatus: 'saveHistory',
   hideHomeFavorites: 'hideHomeFavorites',
   defaultSearch: 'defaultSearch',
   hiddenAlerts: 'hiddenAlerts',
@@ -51,28 +51,7 @@ const receiveUpdateSettings = (kind, state, error) => {
 }
 
 export const getCircStatus = () => {
-  return (dispatch, getState) => {
-    const state = getState().personal
-    dispatch(requestSettings(KIND.circStatus, null))
-    const url = Config.userPrefsAPI + 'circHistory'
-    return fetch(url, {
-      method: 'get',
-      headers: {
-        'Authorization': state.login.token,
-      },
-    })
-      .then(response => {
-        const jsonResponse = response.json()
-        return jsonResponse
-      })
-      .then(json => dispatch(
-        receiveSettings(KIND.circStatus, json.saveHistory, statuses.SUCCESS)
-      ))
-      .catch((e) => {
-        console.error(e)
-        dispatch(receiveSettings(KIND.circStatus, false, statuses.ERROR, e))
-      })
-  }
+  return getSimpleSetting(KIND.circStatus, false)
 }
 
 export const setCircStatus = (enabled) => {

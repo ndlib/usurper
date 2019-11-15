@@ -162,7 +162,7 @@ describe('components/Account/Favorites/Wizard', () => {
         [FAVORITES_KIND.databases]: {
           state: statuses.SUCCESS,
           items: [{
-            key: 'yo dawg',
+            itemKey: 'yo dawg',
             title: 'I heard you like memes',
             url: '/soiputamemeinyourcodesoyoucancodewhileyoumeme',
           }],
@@ -170,7 +170,7 @@ describe('components/Account/Favorites/Wizard', () => {
         [FAVORITES_KIND.subjects]: {
           state: statuses.SUCCESS,
           items: [{
-            key: 'slugger',
+            itemKey: 'slugger',
             title: 'McSlug',
             url: '/slugger',
             order: 1,

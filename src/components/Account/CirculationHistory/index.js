@@ -15,6 +15,7 @@ export class CirculationHistoryContainer extends Component {
   }
 
   checkFullyLoaded () {
+    // TODO: Call getCircStatus first.
     if (this.props.loggedIn && this.props.historicalStatus === statuses.NOT_FETCHED) {
       this.props.getHistorical()
     }
@@ -51,7 +52,7 @@ export const mapStateToProps = (state) => {
     historicalStatus: personal.historical.state,
     loading: [statuses.NOT_FETCHED, statuses.FETCHING].includes(personal.historical.state),
     items: checkedOut,
-    optedIn: personal.historical.state === statuses.SUCCESS ? personal.historical.saveHistory : false,
+    optedIn: personal.historical.state === statuses.SUCCESS ? settings[SETTINGS_KIND.circStatus].data : false,
     updateStatus: updateStatus,
     updating: updateStatus === statuses.FETCHING,
   }

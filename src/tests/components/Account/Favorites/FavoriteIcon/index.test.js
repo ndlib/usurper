@@ -100,7 +100,7 @@ describe('components/Account/Favorites/FavoriteIcon', () => {
     it('should update favorites when clicked', () => {
       props.data = [
         {
-          key: 'foo',
+          itemKey: 'foo',
           title: 'bar',
           url: 'baz',
         },

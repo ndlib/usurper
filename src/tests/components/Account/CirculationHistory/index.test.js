@@ -36,7 +36,6 @@ describe('components/Account/CirculationHistory', () => {
           },
           historical: {
             state: statuses.SUCCESS,
-            saveHistory: true,
             history: {
               aleph1234: {
                 id: '1234',
@@ -48,11 +47,12 @@ describe('components/Account/CirculationHistory', () => {
           },
         },
         settings: {
-          circStatus: {
-            state: statuses.NOT_FETCHED,
+          saveHistory: {
+            state: statuses.SUCCESS,
+            data: true,
           },
           update: {
-            circStatus: {
+            saveHistory: {
               state: statuses.NOT_FETCHED,
             },
           },

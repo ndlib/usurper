@@ -41,13 +41,13 @@ describe('components/Account/Favorites/TopFavorites', () => {
       favorites: {
         [KIND.databases]: {
           items: [
-            { key: 'fooKey', title: 'fooTitle', url: 'fooUrl' },
-            { key: 'barKey', title: 'barTitle', url: 'barUrl' },
+            { itemKey: 'fooKey', title: 'fooTitle', url: 'fooUrl' },
+            { itemKey: 'barKey', title: 'barTitle', url: 'barUrl' },
           ],
         },
         [KIND.subjects]: {
           items: [
-            { key: 'bazKey', title: 'bazTitle', url: 'bazUrl' },
+            { itemKey: 'bazKey', title: 'bazTitle', url: 'bazUrl' },
           ],
         },
       },
@@ -68,20 +68,20 @@ describe('components/Account/Favorites/TopFavorites', () => {
       favorites: {
         [KIND.databases]: {
           items: [
-            { key: 'a', title: 'a', url: 'a' },
-            { key: 'b', title: 'b', url: 'b' },
-            { key: 'c', title: 'c', url: 'c' },
-            { key: 'd', title: 'd', url: 'd' },
-            { key: 'e', title: 'e', url: 'e' },
+            { itemKey: 'a', title: 'a', url: 'a' },
+            { itemKey: 'b', title: 'b', url: 'b' },
+            { itemKey: 'c', title: 'c', url: 'c' },
+            { itemKey: 'd', title: 'd', url: 'd' },
+            { itemKey: 'e', title: 'e', url: 'e' },
           ],
         },
         [KIND.subjects]: {
           items: [
-            { key: 'v', title: 'v', url: 'v' },
-            { key: 'w', title: 'w', url: 'w' },
-            { key: 'x', title: 'x', url: 'x' },
-            { key: 'y', title: 'y', url: 'y' },
-            { key: 'z', title: 'z', url: 'z' },
+            { itemKey: 'v', title: 'v', url: 'v' },
+            { itemKey: 'w', title: 'w', url: 'w' },
+            { itemKey: 'x', title: 'x', url: 'x' },
+            { itemKey: 'y', title: 'y', url: 'y' },
+            { itemKey: 'z', title: 'z', url: 'z' },
           ],
         },
       },
@@ -109,7 +109,7 @@ describe('components/Account/Favorites/TopFavorites', () => {
       favorites: {
         [KIND.databases]: {
           items: [
-            { key: 'a', title: 'a', url: 'a' },
+            { itemKey: 'a', title: 'a', url: 'a' },
           ],
         },
         [KIND.subjects]: {
@@ -127,11 +127,11 @@ describe('components/Account/Favorites/TopFavorites', () => {
       favorites: {
         [KIND.databases]: {
           items: [
-            { key: 'a', title: 'a', url: 'a', order: 4 },
-            { key: 'b', title: 'b', url: 'b', order: 5 },
-            { key: 'c', title: 'c', url: 'c', order: 3 },
-            { key: 'd', title: 'd', url: 'd', order: 1 },
-            { key: 'e', title: 'e', url: 'e', order: 2 },
+            { itemKey: 'a', title: 'a', url: 'a', order: 4 },
+            { itemKey: 'b', title: 'b', url: 'b', order: 5 },
+            { itemKey: 'c', title: 'c', url: 'c', order: 3 },
+            { itemKey: 'd', title: 'd', url: 'd', order: 1 },
+            { itemKey: 'e', title: 'e', url: 'e', order: 2 },
           ],
         },
         [KIND.subjects]: {

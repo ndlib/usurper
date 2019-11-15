@@ -19,8 +19,7 @@ export const handleResources = (service, type, library = '') => {
   return (dispatch, data) => {
     if (type === 'circHistory') {
       dispatch(states.receivePersonal('historical', statuses.SUCCESS, {
-        history: data.history,
-        saveHistory: data.saveHistory,
+        history: data,
       }))
     } else {
       const libraryProper = library ? (library.charAt(0).toUpperCase() + library.slice(1).toLowerCase()) : ''

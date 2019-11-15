@@ -65,7 +65,7 @@ export class FavoriteIconContainer extends Component {
 
     const addToQueue = []
     for (let i = 0; i < this.props.data.length; i++) {
-      const key = this.props.data[i].key
+      const key = this.props.data[i].itemKey
       const title = this.props.data[i].title
       const url = this.props.data[i].url
       if (this.props.isFavorited) {
@@ -140,7 +140,7 @@ FavoriteIconContainer.propTypes = {
   disabled: PropTypes.bool,
   kind: PropTypes.string,
   data: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string,
+    itemKey: PropTypes.string,
     title: PropTypes.string,
     url: PropTypes.string,
   })),

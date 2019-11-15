@@ -12,7 +12,7 @@ const SearchResult = (props) => {
           kind={props.kind}
           data={[
             {
-              key: props.id,
+              itemKey: props.id,
               title: props.title,
               url: props.url,
             },
