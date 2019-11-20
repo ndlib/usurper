@@ -1,5 +1,5 @@
 import Config from 'shared/Configuration'
-import * as states from './constants'
+// import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
 
 export const RECEIVE_SETTINGS = 'RECEIVE_SETTINGS'
@@ -58,22 +58,19 @@ export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestUpdateSettings(KIND.circStatus))
-    const url = Config.userPrefsAPI + 'circHistory'
+    const url = Config.userPrefsAPI + 'simpleSetting/saveHistory'
     return fetch(url, {
       method: 'post',
       headers: {
         'Authorization': state.login.token,
       },
-      body: JSON.stringify({ 'saveHistory': enabled }),
+      body: enabled,
     })
       .then(response => {
-        const jsonResponse = response.json()
-        return jsonResponse
-      })
-      .then(json => {
-        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
-        dispatch(states.receivePersonal('historical', statuses.SUCCESS, json))
-        dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
+        if (response.ok) {
+          dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
+          dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
+        }
       })
       .catch((e) => {
         console.error(e)

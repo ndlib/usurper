@@ -124,7 +124,7 @@ export const deleteHistorical = (recordKey = null, successCallback = null, error
   return (dispatch, getState) => {
     const state = getState().personal
     const token = state.login.token
-    let path = userPrefsUrl + '/circHistory'
+    let path = userPrefsUrl + 'circHistory'
     if (recordKey) {
       path += '/' + recordKey
     }
