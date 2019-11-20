@@ -50,10 +50,6 @@ const receiveUpdateSettings = (kind, state, error) => {
   }
 }
 
-export const getCircStatus = () => {
-  return getSimpleSetting(KIND.circStatus, false)
-}
-
 export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
     const state = getState().personal
@@ -139,6 +135,10 @@ export const clearUpdateSettings = (kind) => {
   return (dispatch) => {
     dispatch(receiveUpdateSettings(kind, statuses.NOT_FETCHED))
   }
+}
+
+export const getCircStatus = () => {
+  return getSimpleSetting(KIND.circStatus, false)
 }
 
 export const getHomeLibrary = () => {
