@@ -167,7 +167,7 @@ FavoritesContainer.propTypes = {
   defaultSearch: PropTypes.string.isRequired,
   defaultSearchState: PropTypes.string.isRequired,
   saveHistory: PropTypes.string.isRequired,
-  circStatus: PropTypes.string.isRequired,
+  circStatus: PropTypes.string,
   // action creators
   getToken: PropTypes.func.isRequired,
   getAllFavorites: PropTypes.func.isRequired,
