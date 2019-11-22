@@ -23,6 +23,7 @@ const genConfig = () => {
       subjectFilteringEnabled: parameters.subjectFilteringEnabled || false,
       eventsFilteringEnabled: parameters.eventsFilteringEnabled || false,
     },
+    loginEnabled: parameters.loginEnabled,
   }
 
   const config = {
@@ -47,6 +48,7 @@ const genConfig = () => {
       subjectFilteringEnabled: process.env.ENABLE_SUBJECT_FILTERING ? process.env.ENABLE_SUBJECT_FILTERING : defaultConfig.features.subjectFilteringEnabled,
       eventsFilteringEnabled: process.env.ENABLE_EVENTS_FILTERING ? process.env.ENABLE_EVENTS_FILTERING : defaultConfig.features.eventsFilteringEnabled,
     },
+    loginEnabled: defaultConfig.loginEnabled,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }

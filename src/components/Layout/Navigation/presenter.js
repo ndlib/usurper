@@ -6,31 +6,35 @@ import UserMenu from './UserMenu'
 import MobileMenu from './MobileMenu'
 import Link from 'components/Interactive/Link'
 import { USER_MENU, MOBILE_MENU } from 'actions/menu'
+import Config from 'shared/Configuration'
 
 const myAccountButton = (props) => {
-  if (props.loggedIn) {
-    return (
-      <li className='menu-link user right'>
-        <button
-          onClick={props.handleUserClick}
-          onKeyDown={props.handleUserKeyDown}
-          tabIndex='0'
-          aria-haspopup='true'
-          aria-owns='my-account-menu'
-          aria-controls='my-account-menu'
-          aria-expanded={props.menus.menuId === USER_MENU}
-          className='m'>My Account</button>
-        <Route component={UserMenu} />
-      </li>
-    )
-  } else {
-    return (
-      <li className='menu-link user right'>
-        <a href={props.loginUrl} className='m'>Login</a>
-        <Route component={UserMenu} />
-      </li>
-    )
+  if (Config.loginEnabled) {
+    if (props.loggedIn) {
+      return (
+        <li className='menu-link user right'>
+          <button
+            onClick={props.handleUserClick}
+            onKeyDown={props.handleUserKeyDown}
+            tabIndex='0'
+            aria-haspopup='true'
+            aria-owns='my-account-menu'
+            aria-controls='my-account-menu'
+            aria-expanded={props.menus.menuId === USER_MENU}
+            className='m'>My Account</button>
+          <Route component={UserMenu} />
+        </li>
+      )
+    } else {
+      return (
+        <li className='menu-link user right'>
+          <a href={props.loginUrl} className='m'>Login</a>
+          <Route component={UserMenu} />
+        </li>
+      )
+    }
   }
+  return null
 }
 const Navigation = (props) => {
   const dropDowns = props.dropDowns.map((menu, index) => {
