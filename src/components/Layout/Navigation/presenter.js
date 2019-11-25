@@ -9,7 +9,7 @@ import { USER_MENU, MOBILE_MENU } from 'actions/menu'
 import Config from 'shared/Configuration'
 
 const myAccountButton = (props) => {
-  if (Config.loginEnabled) {
+  if (Config.features.loginEnabled) {
     if (props.loggedIn) {
       return (
         <li className='menu-link user right'>

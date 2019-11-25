@@ -4,7 +4,6 @@ const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
 const findExport = require('./lib/findExport');
 const getStage = require('./lib/getStage');
-const enableLogin = require('./lib/enableLogin')
 
 const RED = process.env.CI ? '' : '\033[0;31m'
 const GREEN = process.env.CI ? '' : '\033[0;32m'
@@ -32,6 +31,7 @@ const psList = [
   'favoritesEnabled',
   'subjectFilteringEnabled',
   'eventsFilteringEnabled',
+  'loginEnabled',
 ]
 
 let handler = async () => {
@@ -40,7 +40,6 @@ let handler = async () => {
     let data = JSON.parse(stdout)
     let outputs = {}
     let stage = getStage()
-    let loginEnabled = enableLogin()
     let error = false
 
     for(let i = 0; i < apiList.length; i++) {
@@ -95,7 +94,6 @@ let handler = async () => {
       }
       stream.write("  environment: '" + stage + "',\n")
       stream.write("  version: '" + fs.readFileSync(`${__dirname}/../VERSION`, 'utf8').trim() + "',\n")
-      stream.write("  loginEnabled: " + loginEnabled + ",\n")
       stream.write("}\n")
       stream.end()
     })

@@ -94,7 +94,11 @@ const getSimpleSetting = (kind, defaultValue) => {
         const receivedValue = Array.isArray(json)
           ? json
           : (typeof json !== 'object' && json.toString()) ? json.toString() : defaultValue
-        dispatch(receiveSettings(kind, receivedValue, statuses.SUCCESS))
+        // If value is a string that looks like a boolean, convert it to an actual boolean
+        const setValue = (receivedValue === 'false' || receivedValue === 'true')
+          ? (receivedValue === 'true')
+          : receivedValue
+        dispatch(receiveSettings(kind, setValue, statuses.SUCCESS))
       })
       .catch((e) => {
         console.error(e)

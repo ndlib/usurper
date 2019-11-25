@@ -11,7 +11,7 @@ import InlineLoading from 'components/Messages/InlineLoading'
 import Config from 'shared/Configuration'
 
 const AccountPageWrapper = (props) => {
-  if (!Config.loginEnabled) {
+  if (!Config.features.loginEnabled) {
     return (
       <div className='content'>
         <SearchProgramaticSet open={false} />

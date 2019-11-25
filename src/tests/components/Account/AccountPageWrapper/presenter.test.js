@@ -8,7 +8,7 @@ import StaticAlert from 'components/Contentful/StaticContent/Alert'
 import StaticBody from 'components/Contentful/StaticContent/Body'
 import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import InlineLoading from 'components/Messages/InlineLoading'
-global.__APP_CONFIG__.loginEnabled = true
+global.__APP_CONFIG__.features.loginEnabled = true
 const setup = (props) => {
   return shallow(<AccountPageWrapper {...props} />)
 }

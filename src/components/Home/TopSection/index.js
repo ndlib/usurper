@@ -63,7 +63,7 @@ class TopSection extends Component {
   }
 
   render () {
-    const showFavorites = Config.features.favoritesEnabled && !this.props.hideFavorites
+    const showFavorites = Config.features.loginEnabled && Config.features.favoritesEnabled && !this.props.hideFavorites
     const favoritesLoading = [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.login.state) ||
       this.props.favoritesStatus === statuses.FETCHING
     const locationLoading = [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.cfFavoriteLocation.status)
