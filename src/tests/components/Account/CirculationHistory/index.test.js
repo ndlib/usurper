@@ -70,22 +70,71 @@ describe('components/Account/CirculationHistory', () => {
     beforeEach(() => {
       props = {
         loggedIn: true,
-        historicalStatus: statuses.SUCCESS,
+        saveHistoryStatus: statuses.NOT_FETCHED,
+        historicalStatus: statuses.NOT_FETCHED,
         loading: true,
         items: [],
         optedIn: false,
         getHistorical: jest.fn(),
         setCircStatus: jest.fn(),
+        getCircStatus: jest.fn(),
         updateStatus: statuses.NOT_FETCHED,
       }
       enzymeWrapper = shallow(<CirculationHistoryContainer {...props} />)
     })
 
-    it('should fetch history when not fetched', () => {
+    it('should fetch opt in status', () => {
+      expect(props.getCircStatus).toHaveBeenCalled()
+    })
+
+    it('should fetch history after opt in status loaded', () => {
+      expect(props.getHistorical).not.toHaveBeenCalled()
+
       enzymeWrapper.setProps({
-        historicalStatus: statuses.NOT_FETCHED,
+        optedIn: true,
+        saveHistoryStatus: statuses.SUCCESS,
       })
       expect(props.getHistorical).toHaveBeenCalled()
+    })
+
+    describe('when opted in', () => {
+      it('should fetch history when not already fetched', () => {
+        props = {
+          loggedIn: true,
+          saveHistoryStatus: statuses.SUCCESS,
+          historicalStatus: statuses.NOT_FETCHED,
+          loading: true,
+          items: [],
+          optedIn: true,
+          getHistorical: jest.fn(),
+          setCircStatus: jest.fn(),
+          getCircStatus: jest.fn(),
+          updateStatus: statuses.NOT_FETCHED,
+        }
+        enzymeWrapper = shallow(<CirculationHistoryContainer {...props} />)
+
+        expect(props.getHistorical).toHaveBeenCalled()
+      })
+    })
+
+    describe('when opted out', () => {
+      it('should not fetch history', () => {
+        props = {
+          loggedIn: true,
+          saveHistoryStatus: statuses.SUCCESS,
+          historicalStatus: statuses.NOT_FETCHED,
+          loading: true,
+          items: [],
+          optedIn: false,
+          getHistorical: jest.fn(),
+          setCircStatus: jest.fn(),
+          getCircStatus: jest.fn(),
+          updateStatus: statuses.NOT_FETCHED,
+        }
+        enzymeWrapper = shallow(<CirculationHistoryContainer {...props} />)
+
+        expect(props.getHistorical).not.toHaveBeenCalled()
+      })
     })
   })
 })

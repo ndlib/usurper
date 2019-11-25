@@ -19,11 +19,13 @@ export class CirculationHistoryContainer extends Component {
   }
 
   checkFullyLoaded () {
-    if (this.props.loggedIn && this.props.historicalStatus === statuses.NOT_FETCHED) {
-      this.props.getHistorical()
-    }
-    if (this.props.loggedIn && this.props.saveHistory === statuses.NOT_FETCHED) {
-      this.props.getCircStatus()
+    if (this.props.loggedIn) {
+      if (this.props.saveHistoryStatus === statuses.NOT_FETCHED) {
+        this.props.getCircStatus()
+      }
+      if (this.props.optedIn && this.props.historicalStatus === statuses.NOT_FETCHED) {
+        this.props.getHistorical()
+      }
     }
   }
 
@@ -50,15 +52,18 @@ export const mapStateToProps = (state) => {
       return item
     })
   }
+  const optedIn = settings.saveHistory.data || false
+  const loading = [statuses.NOT_FETCHED, statuses.FETCHING].includes(settings.saveHistory.state) ||
+    (optedIn && [statuses.NOT_FETCHED, statuses.FETCHING].includes(personal.historical.state))
 
   const updateStatus = settings['update'][SETTINGS_KIND.circStatus].state
   return {
     loggedIn: !!(personal.login && personal.login.token),
-    saveHistory: settings.saveHistory.state,
+    saveHistoryStatus: settings.saveHistory.state,
     historicalStatus: personal.historical.state,
-    loading: [statuses.NOT_FETCHED, statuses.FETCHING].includes(personal.historical.state),
+    loading: loading,
     items: checkedOut,
-    optedIn: String(settings.saveHistory.data) === 'true' || false,
+    optedIn: optedIn,
     updateStatus: updateStatus,
     updating: updateStatus === statuses.FETCHING,
   }
@@ -71,7 +76,7 @@ export const mapDispatchToProps = (dispatch) => {
 CirculationHistoryContainer.propTypes = {
   loggedIn: PropTypes.bool,
   historicalStatus: PropTypes.string,
-  saveHistory: PropTypes.string,
+  saveHistoryStatus: PropTypes.string,
   loading: PropTypes.bool,
   items: PropTypes.array,
   optedIn: PropTypes.bool,

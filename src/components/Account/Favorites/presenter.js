@@ -16,8 +16,8 @@ import { KIND } from 'actions/personal/favorites'
 import styles from './style.module.css'
 
 const Presenter = (props) => {
-  const dbItems = typy(props, 'dbFavorites.items').isArray ? props.dbFavorites.items : []
-  const subjectItems = typy(props, 'subjectFavorites.items').isArray ? props.subjectFavorites.items : []
+  const dbItems = typy(props, 'dbFavorites.items').safeArray
+  const subjectItems = typy(props, 'subjectFavorites.items').safeArray
   const loading = (props.favoritesStatus === statuses.NOT_FETCHED || props.favoritesStatus === statuses.FETCHING)
   const sidebar = (
     <SideNav className='side-nav-bg' offset={130}>

@@ -27,7 +27,7 @@ const ResourceList = (props) => {
             <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
             <section aria-label={config.displayName + ' item list'} id={config.displayName}>
               { props.list.map((item) => {
-                return <Resource key={item.id} item={item} listType={props.listType} />
+                return <Resource key={item.key || item.id} item={item} listType={props.listType} />
               })}
             </section>
           </React.Fragment>

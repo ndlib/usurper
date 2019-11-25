@@ -1,5 +1,4 @@
 import Config from 'shared/Configuration'
-// import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
 
 export const RECEIVE_SETTINGS = 'RECEIVE_SETTINGS'
@@ -54,7 +53,7 @@ export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestUpdateSettings(KIND.circStatus))
-    const url = Config.userPrefsAPI + 'simpleSetting/saveHistory'
+    const url = Config.userPrefsAPI + 'circOptIn'
     return fetch(url, {
       method: 'post',
       headers: {
