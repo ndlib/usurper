@@ -1,4 +1,5 @@
 import Config from 'shared/Configuration'
+import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
 
 export const RECEIVE_SETTINGS = 'RECEIVE_SETTINGS'
@@ -61,11 +62,11 @@ export const setCircStatus = (enabled) => {
       },
       body: enabled,
     })
-      .then(response => {
-        if (response.ok) {
-          dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
-          dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
-        }
+      .then(response => enabled ? response.json() : {})
+      .then(json => {
+        dispatch(states.receivePersonal('historical', statuses.SUCCESS, json))
+        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
+        dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
       })
       .catch((e) => {
         console.error(e)
