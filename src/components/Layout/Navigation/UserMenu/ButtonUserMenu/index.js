@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { matchPath } from 'react-router'
 import Link from 'components/Interactive/Link'
-import LogoutLink from '../LogoutLink'
 
 const ButtonUserMenu = (props) => {
   return (
@@ -20,7 +19,6 @@ const ButtonUserMenu = (props) => {
           </Link>
         )
       })}
-      <LogoutLink className='button tab margin-right-15' />
     </nav>
   )
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import DropdownUserMenu from 'components/Layout/Navigation/UserMenu/DropdownUserMenu'
-import LogoutLink from 'components/Layout/Navigation/UserMenu/LogoutLink'
 import Link from 'components/Interactive/Link'
 
 let enzymeWrapper
@@ -43,10 +42,6 @@ describe('components/Layout/Navigation/DropdownUserMenu', () => {
       props.links.forEach((link) => {
         expect(enzymeWrapper.containsMatchingElement(<Link to={link.route}>{link.key}</Link>)).toBe(true)
       })
-    })
-
-    it('should render a LogoutLink', () => {
-      expect(enzymeWrapper.find(LogoutLink).exists()).toBe(true)
     })
   })
 

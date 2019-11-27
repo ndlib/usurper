@@ -7,6 +7,7 @@ import MobileMenu from './MobileMenu'
 import Link from 'components/Interactive/Link'
 import { USER_MENU, MOBILE_MENU } from 'actions/menu'
 import Config from 'shared/Configuration'
+import { initLogin } from 'actions/personal/token'
 
 const myAccountButton = (props) => {
   if (Config.features.loginEnabled) {
@@ -28,7 +29,12 @@ const myAccountButton = (props) => {
     } else {
       return (
         <li className='menu-link user right'>
-          <a href={props.loginUrl} className='m'>Login</a>
+          <button
+            onClick={() => initLogin()}
+          >Log In</button>
+          {
+          // <a href={props.loginUrl} className='m'>Login</a>
+          }
           <Route component={UserMenu} />
         </li>
       )
@@ -76,7 +82,6 @@ const Navigation = (props) => {
           <MobileMenu
             open={props.menus.menuId === MOBILE_MENU}
             loggedIn={props.loggedIn}
-            loginUrl={props.loginUrl}
             visible={windowWidth <= mobileWidth}
             onClick={props.handleMobileClick}
             onKeyDown={props.handleMobileMenuKeyDown}
@@ -111,7 +116,6 @@ myAccountButton.propTypes = {
   loggedIn: PropTypes.bool,
   handleUserClick: PropTypes.func,
   handleUserKeyDown: PropTypes.func,
-  loginUrl: PropTypes.string,
 }
 
 Navigation.propTypes = {
@@ -122,7 +126,6 @@ Navigation.propTypes = {
   handleMobileMenuKeyDown: PropTypes.func.isRequired,
   handleMobileClick: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool,
-  loginUrl: PropTypes.string,
   isDrawerOpen: PropTypes.bool.isRequired,
 }
 export default Navigation

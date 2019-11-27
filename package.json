@@ -9,6 +9,7 @@
     "**/**/braces": "^2.3.1"
   },
   "dependencies": {
+    "@okta/okta-auth-js": "^2.9.0",
     "@sentry/browser": "^5.6.2",
     "@svgr/webpack": "^4.2.0",
     "hoist-non-react-statics": "^3.3.0",

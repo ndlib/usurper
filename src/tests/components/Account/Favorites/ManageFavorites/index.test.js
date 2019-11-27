@@ -48,9 +48,9 @@ describe('components/Account/Favorites/ManageFavorites', () => {
     const props = {
       kind: KIND.databases,
       items: [
-        { title: 'last item', order: 3 },
-        { title: 'first item', order: 1 },
-        { title: 'middle item', order: 2 },
+        { title: 'last item', order: 3, id: '1' },
+        { title: 'first item', order: 1, id: '2' },
+        { title: 'middle item', order: 2, id: '3' },
       ],
     }
     enzymeWrapper = setup(state, props)

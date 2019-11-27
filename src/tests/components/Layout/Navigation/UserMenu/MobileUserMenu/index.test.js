@@ -2,7 +2,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import MobileUserMenu from 'components/Layout/Navigation/UserMenu/MobileUserMenu'
-import LogoutLink from 'components/Layout/Navigation/UserMenu/LogoutLink'
 import Link from 'components/Interactive/Link'
 
 let enzymeWrapper
@@ -43,7 +42,4 @@ describe('components/Layout/Navigation/MobileUserMenu', () => {
     })
   })
 
-  it('should render a LogoutLink', () => {
-    expect(enzymeWrapper.find(LogoutLink).exists()).toBe(true)
-  })
 })

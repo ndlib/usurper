@@ -43,6 +43,10 @@ export const handleResources = (service, type, library = '') => {
 }
 
 const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, library = null) => {
+  // console.log(service)
+  // console.log(type)
+  // console.log(token)
+  // console.log(stateKey)
   let path = (service === 'userPrefs') ? `${userPrefsUrl}/${type}` : `${resourcesUrl}/${service}/${type}`
   if (library) {
     path += `?library=${library}`

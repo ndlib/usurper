@@ -2,17 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import { initLogin } from 'actions/personal/token'
 
 import bookmark from 'static/images/bookmark.svg'
 import bookmarkAdd from 'static/images/bookmark-plus.svg'
 import Link from 'components/Interactive/Link'
-import Config from 'shared/Configuration'
 import Wizard from '../Wizard'
 import { clearUpdateFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
 import { setHideHomeFavorites } from 'actions/personal/settings'
 import { HIDE_HOME_FAVORITES, cookieOptions } from 'constants/cookies'
 
-const loginPath = Config.viceroyAPI + '/login'
 const favoritesPath = '/favorites'
 
 export class NoFavoritesContainer extends Component {
@@ -39,7 +38,7 @@ export class NoFavoritesContainer extends Component {
 
   openWizard () {
     if (!this.props.isLoggedIn) {
-      window.location.assign(loginPath)
+      initLogin()
       return
     }
 

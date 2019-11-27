@@ -24,6 +24,8 @@ const genConfig = () => {
       eventsFilteringEnabled: parameters.eventsFilteringEnabled || false,
       loginEnabled: parameters.loginEnabled || false,
     },
+    oktaUrl: parameters.oktaUrl || 'https://okta.nd.edu/',
+    oktaClientId: parameters.oktaClientId || 'OKTA_CLIENT_ID_DEFAULT',
   }
 
   const config = {
@@ -49,6 +51,8 @@ const genConfig = () => {
       eventsFilteringEnabled: process.env.ENABLE_EVENTS_FILTERING ? process.env.ENABLE_EVENTS_FILTERING : defaultConfig.features.eventsFilteringEnabled,
       loginEnabled: process.env.ENABLE_LOGIN ? process.env.ENABLE_LOGIN : defaultConfig.features.loginEnabled,
     },
+    oktaUrl: process.env.OKTA_URL ? process.env.OKTA_URL : defaultConfig.oktaUrl,
+    oktaClientId: process.env.OKTA_CLIENT_ID ? process.env.OKTA_CLIENT_ID : defaultConfig.oktaClientId,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }

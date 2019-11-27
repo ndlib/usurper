@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'components/Interactive/Link'
-import LogoutLink from '../LogoutLink'
 
 const MobileUserMenu = (props) => {
   return (
@@ -15,7 +14,6 @@ const MobileUserMenu = (props) => {
             </li>
           )
         })}
-        <li><LogoutLink /></li>
       </ul>
     </li>
   )

@@ -32,6 +32,8 @@ const psList = [
   'subjectFilteringEnabled',
   'eventsFilteringEnabled',
   'loginEnabled',
+  'oktaUrl',
+  'oktaClientId',
 ]
 
 let handler = async () => {

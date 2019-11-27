@@ -1,12 +1,7 @@
+import OktaAuth from '@okta/okta-auth-js'
 import Config from 'shared/Configuration'
 import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
-import fetch from 'isomorphic-fetch'
-
-// ------------------------------------
-// Constants
-// ------------------------------------
-const loginUrl = Config.viceroyAPI + '/token'
 
 const handleToken = (dispatch, data) => {
   if (data.redirect) {
@@ -17,35 +12,59 @@ const handleToken = (dispatch, data) => {
         { redirectUrl: data.redirect }
       )
     )
-  } else if (data.jwt) {
+  } else if (data.idToken) {
     dispatch(
       states.receivePersonal(
         'login',
         statuses.SUCCESS,
-        { token: data.jwt, redirectUrl: null }
+        { token: data.idToken, redirectUrl: null }
       )
     )
   }
 }
 
 const getToken = () => {
+  const authClient = new OktaAuth({
+    url: Config.oktaUrl,
+    clientId: Config.oktaClientId,
+    redirectUri: `${window.location.origin}/`,
+  })
   return dispatch => {
     dispatch(states.requestPersonal('login', statuses.FETCHING))
-
-    return fetch(loginUrl, {
-      credentials: 'include',
-    }).then(response => {
-      if (response.status >= 200 && response.status < 400) {
-        return response.json()
-      } else {
-        throw new Error(response.statusText)
-      }
-    })
-      .then(json => handleToken(dispatch, json))
-      .catch(e => {
-        dispatch(states.receivePersonal('login', statuses.ERROR, e.message))
-      })
+    try {
+      authClient.tokenManager.get('idToken')
+        .then(idToken => {
+          if (idToken) {
+            handleToken(dispatch, idToken)
+            // If ID Token isn't found, try to parse it from the current URL
+          } else if (window.location.hash) {
+            authClient.token.parseFromUrl()
+              .then(idToken => {
+              // Store parsed token in Token Manager
+                authClient.tokenManager.add('idToken', idToken)
+                handleToken(dispatch, idToken)
+              })
+          }
+        })
+    } catch {
+      console.error('Could not access tokenManager.')
+    }
   }
 }
 
 export default getToken
+
+export const initLogin = () => {
+  const authClient = new OktaAuth({
+    url: Config.oktaUrl,
+    clientId: Config.oktaClientId,
+    redirectUri: `${window.location.origin}/`,
+  })
+  authClient.token.getWithRedirect({
+    responseType: 'id_token',
+    scopes: [
+      'openid',
+      // 'netid',
+    ],
+  })
+}

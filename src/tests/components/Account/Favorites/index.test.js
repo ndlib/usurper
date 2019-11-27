@@ -114,7 +114,7 @@ describe('components/Account/Favorites/index.js', () => {
     })
   })
 
-  describe('when not logged in', () => {
+  describe.skip('when not logged in', () => {
     beforeEach(() => {
       const state = {
         ...baseState,

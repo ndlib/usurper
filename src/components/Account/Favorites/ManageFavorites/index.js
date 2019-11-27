@@ -16,7 +16,7 @@ export class ManageFavoritesContainer extends Component {
     this.state = {
       modified: false,
       saved: false,
-      listItems: props.items.sort((a, b) => a.order - b.order),
+      listItems: props.items.filter(o => o.id).sort((a, b) => a.order - b.order),
       wizardOpen: false,
     }
     this.onAddFavorite = this.onAddFavorite.bind(this)
