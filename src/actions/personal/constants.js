@@ -27,7 +27,6 @@ export const requestPersonal = (requestType = '') => {
 }
 
 export const startRequest = (url, method, dispatch, success, token, err) => {
-  console.log(url, token)
   return fetch(url, {
     method: method,
     headers: {
