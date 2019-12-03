@@ -32,9 +32,6 @@ const myAccountButton = (props) => {
           <button
             onClick={() => initLogin()}
           >Log In</button>
-          {
-          // <a href={props.loginUrl} className='m'>Login</a>
-          }
           <Route component={UserMenu} />
         </li>
       )
