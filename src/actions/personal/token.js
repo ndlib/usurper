@@ -53,7 +53,7 @@ const getToken = () => {
 }
 
 export default getToken
-
+// TODO fix scopes
 export const initLogin = () => {
   const authClient = new OktaAuth({
     url: Config.oktaUrl,
@@ -64,9 +64,7 @@ export const initLogin = () => {
     responseType: 'id_token',
     scopes: [
       'openid',
-      'profile',
-      'email',
-      // 'netid',
+      'netid',
     ],
   })
 }
