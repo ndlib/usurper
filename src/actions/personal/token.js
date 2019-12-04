@@ -64,7 +64,9 @@ export const initLogin = () => {
     responseType: 'id_token',
     scopes: [
       'openid',
-      'netid',
+      'profile',
+      'email',
+      // 'netid',
     ],
   })
 }
