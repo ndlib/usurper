@@ -35,12 +35,16 @@ const getToken = () => {
       authClient.tokenManager.get('idToken')
         .then(idToken => {
           if (idToken) {
+            console.log('got idToken')
+            console.log(idToken)
             handleToken(dispatch, idToken)
             // If ID Token isn't found, try to parse it from the current URL
           } else if (window.location.hash) {
             authClient.token.parseFromUrl()
               .then(idToken => {
-              // Store parsed token in Token Manager
+                console.log('try parseFromUrl')
+                console.log(idToken)
+                // Store parsed token in Token Manager
                 authClient.tokenManager.add('idToken', idToken)
                 handleToken(dispatch, idToken)
               })
@@ -55,6 +59,7 @@ const getToken = () => {
 export default getToken
 // TODO fix scopes
 export const initLogin = () => {
+  console.log('initLogin')
   const authClient = new OktaAuth({
     url: Config.oktaUrl,
     clientId: Config.oktaClientId,
