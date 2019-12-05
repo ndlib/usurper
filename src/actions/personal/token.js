@@ -46,6 +46,8 @@ const getToken = () => {
             handleToken(dispatch, idToken)
             // If ID Token isn't found, try to parse it from the current URL
           } else if (window.location.hash) {
+            console.log('got hash')
+            console.log('hash', window.location.hash)
             authClient.token.parseFromUrl()
               .then(idToken => {
                 console.log('try parseFromUrl')
