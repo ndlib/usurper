@@ -32,6 +32,7 @@ const getToken = () => {
     clientId: Config.oktaClientId,
     redirectUri: `${window.location.origin}/`,
     issuer: 'https://okta.nd.edu/oauth2/ausxosq06SDdaFNMB356',
+    ignoreSignature: true,
   })
   return dispatch => {
     console.log('dispatch')
@@ -79,6 +80,7 @@ export const initLogin = () => {
     clientId: Config.oktaClientId,
     redirectUri: `${window.location.origin}/`,
     issuer: 'https://okta.nd.edu/oauth2/ausxosq06SDdaFNMB356',
+    ignoreSignature: true,
   })
   authClient.token.getWithRedirect({
     responseType: 'id_token',
@@ -88,6 +90,5 @@ export const initLogin = () => {
       'email',
       'netid',
     ],
-    ignoreSignature: true,
   })
 }
