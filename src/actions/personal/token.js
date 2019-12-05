@@ -4,6 +4,8 @@ import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
 
 const handleToken = (dispatch, data) => {
+  console.log('handleToken')
+  console.log(data)
   if (data.redirect) {
     dispatch(
       states.receivePersonal(
