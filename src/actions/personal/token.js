@@ -32,6 +32,8 @@ const getToken = () => {
   })
   return dispatch => {
     console.log('dispatch')
+    console.log('origin', window.location.origin)
+    console.log('hash', window.location.hash)
     dispatch(states.requestPersonal('login', statuses.FETCHING))
     try {
       console.log('trying client')
@@ -74,7 +76,7 @@ export const initLogin = () => {
     responseType: 'id_token',
     scopes: [
       'openid',
-      'profile',
+      // 'profile',
       // 'email',
       // 'netid',
     ],
