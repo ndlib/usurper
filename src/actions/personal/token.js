@@ -34,8 +34,10 @@ const getToken = () => {
     console.log('dispatch')
     dispatch(states.requestPersonal('login', statuses.FETCHING))
     try {
+      console.log('trying client')
       authClient.tokenManager.get('idToken')
         .then(idToken => {
+          console.log('tried to get token')
           if (idToken) {
             console.log('got idToken')
             console.log(idToken)
@@ -50,6 +52,8 @@ const getToken = () => {
                 authClient.tokenManager.add('idToken', idToken)
                 handleToken(dispatch, idToken)
               })
+          } else {
+            console.error('Could not get token from hash or storage')
           }
         })
     } catch {
@@ -71,7 +75,7 @@ export const initLogin = () => {
     scopes: [
       'openid',
       'profile',
-      'email',
+      // 'email',
       // 'netid',
     ],
   })

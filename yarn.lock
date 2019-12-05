@@ -1160,10 +1160,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@okta/okta-auth-js@^2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.9.0.tgz#668cf95003cd2196871b98e13317d8f35f459108"
-  integrity sha512-GO0u1vRmMybPPINWyEZ68muBIt+gPOxaEOfgB22uRLBbsStgr2mnLFFmVpc9gNOpcEDgKI49px9pUrHda3Dqhg==
+"@okta/okta-auth-js@^2.10.1":
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/@okta/okta-auth-js/-/okta-auth-js-2.10.1.tgz#9a33015dbe0c22de237e9ca7f04e2174888dfe51"
+  integrity sha512-cQQ0uK47TngbrsCLe8cMZQ+bq3HwEHTj8OMSxYa+ZbNLGow0BQUqYcf4KBAMEnnhU+TbFw/FXsKULGL99R0eWw==
   dependencies:
     Base64 "0.3.0"
     cross-fetch "^3.0.0"
