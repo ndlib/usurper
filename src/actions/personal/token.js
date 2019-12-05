@@ -31,7 +31,7 @@ const getToken = () => {
     url: Config.oktaUrl,
     clientId: Config.oktaClientId,
     redirectUri: `${window.location.origin}/`,
-    issuer: ' https://nd.okta.com/oauth2/ausxosq06SDdaFNMB356',
+    issuer: 'https://okta.nd.edu/oauth2/ausxosq06SDdaFNMB356',
   })
   return dispatch => {
     console.log('dispatch')
@@ -78,7 +78,7 @@ export const initLogin = () => {
     url: Config.oktaUrl,
     clientId: Config.oktaClientId,
     redirectUri: `${window.location.origin}/`,
-    issuer: ' https://nd.okta.com/oauth2/ausxosq06SDdaFNMB356',
+    issuer: 'https://okta.nd.edu/oauth2/ausxosq06SDdaFNMB356',
   })
   authClient.token.getWithRedirect({
     responseType: 'id_token',
