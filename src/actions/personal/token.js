@@ -86,7 +86,7 @@ export const initLogin = () => {
       'openid',
       'profile',
       'email',
-      // 'netid',
+      'netid',
     ],
   })
 }
