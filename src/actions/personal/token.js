@@ -24,12 +24,14 @@ const handleToken = (dispatch, data) => {
 }
 
 const getToken = () => {
+  console.log('getToken')
   const authClient = new OktaAuth({
     url: Config.oktaUrl,
     clientId: Config.oktaClientId,
     redirectUri: `${window.location.origin}/`,
   })
   return dispatch => {
+    console.log('dispatch')
     dispatch(states.requestPersonal('login', statuses.FETCHING))
     try {
       authClient.tokenManager.get('idToken')
@@ -57,7 +59,6 @@ const getToken = () => {
 }
 
 export default getToken
-// TODO fix scopes
 export const initLogin = () => {
   console.log('initLogin')
   const authClient = new OktaAuth({
