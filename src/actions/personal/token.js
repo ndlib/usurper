@@ -9,7 +9,10 @@ const oktaConfig = {
   redirectUri: `${window.location.origin}/`,
   issuer: Config.oktaIssuer,
   ignoreSignature: true,
-  storage: 'sessionStorage',
+  tokenManager: {
+    storage: 'sessionStorage',
+    storageKey: 'libraryWebsite',
+  },
 }
 
 export const initLogin = () => {
