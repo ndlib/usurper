@@ -69,6 +69,7 @@ const getToken = () => {
 }
 
 export default getToken
+
 export const initLogin = () => {
   console.log('initLogin')
   const authClient = new OktaAuth({
@@ -80,8 +81,8 @@ export const initLogin = () => {
     responseType: 'id_token',
     scopes: [
       'openid',
-      // 'profile',
-      // 'email',
+      'profile',
+      'email',
       // 'netid',
     ],
   })
