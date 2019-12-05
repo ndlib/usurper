@@ -69,12 +69,16 @@ const psList = [
     name: 'loginEnabled',
   },
   {
-    path: 'oktaUrl',
+    path: 'secrets/okta/url',
     name: 'oktaUrl',
   },
   {
     path: 'secrets/okta/client_id',
     name: 'oktaClientId',
+  },
+  {
+    path: 'secrets/okta/issuer',
+    name: 'oktaIssuer',
   },
 ]
 

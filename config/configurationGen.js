@@ -25,6 +25,7 @@ const genConfig = () => {
     },
     oktaUrl: parameters.oktaUrl || 'https://okta.nd.edu/',
     oktaClientId: parameters.oktaClientId || 'OKTA_CLIENT_ID_DEFAULT',
+    oktaIssuer: parameters.oktaIssuer || 'http://okta.nd.edu/',
   }
 
   const config = {
@@ -51,6 +52,7 @@ const genConfig = () => {
     },
     oktaUrl: process.env.OKTA_URL ? process.env.OKTA_URL : defaultConfig.oktaUrl,
     oktaClientId: process.env.OKTA_CLIENT_ID ? process.env.OKTA_CLIENT_ID : defaultConfig.oktaClientId,
+    oktaIssuer: process.env.OKTA_ISSUER ? process.env.OKTA_ISSUER : defaultConfig.oktaIssuer,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }
