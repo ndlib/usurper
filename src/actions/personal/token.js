@@ -88,5 +88,6 @@ export const initLogin = () => {
       'email',
       'netid',
     ],
+    ignoreSignature: true,
   })
 }
