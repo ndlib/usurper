@@ -1,0 +1,7 @@
+[defaults]
+url = https://sentry.io/
+org = university-of-notre-dame-ts
+project = usurper
+
+[auth]
+token = <%= ENV["SENTRY_AUTH_TOKEN"] %>
