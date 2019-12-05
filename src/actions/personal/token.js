@@ -7,8 +7,9 @@ const oktaConfig = {
   url: Config.oktaUrl,
   clientId: Config.oktaClientId,
   redirectUri: `${window.location.origin}/`,
-  issuer: 'https://okta.nd.edu/oauth2/ausxosq06SDdaFNMB356', // Config.oktaIssuer
+  issuer: Config.oktaIssuer,
   ignoreSignature: true,
+  storage: 'sessionStorage',
 }
 
 export const initLogin = () => {
