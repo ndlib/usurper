@@ -58,6 +58,7 @@ const getToken = () => {
                 authClient.tokenManager.add('idToken', idToken)
                 handleToken(dispatch, idToken)
               })
+              .catch(error => console.error(error))
           } else {
             console.error('Could not get token from hash or storage')
           }
