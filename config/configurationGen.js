@@ -25,7 +25,7 @@ const genConfig = () => {
     },
     oktaUrl: parameters.oktaUrl || 'https://okta.nd.edu/',
     oktaClientId: parameters.oktaClientId || 'OKTA_CLIENT_ID_DEFAULT',
-    oktaIssuer: parameters.oktaIssuer || 'http://okta.nd.edu/',
+    oktaIssuer: parameters.oktaIssuer || 'https://okta.nd.edu/oauth2/default,
   }
 
   const config = {

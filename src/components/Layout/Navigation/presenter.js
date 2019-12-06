@@ -29,9 +29,11 @@ const myAccountButton = (props) => {
     } else {
       return (
         <li className='menu-link user right'>
-          <button
+          <Link
+            to='#'
             onClick={() => initLogin()}
-          >Log In</button>
+            className='m'
+          >Log In</Link>
           <Route component={UserMenu} />
         </li>
       )
