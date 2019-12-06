@@ -98,9 +98,10 @@ export const mapStateToProps = (state, ownProps) => {
   const loggedIn = !!(personal.login && personal.login.token)
   const hlStatus = settings[SETTING_KIND.homeLibrary].state
   const locationSlug = (() => {
+    console.log(settings)
     if (hlStatus === statuses.SUCCESS) {
       return settings[SETTING_KIND.homeLibrary].data
-    } else if (hlStatus === statuses.ERROR || ([statuses.ERROR, statuses.SUCCESS].includes(personal.login.state) && !personal.login.token)) {
+    } else if (hlStatus === statuses.ERROR || ([statuses.ERROR, statuses.SUCCESS, statuses.UNAUTHORIZED].includes(personal.login.state) && !personal.login.token)) {
       return DEFAULT_LIBRARY
     }
     return null

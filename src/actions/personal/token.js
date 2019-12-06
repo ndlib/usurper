@@ -68,6 +68,12 @@ const getToken = () => {
               .catch(error => console.error(error))
           } else {
             console.log('Could not get token from hash or storage')
+            dispatch(
+              states.receivePersonal(
+                'login',
+                statuses.UNAUTHORIZED,
+              )
+            )
           }
         })
     } catch {
