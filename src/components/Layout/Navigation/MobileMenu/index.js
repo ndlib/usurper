@@ -69,6 +69,5 @@ MobileMenu.propTypes = {
   open: PropTypes.bool,
   loggedIn: PropTypes.bool,
   visible: PropTypes.bool,
-  loginUrl: PropTypes.string,
 }
 export default MobileMenu
