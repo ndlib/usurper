@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'components/Interactive/Link'
 import UserMenu from '../UserMenu'
+import { initLogin } from 'actions/personal/token'
 
 const MobileMenu = (props) => {
   const tabIndex = props.open ? '0' : '-1'
@@ -51,9 +52,9 @@ const MobileMenu = (props) => {
         ) : (
           <li>
             <Link
-              to={props.loginUrl}
+              to='#'
+              onClick={() => initLogin()}
               tabIndex={tabIndex}
-              noTarget
             >Login</Link>
           </li>
         )}
