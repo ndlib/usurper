@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2019.21](https://github.com/ndlib/usurper/tree/v2019.21) "Christmas Flamingo"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.20...v2019.21)
+
+### Bug Fixes
+- Fixed a bug with Checkout History not working correctly for some people. [#742](https://github.com/ndlib/usurper/pull/742)
+
 ## [v2019.20](https://github.com/ndlib/usurper/tree/v2019.20) "First Flurry"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.19...v2019.20)
 
