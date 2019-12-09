@@ -31,6 +31,7 @@ const psList = [
   'favoritesEnabled',
   'subjectFilteringEnabled',
   'eventsFilteringEnabled',
+  'loginEnabled',
 ]
 
 let handler = async () => {

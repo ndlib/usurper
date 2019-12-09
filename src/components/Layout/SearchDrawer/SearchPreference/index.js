@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch, state) => {
       if ((e.type === 'keydown' && e.keyCode === 13) || e.type === 'click') {
         dispatch(clearSearchPreference())
         if (loggedIn) {
-          dispatch(setDefaultSearch(null))
+          dispatch(setDefaultSearch(''))
         }
       }
     },

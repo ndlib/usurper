@@ -27,7 +27,7 @@ const FavoriteItem = (props) => {
               <FavoriteIcon
                 kind={props.kind}
                 isFavorited
-                data={[ { key: props.id } ]}
+                data={[ { itemKey: props.id } ]}
                 removeFavorite={props.onRemoveFavorite}
                 disabled={!provided.dragHandleProps}
               />

@@ -29,7 +29,7 @@ const props = {
   placeholder: 'Placeholder text in searchbox',
   buttonText: 'SEARCH ME PLZ!!!',
   existingFavorites: [
-    { key: '1234', title: 'nothing', url: 'nowhere' },
+    { itemKey: '1234', title: 'nothing', url: 'nowhere' },
   ],
   searchFavorites: jest.fn(),
   searchState: statuses.NOT_FETCHED,
@@ -163,18 +163,18 @@ describe('components/Account/Favorites/Search', () => {
             [props.kind]: {
               state: statuses.SUCCESS,
               results: [
-                { key: '1', title: 'order me', url: 'meaningless' },
-                { key: '2', title: 'a', url: 'www.fake.url' },
-                { key: '3', title: 'b', url: 'www.fake.url' },
-                { key: '4', title: 'c', url: 'www.fake.url' },
-                { key: '1234', title: 'nothing', url: 'nowhere' },
-                { key: '5', title: 'd', url: 'www.fake.url' },
-                { key: '6', title: 'e', url: 'www.fake.url' },
-                { key: '7', title: 'x', url: 'www.fake.url' },
-                { key: '8', title: 'y', url: 'www.fake.url' },
-                { key: '9', title: 'z', url: 'www.fake.url' },
-                { key: '10', title: '1', url: 'www.fake.url' },
-                { key: '11', title: '2', url: 'www.fake.url' },
+                { itemKey: '1', title: 'order me', url: 'meaningless' },
+                { itemKey: '2', title: 'a', url: 'www.fake.url' },
+                { itemKey: '3', title: 'b', url: 'www.fake.url' },
+                { itemKey: '4', title: 'c', url: 'www.fake.url' },
+                { itemKey: '1234', title: 'nothing', url: 'nowhere' },
+                { itemKey: '5', title: 'd', url: 'www.fake.url' },
+                { itemKey: '6', title: 'e', url: 'www.fake.url' },
+                { itemKey: '7', title: 'x', url: 'www.fake.url' },
+                { itemKey: '8', title: 'y', url: 'www.fake.url' },
+                { itemKey: '9', title: 'z', url: 'www.fake.url' },
+                { itemKey: '10', title: '1', url: 'www.fake.url' },
+                { itemKey: '11', title: '2', url: 'www.fake.url' },
               ],
             },
           },
@@ -187,7 +187,7 @@ describe('components/Account/Favorites/Search', () => {
 
       it('should not get results for favorites already added (existingFavorites)', () => {
         props.existingFavorites.forEach((favorite) => {
-          expect(enzymeWrapper.dive().props().searchResults.filter(r => r.key == favorite.key)).toHaveLength(0)
+          expect(enzymeWrapper.dive().props().searchResults.filter(r => r.itemKey == favorite.itemKey)).toHaveLength(0)
         })
 
         // Ensure that at least one of the items in the state was filtered out
@@ -228,7 +228,7 @@ describe('components/Account/Favorites/Search', () => {
           expect(results.at(i).matchesElement(
             <SearchResult
               kind={enzymeWrapper.dive().props().kind}
-              id={expectedData[i].key}
+              id={expectedData[i].itemKey}
               title={expectedData[i].title}
               url={expectedData[i].url}
             />

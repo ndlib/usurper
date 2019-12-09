@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 import AccountPageWrapper from '../AccountPageWrapper'
 import NoFavorites from './NoFavorites'
 import ManageFavorites from './ManageFavorites'
@@ -15,8 +16,8 @@ import { KIND } from 'actions/personal/favorites'
 import styles from './style.module.css'
 
 const Presenter = (props) => {
-  const dbItems = (props.dbFavorites && props.dbFavorites.items) ? props.dbFavorites.items : []
-  const subjectItems = (props.subjectFavorites && props.subjectFavorites.items) ? props.subjectFavorites.items : []
+  const dbItems = typy(props, 'dbFavorites.items').safeArray
+  const subjectItems = typy(props, 'subjectFavorites.items').safeArray
   const loading = (props.favoritesStatus === statuses.NOT_FETCHED || props.favoritesStatus === statuses.FETCHING)
   const sidebar = (
     <SideNav className='side-nav-bg' offset={130}>

@@ -19,8 +19,7 @@ export const handleResources = (service, type, library = '') => {
   return (dispatch, data) => {
     if (type === 'circHistory') {
       dispatch(states.receivePersonal('historical', statuses.SUCCESS, {
-        history: data.history,
-        saveHistory: data.saveHistory,
+        history: data,
       }))
     } else {
       const libraryProper = library ? (library.charAt(0).toUpperCase() + library.slice(1).toLowerCase()) : ''
@@ -125,7 +124,7 @@ export const deleteHistorical = (recordKey = null, successCallback = null, error
   return (dispatch, getState) => {
     const state = getState().personal
     const token = state.login.token
-    let path = userPrefsUrl + '/circHistory'
+    let path = userPrefsUrl + 'circHistory'
     if (recordKey) {
       path += '/' + recordKey
     }

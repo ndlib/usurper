@@ -9,7 +9,7 @@ export const REQUEST_UPDATE_SETTINGS = 'REQUEST_UPDATE_SETTINGS'
 
 export const KIND = {
   homeLibrary: 'homeLibrary',
-  circStatus: 'circStatus',
+  circStatus: 'saveHistory',
   hideHomeFavorites: 'hideHomeFavorites',
   defaultSearch: 'defaultSearch',
   hiddenAlerts: 'hiddenAlerts',
@@ -50,50 +50,22 @@ const receiveUpdateSettings = (kind, state, error) => {
   }
 }
 
-export const getCircStatus = () => {
-  return (dispatch, getState) => {
-    const state = getState().personal
-    dispatch(requestSettings(KIND.circStatus, null))
-    const url = Config.userPrefsAPI + 'circHistory'
-    return fetch(url, {
-      method: 'get',
-      headers: {
-        'Authorization': state.login.token,
-      },
-    })
-      .then(response => {
-        const jsonResponse = response.json()
-        return jsonResponse
-      })
-      .then(json => dispatch(
-        receiveSettings(KIND.circStatus, json.saveHistory, statuses.SUCCESS)
-      ))
-      .catch((e) => {
-        console.error(e)
-        dispatch(receiveSettings(KIND.circStatus, false, statuses.ERROR, e))
-      })
-  }
-}
-
 export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestUpdateSettings(KIND.circStatus))
-    const url = Config.userPrefsAPI + 'circHistory'
+    const url = Config.userPrefsAPI + 'circOptIn'
     return fetch(url, {
       method: 'post',
       headers: {
         'Authorization': state.login.token,
       },
-      body: JSON.stringify({ 'saveHistory': enabled }),
+      body: enabled,
     })
-      .then(response => {
-        const jsonResponse = response.json()
-        return jsonResponse
-      })
+      .then(response => enabled ? response.json() : {})
       .then(json => {
-        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
         dispatch(states.receivePersonal('historical', statuses.SUCCESS, json))
+        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
         dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
       })
       .catch((e) => {
@@ -122,7 +94,11 @@ const getSimpleSetting = (kind, defaultValue) => {
         const receivedValue = Array.isArray(json)
           ? json
           : (typeof json !== 'object' && json.toString()) ? json.toString() : defaultValue
-        dispatch(receiveSettings(kind, receivedValue, statuses.SUCCESS))
+        // If value is a string that looks like a boolean, convert it to an actual boolean
+        const setValue = (receivedValue === 'false' || receivedValue === 'true')
+          ? (receivedValue === 'true')
+          : receivedValue
+        dispatch(receiveSettings(kind, setValue, statuses.SUCCESS))
       })
       .catch((e) => {
         console.error(e)
@@ -163,6 +139,10 @@ export const clearUpdateSettings = (kind) => {
   return (dispatch) => {
     dispatch(receiveUpdateSettings(kind, statuses.NOT_FETCHED))
   }
+}
+
+export const getCircStatus = () => {
+  return getSimpleSetting(KIND.circStatus, false)
 }
 
 export const getHomeLibrary = () => {

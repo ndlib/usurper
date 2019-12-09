@@ -28,10 +28,10 @@ class TopFavorites extends Component {
         <span className='subsection-title'>{title}</span>
         <div className='linksgroup'>
           { items.map((obj) => (
-            <React.Fragment key={obj.key}>
+            <React.Fragment key={obj.itemKey}>
               <span className='link-arrow' />
               <p>
-                <Link to={obj.url ? obj.url : `/${obj.key}`} noTarget={!obj.url} aria-label={obj.title} className='favorite-link'>
+                <Link to={obj.url ? obj.url : `/${obj.itemKey}`} noTarget={!obj.url} aria-label={obj.title} className='favorite-link'>
                   {obj.title}
                 </Link>
               </p>

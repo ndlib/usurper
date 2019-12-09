@@ -123,7 +123,7 @@ export const mapStateToProps = (state, ownProps) => {
     homePageDisplayLoading: loadingHomePageDisplay,
     defaultSearch: settings[SETTINGS_KIND.defaultSearch].data || DEFAULT_DEFAULT_SEARCH,
     defaultSearchState: settings[SETTINGS_KIND.defaultSearch].state,
-    circStatus: settings[SETTINGS_KIND.circStatus].state,
+    saveHistory: settings[SETTINGS_KIND.circStatus].state,
   }
 }
 
@@ -166,7 +166,8 @@ FavoritesContainer.propTypes = {
   homePageDisplayLoading: PropTypes.bool.isRequired,
   defaultSearch: PropTypes.string.isRequired,
   defaultSearchState: PropTypes.string.isRequired,
-  circStatus: PropTypes.string.isRequired,
+  saveHistory: PropTypes.string.isRequired,
+  circStatus: PropTypes.string,
   // action creators
   getToken: PropTypes.func.isRequired,
   getAllFavorites: PropTypes.func.isRequired,

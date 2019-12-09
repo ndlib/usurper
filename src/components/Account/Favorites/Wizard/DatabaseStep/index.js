@@ -27,7 +27,7 @@ class DatabaseStep extends Component {
   onAddFavorite = (kind, key, title, url) => {
     const newList = JSON.parse(JSON.stringify(this.state.listItems))
     newList.push({
-      key: key,
+      itemKey: key,
       title: title,
       url: url,
     })
@@ -50,7 +50,7 @@ class DatabaseStep extends Component {
       for (let i = 0; i < newList.length; i++) {
         newList[i].order = i
         // If this was one of the suggested favorites based on selected subject(s), mark it as such
-        if (this.props.data.find((x) => x.key === newList[i].key)) {
+        if (this.props.data.find((x) => x.itemKey === newList[i].itemKey)) {
           newList[i].suggested = true
         }
       }

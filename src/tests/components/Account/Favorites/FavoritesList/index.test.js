@@ -30,8 +30,8 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
   const props = {
     kind: KIND.subjects,
     items: [
-      { key: 'test 1', title: 'some title', url: 'anywhere' },
-      { key: 'test 2', title: 'not some title', url: 'nowhere' },
+      { itemKey: 'test 1', title: 'some title', url: 'anywhere' },
+      { itemKey: 'test 2', title: 'not some title', url: 'nowhere' },
     ],
     updateList: jest.fn(),
     disabled: false,
@@ -54,7 +54,7 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
     props.items.forEach((item, index) => {
       expect(itemsFound.containsMatchingElement(
         <FavoriteItem
-          id={item.key}
+          id={item.itemKey}
           kind={props.kind}
           url={item.url}
           title={item.title}
@@ -68,7 +68,7 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
     const instance = enzymeWrapper.instance()
     spy = jest.spyOn(instance.props, 'updateList')
 
-    instance.onRemoveFavorite(props.kind, props.items[0].key)
+    instance.onRemoveFavorite(props.kind, props.items[0].itemKey)
 
     const expected = props.items.slice(1)
     expect(spy).toHaveBeenCalledWith(expected)
@@ -87,7 +87,7 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
         droppableId: props.kind,
         index: 1,
       },
-      draggableId: props.items[0].key,
+      draggableId: props.items[0].itemKey,
     })
 
     const expected = [ props.items[1], props.items[0] ]
@@ -102,7 +102,7 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
       source: {
         index: 0,
       },
-      draggableId: props.items[0].key,
+      draggableId: props.items[0].itemKey,
     })
 
     expect(spy).not.toHaveBeenCalled()
@@ -119,7 +119,7 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
       source: {
         index: 0,
       },
-      draggableId: props.items[0].key,
+      draggableId: props.items[0].itemKey,
     })
 
     expect(spy).not.toHaveBeenCalled()
@@ -163,7 +163,7 @@ describe('components/Account/Favorites/FavoritesList/index.js', () => {
           droppableId: 'remove',
           index: 0,
         },
-        draggableId: props.items[0].key,
+        draggableId: props.items[0].itemKey,
       })
 
       const expected = [ props.items[1] ]

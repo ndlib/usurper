@@ -8,8 +8,20 @@ import StaticAlert from 'components/Contentful/StaticContent/Alert'
 import StaticBody from 'components/Contentful/StaticContent/Body'
 import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import InlineLoading from 'components/Messages/InlineLoading'
+import Config from 'shared/Configuration'
 
 const AccountPageWrapper = (props) => {
+  if (!Config.features.loginEnabled) {
+    return (
+      <div className='content'>
+        <SearchProgramaticSet open={false} />
+        <PageTitle title='My Account' />
+        <div>
+          User account access has been temporarily disabled. We are performing routine maintenance and your account will be available again shortly.
+        </div>
+      </div>
+    )
+  }
   return (
     <div className='content'>
       <SearchProgramaticSet open={false} />

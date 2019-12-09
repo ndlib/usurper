@@ -55,7 +55,7 @@ export class ManageFavoritesContainer extends Component {
   onAddFavorite = (kind, key, title, url) => {
     const newList = JSON.parse(JSON.stringify(this.state.listItems))
     newList.push({
-      key: key,
+      itemKey: key,
       title: title,
       url: url,
     })

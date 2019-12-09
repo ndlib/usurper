@@ -48,7 +48,7 @@ const receiveFavorites = (kind, state, json) => {
     type: RECEIVE_FAVORITES,
     kind: kind,
     state: state,
-    items: json.items || [],
+    items: Array.isArray(json) ? json : [],
   }
 }
 
@@ -187,7 +187,7 @@ export const clearAllFavorites = () => {
     })
     promises.push(dispatch(setHomeLibrary(DEFAULT_LIBRARY)))
     promises.push(dispatch(setHideHomeFavorites(false)))
-    promises.push(dispatch(setDefaultSearch(null)))
+    promises.push(dispatch(setDefaultSearch('')))
 
     return Promise.all(promises)
   }
@@ -201,14 +201,14 @@ const convertDatabaseToFavorite = (database) => {
     for (let j = 0; j < database.fields.urls.length; j++) {
       const urlField = database.fields.urls[j]
       output.push({
-        key: database.sys.id + '_link_' + j,
+        itemKey: database.sys.id + '_link_' + j,
         title: database.fields.title + (database.fields.urls.length > 1 ? ' - ' + urlField.title : ''),
         url: urlField.url,
       })
     }
   } else {
     output.push({
-      key: database.sys.id + '_link_0',
+      itemKey: database.sys.id + '_link_0',
       title: database.fields.title,
       url: database.fields.purl,
     })
@@ -219,7 +219,7 @@ const convertDatabaseToFavorite = (database) => {
 
 const convertSubjectToFavorite = (subject) => {
   return {
-    key: subject.sys.id,
+    itemKey: subject.sys.id,
     title: (typy(subject, 'fields.usePageTitle').safeBoolean && typy(subject, 'fields.page').isObject)
       ? typy(subject, 'fields.page.fields.title').safeString
       : typy(subject, 'fields.title').safeString,

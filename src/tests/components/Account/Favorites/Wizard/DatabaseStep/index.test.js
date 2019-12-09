@@ -30,10 +30,10 @@ describe('components/Account/Favorites/Wizard/DatabaseStep', () => {
   beforeEach(() => {
     const props = {
       data: [
-        { key: '55', order: 9999, url: 'www.fake.url', suggested: true },
-        { key: '16', title: 'stuff', suggested: true },
-        { key: '8', fake: 'whatever', suggested: true },
-        { key: '31561', title: 'blah', order: 1, suggested: true },
+        { itemKey: '55', order: 9999, url: 'www.fake.url', suggested: true },
+        { itemKey: '16', title: 'stuff', suggested: true },
+        { itemKey: '8', fake: 'whatever', suggested: true },
+        { itemKey: '31561', title: 'blah', order: 1, suggested: true },
       ],
       step: 1,
       stepCount: 3,
@@ -72,9 +72,9 @@ describe('components/Account/Favorites/Wizard/DatabaseStep', () => {
     const expected = JSON.parse(JSON.stringify(enzymeWrapper.props().data))
 
     // Add one manually to make sure it gets saved as well
-    const toAdd = { key: 'fake key', title: 'fake title', url: null }
+    const toAdd = { itemKey: 'fake key', title: 'fake title', url: null }
     expected.push(toAdd)
-    instance.onAddFavorite(KIND.databases, toAdd.key, toAdd.title, toAdd.url)
+    instance.onAddFavorite(KIND.databases, toAdd.itemKey, toAdd.title, toAdd.url)
 
     // Expect that saved items should have their order overwritten with the index they are in the array
     for (let i = 0; i < expected.length; i++) {

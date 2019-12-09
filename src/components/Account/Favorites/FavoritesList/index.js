@@ -39,7 +39,7 @@ class FavoritesList extends Component {
     } else {
       // Create a new array to update the state with the new item order
       const newList = JSON.parse(JSON.stringify(this.props.items))
-      const listItem = this.props.items.find((item) => item.key === draggableId)
+      const listItem = this.props.items.find((item) => item.itemKey === draggableId)
       newList.splice(source.index, 1)
       newList.splice(destination.index, 0, listItem)
 
@@ -48,7 +48,7 @@ class FavoritesList extends Component {
   }
 
   onRemoveFavorite = (kind, itemId) => {
-    const itemIndex = this.props.items.findIndex((item) => item.key === itemId)
+    const itemIndex = this.props.items.findIndex((item) => item.itemKey === itemId)
     if (itemIndex >= 0) {
       const newList = JSON.parse(JSON.stringify(this.props.items))
       newList.splice(itemIndex, 1)
@@ -66,9 +66,9 @@ class FavoritesList extends Component {
             <div className='favorite-list' {...provided.droppableProps} ref={provided.innerRef}>
               { this.props.items.map((obj, index) =>
                 <FavoriteItem
-                  key={obj.key}
+                  key={obj.itemKey}
                   kind={this.props.kind}
-                  id={obj.key}
+                  id={obj.itemKey}
                   url={obj.url}
                   title={obj.title}
                   index={index}

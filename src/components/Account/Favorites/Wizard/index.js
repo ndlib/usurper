@@ -177,7 +177,7 @@ class Wizard extends Component {
             ))
           } else {
             const match = typy(this.props.favorites, `${currentStepName}.items`).safeArray.find(y => (
-              y.key === typy(subject, 'sys.id').safeString
+              y.itemKey === typy(subject, 'sys.id').safeString
             ))
             if (match) {
               subject.selected = true
@@ -204,7 +204,7 @@ class Wizard extends Component {
             // Convert the related dbs to match the favorites model, then remove any which are already favorites, and finally sort them
             const newDbs = helper.sortList(
               convertContentfulToFavorites(relatedDbs, FAVORITES_KIND.databases).filter(db => {
-                return !existingFavorites.find(x => x.key === db.key)
+                return !existingFavorites.find(x => x.itemKey === db.itemKey)
               }),
               'title',
               'asc',

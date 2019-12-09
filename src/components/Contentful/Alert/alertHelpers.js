@@ -1,16 +1,18 @@
 import styles from './style.module.css'
-
+import typy from 'typy'
 export const alertMap = (alert, isGlobal = false) => {
-  const type = styles[alert.fields.type ? alert.fields.type.toLowerCase() : 'warning']
+  const type = styles[typy(alert, 'fields.type').isString ? alert.fields.type.toLowerCase() : 'warning']
   const className = ['alert', (isGlobal ? 'global' : 'page'), styles.alertSection, type].join(' ')
-
-  return {
-    ...alert.fields,
-    id: alert.sys.id,
-    className: className,
-    startTime: new Date(alert.fields.startTime),
-    type: type,
+  if (typy(alert, 'sys.id').isString) {
+    return {
+      ...alert.fields,
+      id: typy(alert, 'sys.id').safeString,
+      className: className,
+      startTime: new Date(typy(alert, 'fields.startTime').safeString),
+      type: type,
+    }
   }
+  return null
 }
 
 export const alertSort = (left, right) => {
@@ -36,7 +38,7 @@ export const alertSort = (left, right) => {
 export const alertCategorize = (alerts) => {
   const out = {}
 
-  if (alerts.length) {
+  if (alerts.filter(a => typy(a, 'type').isString).length) {
     alerts.forEach((alert) => {
       if (out[alert.type]) {
         out[alert.type].push(alert)
