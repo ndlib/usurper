@@ -5,6 +5,7 @@ import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
 import Tags from 'components/Interactive/Tags'
+import Config from 'shared/Configuration'
 
 import './style.css'
 
@@ -54,7 +55,7 @@ const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagC
               </div>
             )}
           </Link>
-          { showTags && (
+          { Config.features.eventsFilteringEnabled && showTags && (
             <Tags groups={[typeTag]} />
           )}
         </div>
