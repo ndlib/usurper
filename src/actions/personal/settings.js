@@ -64,7 +64,9 @@ export const setCircStatus = (enabled) => {
     })
       .then(response => enabled ? response.json() : {})
       .then(json => {
-        dispatch(states.receivePersonal('historical', statuses.SUCCESS, json))
+        dispatch(states.receivePersonal('historical', statuses.SUCCESS, {
+          history: json,
+        }))
         dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
         dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
       })
