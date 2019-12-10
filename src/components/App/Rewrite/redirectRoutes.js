@@ -27,6 +27,7 @@ const RedirectRoutes = [
   { path: '/fys', target: 'http://libguides.library.nd.edu/first-year-studies' },
   { path: '/help/plagiarism.shtml', target: 'http://libguides.library.nd.edu/scholarly-publishing/plagiarism' },
   { path: '/one-button-studio', target: 'https://libguides.library.nd.edu/multimedia' },
+  { path: '/library-research-award', target: 'https://library-research-award.library.nd.edu/' },
   // internal redirects
   { path: '/biochemistry', target: '/chemistry' },
   { path: '/about/employment', target: '/employment' },
