@@ -57,7 +57,7 @@ const PagePresenter = ({ entry }) => {
               )
             }
           </div>
-          <LibMarkdown itemProp='articleBody'>{ entry.content }</LibMarkdown>
+          <LibMarkdown itemProp='articleBody'>{ entry.content + 'Open to ' + entry.audience.join(', ') }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           <Sponsorships sponsors={entry.sponsors} />
           <Presenters presenters={typy(entry, 'presenters').safeArray} />
