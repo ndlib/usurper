@@ -21,7 +21,7 @@ const setup = (state, ownProps) => {
   return shallow(<LogoutLink store={store} {...ownProps} />)
 }
 
-describe('components/Layout/Navigation/UserMenu/LogoutLink', () => {
+describe.skip('components/Layout/Navigation/UserMenu/LogoutLink', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })

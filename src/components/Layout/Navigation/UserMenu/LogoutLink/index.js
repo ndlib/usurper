@@ -2,20 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Link from 'components/Interactive/Link'
-import Config from 'shared/Configuration'
 
 const LogoutLink = (props) => {
   const classes = 'logout ' + (props.className || '')
-
+  if (!props.loggedIn) {
+    return null
+  }
   return (
     <Link
-      to={props.logoutUrl}
+      to='#'
       className={classes}
-      // This "service = location" is to redirect back to this location after logging out
-      // It will only work if you are on a site https://*.library.nd.edu because OIT CAS is very strict
-      query={{ service: props.location.origin }}
       noTarget
-      hideIfNull
+      onClick={() => {
+        // remove the jwt login information in session storage
+        sessionStorage.removeItem('libraryWebsite')
+        // redirect to homepage since user likely on page requiring login
+        window.location.replace('/')
+      }}
     >{props.buttonText}</Link>
   )
 }
@@ -25,7 +28,7 @@ export const mapStateToProps = (state) => {
   const loggedIn = !!(personal.login && personal.login.token)
 
   return {
-    logoutUrl: loggedIn ? Config.viceroyAPI + '/logout' : null,
+    loggedIn: loggedIn,
     location: window.location,
   }
 }
@@ -33,7 +36,7 @@ export const mapStateToProps = (state) => {
 LogoutLink.propTypes = {
   className: PropTypes.string,
   buttonText: PropTypes.string,
-  logoutUrl: PropTypes.string,
+  loggedIn: PropTypes.bool,
   location: PropTypes.shape({
     origin: PropTypes.string,
   }),

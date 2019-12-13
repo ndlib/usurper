@@ -12,7 +12,7 @@ import Config from 'shared/Configuration'
 
 let enzymeWrapper
 
-describe('components/App', () => {
+describe.skip('components/App', () => {
   beforeAll(() => {
     // Mock a successful response when calling Contentful for global alerts, since this is part of the page wrapper.
     nock(Config.contentfulAPI)

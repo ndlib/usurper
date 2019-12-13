@@ -81,6 +81,8 @@ export const LibLink = (props) => {
     'http://beta.library.nd.edu',
     'https://library.nd.edu',
     'http://library.nd.edu',
+    'https://test.library.nd.edu',
+    'https://prep.library.nd.edu',
   ]
 
   for (const index in replaceUrls) {

@@ -166,7 +166,7 @@ describe('components/Account/Favorites/NoFavorites', () => {
       expect(enzymeWrapper.dive().props().isLoggedIn).toBe(false)
     })
 
-    it('should redirect to log in when clicking add favorites', () => {
+    it.skip('should redirect to log in when clicking add favorites', () => {
       window.location.assign = jest.fn()
 
       const btn = enzymeWrapper.dive().dive().findWhere(n => n.type() === 'button' && n.text() === 'Add Favorites')

@@ -2,7 +2,6 @@ const parameters = require('./configParameters.js')
 
 const genConfig = () => {
   const defaultConfig = {
-    viceroyAPI: parameters.viceroy,
     recommendAPI: parameters.recommendEngine,
     coursesAPI: parameters.classesAPI,
     resourcesAPI: parameters.gatekeeper,
@@ -24,10 +23,12 @@ const genConfig = () => {
       eventsFilteringEnabled: parameters.eventsFilteringEnabled || false,
       loginEnabled: parameters.loginEnabled || false,
     },
+    oktaUrl: parameters.oktaUrl || 'https://okta.nd.edu/',
+    oktaClientId: parameters.oktaClientId || 'OKTA_CLIENT_ID_DEFAULT',
+    oktaIssuer: parameters.oktaIssuer || 'https://okta.nd.edu/oauth2/default',
   }
 
   const config = {
-    viceroyAPI: process.env.VICEROY_API ? process.env.VICEROY_API : defaultConfig.viceroyAPI,
     recommendAPI: process.env.RECOMMEND_API ? process.env.RECOMMEND_API : defaultConfig.recommendAPI,
     coursesAPI: process.env.COURSES_API ? process.env.COURSES_API : defaultConfig.coursesAPI,
     resourcesAPI: process.env.RESOURCES_API ? process.env.RESOURCES_API : defaultConfig.resourcesAPI,
@@ -49,6 +50,9 @@ const genConfig = () => {
       eventsFilteringEnabled: process.env.ENABLE_EVENTS_FILTERING ? process.env.ENABLE_EVENTS_FILTERING : defaultConfig.features.eventsFilteringEnabled,
       loginEnabled: process.env.ENABLE_LOGIN ? process.env.ENABLE_LOGIN : defaultConfig.features.loginEnabled,
     },
+    oktaUrl: process.env.OKTA_URL ? process.env.OKTA_URL : defaultConfig.oktaUrl,
+    oktaClientId: process.env.OKTA_CLIENT_ID ? process.env.OKTA_CLIENT_ID : defaultConfig.oktaClientId,
+    oktaIssuer: process.env.OKTA_ISSUER ? process.env.OKTA_ISSUER : defaultConfig.oktaIssuer,
   }
 
   return { __APP_CONFIG__: JSON.stringify(config) }

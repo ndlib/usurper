@@ -109,7 +109,7 @@ fi
 
 if [ $stage = "dev" ] || [ $stage = "alpha" ] || [ $stage = "prep" ] && [ ! $AWS_VAULT = "testlib" ]
 then
-  echo "For production deploys you must assume the testlib role"
+  echo "For test deploys you must assume the testlib role"
   exit
 fi
 

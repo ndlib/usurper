@@ -16,7 +16,7 @@ const tokenResponse = {
   jwt: 'token',
 }
 
-describe('token fetch async action creator', () => {
+describe.skip('token fetch async action creator', () => {
   it('should first create a REQUEST_PERSONAL action for the token', () => {
     nock(Config.viceroyAPI)
       .get('/token')

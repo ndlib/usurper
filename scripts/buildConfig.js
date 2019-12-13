@@ -18,20 +18,68 @@ let apiList = [
   'contentfulmaps',
   'userPreferences'
 ]
+
 const psList = [
-  'viceroy',
-  'illiad',
-  'googleAnalyticsId',
-  'gcseCx',
-  'gcseKey',
-  'onesearch',
-  'contentfulCdnToken',
-  'contentfulSpace',
-  'contentfulEnvironment',
-  'favoritesEnabled',
-  'subjectFilteringEnabled',
-  'eventsFilteringEnabled',
-  'loginEnabled',
+  {
+    path: 'illiad',
+    name: 'illiad',
+  },
+  {
+    path: 'googleAnalyticsId',
+    name: 'googleAnalyticsId',
+  },
+  {
+    path: 'gcseCx',
+    name: 'gcseCx',
+  },
+  {
+    path: 'gcseKey',
+    name: 'gcseKey',
+  },
+  {
+    path: 'onesearch',
+    name: 'onesearch',
+  },
+  {
+    path: 'contentfulCdnToken',
+    name: 'contentfulCdnToken',
+  },
+  {
+    path: 'contentfulSpace',
+    name: 'contentfulSpace',
+  },
+  {
+    path: 'contentfulEnvironment',
+    name: 'contentfulEnvironment',
+  },
+  {
+    path: 'favoritesEnabled',
+    name: 'favoritesEnabled',
+  },
+  {
+    path: 'subjectFilteringEnabled',
+    name: 'subjectFilteringEnabled',
+  },
+  {
+    path: 'eventsFilteringEnabled',
+    name: 'eventsFilteringEnabled',
+  },
+  {
+    path: 'loginEnabled',
+    name: 'loginEnabled',
+  },
+  {
+    path: 'secrets/okta/url',
+    name: 'oktaUrl',
+  },
+  {
+    path: 'secrets/okta/client_id',
+    name: 'oktaClientId',
+  },
+  {
+    path: 'secrets/okta/issuer',
+    name: 'oktaIssuer',
+  },
 ]
 
 let handler = async () => {
@@ -61,11 +109,11 @@ let handler = async () => {
     for(let j = 0; j < psList.length; j++) {
       try {
         const params = {
-          Name: `/all/usurper/${stage}/${psList[j]}`,
+          Name: `/all/usurper/${stage}/${psList[j].path}`,
           WithDecryption: true,
         }
         const data = await ssm.getParameter(params).promise()
-        psOutputs[psList[j]] = data.Parameter.Value
+        psOutputs[psList[j].name] = data.Parameter.Value
       } catch(err) {
         console.error(`${RED}Unable to read ${psList[j]} from parameter store.${NC}`)
         if (process.env.CI) {
@@ -86,10 +134,10 @@ let handler = async () => {
         stream.write("  " + apiList[i] + ": '" + outputs[apiList[i]] + "',\n")
       }
       for(let i = 0; i < psList.length; i++) {
-        if (psOutputs[psList[i]]) {
-          const isBool = ['true', 'false'].includes(psOutputs[psList[i]].toLowerCase())
-          const value = isBool ? (psOutputs[psList[i]].toLowerCase() === 'true') : `'${psOutputs[psList[i]]}'`
-          stream.write(`  ${psList[i]}: ${value},\n`)
+        if (psOutputs[psList[i].name]) {
+          const isBool = ['true', 'false'].includes(psOutputs[psList[i].name].toLowerCase())
+          const value = isBool ? (psOutputs[psList[i].name].toLowerCase() === 'true') : `'${psOutputs[psList[i].name]}'`
+          stream.write(`  ${psList[i].name}: ${value},\n`)
         }
       }
       stream.write("  environment: '" + stage + "',\n")
