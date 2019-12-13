@@ -48,7 +48,7 @@ const receiveFavorites = (kind, state, json) => {
     type: RECEIVE_FAVORITES,
     kind: kind,
     state: state,
-    items: json || [],
+    items: Array.isArray(json) ? json : [],
   }
 }
 
@@ -187,7 +187,7 @@ export const clearAllFavorites = () => {
     })
     promises.push(dispatch(setHomeLibrary(DEFAULT_LIBRARY)))
     promises.push(dispatch(setHideHomeFavorites(false)))
-    promises.push(dispatch(setDefaultSearch(null)))
+    promises.push(dispatch(setDefaultSearch('')))
 
     return Promise.all(promises)
   }
