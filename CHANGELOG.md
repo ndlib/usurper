@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2019.25](https://github.com/ndlib/usurper/tree/v2019.25) "Octonauts"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.21...v2019.25)
+
+### Note
+The change log for this update includes changes that were deployed previously.
+
+### Features
+- Changed login to use Okta for authentication. [#753](https://github.com/ndlib/usurper/pull/753)
+
+### Bug Fixes
+- Fixed issues with checkout history. [#751](https://github.com/ndlib/usurper/pull/751)
+
 ## [v2019.21](https://github.com/ndlib/usurper/tree/v2019.21) "Christmas Flamingo"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.20...v2019.21)
 
