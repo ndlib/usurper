@@ -21,6 +21,12 @@
     "__PROD__"     : false,
     "__COVERAGE__" : false
   },
+  "settings" : {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
   "rules" : {
     "brace-style"           : [2, "1tbs"],
     "comma-dangle"          : [2, "always-multiline"],
