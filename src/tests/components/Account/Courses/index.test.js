@@ -45,7 +45,6 @@ describe('components/Account/Courses', () => {
           preview: true,
           loggedIn: true,
           login: {
-            redirectUrl: '',
             token: 'fake token',
             state: statuses.SUCCESS,
           },
@@ -96,7 +95,6 @@ describe('components/Account/Courses', () => {
         expect(store.getActions()).not.toContainEqual(expectedAction)
         enzymeWrapper.setProps({
           login: {
-            redirectUrl: '',
             token: 'fake token',
             state: statuses.SUCCESS,
           },
@@ -114,7 +112,6 @@ describe('components/Account/Courses', () => {
         preview: true,
         loggedIn: false,
         login: {
-          redirectUrl: '',
           token: 'fake token',
           state: statuses.SUCCESS,
         },

@@ -16,33 +16,35 @@ const oktaConfig = {
 }
 
 export const initLogin = () => {
-  const authClient = new OktaAuth(oktaConfig)
-  authClient.token.getWithRedirect({
-    responseType: 'id_token',
-    scopes: [
-      'openid',
-      'profile',
-      'email',
-      'netid',
-    ],
-  })
+  return () => {
+    const authClient = new OktaAuth(oktaConfig)
+    authClient.token.getWithRedirect({
+      responseType: 'id_token',
+      scopes: [
+        'openid',
+        'profile',
+        'email',
+        'netid',
+      ],
+    })
+  }
 }
 
 const handleToken = (dispatch, data) => {
-  if (data.redirect) {
+  if (data.idToken) {
     dispatch(
       states.receivePersonal(
         'login',
         statuses.SUCCESS,
-        { redirectUrl: data.redirect }
+        { token: data.idToken }
       )
     )
-  } else if (data.idToken) {
+  } else {
     dispatch(
       states.receivePersonal(
         'login',
-        statuses.SUCCESS,
-        { token: data.idToken, redirectUrl: null }
+        statuses.UNAUTHENTICATED,
+        { token: null }
       )
     )
   }
@@ -67,11 +69,10 @@ const getToken = () => {
               })
               .catch(error => console.error(error))
           } else {
-            console.log('Could not get token from hash or storage')
             dispatch(
               states.receivePersonal(
                 'login',
-                statuses.UNAUTHORIZED,
+                statuses.UNAUTHENTICATED,
               )
             )
           }

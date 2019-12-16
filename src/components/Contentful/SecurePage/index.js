@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchPage } from 'actions/contentful/page'
+import { initLogin } from 'actions/personal/token'
 import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulPagePresenter from '../Page/presenter.js'
 import { withErrorBoundary } from 'components/ErrorBoundary'
@@ -16,7 +17,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchPage }, dispatch)
+  return bindActionCreators({ fetchPage, initLogin }, dispatch)
 }
 
 export class ContentfulPageContainer extends Component {
@@ -33,8 +34,8 @@ export class ContentfulPageContainer extends Component {
 
     if (isLoggedIn && this.props.cfPageEntry.slug !== pageSlug) {
       this.props.fetchPage(pageSlug, preview, true)
-    } else if (this.props.login.redirectUrl) {
-      window.location = this.props.login.redirectUrl
+    } else if (!isLoggedIn) {
+      this.props.initLogin()
     }
   }
 
@@ -64,7 +65,6 @@ ContentfulPageContainer.propTypes = {
   login: PropTypes.shape({
     state: PropTypes.string,
     token: PropTypes.string,
-    redirectUrl: PropTypes.string,
   }),
   cfPageEntry: PropTypes.shape({
     status: PropTypes.string,
@@ -78,6 +78,7 @@ ContentfulPageContainer.propTypes = {
     params: PropTypes.object,
   }),
   fetchPage: PropTypes.func.isRequired,
+  initLogin: PropTypes.func.isRequired,
 }
 
 const ContentfulPage = connect(

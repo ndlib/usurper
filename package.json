@@ -128,8 +128,12 @@
         "features": {
           "favoritesEnabled": true,
           "subjectFilteringEnabled": true,
-          "eventsFilteringEnabled": true
-        }
+          "eventsFilteringEnabled": true,
+          "loginEnabled": true
+        },
+        "oktaUrl": "https://okta.url",
+        "oktaClientId": "000aaa",
+        "oktaIssuer": "https://okta.url/oauth2/test"
       }
     },
     "collectCoverageFrom": [

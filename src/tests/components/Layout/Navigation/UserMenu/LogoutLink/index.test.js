@@ -21,7 +21,7 @@ const setup = (state, ownProps) => {
   return shallow(<LogoutLink store={store} {...ownProps} />)
 }
 
-describe.skip('components/Layout/Navigation/UserMenu/LogoutLink', () => {
+describe('components/Layout/Navigation/UserMenu/LogoutLink', () => {
   afterEach(() => {
     enzymeWrapper = undefined
   })
@@ -41,10 +41,9 @@ describe.skip('components/Layout/Navigation/UserMenu/LogoutLink', () => {
     enzymeWrapper = setup(state, props)
   })
 
-  it('should render a Link to viceroy to log off', () => {
+  it('should render a Link to log off', () => {
     const found = enzymeWrapper.dive().dive().find(Link)
     expect(found.exists()).toBe(true)
-    expect(found.props().to.startsWith(Config.viceroyAPI)).toBe(true)
   })
 
   it('link text should match prop passed in', () => {

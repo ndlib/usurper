@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import typy from 'typy'
 
 import Navigation from './presenter'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 import { openSearchDrawer, closeSearchDrawer, closeSearchBox } from 'actions/search'
-import getToken from 'actions/personal/token'
+import getToken, { initLogin } from 'actions/personal/token'
 import * as statuses from 'constants/APIStatuses'
 import {
   openMenu,
@@ -23,7 +22,6 @@ const mapStateToProps = (state) => {
     search: state.search,
     menus: state.menus,
     loggedIn: Boolean(personal && personal.login && personal.login.token),
-    loginUrl: typy(personal, 'login.redirectUrl').safeString,
   }
 }
 
@@ -36,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getToken: () => {
       dispatch(getToken())
+    },
+    initLogin: () => {
+      dispatch(initLogin())
     },
     openSearchDrawer: (e) => {
       dispatch(closeMenus())

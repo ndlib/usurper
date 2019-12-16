@@ -55,6 +55,7 @@ describe('components/Account/AccountPageWrapper', () => {
       const newProps = {
         ...enzymeWrapper.dive().props(),
         getToken: jest.fn(),
+        initLogin: jest.fn(),
       }
 
       enzymeWrapper = shallow(<AccountPageWrapperContainer {...newProps} />)
@@ -71,7 +72,6 @@ describe('components/Account/AccountPageWrapper', () => {
           login: {
             state: statuses.SUCCESS,
             token: 'abcdefg',
-            redirectUrl: '',
           },
         },
       }
@@ -89,44 +89,21 @@ describe('components/Account/AccountPageWrapper', () => {
   })
 
   describe('not logged in', () => {
-    const realConsoleError = console.error
-
-    beforeAll(() => {
-      // Super hacky. Basically, this stops jsdom from complaining in the console when we mock window.location.
-      console.error = jest.fn().mockImplementation((msg) => {
-        if (msg.startsWith('Error: Not implemented: navigation')) {
-          return
-        }
-        realConsoleError(msg)
-      })
-    })
-
-    afterAll(() => {
-      console.error = realConsoleError
-    })
+    const newProps = {
+      ...props,
+      login: {
+        state: statuses.UNAUTHENTICATED,
+      },
+      getToken: jest.fn(),
+      initLogin: jest.fn(),
+    }
 
     beforeEach(() => {
-      state = {
-        personal: {
-          login: {
-            state: statuses.SUCCESS,
-            redirectUrl: 'fake.url/here',
-          },
-        },
-      }
-      enzymeWrapper = setup(state, props)
+      enzymeWrapper = shallow(<AccountPageWrapperContainer {...newProps} />)
     })
 
-    it('should redirect to login page', () => {
-      // Mock the redirect function so we can spy on it
-      window.location.replace = jest.fn()
-
-      const instance = enzymeWrapper.dive().dive().instance()
-      spy = jest.spyOn(instance, 'checkFullyLoaded')
-      instance.checkFullyLoaded()
-
-      // Check that the redirect was called with the same url we passed in to the object
-      expect(window.location.replace).toHaveBeenCalledWith(state.personal.login.redirectUrl)
+    it('should call initLogin to redirect user', () => {
+      expect(newProps.initLogin).toHaveBeenCalled()
     })
   })
 })
