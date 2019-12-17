@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import FavoritesContainer, { mapStateToProps, mapDispatchToProps } from 'components/Account/Favorites'
+import Favorites, { FavoritesContainer, mapStateToProps, mapDispatchToProps } from 'components/Account/Favorites'
 import Loading from 'components/Messages/Loading'
 
 import {
@@ -63,7 +63,7 @@ const baseState = {
 const setup = (state, ownProps) => {
   store = mockStore(state)
   const props = mapStateToProps(state, ownProps)
-  return shallow(<FavoritesContainer store={store} {...props} />)
+  return shallow(<Favorites store={store} {...props} />)
 }
 
 describe('components/Account/Favorites/index.js', () => {
@@ -114,48 +114,60 @@ describe('components/Account/Favorites/index.js', () => {
     })
   })
 
-  describe.skip('when not logged in', () => {
-    beforeEach(() => {
-      const state = {
+  describe('when not logged in', () => {
+    const getState = (status) => {
+      return {
         ...baseState,
         personal: {
-          login: { state: statuses.NOT_FETCHED },
+          login: { state: status },
         },
       }
-      enzymeWrapper = setup(state)
-    })
+    }
+
+    const getProps = (state) => {
+      return {
+        ...mapStateToProps(state),
+        getToken: jest.fn(),
+        initLogin: jest.fn(),
+        getAllFavorites: jest.fn(),
+        clearUpdateFavorites: jest.fn(),
+        clearAllFavorites: jest.fn(),
+        getHomeLibrary: jest.fn(),
+        fetchBranches: jest.fn(),
+        getHideHomeFavorites: jest.fn(),
+        getDefaultSearch: jest.fn(),
+        clearUpdateSettings: jest.fn(),
+      }
+    }
 
     it('should try fetching user token', () => {
-      enzymeWrapper.dive().dive().instance() // forces constructor and lifecycle events to be called
-      expect(store.getActions()).toEqual(expect.arrayContaining([
-        { type: REQUEST_PERSONAL, requestType: 'login' },
-      ]))
+      const state = getState(statuses.NOT_FETCHED)
+      const props = getProps(state)
+      enzymeWrapper = shallow(<FavoritesContainer {...props} />)
+
+      expect(props.getToken).toHaveBeenCalled()
     })
 
     it('should redirect to login page if no token found', () => {
-      const state = {
-        ...baseState,
-        personal: {
-          login: { state: statuses.SUCCESS, redirectUrl: 'http://www.fake.url' },
-        },
-      }
-      enzymeWrapper = setup(state)
+      const state = getState(statuses.UNAUTHENTICATED)
+      const props = getProps(state)
+      enzymeWrapper = shallow(<FavoritesContainer {...props} />)
 
-      expect(enzymeWrapper.dive().props().loading).toBe(false)
+      expect(props.loading).toBe(false)
 
-      // Mock the redirect function so we can spy on it
-      window.location.replace = jest.fn()
-
-      let instance = enzymeWrapper.dive().dive().instance()
+      let instance = enzymeWrapper.instance()
       spy = jest.spyOn(instance, 'checkFullyLoaded')
       instance.checkFullyLoaded()
 
-      // Check that the redirect was called with the same url we passed in to the object
-      expect(window.location.replace).toHaveBeenCalledWith(state.personal.login.redirectUrl)
+      expect(props.initLogin).toHaveBeenCalled()
     })
 
     it('should check if anything needs to be fetched after update', () => {
-      const instance = enzymeWrapper.dive().dive().instance()
+      const state = getState(statuses.UNAUTHENTICATED)
+      const props = getProps(state)
+      enzymeWrapper = shallow(<FavoritesContainer {...props} />)
+
+      const instance = enzymeWrapper.instance()
       spy = jest.spyOn(instance, 'checkFullyLoaded')
       instance.setState({
         foo: 'bar',

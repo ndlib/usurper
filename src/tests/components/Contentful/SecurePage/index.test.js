@@ -22,6 +22,7 @@ describe('components/Contentful/SecurePage/Container', () => {
         match: { params: { id: 'fake page slug' } },
         location: { search: null },
         fetchPage: jest.fn(),
+        initLogin: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -50,11 +51,12 @@ describe('components/Contentful/SecurePage/Container', () => {
   describe('when not logged in', () => {
     beforeEach(() => {
       props = {
-        login: { redirectUrl: 'newurl' },
+        login: { token: null },
         cfPageEntry: { status: statuses.NOT_FETCHED },
         match: { params: { id: 'fake page slug' } },
         location: { search: null },
         fetchPage: jest.fn(),
+        initLogin: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })

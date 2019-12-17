@@ -38,7 +38,7 @@ export class NoFavoritesContainer extends Component {
 
   openWizard () {
     if (!this.props.isLoggedIn) {
-      initLogin()
+      this.props.initLogin()
       return
     }
 
@@ -117,6 +117,7 @@ NoFavoritesContainer.propTypes = {
   isHomePage: PropTypes.bool,
   clearUpdateFavorites: PropTypes.func.isRequired,
   setHideHomeFavorites: PropTypes.func.isRequired,
+  initLogin: PropTypes.func.isRequired,
   cookies: PropTypes.any,
 }
 
@@ -129,7 +130,7 @@ export const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ clearUpdateFavorites, setHideHomeFavorites }, dispatch)
+  return bindActionCreators({ clearUpdateFavorites, setHideHomeFavorites, initLogin }, dispatch)
 }
 
 const NoFavorites = connect(mapStateToProps, mapDispatchToProps)(NoFavoritesContainer)

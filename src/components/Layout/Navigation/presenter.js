@@ -7,7 +7,6 @@ import MobileMenu from './MobileMenu'
 import Link from 'components/Interactive/Link'
 import { USER_MENU, MOBILE_MENU } from 'actions/menu'
 import Config from 'shared/Configuration'
-import { initLogin } from 'actions/personal/token'
 
 const myAccountButton = (props) => {
   if (Config.features.loginEnabled) {
@@ -31,7 +30,7 @@ const myAccountButton = (props) => {
         <li className='menu-link user right'>
           <Link
             to='#'
-            onClick={() => initLogin()}
+            onClick={props.initLogin}
             className='m'
           >Log In</Link>
           <Route component={UserMenu} />
@@ -115,6 +114,7 @@ myAccountButton.propTypes = {
   loggedIn: PropTypes.bool,
   handleUserClick: PropTypes.func,
   handleUserKeyDown: PropTypes.func,
+  initLogin: PropTypes.func,
 }
 
 Navigation.propTypes = {

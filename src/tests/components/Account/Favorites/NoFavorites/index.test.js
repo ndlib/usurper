@@ -82,6 +82,7 @@ describe('components/Account/Favorites/NoFavorites', () => {
         isHomePage: false,
         clearUpdateFavorites: jest.fn(),
         setHideHomeFavorites: jest.fn(),
+        initLogin: jest.fn(),
       }
 
       beforeEach(() => {
@@ -138,44 +139,23 @@ describe('components/Account/Favorites/NoFavorites', () => {
       },
     }
     const props = {
+      isLoggedIn: false,
       clearUpdateFavorites: jest.fn(),
       setHideHomeFavorites: jest.fn(),
+      initLogin: jest.fn(),
     }
 
-    const realConsoleError = console.error
-
-    beforeAll(() => {
-      // Basically, this stops jsdom from complaining in the console when we mock window.location.
-      console.error = jest.fn().mockImplementation((msg) => {
-        if (msg.startsWith('Error: Not implemented: navigation')) {
-          return
-        }
-        realConsoleError(msg)
-      })
-    })
-
-    afterAll(() => {
-      console.error = realConsoleError
-    })
-
     beforeEach(() => {
-      enzymeWrapper = setup(state)
+      enzymeWrapper = shallow(<NoFavoritesContainer {...props} />)
     })
 
-    it('sees user as not logged in', () => {
-      expect(enzymeWrapper.dive().props().isLoggedIn).toBe(false)
-    })
-
-    it.skip('should redirect to log in when clicking add favorites', () => {
-      window.location.assign = jest.fn()
-
-      const btn = enzymeWrapper.dive().dive().findWhere(n => n.type() === 'button' && n.text() === 'Add Favorites')
+    it('should redirect to log in when clicking add favorites', () => {
+      const btn = enzymeWrapper.findWhere(n => n.type() === 'button' && n.text() === 'Add Favorites')
       expect(btn).toHaveLength(1)
 
       btn.simulate('click')
 
-      const loginPath = Config.viceroyAPI + '/login'
-      expect(window.location.assign).toHaveBeenCalledWith(loginPath)
+      expect(props.initLogin).toHaveBeenCalled()
     })
   })
 })

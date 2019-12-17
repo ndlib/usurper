@@ -8,7 +8,7 @@ import Loading from 'components/Messages/Loading'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
-import getToken from 'actions/personal/token'
+import getToken, { initLogin } from 'actions/personal/token'
 import {
   getAllFavorites,
   clearUpdateFavorites,
@@ -26,7 +26,7 @@ import {
 import { fetchBranches } from 'actions/contentful/branches'
 import { DEFAULT as DEFAULT_DEFAULT_SEARCH } from 'constants/searchOptions.js'
 
-class FavoritesContainer extends Component {
+export class FavoritesContainer extends Component {
   constructor (props) {
     super(props)
     this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
@@ -49,8 +49,8 @@ class FavoritesContainer extends Component {
   }
 
   checkFullyLoaded () {
-    if (this.props.login.state !== statuses.NOT_FETCHED && this.props.login.redirectUrl) {
-      window.location.replace(this.props.login.redirectUrl)
+    if (this.props.login.state === statuses.UNAUTHENTICATED) {
+      this.props.initLogin()
     }
 
     const fetchConditions = [
@@ -130,6 +130,7 @@ export const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     getToken,
+    initLogin,
     getAllFavorites,
     clearUpdateFavorites,
     clearAllFavorites,
@@ -144,7 +145,6 @@ export const mapDispatchToProps = (dispatch) => {
 FavoritesContainer.propTypes = {
   login: PropTypes.shape({
     state: PropTypes.string,
-    redirectUrl: PropTypes.string,
   }),
   loggedIn: PropTypes.bool,
   preview: PropTypes.bool,
@@ -170,6 +170,7 @@ FavoritesContainer.propTypes = {
   circStatus: PropTypes.string,
   // action creators
   getToken: PropTypes.func.isRequired,
+  initLogin: PropTypes.func.isRequired,
   getAllFavorites: PropTypes.func.isRequired,
   clearUpdateFavorites: PropTypes.func.isRequired,
   clearAllFavorites: PropTypes.func.isRequired,

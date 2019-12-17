@@ -97,7 +97,6 @@ ItemsRequestsContainer.propTypes = {
   login: PropTypes.shape({
     state: PropTypes.string,
     token: PropTypes.string,
-    redirectUrl: PropTypes.string,
   }),
   userLoading: PropTypes.bool,
   userStatus: PropTypes.string,

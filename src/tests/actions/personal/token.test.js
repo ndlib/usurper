@@ -50,7 +50,6 @@ describe.skip('token fetch async action creator', () => {
         state: statuses.SUCCESS,
         requestType: 'login',
         payload: {
-          redirectUrl: null,
           token: 'token',
         },
       }

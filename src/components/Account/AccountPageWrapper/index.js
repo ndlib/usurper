@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import Presenter from './presenter'
 
-import getToken from 'actions/personal/token'
+import getToken, { initLogin } from 'actions/personal/token'
 import * as statuses from 'constants/APIStatuses'
 
 export class AccountPageWrapperContainer extends Component {
@@ -17,8 +17,8 @@ export class AccountPageWrapperContainer extends Component {
   checkFullyLoaded () {
     if (this.props.login.state === statuses.NOT_FETCHED) {
       this.props.getToken()
-    } else if (this.props.login.redirectUrl) {
-      window.location.replace(this.props.login.redirectUrl)
+    } else if (this.props.login.state === statuses.UNAUTHENTICATED) {
+      this.props.initLogin()
     }
   }
 
@@ -59,7 +59,7 @@ export const mapStateToProps = (state) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getToken }, dispatch)
+  return bindActionCreators({ getToken, initLogin }, dispatch)
 }
 
 AccountPageWrapperContainer.propTypes = {
@@ -76,11 +76,11 @@ AccountPageWrapperContainer.propTypes = {
   login: PropTypes.shape({
     state: PropTypes.string,
     token: PropTypes.string,
-    redirectUrl: PropTypes.string,
   }),
   loading: PropTypes.bool,
   customSidebar: PropTypes.node,
   getToken: PropTypes.func.isRequired,
+  initLogin: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPageWrapperContainer)
