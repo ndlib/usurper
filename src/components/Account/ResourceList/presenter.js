@@ -10,6 +10,8 @@ import FilterBox from 'components/Interactive/FilterBox'
 import * as helper from 'constants/HelperFunctions'
 import typeConstants from './constants'
 
+import styles from './style.module.css'
+
 const ResourceList = (props) => {
   const config = typeConstants[props.listType]
   return props.loading
@@ -22,8 +24,10 @@ const ResourceList = (props) => {
         ) : (
           <React.Fragment>
             <ListActions list={props.list} listType={props.listType} />
-            <FilterBox title='Filter Items:' value={props.filterValue} onChange={props.filterChange} />
-            <ColumnHeaders {...props} />
+            <div className={styles.stickyHeader}>
+              <FilterBox title='Filter Items:' value={props.filterValue} onChange={props.filterChange} />
+              <ColumnHeaders {...props} />
+            </div>
             <div className='screenReaderText' aria-live='assertive'>{ props.assistText }</div>
             <section aria-label={config.displayName + ' item list'} id={config.displayName}>
               { props.list.map((item) => {

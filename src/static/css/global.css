@@ -2611,8 +2611,8 @@ p < img {
 
 .flogo {
   width: auto;
-  height: 45px;
-
+  max-height: 45px;
+  max-width: 100%;
 }
 
 .chat-alternative-contact {

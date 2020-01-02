@@ -107,6 +107,12 @@
   -ms-grid-row: 2;
 }
 
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 @media screen and (min-width: 62em) {
   .cardItem {
     grid-template-columns: 2fr 1fr 1fr .5fr .25fr;
