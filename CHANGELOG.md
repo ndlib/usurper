@@ -1,5 +1,20 @@
 # Change Log
 
+## [v2020.1](https://github.com/ndlib/usurper/tree/v2020.1) "Perfect Vision"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2019.25...v2020.1)
+
+### Features
+- Table headers will now scroll along with the page. [#765](https://github.com/ndlib/usurper/pull/765)
+- Events will now display a list of audiences they are intended for on the event page. [#767](https://github.com/ndlib/usurper/pull/767)
+- Recurring events can now be scheduled. Events that have multiple sessions will now display an indicator to let users know. [#769](https://github.com/ndlib/usurper/pull/769)
+
+### Bug Fixes
+- Users will now be redirected to log in when authentication is required. [#759](https://github.com/ndlib/usurper/pull/759)
+- Fixes to dark features database and event filtering. [#764](https://github.com/ndlib/usurper/pull/764) [#766](https://github.com/ndlib/usurper/pull/766)
+
+### Other Changes
+- Event description in the events list is no longer hyperlinked. Selecting text is easier now. [#768](https://github.com/ndlib/usurper/pull/768)
+
 ## [v2019.25](https://github.com/ndlib/usurper/tree/v2019.25) "Octonauts"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.21...v2019.25)
 
