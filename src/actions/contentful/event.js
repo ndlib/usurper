@@ -11,12 +11,13 @@ export const requestEvent = (event) => {
 }
 
 export const CF_RECEIVE_EVENT = 'CF_RECEIVE_EVENT'
-const receiveEvent = (event, response) => {
+const receiveEvent = (event, response, recurrenceDate) => {
   const error = {
     type: CF_RECEIVE_EVENT,
     status: statuses.fromHttpStatusCode(response.errorStatus),
     error: response,
     receivedAt: Date.now(),
+    recurrenceDate,
   }
 
   const success = {
@@ -24,30 +25,29 @@ const receiveEvent = (event, response) => {
     status: statuses.SUCCESS,
     event: response[0],
     receivedAt: Date.now(),
+    recurrenceDate,
   }
 
   try {
     if (response[0] && response[0].sys.contentType.sys.id === 'event') {
       return success
     } else {
-      console.log(response)
       return error
     }
   } catch (e) {
-    console.log(response)
     return error
   }
 }
 
-export const fetchEvent = (event, preview) => {
-  const url = helper.getContentfulQueryUrl(`content_type=event&fields.slug=${event}&include=3`, preview)
+export const fetchEvent = (slug, preview, recurrenceDate) => {
+  const url = helper.getContentfulQueryUrl(`content_type=event&fields.slug=${slug}&include=3`, preview)
 
   return (dispatch) => {
-    dispatch(requestEvent(event))
+    dispatch(requestEvent(slug))
 
     return fetch(url)
       .then(response => response.ok ? response.json() : { errorStatus: response.status })
-      .then(json => dispatch(receiveEvent(event, json)))
-      .catch(response => dispatch(receiveEvent(event, response)))
+      .then(json => dispatch(receiveEvent(slug, json, recurrenceDate)))
+      .catch(response => dispatch(receiveEvent(slug, response)))
   }
 }

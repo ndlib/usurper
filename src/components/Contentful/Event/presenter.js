@@ -14,6 +14,7 @@ import ServicePoint from '../ServicePoint'
 import ShareLinks from 'components/Interactive/ShareLinks'
 import OpenGraph from 'components/OpenGraph'
 import Media from 'components/Media'
+import RecurringIndicator from './RecurringIndicator'
 import Presenters from '../../Presenters'
 import Sponsorships from '../../Sponsorships'
 import AddToCalendar from 'components/Interactive/AddToCalendar'
@@ -43,7 +44,9 @@ const PagePresenter = ({ entry }) => {
       <div className='row'>
         <main className='col-md-8 article'>
           <div className='event-details'>
-            <div className='event-detail-date' aria-label={'Date'}>{entry.displayDate }</div>
+            <div className='event-detail-date' aria-label={'Date'}>
+              { entry.displayDate } <RecurringIndicator entry={entry} inline />
+            </div>
             <div className='event-detail-time' aria-label={'Time'}>
               <LibMarkdown>{ entry.displayTime }</LibMarkdown>
             </div>

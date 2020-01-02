@@ -14,7 +14,7 @@ export const CF_RECEIVE_ALLEVENTS = 'CF_RECEIVE_ALLEVENTS'
 const receiveAllEvents = (response) => {
   const error = {
     type: CF_RECEIVE_ALLEVENTS,
-    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
+    status: statuses.fromHttpStatusCode(response.status),
     error: response,
     receivedAt: Date.now(),
   }

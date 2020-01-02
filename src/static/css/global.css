@@ -2234,6 +2234,8 @@ main blockquote p {
 }
 
 .event-detail-time, .event-detail-date, .event-detail-location {
+  display: flex;
+  flex-flow: row nowrap;
   background-size: 24px;
   background-repeat: no-repeat;
   padding-left: 35px;

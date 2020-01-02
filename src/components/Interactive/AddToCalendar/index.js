@@ -103,6 +103,12 @@ AddToCalendar.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   location: PropTypes.string,
-  startDate: PropTypes.string.isRequired,
-  endDate: PropTypes.string.isRequired,
+  startDate: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date),
+  ]).isRequired,
+  endDate: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date),
+  ]).isRequired,
 }

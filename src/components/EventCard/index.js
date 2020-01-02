@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import RecurringIndicator from 'components/Contentful/Event/RecurringIndicator'
 import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
@@ -11,7 +12,7 @@ import './style.css'
 
 const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagClick }) => {
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
-  const linkPath = '/event/' + entry.slug
+  const linkPath = '/event/' + entry.slug + (entry.recurrenceDate ? `/${entry.recurrenceDate}` : '')
 
   const typeTag = entry.type ? {
     key: entry.type,
@@ -45,9 +46,7 @@ const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagC
               </div>
             )}
             <h2 itemProp='name'>{entry.title}</h2>
-            { entry.recurring && (
-              <div className='event-recurring'>Recurring</div>
-            )}
+            <RecurringIndicator entry={entry} />
           </Link>
           { showDescription && (
             <div className='description' itemProp='description'>

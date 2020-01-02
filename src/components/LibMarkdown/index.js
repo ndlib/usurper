@@ -76,7 +76,10 @@ LibLink.propTypes = {
 }
 
 LibMarkdown.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   className: PropTypes.string,
   itemProp: PropTypes.string,
 }

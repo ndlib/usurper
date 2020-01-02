@@ -5,20 +5,25 @@ import { bindActionCreators } from 'redux'
 import { fetchEvent } from 'actions/contentful/event'
 import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
-import { formatDate, hour12, isSameDay, makeLocalTimezone } from 'shared/DateLibs.js'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
 export class ContentfulEventContainer extends Component {
   componentDidMount () {
     const eventSlug = this.props.match.params.id
-    this.props.fetchEvent(eventSlug, this.props.preview)
+    const recurrenceDate = this.props.match.params.date
+
+    if (!this.props.data || this.props.data.slug !== eventSlug || this.props.data.recurrenceDate !== recurrenceDate) {
+      this.props.fetchEvent(eventSlug, this.props.preview, recurrenceDate)
+    }
   }
 
   componentDidUpdate (prevProps) {
     const oldSlug = prevProps.match.params.id
     const newSlug = this.props.match.params.id
-    if (newSlug !== oldSlug) {
-      this.props.fetchEvent(newSlug, this.props.preview)
+    const oldDate = prevProps.match.params.date
+    const newDate = this.props.match.params.date
+    if (newSlug !== oldSlug || newDate !== oldDate) {
+      this.props.fetchEvent(newSlug, this.props.preview, newDate)
     }
   }
 
@@ -31,33 +36,9 @@ export class ContentfulEventContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let data = state.cfEventEntry.json
-
-  if (data) {
-    const fields = data.fields
-
-    const startDate = new Date(fields.startDate)
-    const endDate = new Date(fields.endDate)
-
-    let displayDate = formatDate(startDate)
-    if (!isSameDay(startDate, endDate)) {
-      displayDate += ' – ' + formatDate(endDate)
-    }
-
-    const start = makeLocalTimezone(fields.startDate)
-    const end = endDate ? makeLocalTimezone(fields.endDate) : makeLocalTimezone(fields.startDate)
-    const displayTime = fields.timeOverride ? fields.timeOverride : `${hour12(start)} – ${hour12(end)}`
-
-    data = {
-      ...data.fields,
-      displayTime: displayTime,
-      displayDate: displayDate,
-    }
-  }
-
   return {
     status: state.cfEventEntry.status,
-    data: data,
+    data: state.cfEventEntry.json,
     preview: (new URLSearchParams(ownProps.location.search)).get('preview') === 'true',
   }
 }
@@ -77,7 +58,7 @@ ContentfulEventContainer.propTypes = {
   preview: PropTypes.bool,
 }
 
-const ContentfulEvent = connect(
+export const ContentfulEvent = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ContentfulEventContainer)
