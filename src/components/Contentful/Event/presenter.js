@@ -19,6 +19,10 @@ import Sponsorships from '../../Sponsorships'
 import AddToCalendar from 'components/Interactive/AddToCalendar'
 
 const PagePresenter = ({ entry }) => {
+  let body = entry.content
+  if (entry.audience) {
+    body += 'Open to ' + typy(entry.audience).safeArray.join(', ')
+  }
   return (
     <article
       className='container-fluid content-area'
@@ -57,7 +61,7 @@ const PagePresenter = ({ entry }) => {
               )
             }
           </div>
-          <LibMarkdown itemProp='articleBody'>{ entry.content }</LibMarkdown>
+          <LibMarkdown itemProp='articleBody'>{ body }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           <Sponsorships sponsors={entry.sponsors} />
           <Presenters presenters={typy(entry, 'presenters').safeArray} />
