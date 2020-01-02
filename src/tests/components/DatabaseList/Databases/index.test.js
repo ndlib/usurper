@@ -70,11 +70,17 @@ describe('components/DatabaseList/Databases', () => {
                   sys: {
                     id: 'doge',
                   },
+                  fields: {
+                    id: 'doge',
+                  },
                 },
               ],
               bestBets: [
                 {
                   sys: {
+                    id: 'doge',
+                  },
+                  fields: {
                     id: 'doge',
                   },
                 },
@@ -89,6 +95,9 @@ describe('components/DatabaseList/Databases', () => {
               subjects: [
                 {
                   sys: {
+                    id: 'woof',
+                  },
+                  fields: {
                     id: 'woof',
                   },
                 },

@@ -15,7 +15,7 @@ const Databases = (props) => {
     if (!props.subjectFilter.length) {
       return true
     }
-    return item.fields.subjects.some(fullSubject => props.subjectFilter.includes(fullSubject.sys.id))
+    return item.fields.subjects.some(fullSubject => props.subjectFilter.includes(fullSubject.fields.id))
   })
   const nonBestBets = filteredList.filter(db => {
     return !typy(db.fields, 'bestBets').safeArray.some(search => props.subjectFilter.some(subject => subject === search.sys.id))
