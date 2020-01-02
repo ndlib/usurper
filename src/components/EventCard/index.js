@@ -48,13 +48,12 @@ const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagC
             { entry.recurring && (
               <div className='event-recurring'>Recurring</div>
             )}
-
-            { showDescription && (
-              <div className='description' itemProp='description'>
-                <LibMarkdown>{entry.shortDescription}</LibMarkdown>
-              </div>
-            )}
           </Link>
+          { showDescription && (
+            <div className='description' itemProp='description'>
+              <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+            </div>
+          )}
           { Config.features.eventsFilteringEnabled && showTags && (
             <Tags groups={[typeTag]} />
           )}
