@@ -115,6 +115,8 @@ fi
 
 deploy_project () {
   current_project=$1
+  cdk_project=$2
+  cdk_stack_name=$3
   if [ $project = "all" ] || [ $project = $current_project ]
   then
     echo "------------ DEPLOYING: $current_project ------------"
@@ -131,22 +133,38 @@ deploy_project () {
       git checkout $branch
     fi
 
-    cd deploy
-
-    echo $base_directory/secret_$secretSet/$current_project/deploy-env
-    source $base_directory/secret_$secretSet/$current_project/deploy-env
-
-    echo "CMD: hesdeploy -s $stage --$deployType --yes $hesdeploy_extra" >> $LOG_DIR_BASE/logs/$current_project.log
-    if $(hesdeploy -s $stage --$deployType --yes $hesdeploy_extra >> $LOG_DIR_BASE/logs/$current_project.log)
+    if [ -n "$cdk_project" ]
     then
-      printf "${GREEN} SUCCESS: $current_project ${NC} \n"
+      pushd ../$cdk_project
+      echo "CMD: cdk deploy -c stage=$stage -c serviceStackName=$cdk_stack_name --require-approval=\"never\"" >> $LOG_DIR_BASE/logs/$current_project.log
+      if $(cdk deploy -c stage=$stage -c serviceStackName=$cdk_stack_name --require-approval="never" >> $LOG_DIR_BASE/logs/$current_project.log)
+      then
+        printf "${GREEN} SUCCESS: $current_project ${NC} \n"
+      else
+        printf "${RED} Failed: $current_project ${NC} \n"
+        echo "See deploy/logs/$current_project.log"
+      fi
+      echo "" >> $LOG_DIR_BASE/logs/$current_project.log
+      popd
     else
-      printf "${RED} Failed: $current_project ${NC} \n"
-      echo "See deploy/logs/$current_project.log"
-    fi
-     echo "" >> $LOG_DIR_BASE/logs/$current_project.log
+      cd deploy
 
-    cd ..
+      echo $base_directory/secret_$secretSet/$current_project/deploy-env
+      source $base_directory/secret_$secretSet/$current_project/deploy-env
+
+      echo "CMD: hesdeploy -s $stage --$deployType --yes $hesdeploy_extra" >> $LOG_DIR_BASE/logs/$current_project.log
+      if $(hesdeploy -s $stage --$deployType --yes $hesdeploy_extra >> $LOG_DIR_BASE/logs/$current_project.log)
+      then
+        printf "${GREEN} SUCCESS: $current_project ${NC} \n"
+      else
+        printf "${RED} Failed: $current_project ${NC} \n"
+        echo "See deploy/logs/$current_project.log"
+      fi
+      echo "" >> $LOG_DIR_BASE/logs/$current_project.log
+
+      cd ..
+    fi
+
     git checkout master > /dev/null
     popd
   else
@@ -168,6 +186,6 @@ deploy_project "gatekeeper"
 
 deploy_project "classes_api"
 
-deploy_project "user_preferences"
+deploy_project "user_preferences" "user_preferences_blueprints" "userPreferences-$stage"
 
 printf "${GREEN}Success${NC} \n"
