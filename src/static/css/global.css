@@ -2368,21 +2368,36 @@ p < img {
 
 .col-md-4.right {
   position: relative;
-
 }
 .col-md-4.right > .frame {
-  width: 450px;
-  height: 253px;
+  width: 311px;
+  height: 175px;
   overflow: hidden;
-    border: solid 2px #fff;
+  border: solid 2px #fff;
   -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
   -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
   background: #fff;
-  left: -66px;
+  margin: 1em 0;
   position: relative;
-   margin-bottom: -60px;
-   top: -100px;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 62em) {
+  .col-md-4.right > .frame {
+    top: -100px;
+    left: -20px;
+    margin: 0 0 -60px 0;
+  }
+}
+
+@media screen and (min-width: 1120px) {
+  .col-md-4.right > .frame {
+    width: 450px;
+    height: 253px;
+    left: -66px;
+  }
 }
 
 .news.cover {
@@ -2933,9 +2948,15 @@ body {
   width: 33%;
 }
 
-.viewNewsEvents {
+.viewAll.viewAllEvents {
   width: 211px;
   margin: 1.5em 0 1.5em 0;
+}
+
+@media screen and (min-width: 62em) {
+  .viewAll.viewAllEvents {
+    margin-left: 1rem;
+  }
 }
 
 #site-info dt{
@@ -3013,13 +3034,6 @@ line-height: 2em;
 
   #banner .jesus {
     background-position: right 0px top;
-  }
-  .col-md-4.right > .frame {
-    height: 175px;
-    left: -0;
-    top: 0;
-    width: 311px;
-    margin-bottom: 1.5em;
   }
 
   #footer-links li {
@@ -3250,15 +3264,10 @@ main .mobile-only h5 {
   }
 }
 
-
 @media screen and (max-width: 780px) {
   .nddotedu {
     position: relative;
     width: 310px !important;
-  }
-  .col-md-4.right > .frame {
-    top: 0;
-    margin-bottom: 1em;
   }
 
   .dept-prov, .header-hours {
@@ -3397,16 +3406,6 @@ main .mobile-only h5 {
       line-height: 1em;
     }
 }
-
-@media screen and (max-width:1120px) {
-    .col-md-4.right > .frame {
-      height: 175px;
-      left: -20px;
-      width: 311px;
-    }
-}
-
-
 
 @media screen and (max-width: 1200px) {
     .container-fluid {
