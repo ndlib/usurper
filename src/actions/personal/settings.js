@@ -54,7 +54,7 @@ export const setCircStatus = (enabled) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestUpdateSettings(KIND.circStatus))
-    const url = Config.userPrefsAPI + 'circOptIn'
+    const url = Config.userPrefsAPI + '/circOptIn'
     return fetch(url, {
       method: 'post',
       headers: {
@@ -81,7 +81,7 @@ const getSimpleSetting = (kind, defaultValue) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestSettings(kind, null))
-    const url = Config.userPrefsAPI + 'simpleSetting/' + kind
+    const url = Config.userPrefsAPI + '/simpleSetting/' + kind
     return fetch(url, {
       method: 'GET',
       headers: {
@@ -114,7 +114,7 @@ const setSimpleSetting = (kind, value) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestUpdateSettings(kind))
-    const url = Config.userPrefsAPI + 'simpleSetting/' + kind
+    const url = Config.userPrefsAPI + '/simpleSetting/' + kind
     return fetch(url, {
       method: 'POST',
       headers: {
