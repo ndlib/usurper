@@ -231,7 +231,8 @@ describe('components/Account/Favorites/Wizard', () => {
                       sys: { id: 'DONT_CHANGE_ME' },
                       fields: {
                         title: 'LEAVE_ME_BE',
-                        purl: '/srsly',
+                        url: '/srsly',
+                        canFavorite: true,
                       },
                     },
                   ],

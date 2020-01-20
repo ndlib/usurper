@@ -192,14 +192,24 @@ class Wizard extends Component {
         const hasSubjects = this.state.data[FAVORITES_KIND.subjects].length > 0
         if (!this.state.data[currentStepName] || this.state.data[currentStepName].length === 0) {
           if (hasSubjects) {
-            const relatedDbs = this.props.cfDatabases.data.filter((db) => (
-              db.sys && this.state.data[FAVORITES_KIND.subjects].find((subject) => (
-                typy(subject, 'fields.page.fields.relatedResources').safeArray.find((r) => r.sys.id === db.sys.id) ||
-                typy(subject, 'fields.page.fields.relatedExtraSections').safeArray.find((section) => (
-                  typy(section, 'fields.links').safeArray.find((r) => r.sys.id === db.sys.id)
-                ))
+            const canFavorite = (obj) => {
+              return typy(obj, 'sys.contentType.sys.id').safeString === 'resource' || typy(obj, 'fields.canFavorite').safeBoolean
+            }
+            const relatedDbs = []
+            this.state.data[FAVORITES_KIND.subjects].forEach((subject) => {
+              typy(subject, 'fields.page.fields.relatedResources').safeArray.forEach((r) => {
+                if (canFavorite(r)) {
+                  relatedDbs.push(r)
+                }
+              })
+              typy(subject, 'fields.page.fields.relatedExtraSections').safeArray.forEach((section) => (
+                typy(section, 'fields.links').safeArray.forEach((r) => {
+                  if (canFavorite(r)) {
+                    relatedDbs.push(r)
+                  }
+                })
               ))
-            ))
+            })
             const existingFavorites = typy(this.props.favorites, `${FAVORITES_KIND.databases}.items`).safeArray
             // Convert the related dbs to match the favorites model, then remove any which are already favorites, and finally sort them
             const newDbs = helper.sortList(

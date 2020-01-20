@@ -2,6 +2,7 @@ import typy from 'typy'
 
 import Config from 'shared/Configuration'
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 import {
   setHomeLibrary,
   setHideHomeFavorites,
@@ -75,7 +76,7 @@ export const getFavorites = (kind) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestFavorites(kind))
-    const url = Config.userPrefsAPI + 'favorites/' + kind
+    const url = Config.userPrefsAPI + '/favorites/' + kind
     return fetch(url, {
       method: 'get',
       headers: { 'Authorization': state.login.token },
@@ -85,7 +86,6 @@ export const getFavorites = (kind) => {
         receiveFavorites(kind, statuses.SUCCESS, json)
       ))
       .catch((e) => {
-        console.error(e)
         dispatch(receiveFavorites(kind, statuses.ERROR, e))
       })
   }
@@ -105,7 +105,7 @@ export const addFavorite = (kind, key, title, faveUrl) => {
 
     dispatch(requestUpdateFavorites(kind))
 
-    const fetchUrl = `${Config.userPrefsAPI}favorites/${kind}/${key}`
+    const fetchUrl = `${Config.userPrefsAPI}/favorites/${kind}/${key}`
     return fetch(fetchUrl, {
       method: 'POST',
       headers: { 'Authorization': state.login.token },
@@ -120,7 +120,6 @@ export const addFavorite = (kind, key, title, faveUrl) => {
         dispatch(receiveUpdateFavorites(kind, statuses.SUCCESS))
       })
       .catch((e) => {
-        console.error(e)
         dispatch(receiveUpdateFavorites(kind, statuses.ERROR, e))
       })
   }
@@ -132,7 +131,7 @@ export const removeFavorite = (kind, key) => {
 
     dispatch(requestUpdateFavorites(kind))
 
-    const url = `${Config.userPrefsAPI}favorites/${kind}/${key}`
+    const url = `${Config.userPrefsAPI}/favorites/${kind}/${key}`
     return fetch(url, {
       method: 'DELETE',
       headers: { 'Authorization': state.login.token },
@@ -143,7 +142,6 @@ export const removeFavorite = (kind, key) => {
         dispatch(receiveUpdateFavorites(kind, statuses.SUCCESS))
       })
       .catch((e) => {
-        console.error(e)
         dispatch(receiveUpdateFavorites(kind, statuses.ERROR, e))
       })
   }
@@ -155,7 +153,7 @@ export const setFavorites = (kind, favorites) => {
 
     dispatch(requestUpdateFavorites(kind))
 
-    const fetchUrl = `${Config.userPrefsAPI}favorites/${kind}`
+    const fetchUrl = `${Config.userPrefsAPI}/favorites/${kind}`
     return fetch(fetchUrl, {
       method: 'POST',
       headers: { 'Authorization': state.login.token },
@@ -167,7 +165,6 @@ export const setFavorites = (kind, favorites) => {
         dispatch(receiveUpdateFavorites(kind, statuses.SUCCESS))
       })
       .catch((e) => {
-        console.error(e)
         dispatch(receiveUpdateFavorites(kind, statuses.ERROR, e))
       })
   }
@@ -210,7 +207,7 @@ const convertDatabaseToFavorite = (database) => {
     output.push({
       itemKey: database.sys.id + '_link_0',
       title: database.fields.title,
-      url: database.fields.purl,
+      url: database.fields.purl || database.fields.url,
     })
   }
 
@@ -259,20 +256,23 @@ export const searchFavorites = (kind, searchText) => {
 
     dispatch(requestSearchFavorites(kind, searchText))
 
-    let url = Config.contentfulAPI + 'query?locale=en-US&query='
+    const promises = []
     if (kind === KIND.databases) {
-      url += encodeURIComponent(`content_type=resource&include=0&fields.title[match]=${searchText}`)
+      promises.push(fetch(helper.getContentfulQueryUrl(`content_type=resource&include=0&fields.title[match]=${searchText}`)))
+      promises.push(fetch(helper.getContentfulQueryUrl(`content_type=externalLink&include=0&fields.canFavorite=true&fields.title[match]=${searchText}`)))
     } else if (kind === KIND.subjects) {
-      url += encodeURIComponent(`content_type=internalLink&fields.context=Subject&include=2`)
+      promises.push(fetch(helper.getContentfulQueryUrl(`content_type=internalLink&fields.context=Subject&include=2`)))
     }
 
-    return fetch(url)
-      .then(response => response.json())
-      .then(json => dispatch(
-        receiveSearchFavorites(kind, searchText, statuses.SUCCESS, convertContentfulToFavorites(json, kind))
-      ))
+    return Promise.all(promises)
+      .then(results => Promise.all(results.map(response => response.json())))
+      .then(allResults => {
+        const flattened = [].concat(...allResults)
+        return dispatch(
+          receiveSearchFavorites(kind, searchText, statuses.SUCCESS, convertContentfulToFavorites(flattened, kind))
+        )
+      })
       .catch((e) => {
-        console.error(e)
         dispatch(receiveSearchFavorites(kind, searchText, statuses.ERROR, e))
       })
   }
