@@ -39,7 +39,7 @@ const PagePresenter = ({ cfPageEntry }) => (
           className='p-resources'
           title={cfPageEntry.fields.relatedResourcesTitleOverride
             ? cfPageEntry.fields.relatedResourcesTitleOverride
-            : 'Resources'}
+            : 'Featured Resources'}
           showImages={false}
         >
           { cfPageEntry.fields.relatedResources }
@@ -47,7 +47,7 @@ const PagePresenter = ({ cfPageEntry }) => (
         <Related className='p-guides' title='Guides' showTitle={false} showImages={false}>
           { cfPageEntry.fields.libguides }
         </Related>
-        <Related className='p-services' title='Services'>{ cfPageEntry.fields.relatedServices }</Related>
+        <Related className='p-services' title='Featured Services'>{ cfPageEntry.fields.relatedServices }</Related>
         {
           cfPageEntry.fields.relatedExtraSections && cfPageEntry.fields.relatedExtraSections.map((entry, index) => {
             const fields = entry.fields
