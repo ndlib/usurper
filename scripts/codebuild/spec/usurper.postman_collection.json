@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "103e613b-a077-478b-8df3-1fd5a69f7fac",
+		"name": "Usurper - QA",
+		"description": "# Usurper\n\nThis collection will run basic smoke tests to ensure that the Usurper site is running as expected.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Site Index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "23964686-781e-4e64-a52c-e64255bd1558",
+						"exec": [
+							"// Load the HTML into cheerio, which will let us easily select attributes for testing.",
+							"const $ = cheerio.load(pm.response.text());",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 5000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+							"});",
+							"pm.test(\"Title matches Hesburgh Library\", function () {",
+							"    pm.expect($('title').text()).to.include(\"Hesburgh Library\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{UsurperURL}}/",
+					"protocol": "https",
+					"host": [
+						"{{UsurperURL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ebfe2bc7-b010-47d8-b67a-5ec8443c7feb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3dc89e23-51b1-44a0-b587-21c2047dbb66",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [],
+	"protocolProfileBehavior": {}
+}
