@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2020.2](https://github.com/ndlib/usurper/tree/v2020.2) "Distant Glimmer"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.1...v2020.2)
+
+### Features
+- Adds ability to favorite more resources and libguides. [#774](https://github.com/ndlib/usurper/pull/774)
+
+### Other Changes
+- Changed header for resources and services on some pages. [#778](https://github.com/ndlib/usurper/pull/778)
+- Moved View All Events button to the bottom of page in mobile view. [#776](https://github.com/ndlib/usurper/pull/776)
+- Internal changes to deployment of services. [#771](https://github.com/ndlib/usurper/pull/771) [#779](https://github.com/ndlib/usurper/pull/779)
+
 ## [v2020.1](https://github.com/ndlib/usurper/tree/v2020.1) "Perfect Vision"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2019.25...v2020.1)
 
