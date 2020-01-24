@@ -1,6 +1,6 @@
 # Change Log
 
-## [v2020.3](https://github.com/ndlib/usurper/tree/v2020.2) "Distant Glimmer"
+## [v2020.3](https://github.com/ndlib/usurper/tree/v2020.3) "Distant Glimmer"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.1...v2020.3)
 
 ### Features
