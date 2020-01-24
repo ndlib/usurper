@@ -115,7 +115,7 @@ let handler = async () => {
         const data = await ssm.getParameter(params).promise()
         psOutputs[psList[j].name] = data.Parameter.Value
       } catch(err) {
-        console.error(`${RED}Unable to read ${psList[j]} from parameter store.${NC}`)
+        console.error(`${RED}Unable to read ${psList[j].name} from parameter store.${NC}`)
         if (process.env.CI) {
           console.error(err)
         }
