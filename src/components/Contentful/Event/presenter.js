@@ -76,7 +76,6 @@ const PagePresenter = ({ entry }) => {
             startDate={entry.startDate}
             endDate={entry.endDate}
           />
-          <Link to='/events' className='viewAll viewNewsEvents'>View All Events</Link>
         </main>
         <aside className='col-md-4 right'>
           <Image cfImage={entry.representationalImage} className='cover' itemProp='image' />
@@ -87,6 +86,7 @@ const PagePresenter = ({ entry }) => {
           <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.relatedPages }</Related>
         </aside>
       </div>
+      <Link to='/events' className='viewAll viewAllEvents'>View All Events</Link>
     </article>
   )
 }
