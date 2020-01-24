@@ -51,11 +51,11 @@ describe('components/Contentful/Page/presenter', () => {
   })
 
   it('should render Related for related resources', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Related className="p-resources" title="Resources" showImages={false}>Fake related resources</Related>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Related className="p-resources" title="Featured Resources" showImages={false}>Fake related resources</Related>)).toBe(true)
   })
 
   it('should render Related for related services', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Related className="p-services" title="Services" showImages={true}>Fake related services</Related>)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<Related className="p-services" title="Featured Services" showImages={true}>Fake related services</Related>)).toBe(true)
   })
 
   it('should render Related for libguides', () => {
