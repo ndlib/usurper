@@ -1071,6 +1071,7 @@ label[for='q']:after, .dropdown label:after {
 /* add to calendar */
 .addToCalendar {
   display: inline-block;
+  position: relative;
 }
 
 .addToCalendar .calendar {
@@ -1080,6 +1081,7 @@ label[for='q']:after, .dropdown label:after {
 .addToCalendar .dropdown {
   position: absolute;
   z-index: 1;
+  right: 0;
 }
 
 .addToCalendar .dropdown a {
@@ -2215,16 +2217,29 @@ main blockquote p {
   text-decoration: none;
 }
 
-.event-details {
+.event-info {
   max-width: calc(100% - 35px);
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto auto auto;
-  grid-gap: 0.3em;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.event-buttons {
+  margin-bottom: 35px;
+  margin-right: 1em;
+}
+
+.event-details {
+  display: block;
   color: #5D6A83;
   font-size: 1.3em;
   font-family: GPCMed, sans-serif;
   margin-bottom: 35px;
+  margin-right: 1em;
+}
+
+.event-details > *:not(:last-child) {
+  margin-bottom: 0.3em;
 }
 
 .event-details p {

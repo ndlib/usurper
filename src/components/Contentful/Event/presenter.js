@@ -43,39 +43,43 @@ const PagePresenter = ({ entry }) => {
       <SearchProgramaticSet open={false} />
       <div className='row'>
         <main className='col-md-8 article'>
-          <div className='event-details'>
-            <div className='event-detail-date' aria-label={'Date'}>
-              { entry.displayDate } <RecurringIndicator entry={entry} inline />
+          <div className='event-info'>
+            <div className='event-details'>
+              <div className='event-detail-date' aria-label={'Date'}>
+                { entry.displayDate } <RecurringIndicator entry={entry} inline />
+              </div>
+              <div className='event-detail-time' aria-label={'Time'}>
+                <LibMarkdown>{ entry.displayTime }</LibMarkdown>
+              </div>
+              {
+                entry.locationText && (
+                  <div
+                    className='event-detail-location'
+                    aria-label='Location'
+                    itemScope
+                    itemType='http://schema.org/Place'
+                    itemProp='location'
+                  >
+                    <LibMarkdown itemProp='address'>{ entry.locationText }</LibMarkdown>
+                  </div>
+                )
+              }
             </div>
-            <div className='event-detail-time' aria-label={'Time'}>
-              <LibMarkdown>{ entry.displayTime }</LibMarkdown>
+            <div className='event-buttons'>
+              <ShareLinks title={entry.title} />
+              <AddToCalendar
+                title={entry.title}
+                description={entry.shortDescription}
+                location={entry.locationText}
+                startDate={entry.startDate}
+                endDate={entry.endDate}
+              />
             </div>
-            {
-              entry.locationText && (
-                <div
-                  className='event-detail-location'
-                  aria-label='Location'
-                  itemScope
-                  itemType='http://schema.org/Place'
-                  itemProp='location'
-                >
-                  <LibMarkdown itemProp='address'>{ entry.locationText }</LibMarkdown>
-                </div>
-              )
-            }
           </div>
           <LibMarkdown itemProp='articleBody'>{ body }</LibMarkdown>
           <Related className='p-resources' title='Resources' showImages={false}>{ entry.relatedResources }</Related>
           <Sponsorships sponsors={entry.sponsors} />
           <Presenters presenters={typy(entry, 'presenters').safeArray} />
-          <ShareLinks title={entry.title} />
-          <AddToCalendar
-            title={entry.title}
-            description={entry.shortDescription}
-            location={entry.locationText}
-            startDate={entry.startDate}
-            endDate={entry.endDate}
-          />
         </main>
         <aside className='col-md-4 right'>
           <Image cfImage={entry.representationalImage} className='cover' itemProp='image' />
