@@ -10,39 +10,31 @@ import Empty from './Empty'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
 export class FloorSearch extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = { error: false }
-  }
-
-  componentWillMount () {
+  componentDidMount () {
     if (this.props.searchString && this.props.redirect.status === statuses.NOT_FETCHED) {
       this.props.searchFloorMaps(this.props.searchString)
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    const status = nextProps.redirect.status
-    const slug = nextProps.redirect.slug
-    const servicePoint = nextProps.redirect.servicePoint
-
-    // if we found a floor, redirect to that floor, otherwise error
+  componentDidUpdate () {
+    const { status, slug, servicePoint } = { ...this.props.redirect }
+    // if we found a floor, redirect to that floor
     if (status === statuses.SUCCESS && slug) {
       let url = slug + this.props.searchString
       if (servicePoint) {
         url += `&sp=${servicePoint}`
       }
       this.props.history.push(url)
-    } else if (status === statuses.ERROR || (status === statuses.SUCCESS && !slug)) {
-      this.setState({ error: true })
     }
   }
 
   render () {
-    if (this.state.error) {
+    // Show error if fetch has finished and floor was not found
+    const { status, slug } = { ...this.props.redirect }
+    if (status === statuses.ERROR || (status === statuses.SUCCESS && !slug)) {
       return <Empty location={this.props.location} />
     }
+
     return <Loading />
   }
 }
