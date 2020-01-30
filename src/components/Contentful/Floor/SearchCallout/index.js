@@ -27,17 +27,15 @@ export class SearchCallout extends Component {
 
   render () {
     const extraData = this.getDataFromURI(this.props.location.search)
+    if (Object.keys(extraData).length === 0) {
+      return null
+    }
+
     return (
-      <div>
-        {
-          Object.keys(extraData).length > 0 && (
-            <div className='item-data'>
-              <p><i>{extraData.title}</i>. {extraData.author}</p>
-              <strong>{extraData.call_number}</strong>
-              <p>{extraData.collection_display}</p>
-            </div>
-          )
-        }
+      <div className='item-data'>
+        <p><i>{extraData.title}</i>. {extraData.author}</p>
+        <strong>{extraData.call_number}</strong>
+        <p>{extraData.collection_display}</p>
       </div>
     )
   }

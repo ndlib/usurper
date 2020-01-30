@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
 import searchFloorMaps from 'actions/floorSearch'
@@ -8,7 +9,7 @@ import Loading from 'components/Messages/Loading'
 import Empty from './Empty'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
-class FloorSearch extends Component {
+export class FloorSearch extends Component {
   constructor (props) {
     super(props)
 
@@ -24,10 +25,15 @@ class FloorSearch extends Component {
   componentWillReceiveProps (nextProps) {
     const status = nextProps.redirect.status
     const slug = nextProps.redirect.slug
+    const servicePoint = nextProps.redirect.servicePoint
 
     // if we found a floor, redirect to that floor, otherwise error
     if (status === statuses.SUCCESS && slug) {
-      this.props.history.push(slug + this.props.searchString)
+      let url = slug + this.props.searchString
+      if (servicePoint) {
+        url += `&sp=${servicePoint}`
+      }
+      this.props.history.push(url)
     } else if (status === statuses.ERROR || (status === statuses.SUCCESS && !slug)) {
       this.setState({ error: true })
     }
@@ -52,9 +58,7 @@ export const mapStateToProps = (state, ownProps) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return {
-    searchFloorMaps: (searchString) => dispatch(searchFloorMaps(searchString)),
-  }
+  return bindActionCreators({ searchFloorMaps }, dispatch)
 }
 
 FloorSearch.propTypes = {

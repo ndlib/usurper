@@ -10,7 +10,7 @@ import ServicePoint from '../ServicePoint'
 import SearchCallout from './SearchCallout'
 import mapkey from 'static/images/key.svg'
 
-const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
+const FloorPresenter = ({ cfFloorEntry, cfServicePoint, servicePointSlug, location }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid floorplan'>
     <PageTitle title={cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
@@ -21,7 +21,7 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
         <Image cfImage={cfFloorEntry.fields.image} className='floor-map' />
       </div>
       <div className='col-md-4 col-sm-5 col-xs-12 right floor-info'>
-        <ServicePoint cfServicePoint={cfServicePoint} />
+        <ServicePoint cfServicePoint={cfServicePoint} slug={servicePointSlug} />
         <LibMarkdown>{cfFloorEntry.fields.shortDescription}</LibMarkdown>
         { cfFloorEntry.fields.callNumberRange && (<p>Call Number Ranges: {cfFloorEntry.fields.callNumberRange}</p>) }
         <p>&nbsp;</p>
@@ -39,6 +39,7 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
 FloorPresenter.propTypes = {
   cfFloorEntry: PropTypes.object.isRequired,
   cfServicePoint: PropTypes.object,
+  servicePointSlug: PropTypes.string,
   location: PropTypes.object.isRequired,
 }
 
