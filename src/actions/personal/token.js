@@ -18,7 +18,11 @@ const oktaConfig = {
 export const initLogin = () => {
   return () => {
     // Save the user's requested url to local storage so we can redirect them after authenticating
-    window.localStorage.setItem('redirectUrl', window.location.href)
+    try {
+      window.localStorage.setItem('redirectUrl', window.location.href)
+    } catch (e) {
+      console.warn('Local storage is not available.')
+    }
 
     const authClient = new OktaAuth(oktaConfig)
     authClient.token.getWithRedirect({
@@ -35,14 +39,18 @@ export const initLogin = () => {
 
 const handleToken = (dispatch, data) => {
   if (data.idToken) {
-    const redirectUrl = window.localStorage.getItem('redirectUrl')
-    if (redirectUrl) {
-      // Remove it so that subsequent requests for the token do not cause redirects
-      window.localStorage.removeItem('redirectUrl')
+    try {
+      const redirectUrl = window.localStorage.getItem('redirectUrl')
+      if (redirectUrl) {
+        // Remove it so that subsequent requests for the token do not cause redirects
+        window.localStorage.removeItem('redirectUrl')
 
-      // Now redirect the browser
-      window.location.assign(redirectUrl)
-      return
+        // Now redirect the browser
+        window.location.assign(redirectUrl)
+        return
+      }
+    } catch (e) {
+      console.warn('Local storage is not available.')
     }
 
     dispatch(
