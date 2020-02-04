@@ -59,6 +59,7 @@ const RedirectRoutes = [
   { path: '/rome-library-guidelines', target: '/rome-collection-guidelines' },
   { path: '/rome-global-gateway-faq', target: '/rome-faqs' },
   { path: '/jerusalem-global-gateway', target: '/jerusalem-tantur' },
+  { path: '/contact-quick-guide', target: '/hours' },
 
   // index.php redirects
   { path: '/index.php', target: '/' },
