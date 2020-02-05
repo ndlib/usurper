@@ -19,7 +19,7 @@ export const initLogin = () => {
   return () => {
     // Save the user's requested url to local storage so we can redirect them after authenticating
     try {
-      window.localStorage.setItem('redirectUrl', window.location.href)
+      window.sessionStorage.setItem('redirectUrl', window.location.href)
     } catch (e) {
       console.warn('Local storage is not available.')
     }
@@ -40,10 +40,10 @@ export const initLogin = () => {
 const handleToken = (dispatch, data) => {
   if (data.idToken) {
     try {
-      const redirectUrl = window.localStorage.getItem('redirectUrl')
+      const redirectUrl = window.sessionStorage.getItem('redirectUrl')
       if (redirectUrl) {
         // Remove it so that subsequent requests for the token do not cause redirects
-        window.localStorage.removeItem('redirectUrl')
+        window.sessionStorage.removeItem('redirectUrl')
 
         // Now redirect the browser
         window.location.assign(redirectUrl)
