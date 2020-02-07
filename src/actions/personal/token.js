@@ -15,6 +15,10 @@ const oktaConfig = {
   },
 }
 
+const receiveAction = (status, token) => {
+  return states.receivePersonal('login', status, { token: token })
+}
+
 export const initLogin = () => {
   return () => {
     // Save the user's requested url to local storage so we can redirect them after authenticating
@@ -50,24 +54,12 @@ const handleToken = (dispatch, data) => {
         return
       }
     } catch (e) {
-      console.warn('Local storage is not available.')
+      console.warn('Session storage is not available.')
     }
 
-    dispatch(
-      states.receivePersonal(
-        'login',
-        statuses.SUCCESS,
-        { token: data.idToken }
-      )
-    )
+    dispatch(receiveAction(statuses.SUCCESS, data.idToken))
   } else {
-    dispatch(
-      states.receivePersonal(
-        'login',
-        statuses.UNAUTHENTICATED,
-        { token: null }
-      )
-    )
+    dispatch(receiveAction(statuses.UNAUTHENTICATED))
   }
 }
 
@@ -88,14 +80,12 @@ const getToken = () => {
                 authClient.tokenManager.add('idToken', idToken)
                 handleToken(dispatch, idToken)
               })
-              .catch(error => console.error(error))
+              .catch(error => {
+                console.error(error)
+                dispatch(receiveAction(statuses.UNAUTHENTICATED))
+              })
           } else {
-            dispatch(
-              states.receivePersonal(
-                'login',
-                statuses.UNAUTHENTICATED,
-              )
-            )
+            dispatch(receiveAction(statuses.UNAUTHENTICATED))
           }
         })
     } catch {
