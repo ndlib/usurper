@@ -95,7 +95,7 @@ export const mapStateToProps = (state, ownProps) => {
   const hasItems = (databaseStatus === statuses.SUCCESS && favorites[FAVE_KIND.databases].items.length > 0) ||
     (subjectStatus === statuses.SUCCESS && favorites[FAVE_KIND.subjects].items.length > 0)
 
-  const loggedIn = !!(personal.login && personal.login.token)
+  const loggedIn = !!(personal.login && personal.login.token && personal.login.state === statuses.SUCCESS)
   const hlStatus = settings[SETTING_KIND.homeLibrary].state
   const locationSlug = (() => {
     if (hlStatus === statuses.SUCCESS) {
@@ -111,7 +111,7 @@ export const mapStateToProps = (state, ownProps) => {
     login: personal.login,
     hideFavorites: (loggedIn && (
       settings[SETTING_KIND.hideHomeFavorites].state !== statuses.SUCCESS || !!settings[SETTING_KIND.hideHomeFavorites].data
-    )) || (!loggedIn && (ownProps.hideFavoritesCookie || personal.login.state === statuses.ERROR)),
+    )) || (!loggedIn && (ownProps.hideFavoritesCookie || [statuses.UNAUTHORIZED, statuses.ERROR].includes(personal.login.state))),
     hideFavoritesPref: settings[SETTING_KIND.hideHomeFavorites],
     favoriteLocationSlug: locationSlug,
     favoritesStatus: combinedStatus,
