@@ -19,6 +19,13 @@ body {
   image-rendering: crisp-edges;
 }
 
+/* mobile safari likes to round input boxes which is pretty silly */
+input {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -webkit-appearance: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: GPMed, sans-serif;
   margin-top: 0;
@@ -1388,8 +1395,10 @@ section input[type="search"] {
   display: -ms-grid;
 }
 
-.uSearchBox label {
-
+.uSearchBox input {
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 @supports not (display:grid) {
