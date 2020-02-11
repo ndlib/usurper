@@ -20,7 +20,7 @@ body {
 }
 
 /* mobile safari likes to round input boxes which is pretty silly */
-input {
+input[type="search"] {
   border-radius: 0;
   -webkit-border-radius: 0;
   -webkit-appearance: none;
