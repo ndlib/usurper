@@ -15,10 +15,18 @@ const oktaConfig = {
   },
 }
 
+const receiveAction = (status, token) => {
+  return states.receivePersonal('login', status, { token: token })
+}
+
 export const initLogin = () => {
   return () => {
     // Save the user's requested url to local storage so we can redirect them after authenticating
-    window.localStorage.setItem('redirectUrl', window.location.href)
+    try {
+      window.sessionStorage.setItem('redirectUrl', window.location.href)
+    } catch (e) {
+      console.warn('Local storage is not available.')
+    }
 
     const authClient = new OktaAuth(oktaConfig)
     authClient.token.getWithRedirect({
@@ -35,31 +43,23 @@ export const initLogin = () => {
 
 const handleToken = (dispatch, data) => {
   if (data.idToken) {
-    const redirectUrl = window.localStorage.getItem('redirectUrl')
-    if (redirectUrl) {
-      // Remove it so that subsequent requests for the token do not cause redirects
-      window.localStorage.removeItem('redirectUrl')
+    try {
+      const redirectUrl = window.sessionStorage.getItem('redirectUrl')
+      if (redirectUrl) {
+        // Remove it so that subsequent requests for the token do not cause redirects
+        window.sessionStorage.removeItem('redirectUrl')
 
-      // Now redirect the browser
-      window.location.assign(redirectUrl)
-      return
+        // Now redirect the browser
+        window.location.assign(redirectUrl)
+        return
+      }
+    } catch (e) {
+      console.warn('Session storage is not available.')
     }
 
-    dispatch(
-      states.receivePersonal(
-        'login',
-        statuses.SUCCESS,
-        { token: data.idToken }
-      )
-    )
+    dispatch(receiveAction(statuses.SUCCESS, data.idToken))
   } else {
-    dispatch(
-      states.receivePersonal(
-        'login',
-        statuses.UNAUTHENTICATED,
-        { token: null }
-      )
-    )
+    dispatch(receiveAction(statuses.UNAUTHENTICATED))
   }
 }
 
@@ -80,14 +80,12 @@ const getToken = () => {
                 authClient.tokenManager.add('idToken', idToken)
                 handleToken(dispatch, idToken)
               })
-              .catch(error => console.error(error))
+              .catch(error => {
+                console.error(error)
+                dispatch(receiveAction(statuses.UNAUTHENTICATED))
+              })
           } else {
-            dispatch(
-              states.receivePersonal(
-                'login',
-                statuses.UNAUTHENTICATED,
-              )
-            )
+            dispatch(receiveAction(statuses.UNAUTHENTICATED))
           }
         })
     } catch {

@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2020.4](https://github.com/ndlib/usurper/tree/v2020.4) "Timid Tuesday"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.3...v2020.4)
+
+### Bug Fixes
+- Fixed infinite loading indicators on home when account not authorized. [#794](https://github.com/ndlib/usurper/pull/794)
+- Fixed search box edges appearing rounded on mobile Safari. [#796](https://github.com/ndlib/usurper/pull/796)
+
+### Other Changes
+- Moved share buttons on event pages to the top of the page. [#782](https://github.com/ndlib/usurper/pull/782)
+- Added redirects for some old page URLs. [#786](https://github.com/ndlib/usurper/pull/786) [#795](https://github.com/ndlib/usurper/pull/795)
+- Fixed internal logging issue. [#785](https://github.com/ndlib/usurper/pull/785)
+- Redesigned infrastructure for checkout history and favorites to provide better stability.
+
 ## [v2020.3](https://github.com/ndlib/usurper/tree/v2020.3) "Distant Glimmer"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.1...v2020.3)
 

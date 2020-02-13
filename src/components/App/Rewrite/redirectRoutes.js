@@ -59,6 +59,8 @@ const RedirectRoutes = [
   { path: '/rome-library-guidelines', target: '/rome-collection-guidelines' },
   { path: '/rome-global-gateway-faq', target: '/rome-faqs' },
   { path: '/jerusalem-global-gateway', target: '/jerusalem-tantur' },
+  { path: '/contact-quick-guide', target: '/hours' },
+  { path: '/carey-auditorium', target: '/room-reservations' },
 
   // index.php redirects
   { path: '/index.php', target: '/' },
