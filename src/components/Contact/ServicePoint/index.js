@@ -89,16 +89,10 @@ const Contact = (props) => {
     )
   }
 
-  let accessNote
-  if (sp.accessNote) {
-    // this is hidden in css on the contact page
-    accessNote = <LibMarkdown className='access-note'>{ sp.accessNote }</LibMarkdown>
-  }
-  let mapNote
-  if (sp.mapNote) {
-    // this is hidden in css except on map page
-    mapNote = <LibMarkdown className='map-note'>{ sp.mapNote }</LibMarkdown>
-  }
+  // this is hidden in css on the contact page
+  const accessNote = sp.accessNote ? <LibMarkdown className='access-note'>{ sp.accessNote }</LibMarkdown> : null
+  // this is hidden in css except on map page
+  const mapNote = sp.mapNote ? <LibMarkdown className='map-note'>{ sp.mapNote }</LibMarkdown> : null
 
   // this is hidden in css everywhere except the contact page
   let webPage
