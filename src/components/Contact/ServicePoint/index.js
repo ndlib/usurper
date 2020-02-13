@@ -94,6 +94,11 @@ const Contact = (props) => {
     // this is hidden in css on the contact page
     accessNote = <LibMarkdown className='access-note'>{ sp.accessNote }</LibMarkdown>
   }
+  let mapNote
+  if (sp.mapNote) {
+    // this is hidden in css except on map page
+    mapNote = <LibMarkdown className='map-note'>{ sp.mapNote }</LibMarkdown>
+  }
 
   // this is hidden in css everywhere except the contact page
   let webPage
@@ -124,6 +129,7 @@ const Contact = (props) => {
         {webPage}
         {fax}
       </ul>
+      {mapNote}
     </div>
   )
   const limitedDisplay = (

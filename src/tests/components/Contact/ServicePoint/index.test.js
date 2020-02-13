@@ -14,6 +14,7 @@ const servicePointProp = {
   sys: {},
   fields: {
     accessNote: 'Come on in.',
+    mapNote: 'Look at this place.',
     title: 'Music Library',
     slug: 'musiclibrary',
     type: 'Library',
@@ -130,6 +131,11 @@ describe('components/Contact/ServicePoint', () => {
       expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
     })
 
+    it('should render map note markdown', () => {
+      const find = <LibMarkdown>{props.servicePoint.fields.mapNote}</LibMarkdown>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+    })
+
     it('should link to page provided if service point has a circular reference to page', () => {
       const find = <Link to={props.page.fields.slug}>{expect.anything()}</Link>
       expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
@@ -165,6 +171,11 @@ describe('components/Contact/ServicePoint', () => {
     it('should render access note markdown', () => {
       const find = <LibMarkdown>{props.servicePoint.fields.accessNote}</LibMarkdown>
       expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+    })
+
+    it('should NOT render map note markdown', () => {
+      const find = <LibMarkdown>{props.servicePoint.fields.mapNote}</LibMarkdown>
+      expect(enzymeWrapper.containsMatchingElement(find)).toBe(false)
     })
 
     it('should NOT render phone number', () => {
