@@ -1,0 +1,19 @@
+.landing-page-list .card-divider:last-of-type {
+  display: none;
+}
+
+.landing-page-sidebar {
+  order: -1;
+}
+
+@media screen and (min-width: 48em) {
+  .landing-page-sidebar {
+    order: 2;
+  }
+
+  /* prevent updating filters from causing the scrollbar to jump by disabling anchor point on main page content */
+  .landing-page-list {
+    order: 1;
+    overflow-anchor: none;
+  }
+}

@@ -86,23 +86,30 @@ export class ImageContainer extends Component {
       console.log('Image load error')
     }
 
-    return <Presenter
-      src={this.props.src}
-      alt={this.props.alt}
-      className={this.props.className}
-      ariaHidden={this.props.ariaHidden}
-      itemProp={this.props.itemProp}
-      onError={this.onError}
-    />
+    return (
+      <Presenter
+        src={this.props.src}
+        alt={this.props.alt}
+        className={this.props.className}
+        containerClassName={this.props.containerClassName}
+        ariaHidden={this.props.ariaHidden}
+        itemProp={this.props.itemProp}
+        onError={this.onError}
+      >
+        {this.props.children}
+      </Presenter>
+    )
   }
 }
 
 ImageContainer.propTypes = {
   src: PropTypes.string,
   className: PropTypes.string,
+  containerClassName: PropTypes.string,
   alt: PropTypes.string,
   ariaHidden: PropTypes.bool,
   itemProp: PropTypes.string,
+  children: PropTypes.any,
 
   fetchEntry: PropTypes.func.isRequired,
 

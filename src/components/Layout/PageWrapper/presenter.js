@@ -9,19 +9,24 @@ import 'static/css/print.css'
 import Config from 'shared/Configuration'
 import spacer from 'static/images/spacer.gif'
 const PageWrapper = (props) => {
+  const isHome = window.location.pathname === '/'
   return (
-    <div onClick={props.clickOnPage} className={window.location.pathname === '/' ? 'home' : 'not-home'}>
+    <div onClick={props.clickOnPage} className={isHome ? 'home' : 'not-home'}>
       <meta id='nd-version' content={Config.environment} />
       <a href='#maincontent' className='skip'>
         <img src={spacer} className='skip' width='0' height='0' border='0' alt='skip to content' />
       </a>
 
       <Header {...props} />
-      <div id='maincontent' className={'container-fluid content'}>
-        <span id='top' />
+      { isHome ? ( // home has a unique layout that doesn't follow the same wrapper
+        props.children
+      ) : (
+        <div id='maincontent' className={'container-fluid content'}>
+          <span id='top' />
 
-        {props.children}
-      </div>
+          {props.children}
+        </div>
+      )}
       <Footer />
     </div>
   )

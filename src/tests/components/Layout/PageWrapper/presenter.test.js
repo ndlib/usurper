@@ -36,8 +36,4 @@ describe('components/Layout/PageWrapper/presenter.js', () => {
   it('Renders a Footer component', () => {
     expect(enzymeWrapper.containsMatchingElement(<Footer />)).toBe(true)
   })
-
-  it('Has a div with \'container-fluid\'', () => {
-    expect(enzymeWrapper.find('.container-fluid').exists()).toBe(true)
-  })
 })

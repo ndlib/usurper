@@ -21,7 +21,7 @@ export class Facet extends Component {
       newValues.push(changed.key)
     }
 
-    this.props.onChangeCallback(this.props.name.toLowerCase(), newValues)
+    this.props.onChangeCallback(this.props.name, newValues)
   }
 
   render () {

@@ -18,7 +18,7 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, location }) => (
       <div className='col-md-8 col-sm-7 floor'>
         <SearchCallout location={location} />
 
-        <Image cfImage={cfFloorEntry.fields.image} className='floor-map' />
+        <Image cfImage={cfFloorEntry.fields.image} className='floor-map' containerClassName='block' />
       </div>
       <div className='col-md-4 col-sm-5 col-xs-12 right floor-info'>
         <ServicePoint cfServicePoint={cfServicePoint} />

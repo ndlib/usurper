@@ -1,28 +1,41 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import DateFilter from './DateFilter'
-import EventsWrapper from '../Wrapper'
+import LandingPageWrapper from '../../Wrapper'
+import Facets from '../facets'
+import EventCard from 'components/EventCard'
+import DateFilter from 'components/Interactive/DateFilter'
 
 const Presenter = (props) => {
   return (
-    <EventsWrapper
+    <LandingPageWrapper
       linkPath={'/events' + props.location.search}
       linkText='Current Events'
       pageTitle={props.pageTitle}
       pageDate={props.pageDate}
-      events={props.events}
-      filteredEvents={props.filteredEvents}
+      entries={props.events}
+      filteredEntries={props.filteredEvents}
       location={props.location}
       history={props.history}
+      typeLabel='Events'
+      allEntriesStatus={props.allEventsStatus}
+      facets={Facets}
+      entryCardComponent={EventCard}
+      entryCardProps={{
+        showDescription: true,
+        showImage: true,
+        showTags: true,
+      }}
+      filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
+      sortFields={['startDate']}
     >
       <DateFilter
-        events={props.events}
+        entries={props.events}
         filterYear={props.filterYear}
         filterMonth={props.filterMonth}
         location={props.location}
       />
-    </EventsWrapper>
+    </LandingPageWrapper>
   )
 }
 
@@ -31,6 +44,7 @@ Presenter.propTypes = {
   pageDate: PropTypes.string,
   events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
+  allEventsStatus: PropTypes.string.isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
   location: PropTypes.shape({

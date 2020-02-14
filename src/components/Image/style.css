@@ -1,0 +1,22 @@
+.imageContainer {
+  display: inline-block;
+  position: relative;
+}
+
+.imageContainer img {
+  display: block;
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  color: white;
+  background-color: rgba(12, 35, 64, 0.8);
+  text-align: right;
+  padding: 4px 6px 4px 0;
+  text-transform: uppercase;
+  font-family: GPMed, sans-serif;
+  font-size: 12px;
+}

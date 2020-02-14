@@ -22,7 +22,7 @@ export const filterList = (list, filterFields, filterValue, exactMatch) => {
       }
       return filterFields.some((field) => {
         if (typy(item, field).isString) {
-          return normalize(item[field]).indexOf(value) >= 0
+          return normalize(typy(item, field).safeString).indexOf(value) >= 0
         } else {
           // Sometimes you want to search an array for a value. Typy can dive throw multiple object properties in a row,
           // but can't with arrays. This helper supports an arbitrary syntax of arr[*] to dive into all elements of an

@@ -7,6 +7,8 @@ import contentfulAllNews from './contentful/allNews'
 import contentfulAllAlerts from './contentful/allAlerts'
 import contentfulEvent from './contentful/event'
 import contentfulAllEvents from './contentful/allEvents'
+import contentfulExhibit from './contentful/exhibit'
+import contentfulAllExhibits from './contentful/allExhibits'
 import contentfulFloor from './contentful/floor'
 import contentfulStatic from './contentful/staticContent'
 import database from './contentful/database'
@@ -35,6 +37,8 @@ const rootReducer = combineReducers({
   allAlerts: contentfulAllAlerts,
   cfEventEntry: contentfulEvent,
   allEvents: contentfulAllEvents,
+  cfExhibitEntry: contentfulExhibit,
+  allExhibits: contentfulAllExhibits,
   cfFloorEntry: contentfulFloor,
   cfStatic: contentfulStatic,
   cfDatabases: database,

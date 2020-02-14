@@ -9,6 +9,7 @@ import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import News from './News'
 import Events from './Events'
+import Exhibits from './Exhibits'
 import Reserves from 'static/images/reserves.jpg'
 import Account from 'static/images/myaccount.jpg'
 import Room from 'static/images/reserveroom.jpg'
@@ -18,6 +19,8 @@ import OpenGraph from 'components/OpenGraph'
 import { HIDE_HOME_FAVORITES } from 'constants/cookies'
 
 import Config from 'shared/Configuration'
+
+import './style.css'
 
 class Home extends Component {
   render () {
@@ -30,38 +33,49 @@ class Home extends Component {
         />
         <PageTitle title='Hesburgh Libraries' hideInPage />
         <SearchProgramaticSet open />
-        { Config.features.favoritesEnabled ? (
-          <TopSection {...this.props} hideFavoritesCookie={hideFavorites} />
-        ) : (
-          <HomePageHours />
+        <div className='container-fluid content'>
+          <span id='top' />
+          { Config.features.favoritesEnabled ? (
+            <TopSection {...this.props} hideFavoritesCookie={hideFavorites} />
+          ) : (
+            <HomePageHours />
+          )}
+          <h2 className='skiplink'>Quicklinks</h2>
+          <section className=' services hservices' aria-label='Quicklinks' role='navigation'>
+            <div className='-col-sm-3 -col-xs-6 one'>
+              <Link to='/items-requests' title='My Account'><img src={Account} alt='' aria-hidden /></Link>
+            </div>
+            <div className='-col-sm-3 -col-xs-6 two'>
+              <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='' aria-hidden /></Link>
+            </div>
+            <div className='-col-sm-3 -col-xs-6 three'>
+              <Link to='/subjects' title='Subjects A-Z' noTarget><img src={Find} alt='' aria-hidden /></Link>
+            </div>
+            <div className='-col-sm-3 -col-xs-6 four'>
+              <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'>
+                <img src={Room} alt='' aria-hidden />
+              </Link>
+            </div>
+            <div className='-col-sm-3 -col-xs-6 five'>
+              <Link to='https://m.nd.edu/current_students/student_computer_labs/' title='Computer Availability'>
+                <img src={ComputerLabs} alt='' aria-hidden />
+              </Link>
+            </div>
+          </section>
+        </div>
+        { Config.features.exhibitsEnabled && (
+          <div className='exhibitsContainer'>
+            <div className='container-fluid content'>
+              <Exhibits {...this.props} />
+            </div>
+          </div>
         )}
-
-        <h2 className='skiplink'>Quicklinks</h2>
-        <section className=' services hservices' aria-label='Quicklinks' role='navigation'>
-          <div className='-col-sm-3 -col-xs-6 one'>
-            <Link to='/items-requests' title='My Account'><img src={Account} alt='' aria-hidden /></Link>
+        <div className='container-fluid content'>
+          <div className='row news'>
+            <News {...this.props} />
+            <span className='col-md-1' />
+            <Events {...this.props} />
           </div>
-          <div className='-col-sm-3 -col-xs-6 two'>
-            <Link to='/courses' title='Course Reserves'><img src={Reserves} alt='' aria-hidden /></Link>
-          </div>
-          <div className='-col-sm-3 -col-xs-6 three'>
-            <Link to='/subjects' title='Subjects A-Z' noTarget><img src={Find} alt='' aria-hidden /></Link>
-          </div>
-          <div className='-col-sm-3 -col-xs-6 four'>
-            <Link to='http://nd.libcal.com/#s-lc-box-2749-container-tab1' title='Reserve a Room'>
-              <img src={Room} alt='' aria-hidden />
-            </Link>
-          </div>
-          <div className='-col-sm-3 -col-xs-6 five'>
-            <Link to='https://m.nd.edu/current_students/student_computer_labs/' title='Computer Availability'>
-              <img src={ComputerLabs} alt='' aria-hidden />
-            </Link>
-          </div>
-        </section>
-        <div className='row news'>
-          <News {...this.props} />
-          <span className='col-md-1' />
-          <Events {...this.props} />
         </div>
       </div>
     )

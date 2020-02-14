@@ -69,6 +69,10 @@ const psList = [
     name: 'loginEnabled',
   },
   {
+    path: 'exhibitsEnabled',
+    name: 'exhibitsEnabled',
+  },
+  {
     path: 'secrets/okta/url',
     name: 'oktaUrl',
   },

@@ -7,59 +7,57 @@ import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
 import Tags from 'components/Interactive/Tags'
 import Config from 'shared/Configuration'
+import { TYPE_FACET } from 'components/LandingPages/Events/facets'
 
 import './style.css'
 
-const EventCard = ({ entry, isLast, showDescription, showImage, showTags, onTagClick }) => {
+const EventCard = ({ entry, showDescription, showImage, showTags, onTagClick }) => {
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
   const linkPath = '/event/' + entry.slug + (entry.recurrenceDate ? `/${entry.recurrenceDate}` : '')
 
   const typeTag = entry.type ? {
     key: entry.type,
     value: entry.type,
-    onClick: (tag) => onTagClick('type', [ tag.key ]),
+    onClick: (tag) => onTagClick(TYPE_FACET.key, [ tag.key ]),
   } : null
 
   return (
-    <React.Fragment>
-      <div className='event-card' itemScope itemType='http://schema.org/Event' itemProp='mainEntityOfPage'>
-        <meta itemProp='startDate' content={entry.startDate} />
-        <meta itemProp='endDate' content={entry.endDate} />
-        <div itemProp='location' itemScope itemType='http://schema.org/Place' hidden>
-          <meta itemProp='address' content={entry.locationText} />
-        </div>
-        <div className='card-image'>
-          { showImage && (
-            <Link ariaLabel={linkAriaLabel} to={linkPath}>
-              <Image cfImage={entry.representationalImage} itemProp='image' />
-            </Link>
-          )}
-        </div>
-        <div className='card-text'>
-          <Link ariaLabel={linkAriaLabel} to={linkPath}>
-            <div className='date'>
-              {entry.displayDate}
-            </div>
-            { entry.displayTime && (
-              <div className='time'>
-                {entry.displayTime}
-              </div>
-            )}
-            <h2 itemProp='name'>{entry.title}</h2>
-            <RecurringIndicator entry={entry} />
-          </Link>
-          { showDescription && (
-            <div className='description' itemProp='description'>
-              <LibMarkdown>{entry.shortDescription}</LibMarkdown>
-            </div>
-          )}
-          { Config.features.eventsFilteringEnabled && showTags && (
-            <Tags groups={[typeTag]} />
-          )}
-        </div>
+    <div className='event-card' itemScope itemType='http://schema.org/Event' itemProp='mainEntityOfPage'>
+      <meta itemProp='startDate' content={entry.startDate} />
+      <meta itemProp='endDate' content={entry.endDate} />
+      <div itemProp='location' itemScope itemType='http://schema.org/Place' hidden>
+        <meta itemProp='address' content={entry.locationText} />
       </div>
-      { !isLast && <hr className='card-divider' /> }
-    </React.Fragment>
+      <div className='card-image'>
+        { showImage && (
+          <Link ariaLabel={linkAriaLabel} to={linkPath}>
+            <Image cfImage={entry.representationalImage} itemProp='image' />
+          </Link>
+        )}
+      </div>
+      <div className='card-text'>
+        <Link ariaLabel={linkAriaLabel} to={linkPath}>
+          <div className='date'>
+            {entry.displayDate}
+          </div>
+          { entry.displayTime && (
+            <div className='time'>
+              {entry.displayTime}
+            </div>
+          )}
+          <h2 itemProp='name'>{entry.title}</h2>
+          <RecurringIndicator entry={entry} />
+        </Link>
+        { showDescription && (
+          <div className='description' itemProp='description'>
+            <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+          </div>
+        )}
+        { Config.features.eventsFilteringEnabled && showTags && (
+          <Tags groups={[typeTag]} />
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -75,7 +73,6 @@ EventCard.propTypes = {
     audience: PropTypes.arrayOf(PropTypes.string),
     type: PropTypes.string,
   }).isRequired,
-  isLast: PropTypes.bool,
   showDescription: PropTypes.bool,
   showImage: PropTypes.bool,
   showTags: PropTypes.bool,
@@ -83,7 +80,6 @@ EventCard.propTypes = {
 }
 
 EventCard.defaultProps = {
-  isLast: false,
   showDescription: true,
   showImage: true,
   showTags: true,

@@ -1,0 +1,53 @@
+.exhibit-card {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1em;
+}
+.exhibit-card.horizontal {
+  flex-flow: row nowrap;
+}
+
+.exhibit-card a {
+  color: #5D6A83;
+}
+
+.exhibit-card .date,
+.exhibit-card .time {
+  font-style: normal;
+  font-size: 14px;
+  padding: 6px 0px;
+  font-weight: normal;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.exhibit-card .description {
+  margin-top: 8px;
+}
+
+.exhibit-image-container {
+  border: solid 2px #001E45;
+  margin-bottom: 1em;
+}
+.horizontal .exhibit-image-container {
+  display: none;
+}
+
+.exhibit-image {
+  width: 100%;
+}
+
+@media screen and (min-width: 621px) {
+  .exhibit-card:not(.horizontal):not(:last-child) {
+    margin-right: 24px;
+  }
+}
+
+@media screen and (min-width: 62em) {
+  .horizontal .exhibit-image-container {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 0;
+    width: 315px;
+  }
+}

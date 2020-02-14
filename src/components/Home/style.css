@@ -1,50 +1,33 @@
-.hlhome {
-	padding: 32px 0 30px;
+.home .content {
+  min-height: initial;
 }
 
-#banner .jesus {
-	background-image: url('../../static/images/jesus.2.png');
+.home .exhibitsContainer {
+	border-top: solid 2px #56ABBD;
+	border-bottom: solid 2px #FFD000;
+	position: relative;
 }
 
-#banner {
-	height: 100px;
+@media screen and (min-width: 62em) {
+	.home .exhibitsContainer .viewAll {
+		max-width: 22.5%;
+	}
 }
 
-#drawer {
-	  top: 203px;
+/* css trick to give background image an opacity value */
+.home .exhibitsContainer::before {
+	background: url("../../static/images/marble.jpg");
+	background-size: cover;
+	opacity: 0.2;
+	content: '';
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
 }
 
-#wrapper {
-	display: block;
+.home .exhibitsContainer .content {
+	padding: 1em 0;
 }
-
-
-
-
-
-.main {
-
-}
-
-.login {
-	top: -65px;
-}
-
-.logout {
-	top: -66px;
-}
-
-.header-hours {
-	margin-top: 30px;
-	display: none;
-}
-
-.hlhome span {
-	bottom: 1.2em;
-}
-
-
-nav a.search {
-	display: none;
-}
-

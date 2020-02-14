@@ -2,9 +2,11 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import Presenter from 'components/LandingPages/Events/Past/presenter'
-import DateFilter from 'components/LandingPages/Events/Past/DateFilter'
-import EventsWrapper from 'components/LandingPages/Events/Wrapper'
+import DateFilter from 'components/Interactive/DateFilter'
+import LandingPageWrapper from 'components/LandingPages/Wrapper'
 import SideNav from 'components/Layout/Navigation/SideNav'
+
+import * as statuses from 'constants/APIStatuses'
 
 let enzymeWrapper
 let props
@@ -40,32 +42,35 @@ describe('components/LandingPages/Events/Past/presenter', () => {
       filteredEvents: [
         someEvent,
       ],
+      allEventsStatus: statuses.SUCCESS,
       filterYear: 2019,
       filterMonth: 8,
       location: {
+        pathname: '/somewhere',
         search: '?type=test',
       },
     }
     enzymeWrapper = setup(props)
   })
 
-  it('should render correct EventsWrapper', () => {
-    const wrapper = enzymeWrapper.find(EventsWrapper)
+  it('should render correct LandingPageWrapper', () => {
+    const wrapper = enzymeWrapper.find(LandingPageWrapper)
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.props()).toEqual(expect.objectContaining({
       pageTitle: props.pageTitle,
       pageDate: props.pageDate,
-      events: props.events,
-      filteredEvents: props.filteredEvents,
+      entries: props.events,
+      filteredEntries: props.filteredEvents,
+      allEntriesStatus: props.allEventsStatus,
     }))
   })
 
-  it('should render a DateFilter component as a child of EventsWrapper', () => {
-    const wrapper = enzymeWrapper.find(EventsWrapper)
+  it('should render a DateFilter component as a child of LandingPageWrapper', () => {
+    const wrapper = enzymeWrapper.find(LandingPageWrapper)
     expect(wrapper.exists()).toBe(true)
 
     expect(wrapper.containsMatchingElement(
-      <DateFilter events={props.events} filterYear={props.filterYear} filterMonth={props.filterMonth} location={props.location} />
+      <DateFilter entries={props.events} filterYear={props.filterYear} filterMonth={props.filterMonth} location={props.location} />
     )).toBe(true)
     // Make sure those props actually had values otherwise we can't verify it is passing anything
     expect(props.events.length).toBeGreaterThan(0)

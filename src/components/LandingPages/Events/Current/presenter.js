@@ -2,19 +2,32 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Calendar from './Calendar'
-import EventsWrapper from '../Wrapper'
+import LandingPageWrapper from '../../Wrapper'
+import Facets from '../facets'
+import EventCard from 'components/EventCard'
 
 const Presenter = (props) => {
   return (
-    <EventsWrapper
+    <LandingPageWrapper
       linkPath={(props.pageDate ? '/events' : '/events/past') + props.location.search}
       linkText={props.pageDate ? 'Current Events' : 'Past Events'}
       pageTitle={props.pageTitle}
       pageDate={props.pageDate}
-      events={props.events}
-      filteredEvents={props.filteredEvents}
+      entries={props.events}
+      filteredEntries={props.filteredEvents}
       location={props.location}
       history={props.history}
+      typeLabel='Events'
+      allEntriesStatus={props.allEventsStatus}
+      facets={Facets}
+      entryCardComponent={EventCard}
+      entryCardProps={{
+        showDescription: true,
+        showImage: true,
+        showTags: true,
+      }}
+      filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
+      sortFields={['startDate']}
     >
       <Calendar
         events={props.events}
@@ -22,7 +35,7 @@ const Presenter = (props) => {
         history={props.history}
         match={props.match}
       />
-    </EventsWrapper>
+    </LandingPageWrapper>
   )
 }
 
@@ -31,6 +44,7 @@ Presenter.propTypes = {
   pageDate: PropTypes.string,
   events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
+  allEventsStatus: PropTypes.string.isRequired,
   location: PropTypes.shape({
     search: PropTypes.string,
   }),

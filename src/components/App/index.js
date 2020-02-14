@@ -23,6 +23,8 @@ import ContentfulEvent from 'components/Contentful/Event'
 import News from 'components/LandingPages/News'
 import CurrentEvents from 'components/LandingPages/Events/Current'
 import PastEvents from 'components/LandingPages/Events/Past'
+import CurrentExhibits from 'components/LandingPages/Exhibits/Current'
+import PastExhibits from 'components/LandingPages/Exhibits/Past'
 import DatabaseList from 'components/DatabaseList'
 import SubjectList from 'components/SubjectList'
 import FloorSearch from 'components/FloorSearch'
@@ -75,6 +77,18 @@ const App = (props) => {
             <Route exact path='/events/past' component={PastEvents} />
             <Route exact path='/events/past/:date' component={PastEvents} />
             <Route exact path='/events/:date' component={CurrentEvents} />
+            { Config.features.exhibitsEnabled && (
+              <Route exact path='/exhibits' component={CurrentExhibits} />
+            )}
+            { Config.features.exhibitsEnabled && (
+              <Route exact path='/exhibits/past' component={PastExhibits} />
+            )}
+            { Config.features.exhibitsEnabled && (
+              <Route exact path='/exhibits/past/:date' component={PastExhibits} />
+            )}
+            { Config.features.exhibitsEnabled && (
+              <Route exact path='/exhibits/:date' component={CurrentExhibits} />
+            )}
             <Route exact path='/news' component={News} />
             <Route exact path='/floor/search' component={FloorSearch} />
             <Route exact path='/floor/:id' component={ContentfulFloor} />

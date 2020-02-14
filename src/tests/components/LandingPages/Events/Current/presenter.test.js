@@ -3,7 +3,9 @@ import { shallow } from 'enzyme'
 
 import Presenter from 'components/LandingPages/Events/Current/presenter'
 import Calendar from 'components/LandingPages/Events/Current/Calendar'
-import EventsWrapper from 'components/LandingPages/Events/Wrapper'
+import LandingPageWrapper from 'components/LandingPages/Wrapper'
+
+import * as statuses from 'constants/APIStatuses'
 
 let enzymeWrapper
 let props
@@ -39,6 +41,7 @@ describe('components/LandingPages/Events/Current/presenter', () => {
       filteredEvents: [
         someEvent,
       ],
+      allEventsStatus: statuses.SUCCESS,
       location: {
         search: '?type=test',
       },
@@ -50,19 +53,20 @@ describe('components/LandingPages/Events/Current/presenter', () => {
     enzymeWrapper = setup(props)
   })
 
-  it('should render correct EventsWrapper', () => {
-    const wrapper = enzymeWrapper.find(EventsWrapper)
+  it('should render correct LandingPageWrapper', () => {
+    const wrapper = enzymeWrapper.find(LandingPageWrapper)
     expect(wrapper.exists()).toBe(true)
     expect(wrapper.props()).toEqual(expect.objectContaining({
       pageTitle: props.pageTitle,
       pageDate: props.pageDate,
-      events: props.events,
-      filteredEvents: props.filteredEvents,
+      entries: props.events,
+      filteredEntries: props.filteredEvents,
+      allEntriesStatus: props.allEventsStatus,
     }))
   })
 
-  it('should render a Calendar component as a child of EventsWrapper', () => {
-    const wrapper = enzymeWrapper.find(EventsWrapper)
+  it('should render a Calendar component as a child of LandingPageWrapper', () => {
+    const wrapper = enzymeWrapper.find(LandingPageWrapper)
 
     expect(wrapper.containsMatchingElement(
       <Calendar

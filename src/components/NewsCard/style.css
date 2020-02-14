@@ -1,0 +1,34 @@
+.news-card {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1em;
+}
+
+.news-card a {
+  color: #5D6A83;
+}
+
+.news-card .description {
+  margin-top: 8px;
+}
+
+.news-image {
+  width: 100%;
+}
+
+.news-image-container {
+  margin-right: 15px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,.25);
+  -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,.25);
+}
+
+@media screen and (min-width: 621px) {
+  .news-card {
+    flex-direction: row;
+  }
+
+  .news-image {
+    width: 225px;
+  }
+}

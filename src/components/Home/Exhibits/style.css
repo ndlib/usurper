@@ -1,0 +1,23 @@
+.exhibitsHeader {
+  text-decoration: none;
+}
+
+.exhibitsList {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.exhibitsList > * {
+  flex: 1 1 100%;
+}
+
+@media screen and (min-width: 621px) {
+  .exhibitsList {
+    flex-flow: row nowrap;
+  }
+
+  .exhibitsList > * {
+    flex-basis: 33%;
+  }
+}

@@ -35,7 +35,6 @@ describe('components/EventCard', () => {
     beforeEach(() => {
       props = {
         entry: testEntry,
-        isLast: true,
         showDescription: true,
         showImage: true,
       }
@@ -55,17 +54,12 @@ describe('components/EventCard', () => {
     it('should render description in markdown', () => {
       expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>{props.entry.shortDescription}</LibMarkdown>)).toBe(true)
     })
-
-    it('should not render <hr> tag', () => {
-      expect(enzymeWrapper.find('hr').exists()).toBe(false)
-    })
   })
 
   describe('with flags off', () => {
     beforeEach(() => {
       props = {
         entry: testEntry,
-        isLast: false,
         showDescription: false,
         showImage: false,
       }
@@ -84,10 +78,6 @@ describe('components/EventCard', () => {
 
     it('should not render description in markdown', () => {
       expect(enzymeWrapper.find(LibMarkdown).exists()).toBe(false)
-    })
-
-    it('should render <hr> tag', () => {
-      expect(enzymeWrapper.find('hr').exists()).toBe(true)
     })
   })
 })

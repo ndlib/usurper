@@ -10,18 +10,19 @@ import './style.css'
 const Presenter = ({ entries }) => {
   return (
     <div className='col-md-5 col-xs-12' >
-      <section aria-label='Events'>
+      <section aria-label='Events' className='eventsSection'>
         <Link to='/events' className='newsEventHeader'><h1>Events</h1></Link>
         <ErrorBoundary>
-          { entries.map((entry, index) => (
-            <EventCard
-              key={entry.id}
-              entry={entry}
-              isLast={index === entries.length - 1}
-              showDescription={false}
-              showImage={false}
-              showTags={false}
-            />
+          { entries.map(entry => (
+            <React.Fragment key={entry.id}>
+              <EventCard
+                entry={entry}
+                showDescription={false}
+                showImage={false}
+                showTags={false}
+              />
+              <hr className='card-divider' />
+            </React.Fragment>
           ))}
         </ErrorBoundary>
         <Link to='/events' className='newsEventsLink viewAll'>View All Events</Link>
