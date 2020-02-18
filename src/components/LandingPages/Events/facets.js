@@ -32,7 +32,7 @@ const TYPE_OPTIONS = [
 }))
 
 export const TYPE_FACET = {
-  label: 'Event',
+  label: 'Type',
   key: 'type',
   fieldName: 'type',
   options: TYPE_OPTIONS,
