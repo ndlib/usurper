@@ -93,28 +93,6 @@ li p {
   margin-bottom: 0;
 }
 
-table {
-  width: 100%;
-  display: block;
-}
-table td, table th {
-  text-align: left;
-}
-table tr {
-  /*display: grid;
-  display: -ms-grid;*/
-
-  border-bottom: solid #dcdcdc;
-  border-width: 1px 0;
-  grid-gap: 7px;
-
-  /*grid-auto-columns: .7fr 1fr 1.5fr;
-  grid-auto-flow: column;
-  -ms-grid-columns: .7fr 1fr 1.5fr;*/
-  justify-content: left;
-  font-size: 16px;
-}
-
 /* Table Styles */
 
 table {
@@ -126,6 +104,7 @@ table {
 }
 tr {
   border-top: 3px solid #ccc;
+  border-width: 0 0;
 }
 tr:nth-child(odd):hover td {
   background: #ede1bc;
@@ -163,18 +142,6 @@ td {
 td,
 td img {
   vertical-align: top;
-}
-
-table td {
-  padding: 5px ;
-}
-
-table td:first-child {
-  width: 20%;
-}
-
-table td:nth-child(2) {
-  width: 35%;
 }
 
 a:link, a:hover, a:active {
