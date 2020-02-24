@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2020.6](https://github.com/ndlib/usurper/tree/v2020.6) "Feelin' Fine"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.4...v2020.6)
+
+### Features
+- Some floor maps may now display more relevant service points. [#803](https://github.com/ndlib/usurper/pull/803)
+- *Dark Feature – Added exhibits.* [#800](https://github.com/ndlib/usurper/pull/800)
+- *Dark Feature – Updated icon styling on home page.* [#805](https://github.com/ndlib/usurper/pull/805)
+
+*Dark features will be available in a future release.*
+
+### Other Changes
+- Updated styling of floor maps listing page. [#807](https://github.com/ndlib/usurper/pull/807)
+
 ## [v2020.4](https://github.com/ndlib/usurper/tree/v2020.4) "Timid Tuesday"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.3...v2020.4)
 
