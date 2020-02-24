@@ -1,0 +1,15 @@
+.featured-service-link,
+.featured-service-link a,
+.featured-service a {
+  color: white;
+  text-decoration: none;
+}
+
+.featured-service-image {
+  margin-bottom: 4px;
+  max-height: 34px;
+}
+
+.featured-service-title {
+  display: block;
+}

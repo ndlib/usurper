@@ -16,9 +16,9 @@
 
 /* css trick to give background image an opacity value */
 .home .exhibitsContainer::before {
-	background: url("../../static/images/marble.jpg");
-	background-size: cover;
-	opacity: 0.2;
+	background: url("../../static/images/marble.png");
+	background-size: auto;
+	opacity: 1;
 	content: '';
 	top: 0;
 	left: 0;
@@ -26,6 +26,12 @@
 	right: 0;
 	position: absolute;
 	z-index: -1;
+}
+
+@media screen and (max-width: 620px) {
+  .home .exhibitsContainer::before {
+    background-size: cover;
+  }
 }
 
 .home .exhibitsContainer .content {
