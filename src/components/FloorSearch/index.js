@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 
 import searchFloorMaps from 'actions/floorSearch'
@@ -8,35 +9,32 @@ import Loading from 'components/Messages/Loading'
 import Empty from './Empty'
 import { withErrorBoundary } from 'components/ErrorBoundary'
 
-class FloorSearch extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = { error: false }
-  }
-
-  componentWillMount () {
+export class FloorSearch extends Component {
+  componentDidMount () {
     if (this.props.searchString && this.props.redirect.status === statuses.NOT_FETCHED) {
       this.props.searchFloorMaps(this.props.searchString)
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    const status = nextProps.redirect.status
-    const slug = nextProps.redirect.slug
-
-    // if we found a floor, redirect to that floor, otherwise error
+  componentDidUpdate () {
+    const { status, slug, servicePoint } = { ...this.props.redirect }
+    // if we found a floor, redirect to that floor
     if (status === statuses.SUCCESS && slug) {
-      this.props.history.push(slug + this.props.searchString)
-    } else if (status === statuses.ERROR || (status === statuses.SUCCESS && !slug)) {
-      this.setState({ error: true })
+      let url = slug + this.props.searchString
+      if (servicePoint) {
+        url += `&sp=${servicePoint}`
+      }
+      this.props.history.push(url)
     }
   }
 
   render () {
-    if (this.state.error) {
+    // Show error if fetch has finished and floor was not found
+    const { status, slug } = { ...this.props.redirect }
+    if (status === statuses.ERROR || (status === statuses.SUCCESS && !slug)) {
       return <Empty location={this.props.location} />
     }
+
     return <Loading />
   }
 }
@@ -52,9 +50,7 @@ export const mapStateToProps = (state, ownProps) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return {
-    searchFloorMaps: (searchString) => dispatch(searchFloorMaps(searchString)),
-  }
+  return bindActionCreators({ searchFloorMaps }, dispatch)
 }
 
 FloorSearch.propTypes = {

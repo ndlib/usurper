@@ -1,4 +1,6 @@
 import fetch from 'isomorphic-fetch'
+import typy from 'typy'
+
 import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
@@ -26,15 +28,7 @@ const receiveFloor = (floor, response) => {
     receivedAt: Date.now(),
   }
 
-  try {
-    if (response[0] && response[0].sys.contentType.sys.id === 'floor') {
-      return success
-    } else {
-      return error
-    }
-  } catch (e) {
-    return error
-  }
+  return typy(response[0], 'sys.contentType.sys.id').safeString === 'floor' ? success : error
 }
 
 export const fetchFloor = (floor, preview) => {

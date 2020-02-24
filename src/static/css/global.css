@@ -1815,33 +1815,14 @@ address {
   background-image: url("../images/phone.png");
 }
 
-.point .fax {
-  background-image: url("../images/fax.png");
-  padding-top: 55px !important;
-  background-position: center 15px  !important;
-  padding-bottom: 18px;
-}
-
 .floor-map {
   width: 100%;
-}
-
-
-
-.contact-page .point .fax {
-  background-image: url("../images/fax.png");
-  padding-top: 15px !important;
-  background-position: center 15px  !important;
-  padding-bottom: 18px;
-  padding-left: 68px !important;
-  background-position: 18px 15px !important;
 }
 
 .point .fax {
   background-image: url("../images/fax.png");
   padding-top: 0 !important;
   background-position: center 15px  !important;
-  padding-bottom: 18px;
   padding-left: 30px !important;
   background-position: 0 0 !important;
 }
@@ -1853,6 +1834,13 @@ address {
 
 .point .web a {
   background-image: url("../images/web.png");
+}
+
+.point .map-note {
+  display: none;
+}
+.floor-info .point .map-note {
+  display: block;
 }
 
 .contact-page .point .web a {

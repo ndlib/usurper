@@ -124,6 +124,7 @@
         "hoursAPIURL": "http://hoursAPIURL.edu",
         "contentfulAPI": "http://contentfulAPI.edu",
         "userPrefsAPI": "http://userPrefsAPI.edu",
+        "mapsAPI": "http://mapsAPI.edu",
         "serviceNowBaseURL": "http://serviceNow.com/test?id=123",
         "features": {
           "favoritesEnabled": true,

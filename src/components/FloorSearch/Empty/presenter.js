@@ -15,10 +15,12 @@ const Empty = (props) => {
           <p>A map cannot be found for this item. Please contact the Circulation Desk for help finding it.</p>
 
           <SearchCallout location={props.location} />
-          <div className='point-card'>
-            <h3>Circulation Desk</h3>
-            <Contact servicePoint={props.points['circulationservicedesk']} />
-          </div>
+          { props.points.map(point => (
+            <div className='point-card' key={point.sys.id}>
+              <h3>{point.fields.title}</h3>
+              <Contact servicePoint={point} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -27,7 +29,14 @@ const Empty = (props) => {
 
 Empty.propTypes = {
   location: PropTypes.object,
-  points: PropTypes.object,
+  points: PropTypes.arrayOf(PropTypes.shape({
+    sys: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+    fields: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+    }).isRequired,
+  })).isRequired,
 }
 
 export default Empty

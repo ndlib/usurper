@@ -11,6 +11,7 @@ export default (state = { status: statuses.NOT_FETCHED, slug: undefined }, actio
       return Object.assign({}, state, {
         status: action.status,
         slug: action.slug,
+        servicePoint: action.servicePoint,
       })
     default:
       return state

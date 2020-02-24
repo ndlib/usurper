@@ -12,19 +12,21 @@ export const requestFloorSearch = () => {
 }
 
 const receiveFloorSearch = (response) => {
-  if (response.stack === 'TypeError: Failed to fetch') {
+  if (response.slug) {
     return {
       type: FLOOR_SEARCH_RECEIVE,
-      status: statuses.ERROR,
-      error: response,
-      slug: '',
+      status: statuses.SUCCESS,
+      slug: response.slug,
+      servicePoint: response.servicePoint,
       receivedAt: Date.now(),
     }
   } else {
     return {
       type: FLOOR_SEARCH_RECEIVE,
-      status: statuses.SUCCESS,
-      slug: response.slug,
+      status: statuses.ERROR,
+      error: response,
+      slug: '',
+      servicePoint: null,
       receivedAt: Date.now(),
     }
   }
@@ -35,7 +37,7 @@ const searchFloorMaps = (searchQuery) => {
     dispatch(requestFloorSearch())
     const url = Config.mapsAPI + '/map' + searchQuery
     return fetch(url)
-      .then(response => response.json())
+      .then(response => response.ok ? response.json() : { status: response.code })
       .then(json => dispatch(receiveFloorSearch(json)))
       .catch(error => dispatch(receiveFloorSearch(error)))
   }
