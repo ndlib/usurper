@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Config from 'shared/Configuration'
-
 const HideHomeFavorites = (props) => {
-  if (!Config.features.favoritesEnabled) {
-    return null
-  }
-
   return (
     <React.Fragment>
       <h4>Favorites</h4>

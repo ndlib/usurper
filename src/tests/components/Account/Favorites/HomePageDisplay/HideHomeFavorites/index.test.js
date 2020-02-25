@@ -17,43 +17,23 @@ describe('components/Account/Favorites/HomePageDisplay/HideHomeFavorites', () =>
     props = undefined
   })
 
-  describe('with favorites enabled', () => {
-    beforeEach(() => {
-      global.__APP_CONFIG__.features.favoritesEnabled = true
-
-      props = {
-        onChange: jest.fn(),
-        defaultChecked: true,
-      }
-      enzymeWrapper = setup(props)
-    })
-
-    it('should render a checkbox', () => {
-      const input = enzymeWrapper.find('input')
-      expect(input.exists()).toBe(true)
-      expect(input.props().type).toEqual('checkbox')
-      expect(input.props().defaultChecked).toEqual(props.defaultChecked)
-      expect(input.props().onChange).toEqual(props.onChange)
-    })
-
-    it('should render a subheading', () => {
-      expect(enzymeWrapper.find('h4').exists()).toBe(true)
-    })
+  beforeEach(() => {
+    props = {
+      onChange: jest.fn(),
+      defaultChecked: true,
+    }
+    enzymeWrapper = setup(props)
   })
 
-  describe('with favorites disabled', () => {
-    beforeEach(() => {
-      global.__APP_CONFIG__.features.favoritesEnabled = false
+  it('should render a checkbox', () => {
+    const input = enzymeWrapper.find('input')
+    expect(input.exists()).toBe(true)
+    expect(input.props().type).toEqual('checkbox')
+    expect(input.props().defaultChecked).toEqual(props.defaultChecked)
+    expect(input.props().onChange).toEqual(props.onChange)
+  })
 
-      props = {
-        onChange: jest.fn(),
-        defaultChecked: false,
-      }
-      enzymeWrapper = setup(props)
-    })
-
-    it('should not render anything', () => {
-      expect(enzymeWrapper.text()).toBeFalsy()
-    })
+  it('should render a subheading', () => {
+    expect(enzymeWrapper.find('h4').exists()).toBe(true)
   })
 })

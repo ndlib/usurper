@@ -18,9 +18,7 @@ const genConfig = () => {
     gcseCx: parameters.gcseCx,
     onesearchBaseURL: parameters.onesearch,
     features: {
-      favoritesEnabled: parameters.favoritesEnabled || false,
       subjectFilteringEnabled: parameters.subjectFilteringEnabled || false,
-      eventsFilteringEnabled: parameters.eventsFilteringEnabled || false,
       loginEnabled: parameters.loginEnabled || false,
       exhibitsEnabled: parameters.exhibitsEnabled || false,
     },
@@ -46,9 +44,7 @@ const genConfig = () => {
     gcseCx:  process.env.GCSE_CX ? process.env.GCSE_CX : defaultConfig.gcseCx,
     onesearchBaseURL: process.env.ONESEARCH_BASE_URL ? process.env.ONESEARCH_BASE_URL : defaultConfig.onesearchBaseURL,
     features: {
-      favoritesEnabled: process.env.ENABLE_FAVORITES ? process.env.ENABLE_FAVORITES : defaultConfig.features.favoritesEnabled,
       subjectFilteringEnabled: process.env.ENABLE_SUBJECT_FILTERING ? process.env.ENABLE_SUBJECT_FILTERING : defaultConfig.features.subjectFilteringEnabled,
-      eventsFilteringEnabled: process.env.ENABLE_EVENTS_FILTERING ? process.env.ENABLE_EVENTS_FILTERING : defaultConfig.features.eventsFilteringEnabled,
       loginEnabled: process.env.ENABLE_LOGIN ? process.env.ENABLE_LOGIN : defaultConfig.features.loginEnabled,
       exhibitsEnabled: process.env.ENABLE_EXHIBITS ? process.env.ENABLE_EXHIBITS : defaultConfig.features.exhibitsEnabled,
     },

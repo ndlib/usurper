@@ -77,7 +77,6 @@ describe('components/LandingPages/Wrapper/presenter', () => {
   })
 
   beforeEach(() => {
-    global.__APP_CONFIG__.features.eventsFilteringEnabled = true
     props = {
       linkPath: '/down/the',
       linkText: 'Rabbit Hole',

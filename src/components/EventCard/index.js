@@ -6,7 +6,6 @@ import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
 import Tags from 'components/Interactive/Tags'
-import Config from 'shared/Configuration'
 import { TYPE_FACET } from 'components/LandingPages/Events/facets'
 
 import './style.css'
@@ -53,7 +52,7 @@ const EventCard = ({ entry, showDescription, showImage, showTags, onTagClick }) 
             <LibMarkdown>{entry.shortDescription}</LibMarkdown>
           </div>
         )}
-        { Config.features.eventsFilteringEnabled && showTags && (
+        { showTags && (
           <Tags groups={[typeTag]} />
         )}
       </div>

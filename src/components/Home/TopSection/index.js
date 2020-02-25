@@ -29,10 +29,6 @@ class TopSection extends Component {
 
   // eslint-disable-next-line complexity
   checkFullyLoaded () {
-    if (!Config.features.favoritesEnabled) {
-      return
-    }
-
     if (!this.props.login || this.props.login.state === statuses.NOT_FETCHED) {
       this.props.getToken()
     }
@@ -63,7 +59,7 @@ class TopSection extends Component {
   }
 
   render () {
-    const showFavorites = Config.features.loginEnabled && Config.features.favoritesEnabled && !this.props.hideFavorites
+    const showFavorites = Config.features.loginEnabled && !this.props.hideFavorites
     const favoritesLoading = [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.login.state) ||
       this.props.favoritesStatus === statuses.FETCHING
     const locationLoading = [statuses.NOT_FETCHED, statuses.FETCHING].includes(this.props.cfFavoriteLocation.status)
