@@ -18,6 +18,8 @@ import RecurringIndicator from './RecurringIndicator'
 import Presenters from '../../Presenters'
 import Sponsorships from '../../Sponsorships'
 import AddToCalendar from 'components/Interactive/AddToCalendar'
+import InternalLink from '../InternalLink'
+import PageLink from '../PageLink'
 
 const PagePresenter = ({ entry }) => {
   let body = entry.content
@@ -84,6 +86,11 @@ const PagePresenter = ({ entry }) => {
         <aside className='col-md-4 right'>
           <Image cfImage={entry.representationalImage} className='cover' itemProp='image' />
           <Link to={entry.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
+          { entry.callOutLinks.map(link => link.sys.contentType.sys.id === 'internalLink' ? (
+            <InternalLink key={link.sys.id} className='button callout' cfEntry={link} />
+          ) : (
+            <PageLink key={link.sys.id} className='button callout' cfPage={link} />
+          )) }
           <Media data={entry.media} />
           <Librarians netids={entry.contactPeople} />
           <ServicePoint cfServicePoint={entry.location} showDetails={false} />
