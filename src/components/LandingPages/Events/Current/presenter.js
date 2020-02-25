@@ -21,11 +21,6 @@ const Presenter = (props) => {
       allEntriesStatus={props.allEventsStatus}
       facets={Facets}
       entryCardComponent={EventCard}
-      entryCardProps={{
-        showDescription: true,
-        showImage: true,
-        showTags: true,
-      }}
       filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
       sortFields={['startDate']}
     >

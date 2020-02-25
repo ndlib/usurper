@@ -16,7 +16,7 @@
 
 /* css trick to give background image an opacity value */
 .home .exhibitsContainer::before {
-	background: url("../../static/images/marble.png");
+	background: url("../../static/images/exhibits-bg.png");
 	background-size: auto;
 	opacity: 1;
 	content: '';

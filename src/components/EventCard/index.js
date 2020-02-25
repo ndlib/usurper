@@ -6,12 +6,12 @@ import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
 import Tags from 'components/Interactive/Tags'
-import Config from 'shared/Configuration'
 import { TYPE_FACET } from 'components/LandingPages/Events/facets'
+import { shortMonth } from 'constants/staticData'
 
 import './style.css'
 
-const EventCard = ({ entry, showDescription, showImage, showTags, onTagClick }) => {
+const EventCard = ({ entry, isHome, onTagClick }) => {
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
   const linkPath = '/event/' + entry.slug + (entry.recurrenceDate ? `/${entry.recurrenceDate}` : '')
 
@@ -29,32 +29,43 @@ const EventCard = ({ entry, showDescription, showImage, showTags, onTagClick }) 
         <meta itemProp='address' content={entry.locationText} />
       </div>
       <div className='card-image'>
-        { showImage && (
+        { !isHome && (
           <Link ariaLabel={linkAriaLabel} to={linkPath}>
             <Image cfImage={entry.representationalImage} itemProp='image' />
           </Link>
         )}
       </div>
       <div className='card-text'>
-        <Link ariaLabel={linkAriaLabel} to={linkPath}>
-          <div className='date'>
-            {entry.displayDate}
-          </div>
-          { entry.displayTime && (
-            <div className='time'>
-              {entry.displayTime}
+        <Link className='linkArea' ariaLabel={linkAriaLabel} to={linkPath}>
+          { isHome ? (
+            <div className='dateBlock'>
+              <span className='dateNum'>{entry.startDate.getDate()}</span>
+              <span className='dateMonth'>{shortMonth[entry.startDate.getMonth()]}</span>
             </div>
+          ) : (
+            <React.Fragment>
+              <div className='date'>
+                {entry.displayDate}
+              </div>
+              { entry.displayTime && (
+                <div className='time'>
+                  {entry.displayTime}
+                </div>
+              )}
+            </React.Fragment>
           )}
-          <h2 itemProp='name'>{entry.title}</h2>
-          <RecurringIndicator entry={entry} />
-        </Link>
-        { showDescription && (
-          <div className='description' itemProp='description'>
-            <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+          <div>
+            <h2 itemProp='name'>{entry.title}</h2>
+            <RecurringIndicator entry={entry} />
           </div>
-        )}
-        { Config.features.eventsFilteringEnabled && showTags && (
-          <Tags groups={[typeTag]} />
+        </Link>
+        { !isHome && (
+          <React.Fragment>
+            <div className='description' itemProp='description'>
+              <LibMarkdown>{entry.shortDescription}</LibMarkdown>
+            </div>
+            <Tags groups={[typeTag]} />
+          </React.Fragment>
         )}
       </div>
     </div>
@@ -73,16 +84,8 @@ EventCard.propTypes = {
     audience: PropTypes.arrayOf(PropTypes.string),
     type: PropTypes.string,
   }).isRequired,
-  showDescription: PropTypes.bool,
-  showImage: PropTypes.bool,
-  showTags: PropTypes.bool,
+  isHome: PropTypes.bool,
   onTagClick: PropTypes.func,
-}
-
-EventCard.defaultProps = {
-  showDescription: true,
-  showImage: true,
-  showTags: true,
 }
 
 export default EventCard

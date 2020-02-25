@@ -7,9 +7,9 @@ import Link from 'components/Interactive/Link'
 
 import './style.css'
 
-export const NewsCard = ({ entry }) => {
+export const NewsCard = ({ entry, isHome }) => {
   return (
-    <div className='news-card' itemScope itemType='http://schema.org/NewsArticle'>
+    <div className={'news-card' + (isHome ? ' home' : '')} itemScope itemType='http://schema.org/NewsArticle'>
       <Link to={'/news/' + entry.fields.slug} ariaLabel={entry.fields.title} itemProp='mainEntityOfPage'>
         <Image cfImage={entry.fields.image} className='news-image' containerClassName='news-image-container' itemProp='image' />
       </Link>
@@ -19,9 +19,11 @@ export const NewsCard = ({ entry }) => {
             <h2 itemProp='headline'>{entry.fields.title}</h2>
           </header>
         </Link>
-        <div className='description' itemProp='description'>
-          <LibMarkdown>{entry.fields.shortDescription}</LibMarkdown>
-        </div>
+        { !isHome && (
+          <div className='description' itemProp='description'>
+            <LibMarkdown>{entry.fields.shortDescription}</LibMarkdown>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -36,6 +38,7 @@ NewsCard.propTypes = {
       shortDescription: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  isHome: PropTypes.bool,
 }
 
 export default NewsCard

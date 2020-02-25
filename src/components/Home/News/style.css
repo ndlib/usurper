@@ -1,21 +1,18 @@
-/*
 .newsList {
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
 }
 
 .newsList > * {
-  flex: 1 1 100%;
+  flex-basis: 100%;
 }
 
 @media screen and (min-width: 621px) {
   .newsList {
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
   }
 
   .newsList > * {
-    flex-basis: 33%;
+    flex-basis: 50%;
   }
 }
-*/
