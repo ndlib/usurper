@@ -5,18 +5,13 @@ import Presenter from './presenter'
 
 import { USER_MENU } from 'actions/menu'
 
-import Config from 'shared/Configuration'
-
 const UserMenuContainer = (props) => {
   const links = [
     { key: 'Items & Requests', route: '/items-requests' },
     { key: 'Courses', route: '/courses' },
     { key: 'Checkout History', route: '/checkout-history' },
+    { key: 'Favorites', route: '/favorites' },
   ]
-
-  if (Config.features.favoritesEnabled) {
-    links.splice(3, 0, { key: 'Favorites', route: '/favorites' })
-  }
 
   return <Presenter links={links} {...props} />
 }
