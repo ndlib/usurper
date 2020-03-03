@@ -127,10 +127,9 @@
         "mapsAPI": "http://mapsAPI.edu",
         "serviceNowBaseURL": "http://serviceNow.com/test?id=123",
         "features": {
-          "favoritesEnabled": true,
           "subjectFilteringEnabled": true,
-          "eventsFilteringEnabled": true,
-          "loginEnabled": true
+          "loginEnabled": true,
+          "exhibitsEnabled": true
         },
         "oktaUrl": "https://okta.url",
         "oktaClientId": "000aaa",

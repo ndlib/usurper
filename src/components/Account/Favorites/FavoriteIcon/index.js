@@ -11,8 +11,6 @@ import bookmarkDelete from 'static/images/bookmark-delete.svg'
 
 import * as statuses from 'constants/APIStatuses'
 
-import Config from 'shared/Configuration'
-
 export class FavoriteIconContainer extends Component {
   constructor (props) {
     super(props)
@@ -84,7 +82,7 @@ export class FavoriteIconContainer extends Component {
   }
 
   render () {
-    if (!Config.features.favoritesEnabled || !this.props.isLoggedIn) {
+    if (!this.props.isLoggedIn) {
       return null
     }
 

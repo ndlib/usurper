@@ -53,16 +53,8 @@ const psList = [
     name: 'contentfulEnvironment',
   },
   {
-    path: 'favoritesEnabled',
-    name: 'favoritesEnabled',
-  },
-  {
     path: 'subjectFilteringEnabled',
     name: 'subjectFilteringEnabled',
-  },
-  {
-    path: 'eventsFilteringEnabled',
-    name: 'eventsFilteringEnabled',
   },
   {
     path: 'loginEnabled',

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import 'static/css/global.css'
 
 import Link from 'components/Interactive/Link'
-import HomePageHours from 'components/Hours/HomePage'
 import TopSection from './TopSection'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
@@ -39,11 +38,7 @@ class Home extends Component {
         )}
         <div className='container-fluid content'>
           <span id='top' />
-          { Config.features.favoritesEnabled ? (
-            <TopSection {...this.props} hideFavoritesCookie={hideFavorites} />
-          ) : (
-            <HomePageHours />
-          )}
+          <TopSection {...this.props} hideFavoritesCookie={hideFavorites} />
           { !Config.features.exhibitsEnabled && (
             <React.Fragment>
               <h2 className='skiplink'>Quicklinks</h2>
