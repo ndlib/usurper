@@ -86,7 +86,7 @@ const PagePresenter = ({ entry }) => {
         <aside className='col-md-4 right'>
           <Image cfImage={entry.representationalImage} className='cover' itemProp='image' />
           <Link to={entry.registrationUrl} className='button callout' hideIfNull>Register Here</Link>
-          { entry.callOutLinks.map(link => link.sys.contentType.sys.id === 'internalLink' ? (
+          { typy(entry.callOutLinks).safeArray.map(link => link.sys.contentType.sys.id === 'internalLink' ? (
             <InternalLink key={link.sys.id} className='button callout' cfEntry={link} />
           ) : (
             <PageLink key={link.sys.id} className='button callout' cfPage={link} />
