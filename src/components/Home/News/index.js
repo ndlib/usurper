@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
         return entry
       })
       .sort((a, b) => sortNews(a, b, true))
-      .slice(0, 3)
+      .slice(0, 4)
   }
   return {
     allNews,

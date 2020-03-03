@@ -9,18 +9,14 @@ import './style.css'
 
 const Presenter = ({ entries }) => {
   return (
-    <div className='col-md-5 col-xs-12' >
+    <div className='col-md-4 col-xs-12' >
       <section aria-label='Events' className='eventsSection'>
         <Link to='/events' className='newsEventHeader'><h1>Events</h1></Link>
+        <hr aria-hidden='true' />
         <ErrorBoundary>
           { entries.map(entry => (
             <React.Fragment key={entry.id}>
-              <EventCard
-                entry={entry}
-                showDescription={false}
-                showImage={false}
-                showTags={false}
-              />
+              <EventCard entry={entry} isHome />
               <hr className='card-divider' />
             </React.Fragment>
           ))}

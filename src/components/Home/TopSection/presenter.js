@@ -7,6 +7,7 @@ import ServicePoint from 'components/Contentful/ServicePoint'
 import PageLink from 'components/Contentful/PageLink'
 import InlineLoading from 'components/Messages/InlineLoading'
 import HomePageHours from 'components/Hours/HomePage'
+import Config from 'shared/Configuration'
 
 const TopSection = (props) => {
   return (
@@ -32,7 +33,9 @@ const TopSection = (props) => {
           </div>
         </React.Fragment>
       ) : (
-        props.locationLoading ? <InlineLoading /> : <HomePageHours />
+        <div style={{ width: '100%', marginBottom: (Config.features.exhibitsEnabled ? '40px' : '10px') }}>
+          {props.locationLoading ? <InlineLoading /> : <HomePageHours />}
+        </div>
       )}
     </div>
   )

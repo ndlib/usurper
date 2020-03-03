@@ -23,12 +23,29 @@
   -webkit-box-shadow: 0 0 4px 0 rgba(0,0,0,.25);
 }
 
-@media screen and (min-width: 621px) {
-  .news-card {
-    flex-direction: row;
-  }
+.home .news-image-container {
+  margin-right: 0;
+  margin-bottom: 1em;
+}
 
+.home .news-card .card-text {
+  margin-bottom: 1.5em;
+}
+
+@media screen and (min-width: 621px) {
   .news-image {
     width: 225px;
+  }
+
+  .home .news-image {
+    width: 100%;
+  }
+
+  .home .news-card:nth-child(odd) {
+    padding-right: 1em;
+  }
+
+  .home .news-card:nth-child(even) {
+    padding-left: 1em;
   }
 }

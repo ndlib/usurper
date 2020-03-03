@@ -4,12 +4,14 @@ import { shallow } from 'enzyme'
 import EventCard from 'components/EventCard'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
+import Tags from 'components/Interactive/Tags'
 import LibMarkdown from 'components/LibMarkdown'
 
 const testEntry = {
   slug: 'i am slug',
   title: 'i r title',
   shortDescription: 'we is description',
+  startDate: new Date(),
   displayDate: 'him b date',
   displayTime: 'her b time',
   locationText: 'them wer location',
@@ -31,12 +33,11 @@ describe('components/EventCard', () => {
     props = undefined
   })
 
-  describe('with flags on', () => {
+  describe('not on home page', () => {
     beforeEach(() => {
       props = {
         entry: testEntry,
-        showDescription: true,
-        showImage: true,
+        isHome: false,
       }
       enzymeWrapper = setup(props)
     })
@@ -54,14 +55,22 @@ describe('components/EventCard', () => {
     it('should render description in markdown', () => {
       expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>{props.entry.shortDescription}</LibMarkdown>)).toBe(true)
     })
+
+    it('should render Tags', () => {
+      expect(enzymeWrapper.find(Tags).exists()).toBe(true)
+    })
+
+    it('should display date and time', () => {
+      expect(enzymeWrapper.find('.date').exists()).toBe(true)
+      expect(enzymeWrapper.find('.time').exists()).toBe(true)
+    })
   })
 
-  describe('with flags off', () => {
+  describe('on home page', () => {
     beforeEach(() => {
       props = {
         entry: testEntry,
-        showDescription: false,
-        showImage: false,
+        isHome: true,
       }
       enzymeWrapper = setup(props)
     })
@@ -78,6 +87,15 @@ describe('components/EventCard', () => {
 
     it('should not render description in markdown', () => {
       expect(enzymeWrapper.find(LibMarkdown).exists()).toBe(false)
+    })
+
+    it('should not render Tags', () => {
+      expect(enzymeWrapper.find(Tags).exists()).toBe(false)
+    })
+
+    it('should display date differently', () => {
+      expect(enzymeWrapper.find('.date').exists()).toBe(false)
+      expect(enzymeWrapper.find('.dateBlock').exists()).toBe(true)
     })
   })
 })

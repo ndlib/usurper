@@ -28,6 +28,7 @@
 .exhibit-image-container {
   border: solid 2px #001E45;
   margin-bottom: 1em;
+  width: 100%;
 }
 .horizontal .exhibit-image-container {
   display: none;

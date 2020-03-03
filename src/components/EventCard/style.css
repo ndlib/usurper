@@ -29,6 +29,36 @@
   padding-bottom: 2px;
 }
 
+.home .event-card .linkArea {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+}
+
+.event-card .dateBlock {
+  padding: 0.75em;
+  background-color: #D39F10;
+  color: #001E45;
+  text-align: center;
+  min-width: calc(1.5em + 40px);
+  font-family: GPCMed, Helvetica, sans-serif;
+  margin-right: 1em;
+}
+
+.event-card .dateBlock > * {
+  display: block;
+}
+
+.event-card .dateBlock .dateNum {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.event-card .dateBlock .dateMonth {
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
 .event-card .date, .event-card .time, .news .author, .news .published {
   font-style: normal;
   font-size: 14px;
@@ -69,4 +99,8 @@
   margin: 40px auto 21px;
   border-color: #c6cbd6;
   border-width: 1px;
+}
+
+.home .card-divider {
+  margin: 1em 0;
 }
