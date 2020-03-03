@@ -6,6 +6,8 @@ import Presenter from 'components/Contentful/Event/presenter'
 import RecurringIndicator from 'components/Contentful/Event/RecurringIndicator'
 import Related from 'components/Contentful/Related'
 import ServicePoint from 'components/Contentful/ServicePoint'
+import InternalLink from 'components/Contentful/InternalLink'
+import PageLink from 'components/Contentful/PageLink'
 import Image from 'components/Image'
 import Librarians from 'components/Librarians'
 import LibMarkdown from 'components/LibMarkdown'
@@ -45,6 +47,44 @@ describe('components/Contentful/Event/presenter', () => {
         ],
         relatedResources: [
           { title: 'A thing with information' },
+        ],
+        callOutLinks: [
+          {
+            sys: {
+              id: '2qw3kg6txFOLfyqxOC3pKS',
+              contentType: {
+                sys: {
+                  id: 'externalLink',
+                },
+              },
+            },
+            fields: {
+              title: 'University Archives Offices',
+              url: 'http://archives.nd.edu/',
+            },
+          },
+          {
+            sys: {
+              id: 'political-science',
+              contentType: {
+                sys: {
+                  id: 'internalLink',
+                },
+              },
+            },
+            fields: {
+              title: 'Link to Political Science',
+              id: 'political-science',
+              page: {
+                sys: {
+                  type: 'Link',
+                  linkType: 'Entry',
+                  id: '3zp0XsdRMsgWcuyYE2aicU',
+                },
+              },
+              usePageTitle: true,
+            }
+          },
         ],
       },
     }
@@ -120,5 +160,17 @@ describe('components/Contentful/Event/presenter', () => {
   it('should render a ServicePoint component', () => {
     const found = enzymeWrapper.find(ServicePoint)
     expect(found.exists()).toBe(true)
+  })
+
+  it('should render a PageLink component for external link', () => {
+    const found = enzymeWrapper.find(PageLink)
+    expect(found.exists()).toBe(true)
+    expect(found.props().cfPage).toEqual(props.entry.callOutLinks[0])
+  })
+
+  it('should render an InternalLink component for internal link', () => {
+    const found = enzymeWrapper.find(InternalLink)
+    expect(found.exists()).toBe(true)
+    expect(found.props().cfEntry).toEqual(props.entry.callOutLinks[1])
   })
 })
