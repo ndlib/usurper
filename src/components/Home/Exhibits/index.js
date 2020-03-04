@@ -12,7 +12,7 @@ export class HomeExhibitsContainer extends Component {
   componentDidMount () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
 
-    if (this.props.allExhibits.status === statuses.NOT_FETCHED) {
+    if (this.props.exhibitsStatus === statuses.NOT_FETCHED) {
       this.props.fetchAllExhibits(preview)
     }
   }
@@ -22,29 +22,16 @@ export class HomeExhibitsContainer extends Component {
       <PresenterFactory
         presenter={Presenter}
         props={{ entries: this.props.filteredExhibits }}
-        status={this.props.allExhibits.status}
+        status={this.props.exhibitsStatus}
       />
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  let filteredExhibits = []
-  if (state.allExhibits.status === statuses.SUCCESS) {
-    const now = new Date()
-
-    filteredExhibits = state.allExhibits.json.filter((entry) => {
-      // Only use entries which are in the future or ongoing
-      const event = entry.event
-      return !event || (event.startDate >= now || event.endDate >= now)
-    })
-
-    // Limit to 3 exhibits. Ones with the preferOnHomepage field checked will be prioritized
-    filteredExhibits = helper.sortList(filteredExhibits, ['preferOnHomepage', 'event.startDate'], 'asc').slice(0, 3)
-  }
   return {
-    allExhibits: state.allExhibits,
-    filteredExhibits,
+    exhibitsStatus: state.allExhibits.status,
+    filteredExhibits: helper.sortList(state.allExhibits.json || [], ['preferOnHomepage', 'order'], 'asc').slice(0, 3),
   }
 }
 
@@ -53,12 +40,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 HomeExhibitsContainer.propTypes = {
-  fetchAllExhibits: PropTypes.func.isRequired,
-  allExhibits: PropTypes.shape({
-    status: PropTypes.string.isRequired,
-    json: PropTypes.array,
-  }).isRequired,
+  exhibitsStatus: PropTypes.string.isRequired,
   filteredExhibits: PropTypes.array.isRequired,
+  fetchAllExhibits: PropTypes.func.isRequired,
   location: PropTypes.shape({
     search: PropTypes.oneOfType([
       PropTypes.string,
