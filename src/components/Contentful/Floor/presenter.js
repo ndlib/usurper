@@ -12,7 +12,7 @@ import mapkey from 'static/images/key.svg'
 
 const FloorPresenter = ({ cfFloorEntry, cfServicePoint, servicePointSlug, location }) => (
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid floorplan'>
-    <PageTitle title={cfFloorEntry.fields.title} />
+    <PageTitle title={cfFloorEntry.fields.building.fields.title + ' ' + cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
     <div className='row'>
       <div className='col-md-8 col-sm-7 floor'>

@@ -17,10 +17,23 @@ describe('components/Contentful/Floor/presenter', () => {
       cfFloorEntry: {
         fields: {
           title: 'Fake Title',
+          floorNumber: 'Fake Floor Number',
+          slug: 'Fake slug',
           shortDescription: 'Fake short description',
           content: 'Fake content',
           image: 'Fake image',
-          building: {},
+          building: {
+            fields: {
+              title: 'building title',
+              slug: 'buiding slug',
+              primaryServicePoint: 'fakeservicepoint',
+              mapLink: 'fake map',
+              image: 'fake image',
+            },
+          },
+          callNumberRange: 'fake call number',
+          spacesText: 'fake spaces text',
+          spacesLinks: 'fake spaces links',
         },
         sys: { id: 'FakeId' },
       },
@@ -43,7 +56,7 @@ describe('components/Contentful/Floor/presenter', () => {
   })
 
   it('should renders the title of the content', () => {
-    expect(enzymeWrapper.containsMatchingElement(<PageTitle title="Fake Title" />)).toBe(true)
+    expect(enzymeWrapper.containsMatchingElement(<PageTitle title='building title Fake Title' />)).toBe(true)
   })
 
   it('should render LibMarkdown for content', () => {
