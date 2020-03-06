@@ -31,6 +31,7 @@ const futureExhibit1 = {
     endDate: new Date('2900-01-05T12:00:00'),
   },
   preferOnHomepage: false,
+  order: 13,
 }
 const futureExhibit2 = {
   id: 'second entry',
@@ -41,6 +42,7 @@ const futureExhibit2 = {
     endDate: new Date('2900-01-03T01:00:00'),
   },
   preferOnHomepage: false,
+  order: 0,
 }
 const pastExhibit = {
   id: 'living in the past',
@@ -51,12 +53,14 @@ const pastExhibit = {
     endDate: new Date('1971-03-04T00:01:00'),
   },
   preferOnHomepage: true,
+  order: 2,
 }
 const eventLessExhibit = {
   id: 'woohoo',
   slug: 'it fine',
   title: 'yay',
   preferOnHomepage: true,
+  order: -1,
 }
 const invalidExhibit = {
   id: 'missing date',
@@ -81,8 +85,8 @@ describe('components/Home/Exhibits', () => {
       allExhibits: {
         status: statuses.SUCCESS,
         json: [
-          futureExhibit2,
           pastExhibit,
+          futureExhibit2,
           futureExhibit1,
           invalidExhibit,
           eventLessExhibit,
@@ -104,7 +108,7 @@ describe('components/Home/Exhibits', () => {
     expect(found.props().status).toEqual(state.allExhibits.status)
     expect(found.props().props.entries).toEqual([
       eventLessExhibit,
-      futureExhibit1,
+      pastExhibit,
       futureExhibit2,
     ])
   })
@@ -112,13 +116,7 @@ describe('components/Home/Exhibits', () => {
   describe('without store', () => {
     beforeEach(() => {
       props = {
-        allExhibits: {
-          status: statuses.NOT_FETCHED,
-          json: [
-            futureExhibit1,
-            futureExhibit2,
-          ],
-        },
+        exhibitsStatus: statuses.NOT_FETCHED,
         filteredExhibits: [
           futureExhibit1,
           futureExhibit2,

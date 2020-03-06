@@ -30,6 +30,7 @@ export const mapExhibit = (entry) => {
     slug: entry.fields.slug,
     title: entry.fields.title,
     preferOnHomepage: entry.fields.preferOnHomepage,
+    order: entry.fields.order,
     type: entry.fields.type,
     event: entry.fields.event ? mapEvent(entry.fields.event) : null,
     image: entry.fields.representationalImage || typy(entry, 'fields.event.fields.representationalImage').safeObject,
