@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Markdown from 'markdown-to-jsx'
+import Markdown from '@ndlib/markdown-to-jsx'
 import PropTypes from 'prop-types'
 import Link from 'components/Interactive/Link'
 
