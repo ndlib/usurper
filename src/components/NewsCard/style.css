@@ -1,7 +1,11 @@
 .news-card {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   margin-bottom: 1em;
+}
+
+.home .news-card {
+  flex-flow: column nowrap;
 }
 
 .news-card a {
