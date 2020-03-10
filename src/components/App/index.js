@@ -30,7 +30,6 @@ import SubjectList from 'components/SubjectList'
 import FloorSearch from 'components/FloorSearch'
 import rootReducers from 'reducers'
 import thunkMiddleware from 'redux-thunk'
-import Rewrite from './Rewrite'
 import CirculationHistory from 'components/Account/CirculationHistory'
 import Favorites from 'components/Account/Favorites'
 import ContentfulFloors from 'components/Contentful/FloorList'
@@ -66,7 +65,6 @@ const store = createStore(
 const App = (props) => {
   return (
     <Switch>
-      { Rewrite(props) }
       <Provider store={store}>
         <PageWrapper {...props}>
           <Switch>

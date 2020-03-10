@@ -164,8 +164,8 @@ export const mergeInternalLink = (partialRecord, internalLinks) => {
   }
 }
 
-export const getContentfulQueryUrl = (query, preview = false, secure = false) => {
-  const endpoint = secure ? 'secureQuery' : (preview ? 'preview/query' : 'query')
+export const getContentfulQueryUrl = (query, preview = false, secure = false, live = false) => {
+  const endpoint = secure ? 'secureQuery' : (preview ? 'preview/query' : (live ? 'livequery' : 'query'))
   let url = `${Config.contentfulAPI}/${endpoint}?locale=en-US&query=${encodeURIComponent(query)}`
   if (preview) {
     url += `&preview=${preview}`
@@ -207,4 +207,9 @@ export const titleCase = (string) => {
     words.push(word.charAt(0).toUpperCase() + word.slice(1))
   })
   return words.join(' ')
+}
+
+// Thanks StackOverflow: https://stackoverflow.com/a/6969486/1599426
+export const escapeRegExp = (string) => {
+  return string.replace(/[.*+?^${}()/|[\]\\]/g, '\\$&') // $& means the whole matched string
 }

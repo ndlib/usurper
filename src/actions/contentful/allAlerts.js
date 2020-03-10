@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch'
-import Config from 'shared/Configuration'
+import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
 export const CF_REQUEST_ALLALERTS = 'CF_REQUEST_ALLALERTS'
@@ -37,11 +37,7 @@ const receiveAllAlerts = (response) => {
 }
 
 export const fetchAllAlerts = (preview) => {
-  const query = encodeURIComponent('content_type=alert&include=0')
-  let url = `${Config.contentfulAPI}/${preview ? 'preview/query' : 'livequery'}?locale=en-US&query=${query}&t=${Date.now()}`
-  if (preview) {
-    url += `&preview=${preview}`
-  }
+  const url = helper.getContentfulQueryUrl('content_type=alert&include=0', preview, false, true)
 
   return dispatch => {
     dispatch(requestAllAlerts())
