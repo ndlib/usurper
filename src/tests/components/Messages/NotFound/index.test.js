@@ -132,6 +132,10 @@ describe('components/Messages/NotFound', () => {
     it('should redirect to internal page', () => {
       setupRedirect('/bAsIC') // ensure case-insensitive route matching works
       expect(props.history.replace).toHaveBeenCalledWith('/elsewhere')
+      // Status of presenter should be FETCHING so that it displays loading while the redirection is happening
+      const found = enzymeWrapper.dive().dive().find(PresenterFactory)
+      expect(found.exists()).toBe(true)
+      expect(found.props().status).toEqual(statuses.FETCHING)
     })
 
     it('should support wildcard redirects', () => {

@@ -11,6 +11,14 @@ import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
 
 export class NotFoundContainer extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      redirecting: false,
+    }
+  }
+
   componentDidMount () {
     if (this.props.fetchStatus === statuses.NOT_FETCHED) {
       const preview = (new URLSearchParams(this.props.history.location.search)).get('preview') === 'true'
@@ -46,6 +54,10 @@ export class NotFoundContainer extends Component {
         return null
       })
       if (redirectTo) {
+        // eslint-disable-next-line react/no-did-update-set-state
+        this.setState({
+          redirecting: true,
+        })
         if (redirectTo.startsWith('http')) {
           // Use window.location for external sites
           window.location.replace(redirectTo)
@@ -57,10 +69,13 @@ export class NotFoundContainer extends Component {
   }
 
   render () {
+    // If a redirect is found, it may take a moment for the browser to process the redirect.
+    // Prevent the "Not Found" presenter from rendering while we wait.
+    const status = this.state.redirecting ? statuses.FETCHING : this.props.fetchStatus
     return (
       <PresenterFactory
         presenter={Presenter}
-        status={this.props.fetchStatus}
+        status={status}
         props={{ message: this.props.message }}
       />
     )
