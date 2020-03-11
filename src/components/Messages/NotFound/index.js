@@ -34,7 +34,7 @@ export class NotFoundContainer extends Component {
         // We want to escape the whole fromPath so we can use it as a RegEx, EXCEPT wildcards need to be replaced
         // with the unescape regex equivalent (.*)
         const splitPath = redirect.fromPath.split('*')
-        const regexFrom = splitPath.reduce((final, current, index) => {
+        const regexFrom = '^' + splitPath.reduce((final, current, index) => {
           return final + (index > 0 ? '(.*)' : '') + helper.escapeRegExp(current)
         }, '')
         const regexp = new RegExp(regexFrom, 'i')

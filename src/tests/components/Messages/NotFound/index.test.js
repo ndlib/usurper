@@ -164,5 +164,11 @@ describe('components/Messages/NotFound', () => {
       expect(props.history.replace).not.toHaveBeenCalled()
       expect(window.location.replace).not.toHaveBeenCalled()
     })
+
+    it('should not redirect unless match is at beginning of string', () => {
+      setupRedirect('/test/basic')
+      expect(props.history.replace).not.toHaveBeenCalled()
+      expect(window.location.replace).not.toHaveBeenCalled()
+    })
   })
 })
