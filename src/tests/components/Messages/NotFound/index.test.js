@@ -130,7 +130,7 @@ describe('components/Messages/NotFound', () => {
     }
 
     it('should redirect to internal page', () => {
-      setupRedirect('/basic')
+      setupRedirect('/bAsIC') // ensure case-insensitive route matching works
       expect(props.history.replace).toHaveBeenCalledWith('/elsewhere')
     })
 

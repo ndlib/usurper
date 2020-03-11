@@ -29,7 +29,8 @@ export class NotFoundContainer extends Component {
         const regexFrom = splitPath.reduce((final, current, index) => {
           return final + (index > 0 ? '(.*)' : '') + helper.escapeRegExp(current)
         }, '')
-        const matches = this.props.history.location.pathname.match(regexFrom)
+        const regexp = new RegExp(regexFrom, 'i')
+        const matches = this.props.history.location.pathname.match(regexp)
         if (matches) {
           redirectTo = redirect.toPath
           if (redirect.forwardPath) {
