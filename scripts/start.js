@@ -16,7 +16,6 @@ var httpProxyMiddleware = require('http-proxy-middleware');
 var clearConsole = require('react-dev-utils/clearConsole');
 var checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 var formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
-var getProcessForPort = require('react-dev-utils/getProcessForPort');
 var openBrowser = require('react-dev-utils/openBrowser');
 var { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
 var ignoredFiles = require('react-dev-utils/ignoredFiles');
