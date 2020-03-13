@@ -4,16 +4,17 @@
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.6...v2020.7)
 
 ### Features
-- Exhibits are now displayed prominently on the website.
-- Home page received a makeover! [#818](https://github.com/ndlib/usurper/pull/818)
 - Event registration links now display different text and are more flexible. [#816](https://github.com/ndlib/usurper/pull/816) [#822](https://github.com/ndlib/usurper/pull/822)
 
 ### Bug Fixes
 - Fixed anomolies with parsing markdown from Contentful in certain circumstances. [#823](https://github.com/ndlib/usurper/pull/823)
 
 ### Other Changes
-- Exhibits can now be given an explicit display order. [#824](https://github.com/ndlib/usurper/pull/824)
+- *Dark Feature – Changed styling of news and events on home page.* [#818](https://github.com/ndlib/usurper/pull/818)
+- *Dark Feature - Exhibits can now be given an explicit display order.* [#824](https://github.com/ndlib/usurper/pull/824)
 - Internal code clean-up. [#817](https://github.com/ndlib/usurper/pull/817) [#812](https://github.com/ndlib/usurper/pull/812)
+
+*Dark features will be available in a future release.*
 
 ## [v2020.6](https://github.com/ndlib/usurper/tree/v2020.6) "Feelin' Fine"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.4...v2020.6)
