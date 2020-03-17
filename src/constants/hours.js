@@ -47,7 +47,14 @@ export const getOpenStatus = (hoursEntry) => {
     case '24hours':
       return hoursOpenStatus.OPEN
     case 'text':
-      return typy(hoursEntry, 'today.times.text').safeString.toLowerCase().indexOf('card swipe') >= 0
+      const partiallyOpenKeywords = [
+        'card swipe',
+        'card access',
+        'swipe access',
+        'limited access',
+        'partially open',
+      ]
+      return partiallyOpenKeywords.some(phrase => typy(hoursEntry, 'today.times.text').safeString.toLowerCase().indexOf(phrase) >= 0)
         ? hoursOpenStatus.PARTIALLY_OPEN
         : hoursOpenStatus.CLOSED
     default:
