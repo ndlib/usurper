@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2020.8](https://github.com/ndlib/usurper/tree/v2020.8) "Social Distance"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.7...v2020.8)
+
+### Misc. Changes
+- Hours will display as yellow for "Card access" text. [#834](https://github.com/ndlib/usurper/pull/834)
+
 ## [v2020.7](https://github.com/ndlib/usurper/tree/v2020.7) "Floored"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.6...v2020.7)
 
