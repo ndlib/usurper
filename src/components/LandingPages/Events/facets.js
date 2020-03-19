@@ -26,6 +26,7 @@ const TYPE_OPTIONS = [
   'Workshop',
   'Study Break',
   'Special Event',
+  'Virtual',
 ].map(value => ({
   key: value,
   value: value,
