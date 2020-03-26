@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2020.9](https://github.com/ndlib/usurper/tree/v2020.9) "Super Clap"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.8...v2020.9)
+
+### Features
+- Events can now have more than one type. "Virtual" event type added. [#841](https://github.com/ndlib/usurper/pull/841)
+
+### Other Changes
+- Internal changes to redirects. [#842](https://github.com/ndlib/usurper/pull/842)
+- *Dark Feature - Past exhibits page will display previous 180 days by default.* [#835](https://github.com/ndlib/usurper/pull/835)
+
+*Dark features will be available in a future release.*
+
 ## [v2020.8](https://github.com/ndlib/usurper/tree/v2020.8) "Social Distance"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.7...v2020.8)
 
