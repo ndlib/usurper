@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 
 import RecurringIndicator from 'components/Contentful/Event/RecurringIndicator'
 import LibMarkdown from 'components/LibMarkdown'
@@ -15,11 +16,12 @@ const LegacyEventCard = ({ entry, showDescription, showImage, showTags, onTagCli
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
   const linkPath = '/event/' + entry.slug + (entry.recurrenceDate ? `/${entry.recurrenceDate}` : '')
 
-  const typeTag = entry.type ? {
-    key: entry.type,
-    value: entry.type,
-    onClick: (tag) => onTagClick(TYPE_FACET.key, [ tag.key ]),
-  } : null
+  const tagClickHandler = (tag) => onTagClick(TYPE_FACET.key, [ tag.key ])
+  const typeTags = typy(entry.type).safeArray.map(value => ({
+    key: value,
+    value: value,
+    onClick: tagClickHandler,
+  }))
 
   return (
     <div className='event-card' itemScope itemType='http://schema.org/Event' itemProp='mainEntityOfPage'>
@@ -54,7 +56,7 @@ const LegacyEventCard = ({ entry, showDescription, showImage, showTags, onTagCli
           </div>
         )}
         { Config.features.eventsFilteringEnabled && showTags && (
-          <Tags groups={[typeTag]} />
+          <Tags groups={typeTags} />
         )}
       </div>
     </div>
@@ -70,8 +72,7 @@ LegacyEventCard.propTypes = {
     displayTime: PropTypes.string,
     locationText: PropTypes.string,
     representationalImage: PropTypes.object,
-    audience: PropTypes.arrayOf(PropTypes.string),
-    type: PropTypes.string,
+    type: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   showDescription: PropTypes.bool,
   showImage: PropTypes.bool,
