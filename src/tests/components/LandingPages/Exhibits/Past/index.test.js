@@ -99,15 +99,15 @@ describe('components/LandingPages/Exhibits/Past', () => {
       const result = mapStateToProps(state, props)
       const expected = [
         testData.previousExhibit,
-        testData.twentyNineDaysAgoExhibit,
-        testData.thirtyDaysAgoExhibit,
+        testData.oneSeventyNineDaysAgoExhibit,
+        testData.oneEightyDaysAgoExhibit,
         testData.yesterdayExhibit,
       ]
       expect(result.exhibits).toEqual(expect.arrayContaining(expected))
       expect(result.exhibits).toHaveLength(expected.length)
     })
 
-    it('should return filteredExhibits for last 30 days by default', () => {
+    it('should return filteredExhibits for last 180 days by default', () => {
       const state = {
         allExhibits: {
           status: statuses.SUCCESS,
@@ -117,7 +117,7 @@ describe('components/LandingPages/Exhibits/Past', () => {
       const result = mapStateToProps(state, props)
       const expected = [
         testData.previousExhibit,
-        testData.twentyNineDaysAgoExhibit,
+        testData.oneSeventyNineDaysAgoExhibit,
         testData.yesterdayExhibit,
       ]
       expect(result.filteredExhibits).toEqual(expect.arrayContaining(expected))

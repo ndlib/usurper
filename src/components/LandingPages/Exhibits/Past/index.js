@@ -56,7 +56,7 @@ export const mapStateToProps = (state, ownProps) => {
     }
     return hasFilter
       ? dateLibs.isInMonth(entry.event.startDate, entry.event.endDate, filterYear, filterMonth)
-      : entry.event.endDate >= moment().subtract(30, 'days')
+      : entry.event.endDate >= moment().subtract(180, 'days')
   })
 
   return {
