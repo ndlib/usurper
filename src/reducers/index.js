@@ -12,6 +12,7 @@ import contentfulAllExhibits from './contentful/allExhibits'
 import contentfulFloor from './contentful/floor'
 import contentfulAllFloors from './contentful/floors'
 import contentfulStatic from './contentful/staticContent'
+import contentfulAllRedirects from './contentful/allRedirects'
 import database from './contentful/database'
 import servicePoints from './contentful/servicePoints'
 import entryReducer from './contentful/entry'
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   cfDatabases: database,
   cfServicePoints: servicePoints,
   cfEntry: entryReducer,
+  allRedirects: contentfulAllRedirects,
   personal: personalReducer,
   renewal: renewalReducer,
   settings: settingsReducer,

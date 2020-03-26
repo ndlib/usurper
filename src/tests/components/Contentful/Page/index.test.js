@@ -46,12 +46,14 @@ describe('components/Contentful/Page/Container', () => {
     })
 
     it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<APIPresenterFactory
+      const expected = (
+        <APIPresenterFactory
           status={props.cfPageEntry.status}
-          props={{ cfPageEntry: props.cfPageEntry.json }}
-          presenter={PagePresenter} />))
-        .toBe(true)
+          props={{ cfPageEntry: props.cfPageEntry.json, history: props.history }}
+          presenter={PagePresenter}
+        />
+      )
+      expect(enzymeWrapper.containsMatchingElement(expected)).toBe(true)
     })
 
     it('calls the bound fetch page action on load', () => {
@@ -93,12 +95,14 @@ describe('components/Contentful/Page/Container', () => {
     })
 
     it('only renders APIPresenterFactory with cfPageEntry slice and PagePresenter', () => {
-      expect(enzymeWrapper
-        .containsMatchingElement(<APIPresenterFactory
+      const expected = (
+        <APIPresenterFactory
           status={props.cfPageEntry.status}
-          props={{ cfPageEntry: props.cfPageEntry.json }}
-          presenter={PagePresenter} />))
-        .toBe(true)
+          props={{ cfPageEntry: props.cfPageEntry.json, history: props.history }}
+          presenter={PagePresenter}
+        />
+      )
+      expect(enzymeWrapper.containsMatchingElement(expected)).toBe(true)
     })
 
     it('calls the bound fetch page action on load', () => {

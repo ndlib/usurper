@@ -19,7 +19,7 @@ class APIPresenterFactory extends Component {
       case statuses.SUCCESS:
         return this.props.presenter(this.props.props)
       case statuses.NOT_FOUND:
-        return <NotFound />
+        return <NotFound {...this.props.props} />
       default:
         if (this.props.error) {
           return this.props.error(this.props.props)

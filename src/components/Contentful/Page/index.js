@@ -41,7 +41,7 @@ export class ContentfulPageContainer extends Component {
     return <PresenterFactory
       presenter={ContentfulPagePresenter}
       status={this.props.cfPageEntry.slug === this.props.match.params.id ? this.props.cfPageEntry.status : statuses.NOT_FETCHED}
-      props={{ cfPageEntry: this.props.cfPageEntry.json }} />
+      props={{ cfPageEntry: this.props.cfPageEntry.json, history: this.props.history }} />
   }
 }
 
