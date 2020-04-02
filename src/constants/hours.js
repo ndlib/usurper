@@ -7,6 +7,7 @@ export const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug',
 export const hesburghHoursCode = '426'
 export const hoursPageSlug = 'hours'
 export const hoursPageOrder = [
+  { servicePointSlug: 'ask-a-librarian-live-chat', main: true },
   { servicePointSlug: 'hesburghlibrary', main: true },
   { servicePointSlug: 'askusdesk', main: false },
   { servicePointSlug: 'circulationservicedesk', main: false },
