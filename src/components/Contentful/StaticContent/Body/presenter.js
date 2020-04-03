@@ -3,12 +3,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import 'static/css/global.css'
 import Related from '../../Related'
+import LibMarkdown from 'components/LibMarkdown'
 
-const Presenter = ({ cfStatic }) => (
+const Presenter = ({ cfStatic, showDescription, children }) => (
   <div key={`ContentfulSidebar_${cfStatic.sys.id}_main`} role='complementary'>
     { cfStatic.fields.shortDescription && (
-      <meta name='description' content={cfStatic.fields.shortDescription} />
+      <React.Fragment>
+        <meta name='description' content={cfStatic.fields.shortDescription} />
+        {showDescription && (
+          <LibMarkdown>{cfStatic.fields.shortDescription}</LibMarkdown>
+        )}
+      </React.Fragment>
     )}
+    {children}
     <Related className='p-resources' title='Resources' showImages={false}>
       { cfStatic.fields.relatedResources }
     </Related>
@@ -22,7 +29,19 @@ const Presenter = ({ cfStatic }) => (
 )
 
 Presenter.propTypes = {
-  cfStatic: PropTypes.object.isRequired,
+  cfStatic: PropTypes.shape({
+    sys: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+    fields: PropTypes.shape({
+      shortDescription: PropTypes.string,
+      relatedResources: PropTypes.any,
+      libguides: PropTypes.any,
+      relatedServices: PropTypes.any,
+    }).isRequired,
+  }).isRequired,
+  showDescription: PropTypes.bool,
+  children: PropTypes.node,
 }
 
 export default Presenter

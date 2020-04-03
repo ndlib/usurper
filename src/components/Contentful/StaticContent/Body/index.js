@@ -6,7 +6,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PresenterFactory from 'components/APIInlinePresenterFactory'
 import Presenter from './presenter.js'
-import { withErrorBoundary } from 'components/ErrorBoundary'
 
 import * as statuses from 'constants/APIStatuses'
 
@@ -34,7 +33,11 @@ export class BodyContainer extends Component {
     return <PresenterFactory
       presenter={Presenter}
       status={this.props.cfStatic.status}
-      props={{ cfStatic: this.props.cfStatic.json }}
+      props={{
+        cfStatic: this.props.cfStatic.json,
+        showDescription: this.props.showDescription,
+        children: this.props.children,
+      }}
       hideLoading={this.props.hideLoading}
     />
   }
@@ -46,6 +49,8 @@ BodyContainer.propTypes = {
   preview: PropTypes.bool.isRequired,
   slug: PropTypes.string.isRequired,
   hideLoading: PropTypes.bool,
+  showDescription: PropTypes.bool,
+  children: PropTypes.node,
 }
 
 const Body = connect(
@@ -53,4 +58,4 @@ const Body = connect(
   mapDispatchToProps
 )(BodyContainer)
 
-export default withErrorBoundary(Body)
+export default Body
