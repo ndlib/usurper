@@ -9,7 +9,7 @@ import ContentfulFloorsPresenter from './presenter.js'
 import Link from 'components/Interactive/Link'
 import typy from 'typy'
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   const locationArray = ownProps.location.pathname.split('/')
   const pathSlug = locationArray[locationArray.length - 1]
   const searchParams = new URLSearchParams(ownProps.location.search)
@@ -29,19 +29,19 @@ const mapStateToProps = (state, ownProps) => {
       </React.Fragment>
     )
     const spacesText = (
-      <React.Fragment>
+      <div>
         {typy(floor, 'fields.spacesLinks').safeArray.map(link => {
           const linkPath = link.fields.url || link.fields.slug
           const comma = floor.fields.spacesText || ((floor.fields.spacesLinks.length > 1) && (floor.fields.spacesLinks.indexOf(link) !== (floor.fields.spacesLinks.length - 1))) ? ', ' : null
           return (
-            <React.Fragment>
-              <Link key={link.sys.id} to={`${linkPath}`}>{link.fields.title}</Link>
+            <React.Fragment key={linkPath}>
+              <Link to={`${linkPath}`}>{link.fields.title}</Link>
               {comma}
             </React.Fragment>
           )
         })}
         {floor.fields.spacesText}
-      </React.Fragment>
+      </div>
     )
     return {
       ...floor,
@@ -56,7 +56,7 @@ const mapStateToProps = (state, ownProps) => {
     floorsStatus: state.cfAllFloors.status,
   }
 }
-const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ fetchFloors }, dispatch)
 }
 
