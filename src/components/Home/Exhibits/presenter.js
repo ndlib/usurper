@@ -15,7 +15,12 @@ const Presenter = ({ entries }) => {
             <ExhibitCard key={entry.id} entry={entry} />
           ))}
         </div>
-        <Link to='/exhibits' className='viewAll'>View All Exhibits</Link>
+        {
+          /* This is temporary. Landing page link will be back. Make sure to enable the unit test when this returns!
+          <Link to='/exhibits' className='viewAll'>View All Exhibits</Link>
+          */
+        }
+        <Link to='https://collections.library.nd.edu/' className='viewAll'>View More Digital Exhibits</Link>
       </section>
     </div>
   )
