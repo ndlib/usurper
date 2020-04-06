@@ -15,21 +15,24 @@ const Contact = (props) => {
   let floor
   let building
   if (sp.floor && sp.floor.fields) {
-    const rawFloor = sp.floor.fields
-    if (rawFloor.image && !sp.hideFloorMap) {
-      const floorLink = 'floor/' + rawFloor.slug
-      floor = (
-        <li className='floor'><Link
-          to={floorLink}
-          title={'Link to floor map of ' + rawFloor.title}
-        >
-          Floor Map
-        </Link></li>
-      )
+    const isBuilding = typy(sp.floor, 'sys.contentType.sys.id').safeString === 'building'
+    const rawBuilding = isBuilding ? sp.floor.fields : typy(sp.floor, 'fields.building.fields').safeObject
+    if (!isBuilding) {
+      const rawFloor = sp.floor.fields
+      if (rawFloor.image && !sp.hideFloorMap) {
+        const floorLink = 'floor/' + rawFloor.slug
+        floor = (
+          <li className='floor'><Link
+            to={floorLink}
+            title={'Link to floor map of ' + rawFloor.title}
+          >
+            Floor Map
+          </Link></li>
+        )
+      }
     }
 
-    if (rawFloor.building && rawFloor.building.fields) {
-      const rawBuilding = rawFloor.building.fields
+    if (rawBuilding) {
       building = (
         <li
           className='building'>
