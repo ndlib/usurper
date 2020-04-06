@@ -76,6 +76,12 @@
 		clear: both;
 	}
 
+	h2.mapkey {
+		margin-bottom: 4px;
+	}
+
+	img.mapkey {margin-top:4px;}
+
 
 
 }
