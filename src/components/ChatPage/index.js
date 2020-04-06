@@ -1,17 +1,31 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import PageTitle from 'components/Layout/PageTitle'
 import Chat from '../Chat'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
+import StaticAlert from 'components/Contentful/StaticContent/Alert'
+import StaticBody from 'components/Contentful/StaticContent/Body'
 
-const ChatPage = () => {
+const ChatPage = (props) => {
+  const slug = 'chat'
+  const preview = (new URLSearchParams(props.location.search)).get('preview') === 'true'
+
   return (
     <div className='chat-page'>
       <PageTitle title='Chat with us' />
       <SearchProgramaticSet open={false} />
-      <p>Chat is normally staffed 9:00 a.m. to 10:00 p.m.</p>
-      <Chat />
+      <StaticAlert slug={slug} preview={preview} hideLoading />
+      <StaticBody slug={slug} preview={preview} showDescription>
+        <Chat />
+      </StaticBody>
     </div>
   )
+}
+
+ChatPage.propTypes = {
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
 }
 
 export default ChatPage
