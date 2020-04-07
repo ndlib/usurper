@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2020.10](https://github.com/ndlib/usurper/tree/v2020.10) "Show Stopper"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.9...v2020.10)
+
+### Features
+- Digital exhibits will be featured in a new space on the front page. When the library reopens, we will also feature in-person exhibits in this space.
+- Icons will replace images for the featured services in the space just below the main image.
+- New layout for the News and Events sections.
+- Chat included on hours page. [#849](https://github.com/ndlib/usurper/pull/849)
+
+### Other Changes
+- Link to visit more exhibits temporarily routed to DEC instead of landing page. [#850](https://github.com/ndlib/usurper/pull/850)
+- Internal changes to content management. [#848](https://github.com/ndlib/usurper/pull/848)
+
 ## [v2020.9](https://github.com/ndlib/usurper/tree/v2020.9) "Super Clap"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.8...v2020.9)
 
