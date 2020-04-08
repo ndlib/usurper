@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 
 import NoFavorites from 'components/Account/Favorites/NoFavorites'
 import TopFavorites from 'components/Account/Favorites/TopFavorites'
@@ -10,6 +11,11 @@ import HomePageHours from 'components/Hours/HomePage'
 import Config from 'shared/Configuration'
 
 const TopSection = (props) => {
+  const servicePoint = typy(props.servicePoint).isString ? (
+    <ServicePoint slug={props.servicePoint} page={props.page} />
+  ) : (
+    <ServicePoint cfServicePoint={props.servicePoint} page={props.page} />
+  )
   return (
     <div className='row'>
       { props.showFavorites ? (
@@ -26,7 +32,7 @@ const TopSection = (props) => {
               <InlineLoading />
             ) : (
               <React.Fragment>
-                <ServicePoint cfServicePoint={props.servicePoint} page={props.page} />
+                {servicePoint}
                 <PageLink className='button callout' cfPage={props.calloutLink} />
               </React.Fragment>
             )}
@@ -47,7 +53,10 @@ TopSection.propTypes = {
   locationLoading: PropTypes.bool,
   hasItems: PropTypes.bool,
   locationClassName: PropTypes.string,
-  servicePoint: PropTypes.object,
+  servicePoint: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
   calloutLink: PropTypes.object,
   favorites: PropTypes.object,
   cookies: PropTypes.any,

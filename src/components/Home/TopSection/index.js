@@ -41,7 +41,7 @@ class TopSection extends Component {
         this.props.getAllFavorites()
       }
       if (this.props.homeLibraryStatus === statuses.NOT_FETCHED) {
-        this.props.getHomeLibrary()
+        this.props.getHomeLibrary(true)
       }
     }
     if (this.props.favoriteLocationSlug && this.props.cfFavoriteLocation.slug !== this.props.favoriteLocationSlug) {
@@ -71,7 +71,7 @@ class TopSection extends Component {
         locationLoading={locationLoading}
         hasItems={this.props.hasItems}
         locationClassName={this.props.hideFavorites ? 'middle-align' : ''}
-        servicePoint={typy(this.props, 'cfFavoriteLocation.json.fields.servicePoint').safeObjectOrEmpty}
+        servicePoint={typy(this.props, 'cfFavoriteLocation.json.fields.servicePoint').safeObject || this.props.favoriteLocationSlug}
         calloutLink={typy(this.props, 'cfFavoriteLocation.json.fields.callOutLink').safeObjectOrEmpty}
         favorites={this.props.favorites}
         cookies={this.props.cookies}
@@ -98,7 +98,7 @@ export const mapStateToProps = (state, ownProps) => {
       return settings[SETTING_KIND.homeLibrary].data
     } else if (hlStatus === statuses.ERROR ||
       ([statuses.ERROR, statuses.SUCCESS, statuses.UNAUTHORIZED, statuses.UNAUTHENTICATED].includes(personal.login.state) && !personal.login.token)) {
-      return DEFAULT_LIBRARY
+      return 'ask-a-librarian-live-chat' || DEFAULT_LIBRARY
     }
     return null
   })()
