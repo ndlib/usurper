@@ -1,5 +1,11 @@
 # Change Log
 
+## [v2020.11](https://github.com/ndlib/usurper/tree/v2020.11) "Quiet Time"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.10...v2020.11)
+
+### Changes
+- Online chat displayed as default service point on home page (temporary). [#855](https://github.com/ndlib/usurper/pull/855)
+
 ## [v2020.10](https://github.com/ndlib/usurper/tree/v2020.10) "Show Stopper"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.9...v2020.10)
 
