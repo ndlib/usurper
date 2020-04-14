@@ -147,8 +147,8 @@ export const getCircStatus = () => {
   return getSimpleSetting(KIND.circStatus, false)
 }
 
-export const getHomeLibrary = () => {
-  return getSimpleSetting(KIND.homeLibrary, DEFAULT_LIBRARY)
+export const getHomeLibrary = (isHomePage) => {
+  return getSimpleSetting(KIND.homeLibrary, isHomePage ? 'ask-a-librarian-live-chat' : DEFAULT_LIBRARY)
 }
 
 export const setHomeLibrary = (librarySlug) => {
