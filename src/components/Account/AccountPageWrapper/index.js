@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router'
 
 import Presenter from './presenter'
 
@@ -83,4 +84,4 @@ AccountPageWrapperContainer.propTypes = {
   initLogin: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountPageWrapperContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AccountPageWrapperContainer))

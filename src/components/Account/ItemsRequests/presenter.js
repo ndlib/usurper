@@ -15,7 +15,7 @@ const ItemsRequests = (props) => {
   const pending = props.resources.pending
 
   return (
-    <AccountPageWrapper title='Items &amp; Requests' slug='personal' className='resources-list'>
+    <AccountPageWrapper title='Items &amp; Requests' slug='items-requests' className='resources-list'>
       { props.userLoading ? (
         <InlineLoading title='Loading account info' />
       ) : (
