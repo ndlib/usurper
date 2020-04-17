@@ -46,7 +46,7 @@ const PagePresenter = ({ entry }) => (
         <Related className='p-resources' title='Resources' showImages={false}>
           { entry.fields.relatedResources }
         </Related>
-        <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
+        <Link to='/news' className='newsEventsLink' arrow>View All News</Link>
       </main>
       <aside className='col-md-4 col-sm-4 right news'>
         <Librarians netids={entry.fields.contactPeople} />

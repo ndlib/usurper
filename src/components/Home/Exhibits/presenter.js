@@ -17,10 +17,10 @@ const Presenter = ({ entries }) => {
         </div>
         {
           /* This is temporary. Landing page link will be back. Make sure to enable the unit test when this returns!
-          <Link to='/exhibits' className='viewAll'>View All Exhibits</Link>
+          <Link to='/exhibits' arrow>View All Exhibits</Link>
           */
         }
-        <Link to='https://collections.library.nd.edu/' className='viewAll'>View More Digital Exhibits</Link>
+        <Link to='https://collections.library.nd.edu/' arrow>View More Digital Exhibits</Link>
       </section>
     </div>
   )
