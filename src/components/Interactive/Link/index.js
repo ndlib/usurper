@@ -87,7 +87,7 @@ export const LibLink = (props) => {
     delete propsToPass[k]
   }
   if (propsToPass.arrow) {
-    propsToPass.className += ' viewAll'
+    propsToPass.className = `${propsToPass.className || ''} viewAll`
   }
 
   let to = props.to

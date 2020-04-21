@@ -2934,8 +2934,9 @@ body {
 }
 
 .viewAll > svg {
-  flex: 0 0 auto;
-  height: auto;
+  height: 100%;
+  position: absolute;
+  right: -16px;
   width: 16px;
   fill: #fff;
 }
