@@ -2921,6 +2921,7 @@ body {
   width: 50%;
   display: flex;
   flex-flow: row nowrap;
+  padding: 0px;
 }
 
 .viewAll > div {
