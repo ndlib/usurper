@@ -97,7 +97,7 @@ const PagePresenter = ({ entry }) => {
           <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.relatedPages }</Related>
         </aside>
       </div>
-      <Link to='/events' className='viewAll viewAllEvents'>View All Events</Link>
+      <Link to='/events' className='viewAllEvents' arrow>View All Events</Link>
     </article>
   )
 }

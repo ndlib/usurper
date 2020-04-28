@@ -58,7 +58,7 @@ class TopFavorites extends Component {
             { this.favoritesSection('My Subjects', this.props.favorites[KIND.subjects].items || []) }
           </div>
           <div className='row'>
-            <Link to={favoritesPath} className='viewAll viewMore'>
+            <Link to={favoritesPath} className='viewMore' arrow>
               View or Modify Favorites
             </Link>
           </div>

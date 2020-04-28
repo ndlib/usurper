@@ -34,7 +34,7 @@ const Presenter = ({ entries }) => {
             </React.Fragment>
           ))}
         </ErrorBoundary>
-        <Link to='/events' className='newsEventsLink viewAll'>View All Events</Link>
+        <Link to='/events' className='newsEventsLink' arrow>View All Events</Link>
       </section>
     </div>
   )

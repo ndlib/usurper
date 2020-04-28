@@ -20,7 +20,7 @@ const News = (entries) => {
             : entries.map(entry => <LegacyNewsCard key={entry.sys.id} entry={entry} />)
           }
         </div>
-        <Link to='/news' className='newsEventsLink viewAll'>View All News</Link>
+        <Link to='/news' className='newsEventsLink' arrow>View All News</Link>
       </section>
     </div>
   )

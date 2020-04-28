@@ -6,7 +6,15 @@ import PropTypes from 'prop-types'
 
 export const LINK_CLICK = 'LINK_CLICK'
 
-const Internal = (to, onClick, ariaLabel, props) => {
+const svgArrow = (
+  <svg viewBox='0 0 16 1' preserveAspectRatio='none'>
+    <path d='M0,0 0,0 16,0.5 0,1 0,1z' />
+    <line x1='0' x2='16' y1='0' y2='0.5' stroke='#a7a7a7' strokeWidth='0.05' strokeLinecap='butt' />
+    <line x1='0' x2='16' y1='1' y2='0.5' stroke='#a7a7a7' strokeWidth='0.1' strokeLinecap='butt' />
+  </svg>
+)
+
+const Internal = (to, onClick, ariaLabel, arrow, props) => {
   return (
     <Link
       to={to}
@@ -14,12 +22,19 @@ const Internal = (to, onClick, ariaLabel, props) => {
       aria-label={ariaLabel}
       {...props}
     >
-      {props.children}
+      {arrow ? (
+        <React.Fragment>
+          <div>{props.children}</div>
+          {svgArrow}
+        </React.Fragment>
+      ) : (
+        props.children
+      )}
     </Link>
   )
 }
 
-const External = (to, noTarget, onClick, ariaLabel, props) => {
+const External = (to, noTarget, onClick, ariaLabel, arrow, props) => {
   const target = noTarget ? '_self' : '_blank'
   const rel = noTarget ? '' : 'noopener noreferrer'
   return (
@@ -30,7 +45,14 @@ const External = (to, noTarget, onClick, ariaLabel, props) => {
       aria-label={ariaLabel}
       {...props}
     >
-      {props.children}
+      {arrow ? (
+        <React.Fragment>
+          <div>{props.children}</div>
+          {svgArrow}
+        </React.Fragment>
+      ) : (
+        props.children
+      )}
     </a>
   )
 }
@@ -63,6 +85,9 @@ export const LibLink = (props) => {
   const propsToPass = Object.assign({}, props)
   for (const k in nonTagProps) {
     delete propsToPass[k]
+  }
+  if (propsToPass.arrow) {
+    propsToPass.className = `${propsToPass.className || ''} viewAll`
   }
 
   let to = props.to
@@ -106,28 +131,28 @@ export const LibLink = (props) => {
   to += query
 
   if (to.startsWith('http')) {
-    return External(to, props.noTarget, onClick, props.ariaLabel, propsToPass)
+    return External(to, props.noTarget, onClick, props.ariaLabel, props.arrow, propsToPass)
   }
 
   if (to.startsWith('mailto:') || to.startsWith('tel:')) {
-    return External(to, false, onClick, props.ariaLabel, propsToPass)
+    return External(to, false, onClick, props.ariaLabel, props.arrow, propsToPass)
   }
 
   // Link to named anchor using native browser behavior
   if (to.search('#') > -1) {
-    return External(to, true, onClick, props.ariaLabel, propsToPass)
+    return External(to, true, onClick, props.ariaLabel, props.arrow, propsToPass)
   }
 
   // Link to named anchor using native browser behavior
   if (to.search('#') > -1) {
-    return External(to, true, undefined, props.ariaLabel, propsToPass)
+    return External(to, true, undefined, props.ariaLabel, props.arrow, propsToPass)
   }
 
   // Ensure internal links start with '/'
   if (!to.startsWith('/')) {
     to = '/' + to
   }
-  return Internal(to, onClick, props.ariaLabel, propsToPass)
+  return Internal(to, onClick, props.ariaLabel, props.arrow, propsToPass)
 }
 
 const nonTagProps = {
@@ -147,10 +172,12 @@ const nonTagProps = {
 
 Internal.propTypes = {
   children: PropTypes.any,
+  arrow: PropTypes.bool,
 }
 
 External.propTypes = {
   children: PropTypes.any,
+  arrow: PropTypes.bool,
 }
 
 Invalid.propTypes = {
@@ -163,6 +190,7 @@ LibLink.propTypes = Object.assign({}, nonTagProps, {
   title: PropTypes.string,
   children: PropTypes.any,
   itemProp: PropTypes.string,
+  arrow: PropTypes.bool,
 })
 
 export default withRouter(connect()(LibLink))

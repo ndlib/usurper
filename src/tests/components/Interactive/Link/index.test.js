@@ -19,12 +19,30 @@ describe('components/Interactive/Link', () => {
         enzymeWrapper = setup({
           to: '/internal',
           className: 'testClass',
-          children: <div />,
+          children: <div>test</div>,
         })
       })
 
       it('should render Link with children', () => {
-        expect(enzymeWrapper.find('Link').childAt(0).type()).toBe('div')
+        expect(enzymeWrapper.find('Link').containsMatchingElement(<div>test</div>)).toBe(true)
+      })
+    })
+
+    describe('with arrow', () => {
+      beforeEach(() => {
+        enzymeWrapper = setup({
+          to: '/internal',
+          children: <div>test</div>,
+          arrow: true,
+        })
+      })
+
+      it('should render Link with children', () => {
+        expect(enzymeWrapper.find('Link').containsMatchingElement(<div>test</div>)).toBe(true)
+      })
+
+      it('should render svg', () => {
+        expect(enzymeWrapper.find('svg').exists()).toBe(true)
       })
     })
 
@@ -78,12 +96,31 @@ describe('components/Interactive/Link', () => {
         enzymeWrapper = setup({
           to: 'http://example.org',
           className: 'testClass',
-          children: <div />,
+          children: <div>test</div>,
         })
       })
 
       it('should render an a tag with children', () => {
-        expect(enzymeWrapper.find('a').childAt(0).type()).toBe('div')
+        expect(enzymeWrapper.find('a').containsMatchingElement(<div>test</div>)).toBe(true)
+      })
+    })
+
+    describe('with arrow', () => {
+      beforeEach(() => {
+        enzymeWrapper = setup({
+          to: 'http://example.org',
+          className: 'testClass',
+          children: <div>test</div>,
+          arrow: true,
+        })
+      })
+
+      it('should render an a tag with children', () => {
+        expect(enzymeWrapper.find('a').containsMatchingElement(<div>test</div>)).toBe(true)
+      })
+
+      it('should render svg', () => {
+        expect(enzymeWrapper.find('svg').exists()).toBe(true)
       })
     })
 
