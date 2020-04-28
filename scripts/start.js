@@ -303,3 +303,10 @@ choosePort(process.env.HOST || 'localhost', DEFAULT_PORT).then(port => {
     console.log(chalk.red('Something is already running on port ' + DEFAULT_PORT + '.'));
   }
 })
+
+// There's a bug with webpack web server which causes it to die randomly. This workaround seems to keep it running.
+// See here: https://github.com/webpack/webpack-dev-server/issues/1642#issuecomment-523908463
+process.on('uncaughtException', function (err) {
+  console.error(err.stack);
+  console.log('Exception caught in webpack-dev-server.');
+});

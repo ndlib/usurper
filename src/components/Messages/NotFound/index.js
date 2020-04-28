@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import typy from 'typy'
 
 import Presenter from './presenter'
 import PresenterFactory from 'components/APIPresenterFactory'
@@ -21,7 +22,7 @@ export class NotFoundContainer extends Component {
 
   componentDidMount () {
     if (this.props.fetchStatus === statuses.NOT_FETCHED) {
-      const preview = (new URLSearchParams(this.props.history.location.search)).get('preview') === 'true'
+      const preview = (new URLSearchParams(typy(this.props, 'history.location.search').safeString)).get('preview') === 'true'
       this.props.fetchAllRedirects(preview)
     }
   }

@@ -24,10 +24,19 @@ export class ContentfulColumnPageContainer extends Component {
   }
 
   render () {
+    // If the store previously tried to fetch a page, the slug will not match on the first render.
+    // This can create problems because it will try to render before required data has been fetched,
+    // unless we override the status.
+    const status = this.props.match.params[0] === this.props.cfPageEntry.slug ? this.props.cfPageEntry.status : NOT_FETCHED
     return <PresenterFactory
       presenter={ColumnPagePresenter}
-      status={this.props.cfPageEntry.status}
-      props={{ cfPageEntry: this.props.cfPageEntry.json }} />
+      status={status}
+      props={{
+        cfPageEntry: this.props.cfPageEntry.json,
+        history: this.props.history,
+        location: this.props.location,
+      }}
+    />
   }
 }
 
@@ -52,6 +61,7 @@ ContentfulColumnPageContainer.propTypes = {
   fetchPage: PropTypes.func.isRequired,
   cfPageEntry: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  history: PropTypes.object,
   location: PropTypes.shape({
     search: PropTypes.string,
   }),
