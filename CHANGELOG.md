@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2020.12](https://github.com/ndlib/usurper/tree/v2020.12) "Cute Cat"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.11...v2020.12)
+
+### Bug Fixes
+- Fix layout spacing in event pages. [#859](https://github.com/ndlib/usurper/pull/859)
+- Fix arrow links displaying incorrectly. [#860](https://github.com/ndlib/usurper/pull/860)
+- Fix "View More ..." pages sometimes failing to load. [#862](https://github.com/ndlib/usurper/pull/862)
+
 ## [v2020.11](https://github.com/ndlib/usurper/tree/v2020.11) "Quiet Time"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.10...v2020.11)
 
