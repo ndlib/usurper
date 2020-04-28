@@ -24,7 +24,7 @@ import PageLink from '../PageLink'
 const PagePresenter = ({ entry }) => {
   let body = entry.content
   if (entry.audience) {
-    body += 'Open to ' + typy(entry.audience).safeArray.join(', ')
+    body += `\n\nOpen to ${typy(entry.audience).safeArray.join(', ')}.`
   }
   return (
     <article
