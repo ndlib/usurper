@@ -25,7 +25,7 @@ const Presenter = (props) => {
                 checked={option.selected}
               />
               <button className={'custom-style link-like ' + styles.linkText} tabIndex={0} onClick={() => props.onFacetChange(option)}>
-              <label for={props.label + ' ' + option.value}>{option.value}</label>
+                <label htmlFor={props.label + ' ' + option.value}>{option.value}</label>
               </button>
             </div>
           ))
