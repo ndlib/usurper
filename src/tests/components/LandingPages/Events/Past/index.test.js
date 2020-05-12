@@ -30,6 +30,11 @@ describe('components/LandingPages/Events/Past', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: statuses.NOT_FETCHED,
+        allEventGroups: {
+          status: statuses.NOT_FETCHED,
+          json: [],
+        },
+        combinedStatus: statuses.NOT_FETCHED,
         filterYear: 2019,
         filterMonth: 8,
         location: {
@@ -41,12 +46,27 @@ describe('components/LandingPages/Events/Past', () => {
           },
         },
         fetchAllEvents: jest.fn(),
+        fetchAllEventGroups: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
 
-    it('should call fetchAllEvents with preview flag', () => {
-      expect(props.fetchAllEvents).toHaveBeenCalledWith(true)
+    it('should call fetchAllEventGroups with preview flag', () => {
+      expect(props.fetchAllEventGroups).toHaveBeenCalledWith(true)
+    })
+
+    it('should call fetchAllEvents after event groups fetched', () => {
+      const groups = [
+        'test',
+        'data',
+      ]
+      enzymeWrapper.setProps({
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: groups,
+        },
+      })
+      expect(props.fetchAllEvents).toHaveBeenCalledWith(true, groups)
     })
   })
 
@@ -58,6 +78,11 @@ describe('components/LandingPages/Events/Past', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: statuses.SUCCESS,
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
+        combinedStatus: statuses.SUCCESS,
         filterYear: 2019,
         filterMonth: 8,
         location: {
@@ -69,12 +94,17 @@ describe('components/LandingPages/Events/Past', () => {
           },
         },
         fetchAllEvents: jest.fn(),
+        fetchAllEventGroups: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
 
     it('should not call fetchAllEvents', () => {
       expect(props.fetchAllEvents).not.toHaveBeenCalled()
+    })
+
+    it('should not call fetchAllEventGroups', () => {
+      expect(props.fetchAllEventGroups).not.toHaveBeenCalled()
     })
   })
 
@@ -95,6 +125,10 @@ describe('components/LandingPages/Events/Past', () => {
           status: statuses.SUCCESS,
           json: testData.allTestEvents,
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
       }
       const result = mapStateToProps(state, props)
       const expected = [
@@ -112,6 +146,10 @@ describe('components/LandingPages/Events/Past', () => {
         allEvents: {
           status: statuses.SUCCESS,
           json: testData.allTestEvents,
+        },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
         },
       }
       const result = mapStateToProps(state, props)
@@ -142,6 +180,10 @@ describe('components/LandingPages/Events/Past', () => {
           status: statuses.SUCCESS,
           json: testData.allTestEvents,
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
       }
       const result = mapStateToProps(state, props)
       const expected = [
@@ -168,6 +210,10 @@ describe('components/LandingPages/Events/Past', () => {
         allEvents: {
           status: statuses.FETCHING,
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
       }
       const result = mapStateToProps(state, props)
       expect(result).toEqual(expect.objectContaining({
@@ -175,6 +221,7 @@ describe('components/LandingPages/Events/Past', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: state.allEvents.status,
+        combinedStatus: statuses.FETCHING,
       }))
     })
   })
@@ -189,6 +236,10 @@ describe('components/LandingPages/Events/Past', () => {
         allEvents: {
           status: statuses.SUCCESS,
           json: []
+        },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
         },
       }
       store = mockStore(state)

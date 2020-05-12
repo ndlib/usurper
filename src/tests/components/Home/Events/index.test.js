@@ -63,6 +63,10 @@ describe('components/Home/Events', () => {
 
   beforeEach(() => {
     state = {
+      allEventGroups: {
+        status: statuses.SUCCESS,
+        json: ['one', 'two'],
+      },
       allEvents: {
         status: statuses.SUCCESS,
         json: [
@@ -95,21 +99,41 @@ describe('components/Home/Events', () => {
   describe('without store', () => {
     beforeEach(() => {
       props = {
+        allEventGroups: {
+          status: statuses.NOT_FETCHED,
+          json: [],
+        },
         allEventsStatus: statuses.NOT_FETCHED,
         allEvents: [
           futureEvent1,
           futureEvent2,
         ],
+        combinedStatus: statuses.NOT_FETCHED,
         location: {
           search: '?preview=true',
         },
         fetchAllEvents: jest.fn(),
+        fetchAllEventGroups: jest.fn(),
       }
       enzymeWrapper = shallow(<HomeEventsContainer {...props} />)
     })
 
-    it('should call fetchAllEvents with preview flag', () => {
-      expect(props.fetchAllEvents).toHaveBeenCalledWith(true)
+    it('should call fetchAllEventGroups with preview flag', () => {
+      expect(props.fetchAllEventGroups).toHaveBeenCalledWith(true)
+    })
+
+    it('should call fetchAllEvents after event groups fetched', () => {
+      const groups = [
+        'test',
+        'data',
+      ]
+      enzymeWrapper.setProps({
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: groups,
+        },
+      })
+      expect(props.fetchAllEvents).toHaveBeenCalledWith(true, groups)
     })
   })
 })

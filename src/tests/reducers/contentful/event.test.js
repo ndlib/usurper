@@ -65,18 +65,13 @@ describe('event reducer', () => {
   })
 
   it('should map recurring event correctly', () => {
-    const dateStr = '2019-09-07'
     const inEvent = {
       sys: { id: '2' },
       fields: {
         slug: 'foo',
         startDate: '2010-01-01T10:45:00-00:00',
         endDate: '2010-01-04T00:00:00-00:00',
-        recurrenceDate: dateStr,
-        dateSchedule: [
-          '2010-01-01',
-          '2010-01-03',
-        ],
+        timeOverride: '10:45-Midnight',
       },
     }
 
@@ -84,17 +79,16 @@ describe('event reducer', () => {
       type: actions.CF_RECEIVE_EVENT,
       status: 200,
       event: inEvent,
-      recurrenceDate: dateStr,
+      recurring: true,
     })
     expect(response.json).toMatchObject({
-      id: inEvent.sys.id + dateStr,
+      id: inEvent.sys.id,
       slug: inEvent.fields.slug,
-      dateSchedule: inEvent.fields.dateSchedule,
-      recurrenceDate: dateStr,
+      recurring: true,
       startDate: expect.any(Date),
       endDate: expect.any(Date),
       displayDate: expect.any(String),
-      displayTime: expect.any(String),
+      displayTime: inEvent.fields.timeOverride,
     })
   })
 })

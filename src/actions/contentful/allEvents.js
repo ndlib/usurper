@@ -11,7 +11,7 @@ export const requestAllEvents = () => {
 }
 
 export const CF_RECEIVE_ALLEVENTS = 'CF_RECEIVE_ALLEVENTS'
-const receiveAllEvents = (response) => {
+const receiveAllEvents = (response, eventGroups) => {
   const error = {
     type: CF_RECEIVE_ALLEVENTS,
     status: statuses.fromHttpStatusCode(response.status),
@@ -23,6 +23,7 @@ const receiveAllEvents = (response) => {
     type: CF_RECEIVE_ALLEVENTS,
     status: statuses.SUCCESS,
     allEvents: response,
+    allEventGroups: eventGroups,
     receivedAt: Date.now(),
   }
 
@@ -37,14 +38,14 @@ const receiveAllEvents = (response) => {
   }
 }
 
-export const fetchAllEvents = (preview) => {
+export const fetchAllEvents = (preview, eventGroups) => {
   const url = helper.getContentfulQueryUrl('content_type=event&include=2', preview)
 
   return dispatch => {
     dispatch(requestAllEvents())
     return fetch(url)
       .then(response => response.ok ? response.json() : { status: response.status })
-      .then(json => dispatch(receiveAllEvents(json)))
-      .catch(response => dispatch(receiveAllEvents(response)))
+      .then(json => dispatch(receiveAllEvents(json, eventGroups)))
+      .catch(response => dispatch(receiveAllEvents(response, eventGroups)))
   }
 }

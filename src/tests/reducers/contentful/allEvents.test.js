@@ -64,34 +64,75 @@ describe('allEvents reducer', () => {
 
 
 
-  it('should receive events with recurrence schedule as multiple events', () => {
-    const recurringEvent = {
+  it('should mark recurring events based on eventGroups eventIds', () => {
+    const eventGroups = [
+      {
+        id: 'groupId',
+        title: 'groupTitle',
+        eventIds: [
+          '222',
+          '123',
+          '444',
+        ],
+      },
+      {
+        id: 'groupId2',
+        title: 'groupTitle2',
+        eventIds: [
+          '456',
+        ],
+      }
+    ]
+    const recurringEvent1 = {
       sys: { id: '123' },
       fields: {
         slug: 'foo',
         startDate: '2010-09-01T10:45:00-00:00',
-        endDate: '2010-09-29T11:45:00-00:00',
-        dateSchedule: [
-          '2010-09-01',
-          '2010-09-08',
-          '2010-09-15',
-          '2010-09-22',
-          '2010-09-29',
-        ],
+        endDate: '2010-09-01T11:45:00-00:00',
+      },
+    }
+    const recurringEvent2 = {
+      sys: { id: '456' },
+      fields: {
+        slug: 'bar',
+        startDate: '2010-09-08T10:45:00-00:00',
+        endDate: '2010-09-08T11:45:00-00:00',
+      },
+    }
+    const nonRecurringEvent = {
+      sys: { id: '9761453498743' },
+      fields: {
+        slug: 'baz',
+        startDate: '2010-09-08T10:45:00-00:00',
+        endDate: '2010-09-08T11:45:00-00:00',
       },
     }
 
     const response = reducer(undefined, {
       type: actions.CF_RECEIVE_ALLEVENTS,
       status: 200,
-      allEvents: [recurringEvent],
+      allEvents: [
+        recurringEvent1,
+        recurringEvent2,
+        nonRecurringEvent,
+      ],
+      allEventGroups: eventGroups,
     })
-    expect(response.json).toHaveLength(recurringEvent.fields.dateSchedule.length)
 
-    const expectArray = recurringEvent.fields.dateSchedule.map(date => expect.objectContaining({
-      slug: recurringEvent.fields.slug,
-      recurrenceDate: date,
-    }))
+    const expectArray = [
+      expect.objectContaining({
+        slug: recurringEvent1.fields.slug,
+        recurring: true,
+      }),
+      expect.objectContaining({
+        slug: recurringEvent2.fields.slug,
+        recurring: true,
+      }),
+      expect.objectContaining({
+        slug: nonRecurringEvent.fields.slug,
+        recurring: false,
+      }),
+    ]
     expect(response.json).toEqual(expect.arrayContaining(expectArray))
   })
 })

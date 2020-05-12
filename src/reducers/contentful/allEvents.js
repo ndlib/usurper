@@ -10,16 +10,10 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
         status: statuses.FETCHING,
       })
     case CF_RECEIVE_ALLEVENTS:
-      const allEvents = []
-      typy(action.allEvents).safeArray.forEach(entry => {
-        // If there is a recurrence schedule, treat as one event per date specified
-        if (typy(entry.fields.dateSchedule, 'length').safeNumber > 0) {
-          entry.fields.dateSchedule.forEach(date => {
-            allEvents.push(mapEvent(entry, date))
-          })
-        } else {
-          allEvents.push(mapEvent(entry))
-        }
+      const allEvents = typy(action.allEvents).safeArray.map(entry => {
+        // Check if it is a recurring event before calling event mapping by looking at the eventGroups
+        const recurring = typy(action.allEventGroups).safeArray.some(group => group.eventIds.includes(entry.sys.id))
+        return mapEvent(entry, recurring)
       })
 
       return Object.assign({}, state, {

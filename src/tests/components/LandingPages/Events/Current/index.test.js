@@ -30,6 +30,11 @@ describe('components/LandingPages/Events/Current', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: statuses.NOT_FETCHED,
+        allEventGroups: {
+          status: statuses.NOT_FETCHED,
+          json: [],
+        },
+        combinedStatus: statuses.NOT_FETCHED,
         location: {
           search: '?preview=true'
         },
@@ -42,12 +47,27 @@ describe('components/LandingPages/Events/Current', () => {
           push: jest.fn(),
         },
         fetchAllEvents: jest.fn(),
+        fetchAllEventGroups: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
 
-    it('should call fetchAllEvents with preview flag', () => {
-      expect(props.fetchAllEvents).toHaveBeenCalledWith(true)
+    it('should call fetchAllEventGroups with preview flag', () => {
+      expect(props.fetchAllEventGroups).toHaveBeenCalledWith(true)
+    })
+
+    it('should call fetchAllEvents after event groups fetched', () => {
+      const groups = [
+        'test',
+        'data',
+      ]
+      enzymeWrapper.setProps({
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: groups,
+        },
+      })
+      expect(props.fetchAllEvents).toHaveBeenCalledWith(true, groups)
     })
   })
 
@@ -59,6 +79,11 @@ describe('components/LandingPages/Events/Current', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: statuses.SUCCESS,
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
+        combinedStatus: statuses.SUCCESS,
         location: {
           search: '?preview=true'
         },
@@ -71,12 +96,17 @@ describe('components/LandingPages/Events/Current', () => {
           push: jest.fn(),
         },
         fetchAllEvents: jest.fn(),
+        fetchAllEventGroups: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
 
     it('should not call fetchAllEvents', () => {
       expect(props.fetchAllEvents).not.toHaveBeenCalled()
+    })
+
+    it('should not call fetchAllEventGroups', () => {
+      expect(props.fetchAllEventGroups).not.toHaveBeenCalled()
     })
   })
 
@@ -99,6 +129,10 @@ describe('components/LandingPages/Events/Current', () => {
         allEvents: {
           status: statuses.SUCCESS,
           json: testData.allTestEvents,
+        },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
         },
       }
       const result = mapStateToProps(state, props)
@@ -132,6 +166,10 @@ describe('components/LandingPages/Events/Current', () => {
           status: statuses.SUCCESS,
           json: testData.allTestEvents,
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
       }
       const result = mapStateToProps(state, props)
       expect(result.filteredEvents).toEqual([
@@ -147,6 +185,10 @@ describe('components/LandingPages/Events/Current', () => {
         allEvents: {
           status: statuses.FETCHING,
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
       }
       const result = mapStateToProps(state, props)
       expect(result).toEqual(expect.objectContaining({
@@ -155,6 +197,7 @@ describe('components/LandingPages/Events/Current', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: state.allEvents.status,
+        combinedStatus: statuses.FETCHING,
       }))
     })
   })
@@ -170,6 +213,10 @@ describe('components/LandingPages/Events/Current', () => {
           status: statuses.SUCCESS,
           json: []
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        },
       }
       store = mockStore(state)
     })
@@ -181,6 +228,11 @@ describe('components/LandingPages/Events/Current', () => {
     it('should create fetchAllEvents action', () => {
       const result = mapDispatchToProps(store.dispatch)
       expect(result.fetchAllEvents).toEqual(expect.any(Function))
+    })
+
+    it('should create fetchAllEventGroups action', () => {
+      const result = mapDispatchToProps(store.dispatch)
+      expect(result.fetchAllEventGroups).toEqual(expect.any(Function))
     })
   })
 })

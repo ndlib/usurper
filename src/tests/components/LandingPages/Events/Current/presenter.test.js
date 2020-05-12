@@ -41,7 +41,7 @@ describe('components/LandingPages/Events/Current/presenter', () => {
       filteredEvents: [
         someEvent,
       ],
-      allEventsStatus: statuses.SUCCESS,
+      combinedStatus: statuses.SUCCESS,
       location: {
         search: '?type=test',
       },
@@ -56,13 +56,11 @@ describe('components/LandingPages/Events/Current/presenter', () => {
   it('should render correct LandingPageWrapper', () => {
     const wrapper = enzymeWrapper.find(LandingPageWrapper)
     expect(wrapper.exists()).toBe(true)
-    expect(wrapper.props()).toEqual(expect.objectContaining({
-      pageTitle: props.pageTitle,
-      pageDate: props.pageDate,
-      entries: props.events,
-      filteredEntries: props.filteredEvents,
-      allEntriesStatus: props.allEventsStatus,
-    }))
+    expect(wrapper.props().pageTitle).toEqual(props.pageTitle)
+    expect(wrapper.props().pageDate).toEqual(props.pageDate)
+    expect(wrapper.props().entries).toEqual(props.events)
+    expect(wrapper.props().filteredEntries).toEqual(props.filteredEvents)
+    expect(wrapper.props().allEntriesStatus).toEqual(props.combinedStatus)
   })
 
   it('should render a Calendar component as a child of LandingPageWrapper', () => {

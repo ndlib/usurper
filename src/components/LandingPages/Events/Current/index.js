@@ -8,13 +8,30 @@ import typy from 'typy'
 import Presenter from './presenter'
 
 import { fetchAllEvents } from 'actions/contentful/allEvents'
+import { fetchAllEventGroups } from 'actions/contentful/allEventGroups'
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 export class CurrentEventsContainer extends Component {
+  constructor (props) {
+    super(props)
+    this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
+  }
+
   componentDidMount () {
+    this.checkFullyLoaded()
+  }
+
+  componentDidUpdate () {
+    this.checkFullyLoaded()
+  }
+
+  checkFullyLoaded () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
-    if (this.props.allEventsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchAllEvents(preview)
+    if (this.props.allEventGroups.status === statuses.NOT_FETCHED) {
+      this.props.fetchAllEventGroups(preview)
+    } else if (this.props.allEventGroups.status === statuses.SUCCESS && this.props.allEventsStatus === statuses.NOT_FETCHED) {
+      this.props.fetchAllEvents(preview, this.props.allEventGroups.json)
     }
   }
 
@@ -24,7 +41,12 @@ export class CurrentEventsContainer extends Component {
 }
 
 export const mapStateToProps = (state, ownProps) => {
-  const { allEvents } = state
+  const { allEvents, allEventGroups } = state
+  const combinedStatus = helper.reduceStatuses([
+    allEvents.status,
+    allEventGroups.status,
+  ])
+
   // Check for date filter
   const dateString = ownProps.match.params.date || ''
   const hasFilter = !!(dateString.match(/^\d{8}$/))
@@ -57,11 +79,13 @@ export const mapStateToProps = (state, ownProps) => {
     events,
     filteredEvents,
     allEventsStatus: allEvents.status,
+    allEventGroups,
+    combinedStatus,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchAllEvents }, dispatch)
+  return bindActionCreators({ fetchAllEvents, fetchAllEventGroups }, dispatch)
 }
 
 CurrentEventsContainer.propTypes = {
@@ -72,6 +96,11 @@ CurrentEventsContainer.propTypes = {
   filteredEvents: PropTypes.array.isRequired,
   allEventsStatus: PropTypes.string.isRequired,
   fetchAllEvents: PropTypes.func.isRequired,
+  fetchAllEventGroups: PropTypes.func.isRequired,
+  allEventGroups: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    json: PropTypes.array,
+  }).isRequired,
   location: PropTypes.shape({
     search: PropTypes.oneOfType([
       PropTypes.string,

@@ -18,7 +18,7 @@ const Presenter = (props) => {
       location={props.location}
       history={props.history}
       typeLabel='Events'
-      allEntriesStatus={props.allEventsStatus}
+      allEntriesStatus={props.combinedStatus}
       facets={Facets}
       entryCardComponent={EventCard}
       filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
@@ -39,7 +39,7 @@ Presenter.propTypes = {
   pageDate: PropTypes.string,
   events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
-  allEventsStatus: PropTypes.string.isRequired,
+  combinedStatus: PropTypes.string.isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
   location: PropTypes.shape({

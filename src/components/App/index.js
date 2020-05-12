@@ -93,7 +93,7 @@ const App = (props) => {
             <Route exact path='/floor/:id' component={ContentfulFloor} />
             <Route exact path='/hesburgh-floor-maps' render={() => (<ContentfulFloors {...props} title='Hesburgh Library Floor Maps' slug='hesburgh-library-building' />)} />
             <Route exact path='/news/:id' component={ContentfulNews} />
-            <Route exact path='/event/:id/:date?' component={ContentfulEvent} />
+            <Route exact path='/event/:id' component={ContentfulEvent} />
             <Route exact path='/items-requests' component={ItemsRequests} />
             <Route exact path='/checkout-history' component={CirculationHistory} />
             <Route exact path='/favorites' render={() => (<Favorites {...props} />)} />

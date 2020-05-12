@@ -49,6 +49,10 @@ describe('components/Contentful/Event', () => {
             timeOverride: '8:30-9:30AM',
           },
         },
+        allEventGroups: {
+          status: statuses.SUCCESS,
+          json: [],
+        }
       }
       enzymeWrapper = setup(state, props)
     })
@@ -61,55 +65,122 @@ describe('components/Contentful/Event', () => {
   })
 
   describe('without store', () => {
-    beforeEach(() => {
-      props = {
-        status: statuses.NOT_FETCHED,
-        data: {
-          displayDate: 'Sep. 7, 2019',
-          displayTime: '08:33 am',
-          test: 'data',
-        },
-        match: {
-          params: {
-            id: 'slug',
+    describe('before load', () => {
+      beforeEach(() => {
+        props = {
+          status: statuses.NOT_FETCHED,
+          allEventGroups: {
+            status: statuses.NOT_FETCHED,
+            json: ['one', 'two'],
           },
-        },
-        preview: true,
-        fetchEvent: jest.fn(),
-      }
-      enzymeWrapper = shallow(<ContentfulEventContainer {...props} />)
-    })
-
-    it('should fetch event with preview flag', () => {
-      expect(props.fetchEvent).toHaveBeenCalledWith(props.match.params.id, true, undefined)
-    })
-
-    it('should fetch event again if slug changes', () => {
-      const newSlug = 'newSlug'
-      enzymeWrapper.setProps({
-        match: {
-          ...props.match,
-          params: {
-            ...props.match.params,
-            id: newSlug,
+          match: {
+            params: {
+              id: 'slug',
+            },
           },
-        },
+          preview: true,
+          fetchEvent: jest.fn(),
+          fetchAllEventGroups: jest.fn(),
+        }
+        enzymeWrapper = shallow(<ContentfulEventContainer {...props} />)
       })
-      expect(props.fetchEvent).toHaveBeenCalledWith(newSlug, expect.any(Boolean), undefined)
+
+      it('should call fetchAllEventGroups with preview flag', () => {
+        expect(props.fetchAllEventGroups).toHaveBeenCalledWith(true)
+      })
+
+      it('should NOT call fetchEvent before event groups fetched', () => {
+        expect(props.fetchEvent).not.toHaveBeenCalled()
+      })
+
+      it('should call fetchAllEvents after event groups fetched', () => {
+        const groups = [
+          'test',
+          'data',
+        ]
+        enzymeWrapper.setProps({
+          allEventGroups: {
+            status: statuses.SUCCESS,
+            json: groups,
+          },
+        })
+        expect(props.fetchEvent).toHaveBeenCalledWith(props.match.params.id, true, groups)
+      })
     })
 
-    it('should fetch event again if recurrenceDate changes', () => {
-      const newDate = '2019-09-07'
-      enzymeWrapper.setProps({
-        match: {
-          ...props.match,
-          params: {
-            ...props.match.params,
-            date: newDate,
+    describe('after event groups load', () => {
+      beforeEach(() => {
+        props = {
+          status: statuses.NOT_FETCHED,
+          allEventGroups: {
+            status: statuses.SUCCESS,
+            json: ['one', 'two'],
           },
-        },
+          match: {
+            params: {
+              id: 'slug',
+            },
+          },
+          preview: true,
+          fetchEvent: jest.fn(),
+          fetchAllEventGroups: jest.fn(),
+        }
+        enzymeWrapper = shallow(<ContentfulEventContainer {...props} />)
       })
-      expect(props.fetchEvent).toHaveBeenCalledWith(props.match.params.id, expect.any(Boolean), newDate)
+
+      it('should NOT fetch event groups again', () => {
+        expect(props.fetchAllEventGroups).not.toHaveBeenCalled()
+      })
+
+      it('should fetch event', () => {
+        expect(props.fetchEvent).toHaveBeenCalledWith(props.match.params.id, true, props.allEventGroups.json)
+      })
+    })
+
+    describe('after load', () => {
+      beforeEach(() => {
+        props = {
+          status: statuses.SUCCESS,
+          allEventGroups: {
+            status: statuses.SUCCESS,
+            json: ['one', 'two'],
+          },
+          data: {
+            displayDate: 'Sep. 7, 2019',
+            displayTime: '08:33 am',
+            test: 'data',
+            slug: 'slug',
+          },
+          match: {
+            params: {
+              id: 'slug',
+            },
+          },
+          preview: true,
+          fetchEvent: jest.fn(),
+          fetchAllEventGroups: jest.fn(),
+        }
+        enzymeWrapper = shallow(<ContentfulEventContainer {...props} />)
+      })
+
+      it('should NOT make fetch calls on mount', () => {
+        expect(props.fetchEvent).not.toHaveBeenCalled()
+        expect(props.fetchAllEventGroups).not.toHaveBeenCalled()
+      })
+
+      it('should fetch event again if slug changes', () => {
+        const newSlug = 'newSlug'
+        enzymeWrapper.setProps({
+          match: {
+            ...props.match,
+            params: {
+              ...props.match.params,
+              id: newSlug,
+            },
+          },
+        })
+        expect(props.fetchEvent).toHaveBeenCalledWith(newSlug, expect.any(Boolean), props.allEventGroups.json)
+      })
     })
   })
 })

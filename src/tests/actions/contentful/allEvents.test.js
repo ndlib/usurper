@@ -33,6 +33,15 @@ const successfulResponse = [
   },
 ]
 
+const eventGroups = [
+  {
+    bogus: 'one',
+  },
+  {
+    bogus: 'two',
+  },
+]
+
 describe('all events fetch action creator', () => {
   afterAll(() => {
     nock.restore()
@@ -53,7 +62,7 @@ describe('all events fetch action creator', () => {
     }
 
     const store = mockStore()
-    store.dispatch(fetchAllEvents())
+    store.dispatch(fetchAllEvents(undefined, eventGroups))
     expect(store.getActions()).toContainEqual(expectedAction)
   })
 
@@ -64,7 +73,7 @@ describe('all events fetch action creator', () => {
       .reply(200, successfulResponse)
 
     const store = mockStore()
-    return store.dispatch(fetchAllEvents(true))
+    return store.dispatch(fetchAllEvents(true, eventGroups))
       .then(() => {
         expect(nock.isDone()).toBe(true)
       })
@@ -81,10 +90,11 @@ describe('all events fetch action creator', () => {
         type: CF_RECEIVE_ALLEVENTS,
         status: statuses.SUCCESS,
         allEvents: successfulResponse,
+        allEventGroups: eventGroups,
       }
 
       const store = mockStore()
-      return store.dispatch(fetchAllEvents())
+      return store.dispatch(fetchAllEvents(undefined, eventGroups))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
         })
@@ -104,7 +114,7 @@ describe('all events fetch action creator', () => {
       }
 
       const store = mockStore()
-      return store.dispatch(fetchAllEvents())
+      return store.dispatch(fetchAllEvents(undefined, eventGroups))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
         })
@@ -122,7 +132,7 @@ describe('all events fetch action creator', () => {
       }
 
       const store = mockStore()
-      return store.dispatch(fetchAllEvents())
+      return store.dispatch(fetchAllEvents(undefined, eventGroups))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
         })
@@ -140,7 +150,7 @@ describe('all events fetch action creator', () => {
       }
 
       const store = mockStore()
-      return store.dispatch(fetchAllEvents())
+      return store.dispatch(fetchAllEvents(undefined, eventGroups))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
         })
@@ -158,7 +168,7 @@ describe('all events fetch action creator', () => {
       }
 
       const store = mockStore()
-      return store.dispatch(fetchAllEvents())
+      return store.dispatch(fetchAllEvents(undefined, eventGroups))
         .then(() => {
           expect(store.getActions()[1]).toMatchObject(expectedAction)
         })

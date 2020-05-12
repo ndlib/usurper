@@ -12,30 +12,23 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
     case CF_RECEIVE_EVENT:
       return Object.assign({}, state, {
         status: action.status,
-        json: mapEvent(action.event, action.recurrenceDate),
+        json: mapEvent(action.event, action.recurring),
       })
     default:
       return state
   }
 }
 
-export const mapEvent = (entry, dateOverride) => {
+export const mapEvent = (entry, recurring) => {
   if (!entry.fields) {
     return entry
   }
 
   // Adjust start and end dates so they are Date objects
-  let start = entry.fields.startDate ? dateLibs.makeLocalTimezone(entry.fields.startDate) : null
-  let end = entry.fields.endDate
+  const start = entry.fields.startDate ? dateLibs.makeLocalTimezone(entry.fields.startDate) : null
+  const end = entry.fields.endDate
     ? dateLibs.makeLocalTimezone(entry.fields.endDate)
     : (start ? new Date(start) : null)
-
-  if (dateOverride) {
-    const startTime = dateOverride + 'T' + entry.fields.startDate.split('T')[1]
-    const endTime = dateOverride + 'T' + entry.fields.endDate.split('T')[1]
-    start = dateLibs.makeLocalTimezone(startTime)
-    end = dateLibs.makeLocalTimezone(endTime)
-  }
 
   // if end time is 0:00, add 23:59
   if (end instanceof Date && end.getHours() === 0 && end.getMinutes() === 0) {
@@ -44,9 +37,9 @@ export const mapEvent = (entry, dateOverride) => {
 
   return {
     ...entry.fields,
-    id: entry.sys.id + (dateOverride || ''),
+    id: entry.sys.id,
     slug: entry.fields.slug,
-    recurrenceDate: dateOverride,
+    recurring: recurring,
     startDate: start,
     endDate: end,
     displayDate: startEndDate(start, end),

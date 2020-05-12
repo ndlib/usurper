@@ -9,25 +9,25 @@ const setup = (props) => {
 }
 
 describe('components/Contentful/Event/RecurringIndicator', () => {
-  it('should render something when event has a recurrence schedule', () => {
+  it('should render something when event is recurring', () => {
     const enzymeWrapper = setup({
       entry: {
-        dateSchedule: ['2019-01-01'],
+        recurring: true,
       },
     })
     expect(enzymeWrapper.isEmptyRender()).toBe(false)
   })
 
-  it('should not render anything when event has a recurrence schedule', () => {
+  it('should not render anything when event is not recurring', () => {
     const enzymeWrapper = setup({
       entry: {
-        dateSchedule: [],
+        recurring: false,
       },
     })
     expect(enzymeWrapper.isEmptyRender()).toBe(true)
   })
 
-  it('should not error if recurrence schedule is omitted', () => {
+  it('should not error if recurring prop is omitted', () => {
     const enzymeWrapper = setup({
       entry: {},
     })

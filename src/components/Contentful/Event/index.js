@@ -3,27 +3,36 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchEvent } from 'actions/contentful/event'
+import { fetchAllEventGroups } from 'actions/contentful/allEventGroups'
 import PresenterFactory from 'components/APIPresenterFactory'
 import ContentfulEventPresenter from './presenter.js'
 import { withErrorBoundary } from 'components/ErrorBoundary'
+import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 
 export class ContentfulEventContainer extends Component {
   componentDidMount () {
     const eventSlug = this.props.match.params.id
-    const recurrenceDate = this.props.match.params.date
 
-    if (!this.props.data || this.props.data.slug !== eventSlug || this.props.data.recurrenceDate !== recurrenceDate) {
-      this.props.fetchEvent(eventSlug, this.props.preview, recurrenceDate)
+    if (!this.props.data || this.props.data.slug !== eventSlug) {
+      // If event groups have already been fetched, get the event
+      if (this.props.allEventGroups.status === statuses.SUCCESS) {
+        this.props.fetchEvent(eventSlug, this.props.preview, this.props.allEventGroups.json)
+      } else if (this.props.allEventGroups.status !== statuses.FETCHING) {
+        // Fetch event groups (this has to happen before fetchEvent so we can identify recurring events)
+        this.props.fetchAllEventGroups(this.props.preview)
+      }
     }
   }
 
   componentDidUpdate (prevProps) {
     const oldSlug = prevProps.match.params.id
     const newSlug = this.props.match.params.id
-    const oldDate = prevProps.match.params.date
-    const newDate = this.props.match.params.date
-    if (newSlug !== oldSlug || newDate !== oldDate) {
-      this.props.fetchEvent(newSlug, this.props.preview, newDate)
+    const oldGroupStatus = prevProps.allEventGroups.status
+    const newGroupStatus = this.props.allEventGroups.status
+    if ((newSlug !== oldSlug && newGroupStatus === statuses.SUCCESS) ||
+      (newGroupStatus === statuses.SUCCESS && oldGroupStatus !== statuses.SUCCESS)) {
+      this.props.fetchEvent(newSlug, this.props.preview, this.props.allEventGroups.json)
     }
   }
 
@@ -36,20 +45,32 @@ export class ContentfulEventContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const combinedStatus = helper.reduceStatuses([
+    state.cfEventEntry.status,
+    state.allEventGroups.status,
+  ])
   return {
-    status: state.cfEventEntry.status,
+    status: combinedStatus,
     data: state.cfEventEntry.json,
     preview: (new URLSearchParams(ownProps.location.search)).get('preview') === 'true',
+    allEventGroups: state.allEventGroups,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchEvent }, dispatch)
+  return bindActionCreators({ fetchEvent, fetchAllEventGroups }, dispatch)
 }
 
 ContentfulEventContainer.propTypes = {
   fetchEvent: PropTypes.func.isRequired,
-  data: PropTypes.object,
+  fetchAllEventGroups: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+  }),
+  allEventGroups: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    json: PropTypes.array,
+  }).isRequired,
   status: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired,
   location: PropTypes.shape({
