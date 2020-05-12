@@ -20,11 +20,12 @@ const Presenter = (props) => {
             <div key={option.key} className={styles.option}>
               <input
                 type='checkbox'
+                id={props.label + ' ' + option.value}
                 onChange={() => props.onFacetChange(option)}
                 checked={option.selected}
               />
               <button className={'custom-style link-like ' + styles.linkText} tabIndex={0} onClick={() => props.onFacetChange(option)}>
-                {option.value}
+              <label for={props.label + ' ' + option.value}>{option.value}</label>
               </button>
             </div>
           ))
