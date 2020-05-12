@@ -54,6 +54,7 @@ export const getOpenStatus = (hoursEntry) => {
         'swipe access',
         'limited access',
         'partially open',
+        'move out book return only',
       ]
       return partiallyOpenKeywords.some(phrase => typy(hoursEntry, 'today.times.text').safeString.toLowerCase().indexOf(phrase) >= 0)
         ? hoursOpenStatus.PARTIALLY_OPEN
