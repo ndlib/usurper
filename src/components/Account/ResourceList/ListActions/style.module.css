@@ -12,16 +12,14 @@
   position: absolute;
   top: 32px;
   left: 0;
-  z-index: 1;
+  z-index: 1000;
   font-family: sans-serif;
   font-size: 16px;
   font-weight: normal;
   text-align: left;
   text-transform: none;
   box-sizing: border-box;
-  outline-color: rgb(0, 103, 244);
-  outline-style: auto;
-  outline-width: 5px;
+  outline-style: none;
 }
 .exportOptions.hidden{
   display: none;

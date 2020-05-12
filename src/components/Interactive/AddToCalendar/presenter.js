@@ -13,13 +13,15 @@ const AddToCalendar = (props) => {
         id='calendarOptions'
         onBlur={props.onBlur}
         className={'dropdown' + (props.hidden ? ' hidden' : '')}
+        aria-expanded={!props.hidden}
+        role='tree'
       >
         <ul>
-          <li onClick={props.addToGoogle}>
-            Add to Google Calendar
+          <li role='treeitem'>
+            <button className='custom-style' onClick={props.addToGoogle}>Add to Google Calendar</button>
           </li>
-          <li onClick={props.downloadClick}>
-            Download Event
+          <li role='treeitem'>
+            <button className='custom-style' onClick={props.downloadClick}>Download Event</button>
           </li>
         </ul>
       </div>

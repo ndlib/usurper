@@ -46,7 +46,7 @@ describe('components/Account/ResourceList/ListActions/ExportButton/index.js', ()
     // Unimplemented function in jsdom. Mock it so that it doesn't throw and we can test that it was called.
     Object.defineProperty(window.URL, 'createObjectURL', { value: jest.fn(), configurable: true })
 
-    const found = enzymeWrapper.findWhere((el) => el.type() === 'li' && el.text() === 'Export to RIS')
+    const found = enzymeWrapper.findWhere((el) => el.type() === 'button' && el.text() === 'Export to RIS')
     expect(found.exists()).toBe(true)
     found.simulate('click')
     // Test that clicking the button created a blob which we then attempted to create a URL for
@@ -58,7 +58,7 @@ describe('components/Account/ResourceList/ListActions/ExportButton/index.js', ()
     // Unimplemented function in jsdom. Mock it so that it doesn't throw and we can test that it was called.
     Object.defineProperty(window.URL, 'createObjectURL', { value: jest.fn(), configurable: true })
 
-    const found = enzymeWrapper.findWhere((el) => el.type() === 'li' && el.text() === 'Export to CSV')
+    const found = enzymeWrapper.findWhere((el) => el.type() === 'button' && el.text() === 'Export to CSV')
     expect(found.exists()).toBe(true)
     found.simulate('click')
     // Test that clicking the button created a blob which we then attempted to create a URL for
