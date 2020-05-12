@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2020.13](https://github.com/ndlib/usurper/tree/v2020.13) "Day #58"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.12...v2020.13)
+
+### Bug Fixes
+- Fix export checkout history dropdown. [#870](https://github.com/ndlib/usurper/pull/870)
+
+### Other Changes
+- Added additional phrase for yellow hours display. [#869](https://github.com/ndlib/usurper/pull/869)
+- Internal changes for handling recurring events. [#868](https://github.com/ndlib/usurper/pull/868)
+
 ## [v2020.12](https://github.com/ndlib/usurper/tree/v2020.12) "Cute Cat"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.11...v2020.12)
 
