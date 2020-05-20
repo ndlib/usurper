@@ -30,16 +30,17 @@ describe('components/Account/ResourceList/ListActions/ExportButton/index.js', ()
   })
 
   it('should expand dropdown when clicked', () => {
-    const dropdown = enzymeWrapper.find('#exportDropdown')
+    const dropdown = enzymeWrapper.find('.exportOptions')
     expect(dropdown.exists()).toBe(true)
     expect(dropdown.props()['aria-expanded']).toBe(false)
 
-    enzymeWrapper.simulate('click')
-    expect(enzymeWrapper.find('#exportDropdown').props()['aria-expanded']).toBe(true)
+    const button = enzymeWrapper.find('.export')
+    button.simulate('click')
+    expect(enzymeWrapper.find('.exportOptions').prop('aria-expanded')).toBe(true)
 
     // Should close when losing focus
     enzymeWrapper.instance().onBlur({ relatedTarget: null })
-    expect(enzymeWrapper.find('#exportDropdown').props()['aria-expanded']).toBe(false)
+    expect(enzymeWrapper.find('.exportOptions').prop('aria-expanded')).toBe(false)
   })
 
   it('should allow exporting to RIS format', () => {

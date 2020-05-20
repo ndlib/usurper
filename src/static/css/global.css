@@ -1042,8 +1042,10 @@ div.search {
   color: #fff;
   padding: 0;
   display: block;
-  border-bottom: 1px solid #fff;
   cursor: pointer;
+}
+.dropdown ul li:not(:last-of-type) {
+  border-bottom: 1px solid #56ABBD;
 }
 .dropdown ul li button {
   background-color: transparent;
@@ -1112,7 +1114,9 @@ label[for='q']:after, .dropdown label:after {
 }
 
 .addToCalendar .dropdown {
+  border: 2px solid #56ABBD;
   position: absolute;
+  margin-top: 2px;
   z-index: 1;
   right: 0;
 }
@@ -1241,6 +1245,7 @@ label[for='q']:after, .uSearchBox label:after {
 .uSearchOptionList {
   position: absolute;
   width: 325px;
+  border: 2px solid #56ABBD;
 }
 
 .appliance ul li p {
@@ -1264,8 +1269,10 @@ label[for='q']:after, .uSearchBox label:after {
 
 .appliance ul li {
   display: block;
-  border-bottom: 1px solid #fff;
   background: #5b412d;
+}
+.appliance ul li:not(:last-of-type) {
+  border-bottom: 1px solid #56ABBD;
 }
 
 .appliance ul li:hover,
