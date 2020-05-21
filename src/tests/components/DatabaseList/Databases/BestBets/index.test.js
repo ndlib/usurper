@@ -30,6 +30,9 @@ describe('components/DatabaseList/Databases/BestBets', () => {
             subjects: [
               {
                 sys: {
+                  id: 'sys_doge',
+                },
+                fields: {
                   id: 'doge',
                 },
               },
@@ -37,6 +40,9 @@ describe('components/DatabaseList/Databases/BestBets', () => {
             bestBets: [
               {
                 sys: {
+                  id: 'sys_doge',
+                },
+                fields: {
                   id: 'doge',
                 },
               },
@@ -51,6 +57,9 @@ describe('components/DatabaseList/Databases/BestBets', () => {
             subjects: [
               {
                 sys: {
+                  id: 'sys_woof',
+                },
+                fields: {
                   id: 'woof',
                 },
               },
@@ -61,24 +70,36 @@ describe('components/DatabaseList/Databases/BestBets', () => {
       subjects: [
         {
           sys: {
+            id: 'sys_doge',
+          },
+          fields: {
             id: 'doge',
           },
           linkText: 'Doge',
         },
         {
           sys: {
+            id: 'sys_woof',
+          },
+          fields: {
             id: 'woof',
           },
           linkText: 'Woof',
         },
         {
           sys: {
-            id: 'notMeow',
+            id: 'sys_notMeow',
+          },
+          fields: {
+            fields: 'notMeow',
           },
           linkText: 'Not a Meow',
         },
         {
           sys: {
+            id: 'sys_bark',
+          },
+          fields: {
             id: 'bark',
           },
           linkText: 'Bark',
