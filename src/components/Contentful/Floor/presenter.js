@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import 'static/css/global.css'
+import PageAlerts from 'components/Contentful/Alert/Page'
 import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import PageTitle from 'components/Layout/PageTitle'
@@ -14,8 +15,9 @@ const FloorPresenter = ({ cfFloorEntry, cfServicePoint, servicePointSlug, locati
   <div key={`ContentfulFloor_${cfFloorEntry.sys.id}`} className='container-fluid floorplan'>
     <PageTitle title={cfFloorEntry.fields.building.fields.title + ' ' + cfFloorEntry.fields.title} />
     <SearchProgramaticSet open={false} />
+    <PageAlerts alerts={cfFloorEntry.fields.alerts} />
     <div className='row'>
-      <div className='col-md-8 col-sm-7 floor'>
+      <div className='col-md-8 col-sm-7 col-xs-12 floor'>
         <SearchCallout location={location} />
 
         <Image cfImage={cfFloorEntry.fields.image} className='floor-map' containerClassName='block' />

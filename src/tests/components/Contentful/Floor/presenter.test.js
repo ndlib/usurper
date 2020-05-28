@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import FloorPresenter from 'components/Contentful/Floor/presenter'
+import PageAlerts from 'components/Contentful/Alert/Page'
 import LibMarkdown from 'components/LibMarkdown'
 import ServicePoint from 'components/Contentful/ServicePoint'
 import PageTitle from 'components/Layout/PageTitle'
@@ -12,6 +13,23 @@ const setup = (props) => {
 
 let enzymeWrapper
 describe('components/Contentful/Floor/presenter', () => {
+  const testAlerts = [
+    {
+      fields: {
+        startTime: '1920-01-01',
+        endTime: '2999-01-01',
+        test: 'example',
+      },
+    },
+    {
+      fields: {
+        startTime: '1920-01-01',
+        endTime: '2999-01-01',
+        blah: 'blah',
+      },
+    },
+  ]
+
   beforeEach(() => {
     enzymeWrapper = setup({
       cfFloorEntry: {
@@ -34,6 +52,7 @@ describe('components/Contentful/Floor/presenter', () => {
           callNumberRange: 'fake call number',
           spacesText: 'fake spaces text',
           spacesLinks: 'fake spaces links',
+          alerts: testAlerts,
         },
         sys: { id: 'FakeId' },
       },
@@ -71,4 +90,9 @@ describe('components/Contentful/Floor/presenter', () => {
     expect(enzymeWrapper.containsMatchingElement(<ServicePoint cfServicePoint={{}} />)).toBe(true)
   })
 
+  it('should render PageAlerts', () => {
+    const found = enzymeWrapper.find(PageAlerts)
+    expect(found.exists()).toBe(true)
+    expect(found.props().alerts).toEqual(testAlerts)
+  })
 })
