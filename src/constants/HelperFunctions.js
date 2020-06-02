@@ -210,7 +210,7 @@ export const titleCase = (string) => {
 }
 
 // Removes all non-alphanumeric and returns a string in camelCase
-// Ex: "This is a LONG string - it has punction, and snake_case." -> "thisIsALongStringItHasPunctuationAndSnakeCase"
+// Ex: "This is a LONG string - it has punctuation, and snake_case." -> "thisIsALongStringItHasPunctuationAndSnakeCase"
 export const camelCase = (string) => {
   if (!string) {
     return string
