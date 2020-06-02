@@ -209,6 +209,19 @@ export const titleCase = (string) => {
   return words.join(' ')
 }
 
+// Removes all non-alphanumeric and returns a string in camelCase
+// Ex: "This is a LONG string - it has punction, and snake_case." -> "thisIsALongStringItHasPunctuationAndSnakeCase"
+export const camelCase = (string) => {
+  if (!string) {
+    return string
+  }
+
+  const regex = /(?:[^a-zA-Z0-9]+([a-zA-Z0-9])|^|[^a-zA-Z0-9]+$)([a-zA-Z0-9]*)(?=\b|[^a-zA-Z0-9]|$)/g
+  return string.replace(regex, (match, upperGroup, lowerGroup) => {
+    return (upperGroup || '').toUpperCase() + (lowerGroup || '').toLowerCase()
+  })
+}
+
 // Thanks StackOverflow: https://stackoverflow.com/a/6969486/1599426
 export const escapeRegExp = (string) => {
   return string.replace(/[.*+?^${}()/|[\]\\]/g, '\\$&') // $& means the whole matched string

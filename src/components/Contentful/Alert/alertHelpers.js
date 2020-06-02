@@ -1,7 +1,9 @@
 import styles from './style.module.css'
 import typy from 'typy'
+import * as helper from 'constants/HelperFunctions'
+
 export const alertMap = (alert, isGlobal = false) => {
-  const type = styles[typy(alert, 'fields.type').isString ? alert.fields.type.toLowerCase() : 'warning']
+  const type = styles[typy(alert, 'fields.type').isString ? helper.camelCase(alert.fields.type) : 'warning']
   const className = ['alert', (isGlobal ? 'global' : 'page'), styles.alertSection, type].join(' ')
   if (typy(alert, 'sys.id').isString) {
     return {
