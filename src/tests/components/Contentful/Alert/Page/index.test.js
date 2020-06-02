@@ -3,6 +3,7 @@ import { shallow } from 'enzyme'
 
 import PageAlert from 'components/Contentful/Alert/Page'
 import Presenter from 'components/Contentful/Alert/presenter'
+import * as helper from 'constants/HelperFunctions'
 
 
 let enzymeWrapper
@@ -87,7 +88,7 @@ describe('components/Contentful/Alert/Page', () => {
   it('should group alerts according to type', () => {
     const presenter = enzymeWrapper.find(Presenter)
     for (const group in presenter.props().alerts) {
-      const expectedInGroup = props.alerts.filter(alert => alert.fields.type === group)
+      const expectedInGroup = props.alerts.filter(alert => helper.camelCase(alert.fields.type) === group)
       expect(presenter.props().alerts[group]).toHaveLength(expectedInGroup.length)
       expectedInGroup.forEach(expected => {
         expect(presenter.props().alerts[group].some(search => search.id === expected.sys.id)).toBe(true)
@@ -97,8 +98,9 @@ describe('components/Contentful/Alert/Page', () => {
 
   it('should only include current alerts', () => {
     const presenter = enzymeWrapper.find(Presenter)
-    expect(presenter.props().alerts['test_group_1']).toHaveLength(1)
-    expect(presenter.props().alerts['test_group_2']).toHaveLength(2)
+    expect(presenter.props().alerts['testGroup1']).toHaveLength(1)
+    expect(presenter.props().alerts['testGroup2']).toHaveLength(2)
     expect(presenter.props().alerts['test_invalid']).toBeFalsy()
+    expect(presenter.props().alerts['testInvalid']).toBeFalsy()
   })
 })

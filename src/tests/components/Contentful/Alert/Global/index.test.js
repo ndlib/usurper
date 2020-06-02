@@ -5,6 +5,7 @@ import { GlobalAlertsContainer, mapStateToProps, mapDispatchToProps } from 'comp
 import Presenter from 'components/Contentful/Alert/presenter'
 
 import * as statuses from 'constants/APIStatuses'
+import * as helper from 'constants/HelperFunctions'
 import { REQUEST_PERSONAL } from 'actions/personal/constants'
 
 let enzymeWrapper
@@ -222,7 +223,7 @@ describe('components/Contentful/Alert/Global', () => {
       expect(Object.keys(result.allAlerts).length).toBeGreaterThan(0)
 
       for (const group in result.allAlerts) {
-        const expectedInGroup = testAlerts.filter(alert => alert.fields.type === group)
+        const expectedInGroup = testAlerts.filter(alert => helper.camelCase(alert.fields.type) === group)
         expect(result.allAlerts[group]).toHaveLength(expectedInGroup.length)
         expectedInGroup.forEach(expected => {
           expect(result.allAlerts[group].some(search => search.id === expected.sys.id)).toBe(true)
@@ -231,9 +232,10 @@ describe('components/Contentful/Alert/Global', () => {
     })
 
     it('should only include current alerts', () => {
-      expect(result.allAlerts['test_group_1']).toHaveLength(1)
-      expect(result.allAlerts['test_group_2']).toHaveLength(2)
+      expect(result.allAlerts['testGroup1']).toHaveLength(1)
+      expect(result.allAlerts['testGroup2']).toHaveLength(2)
       expect(result.allAlerts['test_invalid']).toBeFalsy()
+      expect(result.allAlerts['testInvalid']).toBeFalsy()
     })
   })
 
