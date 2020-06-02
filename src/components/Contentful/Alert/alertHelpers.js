@@ -18,23 +18,17 @@ export const alertMap = (alert, isGlobal = false) => {
 }
 
 export const alertSort = (left, right) => {
-  if (left.type === right.type) {
-    if (left.startTime < right.startTime) {
-      return 1
-    } else if (right.startTime < left.startTime) {
-      return -1
-    }
-
-    // alphabetical sort if matching dates
-    return (left.description < right.description) ? -1 : 1
-  }
-
-  // warnings should always be at the top
-  if (left.type === 'warning') {
+  // Sort type as alphanumeric descending, so "Warning" comes before "Informational"
+  if (left.type < right.type) {
+    return 1
+  } else if (left.type > right.type) {
     return -1
+  } else {
+    // If type is the same, sort by start time
+    return left.startTime < right.startTime
+      ? 1
+      : (left.startTime > right.startTime ? -1 : 0)
   }
-
-  return 1
 }
 
 export const alertCategorize = (alerts) => {
