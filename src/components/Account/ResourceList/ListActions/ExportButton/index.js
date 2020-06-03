@@ -32,7 +32,7 @@ class ExportButton extends Component {
   }
 
   onBlur (e) {
-    if (!this.exportButtonDropDownRef.current || !this.exportButtonDropDownRef.current.contains(e.relatedTarget)) {
+    if (!this.exportButtonDropDownRef.current || (e.target !== this.exportButtonDropDownRef.current && !this.exportButtonDropDownRef.current.contains(e.relatedTarget))) {
       this.setState({
         hidden: true,
       })
@@ -53,8 +53,10 @@ class ExportButton extends Component {
     const labelText = 'Export Checkout History'
     const disabled = this.props.items.length === 0
     return (
-      <button className={styles.export} onClick={this.onButtonClick} disabled={disabled} aria-label={labelText}>
-        { helper.pluralize(this.props.items, 'Export', 'Export All') }
+      <div className={styles.container}>
+        <button className={styles.export} onClick={this.onButtonClick} disabled={disabled} aria-label={labelText}>
+          { helper.pluralize(this.props.items, 'Export', 'Export All') }
+        </button>
         <div
           id='exportDropdown'
           ref={this.exportButtonDropDownRef}
@@ -70,7 +72,7 @@ class ExportButton extends Component {
             <li role='treeitem'><button className='custom-style' onClick={this.exportCSV}>Export to CSV</button></li>
           </ul>
         </div>
-      </button>
+      </div>
     )
   }
 }

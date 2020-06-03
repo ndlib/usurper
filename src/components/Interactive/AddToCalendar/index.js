@@ -26,8 +26,8 @@ export default class AddToCalendar extends Component {
   }
 
   onBlur (e) {
-    const dropdownElement = document.getElementById('calendarOptions')
-    if (!dropdownElement || !e || !dropdownElement.contains(e.relatedTarget)) {
+    const buttonElement = document.getElementsByClassName('addToCalendar')[0]
+    if (!e || (!buttonElement && !buttonElement.contains(e.relatedTarget))) {
       this.setState({ hidden: true })
     }
   }
