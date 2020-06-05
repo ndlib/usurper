@@ -28,8 +28,8 @@ export const alertSort = (left, right) => {
   } else {
     // If type is the same, sort by start time
     return left.startTime < right.startTime
-      ? 1
-      : (left.startTime > right.startTime ? -1 : 0)
+      ? -1
+      : (left.startTime > right.startTime ? 1 : 0)
   }
 }
 
