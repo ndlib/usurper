@@ -31,7 +31,7 @@ class PageAlert extends React.Component {
 }
 
 PageAlert.propTypes = {
-  type: PropTypes.oneOf(['informational', 'warning']),
+  type: PropTypes.oneOf(['informational', 'informationalYellow', 'warning']),
   url: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.any,

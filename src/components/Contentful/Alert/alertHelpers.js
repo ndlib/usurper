@@ -1,8 +1,10 @@
 import styles from './style.module.css'
 import typy from 'typy'
+import * as helper from 'constants/HelperFunctions'
+
 export const alertMap = (alert, isGlobal = false) => {
-  const type = styles[typy(alert, 'fields.type').isString ? alert.fields.type.toLowerCase() : 'warning']
-  const className = ['alert', (isGlobal ? 'global' : 'page'), styles.alertSection, type].join(' ')
+  const type = typy(alert, 'fields.type').isString ? helper.camelCase(alert.fields.type) : 'warning'
+  const className = ['alert', (isGlobal ? 'global' : 'page'), styles.alertSection, styles[type]].join(' ')
   if (typy(alert, 'sys.id').isString) {
     return {
       ...alert.fields,
@@ -16,23 +18,19 @@ export const alertMap = (alert, isGlobal = false) => {
 }
 
 export const alertSort = (left, right) => {
-  if (left.type === right.type) {
-    if (left.startTime < right.startTime) {
-      return 1
-    } else if (right.startTime < left.startTime) {
-      return -1
+  // Put "warning" type at top, otherwise sort alphanumeric asc
+  if (left.type !== right.type) {
+    if (left.type === 'warning' || right.type === 'warning') {
+      return left.type === 'warning' ? -1 : 1
+    } else {
+      return left.type < right.type ? -1 : 1
     }
-
-    // alphabetical sort if matching dates
-    return (left.description < right.description) ? -1 : 1
+  } else {
+    // If type is the same, sort by start time
+    return left.startTime < right.startTime
+      ? -1
+      : (left.startTime > right.startTime ? 1 : 0)
   }
-
-  // warnings should always be at the top
-  if (left.type === 'warning') {
-    return -1
-  }
-
-  return 1
 }
 
 export const alertCategorize = (alerts) => {

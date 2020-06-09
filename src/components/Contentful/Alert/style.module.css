@@ -13,8 +13,14 @@
   border: solid 2px #AA272F;
 }
 
-.alertSection.informational .alertContainer {
-  background: url('../../../static/images/ic_info_outline_white_24px.svg') no-repeat;
+.alertSection.informationalYellow {
+  background-color: #F8E999;
+  border: solid 2px #AA272F;
+}
+
+.alertSection.informational .alertContainer,
+.alertSection.informationalYellow .alertContainer {
+  background: url('../../../static/images/ic_info_outline_dark_24px.svg') no-repeat;
   background-size: 1.5em;
   background-position: left center;
 }
@@ -25,7 +31,7 @@
 }
 
 .alertSection.warning .alertContainer {
-  background: url('../../../static/images/alert.svg') no-repeat;
+  background: url('../../../static/images/alert-dark.svg') no-repeat;
   background-size: 1.5em;
   background-position: left center;
 }
