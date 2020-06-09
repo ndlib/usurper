@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2020.15](https://github.com/ndlib/usurper/tree/v2020.15) "Hobby Hopper"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.13...v2020.15)
+
+### Bug Fixes
+- *Dark Feature - Fixed an issue with best bets.* [#844](https://github.com/ndlib/usurper/pull/884)
+
+### Other Changes
+- Added label element for facet checkboxes (accessibility). [#874](https://github.com/ndlib/usurper/pull/874)
+- Modified dropdown styling. [#877](https://github.com/ndlib/usurper/pull/877)
+- Added ability to display alerts and floor map pages. [#885](https://github.com/ndlib/usurper/pull/885)
+- Added a new type of alert that looks yellow. [#886](https://github.com/ndlib/usurper/pull/886)
+
 ## [v2020.13](https://github.com/ndlib/usurper/tree/v2020.13) "Day #58"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.12...v2020.13)
 
