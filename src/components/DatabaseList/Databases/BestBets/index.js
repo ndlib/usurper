@@ -9,7 +9,7 @@ import styles from './style.module.css'
 const BestBets = (props) => {
   // Group databases underneath the subject(s) they are best bets for
   const databasesBySubject = {}
-  props.subjects.filter(subject => props.subjectFilter.includes(subject.sys.id)).forEach(subject => {
+  props.subjects.filter(subject => props.subjectFilter.includes(subject.fields.id)).forEach(subject => {
     const matchingDbs = props.databases.filter(db => typy(db.fields, 'bestBets').safeArray.some(search => search.sys.id === subject.sys.id))
     if (matchingDbs.length) {
       databasesBySubject[subject.linkText] = matchingDbs
