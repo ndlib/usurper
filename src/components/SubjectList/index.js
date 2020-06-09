@@ -93,12 +93,14 @@ const mapStateToProps = (state) => {
   let subjects = []
   if (cfSubjects.status === statuses.SUCCESS) {
     const contentfulSubjects = typy(cfSubjects, 'data.length').isTruthy
-      ? cfSubjects.data.map((entry) => ({
-        title: entry.linkText,
-        key: entry.fields.id,
-        url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
-        cfEntry: entry,
-      }))
+      ? cfSubjects.data
+        .filter((entry) => entry.fields.includeOnSubjectList)
+        .map((entry) => ({
+          title: entry.linkText,
+          key: entry.fields.id,
+          url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
+          cfEntry: entry,
+        }))
       : []
 
     subjects = helper.sortList(Object.assign([], contentfulSubjects), 'title', 'asc')
