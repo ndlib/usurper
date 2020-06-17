@@ -223,6 +223,7 @@ describe('components/Account/Favorites/Wizard', () => {
             fields: {
               title: 'suuuuubject',
               usePageTitle: false,
+              includeOnSubjectList: true,
               page: {
                 fields: {
                   slug: 'slugger',
@@ -362,11 +363,22 @@ describe('components/Account/Favorites/Wizard', () => {
       })
 
       it('should display SubjectStep', () => {
-        const have = <SubjectStep
-          step={0}
-          stepCount={STEP_COUNT}
-        />
-        expect(enzymeWrapper.dive().dive().containsMatchingElement(have)).toBe(true)
+        const found = enzymeWrapper.dive().dive().find(SubjectStep)
+        expect(found.exists()).toBe(true)
+        expect(found.props().step).toEqual(0)
+        expect(found.props().stepCount).toEqual(STEP_COUNT)
+        expect(found.props().data).toEqual(expect.arrayContaining([
+          expect.objectContaining({
+            sys: {
+              id: 'subme',
+              contentType: {
+                sys: {
+                  id: 'internalLink',
+                },
+              },
+            },
+          })
+        ]))
       })
     })
 
