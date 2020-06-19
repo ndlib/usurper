@@ -7,15 +7,16 @@ class PageAlert extends React.Component {
   render () {
     let alerts = []
     alerts.push(alertMap({
-      title: '',
-      type: this.props.type,
-      domain: 'library',
-      description: this.props.children,
-      startTime: new Date(),
-      endTime: new Date(9999, 12, 31),
-      url: this.props.url,
-      global: false,
-    }))
+      fields: {
+        title: '',
+        type: this.props.type,
+        domain: 'library',
+        description: this.props.children,
+        startTime: new Date(),
+        endTime: new Date(9999, 12, 31),
+        url: this.props.url,
+      },
+    }, false))
     if (this.props.className) {
       alerts[0].className += ' ' + this.props.className
     }
@@ -31,7 +32,7 @@ class PageAlert extends React.Component {
 }
 
 PageAlert.propTypes = {
-  type: PropTypes.oneOf(['informational', 'informationalYellow', 'warning']),
+  type: PropTypes.oneOf(['informational', 'informational-yellow', 'warning']),
   url: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.any,

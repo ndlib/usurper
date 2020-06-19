@@ -5,16 +5,13 @@ import * as helper from 'constants/HelperFunctions'
 export const alertMap = (alert, isGlobal = false) => {
   const type = typy(alert, 'fields.type').isString ? helper.camelCase(alert.fields.type) : 'warning'
   const className = ['alert', (isGlobal ? 'global' : 'page'), styles.alertSection, styles[type]].join(' ')
-  if (typy(alert, 'sys.id').isString) {
-    return {
-      ...alert.fields,
-      id: typy(alert, 'sys.id').safeString,
-      className: className,
-      startTime: new Date(typy(alert, 'fields.startTime').safeString),
-      type: type,
-    }
+  return {
+    ...alert.fields,
+    id: typy(alert, 'sys.id').safeString,
+    className: className,
+    startTime: new Date(typy(alert, 'fields.startTime').safeString),
+    type: type,
   }
-  return null
 }
 
 export const alertSort = (left, right) => {
