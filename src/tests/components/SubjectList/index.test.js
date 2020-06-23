@@ -49,10 +49,12 @@ describe('components/SubjectList', () => {
         cfSubjects: {
           status: statuses.SUCCESS,
           data: [
-            { linkText: 'Link 3', sys: { id: 3 }, fields: { id: 'c'} },
-            { linkText: 'Link 1', sys: { id: 1 }, fields: { id: 'a'} },
-            { linkText: 'Link 1', sys: { id: 12 }, fields: { id: 'z'} },
-            { linkText: 'Link 2', sys: { id: 2 }, fields: { id: 'b'} },
+            { linkText: 'Link 3', sys: { id: 3 }, fields: { id: 'c', includeOnSubjectList: true } },
+            { linkText: 'Link 1', sys: { id: 1 }, fields: { id: 'a', includeOnSubjectList: true } },
+            { linkText: 'Link 1', sys: { id: 12 }, fields: { id: 'z', includeOnSubjectList: true } },
+            { linkText: 'Link 2', sys: { id: 2 }, fields: { id: 'b', includeOnSubjectList: true } },
+            { linkText: 'filter me', sys: { id: 7331 }, fields: { id: 'x', includeOnSubjectList: false } },
+            { linkText: 'filter me too', sys: { id: 3333 }, fields: { id: 'y' } },
           ],
         },
       }
@@ -64,6 +66,13 @@ describe('components/SubjectList', () => {
       state.cfSubjects.data.forEach((subject) => {
         expect(enzymeWrapper.dive().containsMatchingElement(<InternalLink cfEntry={subject} />))
       })
+    })
+
+    it('should ONLY show subjects that have been explicitly flagged to be included', () => {
+      const count = enzymeWrapper.dive().props().subjects.length
+      const compare = state.cfSubjects.data.filter(subject => subject.fields.includeOnSubjectList === true).length
+      expect(count).toBeGreaterThan(0)
+      expect(count).toEqual(compare)
     })
 
     it('should sort subjects based on link text', () => {
