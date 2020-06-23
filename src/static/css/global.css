@@ -378,6 +378,11 @@ height:auto;
   background: #FFB073;
 }
 
+.alert.informationalYellow {
+  border: solid 2px #AA272F;
+  background-color: #F8E999;
+}
+
 .alert.warning {
   border: solid 2px #AA272F;
   background: #FC7279;
