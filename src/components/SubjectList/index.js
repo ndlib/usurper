@@ -51,10 +51,10 @@ export class SubjectListContainer extends Component {
           {
             this.props.subjects.slice(maxPerColumn * i, maxPerColumn * (i + 1)).map((entry) => {
               const isFavorited = !!(this.props.favorites.find((fav) => {
-                return entry.key === fav.key
+                return entry.itemKey === fav.itemKey
               }))
               return (
-                <p key={entry.key}>
+                <p key={entry.itemKey}>
                   <FavoriteIcon kind={KIND.subjects} data={[ entry ]} isFavorited={isFavorited} />
                   <InternalLink cfEntry={entry.cfEntry} />
                 </p>
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
         .filter((entry) => entry.fields.includeOnSubjectList)
         .map((entry) => ({
           title: entry.linkText,
-          key: entry.fields.id,
+          itemKey: entry.sys.id,
           url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
           cfEntry: entry,
         }))

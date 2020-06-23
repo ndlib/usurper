@@ -77,12 +77,12 @@ describe('components/SubjectList', () => {
 
     it('should sort subjects based on link text', () => {
       const expected = [
-        state.cfSubjects.data[1].fields.id,
-        state.cfSubjects.data[2].fields.id,
-        state.cfSubjects.data[3].fields.id,
-        state.cfSubjects.data[0].fields.id,
+        state.cfSubjects.data[1].sys.id,
+        state.cfSubjects.data[2].sys.id,
+        state.cfSubjects.data[3].sys.id,
+        state.cfSubjects.data[0].sys.id,
       ]
-      expect(enzymeWrapper.dive().props().subjects.map(subject => subject.key)).toEqual(expected)
+      expect(enzymeWrapper.dive().props().subjects.map(subject => subject.itemKey)).toEqual(expected)
     })
 
     it('should not show loading', () => {
