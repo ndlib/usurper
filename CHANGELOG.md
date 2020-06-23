@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2020.16](https://github.com/ndlib/usurper/tree/v2020.16) "Deep Slumber"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.15...v2020.16)
+
+### Bug Fixes
+- Fixed an issue with alerts not showing on some pages. [#890](https://github.com/ndlib/usurper/pull/890)
+- Fixed an issue with favoriting not working on Subjects A-Z page. [#892](https://github.com/ndlib/usurper/pull/892)
+
+### Other Changes
+- *Dark Feature - Allow subjects to be used as facets without appearing on Subjects A-Z.* [#891](https://github.com/ndlib/usurper/pull/891)
+
 ## [v2020.15](https://github.com/ndlib/usurper/tree/v2020.15) "Hobby Hopper"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.13...v2020.15)
 
