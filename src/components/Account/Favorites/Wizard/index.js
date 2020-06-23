@@ -170,22 +170,24 @@ class Wizard extends Component {
 
     switch (currentStepName) {
       case FAVORITES_KIND.subjects:
-        const subjectStepData = JSON.parse(JSON.stringify(this.props.cfSubjects.data)).map((subject) => {
-          if (this.state.data[currentStepName].length) {
-            subject.selected = this.state.data[currentStepName].some(x => (
-              typy(x, 'sys.id').safeString === typy(subject, 'sys.id').safeString
-            ))
-          } else {
-            const match = typy(this.props.favorites, `${currentStepName}.items`).safeArray.find(y => (
-              y.itemKey === typy(subject, 'sys.id').safeString
-            ))
-            if (match) {
-              subject.selected = true
-              subject.order = match.order
+        const subjectStepData = JSON.parse(JSON.stringify(this.props.cfSubjects.data))
+          .filter((entry) => entry.fields.includeOnSubjectList)
+          .map((subject) => {
+            if (this.state.data[currentStepName].length) {
+              subject.selected = this.state.data[currentStepName].some(x => (
+                typy(x, 'sys.id').safeString === typy(subject, 'sys.id').safeString
+              ))
+            } else {
+              const match = typy(this.props.favorites, `${currentStepName}.items`).safeArray.find(y => (
+                y.itemKey === typy(subject, 'sys.id').safeString
+              ))
+              if (match) {
+                subject.selected = true
+                subject.order = match.order
+              }
             }
-          }
-          return subject
-        })
+            return subject
+          })
         return <SubjectStep data={subjectStepData} {...commonProps} />
       case FAVORITES_KIND.databases:
         let dbStepData = []
