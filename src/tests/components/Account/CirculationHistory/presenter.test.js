@@ -6,6 +6,7 @@ import CircOptIn from 'components/Account/CirculationHistory/CircOptIn'
 import CircHistoryModal from 'components/Account/CirculationHistory/CircHistoryModal'
 import CircHistorySidebar from 'components/Account/CirculationHistory/CircHistorySidebar'
 import ResourceList from 'components/Account/ResourceList'
+import PageAlert from 'components/Messages/PageAlert'
 
 import * as statuses from 'constants/APIStatuses'
 
@@ -37,6 +38,15 @@ describe('components/Account/CirculationHistory/presenter', () => {
     it('should render a ResourceList with items', () => {
       const find = <ResourceList list={props.items} loading={props.loading} type='history' />
       expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
+    })
+
+    it('should render an alert when checkout history update in progress', () => {
+      expect(enzymeWrapper.find(PageAlert).exists()).toBe(false)
+
+      enzymeWrapper.setProps({
+        processingStatus: 'inprogress'
+      })
+      expect(enzymeWrapper.find(PageAlert).exists()).toBe(true)
     })
 
     it('should not render CircOptIn message', () => {

@@ -9,7 +9,7 @@ export const REQUEST_UPDATE_SETTINGS = 'REQUEST_UPDATE_SETTINGS'
 
 export const KIND = {
   homeLibrary: 'homeLibrary',
-  circStatus: 'saveHistory',
+  circStatus: 'circStatus',
   hideHomeFavorites: 'hideHomeFavorites',
   defaultSearch: 'defaultSearch',
   hiddenAlerts: 'hiddenAlerts',
@@ -62,13 +62,23 @@ export const setCircStatus = (enabled) => {
       },
       body: enabled,
     })
-      .then(response => enabled ? response.json() : {})
-      .then(json => {
-        dispatch(states.receivePersonal('historical', statuses.SUCCESS, {
-          history: json,
-        }))
-        dispatch(receiveSettings(KIND.circStatus, enabled, statuses.SUCCESS))
-        dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
+      .then(response => {
+        if (response.ok) {
+          const settingData = {
+            saveHistory: enabled,
+            status: response.status === 202 ? 'inprogress' : 'complete',
+          }
+          dispatch(receiveSettings(KIND.circStatus, settingData, statuses.SUCCESS))
+          dispatch(receiveUpdateSettings(KIND.circStatus, statuses.SUCCESS))
+          // If opted out, dispatch action to reset checkout history in store
+          if (!enabled) {
+            dispatch(states.receivePersonal('historical', statuses.NOT_FETCHED, {
+              history: {},
+            }))
+          }
+        } else {
+          dispatch(receiveUpdateSettings(KIND.circStatus, statuses.ERROR))
+        }
       })
       .catch((e) => {
         console.error(e)
@@ -144,7 +154,27 @@ export const clearUpdateSettings = (kind) => {
 }
 
 export const getCircStatus = () => {
-  return getSimpleSetting(KIND.circStatus, false)
+  return (dispatch, getState) => {
+    const defaultValue = { saveHistory: false }
+    const state = getState().personal
+    dispatch(requestSettings(KIND.circStatus, null))
+    const url = Config.userPrefsAPI + '/circOptIn'
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': state.login.token,
+      },
+    })
+      .then(response => response.status === 404 ? defaultValue : response.json())
+      .then((data) => {
+        dispatch(receiveSettings(KIND.circStatus, data, statuses.SUCCESS))
+      })
+      .catch((e) => {
+        console.error(e)
+        dispatch(receiveSettings(KIND.circStatus, defaultValue, statuses.ERROR, e))
+        dispatch(receiveUpdateSettings(KIND.circStatus, statuses.ERROR, e))
+      })
+  }
 }
 
 export const getHomeLibrary = (isHomePage) => {

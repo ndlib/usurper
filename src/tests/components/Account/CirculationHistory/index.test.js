@@ -22,6 +22,10 @@ const setup = (state, ownProps) => {
 }
 
 describe('components/Account/CirculationHistory', () => {
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
+
   afterEach(() => {
     enzymeWrapper = undefined
   })
@@ -47,12 +51,15 @@ describe('components/Account/CirculationHistory', () => {
           },
         },
         settings: {
-          saveHistory: {
+          circStatus: {
             state: statuses.SUCCESS,
-            data: true,
+            data: {
+              saveHistory: true,
+              status: 'complete',
+            },
           },
           update: {
-            saveHistory: {
+            circStatus: {
               state: statuses.NOT_FETCHED,
             },
           },
@@ -93,6 +100,41 @@ describe('components/Account/CirculationHistory', () => {
       enzymeWrapper.setProps({
         optedIn: true,
         saveHistoryStatus: statuses.SUCCESS,
+      })
+      expect(props.getHistorical).toHaveBeenCalled()
+    })
+
+    it('should remove timer when unmounting', () => {
+      expect(setInterval).toHaveBeenCalled()
+      enzymeWrapper.unmount()
+      expect(clearInterval).toHaveBeenCalled()
+    })
+
+    it('should get updated circ status every 5 seconds if inprogress', () => {
+      enzymeWrapper.setProps({
+        optedIn: true,
+        saveHistoryStatus: statuses.SUCCESS,
+        processingStatus: 'inprogress',
+      })
+
+      props.getCircStatus.mockClear()
+      expect(props.getCircStatus).not.toHaveBeenCalled() // just make sure the clear worked ;)
+
+      jest.advanceTimersByTime(5000)
+      expect(props.getCircStatus).toHaveBeenCalled()
+    })
+
+    it('should fetch history after update finishes', () => {
+      enzymeWrapper.setProps({
+        optedIn: true,
+        saveHistoryStatus: statuses.SUCCESS,
+        processingStatus: 'inprogress',
+      })
+      props.getHistorical.mockClear()
+      expect(props.getHistorical).not.toHaveBeenCalled()
+
+      enzymeWrapper.setProps({
+        processingStatus: 'complete',
       })
       expect(props.getHistorical).toHaveBeenCalled()
     })
