@@ -31,6 +31,9 @@ const mapStateToProps = (state, thisProps) => {
         if (field === 'access' && entry.json.fields['accessNotes']) {
           fieldData[field].data += '<br />' + entry.json.fields['accessNotes']
         }
+        if (field === 'includes') {
+          fieldData[field].data = fieldData[field].data.replace(/\n/g, '<br />')
+        }
       } else if (field === 'access' && entry.json.fields['accessNotes']) {
         // If there is no "access" field but there is "accessNotes", use that instead
         fieldData[field] = {
