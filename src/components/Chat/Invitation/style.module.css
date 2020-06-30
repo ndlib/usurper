@@ -1,0 +1,9 @@
+.invite {
+  margin-left: auto;
+  margin-top: auto;
+  max-width: 400px;
+  max-height: 170px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
