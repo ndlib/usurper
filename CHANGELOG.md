@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2020.17](https://github.com/ndlib/usurper/tree/v2020.17) "Peaceful Home"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.16...v2020.17)
+
+### Features
+- Filtering databases based on subjects is now available.
+
+### Other Changes
+- Improved display of database metadata "includes" field. [#898](https://github.com/ndlib/usurper/pull/898)
+- Checkout history is now updated in the background after opt-in. [#897](https://github.com/ndlib/usurper/pull/897)
+
 ## [v2020.16](https://github.com/ndlib/usurper/tree/v2020.16) "Deep Slumber"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.15...v2020.16)
 
