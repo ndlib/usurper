@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import PageAlert from 'components/Messages/PageAlert'
 import AccountPageWrapper from '../AccountPageWrapper'
 import ResourceList from '../ResourceList'
 import CircOptIn from './CircOptIn'
@@ -42,6 +43,11 @@ class CirculationHistory extends Component {
     const sidebar = <CircHistorySidebar optedIn={this.props.optedIn} onClickOptOut={this.openModal} />
     return (
       <AccountPageWrapper title='Checkout History' slug='checkout-history' customSidebar={sidebar}>
+        { this.props.optedIn && this.props.processingStatus === 'inprogress' && (
+          <PageAlert type='informational'>
+            Your checkout history is in the process of being updated. Please check back in a few minutes.
+          </PageAlert>
+        )}
         { this.props.optedIn || this.props.loading
           ? <ResourceList list={this.props.items} loading={this.props.loading} type='history' />
           : <CircOptIn onClickOptIn={this.openModal} updateStatus={this.props.updateStatus} />
@@ -62,6 +68,7 @@ CirculationHistory.propTypes = {
   loading: PropTypes.bool,
   items: PropTypes.array.isRequired,
   optedIn: PropTypes.bool,
+  processingStatus: PropTypes.string,
   updateStatus: PropTypes.string.isRequired,
   updating: PropTypes.bool,
   setCircStatus: PropTypes.func.isRequired,
