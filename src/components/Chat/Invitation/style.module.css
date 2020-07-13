@@ -4,6 +4,8 @@
   max-width: 400px;
   max-height: 170px;
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: 10px;
+  bottom: 10px;
+  border: solid 1px #56ABBD;
+  z-index: 1000;
 }

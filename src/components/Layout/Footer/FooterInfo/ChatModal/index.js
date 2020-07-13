@@ -82,17 +82,6 @@ export class ChatModalContainer extends Component {
     clearTimeout(this.state.proactiveChatTimer)
   }
 
-  componentDidUpdate (prevProps) {
-    // If path changes, reset proactive chat timer, assuming it hasn't already been dismissed
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      clearTimeout(this.state.proactiveChatTimer)
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({
-        proactiveChatTimer: setTimeout(this.displayInvite, PROACTIVE_CHAT_TIMER),
-      })
-    }
-  }
-
   displayInvite () {
     // After time has elapsed, send proactive chat invite if chat is not already open
     if (this.props.location.pathname !== '/chat' && this.props.location.pathname !== '/chat/' && !this.props.chatOpen) {
@@ -126,6 +115,12 @@ export class ChatModalContainer extends Component {
         onInviteConfirm={this.acceptInvite}
         onInviteClose={this.closeInvite}
         {...this.props}
+        onClick={(e) => {
+          this.setState({
+            showInvite: false,
+          })
+          this.props.onClick(e)
+        }}
       />
     )
   }
@@ -137,6 +132,7 @@ ChatModalContainer.propTypes = {
   }),
   chatOpen: PropTypes.bool,
   openChat: PropTypes.func,
+  onClick: PropTypes.func,
 }
 
 export default withRouter(connect(

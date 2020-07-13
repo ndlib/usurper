@@ -24,8 +24,8 @@ const ChatInvitation = (props) => {
       onRequestClose={props.onClose}
       contentLabel='Need help?'
       className={`modal round-corners ${styles.invite}`}
-      overlayClassName='modal-overlay'
-      ariaHideApp
+      bodyOpenClassName='modal-allow-scroll'
+      overlayClassName='modal-overlay-transparent'
       aria={{ labelledby: 'chatInvitationModalTitle', describedby: 'chatInvitationModalDesc' }}
       shouldFocusAfterRender
       shouldReturnFocusAfterClose

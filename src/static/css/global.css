@@ -3527,6 +3527,10 @@ ul.col-2-list {
   overflow-y: hidden;
 }
 
+.modal-allow-scroll {
+  overflow-y: auto;
+}
+
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.65);
   z-index: 1000;
@@ -3535,6 +3539,10 @@ ul.col-2-list {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.modal-overlay-transparent {
+  background-color: transparent;
 }
 
 .modal-force-bottom {
