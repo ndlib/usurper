@@ -27,7 +27,10 @@ const Alert = ({ alerts, hiddenIds, clearHiddenAlerts, hideAlert }) => {
                 currentAlerts.map((alert) => {
                   return (
                     <div className={styles.alertContainer} key={alert.id}>
-                      <LibMarkdown className={styles.description}>{ alert.description }</LibMarkdown>
+                      {typy(alert.description).isString
+                        ? <LibMarkdown className={styles.description}>{alert.description}</LibMarkdown>
+                        : alert.description // Assume it's a React component so we don't need to parse markdown
+                      }
                       { canHide && (
                         <span className={styles.hideAlert} onClick={() => hideAlert(alert.id)}>Hide Alert</span>
                       )}

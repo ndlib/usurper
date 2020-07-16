@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Presenter from 'components/Contentful/Alert/presenter.js'
-import { alertMap, alertCategorize } from 'components/Contentful/Alert/alertHelpers.js'
+import { alertMap } from 'components/Contentful/Alert/alertHelpers.js'
 
 class PageAlert extends React.Component {
   render () {
-    let alerts = []
+    const alerts = []
     alerts.push(alertMap({
       fields: {
         title: '',
@@ -21,12 +21,8 @@ class PageAlert extends React.Component {
       alerts[0].className += ' ' + this.props.className
     }
 
-    alerts = alertCategorize(alerts)
-
     return (
-      <Presenter alerts={alerts}>
-        {this.props.children}
-      </Presenter>
+      <Presenter alerts={alerts} />
     )
   }
 }
