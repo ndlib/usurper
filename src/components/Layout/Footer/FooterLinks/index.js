@@ -18,7 +18,7 @@ const FooterLinks = () => {
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
                 <li>
-                  <Link to='https://library.nd.edu/government-documents' label='Federal Depository Library'>
+                  <Link to='https://library.nd.edu/government-information' label='Federal Depository Library'>
                     <img
                       src='/icons/fdlp-emblem-color.png'
                       className='gov'
