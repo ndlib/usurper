@@ -1,0 +1,21 @@
+/* Style sheet for meetingSpacesTable. */
+
+.meetingSpacesHeader {
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 12pt;
+  color: black;
+  margin-bottom: 3px;
+}
+@media screen and (min-width: 620px) {
+  .meetingSpacesTable ul {
+    margin-top: -5px;
+  }
+  .meetingSpacesTable li {
+    margin-left: -30px;
+    font-size: 14px;
+  }
+  .meetingSpacesTable {
+    font-size: 14px;
+  }
+}

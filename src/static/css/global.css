@@ -3853,7 +3853,6 @@ section.group .modal-footer button {
 
 .modal {
   background-color: #fff;
-  position: relative;
   top: 0;
   left: 0;
   bottom: 0;
@@ -4043,13 +4042,13 @@ section.group .modal-footer button {
   }
 
   .modal {
-    height: auto;
-    width: calc(100% - 6em);
     top: 3em;
     left: 3em;
     bottom: auto;
+    height: auto;
+    width: fit-content;
+    margin: 3em auto;
   }
-
   /* This allows the modal height to shrink if the screen has really small vertical space but large enough
     horizontal space for us to serve up the "desktop" view. */
   .modal-body {

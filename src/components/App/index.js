@@ -32,7 +32,8 @@ import rootReducers from 'reducers'
 import thunkMiddleware from 'redux-thunk'
 import CirculationHistory from 'components/Account/CirculationHistory'
 import Favorites from 'components/Account/Favorites'
-import ContentfulFloors from 'components/Contentful/FloorList'
+import Floors from 'components/DynamicPages/FloorList'
+import RoomReservations from 'components/DynamicPages/RoomReservations'
 
 import NotFound from 'components/Messages/NotFound'
 
@@ -91,7 +92,7 @@ const App = (props) => {
             <Route exact path='/news' component={News} />
             <Route exact path='/floor/search' component={FloorSearch} />
             <Route exact path='/floor/:id' component={ContentfulFloor} />
-            <Route exact path='/hesburgh-floor-maps' render={() => (<ContentfulFloors {...props} title='Hesburgh Library Floor Maps' slug='hesburgh-library-building' />)} />
+            <Route exact path='/hesburgh-floor-maps' render={() => (<Floors {...props} title='Hesburgh Library Floor Maps' slug='hesburgh-library-building' />)} />
             <Route exact path='/news/:id' component={ContentfulNews} />
             <Route exact path='/event/:id' component={ContentfulEvent} />
             <Route exact path='/items-requests' component={ItemsRequests} />
@@ -100,6 +101,7 @@ const App = (props) => {
             <Route exact path='/subjects' component={SubjectList} />
             <Route exact path='/database/:id' component={DatabasePage} />
             <Route exact path='/databases' component={DatabaseList} />
+            <Route exact path='/room-reservations' component={RoomReservations} />
             <Route exact path='/secure/:id' component={SecureContentfulPage} />
             <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
             <Route exact path='/search' component={SearchPage} />

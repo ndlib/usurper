@@ -6,12 +6,11 @@ function TableHeader (props) {
     <thead>
       <tr>
         {props.columns.map(column => (
-          <th scope='col' role='heading' key={column.key || column.path}>{column.label}</th>))}
+          <th width={column.width} scope='col' role='heading' key={column.key || column.path}>{column.label}</th>))}
       </tr>
     </thead>
   )
 }
-
 export default TableHeader
 
 TableHeader.propTypes = {

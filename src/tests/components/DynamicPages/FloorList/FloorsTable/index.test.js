@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Table from 'components/Table'
-import FloorsTable from 'components/Contentful/FloorList/FloorsTable'
+import FloorsTable from 'components/DynamicPages/FloorList/FloorsTable'
 
 let enzymeWrapper
 let props
@@ -10,7 +10,7 @@ const setup = (props) => {
   return shallow(<FloorsTable {...props} />)
 }
 
-describe('components/Contentful/FloorList/FloorsTable', () => {
+describe('components/Contentful/DynamicPages/FloorsTable', () => {
   beforeEach(() => {
     props = {
         floorData: [1, 2, 3, 4]

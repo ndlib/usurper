@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchFloors } from 'actions/contentful/floors'
 import PresenterFactory from 'components/APIPresenterFactory'
-import ContentfulFloorsPresenter from './presenter.js'
+import FloorsPresenter from './presenter.js'
 import Link from 'components/Interactive/Link'
 import typy from 'typy'
 
@@ -28,21 +28,25 @@ export const mapStateToProps = (state, ownProps) => {
         })}
       </React.Fragment>
     )
-    const spacesText = (
-      <div>
-        {typy(floor, 'fields.spacesLinks').safeArray.map(link => {
-          const linkPath = link.fields.url || link.fields.slug
-          const comma = floor.fields.spacesText || ((floor.fields.spacesLinks.length > 1) && (floor.fields.spacesLinks.indexOf(link) !== (floor.fields.spacesLinks.length - 1))) ? ', ' : null
-          return (
-            <React.Fragment key={linkPath}>
-              <Link to={`${linkPath}`}>{link.fields.title}</Link>
-              {comma}
-            </React.Fragment>
-          )
-        })}
-        {floor.fields.spacesText}
-      </div>
-    )
+    const spacesText = !floor.fields.spacesLinks
+      ? null
+      : (
+        <div>
+          {floor.fields.spacesLinks.map(link => {
+            const linkPath = link.fields.url || link.fields.slug
+            const comma = (floor.fields.spacesText || (floor.fields.spacesLinks.indexOf(link) !== floor.fields.spacesLinks.length - 1))
+              ? ', '
+              : null
+            return (
+              <React.Fragment key={linkPath}>
+                <Link to={`${linkPath}`}>{link.fields.title}</Link>
+                {comma}
+              </React.Fragment>
+            )
+          })}
+          {floor.fields.spacesText}
+        </div>
+      )
     return {
       ...floor,
       spacesText: spacesText,
@@ -60,7 +64,7 @@ export const mapDispatchToProps = dispatch => {
   return bindActionCreators({ fetchFloors }, dispatch)
 }
 
-export class ContentfulFloorsContainer extends Component {
+export class FloorsContainer extends Component {
   componentDidMount () {
     this.props.fetchFloors(null, this.props.preview)
   }
@@ -68,7 +72,7 @@ export class ContentfulFloorsContainer extends Component {
   render () {
     return (
       <PresenterFactory
-        presenter={ContentfulFloorsPresenter}
+        presenter={FloorsPresenter}
         status={this.props.floorsStatus}
         props={{ ...this.props }}
       />
@@ -76,14 +80,14 @@ export class ContentfulFloorsContainer extends Component {
   }
 }
 
-ContentfulFloorsContainer.propTypes = {
+FloorsContainer.propTypes = {
   fetchFloors: PropTypes.func.isRequired,
   floorsStatus: PropTypes.string.isRequired,
   preview: PropTypes.bool.isRequired,
 }
-const ContentfulFloors = connect(
+const Floors = connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContentfulFloorsContainer)
+)(FloorsContainer)
 
-export default (ContentfulFloors)
+export default (Floors)

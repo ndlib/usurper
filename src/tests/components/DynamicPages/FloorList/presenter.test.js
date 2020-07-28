@@ -1,17 +1,17 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import FloorsPresenter from 'components/Contentful/FloorList/presenter'
+import FloorsPresenter from 'components/DynamicPages/FloorList/presenter'
 import PageTitle from 'components/Layout/PageTitle'
 import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import StaticAlert from 'components/Contentful/StaticContent/Alert'
-import FloorsTable from 'components/Contentful/FloorList/FloorsTable'
+import FloorsTable from 'components/DynamicPages/FloorList/FloorsTable'
 
 const setup = (props) => {
   return shallow(<FloorsPresenter {...props} />)
 }
 
 let enzymeWrapper
-describe('components/Contentful/FloorList/presenter', () => {
+describe('components/DynamicPages/FloorList/presenter', () => {
   beforeEach(() => {
     enzymeWrapper = setup({
       pathSlug: 'fakeSlug',

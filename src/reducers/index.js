@@ -13,6 +13,7 @@ import contentfulAllExhibits from './contentful/allExhibits'
 import contentfulAllSpaces from './contentful/allSpaces'
 import contentfulFloor from './contentful/floor'
 import contentfulAllFloors from './contentful/floors'
+import contentfulAllMeetingSpaces from './contentful/allMeetingSpaces'
 import contentfulStatic from './contentful/staticContent'
 import contentfulAllRedirects from './contentful/allRedirects'
 import database from './contentful/database'
@@ -23,6 +24,7 @@ import renewalReducer from './alephRenewal'
 import settingsReducer from './settings'
 import hoursReducer from './hours'
 import searchReducer from './search'
+import contactInfo from './contacts'
 import librarianInfo from './librarians'
 import menuReducer, { hasNavigation } from './menu'
 import chatReducer from './chat'
@@ -41,6 +43,7 @@ const rootReducer = combineReducers({
   allAlerts: contentfulAllAlerts,
   cfEventEntry: contentfulEvent,
   cfAllFloors: contentfulAllFloors,
+  cfAllMeetingSpaces: contentfulAllMeetingSpaces,
   allEvents: contentfulAllEvents,
   allEventGroups: contentfulAllEventGroups,
   cfExhibitEntry: contentfulExhibit,
@@ -55,6 +58,7 @@ const rootReducer = combineReducers({
   personal: personalReducer,
   renewal: renewalReducer,
   settings: settingsReducer,
+  contactInfo: contactInfo,
   librarianInfo: librarianInfo,
   hours: hoursReducer,
   search: searchReducer,

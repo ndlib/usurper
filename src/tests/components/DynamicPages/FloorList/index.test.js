@@ -1,16 +1,16 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ContentfulFloorsContainer, mapStateToProps, mapDispatchToProps } from 'components/Contentful/FloorList'
+import { FloorsContainer, mapStateToProps, mapDispatchToProps } from 'components/DynamicPages/FloorList'
 import Link from 'components/Interactive/Link'
 
 const setup = (props) => {
-  return shallow(<ContentfulFloorsContainer {...props} />)
+  return shallow(<FloorsContainer {...props} />)
 }
 
 let enzymeWrapper
 let props
 
-describe('components/Contentful/FloorList/Container', () => {
+describe('components/DynamicPages/FloorList/Container', () => {
   beforeEach(() => {
     props = {
       fetchFloors: jest.fn(),

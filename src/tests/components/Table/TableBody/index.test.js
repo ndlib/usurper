@@ -20,7 +20,8 @@ describe('components/Table/TableBody', () => {
       data: [
         { a: 1, b: 2, c: 3 },
         { a: 4, b: 5, c: 6 },
-        ]
+        ],
+      className: 'floorsTable'
     }
     enzymeWrapper = setup(props)
   })
@@ -31,7 +32,7 @@ describe('components/Table/TableBody', () => {
   })
 
   it('should render a string in a cell', () => {
-    const tableData = enzymeWrapper.findWhere(cell => cell.type() === 'td' && cell.text() === '1')
+    const tableData = enzymeWrapper.findWhere(cell => cell.type() === 'td' && cell.text().includes(1))
     expect(tableData.exists()).toBe(true)
   })
 
