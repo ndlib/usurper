@@ -11,7 +11,7 @@ import {
 // ms on a single page before proactive chat invitation pops up
 const PROACTIVE_CHAT_TIMER = 1000 * 60 * 3
 
-const mapStateToProps = (state, ownProps) => {
+export const mapStateToProps = (state, ownProps) => {
   return {
     chatOpen: state.chat.chatOpen,
     // On keydown we open chat page instead of modal for accessibiilty.
@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
   const onClick = (e, func) => {
     e.preventDefault()
     if (ownProps.location.pathname === '/chat' || ownProps.location.pathname === '/chat/') {
