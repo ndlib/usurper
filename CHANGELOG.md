@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2020.18](https://github.com/ndlib/usurper/tree/v2020.18) "Aquatic Monkey"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.17...v2020.18)
+
+### Features
+- Reserve a meeting space page now shows a table of information about reservable spaces. [#903](https://github.com/ndlib/usurper/pull/903)
+
+### Bug Fixes
+- Fixed an issue that could cause My Account to not load if a patron's account was expired. [#906](https://github.com/ndlib/usurper/pull/906)
+
+### Other Changes
+- Updated link to government documents in footer. [#905](https://github.com/ndlib/usurper/pull/905)
+- Added Employee Portal link to footer. [#900](https://github.com/ndlib/usurper/pull/900)
+
 ## [v2020.17](https://github.com/ndlib/usurper/tree/v2020.17) "Peaceful Home"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.16...v2020.17)
 
