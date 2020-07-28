@@ -6,7 +6,7 @@ import PageAlert from 'components/Messages/PageAlert'
 const AccountExpired = (props) => {
   return (
     <PageAlert type='warning' id='accountExpired'>
-      Your library account has expired. Please <ServiceNowLink>contact us</ServiceNowLink> for more information.
+      Your library account has expired. Please&nbsp;<ServiceNowLink>contact us</ServiceNowLink>&nbsp;for more information.
       {props.children}
     </PageAlert>
   )
