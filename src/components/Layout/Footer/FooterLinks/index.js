@@ -17,6 +17,7 @@ const FooterLinks = () => {
                 <li><Link to='http://librarygiving.nd.edu'>Library Giving</Link></li>
                 <li><Link to='/employment/'>Jobs</Link></li>
                 <li><ServiceNowLink>Report A Problem</ServiceNowLink></li>
+                <li><Link to='https://sites.google.com/nd.edu/hlemployeeportal/home'>Employee Portal</Link></li>
                 <li>
                   <Link to='https://library.nd.edu/government-information' label='Federal Depository Library'>
                     <img
