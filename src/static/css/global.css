@@ -4017,6 +4017,10 @@ section.group .modal-footer button {
   display: block !important;
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 @media only screen and (min-width: 48em) {
   .subject-checkbox-container span {
     overflow: hidden;

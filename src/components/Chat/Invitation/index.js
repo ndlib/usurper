@@ -14,6 +14,13 @@ const ChatInvitation = (props) => {
   const decline = () => {
     setDismissing(true)
     setDismissTimer(setTimeout(props.onClose, 5000))
+
+    // Save the user's requested url to local storage so we can redirect them after authenticating
+    try {
+      window.localStorage.setItem('proactiveChatDismiss', new Date())
+    } catch (e) {
+      console.warn('Local storage is not available.')
+    }
   }
 
   return (
@@ -32,9 +39,11 @@ const ChatInvitation = (props) => {
     >
       { !dismissing ? (
         <React.Fragment>
-          <div className='modal-body'>
-            <h2 id='chatInvitationModalTitle'>Need Help?</h2>
-            <div id='chatInvitationModalDesc'>
+          <div className='modal-body no-padding'>
+            <div className={styles.inviteTitle}>
+              <h2 id='chatInvitationModalTitle' className={styles.inviteTitleText}>Need Help?</h2>
+            </div>
+            <div id='chatInvitationModalDesc' className={styles.inviteDesc}>
               Chat with us now.
             </div>
           </div>

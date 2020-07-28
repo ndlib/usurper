@@ -2,10 +2,26 @@
   margin-left: auto;
   margin-top: auto;
   max-width: 400px;
-  max-height: 170px;
+  max-height: calc(7.5em + 70px);
   position: fixed;
   right: 10px;
   bottom: 10px;
   border: solid 1px #56ABBD;
   z-index: 1000;
+}
+
+.inviteTitle {
+  background-color: #f8e999;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: solid 1px #56ABBD;
+  padding: 1em;
+}
+
+.inviteTitleText {
+  margin: 0;
+}
+
+.inviteDesc {
+  margin: 1em;
 }

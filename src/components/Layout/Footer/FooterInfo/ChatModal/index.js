@@ -9,7 +9,7 @@ import {
 } from 'actions/chat.js'
 
 // ms on a single page before proactive chat invitation pops up
-const PROACTIVE_CHAT_TIMER = 10000
+const PROACTIVE_CHAT_TIMER = 1000 * 60 * 3
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -85,8 +85,20 @@ export class ChatModalContainer extends Component {
   displayInvite () {
     // After time has elapsed, send proactive chat invite if chat is not already open
     if (this.props.location.pathname !== '/chat' && this.props.location.pathname !== '/chat/' && !this.props.chatOpen) {
+      // Make sure the user has not previously dismissed proactive chat
+      let showInvite = true
+      try {
+        // It stores a date, which could be used to remember the setting for a certain period of time, like 30 days
+        const lastDismissed = window.localStorage.getItem('proactiveChatDismiss')
+        if (lastDismissed) {
+          showInvite = false
+        }
+      } catch (e) {
+        console.warn('Local storage is not available.')
+      }
+
       this.setState({
-        showInvite: true,
+        showInvite,
       })
     }
   }
