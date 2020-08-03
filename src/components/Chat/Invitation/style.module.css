@@ -1,8 +1,12 @@
 .invite {
+  height: 100%;
+  width: 100%;
   margin: auto 0 0 auto;
   max-width: 400px;
   max-height: calc(7.5em + 70px);
   position: fixed;
+  top: 0;
+  left: 0;
   right: 10px;
   bottom: 10px;
   border: solid 1px #56ABBD;
