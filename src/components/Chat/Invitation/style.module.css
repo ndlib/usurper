@@ -1,6 +1,5 @@
 .invite {
-  margin-left: auto;
-  margin-top: auto;
+  margin: auto 0 0 auto;
   max-width: 400px;
   max-height: calc(7.5em + 70px);
   position: fixed;
