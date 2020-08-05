@@ -10,7 +10,7 @@ const Table = ({ className, columns, data }) => {
   return (
     <table
       role='table'
-      className={`responsive-table ${className}`}
+      className={`responsive-table ${className || ''}`}
     >
       <MediaQuery minWidth={620}>
         <TableHeader columns={columns} />
@@ -26,7 +26,11 @@ const Table = ({ className, columns, data }) => {
 export default Table
 
 Table.propTypes = {
-  columns: PropTypes.array.isRequired,
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    path: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    mobileLabel: PropTypes.string,
+  })).isRequired,
   data: PropTypes.array.isRequired,
   className: PropTypes.string,
 }

@@ -32,6 +32,7 @@ import rootReducers from 'reducers'
 import thunkMiddleware from 'redux-thunk'
 import CirculationHistory from 'components/Account/CirculationHistory'
 import Favorites from 'components/Account/Favorites'
+import Reservations from 'components/Account/Reservations'
 import Floors from 'components/DynamicPages/FloorList'
 import RoomReservations from 'components/DynamicPages/RoomReservations'
 
@@ -98,6 +99,7 @@ const App = (props) => {
             <Route exact path='/items-requests' component={ItemsRequests} />
             <Route exact path='/checkout-history' component={CirculationHistory} />
             <Route exact path='/favorites' render={() => (<Favorites {...props} />)} />
+            <Route exact path='/reservations/:dateRange?' component={Reservations} />
             <Route exact path='/subjects' component={SubjectList} />
             <Route exact path='/database/:id' component={DatabasePage} />
             <Route exact path='/databases' component={DatabaseList} />

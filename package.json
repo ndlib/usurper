@@ -125,6 +125,7 @@
         "contentfulAPI": "http://contentfulAPI.edu",
         "userPrefsAPI": "http://userPrefsAPI.edu",
         "mapsAPI": "http://mapsAPI.edu",
+        "libcalGatewayAPI": "http://libcalGatewayAPI.edu",
         "serviceNowBaseURL": "http://serviceNow.com/test?id=123",
         "features": {
           "subjectFilteringEnabled": true,
