@@ -25,7 +25,7 @@ export const getReservations = (startDate, endDate) => {
     dispatch(states.requestPersonal('reservations'))
 
     const url = `${Config.libcalGatewayAPI}/space/bookings?startDate=${startDate || ''}&endDate=${endDate || ''}`
-    states.startRequest(
+    return states.startRequest(
       url,
       'GET',
       dispatch,
