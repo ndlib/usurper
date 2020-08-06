@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2020.19](https://github.com/ndlib/usurper/tree/v2020.19) "Calm Rush"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.18...v2020.19)
+
+### Features
+- Upcoming seat and room reservations are now available under My Account. [#916](https://github.com/ndlib/usurper/pull/916)
+- Links to reserve seats and computers have been added to the home page. [#914](https://github.com/ndlib/usurper/pull/914)
+- Proactive chat has been added when users spend an extended time on the site. This is to encourage patrons to utilize live chat on the site instead of asking questions in person. [#913](https://github.com/ndlib/usurper/pull/913)
+
+### Other Changes
+- Floor map legend has been updated. [#915](https://github.com/ndlib/usurper/pull/915)
+- Updated link to government info in footer. [#912](https://github.com/ndlib/usurper/pull/912)
+
 ## [v2020.18](https://github.com/ndlib/usurper/tree/v2020.18) "Aquatic Monkey"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.17...v2020.18)
 
