@@ -15,6 +15,7 @@ const initialState = {
   deleteHistorical: { state: statuses.NOT_FETCHED },
   courses: { state: statuses.NOT_FETCHED },
   favorites: {},
+  reservations: { state: statuses.NOT_FETCHED },
 }
 Object.values(KIND).forEach((value) => {
   initialState.favorites[value] = { state: statuses.NOT_FETCHED }

@@ -2,12 +2,16 @@
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  border-bottom: 0;
 }
 .responsive-table thead {
   visibility: visible;
   background: #fafafa;
 }
 @media screen and (min-width: 620px) {
+  .responsive-table {
+  border-bottom: 3px solid #d4d4d4;
+  }
   .responsive-table thead {
     visibility: visible;
   }

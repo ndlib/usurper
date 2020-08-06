@@ -11,6 +11,7 @@ const UserMenuContainer = (props) => {
     { key: 'Courses', route: '/courses' },
     { key: 'Checkout History', route: '/checkout-history' },
     { key: 'Favorites', route: '/favorites' },
+    { key: 'Reservations', route: '/reservations' },
   ]
 
   return <Presenter links={links} {...props} />

@@ -16,7 +16,8 @@ let apiList = [
   'recommendEngine',
   'gatekeeper',
   'contentfulmaps',
-  'userPreferences'
+  'userPreferences',
+  'libcal-gateway',
 ]
 
 const psList = [
@@ -127,7 +128,7 @@ let handler = async () => {
     stream.once('open', function(fd) {
       stream.write("module.exports = {\n")
       for(let i = 0; i < apiList.length; i++) {
-        stream.write("  " + apiList[i] + ": '" + outputs[apiList[i]] + "',\n")
+        stream.write("  " + apiList[i].replace('-', '') + ": '" + outputs[apiList[i]] + "',\n")
       }
       for(let i = 0; i < psList.length; i++) {
         if (psOutputs[psList[i].name]) {
