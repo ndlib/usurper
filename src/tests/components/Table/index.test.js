@@ -14,8 +14,11 @@ const setup = (props) => {
 describe('components/Table', () => {
   beforeEach(() => {
     props = {
-      columns: [1, 2, 3, 4],
-      data: [1, 2, 3, 4]       
+      columns: [
+        { path: 'foo' },
+        { path: 'bar' },
+      ],
+      data: [1, 2, 3, 4]
     }
     enzymeWrapper = setup(props)
   })
@@ -27,7 +30,7 @@ describe('components/Table', () => {
   it('should render a table header with an array', () => {
     const tableHeader = enzymeWrapper.find(TableHeader)
     expect(tableHeader.exists()).toBe(true)
-    expect(tableHeader.props().columns).toEqual([1, 2, 3, 4])
+    expect(tableHeader.props().columns).toEqual(props.columns)
   })
 
   it('should render a table body with an array', () => {
