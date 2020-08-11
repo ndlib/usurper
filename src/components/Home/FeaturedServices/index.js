@@ -25,7 +25,7 @@ const FeaturedServices = () => {
             icon={roomsIcon}
           />
           <ServiceLink
-            url='https://libcal.library.nd.edu/reserve/hesburgh-library-seats'
+            url='https://libcal.library.nd.edu/seats?lid=10560'
             title={`Reserve a Seat`}
             icon={seatIcon}
           />
