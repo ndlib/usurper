@@ -35,7 +35,8 @@ const renewMessage = (listType, data) => {
 export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onRenewClick: () => {
-      dispatch(renewAleph(ownProps.item.barcode))
+      const alephLibrary = ownProps.item.from ? `${ownProps.item.from.toLowerCase()}50` : 'ndu50' // Ex: ndu50, hcc50
+      dispatch(renewAleph(ownProps.item.barcode, alephLibrary))
     },
   }
 }
