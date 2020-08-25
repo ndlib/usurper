@@ -9,7 +9,7 @@ const Presenter = ({ entries }) => {
   return (
     <div className='col-xs-12' >
       <section aria-label='Exhibits' className='exhibitsSection'>
-        <Link to='/exhibits' className='exhibitsHeader'><h1>Exhibits</h1></Link>
+        <h1>Exhibits</h1>
         <div className='exhibitsList'>
           { entries.map((entry) => (
             <ExhibitCard key={entry.id} entry={entry} />
