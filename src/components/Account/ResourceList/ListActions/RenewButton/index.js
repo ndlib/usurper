@@ -13,7 +13,8 @@ export const RenewButtonContainer = (props) => {
   const renewAll = () => {
     props.items.forEach((item) => {
       if (item.barcode) {
-        props.renewAleph(item.barcode, props.alephId)
+        const alephLibrary = item.from ? `${item.from.toLowerCase()}50` : 'ndu50' // Ex: ndu50, hcc50
+        props.renewAleph(item.barcode, alephLibrary)
       }
     })
     // set renewal of illiad items
@@ -38,7 +39,6 @@ export const mapStateToProps = (state) => {
   }
 
   return {
-    alephId: personal.user.alephId,
     disabled: !personal.user.alephId || expired,
   }
 }
@@ -53,7 +53,6 @@ export const mapDispatchToProps = (dispatch) => {
 RenewButtonContainer.propTypes = {
   items: PropTypes.array.isRequired,
   disabled: PropTypes.bool,
-  alephId: PropTypes.string,
   renewAleph: PropTypes.func.isRequired,
   receiveRenewal: PropTypes.func.isRequired,
 }
