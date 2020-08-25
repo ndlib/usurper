@@ -8,8 +8,8 @@ import Librarians from 'components/Librarians'
 import Related from '../../Related'
 import ServicePoint from 'components/Contentful/ServicePoint'
 
-const Presenter = ({ cfStatic }) => (
-  <aside key={`ContentfulSidebar_${cfStatic.sys.id}`} className='col-md-4 col-sm-5 col-xs-12 right'>
+const Presenter = ({ cfStatic, inline }) => (
+  <aside key={`ContentfulSidebar_${cfStatic.sys.id}`} className={inline ? '' : 'col-md-4 col-sm-5 col-xs-12 right'}>
     <PageLink className='button callout' cfPage={cfStatic.fields.callOutLink} />
     <LibMarkdown>{cfStatic.fields.shortDescription}</LibMarkdown>
     <Librarians netids={cfStatic.fields.contactPeople} />
@@ -24,6 +24,7 @@ const Presenter = ({ cfStatic }) => (
 
 Presenter.propTypes = {
   cfStatic: PropTypes.object.isRequired,
+  inline: PropTypes.bool,
 }
 
 export default Presenter

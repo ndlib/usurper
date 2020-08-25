@@ -1,6 +1,7 @@
 // Presenter component for a Page content type from Contentful
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 import 'static/css/global.css'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
@@ -11,6 +12,8 @@ import OpenGraph from 'components/OpenGraph'
 import Alphabet from './Alphabet'
 import Facet from 'components/Interactive/Facet'
 import Loading from 'components/Messages/Loading'
+import PageAlert from 'components/Contentful/Alert/Page'
+import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import Databases from './Databases'
 import ActiveFiltersList from './ActiveFiltersList'
 
@@ -27,6 +30,7 @@ const Loaded = (props) => {
       <PageTitle title={titleLabel} />
       <OpenGraph title={titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
+      <PageAlert alerts={typy(props.contentfulPage, 'fields.alerts').safeObjectOrEmpty} />
       <div className='row'>
         <div className={'col-xs-12 col-md-8 col-sm-7 ' + styles.content}>
           <FilterBox
@@ -60,6 +64,7 @@ const Loaded = (props) => {
               onChangeCallback={props.onSubjectFilterApply}
             />
           )}
+          <StaticSidebar slug={props.slug} preview={false} inline />
         </div>
       </div>
     </section>
@@ -92,6 +97,12 @@ Loaded.propTypes = {
   removeSubjectFromFilter: PropTypes.func,
   removeLetterFilter: PropTypes.func,
   history: PropTypes.object,
+  slug: PropTypes.string,
+  contentfulPage: PropTypes.shape({
+    fields: PropTypes.shape({
+      alerts: PropTypes.object,
+    }).isRequired,
+  }),
 }
 
 ListPresenter.propTypes = {
