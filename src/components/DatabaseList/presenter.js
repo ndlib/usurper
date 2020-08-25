@@ -30,7 +30,7 @@ const Loaded = (props) => {
       <PageTitle title={titleLabel} />
       <OpenGraph title={titleLabel} description={openGraphDesc} image={false} />
       <SearchProgramaticSet open={false} />
-      <PageAlert alerts={typy(props.contentfulPage, 'fields.alerts').safeObjectOrEmpty} />
+      <PageAlert alerts={typy(props.contentfulPage, 'fields.alerts').safeArray} />
       <div className='row'>
         <div className={'col-xs-12 col-md-8 col-sm-7 ' + styles.content}>
           <FilterBox
