@@ -10,7 +10,7 @@ const UserMenuContainer = (props) => {
     { key: 'Items & Requests', route: '/items-requests' },
     { key: 'Courses', route: '/courses' },
     { key: 'Checkout History', route: '/checkout-history' },
-    { key: 'Favorites', route: '/favorites' },
+    { key: 'Preferences', route: '/preferences' },
     { key: 'Reservations', route: '/reservations' },
   ]
 

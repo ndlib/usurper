@@ -9,7 +9,7 @@ import InternalLink from 'components/Contentful/InternalLink'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import Loading from 'components/Messages/Loading'
-import FavoriteIcon from 'components/Account/Favorites/FavoriteIcon'
+import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
