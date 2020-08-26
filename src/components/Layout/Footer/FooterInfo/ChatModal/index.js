@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import ChatModal from './presenter.js'
 import {
   openChat,
   closeChat,
 } from 'actions/chat.js'
+import { getChatOptOut, KIND as SETTINGS_KIND } from 'actions/personal/settings'
+import * as statuses from 'constants/APIStatuses'
 
 // ms on a single page before proactive chat invitation pops up
 const PROACTIVE_CHAT_TIMER = 1000 * 60 * 3
 
 export const mapStateToProps = (state, ownProps) => {
+  const { chat, personal, settings } = state
   return {
-    chatOpen: state.chat.chatOpen,
+    chatOpen: chat.chatOpen,
     // On keydown we open chat page instead of modal for accessibiilty.
     onKeyDown: (e) => {
       if (e.keyCode === 13) {
@@ -21,6 +25,9 @@ export const mapStateToProps = (state, ownProps) => {
         ownProps.history.push('/chat')
       }
     },
+    isLoggedIn: !!(personal.login.token),
+    chatOptOut: [true, 'true'].includes(settings[SETTINGS_KIND.chatOptOut].data),
+    chatOptOutFetchStatus: settings[SETTINGS_KIND.chatOptOut].state,
   }
 }
 
@@ -47,6 +54,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
     closeChat: (e) => {
       onClick(e, closeChat)
     },
+    ...bindActionCreators({ getChatOptOut }, dispatch),
   }
 }
 
@@ -78,6 +86,12 @@ export class ChatModalContainer extends Component {
     })
   }
 
+  componentDidUpdate () {
+    if (this.props.isLoggedIn && this.props.chatOptOutFetchStatus === statuses.NOT_FETCHED) {
+      this.props.getChatOptOut()
+    }
+  }
+
   componentWillUnmount () {
     clearTimeout(this.state.proactiveChatTimer)
   }
@@ -90,7 +104,7 @@ export class ChatModalContainer extends Component {
       try {
         // It stores a date, which could be used to remember the setting for a certain period of time, like 30 days
         const lastDismissed = window.localStorage.getItem('proactiveChatDismiss')
-        if (lastDismissed) {
+        if (lastDismissed || this.props.chatOptOut) {
           showInvite = false
         }
       } catch (e) {
@@ -145,6 +159,10 @@ ChatModalContainer.propTypes = {
   chatOpen: PropTypes.bool,
   openChat: PropTypes.func,
   onClick: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
+  chatOptOut: PropTypes.bool,
+  chatOptOutFetchStatus: PropTypes.string,
+  getChatOptOut: PropTypes.func,
 }
 
 export default withRouter(connect(

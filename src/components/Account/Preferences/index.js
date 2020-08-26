@@ -19,6 +19,7 @@ import {
   getHomeLibrary,
   getHideHomeFavorites,
   getDefaultSearch,
+  getChatOptOut,
   clearUpdateSettings,
   KIND as SETTINGS_KIND,
   DEFAULT_LIBRARY,
@@ -40,6 +41,7 @@ export class FavoritesContainer extends Component {
       { status: props.hideFavoritesState, type: SETTINGS_KIND.hideHomeFavorites, action: props.clearUpdateSettings },
       { status: props.defaultSearchState, type: SETTINGS_KIND.defaultSearch, action: props.clearUpdateSettings },
       { status: props.circStatus, type: SETTINGS_KIND.circStatus, action: props.clearUpdateSettings },
+      { status: props.chatUpdateStatus, type: SETTINGS_KIND.chatOptOut, action: props.clearUpdateSettings },
     ]
     clearConditions.forEach(condition => {
       if (condition.status !== statuses.NOT_FETCHED) {
@@ -59,6 +61,7 @@ export class FavoritesContainer extends Component {
       { status: this.props.libraryStatus, requiresLogin: true, action: this.props.getHomeLibrary },
       { status: this.props.hideFavoritesState, requiresLogin: true, action: this.props.getHideHomeFavorites },
       { status: this.props.defaultSearchState, requiresLogin: true, action: this.props.getDefaultSearch },
+      { status: this.props.chatOptOutState, requiresLogin: true, action: this.props.getChatOptOut },
       { status: this.props.cfBranches.status, requiresLogin: false, action: this.props.fetchBranches },
     ]
     fetchConditions.forEach(condition => {
@@ -124,6 +127,9 @@ export const mapStateToProps = (state, ownProps) => {
     defaultSearch: settings[SETTINGS_KIND.defaultSearch].data || DEFAULT_DEFAULT_SEARCH,
     defaultSearchState: settings[SETTINGS_KIND.defaultSearch].state,
     saveHistory: settings[SETTINGS_KIND.circStatus].state,
+    chatOptOut: [true, 'true'].includes(settings[SETTINGS_KIND.chatOptOut].data),
+    chatOptOutState: settings[SETTINGS_KIND.chatOptOut].state,
+    chatUpdateStatus: settings['update'][SETTINGS_KIND.chatOptOut].state,
   }
 }
 
@@ -138,6 +144,7 @@ export const mapDispatchToProps = (dispatch) => {
     fetchBranches,
     getHideHomeFavorites,
     getDefaultSearch,
+    getChatOptOut,
     clearUpdateSettings,
   }, dispatch)
 }
@@ -167,6 +174,9 @@ FavoritesContainer.propTypes = {
   defaultSearch: PropTypes.string.isRequired,
   defaultSearchState: PropTypes.string.isRequired,
   saveHistory: PropTypes.string.isRequired,
+  chatOptOut: PropTypes.bool.isRequired,
+  chatOptOutState: PropTypes.string.isRequired,
+  chatUpdateStatus: PropTypes.string,
   circStatus: PropTypes.string,
   // action creators
   getToken: PropTypes.func.isRequired,
@@ -178,6 +188,7 @@ FavoritesContainer.propTypes = {
   fetchBranches: PropTypes.func,
   getHideHomeFavorites: PropTypes.func.isRequired,
   getDefaultSearch: PropTypes.func,
+  getChatOptOut: PropTypes.func,
   clearUpdateSettings: PropTypes.func.isRequired,
 }
 

@@ -6,6 +6,7 @@ import NoFavorites from './NoFavorites'
 import ManageFavorites from './ManageFavorites'
 import PickUp from './PickUp'
 import HomePageDisplay from './HomePageDisplay'
+import Chat from './Chat'
 import InlineLoading from 'components/Messages/InlineLoading'
 import SideNav from 'components/Layout/Navigation/SideNav'
 
@@ -70,6 +71,11 @@ const Presenter = (props) => {
       ) : (
         <InlineLoading />
       )}
+      { ![statuses.NOT_FETCHED, statuses.FETCHING].includes(props.chatOptOutState) ? (
+        <Chat defaultChecked={props.chatOptOut} updateStatus={props.chatUpdateStatus} />
+      ) : (
+        <InlineLoading />
+      )}
       { !loading && (
         <button className={'button callout ' + styles.clearFavorites} onClick={clearAllConfirm}>Clear All Preferences</button>
       )}
@@ -85,6 +91,9 @@ Presenter.propTypes = {
   homeLibraries: PropTypes.array,
   selectedLocation: PropTypes.string,
   libraryUpdateStatus: PropTypes.string,
+  chatOptOut: PropTypes.bool,
+  chatOptOutState: PropTypes.string,
+  chatUpdateStatus: PropTypes.string,
   cfBranches: PropTypes.shape({
     status: PropTypes.string,
   }),

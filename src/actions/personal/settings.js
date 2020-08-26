@@ -13,6 +13,7 @@ export const KIND = {
   hideHomeFavorites: 'hideHomeFavorites',
   defaultSearch: 'defaultSearch',
   hiddenAlerts: 'hiddenAlerts',
+  chatOptOut: 'chatOptOut',
 }
 export const DEFAULT_LIBRARY = 'hesburgh'
 
@@ -207,4 +208,12 @@ export const getHiddenAlerts = () => {
 
 export const setHiddenAlerts = (hiddenIds) => {
   return setSimpleSetting(KIND.hiddenAlerts, hiddenIds)
+}
+
+export const getChatOptOut = () => {
+  return getSimpleSetting(KIND.chatOptOut, false)
+}
+
+export const setChatOptOut = (enabled) => {
+  return setSimpleSetting(KIND.chatOptOut, enabled)
 }
