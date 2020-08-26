@@ -51,8 +51,12 @@ const baseState = {
     [SETTINGS_KIND.circStatus]: {
       state: statuses.NOT_FETCHED,
     },
+    [SETTINGS_KIND.chatOptOut]: {
+      state: statuses.NOT_FETCHED,
+    },
     update: {
       [SETTINGS_KIND.homeLibrary]: statuses.NOT_FETCHED,
+      [SETTINGS_KIND.chatOptOut]: statuses.NOT_FETCHED,
     },
   },
   cfBranches: {
@@ -98,6 +102,7 @@ describe('components/Account/Preferences/index.js', () => {
         { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.homeLibrary, data: null },
         { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.hideHomeFavorites, data: null },
         { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.defaultSearch, data: null },
+        { type: REQUEST_SETTINGS, kind: SETTINGS_KIND.chatOptOut, data: null },
         { type: CF_REQUEST_BRANCHES, depth: expect.any(Number) },
       ]))
     })
@@ -136,6 +141,7 @@ describe('components/Account/Preferences/index.js', () => {
         fetchBranches: jest.fn(),
         getHideHomeFavorites: jest.fn(),
         getDefaultSearch: jest.fn(),
+        getChatOptOut: jest.fn(),
         clearUpdateSettings: jest.fn(),
       }
     }
@@ -201,8 +207,13 @@ describe('components/Account/Preferences/index.js', () => {
           state: statuses.SUCCESS,
           data: 'searchType',
         },
+        [SETTINGS_KIND.chatOptOut]: {
+          state: statuses.SUCCESS,
+          data: 'true',
+        },
         update: {
           [SETTINGS_KIND.homeLibrary]: statuses.NOT_FETCHED,
+          [SETTINGS_KIND.chatOptOut]: statuses.NOT_FETCHED,
         },
       },
       cfBranches: {
@@ -243,6 +254,7 @@ describe('components/Account/Preferences/index.js', () => {
         { type: RECEIVE_UPDATE_SETTINGS, kind: SETTINGS_KIND.hideHomeFavorites, state: statuses.NOT_FETCHED },
         { type: RECEIVE_UPDATE_SETTINGS, kind: SETTINGS_KIND.defaultSearch, state: statuses.NOT_FETCHED },
         { type: RECEIVE_UPDATE_SETTINGS, kind: SETTINGS_KIND.circStatus, state: statuses.NOT_FETCHED },
+        { type: RECEIVE_UPDATE_SETTINGS, kind: SETTINGS_KIND.chatOptOut, state: statuses.NOT_FETCHED },
       ]))
     })
 
@@ -254,6 +266,7 @@ describe('components/Account/Preferences/index.js', () => {
       expect(enzymeWrapper.dive().props().libraryStatus).toBe(statuses.SUCCESS)
       expect(enzymeWrapper.dive().props().cfBranches).toBe(state.cfBranches)
       expect(enzymeWrapper.dive().props().hideFavorites).toBe(true)
+      expect(enzymeWrapper.dive().props().chatOptOut).toBe(true)
     })
   })
 })

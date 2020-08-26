@@ -2,6 +2,8 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import ChatModal, { mapStateToProps, mapDispatchToProps } from 'components/Layout/Footer/FooterInfo/ChatModal'
 import Presenter from 'components/Layout/Footer/FooterInfo/ChatModal/presenter'
+import { KIND as SETTINGS_KIND } from 'actions/personal/settings'
+import * as statuses from 'constants/APIStatuses'
 
 let enzymeWrapper
 let props
@@ -31,6 +33,10 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
         openChat: jest.fn(),
         closeChat: jest.fn(),
         onClick: jest.fn(),
+        getChatOptOut: jest.fn(),
+        isLoggedIn: true,
+        chatOptOut: false,
+        chatOptOutFetchStatus: statuses.NOT_FETCHED,
       }
       enzymeWrapper = setup(props)
     })
@@ -52,6 +58,15 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
 
       it('should not show proactive chat invite if user previously dismissed it', () => {
         window.localStorage.setItem('proactiveChatDismiss', new Date())
+        jest.runAllTimers()
+        expect(enzymeWrapper.prop('showInvite')).toEqual(false)
+      })
+
+      it('should not show proactive chat invite if user opted out in preferences', () => {
+        enzymeWrapper.setProps({
+          chatOptOut: true,
+          chatOptOutFetchStatus: statuses.SUCCESS,
+        })
         jest.runAllTimers()
         expect(enzymeWrapper.prop('showInvite')).toEqual(false)
       })
@@ -94,6 +109,8 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
         chatOpen: false,
         openChat: jest.fn(),
         closeChat: jest.fn(),
+        getChatOptOut: jest.fn(),
+        isLoggedIn: true,
       }
       enzymeWrapper = setup(props)
     })
@@ -113,6 +130,17 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
       chat: {
         chatOpen: false,
       },
+      personal: {
+        login: {
+          token: 'fake token',
+        },
+      },
+      settings: {
+        [SETTINGS_KIND.chatOptOut]: {
+          state: statuses.SUCCESS,
+          data: true,
+        },
+      },
     }
 
     it('should map props as expected', () => {
@@ -120,6 +148,9 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
       expect(result).toMatchObject({
         chatOpen: false,
         onKeyDown: expect.any(Function),
+        isLoggedIn: true,
+        chatOptOut: true,
+        chatOptOutFetchStatus: statuses.SUCCESS,
       })
     })
 
@@ -151,6 +182,7 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
       expect(result).toMatchObject({
         openChat: expect.any(Function),
         closeChat: expect.any(Function),
+        getChatOptOut: expect.any(Function),
       })
     })
 

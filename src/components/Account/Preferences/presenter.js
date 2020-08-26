@@ -25,8 +25,8 @@ const Presenter = (props) => {
       <ul>
         { dbItems.length || subjectItems.length ? (
           <React.Fragment>
-            <a className='side-anchors' href={'#manage_' + KIND.databases}><li>Databases</li></a>
-            <a className='side-anchors' href={'#manage_' + KIND.subjects}><li>Subjects</li></a>
+            <a className='side-anchors' href={'#manage_' + KIND.databases}><li>Database Favorites</li></a>
+            <a className='side-anchors' href={'#manage_' + KIND.subjects}><li>Subject Favorites</li></a>
           </React.Fragment>
         ) : (
           <a className='side-anchors' href={'#manage_favorites'}><li>Favorites</li></a>

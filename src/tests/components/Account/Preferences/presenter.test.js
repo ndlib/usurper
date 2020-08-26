@@ -9,6 +9,7 @@ import ManageFavorites from 'components/Account/Preferences/ManageFavorites'
 import NoFavorites from 'components/Account/Preferences/NoFavorites'
 import HomePageDisplay from 'components/Account/Preferences/HomePageDisplay'
 import PickUp from 'components/Account/Preferences/PickUp'
+import Chat from 'components/Account/Preferences/Chat'
 import InlineLoading from 'components/Messages/InlineLoading'
 import AccountPageWrapper from 'components/Account/AccountPageWrapper'
 import SideNav from 'components/Layout/Navigation/SideNav'
@@ -121,6 +122,7 @@ describe('components/Account/Preferences/presenter.js', () => {
       hideFavorites: true,
       homePageDisplayLoading: false,
       defaultSearch: 'fake',
+      chatOptOutState: statuses.SUCCESS,
     }
 
     beforeEach(() => {
@@ -148,6 +150,7 @@ describe('components/Account/Preferences/presenter.js', () => {
     it('should render a section for each setting', () => {
       expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
       expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<Chat />)).toBe(true)
     })
 
     it('should render clear all preferences button', () => {
@@ -178,6 +181,7 @@ describe('components/Account/Preferences/presenter.js', () => {
       hideFavorites: true,
       homePageDisplayLoading: false,
       defaultSearch: 'fake',
+      chatOptOutState: statuses.SUCCESS,
     }
 
     beforeEach(() => {
@@ -208,6 +212,7 @@ describe('components/Account/Preferences/presenter.js', () => {
     it('should render a section for each setting', () => {
       expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(true)
       expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<Chat />)).toBe(true)
     })
 
     it('should render clear all preferences button', () => {
@@ -226,6 +231,7 @@ describe('components/Account/Preferences/presenter.js', () => {
       hideFavorites: false,
       homePageDisplayLoading: true,
       defaultSearch: 'fake',
+      chatOptOutState: statuses.FETCHING,
     }
 
     beforeEach(() => {
@@ -236,11 +242,12 @@ describe('components/Account/Preferences/presenter.js', () => {
       expect(enzymeWrapper.find(AccountPageWrapper).exists()).toBe(true)
     })
 
-    it('should not render favorites display components', () => {
+    it('should not render preferences display components', () => {
       expect(enzymeWrapper.containsMatchingElement(<ManageFavorites />)).toBe(false)
       expect(enzymeWrapper.containsMatchingElement(<NoFavorites />)).toBe(false)
       expect(enzymeWrapper.containsMatchingElement(<PickUp />)).toBe(false)
       expect(enzymeWrapper.containsMatchingElement(<HomePageDisplay />)).toBe(false)
+      expect(enzymeWrapper.containsMatchingElement(<Chat />)).toBe(false)
     })
 
     it('should render loading', () => {
