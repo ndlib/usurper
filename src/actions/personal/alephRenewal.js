@@ -20,11 +20,11 @@ export const receiveRenewal = (barcode, state, json) => {
   }
 }
 
-export const renewAleph = (barcode) => {
+export const renewAleph = (barcode, library) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestRenewal(barcode))
-    const url = Config.resourcesAPI + '/aleph/renew'
+    const url = Config.resourcesAPI + '/aleph/renew?library=' + library
     return fetch(url, {
       method: 'post',
       headers: {

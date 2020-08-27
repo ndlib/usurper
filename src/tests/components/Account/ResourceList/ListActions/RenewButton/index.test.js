@@ -32,6 +32,7 @@ describe('components/Account/ResourceList/ListActions/RenewButton/index.js', () 
         status: 'returned',
         returnDate: '2010-01-01',
         barcode: '555',
+        from: 'NDU',
       },
       {
         id: 456,
@@ -39,6 +40,7 @@ describe('components/Account/ResourceList/ListActions/RenewButton/index.js', () 
         status: 'returned',
         returnDate: '2010-01-01',
         barcode: '222',
+        from: 'HCC',
       }
     ],
     renewAleph: jest.fn(),
@@ -68,9 +70,8 @@ describe('components/Account/ResourceList/ListActions/RenewButton/index.js', () 
     it('should renew all items when clicked', () => {
       enzymeWrapper.simulate('click')
 
-      props.items.forEach((item) => {
-        expect(props.renewAleph).toHaveBeenCalledWith(item.barcode, state.personal.user.alephId)
-      })
+      expect(props.renewAleph).toHaveBeenCalledWith('555', 'ndu50')
+      expect(props.renewAleph).toHaveBeenCalledWith('222', 'hcc50')
     })
   })
 
