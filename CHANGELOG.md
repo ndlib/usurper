@@ -1,5 +1,17 @@
 # Change Log
 
+## [v2020.21](https://github.com/ndlib/usurper/tree/v2020.21) "Silent Getaway"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.19...v2020.21)
+
+### Bug Fixes
+- Fixed an issue with renewing items checked out from HCC. [#925](https://github.com/ndlib/usurper/pull/925)
+- Fixed page alerts getting cut off at certain widths. [#928](https://github.com/ndlib/usurper/pull/928)
+
+### Other Changes
+- Updated display of featured services on home page for mobile view. [#924](https://github.com/ndlib/usurper/pull/924)
+- Databases page will now display links to related pages. [#929](https://github.com/ndlib/usurper/pull/929)
+- Exhibits landing page link removed (temporarily.) [#926](https://github.com/ndlib/usurper/pull/926)
+
 ## [v2020.19](https://github.com/ndlib/usurper/tree/v2020.19) "Calm Rush"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.18...v2020.19)
 
