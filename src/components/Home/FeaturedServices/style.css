@@ -22,8 +22,18 @@
 }
 
 @media screen and (max-width: 620px) {
+  .featured-services {
+    display: flex;
+    padding: 1em;
+  }
+
   .featured-services .list-items {
-    flex-flow: row wrap;
-    justify-content: space-evenly;
+    flex-flow: column nowrap;
+    justify-content: left;
+    text-align: left;
+  }
+
+  .featured-services .list-items > * {
+    margin: 0.5em 0;
   }
 }
