@@ -8,6 +8,8 @@ import Loading from 'components/Messages/Loading'
 import Databases from 'components/DatabaseList/Databases'
 import Alphabet from 'components/DatabaseList/Alphabet'
 import Facet from 'components/Interactive/Facet'
+import PageAlert from 'components/Contentful/Alert/Page'
+import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import * as statuses from 'constants/APIStatuses'
 import { shallow } from 'enzyme'
 
@@ -29,6 +31,7 @@ describe('components/DatabaseList/presenter.js', () => {
         activeSubjects: [],
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
+        slug: 'test',
       }
       enzymeWrapper = setup(props)
     })
@@ -99,6 +102,7 @@ describe('components/DatabaseList/presenter.js', () => {
         onLetterFilterApply: jest.fn(),
         removeSubjectFromFilter: jest.fn(),
         removeLetterFilter: jest.fn(),
+        slug: 'test',
       }
       enzymeWrapper = setup(props)
     })
@@ -132,6 +136,14 @@ describe('components/DatabaseList/presenter.js', () => {
       ])
       expect(facet.props().selectedValues).toEqual(props.activeSubjects)
     })
+
+    it('should render page alerts', () => {
+      expect(enzymeWrapper.find(PageAlert).exists()).toBe(true)
+    })
+
+    it('should render sidebar info', () => {
+      expect(enzymeWrapper.find(StaticSidebar).exists()).toBe(true)
+    })
   })
 
   describe('status: NOT_FOUND', () => {
@@ -145,6 +157,7 @@ describe('components/DatabaseList/presenter.js', () => {
         activeSubjects: [],
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
+        slug: 'test',
       }
       enzymeWrapper = setup(props)
     })
@@ -175,6 +188,7 @@ describe('components/DatabaseList/presenter.js', () => {
         activeSubjects: [],
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
+        slug: 'test',
       }
       enzymeWrapper = setup(props)
     })

@@ -10,11 +10,11 @@ import { withErrorBoundary } from 'components/ErrorBoundary'
 
 import * as statuses from 'constants/APIStatuses'
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return { cfStatic: state.cfStatic }
 }
 
-const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchSidebar }, dispatch)
 }
 
@@ -33,7 +33,10 @@ export class SidebarContainer extends Component {
     return <PresenterFactory
       presenter={Presenter}
       status={this.props.cfStatic.status}
-      props={{ cfStatic: this.props.cfStatic.json }}
+      props={{
+        cfStatic: this.props.cfStatic.json,
+        inline: this.props.inline,
+      }}
       hideLoading={this.props.hideLoading}
     />
   }
@@ -45,6 +48,7 @@ SidebarContainer.propTypes = {
   preview: PropTypes.bool.isRequired,
   slug: PropTypes.string.isRequired,
   hideLoading: PropTypes.bool,
+  inline: PropTypes.bool,
 }
 
 const Sidebar = connect(

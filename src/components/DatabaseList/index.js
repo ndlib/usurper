@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import typy from 'typy'
 import { fetchSubjects } from 'actions/contentful/subjects'
 import { fetchLetter } from 'actions/contentful/database'
+import { fetchSidebar } from 'actions/contentful/staticContent'
 import ListPresenter from './presenter.js'
 import { multidisciplinarySubject } from 'constants/staticData'
 import * as statuses from 'constants/APIStatuses'
@@ -16,6 +17,7 @@ import { getFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites
 
 import Config from 'shared/Configuration'
 
+const PAGE_SLUG = 'databases'
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 
 // Concat all database letters into one big list for searching
@@ -63,6 +65,11 @@ export class DatabaseListContainer extends Component {
 
   checkFullyLoaded () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
+
+    // Fetch Dynamic Page from Contentful to supplement page contents
+    if (this.props.cfStatic.status === statuses.NOT_FETCHED || this.props.cfStatic.slug !== PAGE_SLUG) {
+      this.props.fetchSidebar(PAGE_SLUG, preview)
+    }
 
     if (!this.props.login || this.props.login.state === statuses.NOT_FETCHED) {
       this.props.getToken()
@@ -150,7 +157,7 @@ export class DatabaseListContainer extends Component {
   render () {
     return <ListPresenter
       list={this.state.filteredList}
-      status={this.props.allLettersStatus}
+      status={helper.reduceStatuses([this.props.allLettersStatus, this.props.cfStatic.status])}
       filterValue={this.state.filterValue}
       filterLetter={this.props.filterLetter}
       onFilterChange={this.onFilterChange}
@@ -162,12 +169,14 @@ export class DatabaseListContainer extends Component {
       removeSubjectFromFilter={this.removeSubjectFromFilter}
       removeLetterFilter={this.removeLetterFilter}
       history={this.props.history}
+      slug={PAGE_SLUG}
+      contentfulPage={typy(this.props.cfStatic.json).safeObject}
     />
   }
 }
 
 export const mapStateToProps = (state, thisProps) => {
-  const { personal, favorites, cfSubjects } = state
+  const { personal, favorites, cfSubjects, cfStatic } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
   const letterStatuses = alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED)
@@ -204,6 +213,7 @@ export const mapStateToProps = (state, thisProps) => {
       ...cfSubjects,
       data: subjectsList,
     },
+    cfStatic,
     allLettersStatus: allLettersStatus,
     allDbs: allLettersStatus === statuses.SUCCESS ? concatDbs(state.cfDatabases) : [],
     filterLetter: letter,
@@ -214,7 +224,7 @@ export const mapStateToProps = (state, thisProps) => {
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchSubjects, fetchLetter, getToken, getFavorites }, dispatch)
+  return bindActionCreators({ fetchSubjects, fetchLetter, getToken, getFavorites, fetchSidebar }, dispatch)
 }
 
 DatabaseListContainer.propTypes = {
@@ -223,9 +233,15 @@ DatabaseListContainer.propTypes = {
   filterLetter: PropTypes.string,
   cfDatabases: PropTypes.object.isRequired, // eslint-disable-line react/no-unused-prop-types
   cfSubjects: PropTypes.object.isRequired,
+  cfStatic: PropTypes.shape({
+    status: PropTypes.string.isRequired,
+    slug: PropTypes.string,
+    json: PropTypes.object,
+  }).isRequired,
   allLettersStatus: PropTypes.string.isRequired,
   getToken: PropTypes.func,
   getFavorites: PropTypes.func,
+  fetchSidebar: PropTypes.func,
   login: PropTypes.shape({
     state: PropTypes.string,
     token: PropTypes.string,

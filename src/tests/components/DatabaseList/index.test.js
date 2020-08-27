@@ -114,8 +114,10 @@ describe('components/DatabaseList/index.js', () => {
       props = {
         cfDatabases: {},
         cfSubjects: { status: statuses.NOT_FETCHED },
+        cfStatic: { status: statuses.NOT_FETCHED },
         fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
+        fetchSidebar: jest.fn(),
         allLettersStatus: statuses.FETCHING,
         allDbs: [],
         location: {
@@ -169,8 +171,10 @@ describe('components/DatabaseList/index.js', () => {
       props = {
         cfDatabases: validcfDatabases,
         cfSubjects: { status: statuses.SUCCESS },
+        cfStatic: { status: statuses.SUCCESS },
         fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
+        fetchSidebar: jest.fn(),
         filterLetter: 'a',
         allLettersStatus: statuses.SUCCESS,
         allDbs: [
@@ -224,6 +228,10 @@ describe('components/DatabaseList/index.js', () => {
                 fields: { id: 'french' },
               },
             ],
+          },
+          cfStatic: {
+            status: statuses.NOT_FETCHED,
+            json: {},
           },
           personal: {
             login: {
@@ -341,6 +349,7 @@ describe('components/DatabaseList/index.js', () => {
         state = {
           cfDatabases: validcfDatabases,
           cfSubjects: { status: statuses.SUCCESS },
+          cfStatic: { status: statuses.NOT_FETCHED },
           personal: {
             login: {
               state: statuses.SUCCESS,
