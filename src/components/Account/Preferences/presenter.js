@@ -33,6 +33,7 @@ const Presenter = (props) => {
         )}
         <a className='side-anchors' href={'#preferredLocation'}><li>Preferred Location</li></a>
         <a className='side-anchors' href={'#homePageDisplay'}><li>Home Page Display</li></a>
+        <a className='side-anchors' href={'#chatPreferences'}><li>Chat</li></a>
       </ul>
     </SideNav>
   )
