@@ -53,9 +53,9 @@ const MobileMenu = (props) => {
           <li>
             <Link
               to='#'
-              onClick={() => initLogin()}
+              onClick={() => initLogin()()}
               tabIndex={tabIndex}
-            >Login</Link>
+            >Log In</Link>
           </li>
         )}
       </ul>
