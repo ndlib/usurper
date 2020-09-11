@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@ndlib/markdown-to-jsx": "^6.11.2",
-    "@okta/okta-auth-js": "^2.10.1",
+    "@okta/okta-auth-js": "^4.0.0",
     "@sentry/browser": "^5.6.2",
     "@svgr/webpack": "^4.2.0",
     "hoist-non-react-statics": "^3.3.0",
@@ -132,7 +132,6 @@
           "loginEnabled": true,
           "exhibitsEnabled": true
         },
-        "oktaUrl": "https://okta.url",
         "oktaClientId": "000aaa",
         "oktaIssuer": "https://okta.url/oauth2/test"
       }
