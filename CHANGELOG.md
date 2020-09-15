@@ -1,5 +1,14 @@
 # Change Log
 
+## [v2020.22](https://github.com/ndlib/usurper/tree/v2020.22) "Preferred Panda"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.21...v2020.22)
+
+### Features
+- Proactive chat opt-out setting added. "Favorites" page renamed to "Preferences". [#935](https://github.com/ndlib/usurper/pull/935)
+
+### Other Changes
+- Updated dependency packages. [#942](https://github.com/ndlib/usurper/pull/942) [#936](https://github.com/ndlib/usurper/pull/936) [#940](https://github.com/ndlib/usurper/pull/940)
+
 ## [v2020.21](https://github.com/ndlib/usurper/tree/v2020.21) "Silent Getaway"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.19...v2020.21)
 
