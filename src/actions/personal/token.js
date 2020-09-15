@@ -1,18 +1,20 @@
-import OktaAuth from '@okta/okta-auth-js'
+import { OktaAuth } from '@okta/okta-auth-js'
 import Config from 'shared/Configuration'
 import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
 
 const oktaConfig = {
-  url: Config.oktaUrl,
   clientId: Config.oktaClientId,
   redirectUri: `${window.location.origin}/`,
   issuer: Config.oktaIssuer,
   ignoreSignature: true,
   tokenManager: {
+    secure: true,
     storage: 'sessionStorage',
     storageKey: 'libraryWebsite',
   },
+  responseType: 'id_token',
+  pkce: false,
 }
 
 const receiveAction = (status, token) => {
@@ -75,8 +77,9 @@ const getToken = () => {
             // If ID Token isn't found, try to parse it from the current URL
           } else if (window.location.hash) {
             authClient.token.parseFromUrl()
-              .then(idToken => {
+              .then(res => {
                 // Store parsed token in Token Manager
+                const { idToken } = res.tokens
                 authClient.tokenManager.add('idToken', idToken)
                 handleToken(dispatch, idToken)
               })
