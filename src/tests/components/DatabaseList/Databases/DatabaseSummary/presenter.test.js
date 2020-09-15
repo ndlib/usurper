@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary/presenter.js'
 import SummaryLink from 'components/DatabaseList/Databases/DatabaseSummary/SummaryLink'
-import FavoriteIcon from 'components/Account/Favorites/FavoriteIcon'
+import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 import Link from 'components/Interactive/Link'
 import Tags from 'components/Interactive/Tags'
 

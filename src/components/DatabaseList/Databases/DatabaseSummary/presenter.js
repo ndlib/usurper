@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import typy from 'typy'
 
 import Link from 'components/Interactive/Link'
-import FavoriteIcon from 'components/Account/Favorites/FavoriteIcon'
+import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 import { KIND } from 'actions/personal/favorites'
 import SummaryLink from './SummaryLink'
 import { multidisciplinarySubject } from 'constants/staticData'
