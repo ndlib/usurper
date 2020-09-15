@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Link from 'components/Interactive/Link'
 import UserMenu from '../UserMenu'
 import { initLogin } from 'actions/personal/token'
@@ -53,7 +55,7 @@ const MobileMenu = (props) => {
           <li>
             <Link
               to='#'
-              onClick={() => initLogin()()}
+              onClick={props.initLogin}
               tabIndex={tabIndex}
             >Log In</Link>
           </li>
@@ -63,11 +65,16 @@ const MobileMenu = (props) => {
   )
 }
 
+export const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ initLogin }, dispatch)
+}
+
 MobileMenu.propTypes = {
   onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
   open: PropTypes.bool,
   loggedIn: PropTypes.bool,
   visible: PropTypes.bool,
+  initLogin: PropTypes.func,
 }
-export default MobileMenu
+export default connect(null, mapDispatchToProps)(MobileMenu)
