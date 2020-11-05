@@ -35,7 +35,7 @@ import Preferences from 'components/Account/Preferences'
 import Reservations from 'components/Account/Reservations'
 import Floors from 'components/DynamicPages/FloorList'
 import RoomReservations from 'components/DynamicPages/RoomReservations'
-import StudySpaces from 'components/LandingPages/StudySpaces'
+// import StudySpaces from 'components/LandingPages/StudySpaces'
 
 import NotFound from 'components/Messages/NotFound'
 
@@ -105,7 +105,7 @@ const App = (props) => {
             <Route exact path='/database/:id' component={DatabasePage} />
             <Route exact path='/databases' component={DatabaseList} />
             <Route exact path='/room-reservations' component={RoomReservations} />
-            <Route exact path='/study-spaces' component={StudySpaces} />
+            { /* <Route exact path='/study-spaces' component={StudySpaces} /> */ }
             <Route exact path='/secure/:id' component={SecureContentfulPage} />
             <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
             <Route exact path='/search' component={SearchPage} />
