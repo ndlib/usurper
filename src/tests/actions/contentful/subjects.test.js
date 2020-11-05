@@ -8,33 +8,44 @@ import * as statuses from 'constants/APIStatuses'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-const successfulResponse = [
-  {
-    sys: {
-      id: 'napsghspegHIHOWAREYOUafpdasfpdsjhsd',
-    },
-    fields: {
-      title: 'dummy item 1'
-    },
-  },
-  {
-    sys: {
-      id: 'bobbert',
-    },
-    fields: {
-      title: 'dummy item 2',
-      page: {
-        sys: {
-          id: 'mxzcbniogoer',
-        },
-        fields: {
-          title: 'franky',
-          alternateTitles: ['McFrank'],
-        },
+const successfulResponse = [{
+  sys: {
+    contentType: {
+      sys: {
+        id: 'grouping',
       },
     },
   },
-]
+  fields: {
+    items: [
+      {
+        sys: {
+          id: 'napsghspegHIHOWAREYOUafpdasfpdsjhsd',
+        },
+        fields: {
+          title: 'dummy item 1'
+        },
+      },
+      {
+        sys: {
+          id: 'bobbert',
+        },
+        fields: {
+          title: 'dummy item 2',
+          page: {
+            sys: {
+              id: 'mxzcbniogoer',
+            },
+            fields: {
+              title: 'franky',
+              alternateTitles: ['McFrank'],
+            },
+          },
+        },
+      },
+    ],
+  },
+}]
 
 describe('subjects fetch action creator', () => {
   afterAll(() => {
@@ -84,7 +95,7 @@ describe('subjects fetch action creator', () => {
       const expectedAction = {
         type: CF_RECEIVE_SUBJECTS,
         status: statuses.SUCCESS,
-        items: successfulResponse,
+        data: successfulResponse[0],
       }
 
       const store = mockStore()
