@@ -31,6 +31,7 @@ describe('components/DatabaseList/Databases', () => {
         subjectFilter: [],
         titleLabel: 'A',
         filterValue: '',
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -108,6 +109,7 @@ describe('components/DatabaseList/Databases', () => {
         subjectFilter: ['doge', 'woof'],
         titleLabel: 'A',
         filterValue: '',
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })

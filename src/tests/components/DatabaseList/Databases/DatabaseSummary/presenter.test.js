@@ -4,7 +4,7 @@ import DatabaseSummary from 'components/DatabaseList/Databases/DatabaseSummary/p
 import SummaryLink from 'components/DatabaseList/Databases/DatabaseSummary/SummaryLink'
 import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 import Link from 'components/Interactive/Link'
-import Tags from 'components/Interactive/Tags'
+import FacetTags from 'components/Interactive/FacetTags'
 
 const setup = (props) => {
   return shallow(<DatabaseSummary {...props} />)
@@ -54,6 +54,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
         isFavorited: true,
         favoritesData: [],
         applySubjectFilter: jest.fn(),
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -72,11 +73,10 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
       expect(enzymeWrapper.containsMatchingElement(<FavoriteIcon isFavorited={props.isFavorited} />)).toBe(true)
     })
 
-    it('should display Tags for subjects', () => {
-      const found = enzymeWrapper.find(Tags)
+    it('should display FacetTags for facets', () => {
+      const found = enzymeWrapper.find(FacetTags)
       expect(found.exists()).toBe(true)
-      expect(found.props().groups).toHaveLength(props.item.fields.subjects.length)
-      expect(props.item.fields.subjects.length).toBeGreaterThan(0)
+      expect(found.props().facets).toEqual(props.facets)
     })
   })
 
@@ -112,6 +112,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary/presenter.js', () =>
         isFavorited: false,
         favoritesData: [],
         applySubjectFilter: jest.fn(),
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })

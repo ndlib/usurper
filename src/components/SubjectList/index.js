@@ -16,7 +16,7 @@ import * as helper from 'constants/HelperFunctions'
 import { fetchGrouping } from 'actions/contentful/grouping'
 import { getFavorites, KIND } from 'actions/personal/favorites'
 
-const GROUPING_ID = 'subjects-a-z-list'
+export const GROUPING_ID = 'subjects-a-z-list'
 
 export class SubjectListContainer extends Component {
   constructor (props) {

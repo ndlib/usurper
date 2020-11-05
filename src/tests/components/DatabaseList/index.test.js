@@ -118,8 +118,11 @@ describe('components/DatabaseList/index.js', () => {
         fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
         fetchSidebar: jest.fn(),
+        fetchGrouping: jest.fn(),
         allLettersStatus: statuses.FETCHING,
         allDbs: [],
+        facetStatus: statuses.FETCHING,
+        facets: [],
         location: {
           search: '?preview=true',
         },
@@ -175,6 +178,7 @@ describe('components/DatabaseList/index.js', () => {
         fetchSubjects: jest.fn(),
         fetchLetter: jest.fn(),
         fetchSidebar: jest.fn(),
+        fetchGrouping: jest.fn(),
         filterLetter: 'a',
         allLettersStatus: statuses.SUCCESS,
         allDbs: [
@@ -183,6 +187,8 @@ describe('components/DatabaseList/index.js', () => {
           validItem2,
           validItem3,
         ],
+        facets: [],
+        facetStatus: statuses.SUCCESS,
         location: {
           search: '?preview=true&subject=latin&letter=%23',
         },
@@ -242,6 +248,11 @@ describe('components/DatabaseList/index.js', () => {
           favorites: {
             [FAVORITES_KIND.databases]: {
               state: statuses.NOT_FETCHED,
+            },
+          },
+          grouping: {
+            'resource-facets': {
+              status: statuses.NOT_FETCHED,
             },
           },
         }

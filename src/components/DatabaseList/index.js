@@ -82,9 +82,9 @@ export class DatabaseListContainer extends Component {
     }
     if (Config.features.subjectFilteringEnabled && this.props.cfSubjects.status === statuses.NOT_FETCHED) {
       this.props.fetchSubjects(preview)
-      if (this.props.facetStatus === statuses.NOT_FETCHED) {
-        this.props.fetchGrouping(FACETS_GROUPING, preview, 3)
-      }
+    }
+    if (this.props.facetStatus === statuses.NOT_FETCHED) {
+      this.props.fetchGrouping(FACETS_GROUPING, preview, 3)
     }
     // Subjects are needed before fetching databases because the databases depend on it
     if (this.props.cfSubjects.status === statuses.SUCCESS || !Config.features.subjectFilteringEnabled) {

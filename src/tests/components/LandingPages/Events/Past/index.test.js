@@ -34,7 +34,9 @@ describe('components/LandingPages/Events/Past', () => {
           status: statuses.NOT_FETCHED,
           json: [],
         },
+        facetStatus: statuses.NOT_FETCHED,
         combinedStatus: statuses.NOT_FETCHED,
+        facets: [],
         filterYear: 2019,
         filterMonth: 8,
         location: {
@@ -47,6 +49,7 @@ describe('components/LandingPages/Events/Past', () => {
         },
         fetchAllEvents: jest.fn(),
         fetchAllEventGroups: jest.fn(),
+        fetchGrouping: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -68,6 +71,10 @@ describe('components/LandingPages/Events/Past', () => {
       })
       expect(props.fetchAllEvents).toHaveBeenCalledWith(true, groups)
     })
+
+    it('should call fetchGrouping with preview flag', () => {
+      expect(props.fetchGrouping).toHaveBeenCalledWith(expect.any(String), true, expect.any(Number))
+    })
   })
 
   describe('after fetching data', () => {
@@ -82,7 +89,9 @@ describe('components/LandingPages/Events/Past', () => {
           status: statuses.SUCCESS,
           json: [],
         },
+        facetStatus: statuses.SUCCESS,
         combinedStatus: statuses.SUCCESS,
+        facets: [],
         filterYear: 2019,
         filterMonth: 8,
         location: {
@@ -95,6 +104,7 @@ describe('components/LandingPages/Events/Past', () => {
         },
         fetchAllEvents: jest.fn(),
         fetchAllEventGroups: jest.fn(),
+        fetchGrouping: jest.fn(),
       }
       enzymeWrapper = setup(props)
     })
@@ -105,6 +115,10 @@ describe('components/LandingPages/Events/Past', () => {
 
     it('should not call fetchAllEventGroups', () => {
       expect(props.fetchAllEventGroups).not.toHaveBeenCalled()
+    })
+
+    it('should not call fetchGrouping', () => {
+      expect(props.fetchGrouping).not.toHaveBeenCalled()
     })
   })
 
@@ -221,6 +235,7 @@ describe('components/LandingPages/Events/Past', () => {
         events: [],
         filteredEvents: [],
         allEventsStatus: state.allEvents.status,
+        facetStatus: statuses.NOT_FETCHED,
         combinedStatus: statuses.FETCHING,
       }))
     })
@@ -241,6 +256,12 @@ describe('components/LandingPages/Events/Past', () => {
           status: statuses.SUCCESS,
           json: [],
         },
+        grouping: {
+          'event-facets': {
+            status: statuses.SUCCESS,
+            data: [],
+          },
+        },
       }
       store = mockStore(state)
     })
@@ -252,6 +273,16 @@ describe('components/LandingPages/Events/Past', () => {
     it('should create fetchAllEvents action', () => {
       const result = mapDispatchToProps(store.dispatch)
       expect(result.fetchAllEvents).toEqual(expect.any(Function))
+    })
+
+    it('should create fetchAllEventGroups action', () => {
+      const result = mapDispatchToProps(store.dispatch)
+      expect(result.fetchAllEventGroups).toEqual(expect.any(Function))
+    })
+
+    it('should create fetchGrouping action', () => {
+      const result = mapDispatchToProps(store.dispatch)
+      expect(result.fetchGrouping).toEqual(expect.any(Function))
     })
   })
 })

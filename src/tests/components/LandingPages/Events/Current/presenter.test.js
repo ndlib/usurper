@@ -42,6 +42,11 @@ describe('components/LandingPages/Events/Current/presenter', () => {
         someEvent,
       ],
       combinedStatus: statuses.SUCCESS,
+      facets: [
+        {
+          some: 'facet',
+        },
+      ],
       location: {
         search: '?type=test',
       },
@@ -61,6 +66,7 @@ describe('components/LandingPages/Events/Current/presenter', () => {
     expect(wrapper.props().entries).toEqual(props.events)
     expect(wrapper.props().filteredEntries).toEqual(props.filteredEvents)
     expect(wrapper.props().allEntriesStatus).toEqual(props.combinedStatus)
+    expect(wrapper.props().facets).toEqual(props.facets)
   })
 
   it('should render a Calendar component as a child of LandingPageWrapper', () => {
