@@ -10,7 +10,12 @@ const SubjectSection = (props) => {
     <div className={styles.subjectSection}>
       <h2 className={styles.subjectHeading}>{props.subjectName}</h2>
       { props.databases.map(db => (
-        <DatabaseSummary key={db.sys.id} item={db} onSubjectFilterApply={props.onSubjectFilterApply} />
+        <DatabaseSummary
+          key={db.sys.id}
+          item={db}
+          onSubjectFilterApply={props.onSubjectFilterApply}
+          facets={props.facets}
+        />
       ))}
     </div>
   )
@@ -28,6 +33,7 @@ SubjectSection.propTypes = {
     }).isRequired,
   })).isRequired,
   onSubjectFilterApply: PropTypes.func,
+  facets: PropTypes.array.isRequired,
 }
 
 export default SubjectSection

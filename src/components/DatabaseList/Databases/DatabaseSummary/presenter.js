@@ -1,30 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import typy from 'typy'
 
 import Link from 'components/Interactive/Link'
 import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 import { KIND } from 'actions/personal/favorites'
 import SummaryLink from './SummaryLink'
-import { multidisciplinarySubject } from 'constants/staticData'
-import Tags from 'components/Interactive/Tags'
+import FacetTags from 'components/Interactive/FacetTags'
 import Config from 'shared/Configuration'
 
 import styles from '../../style.module.css'
 
 const DatabaseSummary = (props) => {
-  const subjectTags = () => {
-    const clickHandler = (tag) => {
-      props.applySubjectFilter(tag.key)
-    }
-    const subjectsArr = typy(props.item, 'fields.subjects').safeArray
-    return (subjectsArr.includes(multidisciplinarySubject) ? [multidisciplinarySubject] : subjectsArr).map(subject => ({
-      key: subject.fields.id,
-      value: subject.linkText,
-      onClick: clickHandler,
-    }))
-  }
-
   return (
     <section aria-label={props.item.fields.title} className={styles.dbSection}>
       <FavoriteIcon kind={KIND.databases} data={props.favoritesData} isFavorited={props.isFavorited} />
@@ -32,7 +18,7 @@ const DatabaseSummary = (props) => {
         <h3 className={styles.dbItemTitle}>{props.item.fields.title}</h3>
       </Link>
       { Config.features.subjectFilteringEnabled && (
-        <Tags groups={subjectTags()} />
+        <FacetTags entry={props.item} facets={props.facets} onTagClick={props.applySubjectFilter} />
       )}
       <div className={styles.dbSummary}>
         {props.linkObject.heading.description}
@@ -71,6 +57,7 @@ DatabaseSummary.propTypes = {
   isFavorited: PropTypes.bool,
   favoritesData: PropTypes.array,
   applySubjectFilter: PropTypes.func.isRequired,
+  facets: PropTypes.array.isRequired,
 }
 
 export default DatabaseSummary

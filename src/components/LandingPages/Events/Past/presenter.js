@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import LandingPageWrapper from '../../Wrapper'
-import Facets from '../facets'
 import EventCard from 'components/EventCard'
 import DateFilter from 'components/Interactive/DateFilter'
 
@@ -19,7 +18,7 @@ const Presenter = (props) => {
       history={props.history}
       typeLabel='Events'
       allEntriesStatus={props.combinedStatus}
-      facets={Facets}
+      facets={props.facets}
       entryCardComponent={EventCard}
       filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
       sortFields={['startDate']}
@@ -40,6 +39,7 @@ Presenter.propTypes = {
   events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
   combinedStatus: PropTypes.string.isRequired,
+  facets: PropTypes.array.isRequired,
   filterYear: PropTypes.number,
   filterMonth: PropTypes.number,
   location: PropTypes.shape({

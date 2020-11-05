@@ -16,6 +16,7 @@ import contentfulAllFloors from './contentful/floors'
 import contentfulAllMeetingSpaces from './contentful/allMeetingSpaces'
 import contentfulStatic from './contentful/staticContent'
 import contentfulAllRedirects from './contentful/allRedirects'
+import contentfulGrouping from './contentful/grouping'
 import database from './contentful/database'
 import servicePoints from './contentful/servicePoints'
 import entryReducer from './contentful/entry'
@@ -55,6 +56,7 @@ const rootReducer = combineReducers({
   cfServicePoints: servicePoints,
   cfEntry: entryReducer,
   allRedirects: contentfulAllRedirects,
+  grouping: contentfulGrouping,
   personal: personalReducer,
   renewal: renewalReducer,
   settings: settingsReducer,

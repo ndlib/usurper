@@ -16,7 +16,7 @@ const SummaryLink = (props) => {
 
 SummaryLink.propTypes = {
   link: PropTypes.shape({
-    url: PropTypes.string.isRequired,
+    url: PropTypes.string,
     title: PropTypes.string.isRequired,
     notes: PropTypes.string,
   }),

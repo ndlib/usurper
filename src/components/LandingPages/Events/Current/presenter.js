@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import Calendar from './Calendar'
 import LandingPageWrapper from '../../Wrapper'
-import Facets from '../facets'
 import EventCard from 'components/EventCard'
 
 const Presenter = (props) => {
@@ -19,7 +18,7 @@ const Presenter = (props) => {
       history={props.history}
       typeLabel='Events'
       allEntriesStatus={props.combinedStatus}
-      facets={Facets}
+      facets={props.facets}
       entryCardComponent={EventCard}
       filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
       sortFields={['startDate']}
@@ -40,6 +39,7 @@ Presenter.propTypes = {
   events: PropTypes.array.isRequired,
   filteredEvents: PropTypes.array.isRequired,
   combinedStatus: PropTypes.string.isRequired,
+  facets: PropTypes.array.isRequired,
   location: PropTypes.shape({
     search: PropTypes.string,
   }),

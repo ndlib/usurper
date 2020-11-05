@@ -7,6 +7,8 @@ import typy from 'typy'
 import { fetchSubjects } from 'actions/contentful/subjects'
 import { fetchLetter } from 'actions/contentful/database'
 import { fetchSidebar } from 'actions/contentful/staticContent'
+import { fetchGrouping } from 'actions/contentful/grouping'
+import { mapFacet } from 'constants/facets'
 import ListPresenter from './presenter.js'
 import { multidisciplinarySubject } from 'constants/staticData'
 import * as statuses from 'constants/APIStatuses'
@@ -18,6 +20,7 @@ import { getFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites
 import Config from 'shared/Configuration'
 
 const PAGE_SLUG = 'databases'
+const FACETS_GROUPING = 'resource-facets'
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
 
 // Concat all database letters into one big list for searching
@@ -79,6 +82,9 @@ export class DatabaseListContainer extends Component {
     }
     if (Config.features.subjectFilteringEnabled && this.props.cfSubjects.status === statuses.NOT_FETCHED) {
       this.props.fetchSubjects(preview)
+      if (this.props.facetStatus === statuses.NOT_FETCHED) {
+        this.props.fetchGrouping(FACETS_GROUPING, preview, 3)
+      }
     }
     // Subjects are needed before fetching databases because the databases depend on it
     if (this.props.cfSubjects.status === statuses.SUCCESS || !Config.features.subjectFilteringEnabled) {
@@ -171,20 +177,23 @@ export class DatabaseListContainer extends Component {
       history={this.props.history}
       slug={PAGE_SLUG}
       contentfulPage={typy(this.props.cfStatic.json).safeObject}
+      facets={this.props.facets}
     />
   }
 }
 
 export const mapStateToProps = (state, thisProps) => {
-  const { personal, favorites, cfSubjects, cfStatic } = state
+  const { personal, favorites, cfSubjects, cfStatic, grouping } = state
 
   // get a status for all letters, either error, fetching or success (not found || success = success)
   const letterStatuses = alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED)
+  const facetStatus = typy(grouping, `${FACETS_GROUPING}.status`).safeString || statuses.NOT_FETCHED
   const allLettersStatus = helper.reduceStatuses(
     Config.features.subjectFilteringEnabled
       ? [
         ...letterStatuses,
         cfSubjects.status,
+        facetStatus,
       ] : letterStatuses
   )
   const queryParams = decodeURIComponent(thisProps.location.search.replace('?', '')).split('&')
@@ -207,6 +216,10 @@ export const mapStateToProps = (state, thisProps) => {
     ]
     : []
 
+  const facets = (facetStatus === statuses.SUCCESS)
+    ? typy(grouping, `${FACETS_GROUPING}.data.fields.items`).safeArray.map(mapFacet)
+    : []
+
   return {
     cfDatabases: sortDbs(state.cfDatabases),
     cfSubjects: {
@@ -220,11 +233,13 @@ export const mapStateToProps = (state, thisProps) => {
     login: personal.login,
     favoritesStatus: favorites[FAVORITES_KIND.databases].state,
     activeSubjects: activeSubjects,
+    facetStatus,
+    facets,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchSubjects, fetchLetter, getToken, getFavorites, fetchSidebar }, dispatch)
+  return bindActionCreators({ fetchSubjects, fetchLetter, getToken, getFavorites, fetchSidebar, fetchGrouping }, dispatch)
 }
 
 DatabaseListContainer.propTypes = {
@@ -249,6 +264,9 @@ DatabaseListContainer.propTypes = {
   favoritesStatus: PropTypes.string,
   activeSubjects: PropTypes.arrayOf(PropTypes.string),
   allDbs: PropTypes.array.isRequired,
+  fetchGrouping: PropTypes.func.isRequired,
+  facetStatus: PropTypes.string.isRequired,
+  facets: PropTypes.array.isRequired,
   location: PropTypes.shape({
     search: PropTypes.oneOfType([
       PropTypes.string,

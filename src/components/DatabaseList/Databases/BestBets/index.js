@@ -26,7 +26,12 @@ const BestBets = (props) => {
       <h1 className={styles.header}>Featured Resources</h1>
       { subjectList.map(subjectName => (
         <React.Fragment key={subjectName}>
-          <SubjectSection subjectName={subjectName} databases={databasesBySubject[subjectName]} onSubjectFilterApply={props.onSubjectFilterApply} />
+          <SubjectSection
+            subjectName={subjectName}
+            databases={databasesBySubject[subjectName]}
+            onSubjectFilterApply={props.onSubjectFilterApply}
+            facets={props.facets}
+          />
           { subjectName !== subjectList.slice(-1)[0] && (
             <hr />
           )}
@@ -48,6 +53,7 @@ BestBets.propTypes = {
   subjects: PropTypes.array,
   subjectFilter: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSubjectFilterApply: PropTypes.func,
+  facets: PropTypes.array.isRequired,
 }
 
 export default BestBets

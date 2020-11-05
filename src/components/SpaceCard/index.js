@@ -4,17 +4,11 @@ import PropTypes from 'prop-types'
 import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
-import Tags from 'components/Interactive/Tags'
+import FacetTags from 'components/Interactive/FacetTags'
 
 import './style.css'
 
-const SpaceCard = ({ entry, onTagClick }) => {
-  const featureTags = entry.fields.features ? entry.fields.features.map(feature => ({
-    key: feature,
-    value: feature,
-    onClick: (tag) => onTagClick('feature', [ tag.key ]),
-  })) : null
-
+const SpaceCard = ({ entry, onTagClick, facets }) => {
   return (
     <div className='space-card'>
       <div className='card-image'>
@@ -35,7 +29,7 @@ const SpaceCard = ({ entry, onTagClick }) => {
         <div className='description' itemProp='description'>
           <LibMarkdown>{entry.fields.description}</LibMarkdown>
         </div>
-        <Tags groups={[featureTags]} />
+        <FacetTags entry={entry} facets={facets} onTagClick={onTagClick} />
       </div>
     </div>
   )
@@ -55,6 +49,7 @@ SpaceCard.propTypes = {
       }),
     }).isRequired,
   }).isRequired,
+  facets: PropTypes.array.isRequired,
   onTagClick: PropTypes.func,
 }
 

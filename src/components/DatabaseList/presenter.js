@@ -53,17 +53,15 @@ const Loaded = (props) => {
         </div>
         <div className={'col-xs-12 col-md-4 col-sm-5 ' + styles.sideNav}>
           <Alphabet history={props.history} onLetterFilterApply={props.onLetterFilterApply} />
-          { Config.features.subjectFilteringEnabled && (
+          { Config.features.subjectFilteringEnabled && props.facets.map((facet) => (
             <Facet
-              name='subject'
-              options={props.subjects.map(subject => ({
-                key: subject.fields.id,
-                value: subject.linkText,
-              }))}
+              key={facet.key}
+              name={facet.key}
+              options={facet.options}
               selectedValues={props.activeSubjects}
               onChangeCallback={props.onSubjectFilterApply}
             />
-          )}
+          ))}
           <StaticSidebar slug={props.slug} preview={false} inline />
         </div>
       </div>
@@ -103,6 +101,7 @@ Loaded.propTypes = {
       alerts: PropTypes.object,
     }).isRequired,
   }),
+  facets: PropTypes.array.isRequired,
 }
 
 ListPresenter.propTypes = {

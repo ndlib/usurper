@@ -23,10 +23,16 @@ const Databases = (props) => {
 
   return (
     <section aria-label='List of databases' className={styles.dbList}>
-      <BestBets databases={filteredList} subjects={props.subjects} subjectFilter={props.subjectFilter} onSubjectFilterApply={props.onSubjectFilterApply} />
+      <BestBets
+        databases={filteredList}
+        subjects={props.subjects}
+        subjectFilter={props.subjectFilter}
+        onSubjectFilterApply={props.onSubjectFilterApply}
+        facets={props.facets}
+      />
       { filteredList.length
         ? nonBestBets.map((item) => (
-          <DatabaseSummary key={item.sys.id} item={item} onSubjectFilterApply={props.onSubjectFilterApply} />
+          <DatabaseSummary key={item.sys.id} item={item} onSubjectFilterApply={props.onSubjectFilterApply} facets={props.facets} />
         ))
         : noResultsMessage
       }
@@ -48,6 +54,7 @@ Databases.propTypes = {
   subjects: PropTypes.array,
   subjectFilter: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSubjectFilterApply: PropTypes.func,
+  facets: PropTypes.array.isRequired,
 }
 
 export default Databases

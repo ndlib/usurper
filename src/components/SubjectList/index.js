@@ -13,8 +13,10 @@ import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
-import { fetchSubjects } from 'actions/contentful/subjects'
+import { fetchGrouping } from 'actions/contentful/grouping'
 import { getFavorites, KIND } from 'actions/personal/favorites'
+
+const GROUPING_ID = 'subjects-a-z-list'
 
 export class SubjectListContainer extends Component {
   constructor (props) {
@@ -27,7 +29,7 @@ export class SubjectListContainer extends Component {
   checkFullyLoaded () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
     if (this.props.subjectsStatus === statuses.NOT_FETCHED) {
-      this.props.fetchSubjects(preview)
+      this.props.fetchGrouping(GROUPING_ID, preview, 2)
     }
     if (this.props.loggedIn && this.props.favoritesStatus === statuses.NOT_FETCHED) {
       this.props.getFavorites(KIND.subjects)
@@ -88,20 +90,20 @@ export class SubjectListContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { cfSubjects, personal, favorites } = state
+  const { personal, favorites, grouping } = state
 
+  const subjectsStatus = typy(grouping, `${GROUPING_ID}.status`).safeString || statuses.NOT_FETCHED
   let subjects = []
-  if (cfSubjects.status === statuses.SUCCESS) {
-    const contentfulSubjects = typy(cfSubjects, 'data.length').isTruthy
-      ? cfSubjects.data
-        .filter((entry) => entry.fields.includeOnSubjectList)
-        .map((entry) => ({
-          title: entry.linkText,
-          itemKey: entry.sys.id,
-          url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
-          cfEntry: entry,
-        }))
-      : []
+  if (subjectsStatus === statuses.SUCCESS) {
+    const contentfulSubjects = typy(grouping, `${GROUPING_ID}.data.fields.items`).safeArray
+      .map((entry) => ({
+        title: (entry.fields.usePageTitle && entry.fields.page)
+          ? typy(entry, 'fields.page.fields.title').safeString
+          : entry.fields.title,
+        itemKey: entry.sys.id,
+        url: '/' + typy(entry, 'fields.page.fields.slug').safeString,
+        cfEntry: entry,
+      }))
 
     subjects = helper.sortList(Object.assign([], contentfulSubjects), 'title', 'asc')
   }
@@ -110,8 +112,8 @@ const mapStateToProps = (state) => {
   const subjectFavorites = favoritesStatus === statuses.SUCCESS ? favorites[KIND.subjects].items : []
 
   return {
-    subjects: subjects,
-    subjectsStatus: cfSubjects.status,
+    subjects,
+    subjectsStatus,
     favorites: subjectFavorites,
     favoritesStatus: favoritesStatus,
     loggedIn: !!(personal.login && personal.login.token),
@@ -119,13 +121,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchSubjects, getFavorites }, dispatch)
+  return bindActionCreators({ fetchGrouping, getFavorites }, dispatch)
 }
 
 SubjectListContainer.propTypes = {
   subjects: PropTypes.array.isRequired,
   subjectsStatus: PropTypes.string.isRequired,
-  fetchSubjects: PropTypes.func.isRequired,
+  fetchGrouping: PropTypes.func.isRequired,
   getFavorites: PropTypes.func.isRequired,
   location: PropTypes.object,
   favorites: PropTypes.array.isRequired,
