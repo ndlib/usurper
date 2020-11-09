@@ -28,7 +28,8 @@ describe('allEventGroups reducer', () => {
         sys: { id: '1' },
         fields: {
           title: 'foo',
-          events: [
+          contentTypes: ['event'],
+          items: [
             {
               sys: { type: 'Link', linkType: 'Entry', id: 'test' },
             },
@@ -42,7 +43,8 @@ describe('allEventGroups reducer', () => {
         sys: { id: '2' },
         fields: {
           title: 'bar',
-          events: [
+          contentTypes: ['event'],
+          items: [
             {
               sys: { type: 'Link', linkType: 'Entry', id: 'event' },
             },
