@@ -39,7 +39,7 @@ const Presenters = ({ presenters }) => {
                           <Image cfImage={person.fields.picture} />
                           <div className='vcard'>
                             <div className='fn n'>{ person.fields.name }</div>
-                            <div className='org'>{ entry.fields.title }</div>
+                            <div className='org'>{ entry.fields.displayName || entry.fields.title }</div>
                             <div className='email'>{ person.fields.email }</div>
                             <div className='tel'>{ person.fields.phone }</div>
                             <LibMarkdown className='bio'>{ person.fields.bio }</LibMarkdown>
@@ -66,6 +66,7 @@ Presenters.propTypes = {
     }).isRequired,
     fields: PropTypes.shape({
       title: PropTypes.string,
+      displayName: PropTypes.string,
       extraData: PropTypes.shape({
         presenterType: PropTypes.string,
       }).isRequired,
