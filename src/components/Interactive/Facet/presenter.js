@@ -20,11 +20,11 @@ const Presenter = (props) => {
             <div key={option.key} className={styles.option}>
               <input
                 type='checkbox'
-                id={props.label + ' ' + option.value}
+                id={(props.label + '_' + option.value).replace(/\s/g, '_')}
                 onChange={() => props.onFacetChange(option)}
                 checked={option.selected}
               />
-              <label htmlFor={props.label + ' ' + option.value}>
+              <label htmlFor={(props.label + '_' + option.value).replace(/\s/g, '_')}>
                 <button className={'custom-style link-like ' + styles.linkText} tabIndex={0} onClick={() => props.onFacetChange(option)}>
                   {option.value}
                 </button>
