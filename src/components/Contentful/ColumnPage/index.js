@@ -11,15 +11,13 @@ import { withErrorBoundary } from 'components/ErrorBoundary'
 
 export class ContentfulColumnPageContainer extends Component {
   componentDidMount () {
-    const pageSlug = this.props.match.params[0]
-    this.props.fetchPage(pageSlug, this.props.preview, false, 'columnContainer', 4)
+    this.props.fetchPage(this.props.pageSlug, this.props.preview, false, 'grouping', 4)
   }
 
   componentWillReceiveProps (nextProps) {
-    const slug = this.props.match.params[0]
-    const nextSlug = nextProps.match.params[0]
-    if (!slug || slug !== nextSlug) {
-      this.props.fetchPage(nextSlug, nextProps.preview, false, 'columnContainer', 4)
+    const nextSlug = `${nextProps.match.params[0]}-landing`
+    if (!this.props.pageSlug || this.props.pageSlug !== nextSlug) {
+      this.props.fetchPage(nextSlug, nextProps.preview, false, 'grouping', 4)
     }
   }
 
@@ -27,7 +25,7 @@ export class ContentfulColumnPageContainer extends Component {
     // If the store previously tried to fetch a page, the slug will not match on the first render.
     // This can create problems because it will try to render before required data has been fetched,
     // unless we override the status.
-    const status = this.props.match.params[0] === this.props.cfPageEntry.slug ? this.props.cfPageEntry.status : NOT_FETCHED
+    const status = this.props.pageSlug === this.props.cfPageEntry.slug ? this.props.cfPageEntry.status : NOT_FETCHED
     return <PresenterFactory
       presenter={ColumnPagePresenter}
       status={status}
@@ -41,15 +39,16 @@ export class ContentfulColumnPageContainer extends Component {
 }
 
 const mapStateToProps = (state, thisProps) => {
-  const slug = thisProps.match.params[0]
+  const slug = `${thisProps.match.params[0]}-landing`
   let page = state.cfPageEntry
-  if (page && page.json && page.json.fields.slug !== slug) {
+  if (page && page.json && page.json.fields.id !== slug) {
     page = { status: NOT_FETCHED }
   }
 
   return {
     cfPageEntry: page,
     preview: (new URLSearchParams(thisProps.location.search)).get('preview') === 'true',
+    pageSlug: slug,
   }
 }
 
@@ -66,6 +65,7 @@ ContentfulColumnPageContainer.propTypes = {
     search: PropTypes.string,
   }),
   preview: PropTypes.bool,
+  pageSlug: PropTypes.string.isRequired,
 }
 
 const ContentfulPage = connect(

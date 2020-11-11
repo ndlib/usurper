@@ -7,16 +7,16 @@ import MenuList from '../MenuColumn/MenuList'
 const DropDown = (props) => {
   const columns = props.menuData.map(
     (column, index) => {
-      return column.fields.sections.map(
+      return column.fields.items.map(
         (section) => {
           const classes = index === 0 ? 'col-md-offset-2 col-md-3' : 'col-md-3'
           return (
             <MenuColumn
               classes={classes}
-              title={section.fields.title}
+              title={section.fields.displayName}
               key={index}
             >
-              <MenuList items={section.fields.links} />
+              <MenuList items={section.fields.items} />
             </MenuColumn>
           )
         }

@@ -75,16 +75,16 @@ describe('Favorites reducer', () => {
     const actionData = {
       sys: {},
       fields: {
-        columns: [{
+        items: [{
           sys: {},
           fields: {
-            columns: [{
+            items: [{
               sys: {},
               fields: {
-                sections: [{
+                items: [{
                   sys: {},
                   fields: {
-                    links: [
+                    items: [
                       {
                         sys: {
                           id: '1234abcd',
@@ -132,15 +132,15 @@ describe('Favorites reducer', () => {
       status: statuses.SUCCESS,
       data: {
         fields: {
-          columns: [{
+          items: [{
             fields: {
-              columns: [{
+              items: [{
                 fields: {
-                  sections: [{
+                  items: [{
                     fields: {
-                      links: [
+                      items: [
                         suppliedInternalLinks[0],
-                        actionData.fields.columns[0].fields.columns[0].fields.sections[0].fields.links[1],
+                        actionData.fields.items[0].fields.items[0].fields.items[0].fields.items[1],
                       ],
                     },
                   }],

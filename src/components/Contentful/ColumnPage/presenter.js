@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import typy from 'typy'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import PageTitle from 'components/Layout/PageTitle'
 import Link from 'components/Interactive/Link'
@@ -13,19 +14,19 @@ import InternalLink from 'components/Contentful/InternalLink'
 import './style.css'
 
 const Sections = (column, showDescriptions) => {
-  return column.fields.sections.map((entry) => {
+  return column.fields.items.map((entry) => {
     const s = entry.fields
-    if (!entry || !entry.fields || !entry.fields.title) {
+    if (!entry || !entry.fields || !entry.fields.displayName) {
       return null
     }
     return (
       <section key={entry.sys.id} className='group'>
-        <h2><span id={encodeURIComponent(s.title)}>{s.title}</span></h2>
+        <h2><span id={encodeURIComponent(s.displayName)}>{s.displayName}</span></h2>
         <LibMarkdown>{ s.body }</LibMarkdown>
         <div className='linksgroup'>
-          <div role={s.title + ' navigation'}>
+          <div role={s.displayName + ' navigation'}>
             {
-              s.links.map((item) => {
+              typy(s.items).safeArray.map((item) => {
                 if (item.sys.contentType.sys.id === 'internalLink') {
                   return (
                     <p key={item.sys.id}><InternalLink cfEntry={item} /></p>
@@ -56,13 +57,13 @@ const Sections = (column, showDescriptions) => {
 
 const ColumnContainerPresenter = (props) => {
   const page = props.cfPageEntry.fields
-  if (page && page.title) {
+  if (page && page.displayName) {
     return (
       <div className='content'>
         <SearchProgramaticSet open={false} />
-        <PageTitle title={page.title} />
+        <PageTitle title={page.displayName} />
         <OpenGraph
-          title={page.title}
+          title={page.displayName}
           description={page.shortDescription}
           image={false}
         />
@@ -74,16 +75,16 @@ const ColumnContainerPresenter = (props) => {
         <SideNav className='side-nav-bg'>
           <ul>
             {
-              page.columns.map((column) => {
-                return column.fields.sections.map((section) => {
+              page.items.map((column) => {
+                return column.fields.items.map((section) => {
                   if (section && section.fields) {
-                    const key = encodeURIComponent(section.fields.title)
+                    const key = encodeURIComponent(section.fields.displayName)
                     return (
                       <a
                         className='side-anchors'
                         href={'#' + key}
                         key={key}>
-                        <li>{section.fields.title}</li>
+                        <li>{section.fields.displayName}</li>
                       </a>
                     )
                   }
@@ -95,10 +96,10 @@ const ColumnContainerPresenter = (props) => {
         </SideNav>
         <div className='row landing'>
           {
-            page.columns.map((column, index) => {
+            page.items.map((column, index) => {
               return (
                 <div className='col-md-12 col-xs-12' key={'column_' + index}>
-                  { Sections(column, page.showDescriptions) }
+                  { Sections(column, typy(page, 'extraData.showDescriptions').safeBoolean) }
                 </div>
               )
             })

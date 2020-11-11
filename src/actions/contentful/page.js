@@ -35,7 +35,7 @@ const receivePage = (page, response) => {
     response = response[0]
   }
   if (response && response.sys &&
-      (response.sys.contentType.sys.id === 'page' || response.sys.contentType.sys.id === 'columnContainer')) {
+      (['page', 'dynamicPage', 'grouping'].includes(response.sys.contentType.sys.id))) {
     return receiveSuccess(page, response)
   }
   return receiveError(page, response)
@@ -53,7 +53,8 @@ export function clearPage () {
 }
 
 export const fetchPage = (page, preview, secure = false, cfType = 'page', include = 3) => {
-  const url = helper.getContentfulQueryUrl(`content_type=${cfType}&fields.slug=${page}&include=${include}`, preview, secure)
+  const queryField = (cfType === 'grouping' ? 'fields.id' : 'fields.slug')
+  const url = helper.getContentfulQueryUrl(`content_type=${cfType}&${queryField}=${page}&include=${include}`, preview, secure)
 
   return (dispatch, getState) => {
     dispatch(requestPage(page))
