@@ -53,15 +53,16 @@ const PagePresenter = ({ cfPageEntry }) => (
             const fields = entry.fields
             let className = 'p-resources'
             let showImages = false
-            if (fields.type) {
-              switch (fields.type) {
-                case 'Guides':
+            if (fields.extraData) {
+              switch (fields.extraData.displayType) {
+                case 'guides':
                   className = 'p-guides'
                   break
-                case 'Services':
+                case 'services':
                   className = 'p-services'
                   showImages = true
                   break
+                case 'resources':
                 default:
                   className = 'p-resources'
               }
@@ -69,11 +70,11 @@ const PagePresenter = ({ cfPageEntry }) => (
             return (
               <Related
                 className={className}
-                title={fields.title}
+                title={fields.displayName}
                 showImages={showImages}
                 key={index + '_related'}
               >
-                { fields.links }
+                { fields.items }
               </Related>
             )
           })
