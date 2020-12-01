@@ -17,9 +17,9 @@ describe('components/Chat', () => {
     enzymeWrapper = setup()
   })
 
-  it('should render an iframe to libraryh3lp', () => {
-    const iframe = enzymeWrapper.find('iframe')
-    expect(iframe.exists()).toBe(true)
-    expect(iframe.props().src).toEqual(expect.stringContaining('libraryh3lp.com'))
+  it('should render a script from libraryh3lp', () => {
+    const script = enzymeWrapper.find('script')
+    expect(script.exists()).toBe(true)
+    expect(script.props().src).toEqual(expect.stringContaining('libraryh3lp.com'))
   })
 })
