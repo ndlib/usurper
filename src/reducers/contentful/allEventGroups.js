@@ -12,9 +12,9 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
       return Object.assign({}, state, {
         status: action.status,
         json: typy(action.allEventGroups).safeArray.map(group => ({
-          id: group.sys.id,
-          title: group.fields.title,
-          eventIds: typy(group.fields.events).safeArray.map(event => event.sys.id),
+          id: group.fields.id || group.sys.id,
+          title: group.fields.displayName || group.fields.title,
+          eventIds: typy(group.fields.items).safeArray.map(event => event.sys.id),
         })),
       })
     default:

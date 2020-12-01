@@ -38,7 +38,7 @@ const receiveAllEventGroups = (response) => {
 }
 
 export const fetchAllEventGroups = (preview) => {
-  const url = helper.getContentfulQueryUrl('content_type=eventGroup&include=0', preview)
+  const url = helper.getContentfulQueryUrl('content_type=grouping&fields.contentTypes[match]=event&include=0', preview)
 
   return dispatch => {
     dispatch(requestAllEventGroups())
