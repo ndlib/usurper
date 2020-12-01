@@ -1,5 +1,18 @@
 # Change Log
 
+## [v2020.24](https://github.com/ndlib/usurper/tree/v2020.24) "Sleeping Cat"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.22...v2020.24)
+
+### Note
+The change log for this update includes changes that were deployed previously.
+
+### Bug Fixes
+- Fixed accessibility issue with facets. [#945](https://github.com/ndlib/usurper/pull/945)
+
+### Other Changes
+- Backend changes to improve content workflow. [#952](https://github.com/ndlib/usurper/pull/952) [#953](https://github.com/ndlib/usurper/pull/953) [#954](https://github.com/ndlib/usurper/pull/954) [#955](https://github.com/ndlib/usurper/pull/955)
+- Provide custom message when chat is offline. [#958](https://github.com/ndlib/usurper/pull/958)
+
 ## [v2020.22](https://github.com/ndlib/usurper/tree/v2020.22) "Preferred Panda"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.21...v2020.22)
 
