@@ -34,10 +34,10 @@ export default (
       })
       // Dive through the data and add the full internal links when you find them
       if (action.internalLinks) {
-        typy(outObj.data, 'fields.columns').safeArray.forEach((columnContainer) => {
-          typy(columnContainer, 'fields.columns').safeArray.forEach((column) => {
-            typy(column, 'fields.sections').safeArray.forEach((section) => {
-              typy(section, 'fields.links').safeArray.forEach((link) => {
+        typy(outObj.data, 'fields.items').safeArray.forEach((columnContainer) => {
+          typy(columnContainer, 'fields.items').safeArray.forEach((column) => {
+            typy(column, 'fields.items').safeArray.forEach((section) => {
+              typy(section, 'fields.items').safeArray.forEach((link) => {
                 if (typy(link, 'sys.contentType.sys.id').safeString === 'internalLink') {
                   // Reassign the properties on the link to match the fully-populated internal link with the same id
                   Object.assign(link, helper.mergeInternalLink(link, action.internalLinks))

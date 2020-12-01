@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import typy from 'typy'
 
 import Navigation from './presenter'
 import { withErrorBoundary } from 'components/ErrorBoundary'
@@ -87,16 +88,16 @@ const mergeProps = (state, dispatchProps, ownProps) => {
 
   const dropDowns = []
   if (state.menus && state.menus.data && state.menus.data.fields) {
-    state.menus.data.fields.columns.forEach(menu => {
+    state.menus.data.fields.items.forEach(menu => {
       const current = menu.fields
       dropDowns.push({
-        title: current.title,
-        landingPage: current.landingPage ? current.landingPage.fields.slug : null,
-        menuId: current.slug,
-        menuData: current.columns,
-        onClick: state.menus.menuId === current.slug
+        title: current.displayName,
+        landingPage: typy(current, 'extraData.landingPageSlug').safeString || null,
+        menuId: current.id,
+        menuData: current.items,
+        onClick: state.menus.menuId === current.id
           ? dispatchProps.closeMenus
-          : dispatchProps.openMenu.bind(null, current.slug),
+          : dispatchProps.openMenu.bind(null, current.id),
         keyDown: keyDown,
         onBlur: dispatchProps.closeMenus,
       })

@@ -56,7 +56,7 @@ const receiveNavigation = (response, internalLinks) => {
 }
 
 export const fetchNavigation = (preview) => {
-  const url = helper.getContentfulQueryUrl('content_type=columnContainer&fields.slug=navigation&include=4', preview)
+  const url = helper.getContentfulQueryUrl('content_type=grouping&fields.id=navigation&include=4', preview)
 
   return (dispatch) => {
     dispatch(requestNavigation())
