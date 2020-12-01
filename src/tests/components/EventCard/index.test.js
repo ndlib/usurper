@@ -4,7 +4,7 @@ import { shallow } from 'enzyme'
 import EventCard from 'components/EventCard'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
-import Tags from 'components/Interactive/Tags'
+import FacetTags from 'components/Interactive/FacetTags'
 import LibMarkdown from 'components/LibMarkdown'
 
 const testEntry = {
@@ -38,6 +38,7 @@ describe('components/EventCard', () => {
       props = {
         entry: testEntry,
         isHome: false,
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -56,8 +57,8 @@ describe('components/EventCard', () => {
       expect(enzymeWrapper.containsMatchingElement(<LibMarkdown>{props.entry.shortDescription}</LibMarkdown>)).toBe(true)
     })
 
-    it('should render Tags', () => {
-      expect(enzymeWrapper.find(Tags).exists()).toBe(true)
+    it('should render FacetTags', () => {
+      expect(enzymeWrapper.find(FacetTags).exists()).toBe(true)
     })
 
     it('should display date and time', () => {
@@ -71,6 +72,7 @@ describe('components/EventCard', () => {
       props = {
         entry: testEntry,
         isHome: true,
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -89,8 +91,8 @@ describe('components/EventCard', () => {
       expect(enzymeWrapper.find(LibMarkdown).exists()).toBe(false)
     })
 
-    it('should not render Tags', () => {
-      expect(enzymeWrapper.find(Tags).exists()).toBe(false)
+    it('should not render FacetTags', () => {
+      expect(enzymeWrapper.find(FacetTags).exists()).toBe(false)
     })
 
     it('should display date differently', () => {

@@ -10,6 +10,7 @@ import { multidisciplinarySubject } from 'constants/staticData'
 
 let enzymeWrapper
 let store
+let props
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
@@ -22,6 +23,7 @@ const setup = (state, ownProps) => {
 describe('components/DatabaseList/Databases/DatabaseSummary', () => {
   afterEach(() => {
     enzymeWrapper = undefined
+    props = undefined
   })
 
   beforeEach(() => {
@@ -38,7 +40,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
         },
       },
     }
-    const props = {
+    props = {
       item: {
         sys: {
           id: 'fhqwhgads',
@@ -62,6 +64,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
         },
       },
       onSubjectFilterApply: jest.fn(),
+      facets: [],
     }
     enzymeWrapper = setup(state, props)
   })
@@ -75,7 +78,7 @@ describe('components/DatabaseList/Databases/DatabaseSummary', () => {
     const dummyId = 'zngodpabgpeujnvbhzouyxcv'
     const presenter = enzymeWrapper.dive().dive().find(Presenter)
     presenter.props().applySubjectFilter(dummyId)
-    expect(enzymeWrapper.dive().props().onSubjectFilterApply).toHaveBeenCalledWith('subject', [ dummyId ])
+    expect(props.onSubjectFilterApply).toHaveBeenCalledWith(dummyId)
   })
 
   it('should add multidisciplinarySubject to list of subjects', () => {

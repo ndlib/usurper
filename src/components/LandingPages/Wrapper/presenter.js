@@ -33,6 +33,7 @@ const Presenter = (props) => {
             const card = props.entryCardComponent({
               ...props.entryCardProps,
               entry,
+              facets: props.facets,
               onTagClick: props.onFacetApply,
             })
             return (

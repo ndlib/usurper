@@ -1,27 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import typy from 'typy'
 
 import RecurringIndicator from 'components/Contentful/Event/RecurringIndicator'
 import LibMarkdown from 'components/LibMarkdown'
 import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
-import Tags from 'components/Interactive/Tags'
-import { TYPE_FACET } from 'components/LandingPages/Events/facets'
+import FacetTags from 'components/Interactive/FacetTags'
 import { shortMonth } from 'constants/staticData'
 
 import './style.css'
 
-const EventCard = ({ entry, isHome, onTagClick }) => {
+const EventCard = ({ entry, isHome, facets, onTagClick }) => {
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
   const linkPath = '/event/' + entry.slug + (entry.recurrenceDate ? `/${entry.recurrenceDate}` : '')
-
-  const tagClickHandler = (tag) => onTagClick(TYPE_FACET.key, [ tag.key ])
-  const typeTags = typy(entry.type).safeArray.map(value => ({
-    key: value,
-    value: value,
-    onClick: tagClickHandler,
-  }))
 
   return (
     <div className='event-card' itemScope itemType='http://schema.org/Event' itemProp='mainEntityOfPage'>
@@ -66,7 +57,7 @@ const EventCard = ({ entry, isHome, onTagClick }) => {
             <div className='description' itemProp='description'>
               <LibMarkdown>{entry.shortDescription}</LibMarkdown>
             </div>
-            <Tags groups={typeTags} />
+            <FacetTags entry={entry} facets={facets} onTagClick={onTagClick} excludeFilter={['audience']} />
           </React.Fragment>
         )}
       </div>
@@ -86,6 +77,7 @@ EventCard.propTypes = {
     type: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   isHome: PropTypes.bool,
+  facets: PropTypes.array,
   onTagClick: PropTypes.func,
 }
 

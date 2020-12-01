@@ -31,7 +31,8 @@ const DatabaseSummaryContainer = (props) => {
       linkObject={linkObject}
       isFavorited={isFavorited}
       favoritesData={favoritesData}
-      applySubjectFilter={(subjectId) => props.onSubjectFilterApply('subject', [ subjectId ])}
+      applySubjectFilter={props.onSubjectFilterApply}
+      facets={props.facets}
     />
   )
 }
@@ -59,6 +60,7 @@ DatabaseSummaryContainer.propTypes = {
     url: PropTypes.string,
   })),
   onSubjectFilterApply: PropTypes.func,
+  facets: PropTypes.array.isRequired,
 }
 
 const DatabaseSummary = connect(mapStateToProps)(DatabaseSummaryContainer)

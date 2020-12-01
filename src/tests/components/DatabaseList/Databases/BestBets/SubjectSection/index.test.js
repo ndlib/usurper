@@ -28,6 +28,7 @@ describe('components/DatabaseList/Databases/BestBets/SubjectSection', () => {
         },
       ],
       subjectName: 'doge',
+      facets: [],
     }
     enzymeWrapper = setup(props)
   })

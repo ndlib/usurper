@@ -43,6 +43,11 @@ describe('components/LandingPages/Events/Past/presenter', () => {
         someEvent,
       ],
       combinedStatus: statuses.SUCCESS,
+      facets: [
+        {
+          some: 'facet',
+        },
+      ],
       filterYear: 2019,
       filterMonth: 8,
       location: {
@@ -61,6 +66,7 @@ describe('components/LandingPages/Events/Past/presenter', () => {
     expect(wrapper.props().entries).toEqual(props.events)
     expect(wrapper.props().filteredEntries).toEqual(props.filteredEvents)
     expect(wrapper.props().allEntriesStatus).toEqual(props.combinedStatus)
+    expect(wrapper.props().facets).toEqual(props.facets)
   })
 
   it('should render a DateFilter component as a child of LandingPageWrapper', () => {

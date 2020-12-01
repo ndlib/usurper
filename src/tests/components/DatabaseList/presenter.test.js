@@ -32,6 +32,7 @@ describe('components/DatabaseList/presenter.js', () => {
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
         slug: 'test',
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -103,6 +104,23 @@ describe('components/DatabaseList/presenter.js', () => {
         removeSubjectFromFilter: jest.fn(),
         removeLetterFilter: jest.fn(),
         slug: 'test',
+        facets: [
+          {
+            fieldName: 'subjects[].fields.id',
+            key: 'subject',
+            label: 'Subject',
+            options: [
+              {
+                key: '★ Multidisciplinary',
+                value: '★ Multidisciplinary',
+              },
+              {
+                key: 'aerospace-and-mechanical-engineering',
+                value: 'Aerospace and Mechanical Engineering',
+              },
+            ],
+          },
+        ],
       }
       enzymeWrapper = setup(props)
     })
@@ -112,7 +130,7 @@ describe('components/DatabaseList/presenter.js', () => {
     })
 
     it('should render a Databases component', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} subjectFilter={props.activeSubjects} />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} subjectFilter={props.activeSubjects} facets={props.facets} />)).toBe(true)
     })
 
     it('should render an Alphabet component for filtering', () => {
@@ -128,12 +146,7 @@ describe('components/DatabaseList/presenter.js', () => {
     it('should render a facet selector for subjects', () => {
       const facet = enzymeWrapper.findWhere(el => el.type() === Facet && el.props().name === 'subject')
       expect(facet.exists()).toBe(true)
-      expect(facet.props().options).toEqual([
-        {
-          key: props.subjects[0].fields.id,
-          value: props.subjects[0].linkText,
-        }
-      ])
+      expect(facet.props().options).toEqual(props.facets[0].options)
       expect(facet.props().selectedValues).toEqual(props.activeSubjects)
     })
 
@@ -158,6 +171,7 @@ describe('components/DatabaseList/presenter.js', () => {
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
         slug: 'test',
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })
@@ -167,7 +181,7 @@ describe('components/DatabaseList/presenter.js', () => {
     })
 
     it('should render a Databases component', () => {
-      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} subjectFilter={props.activeSubjects} />)).toBe(true)
+      expect(enzymeWrapper.containsMatchingElement(<Databases list={props.list} subjectFilter={props.activeSubjects} facets={props.facets} />)).toBe(true)
     })
 
     it('should have proper page title', () => {
@@ -189,6 +203,7 @@ describe('components/DatabaseList/presenter.js', () => {
         onSubjectFilterApply: jest.fn(),
         onLetterFilterApply: jest.fn(),
         slug: 'test',
+        facets: [],
       }
       enzymeWrapper = setup(props)
     })

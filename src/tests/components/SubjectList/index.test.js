@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-import SubjectList, { SubjectListContainer } from 'components/SubjectList'
+import SubjectList, { SubjectListContainer, GROUPING_ID } from 'components/SubjectList'
 import InternalLink from 'components/Contentful/InternalLink'
 import Loading from 'components/Messages/Loading'
 
@@ -46,16 +46,20 @@ describe('components/SubjectList', () => {
             state: statuses.NOT_FETCHED,
           },
         },
-        cfSubjects: {
-          status: statuses.SUCCESS,
-          data: [
-            { linkText: 'Link 3', sys: { id: 3 }, fields: { id: 'c', includeOnSubjectList: true } },
-            { linkText: 'Link 1', sys: { id: 1 }, fields: { id: 'a', includeOnSubjectList: true } },
-            { linkText: 'Link 1', sys: { id: 12 }, fields: { id: 'z', includeOnSubjectList: true } },
-            { linkText: 'Link 2', sys: { id: 2 }, fields: { id: 'b', includeOnSubjectList: true } },
-            { linkText: 'filter me', sys: { id: 7331 }, fields: { id: 'x', includeOnSubjectList: false } },
-            { linkText: 'filter me too', sys: { id: 3333 }, fields: { id: 'y' } },
-          ],
+        grouping: {
+          [GROUPING_ID]: {
+            status: statuses.SUCCESS,
+            data: {
+              fields: {
+                items: [
+                  { linkText: 'Link 3', sys: { id: 3 }, fields: { id: 'c', title: 'Link 3' } },
+                  { linkText: 'Link 1', sys: { id: 1 }, fields: { id: 'a', title: 'Link 1' } },
+                  { linkText: 'Link 1', sys: { id: 12 }, fields: { id: 'z', title: 'Link 1' } },
+                  { linkText: 'Link 2', sys: { id: 2 }, fields: { id: 'b', title: 'Link 2' } },
+                ],
+              },
+            }
+          },
         },
       }
 
@@ -63,24 +67,17 @@ describe('components/SubjectList', () => {
     })
 
     it('should render InternalLink for each subject', () => {
-      state.cfSubjects.data.forEach((subject) => {
+      state.grouping[GROUPING_ID].data.fields.items.forEach((subject) => {
         expect(enzymeWrapper.dive().containsMatchingElement(<InternalLink cfEntry={subject} />))
       })
     })
 
-    it('should ONLY show subjects that have been explicitly flagged to be included', () => {
-      const count = enzymeWrapper.dive().props().subjects.length
-      const compare = state.cfSubjects.data.filter(subject => subject.fields.includeOnSubjectList === true).length
-      expect(count).toBeGreaterThan(0)
-      expect(count).toEqual(compare)
-    })
-
     it('should sort subjects based on link text', () => {
       const expected = [
-        state.cfSubjects.data[1].sys.id,
-        state.cfSubjects.data[2].sys.id,
-        state.cfSubjects.data[3].sys.id,
-        state.cfSubjects.data[0].sys.id,
+        state.grouping[GROUPING_ID].data.fields.items[1].sys.id,
+        state.grouping[GROUPING_ID].data.fields.items[2].sys.id,
+        state.grouping[GROUPING_ID].data.fields.items[3].sys.id,
+        state.grouping[GROUPING_ID].data.fields.items[0].sys.id,
       ]
       expect(enzymeWrapper.dive().props().subjects.map(subject => subject.itemKey)).toEqual(expected)
     })
@@ -93,7 +90,7 @@ describe('components/SubjectList', () => {
       const mockFn = jest.fn()
       enzymeWrapper.dive().dive().setProps({
         subjectsStatus: statuses.NOT_FETCHED,
-        fetchSubjects: mockFn,
+        fetchGrouping: mockFn,
       })
       expect(mockFn).toHaveBeenCalled()
     })
@@ -116,8 +113,10 @@ describe('components/SubjectList', () => {
             state: statuses.NOT_FETCHED,
           },
         },
-        cfSubjects: {
-          status: statuses.FETCHING,
+        grouping: {
+          [GROUPING_ID]: {
+            status: statuses.FETCHING,
+          },
         },
       }
 

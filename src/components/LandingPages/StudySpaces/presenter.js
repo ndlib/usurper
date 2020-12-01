@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import LandingPageWrapper from '../Wrapper'
-import Facets from './facets'
 import SpaceCard from 'components/SpaceCard'
 
 const Presenter = (props) => {
@@ -13,8 +12,8 @@ const Presenter = (props) => {
       filteredEntries={props.spaces}
       location={props.location}
       history={props.history}
-      allEntriesStatus={props.allSpacesStatus}
-      facets={Facets}
+      allEntriesStatus={props.combinedStatus}
+      facets={props.facets}
       entryCardComponent={SpaceCard}
       filterFields={['fields.name', 'fields.description', 'fields.features[*]']}
       sortFields={['fields.name']}
@@ -24,7 +23,8 @@ const Presenter = (props) => {
 
 Presenter.propTypes = {
   spaces: PropTypes.array.isRequired,
-  allSpacesStatus: PropTypes.string.isRequired,
+  combinedStatus: PropTypes.string.isRequired,
+  facets: PropTypes.array.isRequired,
   location: PropTypes.object,
   history: PropTypes.object,
 }

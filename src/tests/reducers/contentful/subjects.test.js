@@ -29,25 +29,71 @@ describe('Subjects reducer', () => {
         type: actions.CF_RECEIVE_SUBJECTS,
         status: 'status from receiveSubjects',
         depth: 1,
-        items: [{
-          sys: {},
+        data: {
           fields: {
-            page: null,
-            text: 'some item data',
+            items: [
+              {
+                sys: {
+                  contentType: {
+                    sys: {
+                      id: 'internalLink',
+                    },
+                  },
+                },
+                fields: {
+                  page: null,
+                  title: 'test title',
+                  usePageTitle: false,
+                },
+              },
+              {
+                sys: {
+                  contentType: {
+                    sys: {
+                      id: 'foo',
+                    },
+                  },
+                },
+                fields: {
+                  text: 'bar',
+                },
+              },
+            ],
           },
-        }],
+        },
       })
     ).toEqual({
       status: 'status from receiveSubjects',
       depth: 1,
-      data: [{
-        sys: {},
-        fields: {
-          page: null,
-          text: 'some item data',
+      data: [
+        {
+          sys: {
+            contentType: {
+              sys: {
+                id: 'internalLink',
+              },
+            },
+          },
+          fields: {
+            page: null,
+            title: 'test title',
+            usePageTitle: false,
+          },
+          linkText: 'test title',
         },
-        linkText: '',
-      }],
+        {
+          sys: {
+            contentType: {
+              sys: {
+                id: 'foo',
+              },
+            },
+          },
+          fields: {
+            text: 'bar',
+          },
+        },
+      ],
     })
   })
 })

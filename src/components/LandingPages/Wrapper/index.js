@@ -54,7 +54,7 @@ export class LandingPageWrapperContainer extends Component {
         const match = this.props.facets.find(facet => facet.key === key)
         const fieldName = match ? match.fieldName : key
         entries = entries.filter(entry => {
-          return valuesObj[key].some(val => typy(entry, fieldName).safeArray.includes(val))
+          return valuesObj[key].some(val => typy(entry.fields || entry, fieldName).safeArray.includes(val))
         })
       }
     })
@@ -119,7 +119,7 @@ export class LandingPageWrapperContainer extends Component {
 export const mapStateToProps = (state, ownProps) => {
   // Initialize values object with an empty array for each facet type
   const facetValues = {}
-  typy(ownProps.facets).safeArray.forEach(facet => {
+  typy(ownProps, 'facets').safeArray.forEach(facet => {
     const facetKey = facet.key || facet.fieldName
     facetValues[facetKey] = []
   })

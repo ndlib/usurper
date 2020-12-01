@@ -107,6 +107,7 @@ describe('components/DatabaseList/Databases/BestBets', () => {
       ],
       subjectFilter: ['doge', 'woof', 'notMeow'],
       onSubjectFilterApply: jest.fn(),
+      facets: [],
     }
     enzymeWrapper = setup(props)
   })

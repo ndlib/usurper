@@ -9,8 +9,12 @@ import Presenter from './presenter'
 
 import { fetchAllEvents } from 'actions/contentful/allEvents'
 import { fetchAllEventGroups } from 'actions/contentful/allEventGroups'
+import { fetchGrouping } from 'actions/contentful/grouping'
+import { mapFacet } from 'constants/facets'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
+
+const FACETS_GROUPING = 'event-facets'
 
 export class CurrentEventsContainer extends Component {
   constructor (props) {
@@ -33,6 +37,9 @@ export class CurrentEventsContainer extends Component {
     } else if (this.props.allEventGroups.status === statuses.SUCCESS && this.props.allEventsStatus === statuses.NOT_FETCHED) {
       this.props.fetchAllEvents(preview, this.props.allEventGroups.json)
     }
+    if (this.props.facetStatus === statuses.NOT_FETCHED) {
+      this.props.fetchGrouping(FACETS_GROUPING, preview, 2)
+    }
   }
 
   render () {
@@ -41,10 +48,13 @@ export class CurrentEventsContainer extends Component {
 }
 
 export const mapStateToProps = (state, ownProps) => {
-  const { allEvents, allEventGroups } = state
+  const { allEvents, allEventGroups, grouping } = state
+
+  const facetStatus = typy(grouping, `${FACETS_GROUPING}.status`).safeString || statuses.NOT_FETCHED
   const combinedStatus = helper.reduceStatuses([
     allEvents.status,
     allEventGroups.status,
+    facetStatus,
   ])
 
   // Check for date filter
@@ -72,6 +82,10 @@ export const mapStateToProps = (state, ownProps) => {
     return start === dateString || end === dateString || (start < dateString && end >= dateString)
   }) : events
 
+  const facets = (facetStatus === statuses.SUCCESS)
+    ? typy(grouping, `${FACETS_GROUPING}.data.fields.items`).safeArray.map(mapFacet)
+    : []
+
   return {
     pageTitle,
     pageDate,
@@ -81,11 +95,13 @@ export const mapStateToProps = (state, ownProps) => {
     allEventsStatus: allEvents.status,
     allEventGroups,
     combinedStatus,
+    facetStatus,
+    facets,
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchAllEvents, fetchAllEventGroups }, dispatch)
+  return bindActionCreators({ fetchAllEvents, fetchAllEventGroups, fetchGrouping }, dispatch)
 }
 
 CurrentEventsContainer.propTypes = {
@@ -101,6 +117,9 @@ CurrentEventsContainer.propTypes = {
     status: PropTypes.string.isRequired,
     json: PropTypes.array,
   }).isRequired,
+  fetchGrouping: PropTypes.func.isRequired,
+  facetStatus: PropTypes.string.isRequired,
+  facets: PropTypes.array.isRequired,
   location: PropTypes.shape({
     search: PropTypes.oneOfType([
       PropTypes.string,

@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import typy from 'typy'
 import * as helper from 'constants/HelperFunctions'
 import * as statuses from 'constants/APIStatuses'
 
@@ -25,20 +26,20 @@ const receiveSuccess = (response, depth) => {
     type: CF_RECEIVE_SUBJECTS,
     status: statuses.SUCCESS,
     depth: depth,
-    items: response,
+    data: response[0],
     receivedAt: Date.now(),
   }
 }
 
 const receiveSubjects = (response, depth) => {
-  if (Array.isArray(response)) {
+  if (response.length > 0 && typy(response[0], 'sys.contentType.sys.id').safeString === 'grouping') {
     return receiveSuccess(response, depth)
   }
   return receiveError(response, depth)
 }
 
-export const fetchSubjects = (preview, include = 1) => {
-  const url = helper.getContentfulQueryUrl(`content_type=internalLink&fields.context=Subject&include=${include}`, preview)
+export const fetchSubjects = (preview, include = 2) => {
+  const url = helper.getContentfulQueryUrl(`content_type=grouping&fields.id=resource-facet-subject&include=${include}`, preview)
 
   return (dispatch) => {
     dispatch(requestSubjects(include))

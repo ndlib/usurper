@@ -8,7 +8,6 @@ import Image from 'components/Image'
 import Link from 'components/Interactive/Link'
 import Tags from 'components/Interactive/Tags'
 import Config from 'shared/Configuration'
-import { TYPE_FACET } from 'components/LandingPages/Events/facets'
 
 import './style.css'
 
@@ -16,7 +15,7 @@ const LegacyEventCard = ({ entry, showDescription, showImage, showTags, onTagCli
   const linkAriaLabel = entry.title + ' on ' + entry.displayDate + ' at ' + entry.displayTime
   const linkPath = '/event/' + entry.slug + (entry.recurrenceDate ? `/${entry.recurrenceDate}` : '')
 
-  const tagClickHandler = (tag) => onTagClick(TYPE_FACET.key, [ tag.key ])
+  const tagClickHandler = (tag) => onTagClick('type', [ tag.key ])
   const typeTags = typy(entry.type).safeArray.map(value => ({
     key: value,
     value: value,
