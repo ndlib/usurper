@@ -21,7 +21,7 @@ import DatabasePage from 'components/Contentful/Database'
 import SearchPage from 'components/SearchPage'
 import ContentfulEvent from 'components/Contentful/Event'
 import News from 'components/LandingPages/News'
-// import StudySpaces from 'components/LandingPages/StudySpaces'
+import StudySpaces from 'components/LandingPages/StudySpaces'
 import CurrentEvents from 'components/LandingPages/Events/Current'
 import PastEvents from 'components/LandingPages/Events/Past'
 import CurrentExhibits from 'components/LandingPages/Exhibits/Current'
@@ -36,7 +36,6 @@ import Preferences from 'components/Account/Preferences'
 import Reservations from 'components/Account/Reservations'
 import Floors from 'components/DynamicPages/FloorList'
 import RoomReservations from 'components/DynamicPages/RoomReservations'
-// import StudySpaces from 'components/LandingPages/StudySpaces'
 
 import NotFound from 'components/Messages/NotFound'
 
@@ -80,18 +79,10 @@ const App = (props) => {
             <Route exact path='/events/past' component={PastEvents} />
             <Route exact path='/events/past/:date' component={PastEvents} />
             <Route exact path='/events/:date' component={CurrentEvents} />
-            { Config.features.exhibitsEnabled && (
-              <Route exact path='/exhibits' component={CurrentExhibits} />
-            )}
-            { Config.features.exhibitsEnabled && (
-              <Route exact path='/exhibits/past' component={PastExhibits} />
-            )}
-            { Config.features.exhibitsEnabled && (
-              <Route exact path='/exhibits/past/:date' component={PastExhibits} />
-            )}
-            { Config.features.exhibitsEnabled && (
-              <Route exact path='/exhibits/:date' component={CurrentExhibits} />
-            )}
+            <Route exact path='/exhibits' component={CurrentExhibits} />
+            <Route exact path='/exhibits/past' component={PastExhibits} />
+            <Route exact path='/exhibits/past/:date' component={PastExhibits} />
+            <Route exact path='/exhibits/:date' component={CurrentExhibits} />
             <Route exact path='/news' component={News} />
             <Route exact path='/floor/search' component={FloorSearch} />
             <Route exact path='/floor/:id' component={ContentfulFloor} />
@@ -106,7 +97,9 @@ const App = (props) => {
             <Route exact path='/database/:id' component={DatabasePage} />
             <Route exact path='/databases' component={DatabaseList} />
             <Route exact path='/room-reservations' component={RoomReservations} />
-            { /* <Route exact path='/study-spaces' component={StudySpaces} /> */ }
+            {Config.features.studySpacesEnabled && (
+              <Route exact path='/study-spaces' component={StudySpaces} />
+            )}
             <Route exact path='/secure/:id' component={SecureContentfulPage} />
             <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />
             <Route exact path='/search' component={SearchPage} />

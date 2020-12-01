@@ -17,8 +17,6 @@ import StaticSidebar from 'components/Contentful/StaticContent/Sidebar'
 import Databases from './Databases'
 import ActiveFiltersList from './ActiveFiltersList'
 
-import Config from 'shared/Configuration'
-
 import styles from './style.module.css'
 
 const Loaded = (props) => {
@@ -53,7 +51,7 @@ const Loaded = (props) => {
         </div>
         <div className={'col-xs-12 col-md-4 col-sm-5 ' + styles.sideNav}>
           <Alphabet history={props.history} onLetterFilterApply={props.onLetterFilterApply} />
-          { Config.features.subjectFilteringEnabled && props.facets.map((facet) => (
+          {props.facets.map((facet) => (
             <Facet
               key={facet.key}
               name={facet.key}

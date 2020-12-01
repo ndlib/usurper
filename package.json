@@ -129,9 +129,8 @@
         "libcalGatewayAPI": "http://libcalGatewayAPI.edu",
         "serviceNowBaseURL": "http://serviceNow.com/test?id=123",
         "features": {
-          "subjectFilteringEnabled": true,
           "loginEnabled": true,
-          "exhibitsEnabled": true
+          "studySpacesEnabled": true
         },
         "oktaClientId": "000aaa",
         "oktaIssuer": "https://okta.url/oauth2/test"
