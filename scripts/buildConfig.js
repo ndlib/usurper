@@ -77,8 +77,15 @@ const psList = [
 
 let handler = async () => {
   try {
-    const { stdout, stderr } = await exec('aws cloudformation list-exports')
-    let data = JSON.parse(stdout)
+    const fakeUrls = (process.env.FAKE_SERVICE_URLS === true || process.env.FAKE_SERVICE_URLS === 'true')
+    const fakeParams = (process.env.FAKE_PARAMETERS === true || process.env.FAKE_PARAMETERS === 'true')
+
+    let stdout = ''
+    if (!fakeUrls) {
+      const exportResults = await exec('aws cloudformation list-exports')
+      stdout = exportResults.stdout
+    }
+    let data = stdout ? JSON.parse(stdout) : {}
     let outputs = {}
     let stage = getStage()
     let error = false
@@ -101,12 +108,17 @@ let handler = async () => {
     const ssm = new AWS.SSM({'region': 'us-east-1'})
     for(let j = 0; j < psList.length; j++) {
       try {
-        const params = {
-          Name: `/all/usurper/${stage}/${psList[j].path}`,
-          WithDecryption: true,
+        // Needed for CI so that it can build a config file without access to AWS
+        if (process.env.FAKE_PARAMETERS) {
+          psOutputs[psList[j].name] = psList[j].name
+        } else {
+          const params = {
+            Name: `/all/usurper/${stage}/${psList[j].path}`,
+            WithDecryption: true,
+          }
+          const data = await ssm.getParameter(params).promise()
+          psOutputs[psList[j].name] = data.Parameter.Value
         }
-        const data = await ssm.getParameter(params).promise()
-        psOutputs[psList[j].name] = data.Parameter.Value
       } catch(err) {
         console.error(`${RED}Unable to read ${psList[j].name} from parameter store.${NC}`)
         if (process.env.CI) {
