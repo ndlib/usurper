@@ -6,7 +6,6 @@ import FavoriteIcon from 'components/Account/Preferences/FavoriteIcon'
 import { KIND } from 'actions/personal/favorites'
 import SummaryLink from './SummaryLink'
 import FacetTags from 'components/Interactive/FacetTags'
-import Config from 'shared/Configuration'
 
 import styles from '../../style.module.css'
 
@@ -17,9 +16,7 @@ const DatabaseSummary = (props) => {
       <Link to={props.linkObject.heading.url} title={'Go to ' + props.item.fields.title} className='inline'>
         <h3 className={styles.dbItemTitle}>{props.item.fields.title}</h3>
       </Link>
-      { Config.features.subjectFilteringEnabled && (
-        <FacetTags entry={props.item} facets={props.facets} onTagClick={props.applySubjectFilter} />
-      )}
+      <FacetTags entry={props.item} facets={props.facets} onTagClick={props.applySubjectFilter} />
       <div className={styles.dbSummary}>
         {props.linkObject.heading.description}
       </div>

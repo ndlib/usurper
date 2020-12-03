@@ -54,16 +54,12 @@ const psList = [
     name: 'contentfulEnvironment',
   },
   {
-    path: 'subjectFilteringEnabled',
-    name: 'subjectFilteringEnabled',
-  },
-  {
     path: 'loginEnabled',
     name: 'loginEnabled',
   },
   {
-    path: 'exhibitsEnabled',
-    name: 'exhibitsEnabled',
+    path: 'studySpacesEnabled',
+    name: 'studySpacesEnabled',
   },
   {
     path: 'secrets/okta/client_id',

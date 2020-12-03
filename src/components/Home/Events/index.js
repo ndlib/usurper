@@ -8,7 +8,6 @@ import Presenter from './presenter.js'
 import PresenterFactory from 'components/APIInlinePresenterFactory'
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
-import Config from 'shared/Configuration'
 
 export class HomeEventsContainer extends Component {
   constructor (props) {
@@ -55,7 +54,7 @@ const mapStateToProps = (state) => {
 
     // Sort twice. The first time ensures identifies which records and ensures the "preferOnHomepage" are there
     // The second one will correct the order according to date after we have limited the number of records
-    filteredEvents = helper.sortList(filteredEvents, ['preferOnHomepage', 'startDate'], 'asc').slice(0, Config.features.exhibitsEnabled ? 6 : 5)
+    filteredEvents = helper.sortList(filteredEvents, ['preferOnHomepage', 'startDate'], 'asc').slice(0, 6)
     filteredEvents = helper.sortList(filteredEvents, 'startDate', 'asc')
   }
   const combinedStatus = helper.reduceStatuses([

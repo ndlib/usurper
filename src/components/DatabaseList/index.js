@@ -17,8 +17,6 @@ import * as helper from 'constants/HelperFunctions'
 import getToken from 'actions/personal/token'
 import { getFavorites, KIND as FAVORITES_KIND } from 'actions/personal/favorites'
 
-import Config from 'shared/Configuration'
-
 const PAGE_SLUG = 'databases'
 const FACETS_GROUPING = 'resource-facets'
 const alphabet = 'abcdefghijklmnopqrstuvwxyz#'.split('')
@@ -80,14 +78,14 @@ export class DatabaseListContainer extends Component {
     if (this.props.login && this.props.login.token && this.props.favoritesStatus === statuses.NOT_FETCHED) {
       this.props.getFavorites(FAVORITES_KIND.databases)
     }
-    if (Config.features.subjectFilteringEnabled && this.props.cfSubjects.status === statuses.NOT_FETCHED) {
+    if (this.props.cfSubjects.status === statuses.NOT_FETCHED) {
       this.props.fetchSubjects(preview)
     }
     if (this.props.facetStatus === statuses.NOT_FETCHED) {
       this.props.fetchGrouping(FACETS_GROUPING, preview, 3)
     }
     // Subjects are needed before fetching databases because the databases depend on it
-    if (this.props.cfSubjects.status === statuses.SUCCESS || !Config.features.subjectFilteringEnabled) {
+    if (this.props.cfSubjects.status === statuses.SUCCESS) {
       alphabet.forEach(letter => {
         const letterStatus = typy(this.props.cfDatabases, `${letter}.status`).safeString || statuses.NOT_FETCHED
         if (letterStatus === statuses.NOT_FETCHED) {
@@ -188,14 +186,11 @@ export const mapStateToProps = (state, thisProps) => {
   // get a status for all letters, either error, fetching or success (not found || success = success)
   const letterStatuses = alphabet.map((letter) => typy(state.cfDatabases[letter], 'status').safeString || statuses.NOT_FETCHED)
   const facetStatus = typy(grouping, `${FACETS_GROUPING}.status`).safeString || statuses.NOT_FETCHED
-  const allLettersStatus = helper.reduceStatuses(
-    Config.features.subjectFilteringEnabled
-      ? [
-        ...letterStatuses,
-        cfSubjects.status,
-        facetStatus,
-      ] : letterStatuses
-  )
+  const allLettersStatus = helper.reduceStatuses([
+    ...letterStatuses,
+    cfSubjects.status,
+    facetStatus,
+  ])
   const queryParams = decodeURIComponent(thisProps.location.search.replace('?', '')).split('&')
   const activeSubjects = []
   let letter = ''

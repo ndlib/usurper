@@ -1,18 +1,18 @@
-.newsList:not(.legacy) {
+.newsList {
   display: flex;
   flex-flow: row wrap;
 }
 
-.newsList:not(.legacy) > * {
+.newsList > * {
   flex-basis: 100%;
 }
 
 @media screen and (min-width: 621px) {
-  .newsList:not(.legacy) {
+  .newsList {
     flex-flow: row wrap;
   }
 
-  .newsList:not(.legacy) > * {
+  .newsList > * {
     flex-basis: 50%;
   }
 }

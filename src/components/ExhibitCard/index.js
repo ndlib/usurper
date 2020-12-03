@@ -5,15 +5,10 @@ import typy from 'typy'
 import Image from 'components/Image'
 import LibMarkdown from 'components/LibMarkdown'
 import Link from 'components/Interactive/Link'
-import Config from 'shared/Configuration'
 
 import './style.css'
 
 export const ExhibitCard = ({ entry, horizontal, showDetails }) => {
-  if (!Config.features.exhibitsEnabled) {
-    return null
-  }
-
   const event = typy(entry.event).safeObjectOrEmpty
   return (
     <div className={'exhibit-card' + (horizontal ? ' horizontal' : '')}>

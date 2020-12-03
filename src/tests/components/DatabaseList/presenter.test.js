@@ -48,7 +48,6 @@ describe('components/DatabaseList/presenter.js', () => {
 
   describe('status: SUCCESS', () => {
     beforeEach(() => {
-      global.__APP_CONFIG__.features.subjectFilteringEnabled = true
       props = {
         status: statuses.SUCCESS,
         letter: 'a',
