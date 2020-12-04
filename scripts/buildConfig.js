@@ -11,7 +11,6 @@ const NC = process.env.CI ? '' : '\033[0m' // No Color
 
 let apiList = [
   'classesAPI',
-  'monarchLibguides',
   'contentfuldirect',
   'recommendEngine',
   'gatekeeper',

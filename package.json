@@ -122,7 +122,6 @@
         "coursesAPI": "http://coursesAPI.edu",
         "resourcesAPI": "http://resourcesAPI.edu",
         "illiadBaseURL": "http://illiadBaseURL.edu",
-        "hoursAPIURL": "http://hoursAPIURL.edu",
         "contentfulAPI": "http://contentfulAPI.edu",
         "userPrefsAPI": "http://userPrefsAPI.edu",
         "mapsAPI": "http://mapsAPI.edu",
