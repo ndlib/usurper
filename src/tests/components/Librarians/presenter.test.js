@@ -30,12 +30,10 @@ describe('components/Librarians/presenter.js', () => {
       setup({
         librarianInfo: {
           status: statuses.SUCCESS,
-          json: {
-            librarians: [
-              librarian('foo_user', '555.555.5555', 'foo@nd.edu'),
-              librarian('bar_user', '444.444.4444', 'bar@nd.edu', 'bar.jpg'),
-            ],
-          },
+          json: [
+            librarian('foo_user', '555.555.5555', 'foo@nd.edu'),
+            librarian('bar_user', '444.444.4444', 'bar@nd.edu', 'bar.jpg'),
+          ],
         },
       })
     })

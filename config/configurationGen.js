@@ -2,7 +2,7 @@ const parameters = require('./configParameters.js')
 
 const genConfig = () => {
   const defaultConfig = {
-    recommendAPI: parameters.recommendEngine,
+    directoryAPI: parameters.directoryAPI,
     coursesAPI: parameters.classesAPI,
     resourcesAPI: parameters.gatekeeper,
     illiadBaseURL: parameters.illiad + '?Action=10&Form=<<form>>&Value=<<value>>',
@@ -28,7 +28,7 @@ const genConfig = () => {
   }
 
   const config = {
-    recommendAPI: process.env.RECOMMEND_API ? process.env.RECOMMEND_API : defaultConfig.recommendAPI,
+    directoryAPI: process.env.DIRECTORY_API ? process.env.DIRECTORY_API : defaultConfig.directoryAPI,
     coursesAPI: process.env.COURSES_API ? process.env.COURSES_API : defaultConfig.coursesAPI,
     resourcesAPI: process.env.RESOURCES_API ? process.env.RESOURCES_API : defaultConfig.resourcesAPI,
     illiadBaseURL: process.env.ILLIAD_BASE_URL ? process.env.ILLIAD_BASE_URL : defaultConfig.illiadBaseURL,

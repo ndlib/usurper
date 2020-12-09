@@ -13,7 +13,6 @@ let apiList = [
   'classesAPI',
   'monarchLibguides',
   'contentfuldirect',
-  'recommendEngine',
   'gatekeeper',
   'contentfulmaps',
   'userPreferences',
@@ -73,6 +72,10 @@ const psList = [
     path: 'secrets/okta/issuer',
     name: 'oktaIssuer',
   },
+  {
+    path: 'directoryAPI',
+    name: 'directoryAPI',
+  }
 ]
 
 let handler = async () => {

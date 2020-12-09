@@ -22,7 +22,7 @@ describe('components/DynamicPages/RoomReservations/presenter', () => {
           directoryUrl: 'https://library.nd.edu/directory/employees/sone',
           name: 'some one',
           email: 'sone@nd.edu',
-          netid: 'sone',
+          netID: 'sone',
         }]
       },
       meetingSpacesData: [{
@@ -49,7 +49,7 @@ describe('components/DynamicPages/RoomReservations/presenter', () => {
       }],
     })
   })
-  
+
   afterEach(() => {
     enzymeWrapper = undefined
   })
@@ -71,13 +71,13 @@ describe('components/DynamicPages/RoomReservations/presenter', () => {
   })
 
   it('should render the MeetingSpacesTable component', () => {
-    expect(enzymeWrapper.containsMatchingElement(<MeetingSpacesTable 
+    expect(enzymeWrapper.containsMatchingElement(<MeetingSpacesTable
       contactInfo={{
         contacts: [{
           directoryUrl: 'https://library.nd.edu/directory/employees/sone',
           name: 'some one',
           email: 'sone@nd.edu',
-          netid: 'sone',
+          netID: 'sone',
         }]
       }}
       meetingSpacesData={[{

@@ -13,7 +13,7 @@ const Loaded = (info, className) => {
       <h2>Contact Info </h2>
       {
 
-        info.librarians.map((librarian) => {
+        info.map((librarian) => {
           return (
             <div className='librarian' key={librarian.phone}>
               <Contact
