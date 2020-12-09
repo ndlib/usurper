@@ -7,14 +7,26 @@ import * as statuses from 'constants/APIStatuses'
 
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
-const mockResponse = {
-  'librarians': 'true',
-}
 
 const netids = [
   'fooUser',
   'barUser',
 ]
+
+const mockRequests = () => {
+  netids.forEach(netid => {
+    const responseData = [
+      {
+        netID: netid,
+        foo: 'bar',
+      },
+    ]
+    nock(Config.directoryAPI)
+      .get(() => true)
+      .query(true)
+      .reply(200, responseData)
+  })
+}
 
 describe('contact request action creator', () => {
   it('should create a REQUEST_CONTACTS action for the requested netids', () => {
@@ -28,10 +40,7 @@ describe('contact request action creator', () => {
 
 describe('contentful fetch contacts async action creator', () => {
   it('should first create a REQUEST_CONTACTS action for the requested netids', () => {
-    nock(Config.recommendAPI)
-      .get('/librarianInfo')
-      .query(true)
-      .reply(200, mockResponse)
+    mockRequests()
 
     const expectedAction = {
       type: actions.REQUEST_CONTACTS,
@@ -47,10 +56,7 @@ describe('contentful fetch contacts async action creator', () => {
 
   describe('on success', () => {
     beforeEach(() => {
-      nock(Config.recommendAPI)
-      .get('/librarianInfo')
-      .query(true)
-      .reply(200, mockResponse)
+      mockRequests()
     })
     afterEach(() => {
       nock.cleanAll()
@@ -60,7 +66,16 @@ describe('contentful fetch contacts async action creator', () => {
       const expectedAction = {
         type: actions.RECEIVE_CONTACTS,
         status: statuses.SUCCESS,
-        data: mockResponse,
+        data: [
+          {
+            netID: 'fooUser',
+            foo: 'bar',
+          },
+          {
+            netID: 'barUser',
+            foo: 'bar',
+          },
+        ],
       }
 
       const store = mockStore({ })
@@ -73,10 +88,12 @@ describe('contentful fetch contacts async action creator', () => {
 
   describe('on error', () => {
     beforeEach(() => {
-      nock(Config.recommendAPI)
-        .get('/librarianInfo')
+      nock.cleanAll()
+      nock(Config.directoryAPI)
+        .get(() => true)
         .query(true)
         .reply(200, { 'message': 'error' })
+        .persist()
     })
     afterEach(() => {
       nock.cleanAll()
@@ -86,7 +103,32 @@ describe('contentful fetch contacts async action creator', () => {
       const expectedAction = {
         type: actions.RECEIVE_CONTACTS,
         status: statuses.ERROR,
-        data: { 'message': 'error' },
+      }
+
+      const store = mockStore({ })
+      return store.dispatch(actions.fetchContacts(netids))
+        .then(() => {
+          expect(store.getActions()[1]).toMatchObject(expectedAction)
+        })
+    })
+
+    it('should handle error response', () => {
+      beforeEach(() => {
+        nock.cleanAll()
+        nock(Config.directoryAPI)
+          .get(() => true)
+          .query(true)
+          .replyWithError('it broke')
+          .persist()
+      })
+
+      afterEach(() => {
+        nock.cleanAll()
+      })
+
+      const expectedAction = {
+        type: actions.RECEIVE_CONTACTS,
+        status: statuses.ERROR,
       }
 
       const store = mockStore({ })

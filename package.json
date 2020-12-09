@@ -117,8 +117,7 @@
   "jest": {
     "globals": {
       "__APP_CONFIG__": {
-        "viceroyAPI": "http://viceroyAPI.edu",
-        "recommendAPI": "http://recommendAPI.edu",
+        "directoryAPI": "http://directoryAPI.edu",
         "coursesAPI": "http://coursesAPI.edu",
         "resourcesAPI": "http://resourcesAPI.edu",
         "illiadBaseURL": "http://illiadBaseURL.edu",

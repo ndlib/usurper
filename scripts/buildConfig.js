@@ -12,7 +12,6 @@ const NC = process.env.CI ? '' : '\033[0m' // No Color
 let apiList = [
   'classesAPI',
   'contentfuldirect',
-  'recommendEngine',
   'gatekeeper',
   'contentfulmaps',
   'userPreferences',
@@ -68,6 +67,10 @@ const psList = [
     path: 'secrets/okta/issuer',
     name: 'oktaIssuer',
   },
+  {
+    path: 'directoryAPI',
+    name: 'directoryAPI',
+  }
 ]
 
 let handler = async () => {

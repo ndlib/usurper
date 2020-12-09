@@ -124,10 +124,10 @@ describe('components/Account/Preferences/NoFavorites', () => {
       })
 
       it('should not show favorites or login links', () => {
-        const favoritesPath = '/preferences'
-        const loginPath = Config.viceroyAPI + '/login'
-        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={favoritesPath}>{expect.anything()}</Link>)).toBe(false)
-        expect(enzymeWrapper.dive().dive().containsMatchingElement(<Link to={loginPath}>{expect.anything()}</Link>)).toBe(false)
+        const favoritesLink = enzymeWrapper.dive().dive().findWhere(el => el.type() === Link && el.props().to.includes('/preferences'))
+        const loginLink = enzymeWrapper.dive().dive().findWhere(el => el.type() === Link && el.props().to.includes('/login'))
+        expect(favoritesLink.exists()).toBe(false)
+        expect(loginLink.exists()).toBe(false)
       })
     })
   })
