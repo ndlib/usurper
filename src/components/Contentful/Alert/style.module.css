@@ -48,12 +48,17 @@
   align-items: center;
 }
 
-.alertContainer .description {
+.alertContainer .description,
+.alertContainer .description p {
   flex: 1 1 auto;
   line-height: normal;
   max-width: 100%;
   margin: 0;
   overflow: hidden;
+}
+
+.alertContainer .description p:not(:last-of-type) {
+  margin-bottom: 0.5em;
 }
 
 .alertContainer .hideAlert {
