@@ -26,19 +26,25 @@ describe('allAlerts reducer', () => {
     const libraryAlert = {
       sys: { id: '1' },
       fields: {
-        domain: 'library',
+        domains: ['library'],
       },
     }
     const illAlert = {
       sys: { id: '2' },
       fields: {
-        domain: 'illiad',
+        domains: ['illiad'],
       },
     }
     const allAlert = {
       sys: { id: '3' },
       fields: {
-        domain: 'all',
+        domains: [
+          'primo',
+          'primoNDU',
+          'primoHCC',
+          'library',
+          'illiad',
+        ],
       },
     }
 
