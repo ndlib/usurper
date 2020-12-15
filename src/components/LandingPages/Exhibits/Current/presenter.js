@@ -26,7 +26,7 @@ const Presenter = (props) => {
       filterFields={['title', 'type', 'event.title', 'event.shortDescription']}
       sortFields={['event.startDate']}
     >
-      <Link to='https://collections.library.nd.edu' className='button callout'>Digital Collections</Link>
+      <Link to='https://collections.library.nd.edu' className='button callout'>View Digital Exhibits</Link>
     </LandingPageWrapper>
   )
 }

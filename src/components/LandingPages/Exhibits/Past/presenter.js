@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import LandingPageWrapper from '../../Wrapper'
 import ExhibitCard from 'components/ExhibitCard'
 import DateFilter from 'components/Interactive/DateFilter'
+import Link from 'components/Interactive/Link'
 
 const Presenter = (props) => {
   return (
@@ -25,7 +26,9 @@ const Presenter = (props) => {
       }}
       filterFields={['title', 'type', 'event.title', 'event.shortDescription']}
       sortFields={['event.startDate']}
+      sortOrder='desc'
     >
+      <Link to='https://collections.library.nd.edu' className='button callout'>View Digital Exhibits</Link>
       <DateFilter
         entries={props.exhibits.map(exhibit => exhibit.event)}
         filterYear={props.filterYear}

@@ -62,7 +62,7 @@ export class LandingPageWrapperContainer extends Component {
     if (searchFilter) {
       entries = helper.filterList(entries, this.props.filterFields, searchFilter, false).slice(0, 50)
     }
-    return helper.sortList(entries, this.props.sortFields, 'asc')
+    return helper.sortList(entries, this.props.sortFields, this.props.sortOrder)
   }
 
   onFilterChange (e, facetValues) {
@@ -139,6 +139,10 @@ export const mapStateToProps = (state, ownProps) => {
   }
 }
 
+LandingPageWrapperContainer.defaultProps = {
+  sortOrder: 'asc',
+}
+
 LandingPageWrapperContainer.propTypes = {
   pageTitle: PropTypes.string.isRequired,
   entries: PropTypes.array.isRequired,
@@ -147,6 +151,10 @@ LandingPageWrapperContainer.propTypes = {
   allEntriesStatus: PropTypes.string.isRequired,
   filterFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   sortFields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sortOrder: PropTypes.oneOf([
+    'asc',
+    'desc',
+  ]),
   facets: PropTypes.arrayOf(PropTypes.shape({
     fieldName: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(PropTypes.shape({
