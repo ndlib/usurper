@@ -10,7 +10,7 @@ class PageAlert extends React.Component {
       fields: {
         title: '',
         type: this.props.type,
-        domain: 'library',
+        domains: ['library'],
         description: this.props.children,
         startTime: new Date(),
         endTime: new Date(9999, 12, 31),
