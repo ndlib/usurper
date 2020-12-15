@@ -9,18 +9,13 @@ const Presenter = ({ entries }) => {
   return (
     <div className='col-xs-12' >
       <section aria-label='Exhibits' className='exhibitsSection'>
-        <h1>Exhibits</h1>
+        <Link to='exhibits/past' className='exhibitsHeader'><h1>Exhibits</h1></Link>
         <div className='exhibitsList'>
           { entries.map((entry) => (
             <ExhibitCard key={entry.id} entry={entry} />
           ))}
         </div>
-        {
-          /* This is temporary. Landing page link will be back. Make sure to enable the unit test when this returns!
-          <Link to='/exhibits' arrow>View All Exhibits</Link>
-          */
-        }
-        <Link to='https://collections.library.nd.edu/' arrow>View More Digital Exhibits</Link>
+        <Link to='/exhibits/past' arrow>View All Exhibits</Link>
       </section>
     </div>
   )

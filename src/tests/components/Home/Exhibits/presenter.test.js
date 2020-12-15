@@ -38,8 +38,8 @@ describe('components/Home/Exhibits/presenter', () => {
     enzymeWrapper = setup(props)
   })
 
-  it.skip('should render link to exhibits landing page', () => {
-    expect(enzymeWrapper.containsMatchingElement(<Link to='/exhibits'>{expect.anything()}</Link>)).toBe(true)
+  it('should render link to exhibits landing page', () => {
+    expect(enzymeWrapper.containsMatchingElement(<Link to='/exhibits/past'>{expect.anything()}</Link>)).toBe(true)
   })
 
   it('should render ExhibitCard component for each entry', () => {
