@@ -15,7 +15,6 @@ babel_cache/
 
 # production
 /build
-/public/*.json
 /public/secure
 /public/sitemap.xml
 
