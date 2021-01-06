@@ -3,6 +3,7 @@ import Facebook from '../images/facebook.png'
 import Twitter from '../images/twitter.png'
 import Link from 'components/Interactive/Link'
 import ServiceNowLink from 'components/Interactive/ServiceNowLink'
+import fdlpIcon from 'static/images/fdlp-emblem-color.png'
 
 const FooterLinks = () => {
   return (
@@ -21,7 +22,7 @@ const FooterLinks = () => {
                 <li>
                   <Link to='https://libguides.library.nd.edu/government-information' label='Federal Depository Library'>
                     <img
-                      src='/icons/fdlp-emblem-color.png'
+                      src={fdlpIcon}
                       className='gov'
                       alt='Logo of Federal Depository Library Project'
                     />

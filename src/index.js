@@ -20,14 +20,18 @@ render((
 document.getElementById('root')
 )
 
-if ('serviceWorker' in navigator) {
-  const wb = new Workbox('service-worker.js')
+if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'development') {
+  try {
+    const wb = new Workbox('service-worker.js')
 
-  wb.addEventListener('installed', (event) => {
-    if (event.isUpdate) {
-      window.location.reload()
-    }
-  })
+    wb.addEventListener('installed', (event) => {
+      if (event.isUpdate) {
+        window.location.reload()
+      }
+    })
 
-  wb.register()
+    wb.register()
+  } catch (err) {
+    console.error('Failed to load ServiceWorker')
+  }
 }
