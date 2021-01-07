@@ -4,7 +4,8 @@ const genConfig = () => {
   const defaultConfig = {
     recommendAPI: parameters.recommendEngine,
     coursesAPI: parameters.classesAPI,
-    resourcesAPI: parameters.gatekeeper,
+    alephGatewayAPI: parameters.alephgateway,
+    illiadGatewayAPI: parameters.illiadgateway,
     illiadBaseURL: parameters.illiad + '?Action=10&Form=<<form>>&Value=<<value>>',
     hoursAPIURL: parameters.monarchLibguides,
     contentfulAPI: parameters.contentfuldirect,
@@ -30,7 +31,8 @@ const genConfig = () => {
   const config = {
     recommendAPI: process.env.RECOMMEND_API ? process.env.RECOMMEND_API : defaultConfig.recommendAPI,
     coursesAPI: process.env.COURSES_API ? process.env.COURSES_API : defaultConfig.coursesAPI,
-    resourcesAPI: process.env.RESOURCES_API ? process.env.RESOURCES_API : defaultConfig.resourcesAPI,
+    alephGatewayAPI: process.env.ALEPH_GATEWAY_API ? process.env.ALEPH_GATEWAY_API : defaultConfig.alephGatewayAPI,
+    illiadGatewayAPI: process.env.ILLIAD_GATEWAY_API ? process.env.ILLIAD_GATEWAY_API : defaultConfig.illiadGatewayAPI,
     illiadBaseURL: process.env.ILLIAD_BASE_URL ? process.env.ILLIAD_BASE_URL : defaultConfig.illiadBaseURL,
     hoursAPIURL: process.env.HOURS_API_URL ? process.env.HOURS_API_URL : defaultConfig.hoursAPIURL,
     contentfulAPI: process.env.CONTENTFUL_API ? process.env.CONTENTFUL_API : defaultConfig.contentfulAPI,

@@ -24,12 +24,11 @@ export const renewAleph = (barcode, library) => {
   return (dispatch, getState) => {
     const state = getState().personal
     dispatch(requestRenewal(barcode))
-    const url = Config.resourcesAPI + '/aleph/renew?library=' + library
+    const url = Config.alephGatewayAPI + '/renew?library=' + library
     return fetch(url, {
       method: 'post',
       headers: {
         'barcode': barcode,
-        'aleph-id': state.user.alephId,
         'Authorization': state.login.token,
       },
     })

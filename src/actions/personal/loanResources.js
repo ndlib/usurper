@@ -2,7 +2,6 @@ import Config from 'shared/Configuration'
 import * as states from './constants'
 import * as statuses from 'constants/APIStatuses'
 
-const resourcesUrl = Config.resourcesAPI
 const userPrefsUrl = Config.userPrefsAPI
 
 export const handleUser = (dispatch, data) => {
@@ -42,8 +41,8 @@ export const handleResources = (service, type, library = '') => {
   }
 }
 
-const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, library = null) => {
-  let path = (service === 'userPrefs') ? `${userPrefsUrl}/${type}` : `${resourcesUrl}/${service}/${type}`
+const doQuery = (dispatch, apiUrl, type, func, token, stateKey, retry = 0, library = null) => {
+  let path = `${apiUrl}/${type}`
   if (library) {
     path += `?library=${library}`
   }
@@ -57,8 +56,8 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, libr
     (e) => {
       console.error(e)
       if (retry === 0) {
-        console.log('Retrying ' + service + ' ' + type)
-        doQuery(dispatch, service, type, func, token, stateKey, 1, library)
+        console.log(`Retrying request ${path}`)
+        doQuery(dispatch, apiUrl, type, func, token, stateKey, 1, library)
       } else {
         dispatch(states.receivePersonal(stateKey, statuses.ERROR, e.message))
       }
@@ -69,7 +68,7 @@ const doQuery = (dispatch, service, type, func, token, stateKey, retry = 0, libr
 export const getUser = () => {
   return (dispatch, getState) => {
     const state = getState().personal
-    doQuery(dispatch, 'aleph', 'user', handleUser, state.login.token, 'user')
+    doQuery(dispatch, Config.alephGatewayAPI, 'user', handleUser, state.login.token, 'user')
   }
 }
 
@@ -77,13 +76,13 @@ export const getPending = () => {
   return (dispatch, getState) => {
     const state = getState().personal
     const token = state.login.token
-    doQuery(dispatch, 'aleph', 'pending',
+    doQuery(dispatch, Config.alephGatewayAPI, 'pending',
       handleResources('aleph', 'pending', 'Ndu'),
       token, 'alephPendingNdu', 0, 'ndu50')
-    doQuery(dispatch, 'aleph', 'pending',
+    doQuery(dispatch, Config.alephGatewayAPI, 'pending',
       handleResources('aleph', 'pending', 'Hcc'),
       token, 'alephPendingHcc', 0, 'hcc50')
-    doQuery(dispatch, 'illiad', 'pending',
+    doQuery(dispatch, Config.illiadGatewayAPI, 'pending',
       handleResources('ill', 'pending'),
       token, 'illPending')
   }
@@ -94,13 +93,13 @@ export const getBorrowed = () => {
     const state = getState().personal
     const token = state.login.token
 
-    doQuery(dispatch, 'aleph', 'borrowed',
+    doQuery(dispatch, Config.alephGatewayAPI, 'borrowed',
       handleResources('aleph', 'borrowed', 'Ndu'),
       token, 'alephHaveNdu', 0, 'ndu50')
-    doQuery(dispatch, 'aleph', 'borrowed',
+    doQuery(dispatch, Config.alephGatewayAPI, 'borrowed',
       handleResources('aleph', 'borrowed', 'Hcc'),
       token, 'alephHaveHcc', 0, 'hcc50')
-    doQuery(dispatch, 'illiad', 'borrowed',
+    doQuery(dispatch, Config.illiadGatewayAPI, 'borrowed',
       handleResources('ill', 'borrowed'),
       token, 'illHave')
   }
@@ -110,7 +109,7 @@ export const getHistorical = () => {
   return (dispatch, getState) => {
     const state = getState().personal
     const token = state.login.token
-    doQuery(dispatch, 'userPrefs', 'circHistory', handleResources('userPrefs', 'circHistory'), token, 'historical')
+    doQuery(dispatch, userPrefsUrl, 'circHistory', handleResources('userPrefs', 'circHistory'), token, 'historical')
   }
 }
 const getResources = () => {
@@ -124,7 +123,7 @@ export const deleteHistorical = (recordKey = null, successCallback = null, error
   return (dispatch, getState) => {
     const state = getState().personal
     const token = state.login.token
-    let path = userPrefsUrl + 'circHistory'
+    let path = userPrefsUrl + '/circHistory'
     if (recordKey) {
       path += '/' + recordKey
     }
