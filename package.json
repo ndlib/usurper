@@ -119,7 +119,8 @@
       "__APP_CONFIG__": {
         "directoryAPI": "http://directoryAPI.edu",
         "coursesAPI": "http://coursesAPI.edu",
-        "resourcesAPI": "http://resourcesAPI.edu",
+        "alephGatewayAPI": "http://alephGatewayAPI.edu",
+        "illiadGatewayAPI": "http://illiadGatewayAPI.edu",
         "illiadBaseURL": "http://illiadBaseURL.edu",
         "contentfulAPI": "http://contentfulAPI.edu",
         "userPrefsAPI": "http://userPrefsAPI.edu",

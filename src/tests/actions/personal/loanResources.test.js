@@ -9,7 +9,8 @@ import * as constants from 'actions/personal/constants'
 const middlewares = [ thunk ]
 const mockStore = configureMockStore(middlewares)
 
-const url = Config.resourcesAPI
+const alephApiUrl = Config.alephGatewayAPI
+const illiadApiUrl = Config.illiadGatewayAPI
 const userPrefsUrl = Config.userPrefsAPI
 
 const any = () => {
@@ -28,7 +29,12 @@ describe('resources fetch async action creator', () => {
   let spy
 
   beforeEach(() => {
-    nock(url)
+    nock(alephApiUrl)
+      .persist()
+      .get(/[borrowed|pending]/)
+      .reply(200, {})
+
+    nock(illiadApiUrl)
       .persist()
       .get(/[borrowed|pending]/)
       .reply(200, {})
@@ -100,16 +106,16 @@ describe('resources fetch async action creator', () => {
     store.dispatch(getResources())
     store.dispatch(getHistorical())
 
-    expect(spy).toHaveBeenCalledWith(url + '/aleph/user', 'GET', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(alephApiUrl + '/user', 'GET', any(), any(), any(), any())
 
     const libs = ['ndu50', 'hcc50']
     for (let i = 0; i < libs.length; i++) {
-      expect(spy).toHaveBeenCalledWith(url + '/aleph/borrowed?library=' + libs[i], 'GET', any(), any(), any(), any())
-      expect(spy).toHaveBeenCalledWith(url + '/aleph/pending?library=' + libs[i], 'GET', any(), any(), any(), any())
+      expect(spy).toHaveBeenCalledWith(alephApiUrl + '/borrowed?library=' + libs[i], 'GET', any(), any(), any(), any())
+      expect(spy).toHaveBeenCalledWith(alephApiUrl + '/pending?library=' + libs[i], 'GET', any(), any(), any(), any())
     }
 
-    expect(spy).toHaveBeenCalledWith(url + '/illiad/borrowed', 'GET', any(), any(), any(), any())
-    expect(spy).toHaveBeenCalledWith(url + '/illiad/pending', 'GET', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(illiadApiUrl + '/borrowed', 'GET', any(), any(), any(), any())
+    expect(spy).toHaveBeenCalledWith(illiadApiUrl + '/pending', 'GET', any(), any(), any(), any())
     expect(spy).toHaveBeenCalledWith(userPrefsUrl + '/circHistory', 'GET', any(), any(), any(), any())
   })
 })
