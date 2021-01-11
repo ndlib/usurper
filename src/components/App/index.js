@@ -24,6 +24,7 @@ import News from 'components/LandingPages/News'
 import StudySpaces from 'components/LandingPages/StudySpaces'
 import CurrentEvents from 'components/LandingPages/Events/Current'
 import PastEvents from 'components/LandingPages/Events/Past'
+import EventGroup from 'components/LandingPages/Events/Group'
 import CurrentExhibits from 'components/LandingPages/Exhibits/Current'
 import PastExhibits from 'components/LandingPages/Exhibits/Past'
 import DatabaseList from 'components/DatabaseList'
@@ -76,6 +77,7 @@ const App = (props) => {
             <Route exact path='/courses' component={Courses} />
             <Route exact path='/hours' component={Hours} />
             <Route exact path='/events' component={CurrentEvents} />
+            <Route exact path='/events/series/:groupId' component={EventGroup} />
             <Route exact path='/events/past' component={PastEvents} />
             <Route exact path='/events/past/:date' component={PastEvents} />
             <Route exact path='/events/:date' component={CurrentEvents} />
