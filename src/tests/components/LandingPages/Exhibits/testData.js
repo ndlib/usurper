@@ -10,6 +10,8 @@ const makeExhibit = (offsetStartDays, offsetEndDays) => {
   }
 }
 
+export const twoYearsOneDayAgoExhibit = makeExhibit(-731)
+export const twoYearsAgoExhibit = makeExhibit(-730)
 export const oneEightyDaysAgoExhibit = makeExhibit(-180)
 export const oneSeventyNineDaysAgoExhibit = makeExhibit(-179)
 export const previousExhibit = makeExhibit(-45, -1)
@@ -32,6 +34,8 @@ export const incompleteExhibit = {
 // Intentionally ordered funky to make sure sorting works
 export const allTestExhibits = [
   futureExhibit,
+  twoYearsOneDayAgoExhibit,
+  twoYearsAgoExhibit,
   oneEightyDaysAgoExhibit,
   oneSeventyNineDaysAgoExhibit,
   todayExhibit,

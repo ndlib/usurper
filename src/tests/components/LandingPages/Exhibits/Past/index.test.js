@@ -102,12 +102,14 @@ describe('components/LandingPages/Exhibits/Past', () => {
         testData.oneSeventyNineDaysAgoExhibit,
         testData.oneEightyDaysAgoExhibit,
         testData.yesterdayExhibit,
+        testData.twoYearsAgoExhibit,
+        testData.twoYearsOneDayAgoExhibit,
       ]
       expect(result.exhibits).toEqual(expect.arrayContaining(expected))
       expect(result.exhibits).toHaveLength(expected.length)
     })
 
-    it('should return filteredExhibits for last 180 days by default', () => {
+    it('should return filteredExhibits for last 730 days by default', () => {
       const state = {
         allExhibits: {
           status: statuses.SUCCESS,
@@ -118,7 +120,9 @@ describe('components/LandingPages/Exhibits/Past', () => {
       const expected = [
         testData.previousExhibit,
         testData.oneSeventyNineDaysAgoExhibit,
+        testData.oneEightyDaysAgoExhibit,
         testData.yesterdayExhibit,
+        testData.twoYearsAgoExhibit,
       ]
       expect(result.filteredExhibits).toEqual(expect.arrayContaining(expected))
       expect(result.filteredExhibits).toHaveLength(expected.length)
@@ -126,6 +130,7 @@ describe('components/LandingPages/Exhibits/Past', () => {
 
     it('should return filteredExhibits for specific month if provided', () => {
       const todayDate = testData.todayExhibit.event.startDate
+      const currentYear = todayDate.getFullYear()
       const currentMonth = todayDate.getMonth()
       const currentMonthString = todayDate.getFullYear().toString() +
         (todayDate.getMonth() + 1).toString().padStart(2, '0')
@@ -147,7 +152,8 @@ describe('components/LandingPages/Exhibits/Past', () => {
       const expected = [
         ...testData.allTestExhibits.filter(exhibit => (exhibit.event.startDate && exhibit.event.endDate) && // filter out invalid records
           (exhibit.event.startDate < new Date() || exhibit.event.endDate < new Date()) && // filter out current/future records
-          (exhibit.event.startDate.getMonth() === currentMonth || exhibit.event.endDate.getMonth() === currentMonth)) // filter out not matching month
+          (exhibit.event.startDate.getMonth() === currentMonth || exhibit.event.endDate.getMonth() === currentMonth) && // filter out not matching month
+          (exhibit.event.startDate.getFullYear() === currentYear || exhibit.event.endDate.getFullYear() === currentYear)) // filter out not matching year
       ]
 
       // arrayContaining and equal length so that we can ignore order
