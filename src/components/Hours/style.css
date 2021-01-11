@@ -1,0 +1,97 @@
+.hours-page .hours-listing {
+	padding: 20px;
+}
+
+.location {
+	padding: 10px 0;
+	-ms-grid-column: 1;
+}
+
+.today {
+	background: #7D791C;
+	padding: 10px;
+	color: #fff;
+	font-family: GPCBook, sans-serif;
+	-ms-grid-column: 2;
+	-moz-grid-column: 2;
+	-moz-grid-row: 2 / 3;
+}
+
+.closed .today {
+	background: #AA272F;
+}
+
+.swipe-only .today {
+	background: #FFCF01;
+	color: #4D3D00;
+}
+
+.expand, .collapse {
+	cursor: pointer;
+}
+
+.arrow {
+	-ms-grid-column: 3;
+}
+
+.earrow, .carrow {
+		-ms-grid-column: 3;
+  	float: right;
+  	margin: 20px 0 10px;
+  	height: 0;
+  	overflow: hidden;
+  	padding-top: 17px;
+  	width: 34px;
+}
+
+.earrow {
+	background: url('../../static/images/arrow.g.d.png') no-repeat;
+
+}
+.carrow {
+	background: url('../../static/images/arrow.g.u.png') no-repeat;
+
+}
+
+.hours-grid {
+	margin-top: 0;
+	width: 100%;
+	line-height: 1.4em;
+}
+
+
+@supports not (display:grid) {
+	.service-point a h4 {
+		display: flex;
+	}
+
+	.location, .today, .arrow  {
+		width: 33%;
+		display: inline-block;
+	}
+	.right .today, .sp-hidden .today  {
+		width: 75%;
+		display: inline-block;
+	}
+	.right .arrow, .sp-hidden .arrow {
+		width: 25%;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.location {
+		padding-left: 10px;
+		grid-column-start: 1;
+		grid-column-end: 3;
+	}
+
+	.today {
+		grid-row-start: 2;
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
+	.earrow, .carrow {
+		margin-right: 10px;
+	}
+
+}

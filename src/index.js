@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import * as Sentry from '@sentry/browser'
 import App from './components/App'
 import Config from 'shared/Configuration'
+import { Workbox } from 'workbox-window'
 
 Sentry.init({
   dsn: 'https://1df50f8918594d20b7cf9c6464238e0d@sentry.io/1281163',
@@ -18,3 +19,19 @@ render((
   </BrowserRouter>),
 document.getElementById('root')
 )
+
+if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'development') {
+  try {
+    const wb = new Workbox('service-worker.js')
+
+    wb.addEventListener('installed', (event) => {
+      if (event.isUpdate) {
+        window.location.reload()
+      }
+    })
+
+    wb.register()
+  } catch (err) {
+    console.error('Failed to load ServiceWorker')
+  }
+}

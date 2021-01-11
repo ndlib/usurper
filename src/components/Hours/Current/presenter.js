@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import WeeklyHours from './WeeklyHours'
 import { hoursOpenStatus } from 'constants/hours'
+import '../style.css'
 import './style.css'
 
 const statusClassName = (status) => {

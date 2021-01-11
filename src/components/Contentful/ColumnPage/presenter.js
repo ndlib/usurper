@@ -8,8 +8,6 @@ import PageAlert from '../Alert/Page'
 import OpenGraph from 'components/OpenGraph'
 import Section from './Section'
 
-import './style.css'
-
 const ColumnContainerPresenter = (props) => {
   const page = props.cfPageEntry.fields
   if (page && page.displayName) {
