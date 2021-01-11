@@ -8,7 +8,6 @@ import PresenterFactory from 'components/APIInlinePresenterFactory'
 import * as statuses from 'constants/APIStatuses'
 import { flattenLocale } from 'shared/ContentfulLibs'
 import { withErrorBoundary } from 'components/ErrorBoundary'
-import Config from 'shared/Configuration'
 
 export const sortNews = (left, right, withPreferred = false) => {
   const a = new Date(left.fields.publishedDate)
@@ -60,7 +59,7 @@ const mapStateToProps = (state) => {
         return entry
       })
       .sort((a, b) => sortNews(a, b, true))
-      .slice(0, Config.features.exhibitsEnabled ? 4 : 3)
+      .slice(0, 4)
   }
   return {
     allNews,

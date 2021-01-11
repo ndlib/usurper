@@ -19,9 +19,8 @@ const genConfig = () => {
     gcseCx: parameters.gcseCx,
     onesearchBaseURL: parameters.onesearch,
     features: {
-      subjectFilteringEnabled: parameters.subjectFilteringEnabled || false,
       loginEnabled: parameters.loginEnabled || false,
-      exhibitsEnabled: parameters.exhibitsEnabled || false,
+      studySpacesEnabled: parameters.studySpacesEnabled || false,
     },
     oktaClientId: parameters.oktaClientId || 'OKTA_CLIENT_ID_DEFAULT',
     oktaIssuer: parameters.oktaIssuer || 'https://okta.nd.edu/oauth2/default',
@@ -45,9 +44,8 @@ const genConfig = () => {
     gcseCx:  process.env.GCSE_CX ? process.env.GCSE_CX : defaultConfig.gcseCx,
     onesearchBaseURL: process.env.ONESEARCH_BASE_URL ? process.env.ONESEARCH_BASE_URL : defaultConfig.onesearchBaseURL,
     features: {
-      subjectFilteringEnabled: process.env.ENABLE_SUBJECT_FILTERING ? process.env.ENABLE_SUBJECT_FILTERING : defaultConfig.features.subjectFilteringEnabled,
       loginEnabled: process.env.ENABLE_LOGIN ? process.env.ENABLE_LOGIN : defaultConfig.features.loginEnabled,
-      exhibitsEnabled: process.env.ENABLE_EXHIBITS ? process.env.ENABLE_EXHIBITS : defaultConfig.features.exhibitsEnabled,
+      studySpacesEnabled: process.env.ENABLE_STUDY_SPACES ? process.env.ENABLE_STUDY_SPACES : defaultConfig.features.studySpacesEnabled,
     },
     oktaUrl: process.env.OKTA_URL ? process.env.OKTA_URL : defaultConfig.oktaUrl,
     oktaClientId: process.env.OKTA_CLIENT_ID ? process.env.OKTA_CLIENT_ID : defaultConfig.oktaClientId,

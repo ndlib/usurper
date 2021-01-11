@@ -110,7 +110,6 @@ let props
 describe('components/DatabaseList/index.js', () => {
   describe('with no data', () => {
     beforeEach(() => {
-      global.__APP_CONFIG__.features.subjectFilteringEnabled = false
       props = {
         cfDatabases: {},
         cfSubjects: { status: statuses.NOT_FETCHED },
@@ -142,7 +141,6 @@ describe('components/DatabaseList/index.js', () => {
     })
 
     it('calls the fetchSubjects action if enabled', () => {
-      global.__APP_CONFIG__.features.subjectFilteringEnabled = true
       props.fetchSubjects.mockReset()
       enzymeWrapper = setup(props)
 
@@ -252,7 +250,13 @@ describe('components/DatabaseList/index.js', () => {
           },
           grouping: {
             'resource-facets': {
-              status: statuses.NOT_FETCHED,
+              status: statuses.SUCCESS,
+              data: {
+                sys: {},
+                fields: {
+                  items: [],
+                },
+              },
             },
           },
         }
@@ -373,6 +377,12 @@ describe('components/DatabaseList/index.js', () => {
               items: [],
             },
           },
+          grouping: {
+            'resource-facets': {
+              status: statuses.SUCCESS,
+              data: {},
+            },
+          },
         }
       })
 
@@ -433,6 +443,12 @@ describe('components/DatabaseList/index.js', () => {
           cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
+          grouping: {
+            'resource-facets': {
+              status: statuses.SUCCESS,
+              data: {},
+            },
+          },
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.FETCHING)
@@ -447,6 +463,12 @@ describe('components/DatabaseList/index.js', () => {
           cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
+          grouping: {
+            'resource-facets': {
+              status: statuses.SUCCESS,
+              data: {},
+            },
+          },
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.FETCHING)
@@ -463,6 +485,12 @@ describe('components/DatabaseList/index.js', () => {
           cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
+          grouping: {
+            'resource-facets': {
+              status: statuses.SUCCESS,
+              data: {},
+            },
+          },
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.ERROR)
@@ -476,9 +504,33 @@ describe('components/DatabaseList/index.js', () => {
           cfSubjects: { status: statuses.SUCCESS },
           personal: state.personal,
           favorites: state.favorites,
+          grouping: {
+            'resource-facets': {
+              status: statuses.SUCCESS,
+              data: {},
+            },
+          },
         }
         result = mapStateToProps(tempState, tempProps)
         expect(result.allLettersStatus).toEqual(statuses.SUCCESS)
+
+        tempState = {
+          cfDatabases: {
+            ...allLettersSuccess,
+            a: { status: statuses.SUCCESS, data: [] },
+          },
+          cfSubjects: { status: statuses.SUCCESS },
+          personal: state.personal,
+          favorites: state.favorites,
+          grouping: {
+            'resource-facets': {
+              status: statuses.FETCHING,
+              data: {},
+            },
+          },
+        }
+        result = mapStateToProps(tempState, tempProps)
+        expect(result.allLettersStatus).toEqual(statuses.FETCHING)
       })
     })
   })
