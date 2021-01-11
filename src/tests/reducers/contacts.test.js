@@ -28,41 +28,42 @@ describe('Page reducer', () => {
       reducer(undefined, {
         type: actions.RECEIVE_CONTACTS,
         status: 'status from receiveContacts',
-        data: {
-          librarians: [
+        data: [
           {
-            directoryUrl: 'https://library.nd.edu/directory/employees/one', 
+            emp_url: 'https://library.nd.edu/directory/employees/one',
+            netID: 'one',
+            fname: 'dude',
+            lname: 'man',
+            email: 'my@email.address',
+            jobTitle: 'Stuff Doer',
+            mail_addr: '1234 here',
+            phone: '877CASHNOW',
+            pic: 'prettypic.url',
           },
           {
-            directoryUrl: 'https://library.nd.edu/directory/employees/two',
-          }
-        ]}
+            emp_url: 'https://library.nd.edu/directory/employees/two',
+            netID: 'two',
+          },
+        ],
       })
     ).toEqual({
       status: 'status from receiveContacts',
       contacts: [
         {
           directoryUrl: 'https://library.nd.edu/directory/employees/one',
-          netid: 'one'
-        }, 
-        {
+          netID: 'one',
+          name: 'dude man',
+          email: 'my@email.address',
+          jobTitle: 'Stuff Doer',
+          mail_addr: '1234 here',
+          phone: '877CASHNOW',
+          photo: 'prettypic.url',
+        },
+        expect.objectContaining({
           directoryUrl: 'https://library.nd.edu/directory/employees/two',
-          netid: 'two'
-        }
+          netID: 'two',
+        }),
       ],
-    })
-  })
-
-  it('should handle RECEIVE_CONTACTS', () => {
-    expect(
-      reducer(undefined, {
-        type: actions.RECEIVE_CONTACTS,
-        status: 'status from receiveContacts',
-        data: 'page from receiveContacts',
-      })
-    ).toEqual({
-      status: 'status from receiveContacts',
-      contacts: [],
     })
   })
 })

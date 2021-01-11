@@ -2,7 +2,7 @@ import reducer from 'reducers/librarians'
 import * as actions from 'actions/librarians'
 import * as statuses from 'constants/APIStatuses'
 
-describe('Page reducer', () => {
+describe('librarians reducer', () => {
   it('should return the initial state', () => {
     expect(
       reducer(undefined, {})
@@ -28,11 +28,42 @@ describe('Page reducer', () => {
       reducer(undefined, {
         type: actions.RECEIVE_LIBRARIANS,
         status: 'status from receiveLibrarians',
-        data: 'page from receiveLibrarians',
+        data: [
+          {
+            emp_url: 'https://library.nd.edu/directory/employees/one',
+            netID: 'one',
+            fname: 'dude',
+            lname: 'man',
+            email: 'my@email.address',
+            jobTitle: 'Stuff Doer',
+            mail_addr: '1234 here',
+            phone: '877CASHNOW',
+            pic: 'prettypic.url',
+          },
+          {
+            emp_url: 'https://library.nd.edu/directory/employees/two',
+            netID: 'two',
+          },
+        ],
       })
     ).toEqual({
       status: 'status from receiveLibrarians',
-      json: 'page from receiveLibrarians',
+      json: [
+        {
+          directoryUrl: 'https://library.nd.edu/directory/employees/one',
+          netID: 'one',
+          name: 'dude man',
+          email: 'my@email.address',
+          jobTitle: 'Stuff Doer',
+          mail_addr: '1234 here',
+          phone: '877CASHNOW',
+          photo: 'prettypic.url',
+        },
+        expect.objectContaining({
+          directoryUrl: 'https://library.nd.edu/directory/employees/two',
+          netID: 'two',
+        }),
+      ],
     })
   })
 })

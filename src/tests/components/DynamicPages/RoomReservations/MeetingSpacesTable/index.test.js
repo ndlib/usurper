@@ -18,7 +18,7 @@ describe('components/Contentful/DynamicPages/RoomReservations/MeetingSpacesTable
           directoryUrl: 'https://library.nd.edu/directory/employees/sone',
           name: 'some one',
           email: 'sone@nd.edu',
-          netid: 'sone',
+          netID: 'sone',
         }],
       },
       meetingSpacesData: [{

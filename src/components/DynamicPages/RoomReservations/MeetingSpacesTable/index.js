@@ -9,7 +9,7 @@ import './style.css'
 const MeetingSpacesTable = (props) => {
   const tableData = props.meetingSpacesData.map(data => {
     const contactData = typy(props.contactInfo, 'contacts').safeArray.find(contact => {
-      return contact.netid === data.fields.contact
+      return contact.netID === data.fields.contact
     })
     return {
       ...data,
@@ -66,7 +66,7 @@ MeetingSpacesTable.propTypes = {
   })).isRequired,
   contactInfo: PropTypes.shape({
     contacts: PropTypes.arrayOf(PropTypes.shape({
-      netid: PropTypes.string.isRequired,
+      netID: PropTypes.string.isRequired,
     })),
   }),
 }
