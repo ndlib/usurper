@@ -10,7 +10,7 @@ import StaticBody from 'components/Contentful/StaticContent/Body'
 import StaticAlert from 'components/Contentful/StaticContent/Alert'
 import OpenGraph from 'components/OpenGraph'
 
-import './style.css'
+import '../style.css'
 
 const Presenter = (props) => {
   return (

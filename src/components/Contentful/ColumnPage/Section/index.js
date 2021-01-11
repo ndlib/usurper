@@ -6,8 +6,6 @@ import LibMarkdown from 'components/LibMarkdown'
 import { getLinkObject } from 'shared/ContentfulLibs'
 import InternalLink from 'components/Contentful/InternalLink'
 
-import '../style.css'
-
 const Section = (props) => {
   const s = props.entry.fields
   if (!props.entry || !props.entry.fields || !props.entry.fields.displayName) {

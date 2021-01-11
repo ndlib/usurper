@@ -1,7 +1,9 @@
 import React from 'react'
 
+import styles from './style.module.css'
+
 const PolicyInfo = () => (
-  <ul className='circ-policy'>
+  <ul className={styles.circPolicy}>
     <li>The Hesburgh Libraries values your privacy and the confidentiality of your borrowing records and checkout history.</li>
     <li>No borrower information is released to third parties including outside agencies or individuals without a court order.</li>
     <li>
