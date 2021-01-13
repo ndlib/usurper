@@ -7,7 +7,7 @@ import SearchPager from './SearchPager'
 import PageTitle from 'components/Layout/PageTitle'
 
 class SearchPage extends Component {
-  componentWillMount () {
+  componentDidMount () {
     // emit the set to website.
     this.props.setSearchType('LIBRARY')
     // action to set the input

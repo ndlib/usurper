@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class PageWrapperContainer extends Component {
-  componentWillMount () {
+  componentDidMount () {
     const preview = (new URLSearchParams(this.props.location.search)).get('preview') === 'true'
     this.props.fetchNavigation(preview)
   }

@@ -68,7 +68,7 @@ describe('components/DynamicPages/RoomReservations', () => {
 
     enzymeWrapper = setup(props)
   })
-  
+
   afterEach(() => {
     enzymeWrapper = undefined
     props = undefined
@@ -128,7 +128,7 @@ describe('components/DynamicPages/RoomReservations', () => {
                 additionalFeatures: [
                   'fake features'
                 ],
-                floor: 'some floor',    
+                floor: 'some floor',
                 capacity: '30 Fixed',
                 contact: 'one',
               }
@@ -147,7 +147,7 @@ describe('components/DynamicPages/RoomReservations', () => {
                 additionalFeatures: [
                   'more features'
                 ],
-                floor: 'some floor',    
+                floor: 'some floor',
                 capacity: '30 Fixed',
                 contact: 'two'
               }
@@ -166,7 +166,7 @@ describe('components/DynamicPages/RoomReservations', () => {
                 additionalFeatures: [
                   'more features'
                 ],
-                floor: 'some floor',    
+                floor: 'some floor',
                 capacity: '30 Fixed',
                 contact: 'three'
               }
@@ -193,7 +193,7 @@ describe('components/DynamicPages/RoomReservations', () => {
       expect(newProps.body.length).toEqual(2)
       })
     })
-    
+
   describe('mapDispatchToProps', () => {
     it('creates expected actions', () => {
       const newProps = mapDispatchToProps(null)

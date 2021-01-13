@@ -20,6 +20,7 @@ const genConfig = () => {
     features: {
       loginEnabled: parameters.loginEnabled || false,
       studySpacesEnabled: parameters.studySpacesEnabled || false,
+      emailSubscriptionsEnabled: parameters.emailSubscriptionsEnabled || false,
     },
     oktaClientId: parameters.oktaClientId || 'OKTA_CLIENT_ID_DEFAULT',
     oktaIssuer: parameters.oktaIssuer || 'https://okta.nd.edu/oauth2/default',
@@ -44,6 +45,7 @@ const genConfig = () => {
     features: {
       loginEnabled: process.env.ENABLE_LOGIN ? process.env.ENABLE_LOGIN : defaultConfig.features.loginEnabled,
       studySpacesEnabled: process.env.ENABLE_STUDY_SPACES ? process.env.ENABLE_STUDY_SPACES : defaultConfig.features.studySpacesEnabled,
+      emailSubscriptionsEnabled: process.env.ENBALE_EMAIL_SUBSCRIPTIONS ? process.env.ENBALE_EMAIL_SUBSCRIPTIONS : defaultConfig.features.emailSubscriptionsEnabled,
     },
     oktaUrl: process.env.OKTA_URL ? process.env.OKTA_URL : defaultConfig.oktaUrl,
     oktaClientId: process.env.OKTA_CLIENT_ID ? process.env.OKTA_CLIENT_ID : defaultConfig.oktaClientId,

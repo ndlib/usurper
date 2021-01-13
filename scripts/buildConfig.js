@@ -60,6 +60,10 @@ const psList = [
     name: 'studySpacesEnabled',
   },
   {
+    path: 'emailSubscriptionsEnabled',
+    name: 'emailSubscriptionsEnabled',
+  },
+  {
     path: 'secrets/okta/client_id',
     name: 'oktaClientId',
   },

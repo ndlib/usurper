@@ -35,6 +35,7 @@ const PastEvents = lazy(() => import('components/LandingPages/Events/Past'))
 const EventGroup = lazy(() => import('components/LandingPages/Events/Group'))
 const CurrentExhibits = lazy(() => import('components/LandingPages/Exhibits/Current'))
 const PastExhibits = lazy(() => import('components/LandingPages/Exhibits/Past'))
+const EmailSubscribe = lazy(() => import('components/LandingPages/Email/Subscribe'))
 const DatabaseList = lazy(() => import('components/DatabaseList'))
 const SubjectList = lazy(() => import('components/SubjectList'))
 const FloorSearch = lazy(() => import('components/FloorSearch'))
@@ -103,6 +104,9 @@ const App = (props) => {
               <Route exact path='/room-reservations' component={RoomReservations} />
               {Config.features.studySpacesEnabled && (
                 <Route exact path='/study-spaces' component={StudySpaces} />
+              )}
+              {Config.features.emailSubscriptionsEnabled && (
+                <Route exact path='/email/subscribe' component={EmailSubscribe} />
               )}
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
               <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class PageTitle extends Component {
-  componentWillMount () {
+  componentDidMount () {
     if (this.props.title) {
       if (this.props.title === 'Hesburgh Libraries') {
         document.title = this.props.title
@@ -13,9 +13,7 @@ class PageTitle extends Component {
     } else {
       document.title = 'Hesburgh Libraries'
     }
-  }
 
-  componentDidMount () {
     window.scrollTo(0, 0)
   }
 
