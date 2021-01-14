@@ -1,20 +1,22 @@
-engines:
-  duplication:
+version: "2"
+checks:
+  method-lines:
+    config:
+      threshold: 100
+  similar-code:
     enabled: true
     config:
-      languages:
-      - javascript
+      threshold: 80
+plugins:
   eslint:
     enabled: true
   fixme:
     enabled: true
-ratings:
-  paths:
-  - "**.js"
-  - "**.jsx"
-exclude_paths:
+exclude_patterns:
 - "config/"
 - "deploy/"
 - "public/"
 - "scripts/"
 - "src/tests"
+- ".github"
+- "**/node_modules/"
