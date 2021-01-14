@@ -7,10 +7,13 @@ import Image from 'components/Image'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import ErrorBoundary from 'components/ErrorBoundary'
+import SummaryLink from 'components/DatabaseList/Databases/DatabaseSummary/SummaryLink'
 import Config from 'shared/Configuration'
+import { getLinkObject } from 'shared/ContentfulLibs'
 import styles from './style.module.css'
 
 const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
+  const linkObject = getLinkObject(cfDatabaseEntry.fields, cfDatabaseEntry.sys.id)
   return (
     <ErrorBoundary>
       <div key={`ContentfulDatabase_${cfDatabaseEntry.sys.id}`} className='container-fluid'>
@@ -24,35 +27,16 @@ const DatabasePresenter = ({ cfDatabaseEntry, fieldData }) => {
         <div className='row'>
           <main className='col-md-8 col-sm-7'>
             <LibMarkdown className='description'>{cfDatabaseEntry.fields.description}</LibMarkdown>
-            <section>
-              <h2>Database Access</h2>
-              <ul className={'linkGroup ' + styles.dbLink}>
-                {
-                // only use this if the field exists
-                  cfDatabaseEntry.fields.urls && (
-                    cfDatabaseEntry.fields.urls.map((data) => {
-                      const linkText = cfDatabaseEntry.fields.urls.length > 1 ? data.title : cfDatabaseEntry.fields.title
-                      return (
-                        <li key={data.url}>
-                          <Link to={data.url}>{ linkText }</Link>
-                          {
-                            data.notes && <LibMarkdown>{ data.notes }</LibMarkdown>
-                          }
-                        </li>
-                      )
-                    })
-                  )
-                }
-                {
-                // if that doesn't exist, use legacy information
-                  !cfDatabaseEntry.fields.urls && (
-                    <li key={cfDatabaseEntry.fields.purl}>
-                      <Link to={cfDatabaseEntry.fields.purl}>{ cfDatabaseEntry.fields.title }</Link>
-                    </li>
-                  )
-                }
-              </ul>
-            </section>
+            {linkObject.links.length > 0 && (
+              <section>
+                <h2>Database Access</h2>
+                <ul className={'linkGroup ' + styles.dbLink}>
+                  {linkObject.links.map((link) => (
+                    <SummaryLink key={link.keyId} link={link} />
+                  ))}
+                </ul>
+              </section>
+            )}
             <section>
               <h2>Database Information</h2>
               {
