@@ -82,9 +82,9 @@ ContentfulDatabaseContainer.propTypes = {
   databaseId: PropTypes.string.isRequired,
 }
 
-const ContentfulFloor = connect(
+const ContentfulDatabase = connect(
   mapStateToProps,
   mapDispatchToProps
 )(ContentfulDatabaseContainer)
 
-export default ContentfulFloor
+export default ContentfulDatabase
