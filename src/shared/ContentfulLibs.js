@@ -31,7 +31,7 @@ export const getLinkObject = (fields, sysId) => {
 
   // If we're not handling a resoruce type, get the link to use for the heading
   if (!mainUrl && shouldHaveMain) {
-    mainUrl = fields.url || fields.purl || ('/' + fields.slug)
+    mainUrl = fields.url || fields.purl || (fields.slug ? `/${fields.slug}` : null)
   }
 
   // get appropriate description field for this content type
@@ -40,15 +40,15 @@ export const getLinkObject = (fields, sysId) => {
   // Make a list of all links for this object, for the resource type it's the entire "urls" field
   //  otherwise, we've already got the only link for the object in the mainUrl var
   //  we also want to enrich the data with a title if there is none, and a keyId for use in displays <li key={keyId}>
-  let links
+  let links = []
   if (fields.urls) {
     links = fields.urls.map((data, index) => {
       data.keyId = sysId + '_link_' + index
       data.title = data.title ? data.title : fields.title
       return data
     })
-  } else {
-    links = [ { title: fields.title, url: mainUrl, keyId: sysId + '_link_' + 0 } ]
+  } else if (mainUrl) {
+    links.push({ title: fields.title, url: mainUrl, keyId: sysId + '_link_' + 0 })
   }
 
   // heading is the item title, url, and description
