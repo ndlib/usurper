@@ -24,18 +24,15 @@
 
 * [Classes API](https://github.com/ndlib/classes_api)
 * [Contentful Aleph](https://github.com/ndlib/contentful_aleph) - Contentful hook to populate aleph data
-* [Contentful Data Migration](https://github.com/ndlib/contentful-data-migration) - A utility written in python to make data migrations in contentful easier to write.
-* [Contentful Slug Checker](https://github.com/ndlib/contentfulSlugChecker) - Contentful UI plugin to check slugs against all other content types.
+* [ndlib/Contentful](https://github.com/ndlib/contentful) - Migrations scripts, extensions, and utilities for interacting with Contentful
 * [Drapes](https://github.com/ndlib/drapes) - Hesburgh utility to wrap various (non-Usurper) webpages with a defined template.
-* [ESU Web Renovation](https://github.com/ndlib/esu-webrenovation) - ESU Web Renovation Ansible Deployment.
 * [GateKeeper](https://github.com/ndlib/gatekeeper) - Library Portal Resources API.
 * [Hesburgh Utilities](https://github.com/ndlib/hesburgh_utilities) - Utilities shared across multiple projects.
 * [Lambda Auth](https://github.com/ndlib/lambda_auth) - Custom Authorizers for AWS Lambda.
-* [Monarch Libguides](https://github.com/ndlib/monarch_libguides)
+* [Libcal Gateway](https://github.com/ndlib/libcal-gateway)
 * [Recommendation Engine](https://github.com/ndlib/recommendation_engine) - Engine for the library website to recommend resources to users based on their information.
 * [User Preferences](https://github.com/ndlib/user_preferences) - A microservice to store and query user preferences.
-* [Usurper Content](https://github.com/ndlib/usurper_content) - Transforms content from the website's Contentful space for easier consumption by the front-end (usurper).
-* [Viceroy](https://github.com/ndlib/viceroy) - Barebones rails application to support CAS login.
+* [Contentful Direct](https://github.com/ndlib/contentful_direct) - Transforms content from the website's Contentful space for easier consumption by the front-end (usurper).
 
 ## Setup and Installation
 

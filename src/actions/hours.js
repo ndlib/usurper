@@ -38,7 +38,7 @@ const receiveHours = (result) => {
 export const fetchHours = () => {
   return dispatch => {
     dispatch(requestHours())
-    const url = `${Config.hoursAPIURL}/hours`
+    const url = `${Config.libcalGatewayAPI}/hours`
     return fetch(url)
       .then(response => response.ok ? response.json() : response.text())
       .then(json => dispatch(receiveHours(json)))

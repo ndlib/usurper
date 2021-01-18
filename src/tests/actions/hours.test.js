@@ -18,7 +18,7 @@ const extractHostname = (url) => {
 describe('hours actions', () => {
   describe('with valid response', () => {
     beforeEach(() => {
-      nock(Config.hoursAPIURL)
+      nock(Config.libcalGatewayAPI)
         .get('/hours')
         .reply(200, mockPageResponse)
     })
@@ -62,7 +62,7 @@ describe('hours actions', () => {
     })
 
     it('should create a HOURS_RECEIVE action with error status if invalid status code', () => {
-      nock(Config.hoursAPIURL)
+      nock(Config.libcalGatewayAPI)
         .get('/hours')
         .reply(404, invalidResponse)
 
@@ -81,7 +81,7 @@ describe('hours actions', () => {
     })
 
     it('should create a HOURS_RECEIVE action with error status if invalid object', () => {
-      nock(Config.hoursAPIURL)
+      nock(Config.libcalGatewayAPI)
         .get('/hours')
         .reply(200, invalidResponse)
 

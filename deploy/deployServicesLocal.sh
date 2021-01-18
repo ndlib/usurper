@@ -137,7 +137,7 @@ deploy_project () {
     then
       pushd ../$cdk_project
       echo "CMD: cdk deploy -c stage=$stage -c serviceStackName=$cdk_stack_name --require-approval=\"never\"" >> $LOG_DIR_BASE/logs/$current_project.log
-      if $(cdk deploy -c stage=$stage -c serviceStackName=$cdk_stack_name --require-approval="never" >> $LOG_DIR_BASE/logs/$current_project.log)
+      if $(cdk deploy $cdk_stack_name -c stage=$stage -c serviceStackName=$cdk_stack_name --require-approval="never" >> $LOG_DIR_BASE/logs/$current_project.log)
       then
         printf "${GREEN} SUCCESS: $current_project ${NC} \n"
       else
@@ -180,7 +180,7 @@ deploy_project "contentful_maps"
 
 deploy_project "recommendation_engine"
 
-deploy_project "monarch_libguides"
+deploy_project "libcal-gateway" "libcal-gateway-blueprints" "libcal-gateway-$stage"
 
 deploy_project "gatekeeper"
 
