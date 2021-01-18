@@ -12,7 +12,7 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
       return Object.assign({}, state, {
         status: action.status,
         json: typy(action, 'allAlerts').safeArray.filter(alert => {
-          return alert.fields.domain === 'library' || alert.fields.domain === 'all'
+          return alert.fields.domains.includes('library')
         }),
       })
     default:
