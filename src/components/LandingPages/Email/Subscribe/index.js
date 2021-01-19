@@ -64,7 +64,7 @@ const EmailSubscribeContainer = (props) => {
 
     props.putSubscription(props.match.params.type, email, {
       ...selectedOptions,
-      frequencyDays: parseInt(frequency),
+      frequencyDays: parseInt(frequency, 10),
       updateKey: isEdit ? searchParams.get('updateKey') : undefined,
     })
   }
@@ -83,7 +83,7 @@ const EmailSubscribeContainer = (props) => {
   }
 
   const onFrequencyChange = (event) => {
-    setFrequency(parseInt(event.target.value))
+    setFrequency(parseInt(event.target.value, 10))
   }
 
   const onEmailChange = (event) => {
