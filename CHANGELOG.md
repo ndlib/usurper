@@ -1,5 +1,23 @@
 # Change Log
 
+## [v2021.1](https://github.com/ndlib/usurper/tree/v2021.1) "Neko Drank"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2020.24...v2021.1)
+
+### Bug Fixes
+- Fixed an issue with some links not displaying on database pages. [#982](https://github.com/ndlib/usurper/pull/982)
+- Fixed alert styling for large blocks of text. [#985](https://github.com/ndlib/usurper/pull/985)
+
+### Features
+- A single alert can now target multiple sites instead of making one for each. [#984](https://github.com/ndlib/usurper/pull/984)
+- *Dark Feature - Added landing page for event groups/recurring events.* [#967](https://github.com/ndlib/usurper/pull/967)
+
+### Other Changes
+- Exhibits landing page will now display more past exhibits, and has some other minor changes. [#976](https://github.com/ndlib/usurper/pull/976)
+- Internal changes for handling app updates and caching. [#973](https://github.com/ndlib/usurper/pull/973) [#978](https://github.com/ndlib/usurper/pull/978)
+- More internal changes to how data is fetched. [#966](https://github.com/ndlib/usurper/pull/966) [#965](https://github.com/ndlib/usurper/pull/965) [#983](https://github.com/ndlib/usurper/pull/983)
+
+*Dark features will be visible in a future release.*
+
 ## [v2020.24](https://github.com/ndlib/usurper/tree/v2020.24) "Sleeping Cat"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.22...v2020.24)
 
