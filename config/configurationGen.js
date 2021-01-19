@@ -4,7 +4,8 @@ const genConfig = () => {
   const defaultConfig = {
     directoryAPI: parameters.directoryAPI,
     coursesAPI: parameters.classesAPI,
-    resourcesAPI: parameters.gatekeeper,
+    alephGatewayAPI: parameters.alephgateway,
+    illiadGatewayAPI: parameters.illiadgateway,
     illiadBaseURL: parameters.illiad + '?Action=10&Form=<<form>>&Value=<<value>>',
     contentfulAPI: parameters.contentfuldirect,
     mapsAPI: parameters.contentfulmaps,
@@ -28,7 +29,8 @@ const genConfig = () => {
   const config = {
     directoryAPI: process.env.DIRECTORY_API ? process.env.DIRECTORY_API : defaultConfig.directoryAPI,
     coursesAPI: process.env.COURSES_API ? process.env.COURSES_API : defaultConfig.coursesAPI,
-    resourcesAPI: process.env.RESOURCES_API ? process.env.RESOURCES_API : defaultConfig.resourcesAPI,
+    alephGatewayAPI: process.env.ALEPH_GATEWAY_API ? process.env.ALEPH_GATEWAY_API : defaultConfig.alephGatewayAPI,
+    illiadGatewayAPI: process.env.ILLIAD_GATEWAY_API ? process.env.ILLIAD_GATEWAY_API : defaultConfig.illiadGatewayAPI,
     illiadBaseURL: process.env.ILLIAD_BASE_URL ? process.env.ILLIAD_BASE_URL : defaultConfig.illiadBaseURL,
     contentfulAPI: process.env.CONTENTFUL_API ? process.env.CONTENTFUL_API : defaultConfig.contentfulAPI,
     mapsAPI: process.env.MAPS_API ? process.env.MAPS_API : defaultConfig.mapsAPI,
