@@ -23,7 +23,7 @@ const Presenter = (props) => {
       entryCardComponent={EventCard}
       filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
       sortFields={['startDate']}
-      afterFacetsChildren={<EmailSubscribeBox htag={2} />}
+      afterFacetsChildren={<EmailSubscribeBox type='events' htag={2} />}
     >
       <Calendar
         events={props.events}

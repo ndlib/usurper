@@ -96,7 +96,7 @@ const PagePresenter = ({ entry }) => {
           <Librarians netids={entry.contactPeople} />
           <ServicePoint cfServicePoint={entry.location} showDetails={false} />
           <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.relatedPages }</Related>
-          <EmailSubscribeBox htag={2} />
+          <EmailSubscribeBox type='events' htag={2} />
         </aside>
       </div>
       <Link to='/events' className='viewAllEvents' arrow>View All Events</Link>

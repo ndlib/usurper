@@ -106,7 +106,7 @@ const App = (props) => {
                 <Route exact path='/study-spaces' component={StudySpaces} />
               )}
               {Config.features.emailSubscriptionsEnabled && (
-                <Route exact path='/email/subscribe' component={EmailSubscribe} />
+                <Route exact path='/email/:type/subscribe' component={EmailSubscribe} />
               )}
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
               <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />

@@ -32,6 +32,7 @@ import chatReducer from './chat'
 import advancedSearch from './advancedSearch'
 import floorSearch from './floorSearch'
 import favorites from './favorites'
+import email from './email'
 
 import { combineReducers } from 'redux'
 
@@ -69,6 +70,7 @@ const rootReducer = combineReducers({
   advancedSearch: advancedSearch,
   floorSearch: floorSearch,
   favorites: favorites,
+  email: email,
   renderComponents: hasNavigation,
 })
 

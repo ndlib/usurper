@@ -20,7 +20,7 @@ const EmailSubscribeBox = (props) => {
     className: styles.headerText,
   }, 'Subscribe to Events')
 
-  const linkUrl = `email/subscribe${location.search || ''}`
+  const linkUrl = `email/${props.type}/subscribe${location.search || ''}`
   return (
     <div className={styles.box}>
       { headerTextEl }
@@ -33,6 +33,9 @@ const EmailSubscribeBox = (props) => {
 }
 
 EmailSubscribeBox.propTypes = {
+  type: PropTypes.oneOf([
+    'events',
+  ]).isRequired,
   htag: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string, // Ex: '1', '4', 'h2', 'h4', etc.
