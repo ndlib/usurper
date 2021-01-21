@@ -54,13 +54,13 @@ describe('components/DynamicPages/RoomReservations', () => {
           directoryUrl: 'https://library.nd.edu/directory/employees/sone',
           name: 'some one',
           email: 'sone@nd.edu',
-          netid: 'one'
+          netID: 'one'
         },
         {
           directoryUrl: 'https://library.nd.edu/directory/employees/aone',
           name: 'another one',
           email: 'aone@nd.edu',
-          netid: 'three'
+          netID: 'three'
         }
       ],
       }
@@ -68,7 +68,7 @@ describe('components/DynamicPages/RoomReservations', () => {
 
     enzymeWrapper = setup(props)
   })
-  
+
   afterEach(() => {
     enzymeWrapper = undefined
     props = undefined
@@ -102,13 +102,13 @@ describe('components/DynamicPages/RoomReservations', () => {
             directoryUrl: 'https://library.nd.edu/directory/employees/sone',
             name: 'some one',
             email: 'sone@nd.edu',
-            netid: 'one'
+            netID: 'one'
           },
           {
             directoryUrl: 'https://library.nd.edu/directory/employees/bone',
             name: 'bob one',
             email: 'bone@nd.edu',
-            netid: 'three'
+            netID: 'three'
           }],
         },
         cfAllMeetingSpaces: {
@@ -128,7 +128,7 @@ describe('components/DynamicPages/RoomReservations', () => {
                 additionalFeatures: [
                   'fake features'
                 ],
-                floor: 'some floor',    
+                floor: 'some floor',
                 capacity: '30 Fixed',
                 contact: 'one',
               }
@@ -147,7 +147,7 @@ describe('components/DynamicPages/RoomReservations', () => {
                 additionalFeatures: [
                   'more features'
                 ],
-                floor: 'some floor',    
+                floor: 'some floor',
                 capacity: '30 Fixed',
                 contact: 'two'
               }
@@ -166,7 +166,7 @@ describe('components/DynamicPages/RoomReservations', () => {
                 additionalFeatures: [
                   'more features'
                 ],
-                floor: 'some floor',    
+                floor: 'some floor',
                 capacity: '30 Fixed',
                 contact: 'three'
               }
@@ -193,7 +193,7 @@ describe('components/DynamicPages/RoomReservations', () => {
       expect(newProps.body.length).toEqual(2)
       })
     })
-    
+
   describe('mapDispatchToProps', () => {
     it('creates expected actions', () => {
       const newProps = mapDispatchToProps(null)
