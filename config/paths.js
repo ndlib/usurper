@@ -34,10 +34,11 @@ const getPublicUrl = (appPackageJson) => {
 const getServedPath = (appPackageJson) => {
   const publicUrl = getPublicUrl(appPackageJson)
   const servedUrl = envPublicUrl || (
-    process.env.STAGE ? (
-      `https://${process.env.STAGE === 'prod' ? 'library.nd.edu' : `${process.env.STAGE}.library.nd.edu`}`
-    ) : '/'
-  ) || (
+  // DISABLED FOR NOW - Related to service worker
+  //   process.env.STAGE ? (
+  //     `https://${process.env.STAGE === 'prod' ? 'library.nd.edu' : `${process.env.STAGE}.library.nd.edu`}`
+  //   ) : '/'
+  // ) || (
     publicUrl ? new URL(publicUrl).pathname : '/'
   )
   return ensureSlash(servedUrl, true)
