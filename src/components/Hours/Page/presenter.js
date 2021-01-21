@@ -36,8 +36,8 @@ const Presenter = (props) => {
                 }
 
                 return (
-                  <div key={sp.sys.id} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
-                    <CurrentHours servicePoint={sp}>
+                  <div key={sp.sys.id} id={sp.fields.slug} className={servicePointOrder.main ? 'main-service-point' : 'sub-service-point'}>
+                    <CurrentHours servicePoint={sp} defaultExpanded={sp.fields.slug === props.anchorSlug}>
                       <address>{sp.fields.address}</address>
                       <Contact servicePoint={sp} />
                     </CurrentHours>
@@ -60,6 +60,7 @@ Presenter.propTypes = {
   preview: PropTypes.bool,
   hoursPageOrder: PropTypes.array.isRequired,
   title: PropTypes.string,
+  anchorSlug: PropTypes.string,
 }
 
 export default Presenter

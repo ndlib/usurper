@@ -18,7 +18,7 @@ export class CurrentHoursContainer extends Component {
     super(props)
 
     this.state = {
-      expanded: false,
+      expanded: props.defaultExpanded === true,
       openStatus: getOpenStatus(props.hoursEntry),
     }
 
@@ -113,6 +113,7 @@ CurrentHoursContainer.propTypes = {
       hoursCode: PropTypes.string,
     }).isRequired,
   }).isRequired,
+  defaultExpanded: PropTypes.bool,
   fetchHours: PropTypes.func.isRequired,
   children: PropTypes.any,
 }

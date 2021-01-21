@@ -23,6 +23,13 @@ describe('components/Hours/Page', () => {
 
   describe('container', () => {
     beforeEach(() => {
+      // Mock some browser functions
+      document.getElementById = jest.fn(() => document.createElement('div'))
+      Element.prototype.getBoundingClientRect = jest.fn(() => ({
+        top: 333,
+      }))
+      window.scroll = jest.fn()
+
       props = {
         hoursEntry: { status: statuses.NOT_FETCHED, json: {} },
         servicePointsWithHours: {},
@@ -30,6 +37,7 @@ describe('components/Hours/Page', () => {
         cfStatic: { status: statuses.NOT_FETCHED },
         combinedStatus: statuses.NOT_FETCHED,
         hoursStatus: statuses.NOT_FETCHED,
+        location: {},
         fetchHours: jest.fn(),
         fetchServicePoints: jest.fn(),
         fetchSidebar: jest.fn(),
@@ -45,6 +53,16 @@ describe('components/Hours/Page', () => {
 
     it('should render APIPresenterFactory', () => {
       expect(enzymeWrapper.find(APIPresenterFactory).exists()).toBe(true)
+    })
+
+    it('should scroll when anchor link set', () => {
+      enzymeWrapper.setProps({
+        location: {
+          hash: '#test',
+        },
+      })
+
+      expect(window.scroll).toHaveBeenCalled()
     })
   })
 
