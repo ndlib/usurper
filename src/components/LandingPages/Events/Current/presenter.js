@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Calendar from './Calendar'
 import LandingPageWrapper from '../../Wrapper'
 import EventCard from 'components/EventCard'
+import EmailSubscribeBox from 'components/Interactive/EmailSubscribeBox'
 
 const Presenter = (props) => {
   return (
@@ -22,6 +23,7 @@ const Presenter = (props) => {
       entryCardComponent={EventCard}
       filterFields={['title', 'content', 'shortDescription', 'audience[*]', 'type[*]', 'presenters[*].fields.people[*].fields.name']}
       sortFields={['startDate']}
+      afterFacetsChildren={<EmailSubscribeBox type='events' htag={2} />}
     >
       <Calendar
         events={props.events}

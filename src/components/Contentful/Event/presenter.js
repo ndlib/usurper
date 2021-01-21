@@ -12,6 +12,7 @@ import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import ServicePoint from '../ServicePoint'
 import ShareLinks from 'components/Interactive/ShareLinks'
+import EmailSubscribeBox from 'components/Interactive/EmailSubscribeBox'
 import OpenGraph from 'components/OpenGraph'
 import Media from 'components/Media'
 import RecurringIndicator from './RecurringIndicator'
@@ -95,6 +96,7 @@ const PagePresenter = ({ entry }) => {
           <Librarians netids={entry.contactPeople} />
           <ServicePoint cfServicePoint={entry.location} showDetails={false} />
           <Related className='p-pages' title='Related Pages' showImages={false}>{ entry.relatedPages }</Related>
+          <EmailSubscribeBox type='events' htag={2} />
         </aside>
       </div>
       <Link to='/events' className='viewAllEvents' arrow>View All Events</Link>

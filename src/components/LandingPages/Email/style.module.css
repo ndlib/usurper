@@ -1,0 +1,35 @@
+.formGroup:not(:first-child) {
+  margin-top: 2em;
+}
+
+.formGroupHeader {
+  margin: 0;
+}
+
+.optionList {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+}
+
+.optionList > * {
+  display: block;
+  margin-top: 0.5em;
+}
+
+.optionText {
+  margin-left: 0.5em;
+}
+
+.subscribeButton {
+  display: block;
+  text-align: center;
+  margin: 3em auto;
+  width: 50%;
+  min-width: 9em;
+}
+
+input[type=text], input[type=email], select {
+  font-size: 1rem;
+  padding: 6px;
+  min-width: 300px;
+}
