@@ -29,6 +29,17 @@ export class HoursPageContainer extends Component {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    if (this.props.location.hash !== prevProps.location.hash ||
+        (this.props.combinedStatus === statuses.SUCCESS && prevProps.combinedStatus !== statuses.SUCCESS)) {
+      const element = document.getElementById(this.props.location.hash.slice(1))
+      if (element) {
+        const offset = element.getBoundingClientRect().top
+        window.scroll(0, offset)
+      }
+    }
+  }
+
   render () {
     return (
       <PresenterFactory
@@ -39,6 +50,7 @@ export class HoursPageContainer extends Component {
           preview: this.props.preview,
           hoursPageOrder: hoursPageOrder,
           title: typy(this.props.cfStatic, 'json.fields.title').safeString,
+          anchorSlug: typy(this.props.location, 'hash').safeString.slice(1),
         }}
         status={this.props.combinedStatus} />
     )
@@ -95,6 +107,7 @@ HoursPageContainer.propTypes = {
   combinedStatus: PropTypes.string.isRequired,
   location: PropTypes.shape({
     search: PropTypes.string,
+    hash: PropTypes.string,
   }),
   preview: PropTypes.bool,
 }
