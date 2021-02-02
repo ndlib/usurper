@@ -12,7 +12,7 @@ const ChatPage = (props) => {
 
   return (
     <div className='chat-page'>
-      <PageTitle title='Chat with us' />
+      <PageTitle title='Chat with a librarian' />
       <SearchProgramaticSet open={false} />
       <StaticAlert slug={slug} preview={preview} hideLoading />
       <StaticBody slug={slug} preview={preview} showDescription>

@@ -5,7 +5,7 @@ import ChatInvitation from 'components/Chat/Invitation'
 import ChatImage from '../../images/ask.svg'
 
 const ChatModal = (props) => {
-  let buttonMessage = (<span><img src={ChatImage} alt='' aria-hidden='true' /> Chat with us</span>)
+  let buttonMessage = (<span><img src={ChatImage} alt='' aria-hidden='true' /> Chat with a librarian</span>)
   if (props.chatOpen) {
     buttonMessage = (<span>Hide Chat</span>)
   }
