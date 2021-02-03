@@ -38,10 +38,11 @@ const Presenter = (props) => {
 
 Presenter.propTypes = {
   facets: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    label: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.string.isRequired,
       value: PropTypes.string.isRequired,
-      selected: PropTypes.bool.isRequired,
     })).isRequired,
   })).isRequired,
   onOptionChange: PropTypes.func.isRequired,

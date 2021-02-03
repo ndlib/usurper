@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -14,10 +14,10 @@ import * as statuses from 'constants/APIStatuses'
 
 const FACETS_GROUPING = 'event-facets'
 
-const FilterOptionsContainer = (props) => {
+export const FilterOptionsContainer = (props) => {
   const location = useLocation()
 
-  useEffect(() => {
+  React.useEffect(() => {
     const preview = (new URLSearchParams(location.search)).get('preview') === 'true'
 
     if (props.facetStatus === statuses.NOT_FETCHED) {
