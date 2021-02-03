@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { Route, Switch, withRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -16,33 +16,33 @@ import NotFound from 'components/Messages/NotFound'
 import { LINK_CLICK } from 'components/Interactive/Link'
 
 import Home from 'components/Home'
-const ItemsRequests = lazy(() => import('components/Account/ItemsRequests'))
-const Courses = lazy(() => import('components/Account/Courses'))
-const Hours = lazy(() => import('components/Hours/Page'))
-const ChatPage = lazy(() => import('components/ChatPage'))
-const ContentfulPage = lazy(() => import('components/Contentful/Page'))
-const ContentfulColumnPage = lazy(() => import('components/Contentful/ColumnPage'))
-const SecureContentfulPage = lazy(() => import('components/Contentful/SecurePage'))
-const ContentfulFloor = lazy(() => import('components/Contentful/Floor'))
-const ContentfulNews = lazy(() => import('components/Contentful/News'))
-const DatabasePage = lazy(() => import('components/Contentful/Database'))
-const SearchPage = lazy(() => import('components/SearchPage'))
-const ContentfulEvent = lazy(() => import('components/Contentful/Event'))
-const News = lazy(() => import('components/LandingPages/News'))
-const StudySpaces = lazy(() => import('components/LandingPages/StudySpaces'))
-const CurrentEvents = lazy(() => import('components/LandingPages/Events/Current'))
-const PastEvents = lazy(() => import('components/LandingPages/Events/Past'))
-const EventGroup = lazy(() => import('components/LandingPages/Events/Group'))
-const CurrentExhibits = lazy(() => import('components/LandingPages/Exhibits/Current'))
-const PastExhibits = lazy(() => import('components/LandingPages/Exhibits/Past'))
-const DatabaseList = lazy(() => import('components/DatabaseList'))
-const SubjectList = lazy(() => import('components/SubjectList'))
-const FloorSearch = lazy(() => import('components/FloorSearch'))
-const CirculationHistory = lazy(() => import('components/Account/CirculationHistory'))
-const Preferences = lazy(() => import('components/Account/Preferences'))
-const Reservations = lazy(() => import('components/Account/Reservations'))
-const Floors = lazy(() => import('components/DynamicPages/FloorList'))
-const RoomReservations = lazy(() => import('components/DynamicPages/RoomReservations'))
+import ItemsRequests from 'components/Account/ItemsRequests'
+import Courses from 'components/Account/Courses'
+import Hours from 'components/Hours/Page'
+import ChatPage from 'components/ChatPage'
+import ContentfulPage from 'components/Contentful/Page'
+import ContentfulColumnPage from 'components/Contentful/ColumnPage'
+import SecureContentfulPage from 'components/Contentful/SecurePage'
+import ContentfulFloor from 'components/Contentful/Floor'
+import ContentfulNews from 'components/Contentful/News'
+import DatabasePage from 'components/Contentful/Database'
+import SearchPage from 'components/SearchPage'
+import ContentfulEvent from 'components/Contentful/Event'
+import News from 'components/LandingPages/News'
+import StudySpaces from 'components/LandingPages/StudySpaces'
+import CurrentEvents from 'components/LandingPages/Events/Current'
+import PastEvents from 'components/LandingPages/Events/Past'
+import EventGroup from 'components/LandingPages/Events/Group'
+import CurrentExhibits from 'components/LandingPages/Exhibits/Current'
+import PastExhibits from 'components/LandingPages/Exhibits/Past'
+import DatabaseList from 'components/DatabaseList'
+import SubjectList from 'components/SubjectList'
+import FloorSearch from 'components/FloorSearch'
+import CirculationHistory from 'components/Account/CirculationHistory'
+import Preferences from 'components/Account/Preferences'
+import Reservations from 'components/Account/Reservations'
+import Floors from 'components/DynamicPages/FloorList'
+import RoomReservations from 'components/DynamicPages/RoomReservations'
 
 const analyticsActions = [LINK_CLICK, SET_SEARCH, SAVE_SEARCH_PREFERENCE]
 
