@@ -98,7 +98,7 @@ RoomReservationsContainer.propTypes = {
   contactInfo: PropTypes.shape({
     status: PropTypes.string,
     contacts: PropTypes.arrayOf(PropTypes.shape({
-      netID: PropTypes.string.isRequired,
+      netID: PropTypes.string,
     })),
   }),
 }

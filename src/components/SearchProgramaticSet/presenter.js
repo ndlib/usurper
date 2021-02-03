@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class SearchProgramaticSet extends Component {
-  componentWillMount () {
+  componentDidMount () {
     this.props.onGetProps(this.props.open)
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.props.onGetProps(nextProps.open)
+  componentDidUpdate (prevProps) {
+    if (this.props.open !== prevProps.open) {
+      this.props.onGetProps(this.props.open)
+    }
   }
 
   render () {

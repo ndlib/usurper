@@ -35,6 +35,7 @@ import PastEvents from 'components/LandingPages/Events/Past'
 import EventGroup from 'components/LandingPages/Events/Group'
 import CurrentExhibits from 'components/LandingPages/Exhibits/Current'
 import PastExhibits from 'components/LandingPages/Exhibits/Past'
+import EmailSubscribe from 'components/LandingPages/Email/Subscribe'
 import DatabaseList from 'components/DatabaseList'
 import SubjectList from 'components/SubjectList'
 import FloorSearch from 'components/FloorSearch'
@@ -103,6 +104,9 @@ const App = (props) => {
               <Route exact path='/room-reservations' component={RoomReservations} />
               {Config.features.studySpacesEnabled && (
                 <Route exact path='/study-spaces' component={StudySpaces} />
+              )}
+              {Config.features.emailSubscriptionsEnabled && (
+                <Route exact path='/email/:type/subscribe' component={EmailSubscribe} />
               )}
               <Route exact path='/secure/:id' component={SecureContentfulPage} />
               <Route exact path='/(services|research|libraries|about)' component={ContentfulColumnPage} />

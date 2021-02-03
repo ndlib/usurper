@@ -62,6 +62,7 @@ export const mapFacet = (facet) => {
   }).filter(mapped => mapped) // filter out nulls
 
   return {
+    id: facet.fields.id,
     label: facet.fields.displayName,
     key: facetKey,
     fieldName: fieldName,

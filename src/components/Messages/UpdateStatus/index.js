@@ -6,7 +6,7 @@ import * as statuses from 'constants/APIStatuses'
 
 const UpdateStatus = (props) => {
   // Only show message after update is a "complete" status (and show is true)
-  if (!props.show || ![statuses.SUCCESS, statuses.ERROR].includes(props.status)) {
+  if (!props.show || ![statuses.SUCCESS, statuses.ERROR, statuses.UNAUTHORIZED].includes(props.status)) {
     return null
   }
 
@@ -15,6 +15,9 @@ const UpdateStatus = (props) => {
   if (props.status === statuses.SUCCESS) {
     messageClass = 'success'
     defaultText = 'Update successful.'
+  } else if (props.status === statuses.UNAUTHORIZED) {
+    messageClass = 'failure'
+    defaultText = 'Unauthorized. Please ensure you are logged in.'
   } else {
     messageClass = 'failure'
     defaultText = 'Update failed.'

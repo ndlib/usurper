@@ -67,6 +67,7 @@ const Presenter = (props) => {
               />
             )
           })}
+          { props.afterFacetsChildren }
         </div>
       </div>
     </div>
@@ -82,6 +83,7 @@ Presenter.propTypes = {
   filterValue: PropTypes.string,
   typeLabel: PropTypes.string.isRequired,
   children: PropTypes.any,
+  afterFacetsChildren: PropTypes.any,
   entryCardComponent: PropTypes.func.isRequired,
   entryCardProps: PropTypes.object,
   onFacetApply: PropTypes.func.isRequired,
