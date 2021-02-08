@@ -31,9 +31,15 @@
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWL3G7T');
 
       // Monsido
-      var _monsido = _monsido || [];_monsido.push(['_setDomainToken', 'f9lc1kYwcip6xFgYi51QVQ']);_monsido.push(['_withStatistics', 'true']);
+      window._monsido = window._monsido || {
+        token: "f9lc1kYwcip6xFgYi51QVQ",
+        statistics: {
+          enabled: true
+        },
+      };
     </script>
-    <script src="//cdn.monsido.com/tool/javascripts/monsido.js"></script>
+    <script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
+    <script type="text/javascript" defer src="https://libraryh3lp.com/js/libraryh3lp.js?16990"></script>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -60,10 +66,6 @@
 
     <div id="root">
       <noscript>Please enable javascript.</noscript>
-    </div>
-    <div style="display: none;">
-      VERSION: SHA
-      ENV: ENVIRONMENT
     </div>
   </body>
 </html>

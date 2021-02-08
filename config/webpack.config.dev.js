@@ -8,6 +8,7 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
@@ -313,6 +314,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+    }),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async',
+      custom: {
+        test: /\.[woff|ttf]$/,
+        attribute: 'crossorigin',
+        value: 'anonymous',
+      },
+      preload: {
+        test: /\.js$/,
+        chunks: 'all',
+      },
     }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:

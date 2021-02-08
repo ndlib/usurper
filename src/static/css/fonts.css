@@ -1,5 +1,6 @@
 @font-face {
   font-family: NDIcons;
+  font-display: swap;
   src: url('https://www.nd.edu/assets/fonts/nd.eot');
   src: url('https://www.nd.edu/assets/fonts/nd.eot?iefix') format('embedded-opentype'), url('https://www.nd.edu/assets/fonts/nd.woff') format('woff'), url('https://www.nd.edu/assets/fonts/nd.ttf') format('truetype'), url('https://www.nd.edu/assets/fonts/nd.svg#NDIcons') format('svg');
 }
@@ -12,6 +13,7 @@
 
 @font-face {
   font-family: GPCBook;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gpc-book.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gpc-book.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gpc-book.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gpc-book.ttf") format("truetype")
 }
@@ -24,6 +26,7 @@
 
 @font-face {
   font-family: GPCMed;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gpc-medium.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gpc-medium.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gpc-medium.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gpc-medium.ttf") format("truetype")
 }
@@ -36,6 +39,7 @@
 
 @font-face {
   font-family: GPCBold;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gpc-bold.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gpc-bold.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gpc-bold.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gpc-bold.ttf") format("truetype")
 }
@@ -48,6 +52,7 @@
 
 @font-face {
   font-family: GPCHeavy;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gpc-heavy.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gpc-heavy.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gpc-heavy.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gpc-heavy.ttf") format("truetype")
 }
@@ -60,12 +65,14 @@
 
 @font-face {
   font-family: GPMed;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gp-medium.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gp-medium.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gp-medium.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gp-medium.ttf") format("truetype")
 }
 
 @font-face {
   font-family: GPMedI;
+  font-display: swap;
   src: url('https://www.nd.edu/assets/fonts/GalaxiePolaris-MediumItalic.eot');
   src: url('https://www.nd.edu/assets/fonts/GalaxiePolaris-MediumItalic.eot?iefix') format('embedded-opentype'), url('https://www.nd.edu/assets/fonts/GalaxiePolaris-MediumItalic.woff') format('woff'), url('https://www.nd.edu/assets/fonts/GalaxiePolaris-MediumItalic.ttf') format('truetype'), url('https://www.nd.edu/assets/fonts/GalaxiePolaris-MediumItalic.svg#svgGPCMed') format('svg');
 }
@@ -78,6 +85,7 @@
 
 @font-face {
   font-family: GPBook;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gp-book.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gp-book.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gp-book.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gp-book.ttf") format("truetype")
 }
@@ -90,6 +98,7 @@
 
 @font-face {
   font-family: GPBold;
+  font-display: swap;
   src: url('https://static.nd.edu/fonts/gp-min/gp-bold.woff2');
   src:url("https://static.nd.edu/fonts/gp-min/gp-bold.woff2") format("woff2"),url("https://static.nd.edu/fonts/gp-min/gp-bold.woff") format("woff"),url("https://static.nd.edu/fonts/gp-min/gp-bold.ttf") format("truetype")
 }
@@ -102,6 +111,7 @@
 
 @font-face {
   font-family: GPHeavy;
+  font-display: swap;
   src: url('../fonts/gp-heavy.woff');
   src:url("../fonts/gp-heavy.woff") format("woff2"),url("../fonts/gp-heavy.woff") format("woff"),url("../fonts/gp-heavy.ttf") format("truetype")
 }
