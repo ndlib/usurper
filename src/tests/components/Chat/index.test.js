@@ -17,9 +17,8 @@ describe('components/Chat', () => {
     enzymeWrapper = setup()
   })
 
-  it('should render a script from libraryh3lp', () => {
-    const script = enzymeWrapper.find('script')
-    expect(script.exists()).toBe(true)
-    expect(script.props().src).toEqual(expect.stringContaining('libraryh3lp.com'))
+  it('should render a placeholder div for libraryh3lp', () => {
+    const element = <div className='libraryh3lp needs-js' aria-hidden='true' />
+    expect(enzymeWrapper.containsMatchingElement(element)).toBe(true)
   })
 })
