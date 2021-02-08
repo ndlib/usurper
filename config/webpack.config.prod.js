@@ -12,6 +12,8 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
+const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').default
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
@@ -77,7 +79,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
             stage: 3,
           }),
         ],
-        sourceMap: shouldUseSourceMap,
+        sourceMap: false,
       },
     },
   ]
@@ -85,7 +87,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
     loaders.push({
       loader: require.resolve(preProcessor),
       options: {
-        sourceMap: shouldUseSourceMap,
+        sourceMap: false,
       },
     })
   }
@@ -170,16 +172,7 @@ module.exports = {
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           parser: safePostCssParser,
-          map: shouldUseSourceMap
-            ? {
-              // `inline: false` forces the sourcemap to be output into a
-              // separate file
-              inline: false,
-              // `annotation: true` appends the sourceMappingURL to the end of
-              // the css file, helping the browser find the sourcemap
-              annotation: true,
-            }
-            : false,
+          map: false,
         },
       }),
     ],
@@ -346,7 +339,7 @@ module.exports = {
             exclude: cssModuleRegex,
             loader: getStyleLoaders({
               importLoaders: 1,
-              sourceMap: shouldUseSourceMap,
+              sourceMap: false,
             }),
             // Don't consider CSS imports dead code even if the
             // containing package claims to have no side effects.
@@ -360,7 +353,7 @@ module.exports = {
             test: cssModuleRegex,
             loader: getStyleLoaders({
               importLoaders: 1,
-              sourceMap: shouldUseSourceMap,
+              sourceMap: false,
               modules: true,
               getLocalIdent: getCSSModuleLocalIdent,
             }),
@@ -402,6 +395,19 @@ module.exports = {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
+      },
+    }),
+    new HTMLInlineCSSWebpackPlugin(),
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'async',
+      custom: {
+        test: /\.[woff|ttf]$/,
+        attribute: 'crossorigin',
+        value: 'anonymous',
+      },
+      preload: {
+        test: /\.js$/,
+        chunks: 'all',
       },
     }),
     // Inlines the webpack runtime script. This script is too small to warrant
