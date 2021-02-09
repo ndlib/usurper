@@ -95,6 +95,7 @@ export class ImageContainer extends Component {
         ariaHidden={this.props.ariaHidden}
         itemProp={this.props.itemProp}
         onError={this.onError}
+        lazy={this.props.lazy}
       >
         {this.props.children}
       </Presenter>
@@ -109,6 +110,7 @@ ImageContainer.propTypes = {
   alt: PropTypes.string,
   ariaHidden: PropTypes.bool,
   itemProp: PropTypes.string,
+  lazy: PropTypes.bool,
   children: PropTypes.any,
 
   fetchEntry: PropTypes.func.isRequired,

@@ -13,7 +13,7 @@ export const ExhibitCard = ({ entry, horizontal, showDetails }) => {
   return (
     <div className={'exhibit-card' + (horizontal ? ' horizontal' : '')}>
       <Link to={entry.linkTo} ariaLabel={entry.title}>
-        <Image cfImage={entry.image} className='exhibit-image' containerClassName='exhibit-image-container'>
+        <Image cfImage={entry.image} className='exhibit-image' containerClassName='exhibit-image-container' lazy>
           {entry.type} Exhibit
         </Image>
       </Link>
