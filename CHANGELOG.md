@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2021.3](https://github.com/ndlib/usurper/tree/v2021.3) "Elastic Longboard"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2021.1...v2021.3)
+
+### Features
+- Changed front page link for seats reservations to go to study spaces page. [#994](https://github.com/ndlib/usurper/pull/994)
+- Hours page now supports anchor links. [#989](https://github.com/ndlib/usurper/pull/989)
+
+### Other Changes
+- Changed chat text to "Chat with a librarian." [#997](https://github.com/ndlib/usurper/pull/997)
+- Internal optimizations. [#996](https://github.com/ndlib/usurper/pull/996)
+
 ## [v2021.1](https://github.com/ndlib/usurper/tree/v2021.1) "Neko Drank"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2020.24...v2021.1)
 
