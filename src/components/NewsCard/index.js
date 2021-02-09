@@ -17,6 +17,7 @@ export const NewsCard = ({ entry, isHome }) => {
           containerClassName='news-image-container'
           itemProp='image'
           lazy
+          width={isHome ? 584 : 225}
         />
       </Link>
       <div className='card-text'>

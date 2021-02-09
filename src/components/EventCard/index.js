@@ -24,7 +24,7 @@ const EventCard = ({ entry, isHome, facets, onTagClick }) => {
       <div className='card-image'>
         { !isHome && (
           <Link ariaLabel={linkAriaLabel} to={linkPath}>
-            <Image cfImage={entry.representationalImage} itemProp='image' lazy />
+            <Image cfImage={entry.representationalImage} itemProp='image' lazy width={296} />
           </Link>
         )}
       </div>
