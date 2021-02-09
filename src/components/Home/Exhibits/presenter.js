@@ -12,7 +12,7 @@ const Presenter = ({ entries }) => {
         <Link to='exhibits/past' className='exhibitsHeader'><h1>Exhibits</h1></Link>
         <div className='exhibitsList'>
           { entries.map((entry) => (
-            <ExhibitCard key={entry.id} entry={entry} />
+            <ExhibitCard key={entry.id} entry={entry} isHome />
           ))}
         </div>
         <Link to='/exhibits/past' arrow>View All Exhibits</Link>
