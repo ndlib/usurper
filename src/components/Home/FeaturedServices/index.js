@@ -26,7 +26,7 @@ const FeaturedServices = () => {
           />
           <ServiceLink
             url='/study-spaces'
-            title={`Find a Study Seat`}
+            title={`Find a Study Space`}
             icon={studySpaceIcon}
           />
           <ServiceLink
