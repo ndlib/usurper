@@ -7,6 +7,9 @@ import PageTitle from 'components/Layout/PageTitle'
 import Link from 'components/Interactive/Link'
 import FilterBox from 'components/Interactive/FilterBox'
 import Facet from 'components/Interactive/Facet'
+import LibMarkdown from 'components/LibMarkdown'
+import StaticAlert from 'components/Contentful/StaticContent/Alert'
+import StaticBody from 'components/Contentful/StaticContent/Body'
 
 let enzymeWrapper
 let props
@@ -142,5 +145,45 @@ describe('components/LandingPages/Wrapper/presenter', () => {
     const facet = enzymeWrapper.findWhere(el => el.type() === Facet && el.props().name === 'type')
     expect(facet.exists()).toBe(true)
     expect(facet.props().selectedValues).toEqual(props.facetValues['type'])
+  })
+
+  it('should not render a StaticAlert component', () => {
+    expect(enzymeWrapper.find(StaticAlert).exists()).toBe(false)
+  })
+
+  it('should not render a StaticBody component', () => {
+    expect(enzymeWrapper.find(StaticBody).exists()).toBe(false)
+  })
+
+  describe('with static content for dynamic page', () => {
+    beforeEach(() => {
+      props = {
+        ...props,
+        slug: 'page-slug',
+        dynamicPage: {
+          fields: {
+            title: 'Dynamic page title',
+          },
+        },
+      }
+
+      enzymeWrapper = setup(props)
+    })
+
+    it('should use title from dynamic page', () => {
+      const title = enzymeWrapper.find(PageTitle)
+      expect(title.exists()).toBe(true)
+      expect(title.props().title).toEqual('Dynamic page title')
+    })
+
+    it('should render a StaticAlert component', () => {
+      expect(enzymeWrapper.find(StaticAlert).exists()).toBe(true)
+    })
+
+    it('should render a StaticBody component with markdown contents', () => {
+      const body = enzymeWrapper.find(StaticBody)
+      expect(body.exists()).toBe(true)
+      expect(body.find(LibMarkdown).exists()).toBe(true)
+    })
   })
 })
