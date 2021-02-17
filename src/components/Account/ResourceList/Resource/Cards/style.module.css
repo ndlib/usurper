@@ -65,6 +65,10 @@
     -ms-grid-column: 2;
   }
 
+  .renewable {
+    -ms-grid-column: 4;
+  }
+
   .dueDate {
     -ms-grid-column: 3;
   }

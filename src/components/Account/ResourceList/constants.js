@@ -8,6 +8,7 @@ export const typeConstants = {
       title: 'Title',
       author: 'Author',
       dueDate: 'Due Date',
+      renewable: 'Renewable',
       from: 'From',
     },
     emptyText: 'You have no checked out items.',
