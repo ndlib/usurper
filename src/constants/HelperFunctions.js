@@ -1,4 +1,4 @@
-/* eslint complexity: ["warn", 15] */
+/* eslint complexity: ["warn", 20] */
 // Helper functions are not something that should need regular maintenance. They should "just work",
 // and their inner-workings often need to be complex to accommodate generic usage.
 
@@ -73,6 +73,8 @@ const sortInternal = (a, b, sortKeys, sortDir) => {
     result = (!!aValue - !!bValue) * direction // falsy values will be given lower priority in asc and higher in desc
   } else if (aValue instanceof Date && bValue instanceof Date) {
     result = (aValue.getTime() - bValue.getTime()) * direction
+  } else if (typy(aValue).isNumber && typy(bValue).isNumber) {
+    result = aValue - bValue * direction
   } else {
     result = aValue.toString() // works on numbers and puts them at the top (asc) or bottm (desc)
       .localeCompare(bValue, undefined, { sensitivity: 'accent', ignorePunctuation: true }) * direction

@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 
 import LandingPageWrapper, { LandingPageWrapperContainer, mapStateToProps, mapDispatchToProps } from 'components/LandingPages/Wrapper'
 import Presenter from 'components/LandingPages/Wrapper/presenter'
-import PresenterFactory from 'components/APIInlinePresenterFactory'
+import PresenterFactory from 'components/APIPresenterFactory'
 
 import * as statuses from 'constants/APIStatuses'
 
@@ -94,6 +94,13 @@ describe('components/LandingPages/Wrapper', () => {
       history: {
         push: jest.fn(),
       },
+      preview: true,
+      slug: 'my-page-slug',
+      cfStatic: {
+        slug: 'old-slug',
+        status: statuses.SUCCESS,
+      },
+      fetchSidebar: jest.fn(),
     }
     enzymeWrapper = setup(props)
   })
@@ -109,6 +116,10 @@ describe('components/LandingPages/Wrapper', () => {
       entries: expect.arrayContaining(props.filteredEntries),
     }))
     expect(presenter.props().props.entries).toHaveLength(props.filteredEntries.length)
+  })
+
+  it('should fetch static content', () => {
+    expect(props.fetchSidebar).toHaveBeenCalled()
   })
 
   describe('filtering', () => {

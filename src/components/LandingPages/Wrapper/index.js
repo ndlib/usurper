@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import typy from 'typy'
 
 import Presenter from './presenter'
-import PresenterFactory from 'components/APIInlinePresenterFactory'
+import PresenterFactory from 'components/APIPresenterFactory'
+
+import { fetchSidebar } from 'actions/contentful/staticContent'
 
 import * as statuses from 'constants/APIStatuses'
 import * as helper from 'constants/HelperFunctions'
@@ -17,6 +20,7 @@ export class LandingPageWrapperContainer extends Component {
     this.filter = this.filter.bind(this)
     this.onFacetApply = this.onFacetApply.bind(this)
     this.onFacetRemove = this.onFacetRemove.bind(this)
+    this.checkFullyLoaded = this.checkFullyLoaded.bind(this)
 
     this.state = {
       entries: this.filter(),
@@ -37,7 +41,21 @@ export class LandingPageWrapperContainer extends Component {
     return null
   }
 
+  checkFullyLoaded () {
+    if (this.props.slug && (
+      this.props.cfStatic.status === statuses.NOT_FETCHED || this.props.cfStatic.slug !== this.props.slug
+    )) {
+      this.props.fetchSidebar(this.props.slug, this.props.preview)
+    }
+  }
+
+  componentDidMount () {
+    this.checkFullyLoaded()
+  }
+
   componentDidUpdate (prevProps) {
+    this.checkFullyLoaded()
+
     if ((this.props.allEntriesStatus === statuses.SUCCESS && prevProps.allEntriesStatus !== statuses.SUCCESS) ||
       this.props.pageDate !== prevProps.pageDate) {
       // Trigger filter event so the state gets updated to match props
@@ -97,6 +115,10 @@ export class LandingPageWrapperContainer extends Component {
   }
 
   render () {
+    const combinedStatus = helper.reduceStatuses([
+      this.props.allEntriesStatus,
+      this.props.slug ? this.props.cfStatic.status : statuses.SUCCESS,
+    ])
     return (
       <PresenterFactory
         presenter={Presenter}
@@ -109,14 +131,17 @@ export class LandingPageWrapperContainer extends Component {
           typeLabel: this.props.typeLabel || this.props.pageTitle,
           onFacetApply: this.onFacetApply,
           onFacetRemove: this.onFacetRemove,
+          dynamicPage: typy(this.props.cfStatic, 'json').safeObjectOrEmpty,
         }}
-        status={this.props.allEntriesStatus}
+        status={combinedStatus}
       />
     )
   }
 }
 
 export const mapStateToProps = (state, ownProps) => {
+  const { cfStatic } = state
+
   // Initialize values object with an empty array for each facet type
   const facetValues = {}
   typy(ownProps, 'facets').safeArray.forEach(facet => {
@@ -134,9 +159,18 @@ export const mapStateToProps = (state, ownProps) => {
     }
   })
 
+  const searchParams = new URLSearchParams(ownProps.location.search)
+  const preview = searchParams.get('preview') === 'true'
+
   return {
     facetValues,
+    preview,
+    cfStatic,
   }
+}
+
+export const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ fetchSidebar }, dispatch)
 }
 
 LandingPageWrapperContainer.defaultProps = {
@@ -144,6 +178,7 @@ LandingPageWrapperContainer.defaultProps = {
 }
 
 LandingPageWrapperContainer.propTypes = {
+  slug: PropTypes.string, // Used to fetch Dynamic Page from contentful
   pageTitle: PropTypes.string.isRequired,
   entries: PropTypes.array.isRequired,
   filteredEntries: PropTypes.array,
@@ -174,8 +209,15 @@ LandingPageWrapperContainer.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  preview: PropTypes.bool,
+  cfStatic: PropTypes.shape({
+    slug: PropTypes.string,
+    status: PropTypes.string,
+    json: PropTypes.object,
+  }).isRequired,
+  fetchSidebar: PropTypes.func,
 }
 
-const LandingPageWrapper = connect(mapStateToProps)(LandingPageWrapperContainer)
+const LandingPageWrapper = connect(mapStateToProps, mapDispatchToProps)(LandingPageWrapperContainer)
 
 export default LandingPageWrapper

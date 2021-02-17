@@ -14,7 +14,7 @@ export const CF_RECEIVE_SIDEBAR = 'CF_RECEIVE_SIDEBAR'
 const receiveSidebar = (slug, response) => {
   const error = {
     type: CF_RECEIVE_SIDEBAR,
-    status: response.status === 404 ? statuses.NOT_FOUND : statuses.ERROR,
+    status: (response.status === 404 || response.length === 0) ? statuses.NOT_FOUND : statuses.ERROR,
     error: response,
     slug: slug,
     receivedAt: Date.now(),
@@ -29,7 +29,7 @@ const receiveSidebar = (slug, response) => {
   }
 
   try {
-    if (response[0] && response[0].sys.contentType.sys.id === 'dynamicPage') {
+    if (response.length > 0 && response[0].sys.contentType.sys.id === 'dynamicPage') {
       return success
     } else {
       return error
