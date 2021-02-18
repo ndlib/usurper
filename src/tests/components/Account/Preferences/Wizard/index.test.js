@@ -223,7 +223,6 @@ describe('components/Account/Preferences/Wizard', () => {
             fields: {
               title: 'suuuuubject',
               usePageTitle: false,
-              includeOnSubjectList: true,
               page: {
                 fields: {
                   slug: 'slugger',

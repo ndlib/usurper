@@ -171,7 +171,6 @@ class Wizard extends Component {
     switch (currentStepName) {
       case FAVORITES_KIND.subjects:
         const subjectStepData = JSON.parse(JSON.stringify(this.props.cfSubjects.data))
-          .filter((entry) => entry.fields.includeOnSubjectList)
           .map((subject) => {
             if (this.state.data[currentStepName].length) {
               subject.selected = this.state.data[currentStepName].some(x => (
