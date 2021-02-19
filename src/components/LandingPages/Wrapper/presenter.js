@@ -3,11 +3,14 @@ import PropTypes from 'prop-types'
 import typy from 'typy'
 
 import ActiveFilters from './ActiveFilters'
+import LibMarkdown from 'components/LibMarkdown'
 import PageTitle from 'components/Layout/PageTitle'
 import SearchProgramaticSet from 'components/SearchProgramaticSet'
 import Link from 'components/Interactive/Link'
 import FilterBox from 'components/Interactive/FilterBox'
 import Facet from 'components/Interactive/Facet'
+import StaticAlert from 'components/Contentful/StaticContent/Alert'
+import StaticBody from 'components/Contentful/StaticContent/Body'
 
 import './style.css'
 
@@ -20,10 +23,13 @@ const Presenter = (props) => {
       { props.linkPath && (
         <Link to={props.linkPath} className='button fright tab'>{props.linkText}</Link>
       )}
-      <PageTitle title={props.pageTitle} />
+      <PageTitle title={typy(props.dynamicPage, 'fields.title').safeString || props.pageTitle} />
       <SearchProgramaticSet open={false} />
       <div className='row'>
         <div className={`col-md-8 col-sm-7 col-xs-12 landing-page-list ${classPrefix}-list`}>
+          { props.slug && (
+            <StaticAlert slug={props.slug} preview={props.preview} hideLoading />
+          )}
           <FilterBox value={props.filterValue} title={'Search ' + props.typeLabel} onChange={props.onFilterChange} />
           { hasFacets && (
             <ActiveFilters values={props.facetValues} onRemove={props.onFacetRemove} />
@@ -50,6 +56,11 @@ const Presenter = (props) => {
               </div>
             )
           }
+          { props.slug && (
+            <StaticBody slug={props.slug} preview={props.preview} hideLoading>
+              <LibMarkdown>{typy(props.dynamicPage, 'fields.body').safeString}</LibMarkdown>
+            </StaticBody>
+          )}
         </div>
         <div className={`col-md-4 col-sm-5 col-xs-12 right landing-page-sidebar ${classPrefix}-sidebar`}>
           { props.children }
@@ -77,7 +88,7 @@ const Presenter = (props) => {
 Presenter.propTypes = {
   linkPath: PropTypes.string,
   linkText: PropTypes.string,
-  pageTitle: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string,
   entries: PropTypes.array,
   onFilterChange: PropTypes.func.isRequired,
   filterValue: PropTypes.string,
@@ -97,6 +108,9 @@ Presenter.propTypes = {
     })),
   })),
   facetValues: PropTypes.object.isRequired,
+  slug: PropTypes.string,
+  preview: PropTypes.bool,
+  dynamicPage: PropTypes.object,
 }
 
 export default Presenter

@@ -7,7 +7,8 @@ import SpaceCard from 'components/SpaceCard'
 const Presenter = (props) => {
   return (
     <LandingPageWrapper
-      pageTitle='Study Spaces'
+      slug='study-spaces'
+      pageTitle='Hesburgh Library Study Spaces'
       entries={props.spaces}
       filteredEntries={props.spaces}
       location={props.location}
@@ -16,7 +17,7 @@ const Presenter = (props) => {
       facets={props.facets}
       entryCardComponent={SpaceCard}
       filterFields={['fields.name', 'fields.description', 'fields.features[*]']}
-      sortFields={['fields.name']}
+      sortFields={['fields.floor.fields.floorNumber', 'fields.name']}
     />
   )
 }
