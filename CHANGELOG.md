@@ -1,5 +1,14 @@
 # Change Log
 
+## [v2021.4](https://github.com/ndlib/usurper/tree/v2021.4) "Ecstatic Monkey"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2021.3...v2021.4)
+
+### Bug Fixes
+- Fixed subjects not displaying on Favorites wizard. [#1002](https://github.com/ndlib/usurper/pull/1002)
+
+### Features
+- Utilize dynamic page for Study Spaces and update sorting method. [#1001](https://github.com/ndlib/usurper/pull/1001)
+
 ## [v2021.3](https://github.com/ndlib/usurper/tree/v2021.3) "Elastic Longboard"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2021.1...v2021.3)
 
