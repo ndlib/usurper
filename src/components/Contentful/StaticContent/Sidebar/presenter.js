@@ -25,6 +25,7 @@ const Presenter = ({ cfStatic, inline, showDescription }) => (
 Presenter.propTypes = {
   cfStatic: PropTypes.object.isRequired,
   inline: PropTypes.bool,
+  showDescription: PropTypes.bool,
 }
 
 export default Presenter
