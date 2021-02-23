@@ -16,7 +16,6 @@ const setup = (props) => {
 describe('components/Contentful/StaticContent/Sidebar/presenter', () => {
   beforeEach(() => {
     props = {
-      showDescription: true,
       cfStatic: {
         sys: {
           id: 'id',
