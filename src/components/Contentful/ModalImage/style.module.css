@@ -2,15 +2,24 @@
   width: 100%;
   cursor: pointer;
 }
-.modalImage {
-  max-width: 100%;
-  max-height:calc(100vh - 10em);
-  margin-bottom: -5px;
-  float: left;
-}
 .modalHeader {
   display: flex;
   padding-left: 20px;
   flex-direction: column;
   justify-content: space-around;
+}
+.modalOverlay {
+  display: flex;
+  align-items: center;
+}
+.modalPhotoOuterContainer {
+  height: auto;
+}
+.modalImageContainer {
+  display: flex;
+  justify-content: center;
+}
+.modalImage {
+  max-width: 100%;
+  max-height: calc(100vh - 9rem - 8px); /* 3rem margin top + 3rem margin bottom + header height (3rem + 8px padding) */
 }
