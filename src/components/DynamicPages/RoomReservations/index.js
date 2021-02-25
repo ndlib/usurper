@@ -27,7 +27,9 @@ export const mapStateToProps = (state, ownProps) => {
   })
   const cfStatic = state.cfStatic
   const { contactInfo } = state
-  const body = state.cfStatic.status === statuses.SUCCESS ? state.cfStatic.json.fields.body.split('{{Table}}') : null
+  const body = state.cfStatic.status === statuses.SUCCESS
+    ? typy(state.cfStatic, 'json.fields.body').safeString.split('{{Table}}')
+    : null
   return {
     body,
     combinedStatus,

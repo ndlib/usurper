@@ -24,10 +24,14 @@ const MeetingSpacesTable = (props) => {
             </ul>
           </React.Fragment>
       ),
-      image: (
-        (!data.fields.photo) ? null
-          : <ModalImage photo={data.fields.photo} title={data.fields.title} altText={data.fields.photo.fields.description} />
-      ),
+      image: data.fields.photo ? (
+        <ModalImage
+          photo={data.fields.photo}
+          thumbnail={data.fields.thumbnail}
+          title={data.fields.title}
+          altText={data.fields.photo.fields.description}
+        />
+      ) : null,
       space: (
         <React.Fragment>
           <h3 className='meetingSpacesHeader'>{data.fields.title}</h3>

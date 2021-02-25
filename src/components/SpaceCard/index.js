@@ -12,7 +12,7 @@ const SpaceCard = ({ entry, onTagClick, facets }) => {
   return (
     <div className='space-card'>
       <div className='card-image'>
-        <Image cfImage={entry.fields.photo} itemProp='image' />
+        <Image cfImage={entry.fields.thumbnail || entry.fields.photo} itemProp='image' />
       </div>
       <div className='card-text'>
         <h2 itemProp='name'>{entry.fields.title}</h2>
