@@ -26,8 +26,13 @@ export const getLinkObject = (fields, sysId) => {
   // We need to determine if the main heading (entry title) should be a link
   //  The resource type has links in the "urls" json field. If there is only one, make it the heading link
   //  If we're not handling a resource type the heading should be linked with its appropriate url field (below)
-  const shouldHaveMain = !fields.urls || fields.urls.length === 1
-  let mainUrl = (shouldHaveMain && fields.urls) ? fields.urls[0].url : ''
+  const filteredLinks = !fields.urls ? undefined : fields.urls.filter(link => {
+    // Exclude any links where "hidden" == true
+    // Ignore case, works with boolean or string... just trying to be user-friendly here
+    return !link.hidden || link.hidden.toString().toLowerCase() !== 'true'
+  })
+  const shouldHaveMain = !filteredLinks || filteredLinks.length === 1
+  let mainUrl = (shouldHaveMain && filteredLinks) ? filteredLinks[0].url : ''
 
   // If we're not handling a resoruce type, get the link to use for the heading
   if (!mainUrl && shouldHaveMain) {
@@ -41,8 +46,8 @@ export const getLinkObject = (fields, sysId) => {
   //  otherwise, we've already got the only link for the object in the mainUrl var
   //  we also want to enrich the data with a title if there is none, and a keyId for use in displays <li key={keyId}>
   let links = []
-  if (fields.urls) {
-    links = fields.urls.map((data, index) => {
+  if (filteredLinks) {
+    links = filteredLinks.map((data, index) => {
       data.keyId = sysId + '_link_' + index
       data.title = data.title ? data.title : fields.title
       return data
