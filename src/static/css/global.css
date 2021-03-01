@@ -181,6 +181,7 @@ nav div > a, .menu div > a, .menu-list > li > a, nav div > button, .menu div > b
 
 .menu-list .menu-link button {
   border-radius: 0;
+  margin: 0;
 }
 
 
@@ -3387,7 +3388,8 @@ main .mobile-only h5 {
   li.menu-icon > a,
   li.menu-icon > button {
     font-size: 18px !important;
-    line-height: 1em;
+    line-height: 1.25rem;
+    margin: 0;
   }
 }
 
