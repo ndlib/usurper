@@ -4175,6 +4175,10 @@ section.group .modal-footer button {
   width: calc(100% - 32px); /* account for padding on parent container */
 }
 
+.libraryh3lp {
+  display: flex; /* prevents slight gap between bottom of iframe and container */
+}
+
 @media screen and (min-width: 62em) {
   .side-nav.column-md {
     display: inline;
