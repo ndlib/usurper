@@ -28,13 +28,14 @@ export const mapStateToProps = (state, ownProps) => {
     isLoggedIn: !!(personal.login.token),
     chatOptOut: [true, 'true'].includes(settings[SETTINGS_KIND.chatOptOut].data),
     chatOptOutFetchStatus: settings[SETTINGS_KIND.chatOptOut].state,
+    isChatPage: ['/chat', '/chat/'].includes(ownProps.location.pathname.toLowerCase()),
   }
 }
 
 export const mapDispatchToProps = (dispatch, ownProps) => {
   const onClick = (e, func) => {
     e.preventDefault()
-    if (ownProps.location.pathname === '/chat' || ownProps.location.pathname === '/chat/') {
+    if (ownProps.location.pathname.toLowerCase() === '/chat' || ownProps.location.pathname.toLowerCase() === '/chat/') {
       return
     }
 
@@ -98,7 +99,7 @@ export class ChatModalContainer extends Component {
 
   displayInvite () {
     // After time has elapsed, send proactive chat invite if chat is not already open
-    if (this.props.location.pathname !== '/chat' && this.props.location.pathname !== '/chat/' && !this.props.chatOpen) {
+    if (!this.props.isChatPage && !this.props.chatOpen) {
       // Make sure the user has not previously dismissed proactive chat
       let showInvite = true
       try {
@@ -132,7 +133,7 @@ export class ChatModalContainer extends Component {
   }
 
   render () {
-    if (this.props.location.pathname === '/chat' || this.props.location.pathname === '/chat/') {
+    if (this.props.isChatPage) {
       return null
     }
     return (
@@ -162,6 +163,7 @@ ChatModalContainer.propTypes = {
   isLoggedIn: PropTypes.bool,
   chatOptOut: PropTypes.bool,
   chatOptOutFetchStatus: PropTypes.string,
+  isChatPage: PropTypes.bool,
   getChatOptOut: PropTypes.func,
 }
 

@@ -17,8 +17,9 @@ describe('components/Chat', () => {
     enzymeWrapper = setup()
   })
 
-  it('should render a placeholder div for libraryh3lp', () => {
-    const element = <div className='libraryh3lp needs-js' aria-hidden='true' />
-    expect(enzymeWrapper.containsMatchingElement(element)).toBe(true)
+  it('should render a div for libraryh3lp with iframe inside', () => {
+    const element = enzymeWrapper.findWhere(el => el.type() === 'div' && el.hasClass('libraryh3lp'))
+    expect(element.exists()).toBe(true)
+    expect(element.find('iframe').exists()).toBe(true)
   })
 })
