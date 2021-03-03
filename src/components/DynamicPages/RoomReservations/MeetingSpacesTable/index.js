@@ -28,6 +28,7 @@ const MeetingSpacesTable = (props) => {
         <ModalImage
           photo={data.fields.photo}
           thumbnail={data.fields.thumbnail}
+          thumbnailClassName='meetingSpacesThumbnail'
           title={data.fields.title}
           altText={data.fields.photo.fields.description}
         />

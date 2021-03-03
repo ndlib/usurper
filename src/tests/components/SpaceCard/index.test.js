@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 
 import SpaceCard from 'components/SpaceCard'
-import Image from 'components/Image'
+import ModalImage from 'components/Contentful/ModalImage'
 import LibMarkdown from 'components/LibMarkdown'
 import Link from 'components/Interactive/Link'
 import FacetTags from 'components/Interactive/FacetTags'
@@ -31,6 +31,9 @@ describe('components/SpaceCard', () => {
           photo: {
             image: 'path',
           },
+          thumbnail: {
+            image: 'path2',
+          },
           floor: {
             fields: {
               slug: 'floor slug',
@@ -55,10 +58,11 @@ describe('components/SpaceCard', () => {
     expect(link.props().to).toEqual(props.entry.fields.reservationUrl)
   })
 
-  it('shoul render Image', () => {
-    const image = enzymeWrapper.find(Image)
+  it('shoul render ModalImage', () => {
+    const image = enzymeWrapper.find(ModalImage)
     expect(image.exists()).toBe(true)
-    expect(image.props().cfImage).toEqual(props.entry.fields.photo)
+    expect(image.props().photo).toEqual(props.entry.fields.photo)
+    expect(image.props().thumbnail).toEqual(props.entry.fields.thumbnail)
   })
 
   it('should render description in markdown', () => {

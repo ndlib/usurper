@@ -25,10 +25,11 @@ export class ModalImage extends Component {
 
   render () {
     const thumbnail = this.props.thumbnail || this.props.photo
+    const thumbnailClasses = styles.modalThumbnail + (this.props.thumbnailClassName ? ` ${this.props.thumbnailClassName}` : '')
     return (
       <React.Fragment>
         <div onClick={this.handleOpenModal}>
-          <Image cfImage={thumbnail} alt={this.props.altText} className={styles.modalThumbnail} itemProp='image' />
+          <Image cfImage={thumbnail} alt={this.props.altText} className={thumbnailClasses} itemProp='image' />
         </div>
         <ReactModal
           isOpen={this.state.showModal}
@@ -63,6 +64,7 @@ export default ModalImage
 ModalImage.propTypes = {
   photo: PropTypes.object.isRequired,
   thumbnail: PropTypes.object,
+  thumbnailClassName: PropTypes.string,
   altText: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }
