@@ -58,7 +58,7 @@ describe('components/SpaceCard', () => {
     expect(link.props().to).toEqual(props.entry.fields.reservationUrl)
   })
 
-  it('shoul render ModalImage', () => {
+  it('should render ModalImage', () => {
     const image = enzymeWrapper.find(ModalImage)
     expect(image.exists()).toBe(true)
     expect(image.props().photo).toEqual(props.entry.fields.photo)
