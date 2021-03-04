@@ -37,6 +37,7 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
         isLoggedIn: true,
         chatOptOut: false,
         chatOptOutFetchStatus: statuses.NOT_FETCHED,
+        isChatPage: false,
       }
       enzymeWrapper = setup(props)
     })
@@ -111,6 +112,7 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
         closeChat: jest.fn(),
         getChatOptOut: jest.fn(),
         isLoggedIn: true,
+        isChatPage: true,
       }
       enzymeWrapper = setup(props)
     })
@@ -144,6 +146,11 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
     }
 
     it('should map props as expected', () => {
+      props = {
+        location: {
+          pathname: '/CHaT', // test case insensitive
+        },
+      }
       const result = mapStateToProps(state, props)
       expect(result).toMatchObject({
         chatOpen: false,
@@ -151,11 +158,15 @@ describe('components/Layout/Footer/FooterInfo/ChatModal', () => {
         isLoggedIn: true,
         chatOptOut: true,
         chatOptOutFetchStatus: statuses.SUCCESS,
+        isChatPage: true,
       })
     })
 
     it('should open chat page instead of modal when opened from keyboard', () => {
       props = {
+        location: {
+          pathname: '/anywhere',
+        },
         history: {
           push: jest.fn(),
         },
