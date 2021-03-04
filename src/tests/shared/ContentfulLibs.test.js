@@ -24,23 +24,33 @@ describe('getLinkObject', () => {
     })
 
     describe('multiple urls', () => {
+      const visibleLinks = [
+        { title: 'first', url: testUrl },
+        { title: 'second', url: testUrl + '/2' },
+      ]
+      const hiddenLinks = [
+        { title: 'hide me', url: 'https://hide.this.link', hidden: true },
+      ]
       const fields = {
         title: 'fieldTitle',
-        urls: [ { title: 'first', url: testUrl }, { title: 'second', url: testUrl } ],
+        urls: visibleLinks.concat(hiddenLinks),
       }
 
       it('Should not have a main url', () => {
         expect(getLinkObject(fields, 0)).toHaveProperty('heading.url', '')
       })
 
-      it('Should return with all links', () => {
-        expect(getLinkObject(fields, 0)).toHaveProperty('links')
+      it('Should return with all links except hidden', () => {
+        const linkObj = getLinkObject(fields, 0)
+        expect(linkObj).toHaveProperty('links')
+        expect(linkObj.links).not.toEqual(expect.arrayContaining(hiddenLinks))
+        expect(linkObj.links).toEqual(expect.arrayContaining(visibleLinks))
       })
 
       it('Should return with conditional links', () => {
         const ret = getLinkObject(fields, 0)
         expect(ret).toHaveProperty('conditionalLinks')
-        expect(ret.conditionalLinks.length).toBe(fields.urls.length)
+        expect(ret.conditionalLinks.length).toBe(visibleLinks.length)
       })
     })
   })

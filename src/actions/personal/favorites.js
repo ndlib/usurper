@@ -197,6 +197,10 @@ const convertDatabaseToFavorite = (database) => {
     // If a database has more than one url, each one is treated as its own favorite
     for (let j = 0; j < database.fields.urls.length; j++) {
       const urlField = database.fields.urls[j]
+      // Ignore case, works with boolean or string... just trying to be user-friendly here
+      if (typy(urlField, 'hidden').toString().toLowerCase() === 'true') {
+        return
+      }
       output.push({
         itemKey: database.sys.id + '_link_' + j,
         title: database.fields.title + (database.fields.urls.length > 1 ? ' - ' + urlField.title : ''),
