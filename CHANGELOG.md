@@ -1,5 +1,21 @@
 # Change Log
 
+## [v2021.5](https://github.com/ndlib/usurper/tree/v2021.5) "Fluffy Marshmallows"
+[Full Changelog](https://github.com/ndlib/usurper/compare/v2021.4...v2021.5)
+
+### Bug Fixes
+- Fixed Study Spaces search by title. [#1020](https://github.com/ndlib/usurper/pull/1020)
+- Fixed chat box not appearing on /chat page. [#1016](https://github.com/ndlib/usurper/pull/1016)
+- Fixed navigation bar styling in Safari. [#1014](https://github.com/ndlib/usurper/pull/1014) [#1009](https://github.com/ndlib/usurper/pull/1009)
+
+### Features
+- Study spaces and meeting spaces can now have separate thumbnail and full size images. [#1021](https://github.com/ndlib/usurper/pull/1021)
+
+### Other Changes
+- Dynamic Pages will no longer show short description (unless specifically enabled for that page.) [#1017](https://github.com/ndlib/usurper/pull/1017)
+- Individual links can now be hidden from databases display. [#1015](https://github.com/ndlib/usurper/pull/1015)
+- Front page images are now lazy loaded and won't be fetched beyond their max display size, in order to boost performance. [#1010](https://github.com/ndlib/usurper/pull/1010)
+
 ## [v2021.4](https://github.com/ndlib/usurper/tree/v2021.4) "Ecstatic Monkey"
 [Full Changelog](https://github.com/ndlib/usurper/compare/v2021.3...v2021.4)
 
