@@ -16,6 +16,7 @@ yarn test || { echo "Unit Tests Failed"; exit 1; }
 
 # copy the blueprints repo into deploy/blueprints so we can run the deploy from there after building
 echo -e "\n${blue}Copying blueprints...${reset}"
+mkdir -p ./deploy
 rm -r -f ./deploy/blueprints && cp -R -f $BLUEPRINTS_DIR/ ./deploy/blueprints || { echo "Failed to copy blueprints. Make sure you have usurper-blueprints checked out."; exit 1; }
 # install packages in the blueprints folder
 cd ./deploy/blueprints
