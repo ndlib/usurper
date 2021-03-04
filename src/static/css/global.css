@@ -163,6 +163,17 @@ a:visited {
   color: #fff;
 }
 
+.menu-link.search {
+  text-align: right;
+  max-width: 74px;
+}
+.menu-link.search > * {
+  margin: 0;
+}
+
+nav div > a, .menu div > a, .menu-list > li > a, nav div > button, .menu div > button, .menu-list > li.right > * {
+  line-height: 20px;
+}
 
 .menu-link li a:link, .menu-link li a:hover, .menu-link li a:active, .menu-link li a:visited {
   color: #417D8B;
@@ -2741,7 +2752,7 @@ p < img {
 
 
 
-li.menu-icon {
+.menu-list>li.menu-icon {
   display: none;
 }
 
@@ -3328,6 +3339,56 @@ main .mobile-only h5 {
     height: auto;
     min-height: auto;
   }
+
+  .menu-list .menu-link {
+    display: none;
+  }
+
+  .menu-list > li:first-child, .menu-link.search {
+    display: inline-block;
+  }
+
+  li.menu-link {
+    list-style: none;
+  }
+
+  .account-menu-buttons {
+    display: none !important;
+  }
+
+  .topnav {
+    position: absolute;
+    left: 0;
+    background: #fff;
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 5px;
+    width: 50vw;
+  }
+
+  .topnav a {
+    color: #555555;
+    font-family: GPHeavy,sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: normal;
+    display: block;
+    padding: 5px ;
+  }
+
+  li.menu-icon {
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  li.menu-icon > a,
+  li.menu-icon > button {
+    font-size: 18px !important;
+    line-height: 1em;
+  }
 }
 
 @media screen and (max-width: 780px) {
@@ -3403,58 +3464,6 @@ main .mobile-only h5 {
   .p-resources {
     column-count: 1;
   }
-}
-
-@media screen and (max-width:850px) {
-  .menu-list .menu-link {
-    display: none;
-  }
-
-  .menu-list > li:first-child, .menu-link.search {
-    display: inline-block;
-  }
-
-  li.menu-link {
-    list-style: none;
-  }
-
-  .account-menu-buttons {
-    display: none !important;
-  }
-
-  .topnav {
-    position: absolute;
-    left: 0;
-    background: #fff;
-    padding-left: 0;
-    list-style: none;
-    margin: 0;
-    padding: 5px;
-    width: 50vw;
-  }
-  .topnav a {
-    color: #555555;
-    font-family: GPHeavy,sans-serif;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: normal;
-    display: block;
-    padding: 5px ;
-  }
-
-  li.menu-icon {
-    display: block;
-    position: relative;
-    cursor: pointer;
-
-  }
-
-    li.menu-icon > a,
-    li.menu-icon > button {
-      font-size: 18px !important;
-      line-height: 1em;
-    }
 }
 
 @media screen and (max-width: 1200px) {
