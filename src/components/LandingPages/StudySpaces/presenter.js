@@ -16,8 +16,8 @@ const Presenter = (props) => {
       allEntriesStatus={props.combinedStatus}
       facets={props.facets}
       entryCardComponent={SpaceCard}
-      filterFields={['fields.name', 'fields.description', 'fields.features[*]']}
-      sortFields={['fields.floor.fields.floorNumber', 'fields.name']}
+      filterFields={['fields.title', 'fields.description', 'fields.features[*]']}
+      sortFields={['fields.floor.fields.floorNumber', 'fields.title']}
     />
   )
 }
