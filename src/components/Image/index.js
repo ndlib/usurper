@@ -29,6 +29,22 @@ export const mapStateToProps = (state, thisProps) => {
     hidden = true
   }
 
+  if (src) {
+    // Don't use protocol-relative links. Use https explicitly.
+    if (src.startsWith('//')) {
+      src = 'https:' + src
+    }
+    // Add on width and height parameters if specified
+    if (thisProps.width) {
+      src += src.includes('?') ? '&' : '?'
+      src += `w=${thisProps.width}`
+    }
+    if (thisProps.height) {
+      src += src.includes('?') ? '&' : '?'
+      src += `h=${thisProps.height}`
+    }
+  }
+
   return {
     src: src,
     alt: alt,
@@ -95,6 +111,7 @@ export class ImageContainer extends Component {
         ariaHidden={this.props.ariaHidden}
         itemProp={this.props.itemProp}
         onError={this.onError}
+        lazy={this.props.lazy}
       >
         {this.props.children}
       </Presenter>
@@ -109,6 +126,9 @@ ImageContainer.propTypes = {
   alt: PropTypes.string,
   ariaHidden: PropTypes.bool,
   itemProp: PropTypes.string,
+  lazy: PropTypes.bool,
+  width: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
+  height: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
   children: PropTypes.any,
 
   fetchEntry: PropTypes.func.isRequired,

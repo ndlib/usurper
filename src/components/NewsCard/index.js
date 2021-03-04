@@ -11,7 +11,14 @@ export const NewsCard = ({ entry, isHome }) => {
   return (
     <div className={'news-card' + (isHome ? ' home' : '')} itemScope itemType='http://schema.org/NewsArticle'>
       <Link to={'/news/' + entry.fields.slug} ariaLabel={entry.fields.title} itemProp='mainEntityOfPage'>
-        <Image cfImage={entry.fields.image} className='news-image' containerClassName='news-image-container' itemProp='image' />
+        <Image
+          cfImage={entry.fields.image}
+          className='news-image'
+          containerClassName='news-image-container'
+          itemProp='image'
+          lazy
+          width={isHome ? 584 : 225}
+        />
       </Link>
       <div className='card-text'>
         <Link to={'/news/' + entry.fields.slug} ariaLabel={entry.fields.title} itemProp='mainEntityOfPage'>

@@ -8,12 +8,18 @@ import Link from 'components/Interactive/Link'
 
 import './style.css'
 
-export const ExhibitCard = ({ entry, horizontal, showDetails }) => {
+export const ExhibitCard = ({ entry, horizontal, showDetails, isHome }) => {
   const event = typy(entry.event).safeObjectOrEmpty
   return (
     <div className={'exhibit-card' + (horizontal ? ' horizontal' : '')}>
       <Link to={entry.linkTo} ariaLabel={entry.title}>
-        <Image cfImage={entry.image} className='exhibit-image' containerClassName='exhibit-image-container'>
+        <Image
+          cfImage={entry.image}
+          className='exhibit-image'
+          containerClassName='exhibit-image-container'
+          lazy
+          width={isHome ? 584 : 311}
+        >
           {entry.type} Exhibit
         </Image>
       </Link>
@@ -56,6 +62,7 @@ ExhibitCard.propTypes = {
   }).isRequired,
   horizontal: PropTypes.bool,
   showDetails: PropTypes.bool,
+  isHome: PropTypes.bool,
 }
 
 export default ExhibitCard

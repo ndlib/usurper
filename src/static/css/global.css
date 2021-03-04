@@ -15,8 +15,6 @@ body {
   background: url("../images/background.png");
   min-height: 100%;
   font-family: sans-serif;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
 }
 
 /* mobile safari likes to round input boxes which is pretty silly */

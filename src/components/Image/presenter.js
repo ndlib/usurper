@@ -13,6 +13,7 @@ const Image = (props) => {
         aria-hidden={props.ariaHidden}
         onError={props.onError}
         itemProp={props.itemProp}
+        loading={props.lazy ? 'lazy' : undefined}
       />
       { props.children && (
         <div className='imageOverlay'>
@@ -30,6 +31,7 @@ Image.propTypes = {
   alt: PropTypes.string,
   ariaHidden: PropTypes.bool,
   itemProp: PropTypes.string,
+  lazy: PropTypes.bool,
   children: PropTypes.any,
 
   onError: PropTypes.func,
