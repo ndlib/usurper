@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import LibMarkdown from 'components/LibMarkdown'
-import Image from 'components/Image'
+import ModalImage from 'components/Contentful/ModalImage'
 import Link from 'components/Interactive/Link'
 import FacetTags from 'components/Interactive/FacetTags'
 
@@ -12,7 +12,13 @@ const SpaceCard = ({ entry, onTagClick, facets }) => {
   return (
     <div className='space-card'>
       <div className='card-image'>
-        <Image cfImage={entry.fields.photo} itemProp='image' />
+        <ModalImage
+          photo={entry.fields.photo}
+          thumbnail={entry.fields.thumbnail}
+          itemProp='image'
+          title={entry.fields.title}
+          altText={entry.fields.title}
+        />
       </div>
       <div className='card-text'>
         <h2 itemProp='name'>{entry.fields.title}</h2>
