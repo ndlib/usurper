@@ -4,6 +4,7 @@ import typy from 'typy'
 
 import Card from './Card'
 import TitleCard from './TitleCard'
+import ToolTip from '../ToolTip'
 import FromIcon from '../FromIcon'
 
 import typeConstants from '../../constants'
@@ -33,7 +34,6 @@ const Cards = (props) => {
         if (key === 'title') {
           return <TitleCard key={key} listType={props.listType} {...props.item} />
         }
-
         const displayName = columns[key]
         const className = (props.isMobileDetails ? styles.mobileDetail : styles[key]) +
           (props.listType === 'history' ? ` ${styles.circHist}` : '')
@@ -51,6 +51,7 @@ const Cards = (props) => {
               <span className={styles.detailLabel}>{displayName}: </span>
             )}
             { key === 'from' ? <FromIcon code={props.item.from} /> : <span className={styles.detailValue}>{value}</span>}
+            { key === 'renewable' && props.item.from === 'ILL' ? <ToolTip value={value} /> : null}
           </Card>
         )
       })}
