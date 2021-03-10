@@ -41,7 +41,7 @@ const Cards = (props) => {
         if (key === 'renewable' && typy(props.item, key).isBoolean) {
           value = props.item[key] ? 'Yes' : 'No'
         } else {
-          value = (key === 'dueDate' && props.item.from === 'ILL') ? 'Not Available' : typy(props.item, key).safeString
+          value = (key === 'returnDate' && props.item.from === 'ILL') ? 'Not Available' : typy(props.item, key).safeString
         }
         if (key === 'renewable' && props.item.from === 'ILL' && typy(props.item, key).isBoolean) {
           value = props.item[key] ? <ToolTip value={'Yes'} /> : <ToolTip value={'No'} />
@@ -66,6 +66,7 @@ const Cards = (props) => {
 Cards.propTypes = {
   item: PropTypes.shape({
     from: PropTypes.string,
+    renewable: PropTypes.bool,
   }).isRequired,
   listType: PropTypes.string.isRequired,
   isMobileDetails: PropTypes.bool,

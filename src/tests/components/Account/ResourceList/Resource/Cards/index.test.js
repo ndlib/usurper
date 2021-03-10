@@ -5,6 +5,7 @@ import Cards from 'components/Account/ResourceList/Resource/Cards'
 import Card from 'components/Account/ResourceList/Resource/Cards/Card'
 import TitleCard from 'components/Account/ResourceList/Resource/Cards/TitleCard'
 import FromIcon from 'components/Account/ResourceList/Resource/FromIcon'
+import ToolTip from 'components/Account/ResourceList/Resource/ToolTip'
 
 import typeConstants from 'components/Account/ResourceList/constants'
 
@@ -33,7 +34,8 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
             loanDate: '2019-05-06',
             dueDate: '2019-05-07',
             returnDate: '2019-05-08',
-            from: 'NDU',
+            from: 'ILL',
+            renewable: false,
           },
           listType: listType,
         }
@@ -51,8 +53,15 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
             expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
           } else if (column === 'title') {
             expect(enzymeWrapper.find(TitleCard).exists()).toBe(true)
+          } else if (column === 'renewable') {
+            expect(enzymeWrapper.find(ToolTip).exists()).toBe(true)
           } else {
-            const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === props.item[column])
+            const found = enzymeWrapper.findWhere(el => {
+              if (typeof el.props().value !== 'object') {
+                return el.type() === Card && el.props().value === props.item[column]
+              }
+            })
+            console.log(found.debug())
             expect(found.exists()).toBe(true)
           }
         })

@@ -16,8 +16,8 @@ ToolTip.propTypes = {
   value: PropTypes.string,
 }
 
-ToolTip.defaultProps = {
-  value: 'NDU',
-}
+// ToolTip.defaultProps = {
+//   value: 'Yes',
+// }
 
 export default ToolTip
