@@ -57,7 +57,7 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
             expect(enzymeWrapper.find(ToolTip).exists()).toBe(true)
           } else {
             const found = enzymeWrapper.findWhere(el => {
-              if (typeof el.props().value !== 'object') {
+              if (typeof props.item[column] === 'string') {
                 return el.type() === Card && el.props().value === props.item[column]
               }
             })
