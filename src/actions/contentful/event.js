@@ -25,7 +25,9 @@ const receiveEvent = (event, response, eventGroups) => {
     status: statuses.SUCCESS,
     event: response[0],
     receivedAt: Date.now(),
-    recurring: typy(eventGroups).safeArray.some(group => group.eventIds.includes(response[0].sys.id)),
+    recurring: typy(eventGroups).safeArray.some(group => {
+      return group.eventGroupType === 'recurring' && group.eventIds.includes(response[0].sys.id)
+    }),
   }
 
   try {

@@ -74,6 +74,7 @@ describe('allEvents reducer', () => {
           '123',
           '444',
         ],
+        eventGroupType: 'recurring',
       },
       {
         id: 'groupId2',
@@ -81,6 +82,7 @@ describe('allEvents reducer', () => {
         eventIds: [
           '456',
         ],
+        eventGroupType: 'recurring',
       }
     ]
     const recurringEvent1 = {

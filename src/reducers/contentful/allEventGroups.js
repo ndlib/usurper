@@ -15,6 +15,7 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
           id: group.fields.id || group.sys.id,
           title: group.fields.displayName || group.fields.title,
           eventIds: typy(group.fields.items).safeArray.map(event => event.sys.id),
+          eventGroupType: typy(group, 'fields.extraData.eventGroupType').safeString || 'series',
         })),
       })
     default:

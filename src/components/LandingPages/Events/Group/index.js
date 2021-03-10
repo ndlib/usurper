@@ -42,8 +42,9 @@ export const mapStateToProps = (state, ownProps) => {
   const groupId = ownProps.match.params.groupId
   const fetchStatus = typy(grouping, `${groupId}.status`).safeString || statuses.NOT_FETCHED
   const group = typy(grouping, `${groupId}.data`).safeObject
+  const isRecurring = typy(group, 'fields.extraData.eventGroupType').safeString === 'recurring'
   const events = (fetchStatus === statuses.SUCCESS)
-    ? typy(grouping, `${groupId}.data.fields.items`).safeArray.map(mapEvent)
+    ? typy(grouping, `${groupId}.data.fields.items`).safeArray.map(item => mapEvent(item, isRecurring))
     : []
 
   return {
