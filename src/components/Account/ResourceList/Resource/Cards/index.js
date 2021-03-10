@@ -37,10 +37,15 @@ const Cards = (props) => {
         const displayName = columns[key]
         const className = (props.isMobileDetails ? styles.mobileDetail : styles[key]) +
           (props.listType === 'history' ? ` ${styles.circHist}` : '')
-        const value = (key === 'returnDate' && props.item.from === 'ILL')
-          ? 'Not Available'
-          : typy(props.item, key).safeString
-
+        let value = ''
+        if (key === 'renewable' && typy(props.item, key).isBoolean) {
+          value = props.item[key] ? 'Yes' : 'No'
+        } else {
+          value = (key === 'dueDate' && props.item.from === 'ILL') ? 'Not Available' : typy(props.item, key).safeString
+        }
+        if (key === 'renewable' && props.item.from === 'ILL' && typy(props.item, key).isBoolean) {
+          value = props.item[key] ? <ToolTip value={'Yes'} /> : <ToolTip value={'No'} />
+        }
         if (props.isMobileDetails && !value) {
           return null
         }
@@ -51,7 +56,6 @@ const Cards = (props) => {
               <span className={styles.detailLabel}>{displayName}: </span>
             )}
             { key === 'from' ? <FromIcon code={props.item.from} /> : <span className={styles.detailValue}>{value}</span>}
-            { key === 'renewable' && props.item.from === 'ILL' ? <ToolTip value={value} /> : null}
           </Card>
         )
       })}

@@ -65,8 +65,9 @@
     -ms-grid-column: 2;
   }
 
-  .renewalsAllowed {
+  .renewable{
     -ms-grid-column: 4;
+    margin: auto;
   }
 
   .dueDate {

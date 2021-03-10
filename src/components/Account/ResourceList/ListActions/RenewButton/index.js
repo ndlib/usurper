@@ -18,7 +18,7 @@ export const RenewButtonContainer = (props) => {
       }
     })
     // set renewal of illiad items
-    props.receiveRenewal(undefined, statuses.SUCCESS, { statusText: 'Please view item in ILL to renew' })
+    props.receiveRenewal(undefined, statuses.SUCCESS, { statusText: '' })
   }
 
   const labelText = 'Renew all renewable items'

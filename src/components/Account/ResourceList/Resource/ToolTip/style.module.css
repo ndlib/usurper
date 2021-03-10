@@ -10,8 +10,8 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color: black;
+  width: 250px;
+  background-color: #0C2340;
   color: #fff;
   text-align: center;
   border-radius: 6px;
@@ -20,8 +20,8 @@
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  top: -5px;
-  left: 150%;
+  top: -50px;
+  left: -100px;
 }
 
 .tooltip:hover .tooltiptext {
