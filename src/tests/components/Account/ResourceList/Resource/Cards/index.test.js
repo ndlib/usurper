@@ -55,13 +55,9 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
             expect(enzymeWrapper.find(TitleCard).exists()).toBe(true)
           } else if (column === 'renewable') {
             expect(enzymeWrapper.find(ToolTip).exists()).toBe(true)
-          } else {
-            const found = enzymeWrapper.findWhere(el => {
-              if (typeof props.item[column] === 'string') {
-                return el.type() === Card && el.props().value === props.item[column]
-              }
-            })
-            console.log(found.debug())
+          }
+          if (column === 'renewable' && typeof props.item[column] === 'string') {
+            const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === props.item[column])
             expect(found.exists()).toBe(true)
           }
         })
