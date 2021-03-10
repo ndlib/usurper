@@ -12,7 +12,9 @@ export default (state = { status: statuses.NOT_FETCHED }, action) => {
     case CF_RECEIVE_ALLEVENTS:
       const allEvents = typy(action.allEvents).safeArray.map(entry => {
         // Check if it is a recurring event before calling event mapping by looking at the eventGroups
-        const recurring = typy(action.allEventGroups).safeArray.some(group => group.eventIds.includes(entry.sys.id))
+        const recurring = typy(action.allEventGroups).safeArray.some(group => {
+          return group.eventGroupType === 'recurring' && group.eventIds.includes(entry.sys.id)
+        })
         return mapEvent(entry, recurring)
       })
 

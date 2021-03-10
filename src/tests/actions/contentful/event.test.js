@@ -29,6 +29,7 @@ const eventGroups = [
     eventIds: [
       'event123',
     ],
+    eventGroupType: 'recurring',
   },
 ]
 
