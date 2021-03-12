@@ -8,7 +8,7 @@ const ToolTip = (props) => {
   const tip = (props.value === 'No' ? 'Renewal not available. Please return by due date.' : 'Please click the "view in ILL" button to renew')
   return (
     <div aria-labelledby='tip' className={styles.tooltip}>{value}
-      <span id='tip' className={styles.tooltiptext}>{tip}</span>
+      <span role='tooltip' id='tip' className={styles.tooltiptext}>{tip}</span>
     </div>
   )
 }
