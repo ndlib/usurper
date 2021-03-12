@@ -21,6 +21,7 @@
 .status,
 .loanDate,
 .returnDate,
+.renewable,
 .from {
   display: none;
 }
@@ -49,6 +50,7 @@
   .status,
   .loanDate,
   .returnDate,
+  .renewable,
   .from {
     display: block;
   }

@@ -6,8 +6,8 @@
   display: grid;
   display: -ms-grid;
 
-  grid-template-columns: 2fr 1fr .25fr;
-  -ms-grid-columns: 2fr 1fr .25fr;
+  grid-template-columns: 2fr 1fr .25fr .25fr;
+  -ms-grid-columns: 2fr 1fr .25fr .25fr;
   grid-template-rows: 2fr auto auto;
   -ms-grid-rows: 2fr auto auto;
   justify-content: left;

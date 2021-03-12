@@ -53,10 +53,12 @@ describe('components/Account/ResourceList/Resource/Cards', () => {
             expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
           } else if (column === 'title') {
             expect(enzymeWrapper.find(TitleCard).exists()).toBe(true)
+          } else if (column === 'returnDate') {
+            const find = <span>Not Available</span>
+            expect(enzymeWrapper.containsMatchingElement(find)).toBe(true)
           } else if (column === 'renewable') {
             expect(enzymeWrapper.find(ToolTip).exists()).toBe(true)
-          }
-          if (column === 'renewable' && typeof props.item[column] === 'string') {
+          } else if (column !== 'renewable' || 'title') {
             const found = enzymeWrapper.findWhere(el => el.type() === Card && el.props().value === props.item[column])
             expect(found.exists()).toBe(true)
           }

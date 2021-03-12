@@ -1,7 +1,9 @@
 .authorHeader,
 .statusHeader,
 .loanDateHeader,
+.renewableHeader,
 .returnDateHeader,
+
 .fromHeader {
   display: none;
 }
@@ -10,6 +12,7 @@
   .authorHeader,
   .statusHeader,
   .loanDateHeader,
+  .renewableHeader,
   .returnDateHeader,
   .fromHeader {
     display: block;
