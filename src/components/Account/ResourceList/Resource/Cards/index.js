@@ -44,7 +44,7 @@ const Cards = (props) => {
           value = (key === 'returnDate' && props.item.from === 'ILL') ? 'Not Available' : typy(props.item, key).safeString
         }
         if (key === 'renewable' && props.item.from === 'ILL') {
-          return <ToolTip key={key} value={props.item[key]} />
+          return <ToolTip key={key} title={props.item.title} value={props.item[key]} />
         }
         if (props.isMobileDetails && !value) {
           return null
