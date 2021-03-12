@@ -56,7 +56,6 @@ const Cards = (props) => {
               <span className={styles.detailLabel}>{displayName}: </span>
             )}
             { key === 'from' ? <FromIcon code={props.item.from} /> : <span className={styles.detailValue}>{value}</span>}
-            { (key === 'renewable' && props.item.from === 'ILL') ? <ToolTip value={props.item[key]} /> : null }
           </Card>
         )
       })}
