@@ -66,6 +66,7 @@ const Cards = (props) => {
 Cards.propTypes = {
   item: PropTypes.shape({
     from: PropTypes.string,
+    title: PropTypes.string,
   }).isRequired,
   listType: PropTypes.string.isRequired,
   isMobileDetails: PropTypes.bool,
