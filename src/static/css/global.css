@@ -398,6 +398,17 @@ height:auto;
   background: #FC7279;
 }
 
+.alert.serviceAvailable,
+.alert.serviceLimited {
+  border: solid 2px #028039;
+  background-color: #028039;
+}
+
+.alert.serviceUnavailable {
+  border: solid 2px #AA272F;
+  background-color: #AA272F;
+}
+
 .alert.page {
   margin-bottom: 1.5em;
 }

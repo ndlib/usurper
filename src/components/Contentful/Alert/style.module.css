@@ -8,32 +8,74 @@
   color: #0b1f40;
 }
 
+.alertSection.informational,
+.alertSection.informationalYellow,
+.alertSection.warning,
+.alertSection.serviceUnavailable {
+  border: solid 2px #AA272F;
+}
+
 .alertSection.informational {
   background-color: #FFB073;
-  border: solid 2px #AA272F;
 }
 
 .alertSection.informationalYellow {
   background-color: #F8E999;
-  border: solid 2px #AA272F;
-}
-
-.alertSection.informational .alertContainer,
-.alertSection.informationalYellow .alertContainer {
-  background: url('../../../static/images/ic_info_outline_dark_24px.svg') no-repeat;
-  background-size: 1.5em;
-  background-position: left center;
 }
 
 .alertSection.warning {
   background-color: #FC7279;
-  border: solid 2px #AA272F;
+}
+
+.alertSection.serviceUnavailable {
+  background-color: #AA272F;
+}
+
+.alertSection.serviceAvailable,
+.alertSection.serviceLimited {
+  background-color: #028039;
+  border: solid 2px #028039;
+}
+
+.alertSection.informational .alertContainer,
+.alertSection.informationalYellow .alertContainer,
+.alertSection.warning .alertContainer,
+.alertSection.serviceAvailable .alertContainer,
+.alertSection.serviceLimited .alertContainer,
+.alertSection.serviceUnavailable .alertContainer {
+  background-size: 1.5em;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+
+.alertSection.informational .alertContainer,
+.alertSection.informationalYellow .alertContainer {
+  background-image: url('../../../static/images/ic_info_outline_dark_24px.svg');
 }
 
 .alertSection.warning .alertContainer {
-  background: url('../../../static/images/alert-dark.svg') no-repeat;
-  background-size: 1.5em;
-  background-position: left center;
+  background-image: url('../../../static/images/alert-dark.svg');
+}
+
+.alertSection.serviceAvailable .alertContainer {
+  background-image: url('../../../static/images/service-full.svg');
+}
+
+.alertSection.serviceLimited .alertContainer {
+  background-image: url('../../../static/images/service-partial.svg');
+}
+
+.alertSection.serviceUnavailable .alertContainer {
+  background-image: url('../../../static/images/service-closed.svg');
+}
+
+.alertSection.serviceAvailable .alertContainer .description,
+.alertSection.serviceAvailable .alertContainer .description p,
+.alertSection.serviceLimited .alertContainer .description,
+.alertSection.serviceLimited .alertContainer .description p,
+.alertSection.serviceUnavailable .alertContainer .description,
+.alertSection.serviceUnavailable .alertContainer .description p {
+  color: #FFFFFF;
 }
 
 .alertContainer {
